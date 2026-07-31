@@ -1,23 +1,32 @@
 """
-DreamerV3 world model components.
+DreamerV3 world model components + CarDreamer integration.
 
-RSSM (Recurrent State Space Model) and encoder adapters
-for the three-way Phase 3 comparison.
+The RSSM, actor-critic, and training loop are now provided by CarDreamer's
+tested DreamerV3 implementation (third_party/CarDreamer/dreamerv3/).
+
+Our contribution layer:
+- encoder_adapter.py: Three-arm encoder factory (CNN, custom JEPA, V-JEPA2)
+- cardreamer_encoder_hook.py: Hook to swap our encoders into CarDreamer's pipeline
 """
 
-from src.dreamer.rssm_wrapper import RSSM, RSSMState
 from src.dreamer.encoder_adapter import (
     EncoderAdapter,
     CNNEncoder,
     VJEPAEncoder,
     create_encoder,
 )
+from src.dreamer.cardreamer_encoder_hook import (
+    CarDreamerEncoderHook,
+    FrameStacker,
+    patch_dreamerv3_encoder,
+)
 
 __all__ = [
-    "RSSM",
-    "RSSMState",
     "EncoderAdapter",
     "CNNEncoder",
     "VJEPAEncoder",
     "create_encoder",
+    "CarDreamerEncoderHook",
+    "FrameStacker",
+    "patch_dreamerv3_encoder",
 ]

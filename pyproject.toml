@@ -46,9 +46,14 @@ dependencies = [
 wandb = [
     "wandb>=0.16",
 ]
+viz = [
+    "umap-learn>=0.5",        # UMAP for representation visualization
+    "seaborn>=0.13",           # Enhanced plotting
+]
 carla = [
-    # CARLA 0.9.15 Python API — install manually from CARLA release
-    # pip install <path_to_carla>/PythonAPI/carla/dist/carla-0.9.15-cp310-cp310-linux_x86_64.whl
+    # CARLA 0.9.15 + CarDreamer — install via:
+    #   bash scripts/setup_cardreamer.sh /path/to/carla
+    # This installs CarDreamer (git submodule) and CARLA Python API
 ]
 dev = [
     "pytest>=7.4",

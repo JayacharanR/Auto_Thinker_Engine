@@ -30,9 +30,9 @@ import yaml
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.dreamer.encoder_adapter import CNNEncoder, EncoderAdapter
-from src.dreamer.rssm_wrapper import RSSM, RSSMState
-from src.envs.carla_wrapper import CarlaEnvWrapper
-from src.envs.reward import RewardFunction
+from src._deprecated.rssm_wrapper import RSSM, RSSMState
+from src._deprecated.carla_wrapper import CarlaEnvWrapper
+from src._deprecated.reward import RewardFunction
 from src.eval.metrics import MetricsTracker
 from src.utils.checkpoint import CheckpointManager, build_checkpoint_state
 from src.utils.logging_utils import ExperimentLogger, make_run_name
@@ -262,22 +262,23 @@ class DreamerV3Agent:
         self.grad_clip = training_cfg["grad_clip"]
         self.imagination_horizon = training_cfg["imagination_horizon"]
 
-        # State tracking
+        # State tracking — includes previous action for RSSM conditioning
         self._current_state: Optional[RSSMState] = None
+        self._prev_action: Optional[torch.Tensor] = None
 
     def act(self, obs: dict, explore: bool = True) -> np.ndarray:
-        """Select action from observation."""
+        """Select action from observation, conditioning RSSM on previous action."""
         with torch.no_grad():
             image = torch.from_numpy(obs["image"]).float().unsqueeze(0).to(self.device) / 255.0
             embed = self.adapter(self.encoder(image))
 
             if self._current_state is None:
                 self._current_state = self.rssm.initial_state(1, self.device)
+                self._prev_action = torch.zeros(1, 2, device=self.device)
 
-            # Use zero action for first observation step
-            action = torch.zeros(1, 2, device=self.device)
+            # Use ACTUAL previous action, not zeros
             self._current_state, _ = self.rssm.observe_step(
-                self._current_state, action, embed
+                self._current_state, self._prev_action, embed
             )
 
             action = self.actor(self._current_state.combined)
@@ -286,11 +287,15 @@ class DreamerV3Agent:
                 action = action + torch.randn_like(action) * 0.3
                 action = torch.clamp(action, -1.0, 1.0)
 
+            # Store this action for next step
+            self._prev_action = action.clone()
+
         return action.cpu().numpy().squeeze()
 
     def reset(self):
         """Reset agent state for new episode."""
         self._current_state = None
+        self._prev_action = None
 
     def train_step(self, replay_buffer: list) -> dict:
         """

@@ -103,7 +103,15 @@ def download_direct(output_dir: str, chunks: list[int] = None):
 
 
 def verify_dataset(dataset_dir: str):
-    """Verify downloaded dataset structure."""
+    """
+    Verify downloaded dataset structure and CAN field completeness.
+
+    Checks:
+    - Segment directories exist
+    - video.hevc present
+    - processed_log/CAN/steering_angle/{t,value} present
+    - processed_log/CAN/car_speed/{t,value} present
+    """
     dataset_path = Path(dataset_dir)
 
     if not dataset_path.exists():
@@ -112,13 +120,23 @@ def verify_dataset(dataset_dir: str):
 
     total_segments = 0
     total_videos = 0
-    total_logs = 0
+    total_complete = 0  # segments with all required files
+    missing_steering = 0
+    missing_speed = 0
+    missing_video = 0
+
+    required_can_fields = {
+        "steering_angle": ["t", "value"],
+        "car_speed": ["t", "value"],
+    }
 
     for chunk_dir in sorted(dataset_path.iterdir()):
         if not chunk_dir.is_dir() or chunk_dir.name.startswith("_"):
             continue
 
         chunk_segments = 0
+        chunk_complete = 0
+
         for route_dir in chunk_dir.iterdir():
             if not route_dir.is_dir():
                 continue
@@ -128,26 +146,50 @@ def verify_dataset(dataset_dir: str):
                 chunk_segments += 1
                 total_segments += 1
 
-                if (segment_dir / "video.hevc").exists():
+                has_video = (segment_dir / "video.hevc").exists()
+                if has_video:
                     total_videos += 1
-                if (segment_dir / "processed_log").exists():
-                    total_logs += 1
+                else:
+                    missing_video += 1
 
-        print(f"  {chunk_dir.name}: {chunk_segments} segments")
+                # Check CAN fields
+                processed_log = segment_dir / "processed_log"
+                has_steering = all(
+                    (processed_log / "CAN" / "steering_angle" / f).exists()
+                    for f in required_can_fields["steering_angle"]
+                )
+                has_speed = all(
+                    (processed_log / "CAN" / "car_speed" / f).exists()
+                    for f in required_can_fields["car_speed"]
+                )
 
-    print(f"\nTotal segments: {total_segments}")
-    print(f"Videos found:   {total_videos}")
-    print(f"Logs found:     {total_logs}")
-    print(f"Expected:       ~2019 segments")
+                if not has_steering:
+                    missing_steering += 1
+                if not has_speed:
+                    missing_speed += 1
 
-    if total_segments >= 1000:
+                if has_video and has_steering and has_speed:
+                    chunk_complete += 1
+                    total_complete += 1
+
+        print(f"  {chunk_dir.name}: {chunk_segments} segments, {chunk_complete} complete")
+
+    print(f"\n{'='*40}")
+    print(f"Total segments:     {total_segments}")
+    print(f"Complete segments:  {total_complete}")
+    print(f"Missing video:      {missing_video}")
+    print(f"Missing steering:   {missing_steering}")
+    print(f"Missing car_speed:  {missing_speed}")
+    print(f"Expected:           ~2019 segments")
+
+    if total_complete >= 1000:
         print("\n✓ Dataset looks complete enough for training.")
         return True
-    elif total_segments > 0:
+    elif total_complete > 0:
         print("\n⚠️  Partial dataset. Enough for development, may need more for full training.")
         return True
     else:
-        print("\n✗ No segments found. Download may have failed.")
+        print("\n✗ No complete segments found. Check download.")
         return False
 
 

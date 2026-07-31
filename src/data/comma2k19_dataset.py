@@ -244,6 +244,11 @@ class Comma2k19Dataset(Dataset):
         """
         Load steering and speed telemetry aligned with video frames.
 
+        Uses timestamp-based interpolation against the official comma2k19
+        CAN field layout:
+          - CAN/steering_angle/t (timestamps) + CAN/steering_angle/value
+          - CAN/car_speed/t (timestamps) + CAN/car_speed/value
+
         Args:
             segment_path: Path to the segment directory.
             start_frame: Starting frame index.
@@ -259,50 +264,22 @@ class Comma2k19Dataset(Dataset):
             start_frame + i * self.frame_stride for i in range(self.num_frames)
         ]
 
+        # Video timestamps at 20 Hz
+        video_fps = 20.0
+        frame_timestamps = np.array([fi / video_fps for fi in frame_indices])
+
         if self.use_steering:
-            steering_path = processed_log / "CAN" / "steering_angle" / "value"
-            if steering_path.exists():
-                steering = np.load(steering_path)
-                # Interpolate to frame indices (telemetry may have different rate)
-                if len(steering) > 0:
-                    # Map frame indices to telemetry indices
-                    # comma2k19: video at 20 Hz, CAN at ~100 Hz
-                    telemetry_rate_ratio = len(steering) / max(
-                        frame_indices[-1] + 1, 1
-                    )
-                    telemetry_indices = [
-                        min(int(fi * telemetry_rate_ratio), len(steering) - 1)
-                        for fi in frame_indices
-                    ]
-                    steering_aligned = steering[telemetry_indices]
-                    telemetry_channels.append(
-                        torch.from_numpy(steering_aligned.astype(np.float32))
-                    )
-                else:
-                    telemetry_channels.append(torch.zeros(self.num_frames))
-            else:
-                telemetry_channels.append(torch.zeros(self.num_frames))
+            aligned = self._interpolate_can_signal(
+                processed_log, "steering_angle", frame_timestamps
+            )
+            telemetry_channels.append(torch.from_numpy(aligned))
 
         if self.use_speed:
-            speed_path = processed_log / "CAN" / "speed" / "value"
-            if speed_path.exists():
-                speed = np.load(speed_path)
-                if len(speed) > 0:
-                    telemetry_rate_ratio = len(speed) / max(
-                        frame_indices[-1] + 1, 1
-                    )
-                    telemetry_indices = [
-                        min(int(fi * telemetry_rate_ratio), len(speed) - 1)
-                        for fi in frame_indices
-                    ]
-                    speed_aligned = speed[telemetry_indices]
-                    telemetry_channels.append(
-                        torch.from_numpy(speed_aligned.astype(np.float32))
-                    )
-                else:
-                    telemetry_channels.append(torch.zeros(self.num_frames))
-            else:
-                telemetry_channels.append(torch.zeros(self.num_frames))
+            # Official comma2k19 field is "car_speed", not "speed"
+            aligned = self._interpolate_can_signal(
+                processed_log, "car_speed", frame_timestamps
+            )
+            telemetry_channels.append(torch.from_numpy(aligned))
 
         if not telemetry_channels:
             return torch.zeros(self.num_frames, 0)
@@ -323,11 +300,57 @@ class Comma2k19Dataset(Dataset):
 
         return telemetry
 
+    @staticmethod
+    def _interpolate_can_signal(
+        processed_log: Path,
+        signal_name: str,
+        target_timestamps: np.ndarray,
+    ) -> np.ndarray:
+        """
+        Interpolate a CAN signal to target timestamps.
+
+        The official comma2k19 layout stores each CAN signal as:
+          processed_log/CAN/{signal_name}/t      — timestamps (seconds)
+          processed_log/CAN/{signal_name}/value   — signal values
+
+        We use np.interp to align CAN values (sampled at ~100 Hz)
+        to video frame timestamps (at 20 Hz).
+
+        Args:
+            processed_log: Path to the segment's processed_log directory.
+            signal_name: CAN signal name (e.g., 'steering_angle', 'car_speed').
+            target_timestamps: Timestamps (seconds) to interpolate to.
+
+        Returns:
+            np.ndarray of interpolated values at target_timestamps.
+        """
+        t_path = processed_log / "CAN" / signal_name / "t"
+        v_path = processed_log / "CAN" / signal_name / "value"
+
+        if t_path.exists() and v_path.exists():
+            try:
+                t = np.load(t_path).flatten()
+                v = np.load(v_path).flatten()
+
+                if len(t) > 0 and len(v) > 0 and len(t) == len(v):
+                    # Normalize timestamps relative to segment start
+                    t_rel = t - t[0]
+                    return np.interp(
+                        target_timestamps, t_rel, v
+                    ).astype(np.float32)
+            except Exception:
+                pass
+
+        # Fallback: zeros if signal unavailable
+        return np.zeros(len(target_timestamps), dtype=np.float32)
+
     def _compute_telemetry_stats(self) -> None:
         """
         Compute mean/std of telemetry for z-score normalization.
 
-        Sampled from a subset of training segments for efficiency.
+        Uses official comma2k19 CAN field names:
+          - steering_angle (not steering)
+          - car_speed (not speed)
         """
         steering_values = []
         speed_values = []
@@ -342,16 +365,17 @@ class Comma2k19Dataset(Dataset):
                 path = processed_log / "CAN" / "steering_angle" / "value"
                 if path.exists():
                     try:
-                        data = np.load(path)
+                        data = np.load(path).flatten()
                         steering_values.extend(data.tolist())
                     except Exception:
                         pass
 
             if self.use_speed:
-                path = processed_log / "CAN" / "speed" / "value"
+                # Official field: car_speed, NOT speed
+                path = processed_log / "CAN" / "car_speed" / "value"
                 if path.exists():
                     try:
-                        data = np.load(path)
+                        data = np.load(path).flatten()
                         speed_values.extend(data.tolist())
                     except Exception:
                         pass

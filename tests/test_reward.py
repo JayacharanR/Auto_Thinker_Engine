@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.envs.reward import RewardFunction, RewardResult
+from src._deprecated.reward import RewardFunction, RewardResult
 
 
 @pytest.fixture

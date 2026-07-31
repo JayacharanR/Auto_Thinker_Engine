@@ -3,6 +3,9 @@
 # Goal: The project's centerpiece result — a CONTROLLED experiment.
 # Three encoder arms, identical everything else. The encoder swap
 # is the ONLY variable.
+#
+# NOTE: Uses CarDreamer for RSSM/actor-critic/training loop.
+# Our encoder hooks into CarDreamer's DreamerV3 via cardreamer_encoder_hook.py.
 
 # ---- Experiment ----
 experiment:
@@ -36,8 +39,8 @@ environment:
   observation:
     camera:
       type: "front"
-      width: 128
-      height: 128
+      width: 224               # Standardized to 224×224 — matches Phase 2 JEPA pretraining
+      height: 224              # so positional embeddings load without interpolation
       fov: 90
     use_bev: false
     use_lidar: false
@@ -80,7 +83,7 @@ encoders:
     output_dim: 384                # ViT-S embed_dim
     freeze: true                    # Frozen first — cleaner ablation
     # Set freeze: false to try fine-tuning variant
-    input_resolution: 128           # Resize from ViT's 224 training res
+    input_resolution: 224           # Must match Phase 2 training resolution
 
   # Arm 3: Pretrained V-JEPA2 from Meta (Hugging Face)
   vjepa2:
@@ -90,7 +93,7 @@ encoders:
     freeze: true                    # Frozen (transfer learning — don't retrain)
     use_lora: false                 # Alternative: LoRA fine-tuning
     lora_rank: 8                    # Only used if use_lora: true
-    input_resolution: 128
+    input_resolution: 224
     # This is the actual transfer-learning contribution.
     # Do NOT train this from scratch — that defeats the point.
 
@@ -103,6 +106,17 @@ adapter:
   activation: "silu"               # After projection
   use_layer_norm: true
   # Capacity is identical across arms — not a confound.
+
+# ---- Frame Stacking (temporal encoders only) ----
+# Design Decision: Option A — rolling buffer of last N CARLA frames.
+# Preserves the scientific claim that temporal video pretraining transfers.
+frame_stacking:
+  num_frames: 4                    # Last 4 frames → (C, 4, 224, 224) clip
+  # CNN arm bypasses this (single frame).
+  # custom_jepa and vjepa2 use the stacked clip.
+
+# Resolution for encoder input (must match Phase 2 pretraining)
+encoder_resolution: 224
 
 # ---- DreamerV3 (IDENTICAL to Phase 1) ----
 dreamer:

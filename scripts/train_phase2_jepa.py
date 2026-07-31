@@ -293,6 +293,10 @@ def train(config: dict):
         logger.log_scalar("val/loss", val_loss, global_step)
         print(f"  Val loss: {val_loss:.4f}")
 
+        # Track best validation loss
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+
         # Checkpoint
         if (epoch + 1) % train_cfg.get("checkpoint_every_epochs", 5) == 0:
             ckpt_state = {

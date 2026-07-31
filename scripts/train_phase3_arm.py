@@ -19,22 +19,25 @@ Usage:
 """
 
 import argparse
+import collections
 import os
 import sys
 import time
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import yaml
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.dreamer.encoder_adapter import EncoderAdapter, create_encoder
-from src.dreamer.rssm_wrapper import RSSM, RSSMState
-from src.envs.carla_wrapper import CarlaEnvWrapper
-from src.envs.reward import RewardFunction, create_reward_function
+from src._deprecated.rssm_wrapper import RSSM, RSSMState
+from src._deprecated.carla_wrapper import CarlaEnvWrapper
+from src._deprecated.reward import RewardFunction
 from src.eval.metrics import ComparisonTable, MetricsTracker
 from src.utils.checkpoint import CheckpointManager
 from src.utils.logging_utils import ExperimentLogger, make_run_name
@@ -50,6 +53,52 @@ from scripts.train_phase1 import (
 )
 
 
+class FrameStacker:
+    """
+    Accumulates consecutive frames into a temporal clip for video encoders.
+
+    The CNN arm uses a single frame, but custom_jepa and vjepa2 expect
+    video input (B, C, T, H, W). This stacker buffers the last N frames
+    and returns them as a temporal clip.
+
+    Args:
+        num_frames: Number of frames to stack.
+        frame_shape: (C, H, W) shape of each frame.
+    """
+
+    def __init__(self, num_frames: int = 4, frame_shape: tuple = (3, 128, 128)):
+        self.num_frames = num_frames
+        self.frame_shape = frame_shape
+        self.buffer: collections.deque = collections.deque(maxlen=num_frames)
+
+    def reset(self):
+        """Clear the buffer."""
+        self.buffer.clear()
+
+    def push(self, frame: torch.Tensor) -> torch.Tensor:
+        """
+        Add a frame and return the stacked clip.
+
+        If fewer than num_frames are available, repeats the first frame
+        to fill the buffer (avoids zeros which would confuse the encoder).
+
+        Args:
+            frame: (C, H, W) single frame tensor.
+
+        Returns:
+            (C, T, H, W) temporal clip tensor.
+        """
+        self.buffer.append(frame)
+
+        # Pad with first frame if buffer isn't full yet
+        while len(self.buffer) < self.num_frames:
+            self.buffer.appendleft(self.buffer[0].clone())
+
+        # Stack: list of (C, H, W) → (T, C, H, W) → (C, T, H, W)
+        stacked = torch.stack(list(self.buffer), dim=0)  # (T, C, H, W)
+        return stacked.permute(1, 0, 2, 3)  # (C, T, H, W)
+
+
 class Phase3Agent:
     """
     DreamerV3 agent with swappable encoder for Phase 3 comparison.
@@ -57,6 +106,12 @@ class Phase3Agent:
     The ONLY difference between arms is the encoder + adapter.
     Everything else (RSSM, actor, critic, decoder, reward predictor,
     continue predictor) is identical.
+
+    Fixes applied from code review:
+    - train_step() is now implemented (Blocker 1)
+    - Previous action is tracked for RSSM conditioning (Blocker 4)
+    - Frame stacking for temporal encoders (Blocker 2)
+    - Checkpointing in training loop (Blocker 1)
     """
 
     def __init__(
@@ -80,6 +135,17 @@ class Phase3Agent:
 
         # Encoder + adapter (THIS is what changes per arm)
         self.encoder, self.adapter = create_encoder(arm, config, device)
+
+        # Frame stacking for temporal encoders (custom_jepa, vjepa2)
+        self._needs_temporal = arm in ("custom_jepa", "vjepa2")
+        if self._needs_temporal:
+            temporal_frames = config.get("frame_stacking", {}).get("num_frames", 4)
+            self.frame_stacker = FrameStacker(
+                num_frames=temporal_frames,
+                frame_shape=(3, img_size, img_size),
+            )
+        else:
+            self.frame_stacker = None
 
         # Count trainable params for this arm
         enc_params = sum(p.numel() for p in self.encoder.parameters() if p.requires_grad)
@@ -144,25 +210,41 @@ class Phase3Agent:
         self.imagination_horizon = train_cfg["imagination_horizon"]
         self.discount = ac_cfg["discount"]
         self.lambda_gae = ac_cfg["lambda_gae"]
-        self._current_state = None
+
+        # State tracking — includes previous action (Blocker 4 fix)
+        self._current_state: Optional[RSSMState] = None
+        self._prev_action: Optional[torch.Tensor] = None
 
     def encode_observation(self, image: torch.Tensor) -> torch.Tensor:
-        """Encode image through arm-specific encoder + adapter."""
-        features = self.encoder(image)
+        """
+        Encode observation through arm-specific encoder + adapter.
+
+        For temporal encoders (custom_jepa, vjepa2), the frame stacker
+        accumulates frames into a temporal clip before encoding.
+        """
+        if self._needs_temporal and self.frame_stacker is not None:
+            # image: (B, C, H, W) single frame → stacker returns (C, T, H, W)
+            frame = image.squeeze(0)  # (C, H, W)
+            clip = self.frame_stacker.push(frame)  # (C, T, H, W)
+            clip = clip.unsqueeze(0).to(self.device)  # (1, C, T, H, W)
+            features = self.encoder(clip)
+        else:
+            features = self.encoder(image)
         return self.adapter(features)
 
     def act(self, obs: dict, explore: bool = True) -> np.ndarray:
-        """Select action from observation."""
+        """Select action from observation, conditioning RSSM on previous action."""
         with torch.no_grad():
             image = torch.from_numpy(obs["image"]).float().unsqueeze(0).to(self.device) / 255.0
             embed = self.encode_observation(image)
 
             if self._current_state is None:
                 self._current_state = self.rssm.initial_state(1, self.device)
+                self._prev_action = torch.zeros(1, 2, device=self.device)
 
-            action = torch.zeros(1, 2, device=self.device)
+            # Use ACTUAL previous action, not zeros (Blocker 4 fix)
             self._current_state, _ = self.rssm.observe_step(
-                self._current_state, action, embed
+                self._current_state, self._prev_action, embed
             )
             action = self.actor(self._current_state.combined)
 
@@ -170,10 +252,234 @@ class Phase3Agent:
                 action = action + torch.randn_like(action) * 0.3
                 action = torch.clamp(action, -1.0, 1.0)
 
+            # Store this action for next step
+            self._prev_action = action.clone()
+
         return action.cpu().numpy().squeeze()
 
     def reset(self):
+        """Reset agent state for new episode."""
         self._current_state = None
+        self._prev_action = None
+        if self.frame_stacker is not None:
+            self.frame_stacker.reset()
+
+    def train_step(self, replay_buffer: list) -> dict:
+        """
+        Single training step from replay buffer (Blocker 1 fix).
+
+        Performs:
+        1. World model training (encoder + RSSM + decoder + reward/continue)
+        2. Actor-critic training via imagination rollouts
+
+        Returns:
+            Dict of loss values for logging.
+        """
+        batch_size = self.config["training"]["batch_size"]
+        batch_length = self.config["training"]["batch_length"]
+
+        if len(replay_buffer) < batch_size * batch_length:
+            return {}
+
+        # Sample batch from replay buffer
+        batch = self._sample_batch(replay_buffer, batch_size, batch_length)
+        images = batch["images"].to(self.device)       # (B, T, C, H, W)
+        actions = batch["actions"].to(self.device)      # (B, T, 2)
+        rewards = batch["rewards"].to(self.device)      # (B, T)
+        dones = batch["dones"].to(self.device)           # (B, T)
+
+        B, T = images.shape[:2]
+
+        # --- World Model Training ---
+        # Encode all frames through the arm's encoder
+        # For CNN: each frame independently
+        # For temporal encoders: would ideally use clips, but for training
+        # from replay we encode per-frame and let the RSSM handle temporality
+        images_flat = images.reshape(B * T, *images.shape[2:])  # (B*T, C, H, W)
+
+        if self._needs_temporal:
+            # For temporal encoders during training, we add a trivial temporal dim
+            # The RSSM provides the real temporal modeling
+            images_5d = images_flat.unsqueeze(2)  # (B*T, C, 1, H, W)
+            features_flat = self.encoder(images_5d)
+        else:
+            features_flat = self.encoder(images_flat)
+
+        embeds_flat = self.adapter(features_flat)            # (B*T, D)
+        embeds = embeds_flat.reshape(B, T, -1)               # (B, T, D)
+
+        # Run RSSM over sequence
+        states, infos = self.rssm.observe_sequence(actions, embeds)
+
+        # Stack states for loss computation
+        state_combined = torch.stack([s.combined for s in states], dim=1)  # (B, T, state_dim)
+        state_flat = state_combined.reshape(B * T, -1)
+
+        # Reconstruction loss
+        recon = self.decoder(state_flat)
+        recon_loss = F.mse_loss(recon, images_flat)
+
+        # Reward prediction loss
+        reward_pred = self.reward_pred(state_flat).squeeze(-1)
+        reward_loss = F.mse_loss(reward_pred, rewards.reshape(-1))
+
+        # Continue prediction loss
+        continue_pred = self.continue_pred(state_flat).squeeze(-1)
+        continue_target = (1.0 - dones).reshape(-1)
+        continue_loss = F.binary_cross_entropy(continue_pred, continue_target)
+
+        # KL loss
+        kl_loss = sum(
+            RSSM.kl_loss(info["prior_logits"], info["posterior_logits"])
+            for info in infos
+        ) / T
+
+        # Total world model loss
+        world_model_loss = recon_loss + reward_loss + continue_loss + kl_loss
+
+        self.world_model_opt.zero_grad()
+        world_model_loss.backward()
+        nn.utils.clip_grad_norm_(
+            [p for p in self.encoder.parameters() if p.requires_grad]
+            + list(self.rssm.parameters()),
+            self.grad_clip,
+        )
+        self.world_model_opt.step()
+
+        # --- Actor-Critic Training (Imagination) ---
+        # Detach starting state to prevent backprop through world model
+        with torch.no_grad():
+            start_state = states[-1].detach()
+
+        imagined_states = self.rssm.imagine_sequence(
+            start_state, self.actor, self.imagination_horizon
+        )
+
+        imag_combined = torch.stack([s.combined for s in imagined_states], dim=1)
+        imag_flat = imag_combined.reshape(-1, imag_combined.shape[-1])
+
+        # Predicted rewards and values (detach from world model graph)
+        with torch.no_grad():
+            imag_rewards = self.reward_pred(imag_flat).reshape(B, self.imagination_horizon)
+            imag_continues = self.continue_pred(imag_flat).reshape(B, self.imagination_horizon)
+
+        imag_values = self.critic(imag_flat.detach()).reshape(B, self.imagination_horizon)
+
+        # Compute lambda returns (GAE)
+        returns = self._compute_lambda_returns(
+            imag_rewards, imag_values.detach(), imag_continues
+        )
+
+        # Actor loss (maximize returns) — detach returns from critic
+        # Re-evaluate values for the actor graph
+        actor_imag_values = self.critic(imag_combined[:, :-1].detach().reshape(-1, imag_combined.shape[-1]))
+        actor_loss = -(returns.detach().reshape(-1) - actor_imag_values.squeeze()).mean()
+
+        self.actor_opt.zero_grad()
+        actor_loss.backward()
+        nn.utils.clip_grad_norm_(self.actor.parameters(), self.grad_clip)
+        self.actor_opt.step()
+
+        # Critic loss (predict returns) — separate backward pass
+        with torch.no_grad():
+            target_returns = returns.detach()
+
+        critic_pred = self.critic(imag_combined[:, :-1].detach().reshape(-1, imag_combined.shape[-1]))
+        critic_loss = F.mse_loss(critic_pred.squeeze(), target_returns.reshape(-1))
+
+        self.critic_opt.zero_grad()
+        critic_loss.backward()
+        nn.utils.clip_grad_norm_(self.critic.parameters(), self.grad_clip)
+        self.critic_opt.step()
+
+        return {
+            "world_model/total": world_model_loss.item(),
+            "world_model/recon": recon_loss.item(),
+            "world_model/reward": reward_loss.item(),
+            "world_model/continue": continue_loss.item(),
+            "world_model/kl": kl_loss.item(),
+            "actor/loss": actor_loss.item(),
+            "critic/loss": critic_loss.item(),
+        }
+
+    def _compute_lambda_returns(
+        self,
+        rewards: torch.Tensor,
+        values: torch.Tensor,
+        continues: torch.Tensor,
+    ) -> torch.Tensor:
+        """Compute lambda-returns (GAE) for actor training."""
+        T = rewards.shape[1]
+        returns = torch.zeros_like(rewards[:, :-1])
+
+        last_value = values[:, -1]
+        last_return = last_value
+
+        for t in reversed(range(T - 1)):
+            bootstrap = self.lambda_gae * last_return + (1 - self.lambda_gae) * values[:, t + 1]
+            last_return = rewards[:, t] + self.discount * continues[:, t] * bootstrap
+            returns[:, t] = last_return
+
+        return returns
+
+    def _sample_batch(self, replay_buffer: list, batch_size: int, batch_length: int) -> dict:
+        """Sample a batch of sequences from the replay buffer."""
+        images, actions, rewards, dones = [], [], [], []
+
+        for _ in range(batch_size):
+            max_start = max(0, len(replay_buffer) - batch_length)
+            start = np.random.randint(0, max_start + 1)
+            seq = replay_buffer[start : start + batch_length]
+
+            if len(seq) < batch_length:
+                continue
+
+            imgs = [s["obs"]["image"].astype(np.float32) / 255.0 for s in seq]
+            acts = [s["action"] for s in seq]
+            rews = [s["reward"] for s in seq]
+            dns = [float(s["done"]) for s in seq]
+
+            images.append(np.stack(imgs))
+            actions.append(np.stack(acts))
+            rewards.append(np.array(rews))
+            dones.append(np.array(dns))
+
+        return {
+            "images": torch.from_numpy(np.stack(images)).float(),
+            "actions": torch.from_numpy(np.stack(actions)).float(),
+            "rewards": torch.from_numpy(np.stack(rewards)).float(),
+            "dones": torch.from_numpy(np.stack(dones)).float(),
+        }
+
+    def state_dict(self) -> dict:
+        """Get full agent state for checkpointing."""
+        return {
+            "encoder": self.encoder.state_dict(),
+            "adapter": self.adapter.state_dict(),
+            "rssm": self.rssm.state_dict(),
+            "decoder": self.decoder.state_dict(),
+            "reward_pred": self.reward_pred.state_dict(),
+            "continue_pred": self.continue_pred.state_dict(),
+            "actor": self.actor.state_dict(),
+            "critic": self.critic.state_dict(),
+            "world_model_opt": self.world_model_opt.state_dict(),
+            "actor_opt": self.actor_opt.state_dict(),
+            "critic_opt": self.critic_opt.state_dict(),
+        }
+
+    def load_state_dict(self, state: dict) -> None:
+        """Load full agent state from checkpoint."""
+        self.encoder.load_state_dict(state["encoder"])
+        self.adapter.load_state_dict(state["adapter"])
+        self.rssm.load_state_dict(state["rssm"])
+        self.decoder.load_state_dict(state["decoder"])
+        self.reward_pred.load_state_dict(state["reward_pred"])
+        self.continue_pred.load_state_dict(state["continue_pred"])
+        self.actor.load_state_dict(state["actor"])
+        self.critic.load_state_dict(state["critic"])
+        self.world_model_opt.load_state_dict(state["world_model_opt"])
+        self.actor_opt.load_state_dict(state["actor_opt"])
+        self.critic_opt.load_state_dict(state["critic_opt"])
 
 
 def train_arm(arm: str, seed: int, config: dict):
@@ -221,11 +527,12 @@ def train_arm(arm: str, seed: int, config: dict):
     if torch.cuda.is_available():
         torch.cuda.reset_peak_memory_stats()
 
-    # Training loop (same structure as Phase 1)
+    # Training loop — now actually trains (Blocker 1 fix)
     replay_buffer = []
     metrics_tracker = MetricsTracker(name=f"phase3_{arm}")
     total_steps = 0
     episode = 0
+    best_eval_success = 0.0
     start_time = time.time()
 
     while total_steps < train_cfg["total_steps"]:
@@ -249,19 +556,29 @@ def train_arm(arm: str, seed: int, config: dict):
             if len(replay_buffer) > 100_000:
                 replay_buffer = replay_buffer[-100_000:]
 
+            # TRAINING — the critical missing piece (Blocker 1 fix)
+            train_info = agent.train_step(replay_buffer)
+
+            # Logging
+            if total_steps % train_cfg["log_every"] == 0:
+                if train_info:
+                    for key, value in train_info.items():
+                        logger.log_scalar(key, value, total_steps)
+                logger.log_scalar("train/reward", reward, total_steps)
+                logger.log_vram(total_steps)
+
             obs = next_obs
             total_steps += 1
             metrics_tracker.step(step_info)
 
-            if total_steps % train_cfg["log_every"] == 0:
-                logger.log_vram(total_steps)
-
         episode_metrics = metrics_tracker.end_episode(
-            success=not terminated and truncated,
+            success=step_info.get("route_completed", False),
+            route_completion=step_info.get("route_completion", 0.0),
         )
         episode += 1
+        logger.log_scalar("episode/reward", episode_metrics.total_reward, total_steps)
 
-        # Evaluation
+        # Evaluation + Checkpointing (Blocker 1 fix)
         if total_steps % train_cfg["eval_every"] == 0:
             eval_tracker = MetricsTracker(name=f"eval_{arm}")
             for _ in range(config["environment"]["num_eval_episodes"]):
@@ -274,11 +591,28 @@ def train_arm(arm: str, seed: int, config: dict):
                     obs, _, terminated, truncated, step_info = env.step(action)
                     d = terminated or truncated
                     eval_tracker.step(step_info)
-                eval_tracker.end_episode(success=not terminated and truncated)
+                eval_tracker.end_episode(
+                    success=step_info.get("route_completed", False),
+                    route_completion=step_info.get("route_completion", 0.0),
+                )
 
             eval_summary = eval_tracker.summary()
             for k, v in eval_summary.items():
                 logger.log_scalar(f"eval/{k}", v, total_steps)
+
+            # Checkpoint (Blocker 1 fix)
+            ckpt_state = {
+                "agent_state_dict": agent.state_dict(),
+                "arm": arm,
+                "seed": seed,
+                "total_steps": total_steps,
+                "config": config,
+            }
+            eval_success = eval_summary.get("success_rate", 0.0)
+            ckpt_manager.save(ckpt_state, total_steps, eval_success)
+
+            if eval_success > best_eval_success:
+                best_eval_success = eval_success
 
     # Final metrics
     wall_clock = time.time() - start_time
@@ -287,10 +621,12 @@ def train_arm(arm: str, seed: int, config: dict):
     final_metrics = metrics_tracker.summary()
     final_metrics["wall_clock_seconds"] = wall_clock
     final_metrics["peak_vram_mb"] = peak_vram
+    final_metrics["best_eval_success_rate"] = best_eval_success
 
     env.close()
     logger.close()
 
+    print(f"\nPhase 3 arm '{arm}' complete. Best eval success: {best_eval_success:.2%}")
     return final_metrics
 
 

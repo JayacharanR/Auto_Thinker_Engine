@@ -171,7 +171,7 @@ class VJEPAEncoder(nn.Module):
         freeze: bool = True,
         use_lora: bool = False,
         lora_rank: int = 8,
-        input_resolution: int = 128,
+        input_resolution: int = 224,
     ):
         super().__init__()
 
@@ -182,6 +182,7 @@ class VJEPAEncoder(nn.Module):
         # Load from HuggingFace
         from transformers import AutoModel, AutoVideoProcessor
 
+        # The processor handles normalization, resizing, and tensor layout
         self.processor = AutoVideoProcessor.from_pretrained(model_name)
         self.model = AutoModel.from_pretrained(
             model_name,
@@ -202,15 +203,11 @@ class VJEPAEncoder(nn.Module):
 
     def _apply_lora(self, rank: int) -> None:
         """Apply LoRA adapters to attention layers."""
-        # Simple LoRA implementation for attention projections
         for module in self.model.modules():
             if isinstance(module, nn.Linear) and module.weight.shape[0] >= 1024:
-                # Freeze original weight
                 module.weight.requires_grad = False
                 if module.bias is not None:
                     module.bias.requires_grad = False
-
-                # Add LoRA matrices
                 in_feat = module.in_features
                 out_feat = module.out_features
                 module.lora_A = nn.Parameter(
@@ -224,39 +221,74 @@ class VJEPAEncoder(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
-        Args:
-            x: (B, C, H, W) single frame or (B, C, T, H, W) video.
-               For single frames, a temporal dim is added.
+        Encode video/image through V-JEPA2 using the official processor.
+
+        Input tensor conventions (what WE receive):
+            (B, C, T, H, W) — video clip from frame stacker
+            (B, C, H, W)    — single frame (adds trivial temporal dim)
+
+        V-JEPA2 expects (from its official processor):
+            pixel_values: (B, T, C, H, W)
+
+        The processor handles normalization (ImageNet mean/std).
 
         Returns:
-            (B, N, D) patch features or (B, D) if pooled.
+            (B, N, D) patch features (pooled by the adapter layer).
         """
-        # Handle single-frame input
-        if x.dim() == 4:
-            x = x.unsqueeze(2)  # (B, C, 1, H, W)
+        device = x.device
 
-        # V-JEPA2 expects specific input format
+        # Normalize input to [0, 1] if needed
+        if x.max() > 1.0:
+            x = x.float() / 255.0
+
+        # Handle single-frame input: (B, C, H, W) → (B, C, 1, H, W)
+        if x.dim() == 4:
+            x = x.unsqueeze(2)
+
+        B, C, T, H, W = x.shape
+
+        # Rearrange from our (B, C, T, H, W) to V-JEPA2's (B, T, C, H, W)
+        x_video = x.permute(0, 2, 1, 3, 4)  # (B, T, C, H, W)
+
+        # Apply processor normalization
+        # The processor expects pixel values in [0, 1] or [0, 255] and applies
+        # ImageNet normalization internally. We use it for normalization only,
+        # since we already have tensors (not PIL images).
+        #
+        # For efficiency with batched tensors, we apply the processor's
+        # normalization manually rather than going through the full processor
+        # pipeline (which expects lists of numpy arrays).
+        if hasattr(self.processor, 'image_mean') and hasattr(self.processor, 'image_std'):
+            mean = torch.tensor(self.processor.image_mean, device=device).view(1, 1, 3, 1, 1)
+            std = torch.tensor(self.processor.image_std, device=device).view(1, 1, 3, 1, 1)
+            x_video = (x_video - mean) / std
+
         # Resize to model's expected resolution if needed
-        if x.shape[-1] != self.input_resolution:
-            x = F.interpolate(
-                x.reshape(-1, x.shape[1], x.shape[-2], x.shape[-1]),
+        if H != self.input_resolution or W != self.input_resolution:
+            x_flat = x_video.reshape(B * T, C, H, W)
+            x_flat = F.interpolate(
+                x_flat,
                 size=(self.input_resolution, self.input_resolution),
                 mode="bilinear",
                 align_corners=False,
-            ).reshape(x.shape[0], x.shape[1], x.shape[2], self.input_resolution, self.input_resolution)
+            )
+            x_video = x_flat.reshape(B, T, C, self.input_resolution, self.input_resolution)
 
         # Forward through V-JEPA2
+        # pixel_values shape: (B, T, C, H, W) — the official contract
         if self.freeze:
             with torch.no_grad():
-                outputs = self.model(x)
+                outputs = self.model(pixel_values=x_video)
         else:
-            outputs = self.model(x)
+            outputs = self.model(pixel_values=x_video)
 
-        # Extract features — use last hidden state
+        # Extract features — use last_hidden_state
         if hasattr(outputs, "last_hidden_state"):
             features = outputs.last_hidden_state  # (B, N, D)
-        else:
+        elif isinstance(outputs, tuple):
             features = outputs[0]
+        else:
+            features = outputs
 
         return features
 

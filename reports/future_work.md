@@ -80,3 +80,63 @@ With Phase 3 complete, Phase 4 would take approximately 2–3 weeks:
 - Week 1: Integration and loss balancing experiments
 - Week 2: Full training runs with different α/β/γ schedules
 - Week 3: Analysis, comparison, and writeup
+
+---
+
+# CarDreamer Integration — Future Refactor
+
+**Status:** Deferred. The current codebase uses a custom DreamerV3-style
+implementation (RSSM, actor-critic, decoder, replay buffer). Migrating to
+[CarDreamer](https://github.com/ucd-dare/CarDreamer) is a future refactor.
+
+## Current State
+
+The project reimplements the following DreamerV3 components from scratch:
+
+| Component | Our file | CarDreamer equivalent |
+|-----------|----------|----------------------|
+| RSSM | `src/dreamer/rssm_wrapper.py` | `dreamerv3.models.RSSM` |
+| Actor-Critic | `scripts/train_phase1.py` | `dreamerv3.agent.ActorCritic` |
+| Image Decoder | `scripts/train_phase1.py` | `dreamerv3.models.Decoder` |
+| Replay Buffer | inline in training loop | `dreamerv3.replay.ReplayBuffer` |
+| Training Loop | `scripts/train_phase1.py` | `dreamerv3.train.train()` |
+
+This was a pragmatic decision: integrating CarDreamer requires CARLA to be
+available during development, and the project needed to be developed on
+machines without CARLA. However, the custom implementation increases
+debugging and algorithmic risk compared to using CarDreamer's battle-tested
+code.
+
+## Why Switch to CarDreamer
+
+1. **Tested RSSM**: CarDreamer's DreamerV3 implementation has been validated
+   on multiple CARLA tasks. Our custom RSSM may have subtle bugs in KL
+   balancing, categorical sampling, or imagination rollouts that are hard
+   to diagnose.
+
+2. **Task library**: CarDreamer provides pre-built CARLA tasks (lane following,
+   right turn, intersection crossing) with proper route planning, traffic,
+   and success criteria — all things we currently approximate.
+
+3. **Replay buffer**: CarDreamer's replay buffer handles episode boundaries,
+   sequence sampling with configurable train ratio, and prioritized replay.
+   Our inline list-based buffer is naive.
+
+4. **Reduced maintenance**: By depending on CarDreamer, we only maintain the
+   encoder swap logic and JEPA pretraining — not the entire RL stack.
+
+## Migration Plan
+
+1. Add CarDreamer as a Git submodule or pip dependency
+2. Replace `src/dreamer/rssm_wrapper.py` with imports from CarDreamer
+3. Replace `scripts/train_phase1.py` with CarDreamer's training loop, modified
+   to accept our `EncoderAdapter` as a drop-in encoder replacement
+4. Remove custom Actor, Critic, ImageDecoder, RewardPredictor, ContinuePredictor
+5. Keep `src/dreamer/encoder_adapter.py` — this is our contribution layer
+6. Update Phase 3 to use CarDreamer's training function with the `--arm` flag
+   controlling only the encoder
+
+## Estimated Effort
+
+~1 week if CarDreamer's API is stable. The main risk is API compatibility
+between CarDreamer's expected encoder interface and our adapter pattern.

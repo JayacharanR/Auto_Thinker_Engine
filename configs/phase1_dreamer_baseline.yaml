@@ -1,0 +1,134 @@
+# Phase 1: DreamerV3 Baseline with CarDreamer
+# =============================================
+# Goal: Closed-loop RL agent that drives one CarDreamer task end-to-end.
+# Uses CarDreamer's built-in DreamerV3-small config as starting point.
+
+# ---- Experiment ----
+experiment:
+  phase: 1
+  arm: "cnn"                     # default CNN encoder (baseline)
+  seed: 42
+  run_name: null                 # auto-generated if null: phase1_cnn_42_YYYYMMDD
+  log_dir: "outputs/logs"
+  checkpoint_dir: "outputs/checkpoints/phase1"
+  video_dir: "outputs/videos/phase1"
+  use_wandb: false
+  wandb_project: "driving-world-model"
+
+# ---- CARLA / CarDreamer Environment ----
+environment:
+  carla:
+    host: "localhost"
+    port: 2000
+    timeout: 30.0
+    render_mode: "offscreen"     # -RenderOffScreen for headless
+    quality_level: "Low"         # Low quality for throughput
+    fixed_delta_seconds: 0.05    # 20 Hz simulation
+    synchronous_mode: true       # Required for deterministic training
+    no_rendering: false          # Keep rendering for camera obs
+
+  task: "right_turn"             # Start simple — fastest to converge
+  # Alternative tasks (only after task 1 converges):
+  # task: "four_lane_merge"
+
+  observation:
+    camera:
+      type: "front"             # Single front-facing camera
+      width: 128                 # Resolution — 128x128 default
+      height: 128
+      fov: 90
+    use_bev: false               # No BEV initially (adds VRAM)
+    use_lidar: false             # No LiDAR initially
+
+  action:
+    type: "continuous"
+    space:                       # [steer, throttle_brake]
+      steer_range: [-1.0, 1.0]
+      throttle_brake_range: [-1.0, 1.0]  # negative = brake
+
+  max_episode_steps: 1000
+  num_eval_episodes: 20          # For Gate 1 evaluation
+
+# ---- Reward Shaping (EPDMS-inspired) ----
+# These weights are set ONCE here and reused unchanged in Phase 3.
+# Do NOT modify these for Phase 3 — the comparison must be controlled.
+reward:
+  collision:
+    weight: -10.0                # Large negative, terminates episode
+    terminal: true               # Episode ends on collision
+
+  time_to_collision:
+    weight: -1.0
+    safe_threshold: 3.0          # seconds — penalize below this
+    decay: "linear"              # linear decay as TTC approaches 0
+
+  lane_keeping:
+    weight: -0.5
+    max_deviation: 2.0           # meters — penalize lateral deviation
+    normalization: "clamp"       # clamp deviation to [0, max_deviation]
+
+  progress:
+    weight: 1.0                  # Reward forward progress along route
+    scale: 0.01                  # Scale factor for distance in meters
+
+  traffic_rules:
+    weight: -2.0
+    stop_sign_dwell: 2.0         # seconds to wait at stop sign
+    red_light_penalty: -5.0      # Penalty for running red light
+
+# ---- DreamerV3 Model ----
+dreamer:
+  model_size: "small"            # Start with small — proven to work
+  rssm:
+    stochastic_size: 32
+    deterministic_size: 512
+    hidden_size: 512
+    num_categories: 32           # 32 categories × 32 classes
+    num_classes: 32
+
+  encoder:
+    type: "cnn"                  # Phase 1: default CNN encoder
+    cnn:
+      depth: 48                  # DreamerV3-small default
+      kernels: [4, 4, 4, 4]
+      stride: 2
+      activation: "silu"
+
+  decoder:
+    type: "cnn"
+    depth: 48
+    kernels: [5, 5, 6, 6]
+    stride: 2
+
+  actor_critic:
+    actor_layers: 4
+    actor_units: 512
+    critic_layers: 4
+    critic_units: 512
+    discount: 0.997
+    lambda_gae: 0.95
+
+# ---- Training ----
+training:
+  total_steps: 500_000           # Total environment steps
+  batch_size: 16
+  batch_length: 64               # Sequence length for RSSM training
+  train_ratio: 64                # Train steps per env step (conservative start)
+  imagination_horizon: 15        # Short rollouts initially
+  learning_rate: 1.0e-4
+  adam_eps: 1.0e-8
+  grad_clip: 100.0
+  warmup_steps: 1000
+
+  # Checkpointing
+  checkpoint_every: 10_000       # steps
+  max_keep_checkpoints: 3
+  eval_every: 10_000             # steps
+  video_every: 25_000            # steps (video logging fills disk fast)
+  log_every: 100                 # steps
+
+  # Memory management (shared GPU)
+  prefetch_factor: 2
+  num_workers: 2                 # DataLoader workers
+  pin_memory: true
+  mixed_precision: true          # AMP for VRAM savings

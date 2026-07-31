@@ -1,0 +1,75 @@
+[project]
+name = "driving-world-model"
+version = "0.1.0"
+description = "Vision World Model Driving Agent: JEPA pretraining + DreamerV3 RL for autonomous driving"
+readme = "README.md"
+requires-python = "==3.10.*"
+license = { text = "MIT" }
+authors = [
+    { name = "Charan" },
+]
+
+dependencies = [
+    # Core ML
+    "torch>=2.1.0,<2.5",
+    "torchvision>=0.16.0,<0.20",
+    "numpy>=1.24,<2.0",
+
+    # Vision Transformers
+    "timm>=0.9.0,<1.0",
+    "einops>=0.7.0",
+
+    # V-JEPA2 / HuggingFace (Phase 3)
+    "transformers>=4.40",
+    "accelerate>=0.25",
+    "safetensors>=0.4",
+
+    # Video / Data
+    "av>=11.0",               # PyAV for HEVC decoding (comma2k19)
+    "Pillow>=10.0",
+    "scikit-learn>=1.3",
+
+    # Config & Logging
+    "pyyaml>=6.0",
+    "tensorboard>=2.14",
+    "matplotlib>=3.7",
+    "tqdm>=4.65",
+
+    # Environment interface
+    "gymnasium>=0.29",
+
+    # Utilities
+    "psutil>=5.9",
+]
+
+[project.optional-dependencies]
+wandb = [
+    "wandb>=0.16",
+]
+carla = [
+    # CARLA 0.9.15 Python API — install manually from CARLA release
+    # pip install <path_to_carla>/PythonAPI/carla/dist/carla-0.9.15-cp310-cp310-linux_x86_64.whl
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

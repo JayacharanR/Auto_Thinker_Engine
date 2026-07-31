@@ -1,0 +1,164 @@
+# Phase 3: Three-way Encoder Comparison
+# =======================================
+# Goal: The project's centerpiece result — a CONTROLLED experiment.
+# Three encoder arms, identical everything else. The encoder swap
+# is the ONLY variable.
+
+# ---- Experiment ----
+experiment:
+  phase: 3
+  # arm is set via CLI: --arm {cnn,custom_jepa,vjepa2}
+  arm: null                          # Overridden by CLI argument
+  seeds: [42, 123, 456]             # ≥2-3 seeds per arm for noise-aware comparison
+  run_name: null
+  log_dir: "outputs/logs"
+  checkpoint_dir: "outputs/checkpoints/phase3"
+  video_dir: "outputs/videos/phase3"
+  use_wandb: false
+  wandb_project: "driving-world-model"
+
+# ---- Environment (IDENTICAL to Phase 1) ----
+# The reward function from Phase 1 is reused UNCHANGED.
+# Do NOT modify these values — the comparison is only valid if
+# all three arms use the exact same environment configuration.
+environment:
+  carla:
+    host: "localhost"
+    port: 2000
+    timeout: 30.0
+    render_mode: "offscreen"
+    quality_level: "Low"
+    fixed_delta_seconds: 0.05
+    synchronous_mode: true
+    no_rendering: false
+
+  task: "right_turn"
+  observation:
+    camera:
+      type: "front"
+      width: 128
+      height: 128
+      fov: 90
+    use_bev: false
+    use_lidar: false
+
+  action:
+    type: "continuous"
+    space:
+      steer_range: [-1.0, 1.0]
+      throttle_brake_range: [-1.0, 1.0]
+
+  max_episode_steps: 1000
+  num_eval_episodes: 20
+
+# Reward: imported from Phase 1 config — DO NOT DUPLICATE OR MODIFY
+reward_config: "configs/phase1_dreamer_baseline.yaml"  # Reference, not copy
+
+# ---- Encoder Arms ----
+# Each arm feeds into the SAME, UNMODIFIED RSSM and actor-critic.
+# The adapter projection layer has IDENTICAL capacity across all arms.
+
+encoders:
+  # Arm 1: CarDreamer's default CNN (unchanged from Phase 1)
+  cnn:
+    type: "cnn"
+    depth: 48
+    kernels: [4, 4, 4, 4]
+    stride: 2
+    activation: "silu"
+    output_dim: 1024               # Raw CNN output dim before adapter
+    freeze: false                   # CNN trains end-to-end (baseline behavior)
+
+  # Arm 2: Custom JEPA encoder from Phase 2
+  custom_jepa:
+    type: "vit"
+    checkpoint: "outputs/checkpoints/phase2/best.pt"
+    patch_size: 16
+    embed_dim: 384
+    depth: 12
+    num_heads: 6
+    output_dim: 384                # ViT-S embed_dim
+    freeze: true                    # Frozen first — cleaner ablation
+    # Set freeze: false to try fine-tuning variant
+    input_resolution: 128           # Resize from ViT's 224 training res
+
+  # Arm 3: Pretrained V-JEPA2 from Meta (Hugging Face)
+  vjepa2:
+    type: "vjepa2"
+    model_name: "facebook/vjepa2-vitl-fpc64-256"
+    output_dim: 1024               # ViT-L embed_dim
+    freeze: true                    # Frozen (transfer learning — don't retrain)
+    use_lora: false                 # Alternative: LoRA fine-tuning
+    lora_rank: 8                    # Only used if use_lora: true
+    input_resolution: 128
+    # This is the actual transfer-learning contribution.
+    # Do NOT train this from scratch — that defeats the point.
+
+# ---- Adapter (same capacity across all arms) ----
+# Thin linear projection matching each encoder's output to RSSM input dim.
+# This projection is the ONLY trainable component that differs.
+adapter:
+  target_dim: 1024                 # RSSM input dimension
+  projection: "linear"             # Simple linear layer
+  activation: "silu"               # After projection
+  use_layer_norm: true
+  # Capacity is identical across arms — not a confound.
+
+# ---- DreamerV3 (IDENTICAL to Phase 1) ----
+dreamer:
+  model_size: "small"
+  rssm:
+    stochastic_size: 32
+    deterministic_size: 512
+    hidden_size: 512
+    num_categories: 32
+    num_classes: 32
+
+  decoder:
+    type: "cnn"
+    depth: 48
+    kernels: [5, 5, 6, 6]
+    stride: 2
+
+  actor_critic:
+    actor_layers: 4
+    actor_units: 512
+    critic_layers: 4
+    critic_units: 512
+    discount: 0.997
+    lambda_gae: 0.95
+
+# ---- Training (IDENTICAL budget across arms) ----
+training:
+  total_steps: 500_000
+  batch_size: 16
+  batch_length: 64
+  train_ratio: 64
+  imagination_horizon: 15
+  learning_rate: 1.0e-4
+  adam_eps: 1.0e-8
+  grad_clip: 100.0
+  warmup_steps: 1000
+
+  checkpoint_every: 10_000
+  max_keep_checkpoints: 3
+  eval_every: 10_000
+  video_every: 25_000
+  log_every: 100
+  mixed_precision: true
+
+# ---- Comparison Metrics ----
+# Track these for each arm to produce the comparison table.
+comparison:
+  metrics:
+    - "steps_to_convergence"         # Sample efficiency (steps to reach threshold)
+    - "final_success_rate"           # Success rate at end of training
+    - "final_collision_rate"         # Collision rate at end of training
+    - "wall_clock_seconds"           # Total training time
+    - "peak_vram_mb"                 # Peak GPU memory
+
+  convergence_threshold: 0.5         # Success rate threshold to count as "converged"
+
+  # Verify these expectations:
+  # - Frozen encoders should train FASTER (fewer params to update)
+  # - If they don't, investigate — it's likely the adapter or VRAM issue

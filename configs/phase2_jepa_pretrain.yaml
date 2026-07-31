@@ -1,0 +1,151 @@
+# Phase 2: JEPA Pretraining on comma2k19
+# ========================================
+# Goal: Self-supervised encoder that understands driving-relevant
+# motion/geometry from video alone. No labels, no pixel decoding.
+# Fully decoupled from Phase 1 — no actions, no rewards from CARLA.
+
+# ---- Experiment ----
+experiment:
+  phase: 2
+  arm: "jepa_pretrain"
+  seed: 42
+  run_name: null
+  log_dir: "outputs/logs"
+  checkpoint_dir: "outputs/checkpoints/phase2"
+  use_wandb: false
+  wandb_project: "driving-world-model"
+
+# ---- Dataset: comma2k19 ----
+data:
+  dataset_root: "data/comma2k19"    # Path to extracted dataset
+  split_ratio: 0.9                   # 90% train, 10% val
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2
+
+  # Video tubelet sampling
+  tubelet:
+    num_frames: 16                   # Frames per tubelet
+    frame_stride: 2                  # Sample every 2nd frame (effective 10 Hz from 20 Hz)
+    spatial_size: 224                # ViT input resolution
+    min_segment_length: 32           # Skip segments shorter than this
+
+  # Telemetry alignment (for action-conditioned variant)
+  telemetry:
+    use_steering: true
+    use_speed: true
+    interpolation: "linear"          # Interpolate telemetry to frame timestamps
+    normalize: true                  # Z-score normalize steering and speed
+
+# ---- Augmentation ----
+augmentation:
+  random_crop: true
+  crop_scale: [0.8, 1.0]
+  horizontal_flip: false             # Don't flip driving scenes (road side matters)
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.1
+    hue: 0.05
+  normalize:
+    mean: [0.485, 0.456, 0.406]      # ImageNet stats
+    std: [0.229, 0.224, 0.225]
+
+# ---- Model Architecture ----
+model:
+  # Context Encoder: ViT-Small
+  context_encoder:
+    type: "vit_small"
+    patch_size: 16                   # 224 / 16 = 14 spatial patches
+    embed_dim: 384                   # ViT-S standard
+    depth: 12                        # 12 transformer blocks
+    num_heads: 6
+    mlp_ratio: 4.0
+    drop_rate: 0.0
+    attn_drop_rate: 0.0
+    # Temporal: treat tubelets as 3D (patches across space AND time)
+    tubelet_size: 2                  # Each tubelet patch spans 2 frames
+
+  # Target Encoder: architecturally identical, EMA of context encoder
+  target_encoder:
+    ema_momentum: 0.996              # τ — slowly-updated EMA
+    ema_warmup_steps: 5000           # Linearly ramp τ from 0.99 → 0.996
+    ema_warmup_start: 0.99
+
+  # Predictor: lightweight transformer
+  predictor:
+    embed_dim: 192                   # Half of encoder dim — keep lightweight
+    depth: 6                         # Fewer layers than encoder
+    num_heads: 6
+    mlp_ratio: 4.0
+
+    # Action conditioning (V-JEPA-AC-style)
+    action_conditioning: true
+    action_dim: 2                    # [steering, speed]
+    action_embed_dim: 64             # Project actions before injection
+
+# ---- Masking Strategy ----
+masking:
+  strategy: "multi_block"            # multi_block is more robust than single block
+  # Alternative: "temporal_last"     # Mask last few frames (causal prediction)
+
+  multi_block:
+    num_masks: 4                     # Number of masked regions
+    min_mask_ratio: 0.15             # Min fraction of patches masked per block
+    max_mask_ratio: 0.30             # Max fraction
+    total_mask_ratio: 0.65           # Target total mask ratio
+
+  temporal:
+    num_future_frames: 4             # Mask the last N frames
+    # Only used when strategy: "temporal_last"
+
+# ---- Loss ----
+loss:
+  type: "smooth_l1"                  # Alternative: "mse" (L2)
+  beta: 1.0                         # Smooth L1 transition point
+  # Loss computed ONLY at masked positions — no reconstruction loss anywhere
+
+# ---- Training ----
+training:
+  total_epochs: 100
+  batch_size: 32                     # Tuned for 16GB VRAM
+  learning_rate: 1.5e-4
+  weight_decay: 0.05
+  warmup_epochs: 10
+  min_lr: 1.0e-6                     # Cosine schedule minimum
+  optimizer: "adamw"
+  adam_betas: [0.9, 0.95]
+  grad_clip: 1.0
+
+  # Collapse monitoring — THE critical check for Phase 2
+  collapse_monitoring:
+    log_variance_every: 100          # Log encoder output variance every N steps
+    variance_threshold: 0.01        # Alert if batch variance drops below this
+    # Near-zero variance = representation collapse. If triggered:
+    # 1. First check EMA momentum
+    # 2. Then check predictor capacity
+    # Don't assume architecture is wrong before checking these.
+
+  # Checkpointing
+  checkpoint_every_epochs: 5
+  max_keep_checkpoints: 3
+  log_every: 50                      # steps
+
+  # Mixed precision
+  mixed_precision: true
+
+# ---- Linear Probe (Validation) ----
+# Run AFTER pretraining to evaluate encoder quality.
+# This is the actual proof — not the loss curve.
+linear_probe:
+  freeze_encoder: true               # Encoder is frozen during probing
+  probe_target: "steering_angle"     # Regress steering angle
+  probe_layers: 1                    # Single linear layer
+  probe_hidden_dim: null             # null = direct linear (no hidden layer)
+  probe_epochs: 50
+  probe_lr: 1.0e-3
+  probe_batch_size: 64
+
+  # Critical control: run identical probe on UNTRAINED encoder
+  run_random_baseline: true          # Compare trained vs random-init
+  # Report BOTH numbers — the delta is the evidence.

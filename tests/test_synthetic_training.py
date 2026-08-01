@@ -247,37 +247,59 @@ class TestCNNOneStepTraining:
         agent, env, config, train_dataset, _ = _setup_agent(logdir, hook)
 
         # Enable gradients (NOT requires_grad_(False) on whole agent)
+        # Enable gradients (NOT requires_grad_(False) on whole agent)
         for param in agent.parameters():
             param.requires_grad = True
+
+        # Capture parameter weights BEFORE training step
+        rssm_params_before = [p.clone() for p in agent._wm.dynamics.parameters()]
+        adapter_params_before = [p.clone() for p in hook.adapter.parameters()]
+        encoder_params_before = [p.clone() for p in hook.encoder.parameters()]
 
         # Get a training batch
         data = next(train_dataset)
 
-        # Execute ONE training step
-        agent._train(data)
+        # Execute ONE training step (returns post, context, metrics)
+        post, context, metrics = agent._wm._train(data)
 
-        # === GRADIENT AUDIT ===
-        encoder_has_grad = any(
-            p.grad is not None and p.grad.abs().sum() > 0
-            for p in hook.encoder.parameters()
-        )
-        print(f"CNN encoder has gradients: {encoder_has_grad}")
+        # === GRADIENT & OPTIMIZER AUDIT ===
+        # dreamerv3-torch's tools.Optimizer calls zero_grad() at the end of step(),
+        # so we verify gradient flow via non-zero grad norms and parameter weight updates.
 
-        adapter_has_grad = any(
-            p.grad is not None and p.grad.abs().sum() > 0
-            for p in hook.adapter.parameters()
-        )
-        print(f"Adapter has gradients: {adapter_has_grad}")
+        # 1. Grad norm returned by optimizer
+        model_grad_norm = metrics.get("model_grad_norm", 0.0)
+        print(f"model_grad_norm: {model_grad_norm}")
+        assert model_grad_norm > 0.0, f"model_grad_norm is {model_grad_norm}, expected > 0"
 
-        rssm_has_grad = any(
-            p.grad is not None and p.grad.abs().sum() > 0
-            for p in agent._wm.dynamics.parameters()
-        )
-        print(f"RSSM has gradients: {rssm_has_grad}")
+        # 2. Verify parameter weights were updated by optimizer step
+        rssm_diffs = [
+            (p_after - p_before).abs().max().item()
+            for p_before, p_after in zip(rssm_params_before, agent._wm.dynamics.parameters())
+        ]
+        adapter_diffs = [
+            (p_after - p_before).abs().max().item()
+            for p_before, p_after in zip(adapter_params_before, hook.adapter.parameters())
+        ]
+        encoder_diffs = [
+            (p_after - p_before).abs().max().item()
+            for p_before, p_after in zip(encoder_params_before, hook.encoder.parameters())
+        ]
 
-        # At minimum, RSSM and adapter must have gradients
-        assert rssm_has_grad, "RSSM received no gradients — training is broken"
-        assert adapter_has_grad, "Adapter received no gradients — encoder swap is broken"
+        print(f"Max RSSM weight diffs: {max(rssm_diffs) if rssm_diffs else 0}")
+        print(f"Max Adapter weight diffs: {max(adapter_diffs) if adapter_diffs else 0}")
+        print(f"Max Encoder weight diffs: {max(encoder_diffs) if encoder_diffs else 0}")
+
+        rssm_changed = any(d > 0.0 for d in rssm_diffs)
+        adapter_changed = any(d > 0.0 for d in adapter_diffs)
+        encoder_changed = any(d > 0.0 for d in encoder_diffs)
+
+        print(f"RSSM parameters updated: {rssm_changed}")
+        print(f"Adapter parameters updated: {adapter_changed}")
+        print(f"CNN encoder parameters updated: {encoder_changed}")
+
+        assert rssm_changed, "RSSM weights did not change after _train() — optimizer step failed"
+        assert adapter_changed, "Adapter weights did not change after _train() — encoder swap optimizer failed"
+        assert encoder_changed, "CNN encoder weights did not change after _train() — unfrozen encoder step failed"
 
     def test_checkpoint_save_load(self, logdir):
         """Save and load checkpoint without crash."""
@@ -298,3 +320,77 @@ class TestCNNOneStepTraining:
         loaded = torch.load(ckpt_path, weights_only=False)
         agent.load_state_dict(loaded["agent_state_dict"])
         print("Checkpoint save/load: OK")
+
+
+class TestJEPAOneStepTraining:
+    """
+    Milestone B: Custom JEPA arm, 4-frame clips, one training step, gradient audit.
+
+    Verifies:
+    1. Temporal JEPA encoder processes observations correctly
+    2. JEPA context encoder is FROZEN (weights do not change)
+    3. EncoderAdapter is TRAINABLE (weights update)
+    4. RSSM is TRAINABLE (weights update)
+    """
+
+    @pytest.fixture
+    def logdir(self):
+        d = tempfile.mkdtemp(prefix="dreamer_jepa_test_")
+        yield d
+        shutil.rmtree(d, ignore_errors=True)
+
+    def test_jepa_constructs_and_trains(self, logdir):
+        """JEPA arm constructs, executes 1 train step, verifies frozen encoder + trainable adapter."""
+        hook = _build_jepa_encoder_hook("cpu")
+        agent, env, config, train_dataset, _ = _setup_agent(logdir, hook)
+
+        # Explicitly freeze JEPA encoder, enable adapter & RSSM
+        hook.encoder.eval()
+        for param in hook.encoder.parameters():
+            param.requires_grad = False
+        for param in hook.adapter.parameters():
+            param.requires_grad = True
+
+        # Capture parameter weights BEFORE training step
+        rssm_params_before = [p.clone() for p in agent._wm.dynamics.parameters()]
+        adapter_params_before = [p.clone() for p in hook.adapter.parameters()]
+        encoder_params_before = [p.clone() for p in hook.encoder.parameters()]
+
+        # Get a training batch
+        data = next(train_dataset)
+
+        # Execute ONE training step
+        post, context, metrics = agent._wm._train(data)
+
+        # === GRADIENT & OPTIMIZER AUDIT ===
+        model_grad_norm = metrics.get("model_grad_norm", 0.0)
+        print(f"JEPA model_grad_norm: {model_grad_norm}")
+        assert model_grad_norm > 0.0
+
+        # Calculate parameter deltas
+        rssm_diffs = [
+            (p_after - p_before).abs().max().item()
+            for p_before, p_after in zip(rssm_params_before, agent._wm.dynamics.parameters())
+        ]
+        adapter_diffs = [
+            (p_after - p_before).abs().max().item()
+            for p_before, p_after in zip(adapter_params_before, hook.adapter.parameters())
+        ]
+        encoder_diffs = [
+            (p_after - p_before).abs().max().item()
+            for p_before, p_after in zip(encoder_params_before, hook.encoder.parameters())
+        ]
+
+        print(f"Max RSSM weight diffs: {max(rssm_diffs) if rssm_diffs else 0}")
+        print(f"Max Adapter weight diffs: {max(adapter_diffs) if adapter_diffs else 0}")
+        print(f"Max JEPA Encoder weight diffs: {max(encoder_diffs) if encoder_diffs else 0}")
+
+        rssm_changed = any(d > 0.0 for d in rssm_diffs)
+        adapter_changed = any(d > 0.0 for d in adapter_diffs)
+        encoder_changed = any(d > 0.0 for d in encoder_diffs)
+
+        # Verifications
+        assert rssm_changed, "RSSM weights should update during JEPA arm training"
+        assert adapter_changed, "Adapter weights should update during JEPA arm training"
+        assert not encoder_changed, "JEPA context encoder weights MUST NOT update (should be frozen!)"
+

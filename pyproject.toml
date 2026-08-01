@@ -31,12 +31,17 @@ dependencies = [
 
     # Config & Logging
     "pyyaml>=6.0",
+    "ruamel.yaml>=0.17",       # dreamerv3-torch config loading
     "tensorboard>=2.14",
     "matplotlib>=3.7",
     "tqdm>=4.65",
 
     # Environment interface
+    # Note: dreamerv3-torch uses old gym API (4-tuple step).
+    # CarDreamer CARLA envs also use gym. Our code uses gymnasium.
+    # Both coexist fine as separate packages.
     "gymnasium>=0.29",
+    "gym>=0.21,<1.0",          # dreamerv3-torch compatibility
 
     # Utilities
     "psutil>=5.9",
@@ -51,9 +56,11 @@ viz = [
     "seaborn>=0.13",           # Enhanced plotting
 ]
 carla = [
-    # CARLA 0.9.15 + CarDreamer — install via:
+    # CARLA 0.9.15 + CarDreamer task defs — install via:
     #   bash scripts/setup_cardreamer.sh /path/to/carla
-    # This installs CarDreamer (git submodule) and CARLA Python API
+    # This installs CARLA Python API. CarDreamer task definitions
+    # (car_dreamer/) are used for CARLA env setup only.
+    # DreamerV3 backbone is dreamerv3-torch (PyTorch), NOT CarDreamer's JAX version.
 ]
 dev = [
     "pytest>=7.4",

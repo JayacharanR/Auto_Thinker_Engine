@@ -71,6 +71,8 @@ encoders:
     activation: "silu"
     output_dim: 1024               # Raw CNN output dim before adapter
     freeze: false                   # CNN trains end-to-end (baseline behavior)
+    input_resolution: 128           # CNN has no pretrained PE — 128 saves VRAM
+                                    # on 16GB cards with no accuracy cost
 
   # Arm 2: Custom JEPA encoder from Phase 2
   custom_jepa:

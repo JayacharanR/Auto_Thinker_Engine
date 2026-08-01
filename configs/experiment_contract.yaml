@@ -1,0 +1,74 @@
+# Experiment Contract — Single Source of Truth
+# All training scripts, configs, and tests read from this file.
+# Do not duplicate these values elsewhere.
+
+backend:
+  name: dreamerv3-torch
+  path: third_party/dreamerv3_torch
+  framework: pytorch
+
+python_version: "3.10"
+carla_version: "0.9.15"
+
+environment:
+  task: carla_right_turn_simple
+  action_type: continuous        # steer, throttle (Box(-1, 1, shape=(2,)))
+  observation_keys:
+    - image                      # (H, W, 3) uint8, channel-last
+  image_resolution: [64, 64]    # dreamerv3-torch input resolution
+  time_limit: 1000              # max steps per episode
+  action_repeat: 1              # CARLA runs at real time
+
+encoders:
+  cnn:
+    input_resolution: 64        # same as env resolution, no resize needed
+    frozen: false
+  custom_jepa:
+    input_resolution: 224       # resize internally, pretrained PE at 224
+    frozen: true
+    temporal_frames: 4
+    tubelet_size: 2
+    checkpoint: outputs/checkpoints/phase2/best.pt
+  vjepa2:
+    input_resolution: 224
+    frozen: true
+    temporal_frames: 4
+    status: deferred             # add after CNN/JEPA path is stable
+
+adapter:
+  target_dim: 256               # RSSM input dim — set BEFORE construction
+  use_layer_norm: true
+  activation: silu
+
+dreamer:
+  dyn_stoch: 32
+  dyn_discrete: 32
+  dyn_deter: 512
+  dyn_hidden: 512
+  batch_size: 16
+  batch_length: 64
+  train_ratio: 512
+  model_lr: 1.0e-4
+  actor_lr: 3.0e-5
+  critic_lr: 3.0e-5
+  prefill: 5000
+  precision: 32
+  compile: false                # disabled for encoder swap compatibility
+
+experiment:
+  seeds: [42, 123, 456]
+  steps_per_arm: 500000
+  eval_every: 10000
+  eval_episodes: 5
+  log_every: 1000
+
+metrics:
+  required:
+    - episode_reward
+    - episode_length
+    - success_rate
+    - collision_rate
+    - wall_clock_seconds
+    - peak_vram_mb
+
+reward_source: cardreamer_wpt   # CarDreamer's carla_wpt_env reward

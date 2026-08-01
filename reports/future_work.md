@@ -83,60 +83,77 @@ With Phase 3 complete, Phase 4 would take approximately 2–3 weeks:
 
 ---
 
-# CarDreamer Integration — Future Refactor
+# DreamerV3 Backbone Migration — COMPLETED
 
-**Status:** Deferred. The current codebase uses a custom DreamerV3-style
-implementation (RSSM, actor-critic, decoder, replay buffer). Migrating to
-[CarDreamer](https://github.com/ucd-dare/CarDreamer) is a future refactor.
+**Status:** Completed. The project now uses `NM512/dreamerv3-torch` (PyTorch)
+as the DreamerV3 backbone. CarDreamer's CARLA task definitions are used
+separately (framework-agnostic Python).
 
-## Current State
+## Migration History
 
-The project reimplements the following DreamerV3 components from scratch:
+1. **Original plan**: Use CarDreamer's DreamerV3 to avoid reimplementing RSSM.
+2. **Code review discovery**: CarDreamer's DreamerV3 runs inside **JAX/Ninjax**
+   with JIT-compiled policy/training functions. Our PyTorch encoders cannot be
+   inserted into a JIT-compiled JAX function graph — this is a framework mismatch,
+   not a fixable bug.
+3. **Pivot**: Replaced CarDreamer's JAX DreamerV3 with `dreamerv3-torch` (PyTorch).
+   Both the encoder hook and RSSM are now `nn.Module` — swap is direct attribute
+   assignment: `agent._wm.encoder = hook`.
 
-| Component | Our file | CarDreamer equivalent |
-|-----------|----------|----------------------|
-| RSSM | `src/dreamer/rssm_wrapper.py` | `dreamerv3.models.RSSM` |
-| Actor-Critic | `scripts/train_phase1.py` | `dreamerv3.agent.ActorCritic` |
-| Image Decoder | `scripts/train_phase1.py` | `dreamerv3.models.Decoder` |
-| Replay Buffer | inline in training loop | `dreamerv3.replay.ReplayBuffer` |
-| Training Loop | `scripts/train_phase1.py` | `dreamerv3.train.train()` |
+## What we kept from CarDreamer
 
-This was a pragmatic decision: integrating CarDreamer requires CARLA to be
-available during development, and the project needed to be developed on
-machines without CARLA. However, the custom implementation increases
-debugging and algorithmic risk compared to using CarDreamer's battle-tested
-code.
+- `car_dreamer/carla_wpt_env.py` — waypoint-based reward
+- `car_dreamer/carla_right_turn_env.py` — task definition
+- `car_dreamer/toolkit/` — CARLA utilities
 
-## Why Switch to CarDreamer
+These are plain Python + CARLA client. Framework-agnostic.
 
-1. **Tested RSSM**: CarDreamer's DreamerV3 implementation has been validated
-   on multiple CARLA tasks. Our custom RSSM may have subtle bugs in KL
-   balancing, categorical sampling, or imagination rollouts that are hard
-   to diagnose.
+---
 
-2. **Task library**: CarDreamer provides pre-built CARLA tasks (lane following,
-   right turn, intersection crossing) with proper route planning, traffic,
-   and success criteria — all things we currently approximate.
+## Note: Reward Function Scope Change (Post CarDreamer Integration)
 
-3. **Replay buffer**: CarDreamer's replay buffer handles episode boundaries,
-   sequence sampling with configurable train ratio, and prioritized replay.
-   Our inline list-based buffer is naive.
+The switch to CarDreamer replaces our custom EPDMS-inspired `reward.py` with
+CarDreamer's built-in `carla_wpt_env.py` reward. Here's the comparison:
 
-4. **Reduced maintenance**: By depending on CarDreamer, we only maintain the
-   encoder swap logic and JEPA pretraining — not the entire RL stack.
+| Term | Our EPDMS reward.py | CarDreamer's wpt_env |
+|------|---------------------|---------------------|
+| Collision | Flat penalty | Speed-scaled penalty |
+| TTC | Linear decay | Computed (logged, not rewarded) |
+| Lane-keeping | Deviation penalty | Out-of-lane penalty |
+| Progress | Route progress | Waypoint completion bonus |
+| Speed | Not explicit | Desired-speed tracking |
+| Traffic rules | Stop sign + red light | Not in base wpt_env |
+| Time penalty | Not explicit | Fixed per-step penalty |
+| Destination | Not explicit | Destination reached bonus |
 
-## Migration Plan
+**Consequence 1:** CarDreamer's reward is simpler (no explicit TTC reward,
+no traffic-rule penalties in the right-turn task). This is acceptable for
+Phase 3's controlled comparison — all arms see the same reward, so it's
+not a confound. The experiment measures "does pretrained vision help?" not
+"does this specific reward function work?"
 
-1. Add CarDreamer as a Git submodule or pip dependency
-2. Replace `src/dreamer/rssm_wrapper.py` with imports from CarDreamer
-3. Replace `scripts/train_phase1.py` with CarDreamer's training loop, modified
-   to accept our `EncoderAdapter` as a drop-in encoder replacement
-4. Remove custom Actor, Critic, ImageDecoder, RewardPredictor, ContinuePredictor
-5. Keep `src/dreamer/encoder_adapter.py` — this is our contribution layer
-6. Update Phase 3 to use CarDreamer's training function with the `--arm` flag
-   controlling only the encoder
+**Consequence 2:** CarDreamer's `carla_stop_sign_env.py` and
+`carla_traffic_lights_env.py` DO include traffic-rule reward terms. If
+full EPDMS-style reward is needed, we can switch to those task environments
+or compose rewards from multiple CarDreamer envs.
 
-## Estimated Effort
+## Note: Phase 1.5 Route-Progress Extension
 
-~1 week if CarDreamer's API is stable. The main risk is API compatibility
-between CarDreamer's expected encoder interface and our adapter pattern.
+The original plan included a Phase 1.5 point-to-point navigation demo
+that would extend the custom reward with a route-progress term. With
+CarDreamer's reward now in use, this extension should be implemented
+against CarDreamer's reward hook instead:
+
+```python
+# In a CarDreamer task subclass:
+class CarlaNavExtendedEnv(CarlaWptFixedEnv):
+    def reward(self):
+        base_reward, info = super().reward()
+        # Add route completion progress
+        route_progress = self.planner_stats.get("route_completion", 0.0)
+        r_route = route_progress * self._config.reward.scales.get("route", 1.0)
+        return base_reward + r_route, {**info, "r_route": r_route}
+```
+
+This is straightforward but should not be done until the Phase 3 comparison
+is complete (to avoid confounding the controlled experiment).

@@ -275,21 +275,28 @@ class VJEPAEncoder(nn.Module):
             x_video = x_flat.reshape(B, T, C, self.input_resolution, self.input_resolution)
 
         # Forward through V-JEPA2
-        # pixel_values shape: (B, T, C, H, W) — the official contract
+        # Official API uses pixel_values_videos (not pixel_values)
+        # Shape: (B, T, C, H, W) — the official contract
+        # Prefer get_vision_features() when available (handles skip_predictor=True)
         if self.freeze:
             with torch.no_grad():
-                outputs = self.model(pixel_values=x_video)
+                if hasattr(self.model, "get_vision_features"):
+                    features = self.model.get_vision_features(
+                        pixel_values_videos=x_video
+                    )
+                else:
+                    outputs = self.model(pixel_values_videos=x_video)
+                    features = outputs.last_hidden_state if hasattr(outputs, "last_hidden_state") else outputs[0]
         else:
-            outputs = self.model(pixel_values=x_video)
+            if hasattr(self.model, "get_vision_features"):
+                features = self.model.get_vision_features(
+                    pixel_values_videos=x_video
+                )
+            else:
+                outputs = self.model(pixel_values_videos=x_video)
+                features = outputs.last_hidden_state if hasattr(outputs, "last_hidden_state") else outputs[0]
 
-        # Extract features — use last_hidden_state
-        if hasattr(outputs, "last_hidden_state"):
-            features = outputs.last_hidden_state  # (B, N, D)
-        elif isinstance(outputs, tuple):
-            features = outputs[0]
-        else:
-            features = outputs
-
+        # features: (B, N, D) patch embeddings
         return features
 
 
@@ -310,12 +317,17 @@ def create_encoder(arm: str, config: dict, device: str = "cuda") -> tuple[nn.Mod
 
     if arm == "cnn":
         enc_cfg = encoder_configs["cnn"]
+        # Resolution: prefer encoder config, then environment config, then default
+        input_size = enc_cfg.get("input_resolution", None)
+        if input_size is None:
+            env_cfg = config.get("environment", {}).get("observation", {}).get("camera", {})
+            input_size = env_cfg.get("width", 224)
         encoder = CNNEncoder(
             depth=enc_cfg.get("depth", 48),
             kernels=enc_cfg.get("kernels", [4, 4, 4, 4]),
             stride=enc_cfg.get("stride", 2),
             activation=enc_cfg.get("activation", "silu"),
-            input_size=config["environment"]["observation"]["camera"]["width"],
+            input_size=input_size,
         )
         input_dim = encoder.output_dim
 

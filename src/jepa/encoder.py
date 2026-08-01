@@ -175,6 +175,57 @@ class ViTEncoder(nn.Module):
             if m.bias is not None:
                 nn.init.zeros_(m.bias)
 
+    def _get_pos_embed(self, num_patches_actual: int) -> torch.Tensor:
+        """
+        Get positional embeddings, with interpolation if temporal length differs.
+
+        Phase 2 pretrains with 16 frames (8 temporal patches × 196 spatial = 1568).
+        Phase 3 uses 4 frames (2 temporal patches × 196 spatial = 392).
+        Without interpolation, this is a hard shape mismatch — same bug class
+        as the spatial resolution mismatch, on the time axis.
+
+        The fix: reshape pos_embed into a (T_train, S, D) grid, interpolate
+        T_train → T_actual, then flatten back to (1, N_actual, D). This is
+        the standard approach used by VideoMAE, TimeSformer, V-JEPA, etc.
+
+        Args:
+            num_patches_actual: Total number of patches from patch_embed output.
+
+        Returns:
+            (1, num_patches_actual, D) positional embeddings.
+        """
+        num_patches_stored = self.pos_embed.shape[1]
+
+        # Fast path: no interpolation needed
+        if num_patches_actual == num_patches_stored:
+            return self.pos_embed
+
+        # Compute spatial and temporal dimensions
+        num_spatial = self.patch_embed.num_patches_spatial
+        num_temporal_stored = num_patches_stored // num_spatial
+        num_temporal_actual = num_patches_actual // num_spatial
+
+        if num_temporal_actual == num_temporal_stored:
+            # Spatial mismatch (shouldn't happen after resolution fix, but safe)
+            return self.pos_embed[:, :num_patches_actual]
+
+        # Reshape to (1, T, S, D) for temporal interpolation
+        pos = self.pos_embed.reshape(1, num_temporal_stored, num_spatial, self.embed_dim)
+
+        # Interpolate temporal dimension: (1, T_stored, S, D) → (1, T_actual, S, D)
+        # Permute to (1, D, T_stored, S) for F.interpolate, then back
+        pos = pos.permute(0, 3, 1, 2)  # (1, D, T_stored, S)
+        pos = torch.nn.functional.interpolate(
+            pos,
+            size=(num_temporal_actual, num_spatial),
+            mode="bilinear",
+            align_corners=False,
+        )
+        pos = pos.permute(0, 2, 3, 1)  # (1, T_actual, S, D)
+
+        # Flatten back to (1, N_actual, D)
+        return pos.reshape(1, num_patches_actual, self.embed_dim)
+
     def forward(
         self,
         x: torch.Tensor,
@@ -195,8 +246,8 @@ class ViTEncoder(nn.Module):
         # Patch embedding
         x = self.patch_embed(x)  # (B, N, D)
 
-        # Add positional embeddings
-        x = x + self.pos_embed
+        # Add positional embeddings (with temporal interpolation if needed)
+        x = x + self._get_pos_embed(x.shape[1])
 
         # Apply masking: only keep context (unmasked) patches
         if mask_indices is not None:

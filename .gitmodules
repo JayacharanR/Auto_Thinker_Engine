@@ -1,3 +1,6 @@
 [submodule "third_party/CarDreamer"]
 	path = third_party/CarDreamer
 	url = https://github.com/ucd-dare/CarDreamer.git
+[submodule "third_party/dreamerv3_torch"]
+	path = third_party/dreamerv3_torch
+	url = https://github.com/NM512/dreamerv3-torch.git

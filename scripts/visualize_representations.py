@@ -245,7 +245,7 @@ def main():
     print("Loading dataset...")
     transform = VideoTransform(spatial_size=224, is_train=False)
     dataset = Comma2k19Dataset(
-        root_dir=args.data_dir,
+        dataset_root=args.data_dir,
         split="val",
         transform=transform,
         num_frames=16,

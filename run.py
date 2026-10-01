@@ -31,6 +31,7 @@ FORWARDING_SCRIPTS = {
     "smoke": "smoke_test_carla.py",
     "phase2": "train_phase2_jepa.py",
     "train": "train_cardreamer.py",
+    "evaluate": "evaluate_agent.py",
     "probe": "probe_phase2.py",
     "visualize": "visualize_representations.py",
     "download": "download_comma2k19.py",
@@ -183,6 +184,11 @@ def _build_parser() -> argparse.ArgumentParser:
         subparsers,
         "train",
         "Train one Phase 1/3 arm with the active Dreamer runner.",
+    )
+    _add_forwarding_command(
+        subparsers,
+        "evaluate",
+        "Evaluate a trained driving agent in CARLA with video and metrics.",
     )
     _add_forwarding_command(subparsers, "compare", "Run the Phase 3 three-arm comparison.")
     _add_forwarding_command(subparsers, "probe", "Run the Phase 2 linear probe.")

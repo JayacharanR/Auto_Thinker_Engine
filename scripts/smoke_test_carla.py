@@ -20,7 +20,11 @@ import time
 import numpy as np
 
 
-def run_smoke_test(host: str = "localhost", port: int = 2000) -> dict:
+def run_smoke_test(
+    host: str = "localhost",
+    port: int = 2000,
+    timeout: float = 30.0,
+) -> dict:
     """
     Execute the CARLA smoke test.
 
@@ -45,7 +49,7 @@ def run_smoke_test(host: str = "localhost", port: int = 2000) -> dict:
         # (a) Connect to CARLA server
         print(f"Connecting to CARLA at {host}:{port}...")
         client = carla.Client(host, port)
-        client.set_timeout(30.0)
+        client.set_timeout(timeout)
 
         world = client.get_world()
         print(f"  Connected to: {world.get_map().name}")
@@ -165,9 +169,15 @@ def main():
     parser = argparse.ArgumentParser(description="CARLA Smoke Test (Gate 0)")
     parser.add_argument("--host", default="localhost", help="CARLA server host")
     parser.add_argument("--port", type=int, default=2000, help="CARLA server port")
+    parser.add_argument(
+        "--timeout",
+        type=float,
+        default=30.0,
+        help="CARLA client timeout in seconds",
+    )
     args = parser.parse_args()
 
-    results = run_smoke_test(host=args.host, port=args.port)
+    results = run_smoke_test(host=args.host, port=args.port, timeout=args.timeout)
 
     if not results["passed"]:
         print("\n⚠️  Smoke test FAILED. Do NOT proceed to Phase 1.")

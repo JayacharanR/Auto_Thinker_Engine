@@ -21,6 +21,7 @@ Usage:
 
 import argparse
 import functools
+import gym
 import os
 import pathlib
 import sys
@@ -42,10 +43,63 @@ sys.path.insert(0, str(DREAMER_DIR))
 CARDREAMER_DIR = PROJECT_ROOT / "third_party" / "CarDreamer"
 sys.path.insert(0, str(CARDREAMER_DIR))
 
-from src.dreamer.cardreamer_encoder_hook import (
-    DreamerV3EncoderHook,
-    patch_dreamerv3_encoder,
-)
+from src.dreamer.cardreamer_encoder_hook import DreamerV3EncoderHook
+
+
+class CarlaImageObservation(gym.Wrapper):
+    """Expose CarDreamer's camera observation under Dreamer's ``image`` key.
+
+    CarDreamer names the RGB sensor ``camera``. dreamerv3-torch's world model
+    and this project's encoder hook use the stable ``image`` contract. The
+    original camera key is removed to avoid storing the same frame twice in
+    every replay episode; all other task observations are preserved for reward
+    and diagnostics.
+    """
+
+    def __init__(self, env):
+        super().__init__(env)
+        spaces = dict(self.env.observation_space.spaces)
+        if "image" not in spaces:
+            if "camera" not in spaces:
+                raise ValueError(
+                    "CarDreamer task must expose a camera or image observation; "
+                    f"got keys={sorted(spaces)}"
+                )
+            spaces["image"] = spaces.pop("camera")
+        # dreamerv3-torch uses explicit episode-boundary fields in replay.
+        # CarDreamer follows the older Gym API and reports boundaries through
+        # its return value/info instead, so expose the fields here.
+        for key in ("is_first", "is_last", "is_terminal"):
+            spaces[key] = gym.spaces.Box(
+                low=0, high=1, shape=(), dtype=np.uint8
+            )
+        self.observation_space = gym.spaces.Dict(spaces)
+
+    def _image_observation(self, observation):
+        observation = dict(observation)
+        if "image" not in observation:
+            observation["image"] = observation.pop("camera")
+        return observation
+
+    def _episode_observation(self, observation, is_first, is_last, is_terminal):
+        observation = self._image_observation(observation)
+        observation["is_first"] = np.uint8(is_first)
+        observation["is_last"] = np.uint8(is_last)
+        observation["is_terminal"] = np.uint8(is_terminal)
+        return observation
+
+    # CarDreamer uses Gym's legacy API: reset() returns obs and step() returns
+    # (obs, reward, done, info). Gym 0.23's ObservationWrapper assumes the
+    # newer reset() -> (obs, info) API, so adapt explicitly here.
+    def reset(self):
+        return self._episode_observation(self.env.reset(), True, False, False)
+
+    def step(self, action):
+        obs, reward, done, info = self.env.step(action)
+        discount = info.get("discount", 0.0 if done else 1.0)
+        discount = float(np.asarray(discount).reshape(-1)[0])
+        is_terminal = bool(done and discount == 0.0)
+        return self._episode_observation(obs, False, done, is_terminal), reward, done, info
 
 
 def seed_everything(seed: int):
@@ -119,21 +173,44 @@ def make_carla_env(task_name: str, seed: int = 0, image_size: tuple = (64, 64)):
 
     try:
         import car_dreamer
-        task_argv = None
+        task_argv = []
         if os.environ.get("CARLA_PORT"):
-            task_argv = ["--env.world.carla_port", os.environ["CARLA_PORT"]]
+            task_argv.extend(["--env.world.carla_port", os.environ["CARLA_PORT"]])
+
+        # The experiment contract uses continuous [acceleration, steering]
+        # actions. CarDreamer defaults to its discrete action table, so make
+        # the contract explicit at task creation time. Set
+        # CARLA_ACTION_TYPE=discrete to exercise the alternative one-hot path.
+        action_type = os.environ.get("CARLA_ACTION_TYPE", "continuous").lower()
+        if action_type not in {"continuous", "discrete"}:
+            raise ValueError(
+                f"CARLA_ACTION_TYPE must be continuous or discrete, got {action_type!r}"
+            )
+        task_argv.extend([
+            "--env.action.discrete",
+            "False" if action_type == "continuous" else "True",
+        ])
         env, task_config = car_dreamer.create_task(task_name, argv=task_argv)
     except ImportError:
         print("[train] CarDreamer not installed. Creating a placeholder env.")
         print("[train] On target hardware: bash scripts/setup_cardreamer.sh /path/to/carla")
         raise
 
-    # Wrap for dreamerv3-torch compatibility
-    env = wrappers.NormalizeActions(env)
+    env = CarlaImageObservation(env)
+
+    # Wrap for dreamerv3-torch compatibility. NormalizeActions is valid only
+    # for continuous Box spaces; OneHotAction handles an explicitly requested
+    # discrete task.
+    if isinstance(env.action_space, gym.spaces.Discrete):
+        env = wrappers.OneHotAction(env)
+    else:
+        env = wrappers.NormalizeActions(env)
     env = wrappers.TimeLimit(env, 1000)
     env = wrappers.SelectAction(env, key="action")
     env = wrappers.UUID(env)
 
+    print(f"[train] CARLA action space: {env.action_space}")
+    print(f"[train] CARLA observation keys: {sorted(env.observation_space.spaces)}")
     return env
 
 
@@ -172,13 +249,19 @@ def load_dreamer_config(
         "size": list(image_size),
         "action_repeat": 1,  # CARLA already runs at real time
         "time_limit": 1000,
-        "prefill": 5000,
-        "eval_every": 10000,
-        "log_every": 1000,
-        "eval_episode_num": 5,
+        "prefill": int(os.environ.get("CARLA_PREFILL", "5000")),
+        "eval_every": int(os.environ.get("CARLA_EVAL_EVERY", "10000")),
+        "log_every": int(os.environ.get("CARLA_LOG_EVERY", "1000")),
+        "eval_episode_num": int(os.environ.get("CARLA_EVAL_EPISODES", "5")),
+        "pretrain": int(os.environ.get("CARLA_PRETRAIN", "100")),
+        # Match the Phase 3 experiment contract instead of the generic
+        # dreamerv3-torch default, which is much more update-heavy for CARLA.
+        "train_ratio": int(os.environ.get("CARLA_TRAIN_RATIO", "64")),
         "compile": False,  # Disable torch.compile for encoder swap compatibility
         "precision": 32,
-        "video_pred_log": True,
+        # CARLA validation should not require optional moviepy video support.
+        "video_pred_log": os.environ.get("CARLA_VIDEO_PRED_LOG", "0").lower()
+        in {"1", "true", "yes"},
     })
 
     # Convert nested dicts to proper format
@@ -197,6 +280,7 @@ def train_arm(
     phase3_config: dict,
     steps: int = 500_000,
     image_size: tuple = (64, 64),
+    resume: bool = False,
 ) -> Dict[str, float]:
     """
     Train a single arm using dreamerv3-torch's training loop.
@@ -227,10 +311,18 @@ def train_arm(
         print("[train] Ensure third_party/dreamerv3_torch is set up.")
         return {}
 
-    # --- Create environment ---
+    # Headless training does not need a Flask monitor. The right-turn task has
+    # one fixed ego spawn point, so train and eval must share one environment
+    # sequentially rather than keeping two actors alive at once.
+    os.environ.setdefault("CARLA_DISABLE_MONITOR", "1")
+
+    # --- Create one explicitly sequential train/eval environment ---
+    env = None
     try:
         env = make_carla_env(task, seed, image_size)
         train_envs = [Damy(env)]
+        # Evaluation uses the same CARLA actor sequentially. Its replay cache
+        # remains separate, and state is reset after every evaluation pass.
         eval_envs = [Damy(env)]
     except ImportError:
         # Fallback: save encoder hook for target hardware
@@ -247,10 +339,24 @@ def train_arm(
         }, fallback_path)
         print(f"[train] Saved encoder hook to: {fallback_path}")
         return {}
+    except Exception:
+        if env is not None:
+            try:
+                env.close()
+            except Exception:
+                pass
+        raise
 
     # --- Set up training ---
     acts = train_envs[0].action_space
     config.num_actions = acts.n if hasattr(acts, "n") else acts.shape[0]
+    if getattr(acts, "discrete", False):
+        config.actor = dict(config.actor)
+        config.actor["dist"] = "onehot"
+        config.actor["std"] = "none"
+        print(f"[train] Using one-hot Dreamer actor with {config.num_actions} actions")
+    else:
+        print(f"[train] Using continuous Dreamer actor with {config.num_actions} actions")
 
     step = 0
     logger = tools.Logger(logdir, 0)
@@ -287,11 +393,13 @@ def train_arm(
     )
     logger.step += config.prefill * config.action_repeat
 
-    # --- Create agent ---
+    # Build the custom encoder before Dreamer so its parameters are included in
+    # WorldModel's optimizer. Replacing the encoder after construction leaves
+    # the new module outside the optimizer parameter groups.
     from dreamer import Dreamer
 
+    hook = build_encoder_hook(arm, phase3_config, device)
     train_dataset = make_dataset(train_eps, config)
-    eval_dataset = make_dataset(eval_eps, config)
 
     agent = Dreamer(
         train_envs[0].observation_space,
@@ -299,37 +407,63 @@ def train_arm(
         config,
         logger,
         train_dataset,
+        custom_encoder=hook,
     ).to(device)
-    agent.requires_grad_(requires_grad=False)
 
-    # --- Swap encoder (this is the key operation) ---
-    hook = build_encoder_hook(arm, phase3_config, device)
-    patch_dreamerv3_encoder(agent, hook)
+    # Train the Dreamer world model and actor-critic. Only pretrained transfer
+    # encoders are frozen; their adapters remain trainable for the ablation.
+    agent.requires_grad_(requires_grad=True)
+    arm_config = phase3_config.get("encoders", {}).get(arm, {})
+    if arm_config.get("freeze", False):
+        hook.encoder.requires_grad_(requires_grad=False)
+    hook.adapter.requires_grad_(requires_grad=True)
 
-    # Re-enable gradients for the hook
-    for param in hook.parameters():
-        param.requires_grad = True
+    # --- Resume checkpoint if requested or existing ---
+    latest_pt = logdir / "latest.pt"
+    if resume and latest_pt.is_file():
+        print(f"[train] Resuming training from: {latest_pt}")
+        ckpt = torch.load(latest_pt, map_location=device, weights_only=False)
+        if "agent_state_dict" in ckpt:
+            agent.load_state_dict(ckpt["agent_state_dict"], strict=False)
+        if "optims_state_dict" in ckpt:
+            try:
+                tools.recursively_load_optim_state_dict(agent, ckpt["optims_state_dict"])
+            except Exception as e:
+                print(f"[train] Warning: Could not restore optimizer states: {e}")
+        if "step" in ckpt:
+            agent._step = int(ckpt["step"])
+            logger.step = agent._step * config.action_repeat
+        print(f"[train] Resumed successfully at step {agent._step}")
+
+    # Create run manifest (P0 Contract)
+    try:
+        from src.utils.manifest import create_run_manifest
+        create_run_manifest(
+            config=config.__dict__ if hasattr(config, "__dict__") else {},
+            arm=arm,
+            seed=seed,
+            task=task,
+            checkpoint_path=str(latest_pt) if latest_pt.is_file() else None,
+            output_path=logdir / "manifest.json",
+        )
+    except Exception as e:
+        print(f"[train] Warning: Could not create manifest: {e}")
 
     # --- Training loop ---
     print(f"[train] Starting training for {steps} steps...")
-    metrics_history = []
-
-    while agent._step < config.steps + config.eval_every:
-        logger.write()
-
-        if config.eval_episode_num > 0:
-            eval_policy = functools.partial(agent, training=False)
-            tools.simulate(
-                eval_policy, eval_envs, eval_eps,
-                logdir / "eval_eps", logger,
-                is_eval=True, episodes=config.eval_episode_num,
-            )
-
+    target_step = int(config.steps)
+    while agent._step < target_step:
+        remaining = target_step - agent._step
+        chunk_steps = min(int(config.eval_every), remaining)
+        print(
+            f"[train] Simulating {chunk_steps} training steps "
+            f"({agent._step} -> {agent._step + chunk_steps})"
+        )
         state = tools.simulate(
             agent, train_envs, train_eps,
             logdir / "train_eps", logger,
             limit=config.dataset_size,
-            steps=config.eval_every,
+            steps=chunk_steps,
             state=state,
         )
 
@@ -343,6 +477,18 @@ def train_arm(
         }
         torch.save(items_to_save, logdir / "latest.pt")
 
+        if config.eval_episode_num > 0:
+            eval_policy = functools.partial(agent, training=False)
+            tools.simulate(
+                eval_policy, eval_envs, eval_eps,
+                logdir / "eval_eps", logger,
+                is_eval=True, episodes=config.eval_episode_num,
+            )
+            # Evaluation reset/steps the shared environment. The train
+            # rollout state refers to the pre-evaluation episode, so force the
+            # next training chunk to reset and reinitialize Dreamer state.
+            state = None
+
     # --- Collect final metrics ---
     final_metrics = {
         "arm": arm,
@@ -354,6 +500,14 @@ def train_arm(
     for key in ["eval_reward", "eval_length", "eval_success"]:
         if key in agent._metrics and agent._metrics[key]:
             final_metrics[key] = float(np.mean(agent._metrics[key]))
+
+    # Save metrics.json (P0 Contract)
+    try:
+        import json
+        with open(logdir / "metrics.json", "w", encoding="utf-8") as f:
+            json.dump(final_metrics, f, indent=2)
+    except Exception as e:
+        print(f"[train] Warning: Could not write metrics.json: {e}")
 
     print(f"[train] Training complete for arm '{arm}', seed={seed}")
     print(f"[train] Final metrics: {final_metrics}")
@@ -453,6 +607,7 @@ def main():
     parser.add_argument("--steps", type=int, default=500_000)
     parser.add_argument("--config", type=str, default=None, help="Phase 3 config path")
     parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
+    parser.add_argument("--resume", action="store_true", help="Resume from latest.pt if available")
     parser.add_argument("--image-size", type=int, nargs=2, default=[64, 64])
     args = parser.parse_args()
 
@@ -473,6 +628,7 @@ def main():
             phase3_config=phase3_config,
             steps=args.steps,
             image_size=tuple(args.image_size),
+            resume=args.resume,
         )
 
 

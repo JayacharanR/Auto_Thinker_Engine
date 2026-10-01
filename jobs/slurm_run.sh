@@ -129,7 +129,15 @@ fi
 
 CARLA_LOG="${CARLA_LOG:-$PROJECT_ROOT/outputs/carla_${CARLA_PORT}.log}"
 echo "[job] Starting CARLA on $CARLA_HOST:$CARLA_PORT"
-"${CARLA_LAUNCH_PREFIX[@]}" "$CARLA_SERVER" \
+if ! command -v setsid >/dev/null 2>&1; then
+  echo "ERROR: setsid is required so CARLA can be cleaned up with its Unreal child process." >&2
+  exit 2
+fi
+# Keep CARLA and its Unreal child in a dedicated process group. The previous
+# launcher tracked only CarlaUE4.sh; when the first readiness probe timed out,
+# cleanup could kill the wrapper while leaving CarlaUE4-Linux-Shipping orphaned
+# on the RPC port.
+setsid --wait -- "${CARLA_LAUNCH_PREFIX[@]}" "$CARLA_SERVER" \
   -RenderOffScreen \
   -nosound \
   -quality-level="${CARLA_QUALITY_LEVEL:-Low}" \
@@ -138,31 +146,66 @@ echo "[job] Starting CARLA on $CARLA_HOST:$CARLA_PORT"
 CARLA_PID=$!
 
 cleanup() {
-  if kill -0 "$CARLA_PID" 2>/dev/null; then
+  if [[ -n "${CARLA_PID:-}" ]] && kill -0 "$CARLA_PID" 2>/dev/null; then
     echo "[job] Stopping CARLA (pid $CARLA_PID)"
-    kill "$CARLA_PID" 2>/dev/null || true
+    # Negative PID targets the complete process group, including Unreal.
+    kill -TERM -- "-$CARLA_PID" 2>/dev/null || true
+    kill -TERM "$CARLA_PID" 2>/dev/null || true
+    for _ in 1 2 3 4 5; do
+      kill -0 "$CARLA_PID" 2>/dev/null || break
+      sleep 1
+    done
+    kill -KILL -- "-$CARLA_PID" 2>/dev/null || true
     wait "$CARLA_PID" 2>/dev/null || true
   fi
 }
 trap cleanup EXIT INT TERM
 
 ready=0
-for attempt in $(seq 1 12); do
-  if "$PYTHON_BIN" run.py smoke --host "$CARLA_HOST" --port "$CARLA_PORT"; then
-    ready=1
-    break
-  fi
+startup_deadline=$((SECONDS + ${CARLA_STARTUP_TIMEOUT:-240}))
+while (( SECONDS < startup_deadline )); do
   if ! kill -0 "$CARLA_PID" 2>/dev/null; then
     echo "ERROR: CARLA exited before becoming ready. Log: $CARLA_LOG" >&2
     tail -80 "$CARLA_LOG" || true
     exit 1
   fi
-  echo "[job] CARLA not ready; retry $attempt/12"
+
+  # Use a fresh short-lived client for every probe. A client created while
+  # Unreal is still loading can remain stuck in get_world() even after CARLA
+  # becomes ready; the old wrapper then incorrectly exhausted its retries.
+  if "$PYTHON_BIN" - "$CARLA_HOST" "$CARLA_PORT" <<'PY'
+import carla
+import sys
+
+client = carla.Client(sys.argv[1], int(sys.argv[2]))
+client.set_timeout(5.0)
+try:
+    world = client.get_world()
+except Exception:
+    raise SystemExit(1)
+print(f"[job] CARLA world ready: {world.get_map().name}", flush=True)
+PY
+  then
+    ready=1
+    break
+  fi
+
+  echo "[job] CARLA world not ready; retrying in 5s"
   sleep 5
 done
 
 if [[ "$ready" -ne 1 ]]; then
-  echo "ERROR: CARLA did not pass the smoke test. Log: $CARLA_LOG" >&2
+  echo "ERROR: CARLA world did not become ready within ${CARLA_STARTUP_TIMEOUT:-240}s. Log: $CARLA_LOG" >&2
+  tail -80 "$CARLA_LOG" || true
+  exit 1
+fi
+
+if ! "$PYTHON_BIN" run.py smoke \
+    --host "$CARLA_HOST" \
+    --port "$CARLA_PORT" \
+    --timeout "${CARLA_CLIENT_TIMEOUT:-30}"; then
+  echo "ERROR: CARLA smoke test failed after the world became ready. Log: $CARLA_LOG" >&2
+  tail -80 "$CARLA_LOG" || true
   exit 1
 fi
 
@@ -177,6 +220,15 @@ case "$RUN_MODE" in
       --seed "$SEED" \
       --steps "$STEPS" \
       --config "$PHASE3_CONFIG"
+    ;;
+  evaluate|eval)
+    "$PYTHON_BIN" run.py evaluate \
+      --checkpoint "${CHECKPOINT:-outputs/logs/cnn_seed42/latest.pt}" \
+      --task "$TASK" \
+      --arm "${ARM:-cnn}" \
+      --episodes "${EPISODES:-5}" \
+      --seed "$SEED" \
+      --output-dir "${OUTPUT_DIR:-outputs/eval_results}"
     ;;
   comparison)
     "$PYTHON_BIN" run.py compare \

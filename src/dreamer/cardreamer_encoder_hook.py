@@ -143,7 +143,16 @@ class DreamerV3EncoderHook(nn.Module):
         5. Encodes through our encoder + adapter
         6. Returns (B, T, embed_dim)
         """
-        x = obs[self.obs_key]  # (B, T, H, W, C)
+        x = obs[self.obs_key]
+        online_step = x.dim() == 4
+        if online_step:
+            # Dreamer policy calls the encoder with one observation per env:
+            # (B, H, W, C). Replay training calls it with (B, T, H, W, C).
+            x = x.unsqueeze(1)
+        if x.dim() != 5:
+            raise ValueError(
+                f"Expected {self.obs_key!r} with 4 or 5 dimensions, got {tuple(x.shape)}"
+            )
 
         B, T = x.shape[:2]
 
@@ -171,9 +180,10 @@ class DreamerV3EncoderHook(nn.Module):
             x = x_flat.reshape(B, T, C, self.target_resolution, self.target_resolution)
 
         if self._needs_temporal:
-            return self._encode_temporal(x, B, T)
+            output = self._encode_temporal(x, B, T)
         else:
-            return self._encode_single_frame(x, B, T)
+            output = self._encode_single_frame(x, B, T)
+        return output[:, 0] if online_step else output
 
     def _encode_single_frame(self, x: torch.Tensor, B: int, T: int) -> torch.Tensor:
         """

@@ -28,6 +28,7 @@ Usage:
 
 import argparse
 import math
+import signal
 import sys
 import time
 from pathlib import Path
@@ -301,15 +302,20 @@ def train(config: dict, resume: bool = False):
           f"{geometry['temporal']} temporal); masking: {mask_cfg['strategy']}")
     print(f"  Steps: {total_steps} ({steps_per_epoch}/epoch); device {device}, amp {amp_dtype}")
 
+    # SIGTERM (kill, health monitor) ends the run after the current step with a
+    # checkpoint, so a stopped run resumes where it left off.
+    stop = {"requested": False}
+    signal.signal(signal.SIGTERM, lambda signum, frame: stop.update(requested=True))
+
     epoch = start_epoch
-    while global_step < total_steps:
+    while global_step < total_steps and not stop["requested"]:
         context_encoder.train()
         predictor.train()
         epoch_losses, epoch_start, seen = [], time.time(), 0
 
         # No per-step bar in log files (nohup / detached runs).
         for batch in tqdm(train_loader, desc=f"Epoch {epoch + 1}", disable=not sys.stderr.isatty()):
-            if global_step >= total_steps:
+            if global_step >= total_steps or stop["requested"]:
                 break
             video = batch["video"].to(device, non_blocking=True)  # (B, C, T, H, W)
             telemetry = batch["telemetry"].to(device, non_blocking=True)  # (B, T, A)
@@ -369,6 +375,12 @@ def train(config: dict, resume: bool = False):
                 if target_encoder is not None:
                     target_encoder.verify_no_gradients()
 
+        if stop["requested"]:
+            # Mid-epoch: record the previous epoch index so --resume repeats this one.
+            torch.save(checkpoint_state(epoch - 1, float("nan")), latest_path)
+            print(f"  Stopped by SIGTERM at step {global_step}; saved {latest_path}")
+            break
+
         epoch_time = time.time() - epoch_start
         val_loss = validate(context_encoder, target_encoder, predictor, mask_generator,
                             criterion, val_loader, device, amp_dtype)
@@ -387,7 +399,12 @@ def train(config: dict, resume: bool = False):
         epoch += 1
 
     logger.close()
+    signal.signal(signal.SIGTERM, signal.SIG_DFL)
+    if stop["requested"]:
+        print(f"\nPhase 2 training stopped at step {global_step}; resume with --resume")
+        return False
     print(f"\nPhase 2 training complete. Best val loss: {best_val:.4f} ({best_path})")
+    return True
 
 
 @torch.no_grad()
@@ -442,7 +459,8 @@ def main():
     if args.max_steps:
         config["training"]["max_steps"] = args.max_steps
 
-    train(config, resume=args.resume)
+    if not train(config, resume=args.resume):
+        sys.exit(143)  # stopped by SIGTERM (checkpoint saved)
 
 
 if __name__ == "__main__":

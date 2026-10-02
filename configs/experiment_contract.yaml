@@ -54,9 +54,9 @@ experiment:
   success_threshold: 0.8                      # steps_to_threshold in comparison.json
 
 metrics:                                      # per run: episodes.jsonl, eval.jsonl, metrics.json
-  per_episode: [return, length, termination, success, collision, out_of_lane,
+  per_episode: [return, length, termination, route_completion, success, collision, out_of_lane,
                 time_exceeded, avg_speed_kmh, wall_clock_sec, peak_vram_mb]
-  comparison: [success_rate, collision_rate, out_of_lane_rate, eval_return,
+  comparison: [success_rate, route_completion, collision_rate, out_of_lane_rate, eval_return,
                steps_to_threshold, wall_clock_hours, peak_vram_gb, train_steps_per_sec]
 
 reward_source: cardreamer_wpt                 # CarDreamer carla_wpt_env reward

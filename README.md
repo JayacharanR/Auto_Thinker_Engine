@@ -153,6 +153,26 @@ RUN_MODE=cnn STEPS=100000 TRAIN_ARGS="--resume --logdir outputs/logs/cnn_bev_see
 ```
 
 Dreamer settings come from `configs/laptop.yaml` (`--profile`, `--set key=value`).
+Monitoring and diagnosis (read-only, safe during training):
+
+```bash
+python3 scripts/watch_run.py                                   # live progress bar of the latest run
+uv run python scripts/inspect_episode.py outputs/logs/cnn_bev_seed42 --eval -n 1
+#   -> frames before the episode ended + decoded action shares (straight/left/right)
+```
+
+Long jobs (Phase 2 EMA + SIGReg, probes, encoder selection, Stage 3 resume) are
+queued in `jobs/long_runs.sh`; it resumes if restarted, logs progress to
+`outputs/long_runs/status.txt` and machine health to `outputs/long_runs/health.log`,
+and stops the trainers cleanly (checkpoints saved) if the GPU overheats or RAM or
+disk run low:
+
+```bash
+mkdir -p outputs/long_runs
+setsid nohup systemd-inhibit --what=sleep:idle:handle-lid-switch --why=training \
+  bash jobs/long_runs.sh > outputs/long_runs/run.log 2>&1 &
+touch outputs/long_runs/STOP     # stop cleanly; rerun the command above to resume
+```
 Each run writes `latest.pt`, `episodes.jsonl` (one line per episode),
 `eval.jsonl` and `metrics.json` to its log directory.
 

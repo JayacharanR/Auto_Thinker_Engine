@@ -215,3 +215,69 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** n/a
 **Lesson:** -
 **Interview angle:** -
+
+## 2026-10-02 15:58 - Linear probe: 30x faster, and a leaky holdout found
+**Type:** bug
+**Stage:** Stage 4 - encoder selection
+
+**What happened:** The probe re-encoded all 25k clips (with augmentation) every epoch: 148 s/epoch, ~50 min for both checkpoints. Rewritten as encode-once + closed-form ridge, it took 50 s - but both encoders then scored negative validation R2 with a weak ridge (alpha 0.1), and a spurious "gain over random" of 0.24 on an untrained 300-step checkpoint.
+**Cause:** The ridge strength was chosen on randomly held-out clips; clips from the same drive are near-duplicates, so selection rewarded memorising segments, which does not transfer to unseen validation drives.
+**How we handled it:** Hold out whole segments (15%) for the ridge choice, wider alpha grid (1e-2..1e5); deterministic loaders for feature extraction (no augmentation, fixed starts). `src/eval/linear_probe.py`, `create_comma2k19_dataloaders(deterministic=True)`.
+**Verified by:** synthetic test (linear signal R2 > 0.99, noise R2 < 0.05); on the untrained checkpoint both encoders now give R2 ~ 0 (-0.026 vs -0.018) with strong ridge chosen - the honest result.
+**Lesson:** Any split used for model selection must respect the same grouping as the final train/val split.
+**Interview angle:** How did you make sure your encoder evaluation was not fooling you?
+
+## 2026-10-02 16:06 - How to retry Stage 3: measured, 128 px BEV does not fit
+**Type:** decision
+**Stage:** Stage 3 - learning gate retry
+
+**What happened:** Two candidate fixes for the "never turns right" plateau, each measured with a 2k-step CARLA run at CarDreamer's train_ratio 512: (A) 64 px BEV, resume the 82.5k run; (B) 128 px BEV (CarDreamer's resolution), fresh run.
+**Cause:** (B) ran out of GPU memory: 11.4 of 11.6 GB with CARLA, batch 16x64 at 128 px. (A): 5.5 env steps/s, 3.9 GB, 850 updates per 2k steps (4x the learning per env step of the first run).
+**How we handled it:** Chose (A): resume from 82.5k to 150k (~3.5 h), queued as the last step of `jobs/long_runs.sh`. (B) would need a smaller batch, changing a second variable at once.
+**Verified by:** `outputs/logs/speed_bev64/metrics.json`; OOM traceback in `outputs/speed_bev128.log`.
+**Lesson:** Change one variable at a time, and measure memory before committing hours to a configuration.
+**Interview angle:** What did you do when the agent stopped improving?
+
+## 2026-10-02 16:06 - Route completion metric
+**Type:** decision
+**Stage:** Stage 3/5 - metrics
+
+**What happened:** `route_completion` was always 0, so a run with 0% success showed no sign of partial progress.
+**Cause:** Nothing computed it.
+**How we handled it:** Episode recorder counts waypoints passed (CarDreamer's per-step `num_completed + num_obsolete`) over the route length at reset; 1.0 on arrival. Added to `episodes.jsonl`, eval summaries, comparison table and `watch_run.py`.
+**Verified by:** unit test (crash after 10 of 40 waypoints = 0.25; arrival = 1.0); 122 tests pass.
+**Lesson:** When the headline metric is stuck at zero, add a graded one that can show progress.
+**Interview angle:** How do you evaluate a driving agent beyond success rate?
+
+## 2026-10-02 16:07 - Cost of the full encoder comparison
+**Type:** result
+**Stage:** Stage 5 - planning
+
+**What happened:** Measured camera+route throughput at train_ratio 128: CNN 10.7 env steps/s (4.1 GB), custom_jepa 7.7 (3.5 GB), vjepa2 7.8 (4.6 GB); CNN at train_ratio 512: 5.5. Full design (3 arms x 3 seeds x 200k steps): ~65 h at ratio 128, ~105 h at ratio 512.
+**Cause:** One laptop GPU, and CARLA steps in real time with the agent.
+**How we handled it:** Open decision, after the Stage 3 retry shows whether ratio 512 is needed: likely one seed per arm first (~17-35 h), then more seeds for the arms that matter. Added `scripts/inspect_episode.py` (frames + decoded actions per episode) to diagnose runs without rerunning them.
+**Verified by:** `metrics.json` of the check runs.
+**Lesson:** Budget the experiment design against measured throughput before promising results.
+**Interview angle:** How did you budget compute on a single laptop GPU?
+
+## 2026-10-02 16:32 - Public-repo audit before more commits
+**Type:** decision
+**Stage:** Repository hygiene
+
+**What happened:** The 15:58 commit (`8af2e1a`) was already pushed to the public GitHub repo, so the audit covered pushed and pending files.
+**Cause:** n/a
+**How we handled it:** Scanned all tracked and untracked files for API tokens/keys, passwords, home-directory paths and email addresses: none found. Data, outputs, `.venv` and caches were already ignored. Added ignores for `.env*`, `.claude/settings.local.json` (per-user Claude Code permissions), tool caches, and weights/checkpoints/replay (`*.pt`, `*.pth`, `*.ckpt`, `*.safetensors`, `*.npz`, `*.npy`) written anywhere outside `outputs/`.
+**Verified by:** `git check-ignore` on sample paths; the journal skill stays tracked.
+**Lesson:** Audit before the first push, and ignore by file type as well as by folder.
+**Interview angle:** -
+
+## 2026-10-02 16:32 - Crash protection for multi-hour runs (and a dangerous pkill)
+**Type:** bug
+**Stage:** Long runs
+
+**What happened:** Before running at full load: a laptop run can die from suspend, GPU overheating, RAM or disk exhaustion. While testing the queue's emergency stop, `pkill -f scripts/train_phase2_jepa.py` killed the shell that ran it (exit 144).
+**Cause:** `pkill -f` matches any process whose command line contains the text - including shells that merely mention it (the queue, a terminal, a monitoring command).
+**How we handled it:** `jobs/long_runs.sh`: health monitor every 30 s (GPU temp/memory/util/power, CPU temp, RAM, disk -> `health.log`); stops trainers if GPU >= 92 C for 90 s, RAM < 2 GB or disk < 5 GB, or on `touch outputs/long_runs/STOP`, then skips remaining steps; launched under `systemd-inhibit` so sleep/lid-close cannot suspend it. The stop pattern is anchored to a Python interpreter running the script. Phase 2 trainer now checkpoints on SIGTERM mid-epoch and exits 143.
+**Verified by:** fake trainer stopped while a decoy shell survived; forced "low disk" trip skipped later steps; test sends SIGTERM at step 3 -> checkpoint at 3 -> resume to 50; 124 tests pass.
+**Lesson:** Kill by an anchored pattern or PID, never by a substring that your own tooling may contain.
+**Interview angle:** How did you keep long experiments safe on a laptop?

@@ -179,6 +179,11 @@ class EpisodeMetricsRecorder(gym.Wrapper):
     Train and eval share one CARLA environment, so the runner sets ``mode``
     before each phase and points ``step_fn`` at the agent's step counter.
     Episodes cut short by a reset are not recorded.
+
+    ``route_completion`` is the fraction of the planned route's waypoints
+    passed (CarDreamer's per-step ``num_completed + num_obsolete`` over the
+    route length at reset); 1.0 when the destination is reached. Tasks whose
+    planner does not load the whole route at reset report 0.
     """
 
     def __init__(self, env, path: Path | str):
@@ -190,14 +195,25 @@ class EpisodeMetricsRecorder(gym.Wrapper):
         self.trackers = {"train": MetricsTracker("train"), "eval": MetricsTracker("eval")}
         self._started = 0.0
         self._episode_index = 0
+        self._route_total = 0
+        self._route_passed = 0
+
+    def _route_length(self) -> int:
+        get_planner = getattr(self.env.unwrapped, "get_ego_planner", None)
+        planner = get_planner() if get_planner else None
+        return int(planner.get_waypoint_num()) if hasattr(planner, "get_waypoint_num") else 0
 
     def reset(self, **kwargs):
         self.trackers[self.mode].start_episode(self._episode_index)
         self._started = time.time()
-        return self.env.reset(**kwargs)
+        obs = self.env.reset(**kwargs)
+        self._route_total = self._route_length()
+        self._route_passed = 0
+        return obs
 
     def step(self, action):
         obs, reward, done, info = self.env.step(action)
+        self._route_passed += int(info.get("num_completed", 0)) + int(info.get("num_obsolete", 0))
         tracker = self.trackers[self.mode]
         tracker.step({
             "reward/total": float(reward),
@@ -213,8 +229,12 @@ class EpisodeMetricsRecorder(gym.Wrapper):
     def _finish(self, tracker: MetricsTracker, info: dict) -> None:
         flags = {k: _flag(info, k) for k in (*TERMINAL_CONDITIONS, "time_exceeded")}
         reason = next((k for k, v in flags.items() if v), "time_limit")
+        completion = 1.0 if flags["destination_reached"] else (
+            self._route_passed / self._route_total if self._route_total else 0.0
+        )
         episode = tracker.end_episode(
             success=flags["destination_reached"],
+            route_completion=completion,
             termination_reason=reason,
             collision=flags["is_collision"],
             out_of_lane=flags["out_of_lane"],
@@ -227,6 +247,7 @@ class EpisodeMetricsRecorder(gym.Wrapper):
             "return": round(episode.total_reward, 4),
             "length": episode.steps,
             "termination": reason,
+            "route_completion": round(episode.route_completion, 4),
             "success": episode.success,
             "collision": episode.collision,
             "out_of_lane": episode.out_of_lane,

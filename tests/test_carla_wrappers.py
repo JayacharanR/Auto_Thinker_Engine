@@ -58,6 +58,37 @@ class FakeCarDreamerTask(gym.Env):
         return self._obs(), 1.0, done, info
 
 
+class _FakePlanner:
+    def __init__(self, n):
+        self.n = n
+
+    def get_waypoint_num(self):
+        return self.n
+
+
+class FakeRouteTask(FakeCarDreamerTask):
+    """Route of 40 waypoints; each step passes one (CarDreamer planner stats)."""
+
+    def get_ego_planner(self):
+        return _FakePlanner(40)
+
+    def step(self, action):
+        obs, reward, done, info = super().step(action)
+        info.update(num_completed=1, num_obsolete=0)
+        return obs, reward, done, info
+
+
+def test_route_completion(tmp_path):
+    path = pathlib.Path(tmp_path) / "episodes.jsonl"
+    env = EpisodeMetricsRecorder(DreamerObservation(FakeRouteTask(length=10)), path)
+    _run_episode(env, 10)  # ends with a collision after 10 of 40 waypoints
+    env.env.env.ending = "destination_reached"
+    _run_episode(env, 10)
+    records = [json.loads(line) for line in path.read_text().splitlines()]
+    assert [r["route_completion"] for r in records] == [0.25, 1.0]
+    assert env.trackers["train"].mean_route_completion == pytest.approx(0.625)
+
+
 def _run_episode(env, steps):
     env.reset()
     for _ in range(steps):

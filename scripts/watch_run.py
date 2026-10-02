@@ -74,6 +74,7 @@ def render(logdir: Path, target: int, history: list) -> str:
     if evals:
         e = evals[-1]
         line += (f"  | eval@{e['agent_step'] // 1000}k ret {e['mean_reward']:.0f} "
+                 f"route {e.get('mean_route_completion', 0):.0%} "
                  f"succ {e['success_rate']:.0%} coll {e['collision_rate']:.0%}")
     return line
 

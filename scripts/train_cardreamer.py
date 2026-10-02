@@ -482,6 +482,7 @@ def summarize_run(logdir: Path, success_threshold: float = 0.8) -> Dict[str, flo
     reached = [e["agent_step"] for e in evals if e["success_rate"] >= success_threshold]
     return {
         "success_rate": final.get("success_rate", float("nan")),
+        "route_completion": final.get("mean_route_completion", float("nan")),
         "collision_rate": final.get("collision_rate", float("nan")),
         "out_of_lane_rate": final.get("out_of_lane_rate", float("nan")),
         "eval_return": final.get("mean_reward", float("nan")),

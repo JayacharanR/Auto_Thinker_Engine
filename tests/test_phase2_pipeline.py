@@ -199,3 +199,32 @@ def test_ridge_probe_recovers_linear_signal_and_ignores_noise():
     assert signal["r2"] > 0.99 and signal["alpha"] > 0
     noise = fit_linear_probe(train_x, rng.randn(2000), val_x, rng.randn(500))
     assert noise["r2"] < 0.05
+
+
+def test_sigterm_saves_and_resumes(tmp_path, monkeypatch):
+    """SIGTERM mid-run stops after the current step with a resumable checkpoint."""
+    import os
+    import signal
+
+    make_processed_dataset(tmp_path / "data", num_frames=60)
+    config = tiny_config(tmp_path, "ema")
+    config["training"]["max_steps"] = 50
+    ckpt_dir = Path(config["experiment"]["checkpoint_dir"])
+
+    original = phase2.compute_losses
+    calls = {"n": 0}
+
+    def compute_and_maybe_stop(*args, **kwargs):
+        calls["n"] += 1
+        if calls["n"] == 3:
+            os.kill(os.getpid(), signal.SIGTERM)
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(phase2, "compute_losses", compute_and_maybe_stop)
+    assert phase2.train(config) is False
+    assert torch.load(ckpt_dir / "latest.pt", weights_only=False)["global_step"] == 3
+    assert signal.getsignal(signal.SIGTERM) == signal.SIG_DFL
+
+    monkeypatch.setattr(phase2, "compute_losses", original)
+    assert phase2.train(config, resume=True) is True
+    assert torch.load(ckpt_dir / "latest.pt", weights_only=False)["global_step"] == 50

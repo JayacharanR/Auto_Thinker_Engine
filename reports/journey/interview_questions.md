@@ -61,6 +61,10 @@ runs not finished yet.
   **A (short):** Measured each job before queueing it (Dreamer ~12 env steps/s CNN, ~7.8 with a frozen ViT-L; JEPA 6 steps/s EMA, 3.7 SIGReg; probe 2.5 min/epoch), kept peak memory under 12 GB with CARLA running (9.0 GB worst case), and ran jobs one at a time in a resumable queue.
   **Evidence:** journal 2026-10-02 01:15, 01:35; `jobs/long_runs.sh`
 
+- **Q:** How did you keep long experiments safe on a laptop?
+  **A (short):** Runs are resumable and checkpoint on SIGTERM; a queue runs them one at a time under `systemd-inhibit` (no suspend) with a health monitor that stops trainers cleanly on GPU overheating, low RAM or low disk, and a STOP file for manual stops. A test of the emergency stop showed `pkill -f` can kill unrelated shells, so the pattern is anchored to the Python process.
+  **Evidence:** journal "Crash protection for multi-hour runs"; `jobs/long_runs.sh`
+
 ## Debugging stories
 
 - **Q:** Tell me about a hard bug.
@@ -73,9 +77,17 @@ runs not finished yet.
 
 ## Experiment design & evaluation
 
+- **Q:** How do you evaluate a driving agent beyond success rate?
+  **A (short):** Per episode: return, route completion (fraction of planned waypoints passed), termination reason (collision / out of lane / destination / time-out), speed and wall clock. Route completion shows progress while success is still 0%; the comparison reports success, route completion, collision rate, steps to 80% success, and compute cost.
+  **Evidence:** journal "Route completion metric"; `src/dreamer/carla_wrappers.py`
+
 - **Q:** How do you make the encoder comparison fair?
   **A (short):** Same task, seeds, step budget, evaluation protocol, route branch (identical MLP), decoder target and adapter capacity; only the image encoder differs. Report mean +/- std over seeds, steps to 80% success, wall clock and peak VRAM.
   **Evidence:** `configs/experiment_contract.yaml`; `scripts/train_cardreamer.py` (`run_comparison`)
+
+- **Q:** How did you make sure your encoder evaluation was not fooling you?
+  **A (short):** Every probe runs against a random-init encoder of the same architecture, and selection uses only the gain over it. Splits are by driving segment, including the inner holdout that picks the ridge strength: a random-clip holdout once produced a fake +0.24 R2 gain for an untrained encoder because neighbouring clips are near-duplicates.
+  **Evidence:** journal "Linear probe: 30x faster, and a leaky holdout found"; `src/eval/linear_probe.py`
 
 ## Trade-offs & what I would do differently
 

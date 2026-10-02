@@ -60,3 +60,20 @@ reports/*.pdf
 # Misc
 *.log
 *.tmp
+
+# Tool caches
+.ruff_cache/
+.pytest_cache/
+
+# Secrets and per-user settings
+.env
+.env.*
+.claude/settings.local.json
+
+# Model weights, checkpoints and replay data written outside outputs/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npz
+*.npy

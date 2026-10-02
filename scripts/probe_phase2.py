@@ -10,6 +10,7 @@ Usage:
 """
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -27,20 +28,30 @@ from src.utils.seeding import seed_everything
 
 def main():
     parser = argparse.ArgumentParser(description="Phase 2: Linear Probe Evaluation")
-    parser.add_argument("--config", default="configs/phase2_jepa_pretrain.yaml")
+    parser.add_argument("--config", default=None,
+                        help="Phase 2 config (default: the one stored in the checkpoint)")
     parser.add_argument("--checkpoint", required=True, help="Path to Phase 2 encoder checkpoint")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
-    with open(args.config, "r") as f:
-        config = yaml.safe_load(f)
+    device_ckpt = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
+    if args.config:
+        with open(args.config, "r") as f:
+            config = yaml.safe_load(f)
+    elif "config" in device_ckpt:
+        config = device_ckpt["config"]
+    else:
+        raise ValueError("Checkpoint has no stored config; pass --config")
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     seed_everything(args.seed)
 
     # Load data
     print("Loading comma2k19 data for probing...")
-    train_loader, val_loader = create_comma2k19_dataloaders(config, seed=args.seed)
+    # Deterministic clips for feature extraction (no augmentation or shuffling).
+    train_loader, val_loader = create_comma2k19_dataloaders(
+        config, seed=args.seed, deterministic=True
+    )
 
     # Build encoder architecture
     ctx_cfg = config["model"]["context_encoder"]
@@ -60,12 +71,12 @@ def main():
     # Load trained encoder
     print(f"Loading checkpoint: {args.checkpoint}")
     trained_encoder = ViTEncoder(**encoder_kwargs).to(device)
-    ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)
-
-    if "context_encoder_state_dict" in ckpt:
-        trained_encoder.load_state_dict(ckpt["context_encoder_state_dict"])
-    elif "model_state_dict" in ckpt:
-        trained_encoder.load_state_dict(ckpt["model_state_dict"])
+    key = next(
+        (k for k in ("context_encoder_state_dict", "model_state_dict") if k in device_ckpt), None
+    )
+    if key is None:
+        raise KeyError(f"{args.checkpoint} has no encoder weights; keys={sorted(device_ckpt)}")
+    trained_encoder.load_state_dict(device_ckpt[key])
 
     # Logger
     run_name = make_run_name(phase=2, arm="probe", seed=args.seed)
@@ -92,7 +103,13 @@ def main():
     output_dir = Path("outputs/probe_results")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    results_path = output_dir / f"probe_results_seed{args.seed}.txt"
+    # Named after the checkpoint directory so that runs (ema, sigreg) do not overwrite.
+    tag = f"{Path(args.checkpoint).parent.name}_{Path(args.checkpoint).stem}_seed{args.seed}"
+    (output_dir / f"probe_{tag}.json").write_text(json.dumps(
+        {"checkpoint": args.checkpoint, "regularizer": device_ckpt.get("regularizer"),
+         "results": results}, indent=2, default=float,
+    ))
+    results_path = output_dir / f"probe_{tag}.txt"
     with open(results_path, "w") as f:
         f.write("Phase 2 Linear Probe Results\n")
         f.write("=" * 40 + "\n")

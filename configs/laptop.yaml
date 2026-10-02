@@ -1,0 +1,29 @@
+# Dreamer run profile for a 12 GB laptop GPU shared with CARLA
+# (RTX 5070 Ti Laptop). Loaded by scripts/train_cardreamer.py --profile.
+#
+# `dreamer` overrides third_party/dreamerv3_torch/configs.yaml `defaults`.
+# Nested mappings (encoder, actor, ...) are merged key by key. One-off changes:
+#   --set train_ratio=64 --set prefill=500
+# The effective config is written to the run's manifest.json.
+
+dreamer:
+  # Replay batch: 16 sequences x 64 steps (about 3.8 GB peak with AMP).
+  batch_size: 16
+  batch_length: 64
+  # Gradient steps per environment step x replayed steps per batch.
+  # 128 means one update every 1024 / 128 = 8 environment steps.
+  train_ratio: 128
+  precision: 16
+  compile: False
+  # CARLA runs at a fixed 0.1 s step; no action repeat.
+  action_repeat: 1
+  # Episodes end through CarDreamer's terminal conditions (time_limit 500).
+  time_limit: 0
+  prefill: 2500
+  pretrain: 100
+  eval_every: 10000
+  eval_episode_num: 10
+  log_every: 1000
+  # About 12 KB per stored 64x64 RGB step, so 300k steps is ~3.6 GB of RAM.
+  dataset_size: 300000
+  video_pred_log: False

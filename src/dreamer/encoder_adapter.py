@@ -11,11 +11,23 @@ Arms:
 - V-JEPA2: Meta's pretrained V-JEPA2 checkpoint (frozen or LoRA)
 """
 
-from typing import Optional
+from typing import Iterable, Optional
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+
+def freeze_parameters(params: Iterable[nn.Parameter]) -> None:
+    """Freeze parameters for the whole of Dreamer training.
+
+    dreamerv3-torch's ``tools.RequiresGrad`` turns gradients back on for every
+    update, so ``requires_grad=False`` alone does not last. It skips
+    parameters carrying the ``_dreamer_frozen`` marker set here.
+    """
+    for param in params:
+        param.requires_grad = False
+        param._dreamer_frozen = True
 
 
 class EncoderAdapter(nn.Module):
@@ -191,8 +203,7 @@ class VJEPAEncoder(nn.Module):
 
         # Freeze if transfer learning
         if freeze:
-            for param in self.model.parameters():
-                param.requires_grad = False
+            freeze_parameters(self.model.parameters())
 
         # LoRA (optional fine-tuning)
         if use_lora and not freeze:
@@ -205,9 +216,9 @@ class VJEPAEncoder(nn.Module):
         """Apply LoRA adapters to attention layers."""
         for module in self.model.modules():
             if isinstance(module, nn.Linear) and module.weight.shape[0] >= 1024:
-                module.weight.requires_grad = False
+                freeze_parameters([module.weight])
                 if module.bias is not None:
-                    module.bias.requires_grad = False
+                    freeze_parameters([module.bias])
                 in_feat = module.in_features
                 out_feat = module.out_features
                 module.lora_A = nn.Parameter(
@@ -342,18 +353,22 @@ def create_encoder(arm: str, config: dict, device: str = "cuda") -> tuple[nn.Mod
             depth=enc_cfg.get("depth", 12),
             num_heads=enc_cfg.get("num_heads", 6),
         )
-        # Load pretrained weights from Phase 2
+        # Load pretrained weights from Phase 2. Strict, so a mismatched
+        # checkpoint fails here instead of leaving random weights in place.
         checkpoint_path = enc_cfg.get("checkpoint")
         if checkpoint_path:
             ckpt = torch.load(checkpoint_path, map_location=device, weights_only=False)
-            if "model_state_dict" in ckpt:
-                encoder.load_state_dict(ckpt["model_state_dict"], strict=False)
-            elif "context_encoder_state_dict" in ckpt:
-                encoder.load_state_dict(ckpt["context_encoder_state_dict"], strict=False)
+            key = next(
+                (k for k in ("context_encoder_state_dict", "model_state_dict") if k in ckpt),
+                None,
+            )
+            if key is None:
+                raise KeyError(f"{checkpoint_path} has no encoder state dict; keys={sorted(ckpt)}")
+            encoder.load_state_dict(ckpt[key], strict=True)
+            print(f"[encoder] Loaded custom_jepa weights from {checkpoint_path} ({key})")
 
         if enc_cfg.get("freeze", True):
-            for param in encoder.parameters():
-                param.requires_grad = False
+            freeze_parameters(encoder.parameters())
 
         input_dim = enc_cfg.get("output_dim", 384)
 

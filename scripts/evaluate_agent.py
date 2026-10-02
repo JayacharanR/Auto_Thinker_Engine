@@ -44,8 +44,8 @@ CARDREAMER_DIR = PROJECT_ROOT / "third_party" / "CarDreamer"
 sys.path.insert(0, str(CARDREAMER_DIR))
 
 from scripts.train_cardreamer import (
-    CarlaImageObservation,
-    build_encoder_hook,
+    build_agent,
+    build_feature_extractor,
     load_dreamer_config,
     load_phase3_config,
     make_carla_env,
@@ -190,43 +190,19 @@ def load_agent(
     Construct Dreamer agent and load weights from checkpoint.
     """
     import tools
-    from dreamer import Dreamer
 
-    # Configure action dimensions for world model & actor critic
-    acts = act_space
-    config.num_actions = acts.n if hasattr(acts, "n") else acts.shape[0]
-    if getattr(acts, "discrete", False):
-        config.actor = dict(config.actor)
-        config.actor["dist"] = "onehot"
-        config.actor["std"] = "none"
-
-    hook = build_encoder_hook(arm, phase3_config, device)
+    if not os.path.exists(checkpoint_path):
+        raise FileNotFoundError(f"Checkpoint not found at: {checkpoint_path}")
     logger = tools.Logger(pathlib.Path(config.logdir), 0)
-
-    # For evaluation, we do not require replay training datasets
-    agent = Dreamer(
-        obs_space,
-        act_space,
-        config,
-        logger,
-        dataset=None,
-        custom_encoder=hook,
-    ).to(device)
-
+    # No replay dataset: evaluation never trains.
+    agent = build_agent(obs_space, act_space, config, logger, None, arm, phase3_config, device)
     agent.requires_grad_(requires_grad=False)
     agent.eval()
 
-    if os.path.exists(checkpoint_path):
-        print(f"[eval] Loading checkpoint weights from: {checkpoint_path}")
-        ckpt = torch.load(checkpoint_path, map_location=device, weights_only=False)
-        if "agent_state_dict" in ckpt:
-            agent.load_state_dict(ckpt["agent_state_dict"], strict=False)
-            print(f"[eval] Checkpoint loaded (Step {ckpt.get('step', 'unknown')}).")
-        else:
-            print("[eval] WARNING: 'agent_state_dict' not found in checkpoint.")
-    else:
-        raise FileNotFoundError(f"Checkpoint not found at: {checkpoint_path}")
-
+    print(f"[eval] Loading checkpoint weights from: {checkpoint_path}")
+    ckpt = torch.load(checkpoint_path, map_location=device, weights_only=False)
+    agent.load_state_dict(ckpt["agent_state_dict"])
+    print(f"[eval] Checkpoint loaded (Step {ckpt.get('step', 'unknown')}).")
     return agent
 
 
@@ -261,14 +237,25 @@ def run_evaluation(
     print(f"Output Directory: {out_dir}")
     print("=" * 65 + "\n")
 
-    # Load configurations
+    # Rebuild the environment the checkpoint was trained on.
     phase3_config = load_phase3_config()
-    image_size = (64, 64) if arm == "cnn" else (224, 224)
-    config = load_dreamer_config(arm, task, seed, steps=1000, image_size=image_size, device=device)
-    config.logdir = str(out_dir)
-
-    # Initialize environment
-    env = make_carla_env(task, seed=seed, image_size=image_size)
+    run_spec = torch.load(checkpoint_path, map_location="cpu", weights_only=False).get(
+        "run_spec", {}
+    )
+    obs_mode = run_spec.get("obs", "bev")
+    action_mode = run_spec.get("action", "discrete")
+    image_size = tuple(run_spec.get("image_size", (64, 64)))
+    config = load_dreamer_config(
+        arm, task, seed, steps=1000, image_size=image_size, device=device, logdir=str(out_dir)
+    )
+    env, _ = make_carla_env(
+        task, obs=obs_mode, action=action_mode, image_size=image_size,
+        feature_extractor=build_feature_extractor(arm, phase3_config, device),
+    )
+    if action_mode == "discrete" and use_safety_shield:
+        # The supervisor edits continuous [acc, steer] actions only.
+        print("[eval] Safety shield disabled: the agent uses discrete actions.")
+        use_safety_shield = False
 
     # Initialize agent
     agent = load_agent(

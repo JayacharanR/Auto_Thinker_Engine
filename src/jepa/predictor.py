@@ -14,7 +14,8 @@ from typing import Optional
 
 import torch
 import torch.nn as nn
-from einops import rearrange
+
+from src.jepa.encoder import Attention
 
 
 class JEPAPredictor(nn.Module):
@@ -196,12 +197,7 @@ class PredictorBlock(nn.Module):
     ):
         super().__init__()
         self.norm1 = nn.LayerNorm(dim)
-        self.attn = nn.MultiheadAttention(
-            embed_dim=dim,
-            num_heads=num_heads,
-            dropout=drop,
-            batch_first=True,
-        )
+        self.attn = Attention(dim, num_heads, attn_drop=drop, proj_drop=drop)
         self.norm2 = nn.LayerNorm(dim)
 
         mlp_hidden = int(dim * mlp_ratio)
@@ -215,12 +211,6 @@ class PredictorBlock(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # Pre-norm attention
-        residual = x
-        x_norm = self.norm1(x)
-        x_attn, _ = self.attn(x_norm, x_norm, x_norm)
-        x = residual + x_attn
-
+        x = x + self.attn(self.norm1(x))
         # Pre-norm MLP
-        residual = x
-        x = residual + self.mlp(self.norm2(x))
-        return x
+        return x + self.mlp(self.norm2(x))

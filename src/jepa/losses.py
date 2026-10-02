@@ -28,16 +28,21 @@ class JEPALoss(nn.Module):
     Args:
         loss_type: 'smooth_l1' (Huber) or 'mse' (L2).
         beta: Smooth L1 transition point (only for smooth_l1).
+        detach_targets: Stop gradients through the targets (EMA teacher).
+            SIGReg training keeps them: the targets come from the online
+            encoder and collapse is prevented by the regulariser instead.
     """
 
     def __init__(
         self,
         loss_type: str = "smooth_l1",
         beta: float = 1.0,
+        detach_targets: bool = True,
     ):
         super().__init__()
         self.loss_type = loss_type
         self.beta = beta
+        self.detach_targets = detach_targets
 
     def forward(
         self,
@@ -61,7 +66,8 @@ class JEPALoss(nn.Module):
 
         # Ensure targets are detached (belt-and-suspenders — the target encoder
         # forward should already be @torch.no_grad(), but we verify here)
-        targets = targets.detach()
+        if self.detach_targets:
+            targets = targets.detach()
 
         if self.loss_type == "smooth_l1":
             loss = F.smooth_l1_loss(predictions, targets, beta=self.beta)

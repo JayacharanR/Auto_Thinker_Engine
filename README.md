@@ -100,6 +100,31 @@ graphics-capable NVIDIA runtime, a 2 GiB `/dev/shm`, Vulkan ICD validation,
 dummy audio, and CARLA 0.9.15 mounted at `/opt/carla`. A CUDA-only container
 with `NVIDIA_DRIVER_CAPABILITIES=compute,utility` is not sufficient for CARLA.
 
+### Laptop (native, no Docker)
+
+Tested on an RTX 5070 Ti Laptop GPU (12 GB, Blackwell sm_120) under Arch/CachyOS.
+Blackwell needs the CUDA 12.8 torch build pinned in `pyproject.toml`.
+
+```bash
+uv sync --extra dev --extra carla --extra viz
+git submodule update --init --recursive
+# CARLA 0.9.15 (8.4 GB; the tiny.carla.org link may return 403, use the origin):
+mkdir -p ~/software/CARLA_0.9.15 && cd ~/software
+curl -L -o CARLA_0.9.15.tar.gz \
+  https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/CARLA_0.9.15.tar.gz
+tar -xzf CARLA_0.9.15.tar.gz -C CARLA_0.9.15 && cd -
+export CARLA_ROOT=~/software/CARLA_0.9.15
+bash scripts/setup_cardreamer.sh "$CARLA_ROOT"   # applies patches/*.patch to the submodules
+bash scripts/configure_carla.sh                    # Town03_Opt as the startup map
+uv run python run.py doctor --require-cuda --require-carla
+RUN_MODE=smoke bash jobs/slurm_run.sh              # starts, checks and stops CARLA
+```
+
+`jobs/slurm_run.sh` runs without Slurm: it launches CARLA headless, waits for
+it, runs the requested mode and always stops CARLA. CARLA at Low quality uses
+about 2 GB of VRAM; a Dreamer run (batch 16 x 64, AMP) about 4 GB. Train on AC
+power. Long runs: start them detached, e.g. `setsid nohup bash jobs/slurm_run.sh &`.
+
 ### Dataset Download
 
 ```bash
@@ -117,19 +142,34 @@ uv run python scripts/download_comma2k19.py --output-dir data/comma2k19 --verify
 
 ### Phase 1: DreamerV3 Baseline
 ```bash
-# Start CARLA server first:
-# $CARLA_ROOT/CarlaUE4.sh -RenderOffScreen -nosound -quality-level=Low
-# CARLA must be launched by a non-root user.
+# First working car: bird's-eye view + discrete actions (the launcher manages CARLA)
+RUN_MODE=cnn STEPS=100000 TRAIN_ARGS="--logdir outputs/logs/cnn_bev_seed42" \
+  bash jobs/slurm_run.sh
 
-uv run python scripts/train_cardreamer.py --arm cnn --task carla_right_turn_simple
+# Short integration run with config overrides; resume an interrupted run
+RUN_MODE=cnn STEPS=2000 TRAIN_ARGS="--set prefill=500 --set eval_every=1000" bash jobs/slurm_run.sh
+RUN_MODE=cnn STEPS=100000 TRAIN_ARGS="--resume --logdir outputs/logs/cnn_bev_seed42" \
+  bash jobs/slurm_run.sh
 ```
+
+Dreamer settings come from `configs/laptop.yaml` (`--profile`, `--set key=value`).
+Each run writes `latest.pt`, `episodes.jsonl` (one line per episode),
+`eval.jsonl` and `metrics.json` to its log directory.
 
 ### Phase 2: JEPA Pretraining
 ```bash
-uv run python scripts/train_phase2_jepa.py --config configs/phase2_jepa_pretrain.yaml
+# Decode the videos once (128 px, 10 Hz, memory-mapped arrays)
+uv run python scripts/preprocess_comma2k19.py --src data/comma2k19 --out data/comma2k19_128
 
-# Evaluate encoder quality
-uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2/best.pt
+# Same budget for both collapse-prevention methods
+uv run python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml \
+    --regularizer ema --checkpoint-dir outputs/checkpoints/phase2_ema
+uv run python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml \
+    --regularizer sigreg --checkpoint-dir outputs/checkpoints/phase2_sigreg
+
+# Linear steering probe vs a random encoder; keep the larger gain as phase2/best.pt
+uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_ema/best.pt
+uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_sigreg/best.pt
 
 # Visualize representation clusters
 uv run python scripts/visualize_representations.py \
@@ -138,14 +178,16 @@ uv run python scripts/visualize_representations.py \
 ```
 
 ### Phase 3: Three-way Comparison
+Front camera + route vector, continuous actions. Frozen encoders run once per
+environment step and replay stores their embeddings, so training never runs
+the ViT.
 ```bash
-# Run each arm with matched seeds
-uv run python scripts/train_cardreamer.py --arm cnn --seed 42
-uv run python scripts/train_cardreamer.py --arm custom_jepa --seed 42
-uv run python scripts/train_cardreamer.py --arm vjepa2 --seed 42
+# One arm (2k-step check)
+RUN_MODE=custom_jepa OBS=camera_route ACTION=continuous STEPS=2000 bash jobs/slurm_run.sh
 
-# Or run full comparison (all arms × all seeds)
-uv run python scripts/train_cardreamer.py --comparison
+# All arms x seeds; finished runs are reused and interrupted runs resume
+RUN_MODE=comparison OBS=camera_route ACTION=continuous STEPS=200000 bash jobs/slurm_run.sh
+# -> outputs/comparison/<task>_camera_route/comparison.md (mean ± std per arm)
 ```
 
 ### Tests

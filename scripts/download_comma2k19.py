@@ -1,103 +1,59 @@
 """
 comma2k19 Dataset Download Script.
 
-Downloads the comma2k19 dataset (~100 GB in 10 chunks) from the official
-GitHub repository. Run this on the target hardware before Phase 2 training.
+Downloads the comma2k19 dataset (~95 GB in 10 chunks) from comma.ai's
+Hugging Face dataset. Run this before Phase 2 training, then decode it once
+with scripts/preprocess_comma2k19.py.
 
 Usage:
     python scripts/download_comma2k19.py --output-dir data/comma2k19
-    python scripts/download_comma2k19.py --output-dir data/comma2k19 --chunks 1 2  # Subset
+    python scripts/download_comma2k19.py --output-dir data/comma2k19 --chunks 1    # ~9 GB
 """
 
 import argparse
-import hashlib
-import os
-import subprocess
-import sys
 from pathlib import Path
 
 
-# comma2k19 chunk URLs from the official repository
-CHUNK_URLS = {
-    1: "https://academictorrents.com/download/65a2fbc964078aff62076ff4e103f18b951c5c5a.torrent",
-    2: "https://academictorrents.com/download/65a2fbc964078aff62076ff4e103f18b951c5c5a.torrent",
-    # Full URLs need to be sourced from https://github.com/commaai/comma2k19
-    # The dataset is distributed via Academic Torrents and direct links
-}
-
-# Alternative: HuggingFace mirror (if available)
+# comma.ai publishes the raw chunks on Hugging Face as raw_data/Chunk_<n>.zip
+# (8.7-9.9 GB each). The repo also holds other material, so a full snapshot
+# download would fetch far more than the chunks.
 HUGGINGFACE_REPO = "commaai/comma2k19"
+NUM_CHUNKS = 10
 
 
-def download_via_huggingface(output_dir: str, chunks: list[int] = None):
+def download_chunks(output_dir: str, chunks: list[int] = None, keep_zip: bool = False):
     """
-    Download comma2k19 from HuggingFace (preferred method).
+    Download and extract chunks to ``<output_dir>/Chunk_<n>/<route>/<segment>``.
 
-    Requires: pip install huggingface_hub
+    Chunks already extracted are skipped; interrupted downloads resume.
     """
-    try:
-        from huggingface_hub import snapshot_download
+    import zipfile
 
-        print(f"Downloading comma2k19 to {output_dir}...")
-        print("This is approximately 100 GB. Ensure sufficient disk space.")
+    from huggingface_hub import hf_hub_download
 
-        snapshot_download(
-            repo_id=HUGGINGFACE_REPO,
-            repo_type="dataset",
-            local_dir=output_dir,
-            local_dir_use_symlinks=False,
-        )
-        print("Download complete!")
-
-    except ImportError:
-        print("huggingface_hub not installed. Install with: pip install huggingface_hub")
-        sys.exit(1)
-    except Exception as e:
-        print(f"HuggingFace download failed: {e}")
-        print("Falling back to direct download method...")
-        download_direct(output_dir, chunks)
-
-
-def download_direct(output_dir: str, chunks: list[int] = None):
-    """
-    Download comma2k19 chunks directly.
-
-    Uses the commaai/comma2k19 download script pattern.
-    """
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
+    chunks = chunks or list(range(1, NUM_CHUNKS + 1))
 
-    if chunks is None:
-        chunks = list(range(1, 11))  # All 10 chunks
-
-    print(f"Downloading {len(chunks)} chunk(s) to {output_dir}")
-    print("Each chunk is approximately 10 GB.")
-    print()
-
-    # The official method uses the commaai/comma2k19 repo's download script
-    # Clone it first if not present
-    repo_dir = output_path / "_comma2k19_repo"
-    if not repo_dir.exists():
-        print("Cloning comma2k19 repository for download script...")
-        subprocess.run(
-            ["git", "clone", "--depth", "1",
-             "https://github.com/commaai/comma2k19.git",
-             str(repo_dir)],
-            check=True,
-        )
-
-    for chunk_num in chunks:
-        chunk_dir = output_path / f"Chunk_{chunk_num}"
-        if chunk_dir.exists():
-            print(f"Chunk {chunk_num} already exists, skipping.")
+    for n in chunks:
+        chunk_dir = output_path / f"Chunk_{n}"
+        if chunk_dir.is_dir() and any(chunk_dir.iterdir()):
+            print(f"Chunk {n} already extracted, skipping.")
             continue
-
-        print(f"Downloading Chunk {chunk_num}/10...")
-        # Use the official download mechanism
-        # The actual URLs are in the comma2k19 repo
-        print(f"  Please download Chunk {chunk_num} manually from:")
-        print(f"  https://github.com/commaai/comma2k19")
-        print(f"  and extract to: {chunk_dir}")
+        print(f"Downloading Chunk {n} (~9 GB) from huggingface.co/datasets/{HUGGINGFACE_REPO}...")
+        archive = Path(hf_hub_download(
+            repo_id=HUGGINGFACE_REPO,
+            repo_type="dataset",
+            filename=f"raw_data/Chunk_{n}.zip",
+            local_dir=output_path / "_downloads",
+        ))
+        with zipfile.ZipFile(archive) as zf:
+            # Archives may or may not contain the Chunk_<n>/ folder itself.
+            has_root = all(name.startswith(f"Chunk_{n}/") for name in zf.namelist())
+            print(f"Extracting {archive.name}...")
+            zf.extractall(output_path if has_root else chunk_dir)
+        if not keep_zip:
+            archive.unlink()
 
     print("\nDone. Verify with: python scripts/download_comma2k19.py --verify")
 
@@ -110,7 +66,7 @@ def verify_dataset(dataset_dir: str):
     - Segment directories exist
     - video.hevc present
     - processed_log/CAN/steering_angle/{t,value} present
-    - processed_log/CAN/car_speed/{t,value} present
+    - processed_log/CAN/speed/{t,value} present (m/s)
     """
     dataset_path = Path(dataset_dir)
 
@@ -127,7 +83,7 @@ def verify_dataset(dataset_dir: str):
 
     required_can_fields = {
         "steering_angle": ["t", "value"],
-        "car_speed": ["t", "value"],
+        "speed": ["t", "value"],
     }
 
     for chunk_dir in sorted(dataset_path.iterdir()):
@@ -159,8 +115,8 @@ def verify_dataset(dataset_dir: str):
                     for f in required_can_fields["steering_angle"]
                 )
                 has_speed = all(
-                    (processed_log / "CAN" / "car_speed" / f).exists()
-                    for f in required_can_fields["car_speed"]
+                    (processed_log / "CAN" / "speed" / f).exists()
+                    for f in required_can_fields["speed"]
                 )
 
                 if not has_steering:
@@ -179,7 +135,7 @@ def verify_dataset(dataset_dir: str):
     print(f"Complete segments:  {total_complete}")
     print(f"Missing video:      {missing_video}")
     print(f"Missing steering:   {missing_steering}")
-    print(f"Missing car_speed:  {missing_speed}")
+    print(f"Missing speed:      {missing_speed}")
     print(f"Expected:           ~2019 segments")
 
     if total_complete >= 1000:
@@ -199,8 +155,8 @@ def main():
                         help="Directory to download dataset to")
     parser.add_argument("--chunks", nargs="+", type=int, default=None,
                         help="Specific chunk numbers to download (1-10)")
-    parser.add_argument("--method", choices=["huggingface", "direct"], default="huggingface",
-                        help="Download method")
+    parser.add_argument("--keep-zip", action="store_true",
+                        help="Keep the downloaded archives after extraction")
     parser.add_argument("--verify", action="store_true",
                         help="Verify existing download")
     args = parser.parse_args()
@@ -209,10 +165,7 @@ def main():
         verify_dataset(args.output_dir)
         return
 
-    if args.method == "huggingface":
-        download_via_huggingface(args.output_dir, args.chunks)
-    else:
-        download_direct(args.output_dir, args.chunks)
+    download_chunks(args.output_dir, args.chunks, keep_zip=args.keep_zip)
 
 
 if __name__ == "__main__":

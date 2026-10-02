@@ -13,6 +13,7 @@ from typing import Optional
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from einops import rearrange
 
 
@@ -288,6 +289,34 @@ class ViTEncoder(nn.Module):
         )
 
 
+class Attention(nn.Module):
+    """Multi-head self-attention through ``F.scaled_dot_product_attention``.
+
+    Unlike ``nn.MultiheadAttention`` (which returns attention weights by
+    default), this never materialises the attention matrix, so PyTorch can
+    use its flash / memory-efficient kernels.
+    """
+
+    def __init__(self, dim: int, num_heads: int, attn_drop: float = 0.0, proj_drop: float = 0.0):
+        super().__init__()
+        if dim % num_heads:
+            raise ValueError(f"dim {dim} is not divisible by num_heads {num_heads}")
+        self.num_heads = num_heads
+        self.attn_drop = attn_drop
+        self.qkv = nn.Linear(dim, dim * 3)
+        self.proj = nn.Linear(dim, dim)
+        self.proj_drop = nn.Dropout(proj_drop)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        q, k, v = rearrange(
+            self.qkv(x), "b n (three h d) -> three b h n d", three=3, h=self.num_heads
+        )
+        x = F.scaled_dot_product_attention(
+            q, k, v, dropout_p=self.attn_drop if self.training else 0.0
+        )
+        return self.proj_drop(self.proj(rearrange(x, "b h n d -> b n (h d)")))
+
+
 class TransformerBlock(nn.Module):
     """
     Standard transformer block with pre-norm architecture.
@@ -306,12 +335,7 @@ class TransformerBlock(nn.Module):
     ):
         super().__init__()
         self.norm1 = nn.LayerNorm(dim)
-        self.attn = nn.MultiheadAttention(
-            embed_dim=dim,
-            num_heads=num_heads,
-            dropout=attn_drop,
-            batch_first=True,
-        )
+        self.attn = Attention(dim, num_heads, attn_drop=attn_drop, proj_drop=drop)
         self.norm2 = nn.LayerNorm(dim)
         self.mlp = MLP(
             in_features=dim,
@@ -321,10 +345,7 @@ class TransformerBlock(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # Pre-norm attention
-        residual = x
-        x = self.norm1(x)
-        x, _ = self.attn(x, x, x)
-        x = residual + x
+        x = x + self.attn(self.norm1(x))
 
         # Pre-norm MLP
         residual = x

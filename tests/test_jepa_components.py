@@ -8,18 +8,20 @@ Tests critical invariants:
 4. Encoder/predictor forward pass shapes
 """
 
-import torch
-import pytest
 import sys
 from pathlib import Path
 
+import pytest
+import torch
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.jepa.encoder import ViTEncoder, PatchEmbed3D
-from src.jepa.target_encoder import EMATargetEncoder
-from src.jepa.predictor import JEPAPredictor
+from src.jepa.encoder import Attention, PatchEmbed3D, ViTEncoder
+from src.jepa.losses import CollapseMonitor, JEPALoss
 from src.jepa.masking import MaskGenerator, verify_no_leak
-from src.jepa.losses import JEPALoss, CollapseMonitor
+from src.jepa.predictor import JEPAPredictor
+from src.jepa.sigreg import SIGReg
+from src.jepa.target_encoder import EMATargetEncoder
 
 
 class TestPatchEmbed3D:
@@ -223,6 +225,54 @@ class TestPredictor:
 
         out = predictor(context, ctx_indices, mask_indices)
         assert out.shape == (2, 156, 384)
+
+
+class TestTubeMasks:
+    def _generator(self, **tube):
+        return MaskGenerator(
+            num_patches=256, num_patches_spatial=64, num_patches_temporal=4,
+            strategy="tube", config={"tube": tube},
+        )
+
+    def test_blocks_span_every_frame(self):
+        """A masked spatial location is masked in all temporal patches (no copying)."""
+        result = self._generator()(batch_size=16)
+        verify_no_leak(result["context_indices"], result["mask_indices"])
+        # No spatial location is visible in one frame and hidden in another.
+        for ctx, msk in zip(result["context_indices"], result["mask_indices"]):
+            assert not set((ctx % 64).tolist()) & set((msk % 64).tolist())
+
+    def test_equal_lengths_and_minimum_context(self):
+        result = self._generator(
+            groups=[{"num_blocks": 2, "scale": [0.7, 0.7]}], min_context_ratio=0.2
+        )(batch_size=32)
+        assert result["context_indices"].shape[0] == 32
+        assert result["context_indices"].shape[1] >= int(0.2 * 64) * 4
+        assert torch.all(result["context_indices"][:, 1:] > result["context_indices"][:, :-1])
+
+
+class TestSIGReg:
+    def test_separates_gaussian_from_collapsed(self):
+        sigreg = SIGReg(num_slices=64)
+        gaussian = sigreg(torch.randn(2048, 64), step=0)
+        collapsed = sigreg(torch.randn(1, 64).expand(2048, 64) + 1e-3 * torch.randn(2048, 64), 0)
+        assert gaussian < 5.0 < collapsed
+
+    def test_differentiable(self):
+        z = (0.1 * torch.randn(256, 32)).requires_grad_()
+        SIGReg(num_slices=16)(z, step=1).backward()
+        assert z.grad is not None and torch.isfinite(z.grad).all()
+
+
+class TestSDPAAttention:
+    def test_matches_reference_attention(self):
+        torch.manual_seed(0)
+        attn = Attention(dim=32, num_heads=4).eval()
+        x = torch.randn(2, 10, 32)
+        q, k, v = attn.qkv(x).reshape(2, 10, 3, 4, 8).permute(2, 0, 3, 1, 4)
+        weights = (q @ k.transpose(-2, -1) / 8**0.5).softmax(-1)
+        reference = attn.proj((weights @ v).transpose(1, 2).reshape(2, 10, 32))
+        torch.testing.assert_close(attn(x), reference, atol=1e-5, rtol=1e-4)
 
 
 if __name__ == "__main__":

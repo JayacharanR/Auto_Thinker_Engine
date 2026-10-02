@@ -1,4 +1,7 @@
 """
+LEGACY: unmaintained runner built on src/_deprecated. Use scripts/train_cardreamer.py
+(python run.py train / compare) for Phase 1 and Phase 3.
+
 Phase 3 Training Script: Three-way Encoder Comparison.
 
 The project's centerpiece: a CONTROLLED experiment comparing three
@@ -658,4 +661,5 @@ def main():
 
 
 if __name__ == "__main__":
+    print("WARNING: legacy runner; use scripts/train_cardreamer.py instead.", file=sys.stderr)
     main()

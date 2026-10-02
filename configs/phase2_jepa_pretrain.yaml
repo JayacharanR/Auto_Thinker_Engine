@@ -17,7 +17,8 @@ experiment:
 
 # ---- Dataset: comma2k19 ----
 data:
-  dataset_root: "data/comma2k19"    # Path to extracted dataset
+  # Output of: python scripts/preprocess_comma2k19.py --size 224 --out data/comma2k19_224
+  dataset_root: "data/comma2k19_224"
   split_ratio: 0.9                   # 90% train, 10% val
   num_workers: 4
   pin_memory: true
@@ -26,9 +27,9 @@ data:
   # Video tubelet sampling
   tubelet:
     num_frames: 16                   # Frames per tubelet
-    frame_stride: 2                  # Sample every 2nd frame (effective 10 Hz from 20 Hz)
+    frame_stride: 1                  # In stored frames (preprocessing keeps 10 Hz)
     spatial_size: 224                # ViT input resolution
-    min_segment_length: 32           # Skip segments shorter than this
+    sample_step: 8                   # Clip starts every 8 frames (+ random offset)
 
   # Telemetry alignment (for action-conditioned variant)
   telemetry:
@@ -86,14 +87,13 @@ model:
 
 # ---- Masking Strategy ----
 masking:
-  strategy: "multi_block"            # multi_block is more robust than single block
+  strategy: "multi_block"            # tube masks (blocks span every frame); see masking.py
   # Alternative: "temporal_last"     # Mask last few frames (causal prediction)
 
   multi_block:
     num_masks: 4                     # Number of masked regions
-    min_mask_ratio: 0.15             # Min fraction of patches masked per block
+    min_mask_ratio: 0.15             # Min fraction of the spatial grid per block
     max_mask_ratio: 0.30             # Max fraction
-    total_mask_ratio: 0.65           # Target total mask ratio
 
   temporal:
     num_future_frames: 4             # Mask the last N frames
@@ -127,8 +127,7 @@ training:
     # Don't assume architecture is wrong before checking these.
 
   # Checkpointing
-  checkpoint_every_epochs: 5
-  max_keep_checkpoints: 3
+  # latest.pt every epoch, best.pt on the lowest validation loss
   log_every: 50                      # steps
 
   # Mixed precision

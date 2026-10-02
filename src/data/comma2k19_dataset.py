@@ -1,23 +1,20 @@
 """
 comma2k19 Dataset Loader.
 
-Loads video segments from the comma2k19 dataset as 3D tubelets
-and aligns frames with synchronized steering/speed telemetry.
+Reads clips from the arrays written by ``scripts/preprocess_comma2k19.py``
+(one decode per segment, frames resized and memory-mapped), so a sample is a
+slice of a uint8 array instead of an HEVC decode.
 
-Dataset structure (per segment):
-    route_id/segment_number/
-        video.hevc          # 20 Hz road-facing camera
-        processed_log/      # numpy arrays: CAN data, IMU, etc.
-        global_pos/          # numpy arrays: GPS positions
+Processed layout:
+    <root>/manifest.json
+    <root>/<segment_id>/frames.npy       uint8 (N, S, S, 3), 10 Hz by default
+    <root>/<segment_id>/telemetry.npy    float32 (N, 2): steering angle, speed
 
-This loader handles:
-- HEVC video decoding via PyAV
-- Telemetry alignment by timestamp interpolation
-- 3D tubelet sampling (consecutive frames with stride)
-- Train/val splitting by segment
+Train/val splitting is by segment, so clips from one drive never appear in
+both splits.
 """
 
-import os
+import json
 from pathlib import Path
 from typing import Optional
 
@@ -26,413 +23,159 @@ import torch
 from torch.utils.data import Dataset
 
 
+def split_segments(segment_ids: list[str], split: str, split_ratio: float) -> list[str]:
+    """Deterministic segment-level split (seed 42 permutation of the sorted ids)."""
+    ids = sorted(segment_ids)
+    order = np.random.RandomState(42).permutation(len(ids))
+    cut = int(len(ids) * split_ratio)
+    if split == "train":
+        chosen = order[:cut]
+    elif split == "val":
+        chosen = order[cut:]
+    else:
+        raise ValueError(f"Unknown split: {split}. Use 'train' or 'val'.")
+    return [ids[i] for i in sorted(chosen)]
+
+
 class Comma2k19Dataset(Dataset):
     """
-    PyTorch Dataset for comma2k19 video + telemetry data.
-
-    Loads video segments as tubelets (sequences of frames) and aligns
-    each frame with the corresponding steering angle and speed from
-    the CAN bus telemetry.
+    Video clips with aligned steering/speed telemetry.
 
     Args:
-        dataset_root: Path to the extracted comma2k19 dataset.
-        num_frames: Number of frames per tubelet.
-        frame_stride: Temporal stride between frames (e.g., 2 = every other frame).
-        spatial_size: Target spatial resolution (frames resized to this).
+        dataset_root: Directory written by scripts/preprocess_comma2k19.py.
+        num_frames: Frames per clip.
+        frame_stride: Step between clip frames, in stored frames (1 = 10 Hz).
         split: 'train' or 'val'.
         split_ratio: Fraction of segments used for training.
-        transform: Optional torchvision transform for frames.
-        min_segment_length: Skip segments with fewer frames than this.
-        use_steering: Whether to load steering telemetry.
-        use_speed: Whether to load speed telemetry.
-        normalize_telemetry: Whether to z-score normalize telemetry.
+        transform: Optional transform on the (C, T, H, W) clip in [0, 1].
+        sample_step: Spacing of clip start positions. Training adds a random
+            offset in [0, sample_step) so every start is reachable.
+        use_steering / use_speed: Telemetry channels returned.
+        normalize_telemetry: Z-score telemetry with training-split statistics.
+        random_offset: Jitter clip starts (default: on for the train split).
     """
 
     def __init__(
         self,
         dataset_root: str,
-        num_frames: int = 16,
-        frame_stride: int = 2,
-        spatial_size: int = 224,
+        num_frames: int = 8,
+        frame_stride: int = 1,
         split: str = "train",
         split_ratio: float = 0.9,
         transform: Optional[object] = None,
-        min_segment_length: int = 32,
+        sample_step: Optional[int] = None,
         use_steering: bool = True,
         use_speed: bool = True,
         normalize_telemetry: bool = True,
+        random_offset: Optional[bool] = None,
     ):
         super().__init__()
-
-        self.dataset_root = Path(dataset_root)
+        self.root = Path(dataset_root)
+        manifest_path = self.root / "manifest.json"
+        if not manifest_path.is_file():
+            raise FileNotFoundError(
+                f"{manifest_path} not found. Preprocess the raw dataset first: "
+                f"python scripts/preprocess_comma2k19.py --src <raw> --out {self.root}"
+            )
+        self.manifest = json.loads(manifest_path.read_text())
         self.num_frames = num_frames
         self.frame_stride = frame_stride
-        self.spatial_size = spatial_size
+        self.span = (num_frames - 1) * frame_stride + 1
         self.split = split
         self.transform = transform
-        self.min_segment_length = min_segment_length
-        self.use_steering = use_steering
-        self.use_speed = use_speed
-        self.normalize_telemetry = normalize_telemetry
+        self.sample_step = sample_step or max(1, num_frames // 2)
+        self.random_offset = split == "train" if random_offset is None else random_offset
+        self.channels = [i for i, use in enumerate((use_steering, use_speed)) if use]
 
-        # Total frames needed per tubelet
-        self.total_frames_needed = (num_frames - 1) * frame_stride + 1
-
-        # Discover all segments
-        self.segments = self._discover_segments()
-
-        # Split into train/val
-        np.random.seed(42)  # Deterministic split
-        indices = np.random.permutation(len(self.segments))
-        split_idx = int(len(indices) * split_ratio)
-
-        if split == "train":
-            selected = indices[:split_idx]
-        elif split == "val":
-            selected = indices[split_idx:]
-        else:
-            raise ValueError(f"Unknown split: {split}. Use 'train' or 'val'.")
-
-        self.segments = [self.segments[i] for i in selected]
-
-        # Build index: (segment_idx, start_frame) pairs for all valid tubelets
-        self.samples = self._build_sample_index()
-
-        # Compute telemetry normalization statistics (from training set only)
-        self._steering_mean = 0.0
-        self._steering_std = 1.0
-        self._speed_mean = 0.0
-        self._speed_std = 1.0
-        if normalize_telemetry and split == "train":
-            self._compute_telemetry_stats()
-
-    def _discover_segments(self) -> list[Path]:
-        """Find all valid segment directories in the dataset."""
-        segments = []
-
-        if not self.dataset_root.exists():
-            print(
-                f"WARNING: Dataset root {self.dataset_root} does not exist. "
-                f"Run the download script first: scripts/download_comma2k19.py"
-            )
-            return segments
-
-        # comma2k19 structure: Chunk_N/route_id/segment_number/
-        for chunk_dir in sorted(self.dataset_root.iterdir()):
-            if not chunk_dir.is_dir():
-                continue
-            for route_dir in sorted(chunk_dir.iterdir()):
-                if not route_dir.is_dir():
-                    continue
-                for segment_dir in sorted(route_dir.iterdir()):
-                    if not segment_dir.is_dir():
-                        continue
-                    # Check for required files
-                    video_path = segment_dir / "video.hevc"
-                    if video_path.exists():
-                        segments.append(segment_dir)
-
-        return segments
-
-    def _build_sample_index(self) -> list[tuple[int, int]]:
-        """
-        Build an index of (segment_idx, start_frame) pairs.
-
-        Each sample is a valid starting position for a tubelet within
-        a segment. Segments shorter than total_frames_needed are skipped.
-        """
-        samples = []
-        for seg_idx, segment_path in enumerate(self.segments):
-            # Estimate segment length from video metadata
-            video_path = segment_path / "video.hevc"
-            try:
-                num_total_frames = self._get_video_length(video_path)
-            except Exception:
-                continue
-
-            if num_total_frames < self.total_frames_needed:
-                continue
-
-            if num_total_frames < self.min_segment_length:
-                continue
-
-            # Create samples at every possible starting position
-            max_start = num_total_frames - self.total_frames_needed
-            for start in range(0, max_start + 1, self.frame_stride):
-                samples.append((seg_idx, start))
-
-        return samples
-
-    @staticmethod
-    def _get_video_length(video_path: Path) -> int:
-        """Get the number of frames in an HEVC video file."""
-        import av
-
-        with av.open(str(video_path)) as container:
-            stream = container.streams.video[0]
-            # Use stream.frames if available, otherwise count
-            if stream.frames > 0:
-                return stream.frames
-            # Fallback: count frames (slower)
-            count = 0
-            for _ in container.decode(stream):
-                count += 1
-            return count
-
-    def _load_video_frames(
-        self, video_path: Path, start_frame: int
-    ) -> torch.Tensor:
-        """
-        Load a tubelet of frames from an HEVC video.
-
-        Args:
-            video_path: Path to the .hevc file.
-            start_frame: Starting frame index.
-
-        Returns:
-            (C, T, H, W) tensor of frames, normalized to [0, 1].
-        """
-        import av
-        from torchvision.transforms.functional import resize
-
-        frame_indices = [
-            start_frame + i * self.frame_stride for i in range(self.num_frames)
+        lengths = {s["id"]: s["num_frames"] for s in self.manifest["segments"]}
+        self.segment_ids = [
+            s for s in split_segments(list(lengths), split, split_ratio)
+            if lengths[s] >= self.span
         ]
+        self._frames: dict[int, np.ndarray] = {}  # opened lazily (per worker)
+        self._telemetry: dict[int, np.ndarray] = {}
 
-        frames = []
-        with av.open(str(video_path)) as container:
-            stream = container.streams.video[0]
-            frame_count = 0
-
-            for frame in container.decode(stream):
-                if frame_count in frame_indices:
-                    # Convert to RGB numpy array
-                    img = frame.to_ndarray(format="rgb24")
-                    # Convert to tensor (C, H, W) and normalize to [0, 1]
-                    img_tensor = torch.from_numpy(img).permute(2, 0, 1).float() / 255.0
-                    # Resize to target spatial size
-                    img_tensor = resize(
-                        img_tensor,
-                        [self.spatial_size, self.spatial_size],
-                        antialias=True,
-                    )
-                    frames.append(img_tensor)
-
-                    if len(frames) == self.num_frames:
-                        break
-
-                frame_count += 1
-
-                # Early exit if we've passed all needed frames
-                if frame_count > frame_indices[-1]:
-                    break
-
-        if len(frames) < self.num_frames:
-            # Pad with last frame if video ended early
-            while len(frames) < self.num_frames:
-                frames.append(frames[-1].clone())
-
-        # Stack: (T, C, H, W) → rearrange to (C, T, H, W)
-        video = torch.stack(frames, dim=0)  # (T, C, H, W)
-        video = video.permute(1, 0, 2, 3)  # (C, T, H, W)
-
-        return video
-
-    def _load_telemetry(
-        self, segment_path: Path, start_frame: int
-    ) -> torch.Tensor:
-        """
-        Load steering and speed telemetry aligned with video frames.
-
-        Uses timestamp-based interpolation against the official comma2k19
-        CAN field layout:
-          - CAN/steering_angle/t (timestamps) + CAN/steering_angle/value
-          - CAN/car_speed/t (timestamps) + CAN/car_speed/value
-
-        Args:
-            segment_path: Path to the segment directory.
-            start_frame: Starting frame index.
-
-        Returns:
-            (T, A) tensor where A = number of telemetry channels
-            (2 if both steering and speed are used).
-        """
-        processed_log = segment_path / "processed_log"
-        telemetry_channels = []
-
-        frame_indices = [
-            start_frame + i * self.frame_stride for i in range(self.num_frames)
+        # (segment index, first start) for every clip; starts every sample_step.
+        self.samples = [
+            (i, start)
+            for i, seg in enumerate(self.segment_ids)
+            for start in range(0, lengths[seg] - self.span + 1, self.sample_step)
         ]
+        self._lengths = [lengths[s] for s in self.segment_ids]
 
-        # Video timestamps at 20 Hz
-        video_fps = 20.0
-        frame_timestamps = np.array([fi / video_fps for fi in frame_indices])
-
-        if self.use_steering:
-            aligned = self._interpolate_can_signal(
-                processed_log, "steering_angle", frame_timestamps
+        self.telemetry_mean = np.zeros(2, np.float32)
+        self.telemetry_std = np.ones(2, np.float32)
+        if normalize_telemetry:
+            self.telemetry_mean, self.telemetry_std = self._train_telemetry_stats(
+                list(lengths), split_ratio
             )
-            telemetry_channels.append(torch.from_numpy(aligned))
 
-        if self.use_speed:
-            # Official comma2k19 field is "car_speed", not "speed"
-            aligned = self._interpolate_can_signal(
-                processed_log, "car_speed", frame_timestamps
-            )
-            telemetry_channels.append(torch.from_numpy(aligned))
+    def _train_telemetry_stats(self, all_ids: list[str], split_ratio: float):
+        values = [
+            np.load(self.root / seg / "telemetry.npy", mmap_mode="r")
+            for seg in split_segments(all_ids, "train", split_ratio)
+        ]
+        if not values:
+            return np.zeros(2, np.float32), np.ones(2, np.float32)
+        stacked = np.concatenate(values)
+        mean = np.nan_to_num(np.nanmean(stacked, axis=0)).astype(np.float32)
+        std = np.nan_to_num(np.nanstd(stacked, axis=0), nan=1.0).astype(np.float32)
+        return mean, np.maximum(std, 1e-6)
 
-        if not telemetry_channels:
-            return torch.zeros(self.num_frames, 0)
-
-        # Stack: (T, A)
-        telemetry = torch.stack(telemetry_channels, dim=-1)
-
-        # Normalize
-        if self.normalize_telemetry:
-            if self.use_steering and telemetry.shape[-1] >= 1:
-                telemetry[:, 0] = (
-                    telemetry[:, 0] - self._steering_mean
-                ) / max(self._steering_std, 1e-6)
-            if self.use_speed and telemetry.shape[-1] >= 2:
-                telemetry[:, 1] = (
-                    telemetry[:, 1] - self._speed_mean
-                ) / max(self._speed_std, 1e-6)
-
-        return telemetry
-
-    @staticmethod
-    def _interpolate_can_signal(
-        processed_log: Path,
-        signal_name: str,
-        target_timestamps: np.ndarray,
-    ) -> np.ndarray:
-        """
-        Interpolate a CAN signal to target timestamps.
-
-        The official comma2k19 layout stores each CAN signal as:
-          processed_log/CAN/{signal_name}/t      — timestamps (seconds)
-          processed_log/CAN/{signal_name}/value   — signal values
-
-        We use np.interp to align CAN values (sampled at ~100 Hz)
-        to video frame timestamps (at 20 Hz).
-
-        Args:
-            processed_log: Path to the segment's processed_log directory.
-            signal_name: CAN signal name (e.g., 'steering_angle', 'car_speed').
-            target_timestamps: Timestamps (seconds) to interpolate to.
-
-        Returns:
-            np.ndarray of interpolated values at target_timestamps.
-        """
-        t_path = processed_log / "CAN" / signal_name / "t"
-        v_path = processed_log / "CAN" / signal_name / "value"
-
-        if t_path.exists() and v_path.exists():
-            try:
-                t = np.load(t_path).flatten()
-                v = np.load(v_path).flatten()
-
-                if len(t) > 0 and len(v) > 0 and len(t) == len(v):
-                    # Normalize timestamps relative to segment start
-                    t_rel = t - t[0]
-                    return np.interp(
-                        target_timestamps, t_rel, v
-                    ).astype(np.float32)
-            except Exception:
-                pass
-
-        # Fallback: zeros if signal unavailable
-        return np.zeros(len(target_timestamps), dtype=np.float32)
-
-    def _compute_telemetry_stats(self) -> None:
-        """
-        Compute mean/std of telemetry for z-score normalization.
-
-        Uses official comma2k19 CAN field names:
-          - steering_angle (not steering)
-          - car_speed (not speed)
-        """
-        steering_values = []
-        speed_values = []
-
-        # Sample up to 100 segments for statistics
-        sample_segments = self.segments[:min(100, len(self.segments))]
-
-        for segment_path in sample_segments:
-            processed_log = segment_path / "processed_log"
-
-            if self.use_steering:
-                path = processed_log / "CAN" / "steering_angle" / "value"
-                if path.exists():
-                    try:
-                        data = np.load(path).flatten()
-                        steering_values.extend(data.tolist())
-                    except Exception:
-                        pass
-
-            if self.use_speed:
-                # Official field: car_speed, NOT speed
-                path = processed_log / "CAN" / "car_speed" / "value"
-                if path.exists():
-                    try:
-                        data = np.load(path).flatten()
-                        speed_values.extend(data.tolist())
-                    except Exception:
-                        pass
-
-        if steering_values:
-            self._steering_mean = float(np.mean(steering_values))
-            self._steering_std = float(np.std(steering_values))
-        if speed_values:
-            self._speed_mean = float(np.mean(speed_values))
-            self._speed_std = float(np.std(speed_values))
+    def _arrays(self, seg_idx: int) -> tuple[np.ndarray, np.ndarray]:
+        if seg_idx not in self._frames:
+            seg_dir = self.root / self.segment_ids[seg_idx]
+            self._frames[seg_idx] = np.load(seg_dir / "frames.npy", mmap_mode="r")
+            self._telemetry[seg_idx] = np.load(seg_dir / "telemetry.npy", mmap_mode="r")
+        return self._frames[seg_idx], self._telemetry[seg_idx]
 
     def __len__(self) -> int:
         return len(self.samples)
 
-    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
+    def __getitem__(self, idx: int) -> dict:
         """
-        Load a single tubelet sample.
-
         Returns:
             Dict with:
-            - 'video': (C, T, H, W) video tubelet tensor
-            - 'telemetry': (T, A) aligned telemetry tensor
-            - 'segment_path': str path to source segment
-            - 'start_frame': int starting frame index
+            - 'video': (C, T, H, W) float clip (transformed if a transform is set)
+            - 'telemetry': (T, A) normalised steering/speed (NaN -> 0)
+            - 'segment_path': segment id
+            - 'start_frame': first stored-frame index of the clip
         """
-        seg_idx, start_frame = self.samples[idx]
-        segment_path = self.segments[seg_idx]
-        video_path = segment_path / "video.hevc"
+        seg_idx, start = self.samples[idx]
+        if self.random_offset:
+            last_start = self._lengths[seg_idx] - self.span
+            start = min(start + int(np.random.randint(self.sample_step)), last_start)
+        frames, telemetry = self._arrays(seg_idx)
+        clip = slice(start, start + self.span, self.frame_stride)
 
-        # Load video frames
-        video = self._load_video_frames(video_path, start_frame)
-
-        # Apply transforms
+        video = torch.from_numpy(np.array(frames[clip]))  # (T, H, W, C) uint8, writable copy
+        video = video.permute(3, 0, 1, 2).float().div_(255.0)  # (C, T, H, W)
         if self.transform is not None:
             video = self.transform(video)
 
-        # Load telemetry
-        telemetry = self._load_telemetry(segment_path, start_frame)
-
+        tel = (np.asarray(telemetry[clip], np.float32) - self.telemetry_mean) / self.telemetry_std
+        tel = torch.from_numpy(np.nan_to_num(tel[:, self.channels]))
         return {
             "video": video,
-            "telemetry": telemetry,
-            "segment_path": str(segment_path),
-            "start_frame": start_frame,
+            "telemetry": tel,
+            "segment_path": self.segment_ids[seg_idx],
+            "start_frame": start,
         }
 
 
 def create_comma2k19_dataloaders(
     config: dict,
     seed: int = 42,
+    deterministic: bool = False,
 ) -> tuple:
     """
     Create train and validation DataLoaders from config.
 
     Args:
-        config: Data section of the YAML config.
+        config: Full Phase 2 YAML config.
         seed: Random seed for reproducibility.
+        deterministic: Train split without augmentation, clip jitter, shuffling
+            or dropped batches (feature extraction for the linear probe).
 
     Returns:
         Tuple of (train_loader, val_loader).
@@ -442,66 +185,46 @@ def create_comma2k19_dataloaders(
 
     data_cfg = config["data"]
     tubelet_cfg = data_cfg.get("tubelet", {})
-
-    train_transform = create_video_transform(config, is_train=True)
-    val_transform = create_video_transform(config, is_train=False)
-
+    telemetry_cfg = data_cfg.get("telemetry", {})
+    common = dict(
+        dataset_root=data_cfg["dataset_root"],
+        num_frames=tubelet_cfg.get("num_frames", 8),
+        frame_stride=tubelet_cfg.get("frame_stride", 1),
+        split_ratio=data_cfg.get("split_ratio", 0.9),
+        sample_step=tubelet_cfg.get("sample_step"),
+        use_steering=telemetry_cfg.get("use_steering", True),
+        use_speed=telemetry_cfg.get("use_speed", True),
+        normalize_telemetry=telemetry_cfg.get("normalize", True),
+    )
     train_dataset = Comma2k19Dataset(
-        dataset_root=data_cfg["dataset_root"],
-        num_frames=tubelet_cfg.get("num_frames", 16),
-        frame_stride=tubelet_cfg.get("frame_stride", 2),
-        spatial_size=tubelet_cfg.get("spatial_size", 224),
         split="train",
-        split_ratio=data_cfg.get("split_ratio", 0.9),
-        transform=train_transform,
-        min_segment_length=tubelet_cfg.get("min_segment_length", 32),
-        use_steering=data_cfg.get("telemetry", {}).get("use_steering", True),
-        use_speed=data_cfg.get("telemetry", {}).get("use_speed", True),
-        normalize_telemetry=data_cfg.get("telemetry", {}).get("normalize", True),
+        transform=create_video_transform(config, is_train=not deterministic),
+        random_offset=not deterministic,
+        **common,
     )
-
     val_dataset = Comma2k19Dataset(
-        dataset_root=data_cfg["dataset_root"],
-        num_frames=tubelet_cfg.get("num_frames", 16),
-        frame_stride=tubelet_cfg.get("frame_stride", 2),
-        spatial_size=tubelet_cfg.get("spatial_size", 224),
-        split="val",
-        split_ratio=data_cfg.get("split_ratio", 0.9),
-        transform=val_transform,
-        min_segment_length=tubelet_cfg.get("min_segment_length", 32),
-        use_steering=data_cfg.get("telemetry", {}).get("use_steering", True),
-        use_speed=data_cfg.get("telemetry", {}).get("use_speed", True),
-        normalize_telemetry=data_cfg.get("telemetry", {}).get("normalize", True),
+        split="val", transform=create_video_transform(config, is_train=False), **common
     )
 
-    # Copy normalization stats from train to val
-    val_dataset._steering_mean = train_dataset._steering_mean
-    val_dataset._steering_std = train_dataset._steering_std
-    val_dataset._speed_mean = train_dataset._speed_mean
-    val_dataset._speed_std = train_dataset._speed_std
-
-    g = get_generator(seed)
+    num_workers = data_cfg.get("num_workers", 4)
+    loader_args = dict(
+        batch_size=config["training"]["batch_size"],
+        num_workers=num_workers,
+        pin_memory=data_cfg.get("pin_memory", True),
+        persistent_workers=num_workers > 0,
+    )
+    if num_workers > 0:
+        loader_args["prefetch_factor"] = data_cfg.get("prefetch_factor", 2)
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
-        batch_size=config["training"]["batch_size"],
-        shuffle=True,
-        num_workers=data_cfg.get("num_workers", 4),
-        pin_memory=data_cfg.get("pin_memory", True),
-        prefetch_factor=data_cfg.get("prefetch_factor", 2),
-        drop_last=True,
-        generator=g,
+        shuffle=not deterministic,
+        drop_last=not deterministic,
+        generator=get_generator(seed),
         worker_init_fn=worker_init_fn,
+        **loader_args,
     )
-
     val_loader = torch.utils.data.DataLoader(
-        val_dataset,
-        batch_size=config["training"]["batch_size"],
-        shuffle=False,
-        num_workers=data_cfg.get("num_workers", 4),
-        pin_memory=data_cfg.get("pin_memory", True),
-        prefetch_factor=data_cfg.get("prefetch_factor", 2),
-        drop_last=False,
+        val_dataset, shuffle=False, drop_last=False, **loader_args
     )
-
     return train_loader, val_loader

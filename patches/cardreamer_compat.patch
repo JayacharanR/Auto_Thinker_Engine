@@ -1,0 +1,171 @@
+diff --git a/car_dreamer/toolkit/carla_manager/world_manager.py b/car_dreamer/toolkit/carla_manager/world_manager.py
+index bec496b..578f7f4 100644
+--- a/car_dreamer/toolkit/carla_manager/world_manager.py
++++ b/car_dreamer/toolkit/carla_manager/world_manager.py
+@@ -1,3 +1,4 @@
++import os
+ import time
+ from functools import wraps
+ from typing import Callable, Dict, List, Union
+@@ -22,6 +23,16 @@ def cached_step_wise(func):
+     return wrapper
+ 
+ 
++def _base_map_name(name: str) -> str:
++    """``/Game/Carla/Maps/Town03_Opt`` -> ``Town03``; layered and plain maps are equivalent."""
++    name = name.rsplit("/", 1)[-1]
++    return name[: -len("_Opt")] if name.endswith("_Opt") else name
++
++
++def _env_flag(name: str) -> bool:
++    return os.environ.get(name, "").strip().lower() in ("1", "true", "yes", "on")
++
++
+ class WorldManager:
+     """
+     The class to manage the world in CARLA.
+@@ -36,10 +47,18 @@ class WorldManager:
+ 
+         print(f"[CARLA] Connecting to Carla server at {self._config.carla_port}...")
+         self._client = carla.Client("127.0.0.1", self._config.carla_port)
+-        self._client.set_timeout(20.0)
+-        self._world = self._client.load_world(self._config.town)
++        self._client.set_timeout(float(os.environ.get("CARLA_WORLD_TIMEOUT", "60")))
++        # Reuse the running map when it matches (Town03 == Town03_Opt): load_world
++        # is slow and was unstable on the packaged build.
++        self._world = self._client.get_world()
++        current_map = self._world.get_map().name
++        if _base_map_name(current_map) == _base_map_name(self._config.town):
++            print(f"[CARLA] Reusing loaded map {current_map} for {self._config.town}")
++        else:
++            print(f"[CARLA] Loading map {self._config.town} (current: {current_map})")
++            self._world = self._client.load_world(self._config.town)
+         self._map = self._world.get_map()
+-        print(f"[CARLA] Map {self._config.town} loaded")
++        print(f"[CARLA] Map {self._map.name} ready")
+ 
+         settings = self._world.get_settings()
+         settings.synchronous_mode = False
+@@ -49,7 +68,12 @@ class WorldManager:
+         self._settings = settings
+ 
+         self._tm_port = self._config.carla_port + 6000
+-        self._vehicle_manager = VehicleManager(self._client, self._tm_port, self._config.traffic)
++        # The Traffic Manager starts on first use, so tasks without autopilot
++        # traffic never start one. CARLA_DISABLE_TRAFFIC_MANAGER=1 forbids it
++        # (autopilot traffic is then skipped with a warning).
++        self._vehicle_manager_instance = None
++        self._tm_disabled = _env_flag("CARLA_DISABLE_TRAFFIC_MANAGER")
++        self._tm_warned = False
+ 
+         self._on_reset = None
+         self._apply_control = None
+@@ -59,6 +83,21 @@ class WorldManager:
+ 
+         self._ego_planner = None
+ 
++    @property
++    def _vehicle_manager(self) -> VehicleManager:
++        if self._vehicle_manager_instance is None:
++            if self._tm_disabled:
++                raise RuntimeError("Traffic Manager is disabled by CARLA_DISABLE_TRAFFIC_MANAGER")
++            self._vehicle_manager_instance = VehicleManager(self._client, self._tm_port, self._config.traffic)
++            self._vehicle_manager_instance.set_synchronous_mode(self._settings.synchronous_mode)
++        return self._vehicle_manager_instance
++
++    def _traffic_available(self) -> bool:
++        if self._tm_disabled and not self._tm_warned:
++            print("[CARLA] WARNING: CARLA_DISABLE_TRAFFIC_MANAGER is set; autopilot traffic is skipped")
++            self._tm_warned = True
++        return not self._tm_disabled
++
+     def on_reset(self, callback: Callable[[], None]) -> None:
+         """
+         Register a callback function to be called when the environment is reset.
+@@ -200,6 +239,9 @@ class WorldManager:
+ 
+         :return: a list of spawned actors, note that the length of the list may be less than n.
+         """
++        if not self._traffic_available():
++            return []
++        self._vehicle_manager  # configure the Traffic Manager before autopilot starts one
+         if transforms is None:
+             transforms = self.get_spawn_points()
+         if blueprints is None:
+@@ -240,6 +282,9 @@ class WorldManager:
+ 
+         .. seealso:: :py:meth:`try_spawn_actor`
+         """
++        if not self._traffic_available():
++            return None
++        self._vehicle_manager  # configure the Traffic Manager before autopilot starts one
+         vehicle = self.try_spawn_actor(transform, blueprint)
+         if vehicle is None:
+             return None
+@@ -316,6 +361,8 @@ class WorldManager:
+     @cached_step_wise
+     def _get_actor_actions(self) -> ActorActionDict:
+         actor_actions: ActorActionDict = {}
++        if self._vehicle_manager_instance is None:
++            return actor_actions  # no Traffic Manager, so no autopilot actors
+ 
+         for actor in self.actor_dict.values():
+             try:
+@@ -358,7 +405,8 @@ class WorldManager:
+     def _set_synchronous_mode(self, synchronous=True):
+         self._settings.synchronous_mode = synchronous
+         self._world.apply_settings(self._settings)
+-        self._vehicle_manager.set_synchronous_mode(synchronous)
++        if self._vehicle_manager_instance is not None:
++            self._vehicle_manager_instance.set_synchronous_mode(synchronous)
+ 
+     def _get_world(self):
+         return self._world
+diff --git a/car_dreamer/toolkit/monitor/monitor.py b/car_dreamer/toolkit/monitor/monitor.py
+index a4f4834..26f14f3 100644
+--- a/car_dreamer/toolkit/monitor/monitor.py
++++ b/car_dreamer/toolkit/monitor/monitor.py
+@@ -1,6 +1,7 @@
+ import atexit
+ import base64
+ import json
++import os
+ import queue
+ import threading
+ 
+@@ -12,9 +13,14 @@ from flask import Flask, Response, render_template
+ class EnvMonitorBase:
+     def __init__(self, config):
+         self._config = config
+-        self._obs_queue = queue.Queue()
+-        self._info_queue = queue.Queue()
+-        self._thread = threading.Thread(target=self._run_server)
++        # Bounded: frames are dropped while no browser reads the stream.
++        self._obs_queue = queue.Queue(maxsize=2)
++        self._info_queue = queue.Queue(maxsize=2)
++        self._thread = None
++        if os.environ.get("CARLA_DISABLE_MONITOR", "").strip().lower() in ("1", "true", "yes", "on"):
++            return
++        # Daemon: Flask never returns, so a non-daemon thread blocks process exit.
++        self._thread = threading.Thread(target=self._run_server, daemon=True)
+         self._thread.start()
+         atexit.register(self.stop)
+ 
+@@ -78,7 +84,7 @@ class EnvMonitorBase:
+ 
+     def stop(self):
+         if self._thread and self._thread.is_alive():
+-            self._thread.join()
++            self._thread.join(timeout=1.0)
+ 
+     def __del__(self):
+         self.stop()
+@@ -86,6 +92,8 @@ class EnvMonitorBase:
+ 
+ class EnvMonitorOpenCV(EnvMonitorBase):
+     def render(self, obs, info):
++        if self._thread is None:
++            return
+         if not self._obs_queue.full():
+             self._obs_queue.put(obs)
+         if not self._info_queue.full():

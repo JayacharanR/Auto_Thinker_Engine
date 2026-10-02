@@ -157,9 +157,10 @@ class TestSafetySupervisor:
     def test_intervention_summary_reporting(self):
         """Intervention summary should aggregate counts and rates correctly."""
         supervisor = SafetySupervisor()
+        # Normal step first: after a full brake, any throttle is rate-limited (an intervention).
+        supervisor.filter_action(np.array([0.2, 0.0]), telemetry={"ttc": float("inf")})  # Normal step
         supervisor.filter_action(np.array([0.5, 0.0]), telemetry={"ttc": 0.5})  # TTC brake
         supervisor.filter_action(np.array([0.5, 0.0]), telemetry={"traffic_light_state": "RED"})  # Red light
-        supervisor.filter_action(np.array([0.2, 0.0]), telemetry={"ttc": float("inf")})  # Normal step
 
         summary = supervisor.get_intervention_summary()
         assert summary["total_steps"] == 3

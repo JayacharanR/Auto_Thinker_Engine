@@ -1,0 +1,124 @@
+# Phase 2: JEPA pretraining on comma2k19, laptop budget (12 GB RTX 5070 Ti)
+# ==========================================================================
+# 128 px frames, 8-frame clips at 10 Hz, 16 px patches, tubelet 2:
+# 8 x 8 spatial x 4 temporal = 256 tokens per clip (vs 1568 in the 224 px /
+# 16-frame config kept in phase2_jepa_pretrain.yaml for bigger hardware).
+#
+# Data: decode once with
+#   python scripts/preprocess_comma2k19.py --src data/comma2k19 --out data/comma2k19_128
+#
+# Collapse prevention is a switch (model.regularizer): run both with the same
+# max_steps and keep the one with the larger linear-probe gain over a random
+# encoder (scripts/probe_phase2.py):
+#   python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml \
+#       --regularizer ema --checkpoint-dir outputs/checkpoints/phase2_ema
+#   python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml \
+#       --regularizer sigreg --checkpoint-dir outputs/checkpoints/phase2_sigreg
+
+experiment:
+  phase: 2
+  arm: "jepa_pretrain"
+  seed: 42
+  run_name: null
+  log_dir: "outputs/logs"
+  checkpoint_dir: "outputs/checkpoints/phase2"
+  use_wandb: false
+  wandb_project: "driving-world-model"
+
+data:
+  dataset_root: "data/comma2k19_128"   # output of scripts/preprocess_comma2k19.py
+  split_ratio: 0.9                     # by segment
+  num_workers: 8
+  pin_memory: true
+  prefetch_factor: 4
+  tubelet:
+    num_frames: 8                      # 0.8 s at 10 Hz
+    frame_stride: 1                    # in stored (10 Hz) frames
+    spatial_size: 128
+    sample_step: 4                     # clip starts every 4 frames (+ random offset)
+  telemetry:
+    use_steering: true
+    use_speed: true
+    normalize: true
+
+augmentation:
+  random_crop: true
+  crop_scale: [0.8, 1.0]
+  horizontal_flip: false               # road side matters
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.1
+    hue: 0.0                           # hue jitter is ~10 ms/clip on CPU (3x the rest)
+  normalize:
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+model:
+  regularizer: "ema"                   # ema | sigreg
+  context_encoder:
+    type: "vit_small"
+    patch_size: 16
+    embed_dim: 384
+    depth: 12
+    num_heads: 6
+    mlp_ratio: 4.0
+    drop_rate: 0.0
+    attn_drop_rate: 0.0
+    tubelet_size: 2
+  target_encoder:                      # used by regularizer: ema
+    ema_momentum: 0.996
+    ema_warmup_steps: 2000
+    ema_warmup_start: 0.99
+  sigreg:                              # used by regularizer: sigreg
+    lambda: 0.05                       # LeJEPA default weight
+    num_slices: 256
+    max_samples: 4096                  # tokens per SIGReg evaluation
+  predictor:
+    embed_dim: 192
+    depth: 6
+    num_heads: 6
+    mlp_ratio: 4.0
+    # Off: with spatial masking, giving the predictor this clip's steering
+    # and speed lets it skip what the encoder should learn (and what the
+    # steering probe measures).
+    action_conditioning: false
+    action_dim: 2
+    action_embed_dim: 64
+
+masking:
+  strategy: "tube"
+  tube:
+    groups:                            # one group drawn per batch (V-JEPA)
+      - {num_blocks: 8, scale: [0.15, 0.15], aspect_ratio: [0.75, 1.5]}
+      - {num_blocks: 2, scale: [0.7, 0.7], aspect_ratio: [0.75, 1.5]}
+    min_context_ratio: 0.1
+  temporal:
+    num_future_frames: 2               # for strategy: temporal_last
+
+loss:
+  type: "smooth_l1"
+  beta: 1.0
+
+training:
+  total_epochs: 100
+  max_steps: 30000                     # equal budget per regularizer (a few hours)
+  batch_size: 64
+  learning_rate: 1.5e-4
+  weight_decay: 0.05
+  warmup_steps: 1500
+  min_lr: 1.0e-6
+  optimizer: "adamw"
+  adam_betas: [0.9, 0.95]
+  grad_clip: 1.0
+  precision: "bf16"                    # bf16 | fp16 | fp32
+  collapse_monitoring:
+    log_variance_every: 100
+    variance_threshold: 0.01
+  log_every: 50
+
+# Closed-form ridge probe on features encoded once (src/eval/linear_probe.py);
+# always compared with a random-init encoder of the same architecture.
+linear_probe:
+  probe_target: "steering_angle"       # clip-mean steering angle (normalised)
+  run_random_baseline: true

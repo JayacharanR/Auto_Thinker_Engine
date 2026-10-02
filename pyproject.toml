@@ -11,8 +11,10 @@ authors = [
 
 dependencies = [
     # Core ML
-    "torch>=2.1.0,<2.5",
-    "torchvision>=0.16.0,<0.20",
+    # Blackwell (sm_120) GPUs need a CUDA >= 12.8 build; resolved from the
+    # PyTorch cu128 index below.
+    "torch==2.11.*",
+    "torchvision==0.26.*",
     "numpy>=1.24,<2.0",
 
     # Vision Transformers
@@ -69,6 +71,15 @@ dev = [
     "pytest-cov>=4.1",
     "ruff>=0.1.0",
 ]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
 
 [build-system]
 requires = ["hatchling"]

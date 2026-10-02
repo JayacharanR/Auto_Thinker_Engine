@@ -39,6 +39,8 @@ PythonAPI/
 
 # Datasets (large, download separately)
 data/comma2k19/
+data/comma2k19_*/
+data/*.zip
 data/raw/
 *.hevc
 *.bz2

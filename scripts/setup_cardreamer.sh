@@ -15,6 +15,7 @@ CARDREAMER_DIR="$PROJECT_ROOT/third_party/CarDreamer"
 DREAMER_TORCH_DIR="$PROJECT_ROOT/third_party/dreamerv3_torch"
 DREAMER_BASE_COMMIT="6ef8646d807cd10ce0c88e10a7e943211e7fc44c"
 DREAMER_COMPAT_PATCH="$PROJECT_ROOT/patches/dreamerv3_torch_compat.patch"
+CARDREAMER_COMPAT_PATCH="$PROJECT_ROOT/patches/cardreamer_compat.patch"
 PYTHON_BIN="${PYTHON_BIN:-$PROJECT_ROOT/.venv/bin/python}"
 UV_BIN="${UV_BIN:-uv}"
 
@@ -88,31 +89,38 @@ if [ ! -f "$DREAMER_TORCH_DIR/models.py" ]; then
     exit 1
 fi
 
-# The public upstream repository no longer contains the old gitlink used by
-# earlier project commits. The superproject now pins its reachable main tip,
-# and this small tracked patch restores the custom-encoder and CPU-optimizer
-# interfaces required by this project. Existing newer working trees already
-# containing those interfaces are accepted unchanged.
-if ! grep -q "custom_encoder=None" "$DREAMER_TORCH_DIR/dreamer.py" \
-    || ! grep -q "custom_encoder=None" "$DREAMER_TORCH_DIR/models.py" \
-    || ! grep -q "self._use_amp = use_amp" "$DREAMER_TORCH_DIR/tools.py"; then
-    if [ ! -f "$DREAMER_COMPAT_PATCH" ]; then
-        echo "ERROR: Missing compatibility patch: $DREAMER_COMPAT_PATCH"
+# Apply a tracked compatibility patch to a submodule checkout. A tree that
+# already contains the patch is accepted unchanged; any other modified tree is
+# rejected rather than patched on top of unknown edits.
+apply_compat_patch() {
+    local repo="$1" patch="$2" name="$3"
+    if [ ! -f "$patch" ]; then
+        echo "ERROR: Missing compatibility patch: $patch"
         exit 1
     fi
-    if ! git -C "$DREAMER_TORCH_DIR" rev-parse --verify HEAD >/dev/null 2>&1; then
-        echo "ERROR: dreamerv3-torch is not a usable git checkout."
+    if ! git -C "$repo" rev-parse --verify HEAD >/dev/null 2>&1; then
+        echo "ERROR: $name is not a usable git checkout."
         exit 1
     fi
-    echo "  Applying project compatibility patch to dreamerv3-torch..."
-    if ! git -C "$DREAMER_TORCH_DIR" apply --check "$DREAMER_COMPAT_PATCH"; then
-        echo "ERROR: dreamerv3-torch is neither the pinned base nor a compatible patched tree."
-        echo "       Expected base commit: $DREAMER_BASE_COMMIT"
-        echo "       Current commit: $(git -C "$DREAMER_TORCH_DIR" rev-parse HEAD)"
+    if git -C "$repo" apply --reverse --check "$patch" >/dev/null 2>&1; then
+        echo "  $name compatibility patch already applied."
+    elif git -C "$repo" apply --check "$patch" >/dev/null 2>&1; then
+        echo "  Applying project compatibility patch to $name..."
+        git -C "$repo" apply "$patch"
+    else
+        echo "ERROR: $name is neither the pinned base nor the patched tree."
+        echo "       Current commit: $(git -C "$repo" rev-parse HEAD)"
+        echo "       To discard local edits and retry: git -C '$repo' checkout -- ."
         exit 1
     fi
-    git -C "$DREAMER_TORCH_DIR" apply "$DREAMER_COMPAT_PATCH"
-fi
+}
+
+# The public upstream dreamerv3-torch repository no longer contains the old
+# gitlink used by earlier project commits. The superproject pins its reachable
+# main tip; the patch restores the custom-encoder and CPU-optimizer interfaces.
+apply_compat_patch "$DREAMER_TORCH_DIR" "$DREAMER_COMPAT_PATCH" "dreamerv3-torch"
+# CarDreamer: world timeout, _Opt map reuse, lazy Traffic Manager, daemon monitor.
+apply_compat_patch "$CARDREAMER_DIR" "$CARDREAMER_COMPAT_PATCH" "CarDreamer"
 echo "  dreamerv3-torch commit: $(git -C "$DREAMER_TORCH_DIR" rev-parse HEAD)"
 
 # --- Step 3: Install project with uv ---

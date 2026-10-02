@@ -345,9 +345,9 @@ class TestJEPAOneStepTraining:
         agent, env, config, train_dataset, _ = _setup_agent(logdir, hook)
 
         # Explicitly freeze JEPA encoder, enable adapter & RSSM
+        from src.dreamer.encoder_adapter import freeze_parameters
         hook.encoder.eval()
-        for param in hook.encoder.parameters():
-            param.requires_grad = False
+        freeze_parameters(hook.encoder.parameters())
         for param in hook.adapter.parameters():
             param.requires_grad = True
 
@@ -394,3 +394,47 @@ class TestJEPAOneStepTraining:
         assert adapter_changed, "Adapter weights should update during JEPA arm training"
         assert not encoder_changed, "JEPA context encoder weights MUST NOT update (should be frozen!)"
 
+
+class TestRepeatedUpdates:
+    """
+    Regression: every update must train, not only the first.
+
+    tools.RequiresGrad clears requires_grad on exit, and the runner starts from
+    agent.requires_grad_(False). Trainability must therefore survive repeated
+    updates, while parameters frozen with freeze_parameters stay fixed.
+    """
+
+    @pytest.fixture
+    def logdir(self):
+        d = tempfile.mkdtemp(prefix="dreamer_repeat_test_")
+        yield d
+        shutil.rmtree(d, ignore_errors=True)
+
+    def test_second_update_trains_and_frozen_encoder_stays_fixed(self, logdir):
+        from src.dreamer.encoder_adapter import freeze_parameters
+
+        hook = _build_jepa_encoder_hook("cpu")
+        agent, env, config, train_dataset, _ = _setup_agent(logdir, hook)
+        agent.requires_grad_(requires_grad=False)  # as dreamer.py does after construction
+        freeze_parameters(hook.encoder.parameters())
+
+        agent._train(next(train_dataset))  # first update
+
+        modules = {
+            "rssm": agent._wm.dynamics,
+            "adapter": hook.adapter,
+            "actor": agent._task_behavior.actor,
+            "value": agent._task_behavior.value,
+            "frozen_encoder": hook.encoder,
+        }
+        before = {k: [p.clone() for p in m.parameters()] for k, m in modules.items()}
+        agent._train(next(train_dataset))  # second update
+
+        changed = {
+            k: any((p - q).abs().max().item() > 0.0 for p, q in zip(m.parameters(), before[k]))
+            for k, m in modules.items()
+        }
+        print(f"Parameters changed on second update: {changed}")
+        for k in ("rssm", "adapter", "actor", "value"):
+            assert changed[k], f"{k} did not train on the second update"
+        assert not changed["frozen_encoder"], "frozen encoder changed"

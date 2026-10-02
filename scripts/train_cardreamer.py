@@ -21,13 +21,15 @@ Usage:
 
 import argparse
 import functools
-import gym
+import json
 import os
-import pathlib
+import signal
 import sys
+import time
 from pathlib import Path
 from typing import Dict, Optional
 
+import gym
 import numpy as np
 import torch
 
@@ -43,63 +45,15 @@ sys.path.insert(0, str(DREAMER_DIR))
 CARDREAMER_DIR = PROJECT_ROOT / "third_party" / "CarDreamer"
 sys.path.insert(0, str(CARDREAMER_DIR))
 
-from src.dreamer.cardreamer_encoder_hook import DreamerV3EncoderHook
+from src.dreamer.cardreamer_encoder_hook import (
+    DreamerV3EncoderHook,
+    PrecomputedFeatureEncoder,
+    build_feature_extractor,
+)
+from src.dreamer.carla_wrappers import DreamerObservation, EpisodeMetricsRecorder
+from src.dreamer.encoder_adapter import freeze_parameters
 
-
-class CarlaImageObservation(gym.Wrapper):
-    """Expose CarDreamer's camera observation under Dreamer's ``image`` key.
-
-    CarDreamer names the RGB sensor ``camera``. dreamerv3-torch's world model
-    and this project's encoder hook use the stable ``image`` contract. The
-    original camera key is removed to avoid storing the same frame twice in
-    every replay episode; all other task observations are preserved for reward
-    and diagnostics.
-    """
-
-    def __init__(self, env):
-        super().__init__(env)
-        spaces = dict(self.env.observation_space.spaces)
-        if "image" not in spaces:
-            if "camera" not in spaces:
-                raise ValueError(
-                    "CarDreamer task must expose a camera or image observation; "
-                    f"got keys={sorted(spaces)}"
-                )
-            spaces["image"] = spaces.pop("camera")
-        # dreamerv3-torch uses explicit episode-boundary fields in replay.
-        # CarDreamer follows the older Gym API and reports boundaries through
-        # its return value/info instead, so expose the fields here.
-        for key in ("is_first", "is_last", "is_terminal"):
-            spaces[key] = gym.spaces.Box(
-                low=0, high=1, shape=(), dtype=np.uint8
-            )
-        self.observation_space = gym.spaces.Dict(spaces)
-
-    def _image_observation(self, observation):
-        observation = dict(observation)
-        if "image" not in observation:
-            observation["image"] = observation.pop("camera")
-        return observation
-
-    def _episode_observation(self, observation, is_first, is_last, is_terminal):
-        observation = self._image_observation(observation)
-        observation["is_first"] = np.uint8(is_first)
-        observation["is_last"] = np.uint8(is_last)
-        observation["is_terminal"] = np.uint8(is_terminal)
-        return observation
-
-    # CarDreamer uses Gym's legacy API: reset() returns obs and step() returns
-    # (obs, reward, done, info). Gym 0.23's ObservationWrapper assumes the
-    # newer reset() -> (obs, info) API, so adapt explicitly here.
-    def reset(self):
-        return self._episode_observation(self.env.reset(), True, False, False)
-
-    def step(self, action):
-        obs, reward, done, info = self.env.step(action)
-        discount = info.get("discount", 0.0 if done else 1.0)
-        discount = float(np.asarray(discount).reshape(-1)[0])
-        is_terminal = bool(done and discount == 0.0)
-        return self._episode_observation(obs, False, done, is_terminal), reward, done, info
+DEFAULT_PROFILE = PROJECT_ROOT / "configs" / "laptop.yaml"
 
 
 def seed_everything(seed: int):
@@ -127,13 +81,23 @@ def build_encoder_hook(
     arm: str,
     phase3_config: dict,
     device: str,
-) -> DreamerV3EncoderHook:
+) -> Optional[DreamerV3EncoderHook]:
     """
-    Build encoder hook for a specific arm.
+    Encoder hook for a transfer arm whose encoder trains (fine-tuning / LoRA).
 
-    For custom_jepa, loads Phase 2 checkpoint if available.
+    Frozen transfer arms do not use it: their features are computed at
+    collection time (see build_feature_extractor). The custom_jepa hook loads
+    its Phase 2 checkpoint itself (strictly) and fails if it is missing.
     """
-    hook = DreamerV3EncoderHook(
+    if arm == "cnn":
+        return None
+    if arm == "custom_jepa":
+        checkpoint = phase3_config.get("encoders", {}).get("custom_jepa", {}).get("checkpoint")
+        if not checkpoint or not os.path.isfile(checkpoint):
+            raise FileNotFoundError(
+                f"custom_jepa needs a Phase 2 checkpoint; configured: {checkpoint!r}"
+            )
+    return DreamerV3EncoderHook(
         arm=arm,
         config=phase3_config,
         device=device,
@@ -141,77 +105,98 @@ def build_encoder_hook(
         num_temporal_frames=phase3_config.get("frame_stacking", {}).get("num_frames", 4),
     )
 
-    # Load Phase 2 JEPA checkpoint for custom_jepa arm
-    if arm == "custom_jepa":
-        jepa_ckpt_path = phase3_config.get("encoders", {}).get("custom_jepa", {}).get("checkpoint")
-        if jepa_ckpt_path and os.path.exists(jepa_ckpt_path):
-            ckpt = torch.load(jepa_ckpt_path, map_location=device, weights_only=False)
-            if "context_encoder_state_dict" in ckpt:
-                hook.encoder.load_state_dict(ckpt["context_encoder_state_dict"], strict=False)
-                print(f"[train] Loaded Phase 2 JEPA checkpoint: {jepa_ckpt_path}")
-            elif "model_state_dict" in ckpt:
-                hook.encoder.load_state_dict(ckpt["model_state_dict"], strict=False)
-                print(f"[train] Loaded Phase 2 checkpoint: {jepa_ckpt_path}")
-        elif jepa_ckpt_path:
-            print(f"[train] WARNING: JEPA checkpoint not found: {jepa_ckpt_path}")
-        else:
-            print("[train] WARNING: No JEPA checkpoint specified for custom_jepa arm.")
 
-    return hook
+def build_agent(obs_space, act_space, config, logger, dataset, arm, phase3_config, device):
+    """Construct Dreamer for an arm, ready to train.
 
-
-def make_carla_env(task_name: str, seed: int = 0, image_size: tuple = (64, 64)):
+    Encoders by observation and arm:
+    - ``route`` present: encoded (and reconstructed) by dreamerv3-torch's MLP,
+      the same module for every arm.
+    - ``feat`` present (frozen transfer arm): a trainable adapter over the
+      embedding computed at collection time.
+    - CNN arm: dreamerv3-torch's own MultiEncoder, the reference baseline.
+    - Otherwise (trainable transfer arm): the encoder hook.
+    Custom encoders are built before Dreamer so their parameters join the
+    world-model optimizer.
     """
-    Create a CARLA environment using CarDreamer's task definitions.
+    import networks
 
-    CarDreamer's task creation is framework-agnostic (plain Python + CARLA client).
-    We wrap the resulting Gym env to match dreamerv3-torch's expected interface.
+    from dreamer import Dreamer
 
-    Returns a gym-compatible environment.
+    config.num_actions = act_space.n if hasattr(act_space, "n") else act_space.shape[0]
+    if getattr(act_space, "discrete", False):
+        config.actor = dict(config.actor)
+        config.actor["dist"] = "onehot"
+        config.actor["std"] = "none"
+    spaces = obs_space.spaces
+    if "route" in spaces:
+        config.encoder = {**config.encoder, "mlp_keys": "^route$"}
+        config.decoder = {**config.decoder, "mlp_keys": "^route$"}
+
+    hook = None
+    if "feat" in spaces:
+        vector_encoder = None
+        if "route" in spaces:
+            shapes = {k: tuple(v.shape) for k, v in spaces.items()}
+            vector_encoder = networks.MultiEncoder(shapes, **{**config.encoder, "cnn_keys": "$^"})
+        hook = PrecomputedFeatureEncoder(
+            spaces["feat"].shape[0], phase3_config["adapter"], vector_encoder
+        )
+    elif arm != "cnn":
+        if "route" in spaces:
+            raise NotImplementedError("route observations need the cnn arm or a frozen encoder")
+        hook = build_encoder_hook(arm, phase3_config, device)
+    agent = Dreamer(
+        obs_space, act_space, config, logger, dataset, custom_encoder=hook
+    ).to(device)
+    if isinstance(hook, DreamerV3EncoderHook) and (
+        phase3_config.get("encoders", {}).get(arm, {}).get("freeze", False)
+    ):
+        freeze_parameters(hook.encoder.parameters())
+    return agent
+
+
+def make_carla_env(
+    task_name: str,
+    obs: str = "bev",
+    action: str = "discrete",
+    image_size: tuple = (64, 64),
+    metrics_path: Optional[Path] = None,
+    feature_extractor=None,
+):
     """
+    Create a CarDreamer CARLA task wrapped for dreamerv3-torch.
+
+    ``obs`` selects the observation contract (see DreamerObservation);
+    ``feature_extractor`` adds a frozen encoder's ``feat`` for transfer arms.
+    ``action`` is CarDreamer's discrete action table (one-hot actor) or
+    continuous ``[acceleration, steering]``. Returns ``(env, recorder)``; the
+    recorder writes per-episode metrics when ``metrics_path`` is given.
+    """
+    import car_dreamer
     import envs.wrappers as wrappers
 
-    try:
-        import car_dreamer
-        task_argv = []
-        if os.environ.get("CARLA_PORT"):
-            task_argv.extend(["--env.world.carla_port", os.environ["CARLA_PORT"]])
+    task_argv = ["--env.action.discrete", str(action == "discrete")]
+    if os.environ.get("CARLA_PORT"):
+        task_argv.extend(["--env.world.carla_port", os.environ["CARLA_PORT"]])
+    env, _ = car_dreamer.create_task(task_name, argv=task_argv)
 
-        # The experiment contract uses continuous [acceleration, steering]
-        # actions. CarDreamer defaults to its discrete action table, so make
-        # the contract explicit at task creation time. Set
-        # CARLA_ACTION_TYPE=discrete to exercise the alternative one-hot path.
-        action_type = os.environ.get("CARLA_ACTION_TYPE", "continuous").lower()
-        if action_type not in {"continuous", "discrete"}:
-            raise ValueError(
-                f"CARLA_ACTION_TYPE must be continuous or discrete, got {action_type!r}"
-            )
-        task_argv.extend([
-            "--env.action.discrete",
-            "False" if action_type == "continuous" else "True",
-        ])
-        env, task_config = car_dreamer.create_task(task_name, argv=task_argv)
-    except ImportError:
-        print("[train] CarDreamer not installed. Creating a placeholder env.")
-        print("[train] On target hardware: bash scripts/setup_cardreamer.sh /path/to/carla")
-        raise
-
-    env = CarlaImageObservation(env)
-
-    # Wrap for dreamerv3-torch compatibility. NormalizeActions is valid only
-    # for continuous Box spaces; OneHotAction handles an explicitly requested
-    # discrete task.
+    env = DreamerObservation(env, obs=obs, size=image_size, feature_extractor=feature_extractor)
+    recorder = None
+    if metrics_path is not None:
+        env = recorder = EpisodeMetricsRecorder(env, metrics_path)
     if isinstance(env.action_space, gym.spaces.Discrete):
         env = wrappers.OneHotAction(env)
     else:
         env = wrappers.NormalizeActions(env)
-    env = wrappers.TimeLimit(env, 1000)
     env = wrappers.SelectAction(env, key="action")
     env = wrappers.UUID(env)
 
     print(f"[train] CARLA action space: {env.action_space}")
-    print(f"[train] CARLA observation keys: {sorted(env.observation_space.spaces)}")
-    return env
+    spaces = env.observation_space.spaces
+    shapes = {k: v.shape for k, v in spaces.items() if not k.startswith("is_")}
+    print(f"[train] Observation: {obs} -> {shapes}")
+    return env, recorder
 
 
 def load_dreamer_config(
@@ -221,56 +206,53 @@ def load_dreamer_config(
     steps: int,
     image_size: tuple,
     device: str,
+    profile: Optional[str] = None,
+    overrides: tuple = (),
+    logdir: Optional[str] = None,
 ) -> argparse.Namespace:
     """
-    Load dreamerv3-torch's config with our overrides.
+    dreamerv3-torch defaults, then the run profile, then ``key=value`` overrides.
 
-    Loads defaults from dreamerv3-torch's configs.yaml, then applies
-    our Phase 3 settings (resolution, batch size, etc.).
+    ``steps`` is the environment-step budget for training including prefill
+    (evaluation steps are not counted).
     """
     from ruamel.yaml import YAML
 
-    # Load dreamerv3-torch defaults
-    configs_path = DREAMER_DIR / "configs.yaml"
     ryaml = YAML(typ="safe", pure=True)
-    all_configs = ryaml.load(configs_path.read_text())
+    config = dict(ryaml.load((DREAMER_DIR / "configs.yaml").read_text())["defaults"])
 
-    # Start with defaults
-    config = all_configs["defaults"].copy()
+    def merge(updates: dict, source: str) -> None:
+        for key, value in updates.items():
+            if key not in config:
+                raise KeyError(f"{source}: unknown Dreamer config key {key!r}")
+            if isinstance(config[key], dict) and isinstance(value, dict):
+                config[key] = {**config[key], **value}
+            else:
+                config[key] = value
 
-    # Our overrides
-    logdir = str(PROJECT_ROOT / "outputs" / "logs" / f"{arm}_seed{seed}")
+    profile_path = Path(profile or DEFAULT_PROFILE)
+    merge(ryaml.load(profile_path.read_text()).get("dreamer", {}), str(profile_path))
+    for item in overrides:
+        key, sep, value = item.partition("=")
+        if not sep:
+            raise ValueError(f"--set expects key=value, got {item!r}")
+        merge({key.strip(): ryaml.load(value)}, "--set")
+
     config.update({
-        "logdir": logdir,
+        "logdir": logdir or str(PROJECT_ROOT / "outputs" / "logs" / f"{arm}_seed{seed}"),
         "seed": seed,
         "steps": steps,
-        "task": f"carla_{task}" if not task.startswith("carla_") else task,
+        "task": task,
         "device": device,
         "size": list(image_size),
-        "action_repeat": 1,  # CARLA already runs at real time
-        "time_limit": 1000,
-        "prefill": int(os.environ.get("CARLA_PREFILL", "5000")),
-        "eval_every": int(os.environ.get("CARLA_EVAL_EVERY", "10000")),
-        "log_every": int(os.environ.get("CARLA_LOG_EVERY", "1000")),
-        "eval_episode_num": int(os.environ.get("CARLA_EVAL_EPISODES", "5")),
-        "pretrain": int(os.environ.get("CARLA_PRETRAIN", "100")),
-        # Match the Phase 3 experiment contract instead of the generic
-        # dreamerv3-torch default, which is much more update-heavy for CARLA.
-        "train_ratio": int(os.environ.get("CARLA_TRAIN_RATIO", "64")),
-        "compile": False,  # Disable torch.compile for encoder swap compatibility
-        "precision": 32,
-        # CARLA validation should not require optional moviepy video support.
-        "video_pred_log": os.environ.get("CARLA_VIDEO_PRED_LOG", "0").lower()
-        in {"1", "true", "yes"},
     })
-
-    # Convert nested dicts to proper format
-    for key in ["encoder", "decoder", "actor", "critic", "reward_head", "cont_head"]:
-        if isinstance(config.get(key), dict):
-            pass  # Already a dict, fine
-
-    # Convert to namespace (dreamerv3-torch uses argparse.Namespace)
     return argparse.Namespace(**config)
+
+
+def _peak_vram_mb() -> Optional[float]:
+    if not torch.cuda.is_available():
+        return None
+    return round(torch.cuda.max_memory_allocated() / 2**20, 1)
 
 
 def train_arm(
@@ -279,324 +261,281 @@ def train_arm(
     seed: int,
     phase3_config: dict,
     steps: int = 500_000,
+    obs: str = "bev",
+    action: str = "discrete",
     image_size: tuple = (64, 64),
+    profile: Optional[str] = None,
+    overrides: tuple = (),
+    logdir: Optional[str] = None,
     resume: bool = False,
-) -> Dict[str, float]:
+) -> Dict:
     """
-    Train a single arm using dreamerv3-torch's training loop.
+    Train one arm with dreamerv3-torch and return its metrics.
 
-    Returns dict of final metrics for comparison table.
+    Writes to the log directory: ``latest.pt`` after every chunk,
+    ``episodes.jsonl`` (one record per finished episode), ``eval.jsonl`` (one
+    summary per evaluation) and ``metrics.json`` at the end.
     """
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    seed_everything(seed)
-
-    print(f"\n{'='*60}")
-    print(f"Training arm '{arm}' on task '{task}', seed={seed}")
-    print(f"Device: {device}, Steps: {steps}")
-    print(f"{'='*60}")
-
-    # --- Load dreamerv3-torch config ---
-    config = load_dreamer_config(arm, task, seed, steps, image_size, device)
-    logdir = pathlib.Path(config.logdir)
-    logdir.mkdir(parents=True, exist_ok=True)
-
-    # --- Import dreamerv3-torch modules ---
-    try:
-        import models
-        import tools
-        import envs.wrappers as wrappers
-        from parallel import Damy
-    except ImportError as e:
-        print(f"[train] dreamerv3-torch import failed: {e}")
-        print("[train] Ensure third_party/dreamerv3_torch is set up.")
-        return {}
-
-    # Headless training does not need a Flask monitor. The right-turn task has
-    # one fixed ego spawn point, so train and eval must share one environment
-    # sequentially rather than keeping two actors alive at once.
-    os.environ.setdefault("CARLA_DISABLE_MONITOR", "1")
-
-    # --- Create one explicitly sequential train/eval environment ---
-    env = None
-    try:
-        env = make_carla_env(task, seed, image_size)
-        train_envs = [Damy(env)]
-        # Evaluation uses the same CARLA actor sequentially. Its replay cache
-        # remains separate, and state is reset after every evaluation pass.
-        eval_envs = [Damy(env)]
-    except ImportError:
-        # Fallback: save encoder hook for target hardware
-        hook = build_encoder_hook(arm, phase3_config, device)
-        fallback_path = f"outputs/checkpoints/encoder_hook_{arm}_seed{seed}.pt"
-        os.makedirs(os.path.dirname(fallback_path), exist_ok=True)
-        torch.save({
-            "arm": arm,
-            "encoder_state_dict": hook.encoder.state_dict(),
-            "adapter_state_dict": hook.adapter.state_dict(),
-            "config": phase3_config,
-            "seed": seed,
-            "task": task,
-        }, fallback_path)
-        print(f"[train] Saved encoder hook to: {fallback_path}")
-        return {}
-    except Exception:
-        if env is not None:
-            try:
-                env.close()
-            except Exception:
-                pass
-        raise
-
-    # --- Set up training ---
-    acts = train_envs[0].action_space
-    config.num_actions = acts.n if hasattr(acts, "n") else acts.shape[0]
-    if getattr(acts, "discrete", False):
-        config.actor = dict(config.actor)
-        config.actor["dist"] = "onehot"
-        config.actor["std"] = "none"
-        print(f"[train] Using one-hot Dreamer actor with {config.num_actions} actions")
-    else:
-        print(f"[train] Using continuous Dreamer actor with {config.num_actions} actions")
-
-    step = 0
-    logger = tools.Logger(logdir, 0)
-    train_eps = tools.load_episodes(logdir / "train_eps", limit=config.dataset_size)
-    eval_eps = tools.load_episodes(logdir / "eval_eps", limit=1)
-
-    # --- Prefill with random actions ---
-    from dreamer import make_dataset
+    import tools
+    from parallel import Damy
     from torch import distributions as torchd
 
-    if hasattr(acts, "discrete"):
-        random_actor = tools.OneHotDist(
-            torch.zeros(config.num_actions).repeat(config.envs, 1)
-        )
-    else:
-        random_actor = torchd.independent.Independent(
-            torchd.uniform.Uniform(
-                torch.tensor(acts.low).repeat(config.envs, 1),
-                torch.tensor(acts.high).repeat(config.envs, 1),
-            ),
-            1,
-        )
+    from dreamer import make_dataset
 
-    def random_agent(o, d, s):
-        action = random_actor.sample()
-        logprob = random_actor.log_prob(action)
-        return {"action": action, "logprob": logprob}, None
-
-    print(f"[train] Prefilling dataset ({config.prefill} steps)...")
-    state = tools.simulate(
-        random_agent, train_envs, train_eps,
-        logdir / "train_eps", logger,
-        limit=config.dataset_size, steps=config.prefill,
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    seed_everything(seed)
+    config = load_dreamer_config(
+        arm, task, seed, steps, image_size, device, profile, overrides, logdir
     )
-    logger.step += config.prefill * config.action_repeat
-
-    # Build the custom encoder before Dreamer so its parameters are included in
-    # WorldModel's optimizer. Replacing the encoder after construction leaves
-    # the new module outside the optimizer parameter groups.
-    from dreamer import Dreamer
-
-    hook = build_encoder_hook(arm, phase3_config, device)
-    train_dataset = make_dataset(train_eps, config)
-
-    agent = Dreamer(
-        train_envs[0].observation_space,
-        train_envs[0].action_space,
-        config,
-        logger,
-        train_dataset,
-        custom_encoder=hook,
-    ).to(device)
-
-    # Train the Dreamer world model and actor-critic. Only pretrained transfer
-    # encoders are frozen; their adapters remain trainable for the ablation.
-    agent.requires_grad_(requires_grad=True)
-    arm_config = phase3_config.get("encoders", {}).get(arm, {})
-    if arm_config.get("freeze", False):
-        hook.encoder.requires_grad_(requires_grad=False)
-    hook.adapter.requires_grad_(requires_grad=True)
-
-    # --- Resume checkpoint if requested or existing ---
+    logdir = Path(config.logdir)
+    logdir.mkdir(parents=True, exist_ok=True)
+    train_dir, eval_dir = logdir / "train_eps", logdir / "eval_eps"
     latest_pt = logdir / "latest.pt"
-    if resume and latest_pt.is_file():
-        print(f"[train] Resuming training from: {latest_pt}")
+
+    print(f"\n{'='*60}")
+    print(f"Training arm '{arm}' on '{task}' (obs={obs}, action={action}), seed={seed}")
+    print(f"Device: {device}, env steps: {steps}, logdir: {logdir}")
+    print(f"{'='*60}")
+
+    ckpt = None
+    if resume:
+        if not latest_pt.is_file():
+            raise FileNotFoundError(f"--resume: no checkpoint at {latest_pt}")
         ckpt = torch.load(latest_pt, map_location=device, weights_only=False)
-        if "agent_state_dict" in ckpt:
-            agent.load_state_dict(ckpt["agent_state_dict"], strict=False)
-        if "optims_state_dict" in ckpt:
-            try:
-                tools.recursively_load_optim_state_dict(agent, ckpt["optims_state_dict"])
-            except Exception as e:
-                print(f"[train] Warning: Could not restore optimizer states: {e}")
-        if "step" in ckpt:
-            agent._step = int(ckpt["step"])
-            logger.step = agent._step * config.action_repeat
-        print(f"[train] Resumed successfully at step {agent._step}")
+    elif latest_pt.is_file() or any(train_dir.glob("*.npz")):
+        raise FileExistsError(f"{logdir} holds an earlier run; pass --resume or another --logdir")
 
-    # Create run manifest (P0 Contract)
+    # Headless training does not need CarDreamer's Flask monitor.
+    os.environ.setdefault("CARLA_DISABLE_MONITOR", "1")
+    if torch.cuda.is_available():
+        torch.cuda.reset_peak_memory_stats()
+    started = time.time()
+
+    # One CARLA environment serves training and evaluation in turn (the
+    # right-turn task has a single ego spawn point).
+    env, recorder = make_carla_env(
+        task, obs=obs, action=action, image_size=image_size,
+        metrics_path=logdir / "episodes.jsonl",
+        feature_extractor=build_feature_extractor(arm, phase3_config, device),
+    )
+    agent = None
+
+    # Detached jobs ignore SIGINT; make SIGTERM (kill, timeout) save a checkpoint too.
+    def _on_sigterm(signum, frame):
+        raise KeyboardInterrupt
+
+    signal.signal(signal.SIGTERM, _on_sigterm)
     try:
-        from src.utils.manifest import create_run_manifest
-        create_run_manifest(
-            config=config.__dict__ if hasattr(config, "__dict__") else {},
-            arm=arm,
-            seed=seed,
-            task=task,
-            checkpoint_path=str(latest_pt) if latest_pt.is_file() else None,
-            output_path=logdir / "manifest.json",
-        )
-    except Exception as e:
-        print(f"[train] Warning: Could not create manifest: {e}")
+        train_envs, eval_envs = [Damy(env)], [Damy(env)]
+        acts = env.action_space
+        logger = tools.Logger(logdir, (ckpt["step"] if ckpt else 0) * config.action_repeat)
+        train_eps = tools.load_episodes(train_dir, limit=config.dataset_size)
+        eval_eps = tools.load_episodes(eval_dir, limit=1)
 
-    # --- Training loop ---
-    print(f"[train] Starting training for {steps} steps...")
-    target_step = int(config.steps)
-    while agent._step < target_step:
-        remaining = target_step - agent._step
-        chunk_steps = min(int(config.eval_every), remaining)
-        print(
-            f"[train] Simulating {chunk_steps} training steps "
-            f"({agent._step} -> {agent._step + chunk_steps})"
-        )
-        state = tools.simulate(
-            agent, train_envs, train_eps,
-            logdir / "train_eps", logger,
-            limit=config.dataset_size,
-            steps=chunk_steps,
-            state=state,
-        )
-
-        # Save checkpoint
-        items_to_save = {
-            "agent_state_dict": agent.state_dict(),
-            "optims_state_dict": tools.recursively_collect_optim_state_dict(agent),
-            "arm": arm,
-            "seed": seed,
-            "step": agent._step,
-        }
-        torch.save(items_to_save, logdir / "latest.pt")
-
-        if config.eval_episode_num > 0:
-            eval_policy = functools.partial(agent, training=False)
-            tools.simulate(
-                eval_policy, eval_envs, eval_eps,
-                logdir / "eval_eps", logger,
-                is_eval=True, episodes=config.eval_episode_num,
+        # --- Prefill replay with random actions ---
+        # A resumed run already had its prefill (fresh runs start from an empty logdir).
+        prefill = 0 if ckpt else int(config.prefill)
+        if getattr(acts, "discrete", False):
+            random_actor = tools.OneHotDist(torch.zeros(acts.shape[0]).repeat(config.envs, 1))
+        else:
+            random_actor = torchd.independent.Independent(
+                torchd.uniform.Uniform(
+                    torch.tensor(acts.low).repeat(config.envs, 1),
+                    torch.tensor(acts.high).repeat(config.envs, 1),
+                ),
+                1,
             )
-            # Evaluation reset/steps the shared environment. The train
-            # rollout state refers to the pre-evaluation episode, so force the
-            # next training chunk to reset and reinitialize Dreamer state.
-            state = None
 
-    # --- Collect final metrics ---
-    final_metrics = {
-        "arm": arm,
-        "seed": seed,
-        "total_steps": int(agent._step),
-    }
+        def random_agent(o, d, s):
+            sample = random_actor.sample()
+            return {"action": sample, "logprob": random_actor.log_prob(sample)}, None
 
-    # Extract from logger
-    for key in ["eval_reward", "eval_length", "eval_success"]:
-        if key in agent._metrics and agent._metrics[key]:
-            final_metrics[key] = float(np.mean(agent._metrics[key]))
+        state = None
+        recorder.step_fn = lambda: logger.step
+        if prefill:
+            print(f"[train] Prefilling replay with {prefill} random steps...")
+            state = tools.simulate(
+                random_agent, train_envs, train_eps, train_dir, logger,
+                limit=config.dataset_size, steps=prefill,
+            )
+            logger.step += prefill * config.action_repeat
 
-    # Save metrics.json (P0 Contract)
-    try:
-        import json
-        with open(logdir / "metrics.json", "w", encoding="utf-8") as f:
-            json.dump(final_metrics, f, indent=2)
-    except Exception as e:
-        print(f"[train] Warning: Could not write metrics.json: {e}")
+        # --- Agent ---
+        agent = build_agent(
+            env.observation_space, acts, config, logger,
+            make_dataset(train_eps, config), arm, phase3_config, device,
+        )
+        agent.requires_grad_(requires_grad=False)  # tools.RequiresGrad enables per update
+        if ckpt is not None:
+            agent.load_state_dict(ckpt["agent_state_dict"])
+            tools.recursively_load_optim_state_dict(agent, ckpt["optims_state_dict"])
+            agent._should_pretrain._once = False
+            print(f"[train] Resumed from {latest_pt} at env step {agent._step}")
+        recorder.step_fn = lambda: agent._step
+        print(f"[train] Actor: {config.actor['dist']} over {config.num_actions} actions; "
+              f"encoder: {type(agent._wm.encoder).__name__}")
 
-    print(f"[train] Training complete for arm '{arm}', seed={seed}")
-    print(f"[train] Final metrics: {final_metrics}")
+        run_spec = {"arm": arm, "task": task, "obs": obs, "action": action,
+                    "image_size": list(image_size), "seed": seed}
+        try:
+            from src.utils.manifest import create_run_manifest
+            create_run_manifest(
+                config=vars(config), arm=arm, seed=seed, task=task,
+                checkpoint_path=str(latest_pt) if ckpt else None,
+                extra_metadata={"run_spec": run_spec, "profile": str(profile or DEFAULT_PROFILE),
+                                "overrides": list(overrides)},
+                output_path=logdir / "manifest.json",
+            )
+        except Exception as e:
+            print(f"[train] Warning: Could not create manifest: {e}")
 
-    # Clean up
-    for env in train_envs + eval_envs:
+        def save_checkpoint():
+            torch.save({
+                "agent_state_dict": agent.state_dict(),
+                "optims_state_dict": tools.recursively_collect_optim_state_dict(agent),
+                "step": agent._step,
+                "run_spec": run_spec,
+                "dreamer_config": vars(config),
+            }, latest_pt)
+
+        # --- Train in chunks of eval_every env steps, evaluating after each ---
+        target = int(config.steps)
+        eval_summary = None
+        train_started, train_start_step = time.time(), agent._step
+        print(f"[train] Training from env step {agent._step} to {target} (prefill included)")
+        while agent._step < target:
+            chunk = min(int(config.eval_every), target - agent._step)
+            recorder.mode = "train"
+            state = tools.simulate(
+                agent, train_envs, train_eps, train_dir, logger,
+                limit=config.dataset_size, steps=chunk, state=state,
+            )
+            save_checkpoint()
+            print(f"[train] env step {agent._step}/{target}, updates {agent._update_count}, "
+                  f"peak VRAM {_peak_vram_mb()} MB")
+
+            if config.eval_episode_num > 0:
+                recorder.mode = "eval"
+                tools.simulate(
+                    functools.partial(agent, training=False), eval_envs, eval_eps,
+                    eval_dir, logger, is_eval=True, episodes=config.eval_episode_num,
+                )
+                eval_summary = {"agent_step": agent._step, **recorder.reset_eval().summary()}
+                for key in ("success_rate", "collision_rate", "out_of_lane_rate", "mean_reward"):
+                    logger.scalar(f"eval_{key}", eval_summary[key])
+                logger.write(step=logger.step)
+                with open(logdir / "eval.jsonl", "a", encoding="utf-8") as f:
+                    f.write(json.dumps(eval_summary) + "\n")
+                print(f"[train] eval @ {agent._step}: success {eval_summary['success_rate']:.2f}, "
+                      f"collision {eval_summary['collision_rate']:.2f}, "
+                      f"return {eval_summary['mean_reward']:.1f}")
+                # Evaluation reset the shared environment; restart the train episode.
+                state = None
+    except KeyboardInterrupt:
+        if agent is not None:
+            save_checkpoint()
+            print(f"\n[train] Interrupted; saved {latest_pt} at env step {agent._step}")
+        raise
+    finally:
+        signal.signal(signal.SIGTERM, signal.SIG_DFL)
         try:
             env.close()
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"[train] Warning: env.close() failed: {e}")
 
+    train_seconds = time.time() - train_started
+    final_metrics = {
+        **run_spec,
+        "env_steps": int(agent._step),
+        "updates": int(agent._update_count),
+        "wall_clock_sec": round(time.time() - started, 1),
+        "train_steps_per_sec": round(
+            (agent._step - train_start_step) / max(train_seconds, 1e-9), 2
+        ),
+        "peak_vram_mb": _peak_vram_mb(),
+        "final_eval": eval_summary,
+        "train": recorder.trackers["train"].summary(),
+    }
+    if eval_summary:
+        final_metrics.update({
+            "eval_reward": eval_summary["mean_reward"],
+            "eval_length": eval_summary["mean_steps"],
+            "eval_success": eval_summary["success_rate"],
+        })
+    with open(logdir / "metrics.json", "w", encoding="utf-8") as f:
+        json.dump(final_metrics, f, indent=2)
+    print(f"[train] Done: {json.dumps(final_metrics)}")
     return final_metrics
+
+def summarize_run(logdir: Path, success_threshold: float = 0.8) -> Dict[str, float]:
+    """
+    Comparison metrics of one finished run, from its metrics.json and eval.jsonl.
+
+    ``steps_to_threshold`` is the first evaluated env step whose success rate
+    reached ``success_threshold`` (NaN if never).
+    """
+    metrics = json.loads((logdir / "metrics.json").read_text())
+    final = metrics.get("final_eval") or {}
+    evals = []
+    if (logdir / "eval.jsonl").is_file():
+        evals = [json.loads(line) for line in (logdir / "eval.jsonl").read_text().splitlines()]
+    reached = [e["agent_step"] for e in evals if e["success_rate"] >= success_threshold]
+    return {
+        "success_rate": final.get("success_rate", float("nan")),
+        "collision_rate": final.get("collision_rate", float("nan")),
+        "out_of_lane_rate": final.get("out_of_lane_rate", float("nan")),
+        "eval_return": final.get("mean_reward", float("nan")),
+        "steps_to_threshold": float(reached[0]) if reached else float("nan"),
+        "wall_clock_hours": metrics.get("wall_clock_sec", float("nan")) / 3600,
+        "peak_vram_gb": (metrics.get("peak_vram_mb") or float("nan")) / 1024,
+        "train_steps_per_sec": metrics.get("train_steps_per_sec", float("nan")),
+    }
 
 
 def run_comparison(
     task: str,
     phase3_config: dict,
     steps: int = 500_000,
-    image_size: tuple = (64, 64),
+    arms: tuple = ("cnn", "custom_jepa", "vjepa2"),
+    output_dir: Optional[str] = None,
+    success_threshold: float = 0.8,
+    **run_kwargs,
 ):
     """
-    Run all three arms with matched seeds for a controlled comparison.
+    Train every arm with the same seeds, budget and evaluation protocol, then
+    write ``comparison.md`` / ``comparison.json`` (mean +- std across seeds).
 
-    Collects metrics from each arm/seed run and outputs a comparison table.
+    Each run has its own log directory under ``output_dir``. Finished runs
+    (metrics.json present) are reused and interrupted runs resume, so the
+    comparison can be restarted after a crash.
     """
+    from src.eval.metrics import ComparisonTable
+
     seeds = phase3_config.get("experiment", {}).get("seeds", [42, 123, 456])
-    arms = ["cnn", "custom_jepa", "vjepa2"]
+    out = Path(output_dir or PROJECT_ROOT / "outputs" / "comparison"
+               / f"{task}_{run_kwargs.get('obs', 'bev')}")
+    out.mkdir(parents=True, exist_ok=True)
 
-    all_results = []
-
+    table, runs = ComparisonTable(), []
     for arm in arms:
         for seed in seeds:
-            print(f"\n{'#'*60}")
-            print(f"# Comparison: {arm} / seed {seed}")
-            print(f"{'#'*60}")
+            logdir = out / f"{arm}_seed{seed}"
+            if not (logdir / "metrics.json").is_file():
+                print(f"\n{'#' * 60}\n# Comparison: {arm} / seed {seed}\n{'#' * 60}")
+                train_arm(
+                    arm=arm, task=task, seed=seed, phase3_config=phase3_config, steps=steps,
+                    logdir=str(logdir), resume=(logdir / "latest.pt").is_file(), **run_kwargs,
+                )
+            summary = summarize_run(logdir, success_threshold)
+            table.add_result(arm, seed, summary)
+            runs.append({"arm": arm, "seed": seed, **summary})
 
-            metrics = train_arm(
-                arm=arm,
-                task=task,
-                seed=seed,
-                phase3_config=phase3_config,
-                steps=steps,
-                image_size=image_size,
-            )
-            all_results.append(metrics)
-
-    # --- Build and print comparison table ---
-    print(f"\n{'='*80}")
-    print("PHASE 3 COMPARISON RESULTS")
-    print(f"{'='*80}")
-
-    header = f"{'Arm':<15} {'Seed':<8} {'Steps':<10} {'Eval Reward':<15} {'Eval Length':<15}"
-    print(header)
-    print("-" * len(header))
-
-    for r in all_results:
-        arm_name = r.get("arm", "?")
-        seed = r.get("seed", "?")
-        total_steps = r.get("total_steps", 0)
-        eval_reward = r.get("eval_reward", float("nan"))
-        eval_length = r.get("eval_length", float("nan"))
-        print(
-            f"{arm_name:<15} {seed:<8} {total_steps:<10} "
-            f"{eval_reward:<15.2f} {eval_length:<15.1f}"
-        )
-
-    # Aggregate by arm
-    print(f"\n{'='*80}")
-    print("AGGREGATE (mean ± std across seeds)")
-    print(f"{'='*80}")
-
-    for arm in arms:
-        arm_results = [r for r in all_results if r.get("arm") == arm]
-        rewards = [r.get("eval_reward", float("nan")) for r in arm_results]
-        rewards = [r for r in rewards if not np.isnan(r)]
-        if rewards:
-            mean_r = np.mean(rewards)
-            std_r = np.std(rewards)
-            print(f"{arm:<15} reward: {mean_r:.2f} ± {std_r:.2f} (n={len(rewards)})")
-        else:
-            print(f"{arm:<15} reward: no data")
-
-    # Save results
-    import json
-    results_path = PROJECT_ROOT / "outputs" / "phase3_comparison.json"
-    results_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(results_path, "w") as f:
-        json.dump(all_results, f, indent=2, default=str)
-    print(f"\n[comparison] Results saved to {results_path}")
+    table.save_table(str(out / "comparison.md"))
+    (out / "comparison.json").write_text(json.dumps(
+        {"task": task, "steps": steps, "seeds": seeds, "success_threshold": success_threshold,
+         "runs": runs}, indent=2,
+    ))
+    print(f"\n{table.generate_table()}\n\n[comparison] Results in {out}")
 
 
 def main():
@@ -604,21 +543,41 @@ def main():
     parser.add_argument("--arm", type=str, default="cnn", choices=["cnn", "custom_jepa", "vjepa2"])
     parser.add_argument("--task", type=str, default="carla_right_turn_simple")
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--steps", type=int, default=500_000)
-    parser.add_argument("--config", type=str, default=None, help="Phase 3 config path")
-    parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
-    parser.add_argument("--resume", action="store_true", help="Resume from latest.pt if available")
+    parser.add_argument("--steps", type=int, default=500_000,
+                        help="Environment steps for training, prefill included")
+    parser.add_argument("--obs", type=str, default="bev",
+                        choices=["bev", "camera", "camera_route"],
+                        help="Agent observation: bird's-eye view with route, front camera, "
+                             "or front camera + route/speed vector")
+    parser.add_argument(
+        "--action", type=str, default="discrete", choices=["discrete", "continuous"]
+    )
     parser.add_argument("--image-size", type=int, nargs=2, default=[64, 64])
+    parser.add_argument("--config", type=str, default=None, help="Phase 3 config path")
+    parser.add_argument("--profile", type=str, default=None,
+                        help="Dreamer run profile (default: configs/laptop.yaml)")
+    parser.add_argument("--set", dest="overrides", action="append", default=[], metavar="KEY=VALUE",
+                        help="Override a Dreamer config key, e.g. --set prefill=500 (repeatable)")
+    parser.add_argument("--logdir", type=str, default=None)
+    parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
+    parser.add_argument("--arms", nargs="+", default=["cnn", "custom_jepa", "vjepa2"],
+                        choices=["cnn", "custom_jepa", "vjepa2"], help="Arms for --comparison")
+    parser.add_argument("--resume", action="store_true", help="Resume from <logdir>/latest.pt")
     args = parser.parse_args()
 
     phase3_config = load_phase3_config(args.config)
+    run_kwargs = dict(
+        obs=args.obs,
+        action=args.action,
+        image_size=tuple(args.image_size),
+        profile=args.profile,
+        overrides=tuple(args.overrides),
+    )
 
     if args.comparison:
         run_comparison(
-            task=args.task,
-            phase3_config=phase3_config,
-            steps=args.steps,
-            image_size=tuple(args.image_size),
+            task=args.task, phase3_config=phase3_config, steps=args.steps,
+            arms=tuple(args.arms), output_dir=args.logdir, **run_kwargs,
         )
     else:
         train_arm(
@@ -627,8 +586,9 @@ def main():
             seed=args.seed,
             phase3_config=phase3_config,
             steps=args.steps,
-            image_size=tuple(args.image_size),
+            logdir=args.logdir,
             resume=args.resume,
+            **run_kwargs,
         )
 
 

@@ -15,6 +15,7 @@ Interface contract with dreamerv3-torch:
     - self.outdim: int — used by RSSM for input sizing
 """
 
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -264,3 +265,134 @@ def patch_dreamerv3_encoder(agent, hook: DreamerV3EncoderHook):
     assert agent._wm.embed_size == hook.outdim, "embed_size mismatch"
 
     print(f"[hook] Replaced MultiEncoder with {hook.arm} hook (outdim={hook.outdim})")
+
+
+class FrozenFeatureExtractor:
+    """
+    Run a frozen encoder once per environment step, at collection time.
+
+    Replay then stores the embedding (``feat``) instead of re-encoding clips
+    for every training batch, which removes all ViT forwards from Dreamer
+    updates. Frames are stacked per episode (``reset`` at episode start), so
+    clips never span two episodes.
+
+    Args:
+        encoder: Frozen module mapping (B, C, T, H, W) clips to (B, D) or (B, N, D).
+        num_frames: Clip length.
+        resolution: Input size the encoder expects (frames are resized).
+        mean / std: Per-channel normalisation applied to [0, 1] frames, or None.
+        device: Device for the encoder.
+    """
+
+    def __init__(self, encoder: nn.Module, num_frames: int, resolution: Optional[int],
+                 mean=None, std=None, device: str = "cuda"):
+        self.encoder = encoder.to(device).eval()
+        for param in self.encoder.parameters():
+            param.requires_grad = False
+        self.device = device
+        self.resolution = resolution
+        self.stacker = FrameStacker(num_frames, device)
+        self._norm = None
+        if mean is not None:
+            self._norm = (torch.tensor(mean, device=device).view(3, 1, 1),
+                          torch.tensor(std, device=device).view(3, 1, 1))
+        self.dim = int(self._encode(torch.zeros(1, 3, num_frames, resolution or 64,
+                                                resolution or 64, device=device)).shape[-1])
+
+    @torch.no_grad()
+    def _encode(self, clip: torch.Tensor) -> torch.Tensor:
+        with torch.autocast("cuda", dtype=torch.bfloat16, enabled=clip.is_cuda):
+            features = self.encoder(clip)
+        if features.dim() == 3:
+            features = features.mean(dim=1)
+        return features.float()
+
+    def reset(self) -> None:
+        self.stacker.reset()
+
+    @torch.no_grad()
+    def __call__(self, frame) -> np.ndarray:
+        # CarDreamer's camera is a channel-reversed view (negative strides): copy first.
+        frame = np.ascontiguousarray(frame)
+        x = torch.as_tensor(frame, device=self.device).permute(2, 0, 1).float() / 255.0
+        if self.resolution and tuple(x.shape[-2:]) != (self.resolution, self.resolution):
+            x = F.interpolate(x[None], size=(self.resolution, self.resolution),
+                              mode="bilinear", align_corners=False)[0]
+        if self._norm is not None:
+            x = (x - self._norm[0]) / self._norm[1]
+        clip = self.stacker.push(x)  # (C, T, H, W)
+        return self._encode(clip[None])[0].cpu().numpy()
+
+
+def build_feature_extractor(arm: str, phase3_config: dict, device: str):
+    """
+    Frozen-encoder extractor for an arm, or None when the arm trains its encoder.
+
+    ``custom_jepa`` is rebuilt from the configuration stored in its Phase 2
+    checkpoint, so resolution, clip length and input normalisation match
+    pretraining, and its weights are loaded strictly.
+    """
+    enc_cfg = phase3_config.get("encoders", {}).get(arm, {})
+    if arm == "cnn" or not enc_cfg.get("freeze", True) or enc_cfg.get("use_lora", False):
+        return None
+    if arm == "custom_jepa":
+        from src.jepa.encoder import ViTEncoder
+
+        path = enc_cfg.get("checkpoint")
+        if not path:
+            raise FileNotFoundError("encoders.custom_jepa.checkpoint is not set")
+        ckpt = torch.load(path, map_location="cpu", weights_only=False)
+        cfg = ckpt["config"]
+        ctx, tubelet = cfg["model"]["context_encoder"], cfg["data"]["tubelet"]
+        encoder = ViTEncoder(
+            img_size=tubelet["spatial_size"], patch_size=ctx["patch_size"],
+            tubelet_size=ctx["tubelet_size"], embed_dim=ctx["embed_dim"], depth=ctx["depth"],
+            num_heads=ctx["num_heads"], mlp_ratio=ctx["mlp_ratio"],
+            num_frames=tubelet["num_frames"],
+        )
+        encoder.load_state_dict(ckpt["context_encoder_state_dict"], strict=True)
+        norm = cfg.get("augmentation", {}).get("normalize", {})
+        print(f"[encoder] custom_jepa from {path} ({ckpt.get('regularizer', '?')}, "
+              f"{tubelet['spatial_size']} px x {tubelet['num_frames']} frames)")
+        return FrozenFeatureExtractor(
+            encoder, tubelet["num_frames"], tubelet["spatial_size"],
+            norm.get("mean"), norm.get("std"), device,
+        )
+    if arm == "vjepa2":
+        from src.dreamer.encoder_adapter import VJEPAEncoder
+
+        encoder = VJEPAEncoder(
+            model_name=enc_cfg.get("model_name", "facebook/vjepa2-vitl-fpc64-256"), freeze=True
+        )
+        # The V-JEPA2 wrapper normalises and resizes internally.
+        frames = phase3_config.get("frame_stacking", {}).get("num_frames", 4)
+        return FrozenFeatureExtractor(encoder, frames, None, device=device)
+    raise ValueError(f"Unknown arm: {arm}")
+
+
+class PrecomputedFeatureEncoder(nn.Module):
+    """
+    Dreamer encoder for frozen arms: a trainable adapter over the stored
+    ``feat`` embedding, concatenated with ``vector_encoder``'s output (the
+    same dreamerv3-torch MLP the CNN arm uses for the ``route`` vector).
+    """
+
+    def __init__(self, feat_dim: int, adapter_cfg: dict, vector_encoder: Optional[nn.Module]):
+        super().__init__()
+        self.adapter = EncoderAdapter(
+            input_dim=feat_dim,
+            target_dim=adapter_cfg["target_dim"],
+            use_layer_norm=adapter_cfg.get("use_layer_norm", True),
+            activation=adapter_cfg.get("activation", "silu"),
+        )
+        self.vector_encoder = vector_encoder
+        self.outdim = adapter_cfg["target_dim"] + (vector_encoder.outdim if vector_encoder else 0)
+
+    def forward(self, obs: dict) -> torch.Tensor:
+        feat = obs["feat"]  # (B, D) when acting, (B, T, D) in replay batches
+        # Flatten: EncoderAdapter would treat a 3-D input as ViT tokens and pool them.
+        adapted = self.adapter(feat.reshape(-1, feat.shape[-1]))
+        parts = [adapted.reshape(*feat.shape[:-1], -1)]
+        if self.vector_encoder is not None:
+            parts.append(self.vector_encoder(obs))
+        return torch.cat(parts, dim=-1)

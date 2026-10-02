@@ -26,6 +26,14 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent
 DREAMER_DIR = PROJECT_ROOT / "third_party" / "dreamerv3_torch"
 CARDREAMER_DIR = PROJECT_ROOT / "third_party" / "CarDreamer"
+COMPAT_PATCHES = {
+    DREAMER_DIR: PROJECT_ROOT / "patches" / "dreamerv3_torch_compat.patch",
+    CARDREAMER_DIR: PROJECT_ROOT / "patches" / "cardreamer_compat.patch",
+}
+VULKAN_ICDS = [
+    Path("/etc/vulkan/icd.d/nvidia_icd.json"),
+    Path("/usr/share/vulkan/icd.d/nvidia_icd.json"),
+]
 
 FORWARDING_SCRIPTS = {
     "smoke": "smoke_test_carla.py",
@@ -89,6 +97,15 @@ def _check_import(module_name: str) -> bool:
         return False
 
 
+def _patch_applied(repo: Path, patch: Path) -> bool:
+    """True when the tracked compatibility patch is applied to the submodule."""
+    result = subprocess.run(
+        ["git", "-C", str(repo), "apply", "--reverse", "--check", str(patch)],
+        capture_output=True,
+    )
+    return result.returncode == 0
+
+
 def _doctor(args: argparse.Namespace) -> int:
     """Check the local project and optional server runtime prerequisites."""
     print(f"[doctor] Project: {PROJECT_ROOT}")
@@ -110,6 +127,14 @@ def _doctor(args: argparse.Namespace) -> int:
         str(CARDREAMER_DIR),
         args.require_carla,
     )
+    for repo, patch in COMPAT_PATCHES.items():
+        applied = repo.is_dir() and _patch_applied(repo, patch)
+        report(
+            f"{patch.name}",
+            applied,
+            "applied" if applied else "not applied (run scripts/setup_cardreamer.sh)",
+            repo == DREAMER_DIR or args.require_carla,
+        )
 
     required_modules = ["torch", "numpy", "yaml", "ruamel.yaml"]
     if args.require_carla:
@@ -129,7 +154,7 @@ def _doctor(args: argparse.Namespace) -> int:
 
         cuda_available = bool(torch.cuda.is_available())
         cuda_detail = (
-            f"available ({torch.cuda.device_count()} device(s))"
+            f"available ({torch.cuda.device_count()} device(s)), torch {torch.__version__}"
             if cuda_available
             else "unavailable"
         )
@@ -138,9 +163,28 @@ def _doctor(args: argparse.Namespace) -> int:
         cuda_detail = f"torch import failed: {error}"
     report("CUDA", cuda_available, cuda_detail, args.require_cuda)
 
+    if cuda_available:
+        # A torch build without kernels for this GPU imports fine and fails later.
+        major, minor = torch.cuda.get_device_capability(0)
+        arch = f"sm_{major}{minor}"
+        supported = arch in torch.cuda.get_arch_list()
+        report(
+            "GPU architecture",
+            supported,
+            f"{torch.cuda.get_device_name(0)} ({arch}); torch build has "
+            f"{' '.join(torch.cuda.get_arch_list())}",
+            args.require_cuda,
+        )
+        free, total = torch.cuda.mem_get_info(0)
+        report("GPU memory", True, f"{total / 2**30:.1f} GiB total, {free / 2**30:.1f} GiB free")
+
     carla_root = os.environ.get("CARLA_ROOT")
     carla_server = bool(carla_root and (Path(carla_root) / "CarlaUE4.sh").is_file())
     carla_module = _check_import("carla")
+    vulkan_icd = next((str(icd) for icd in VULKAN_ICDS if icd.is_file()), None)
+    report(
+        "NVIDIA Vulkan ICD", vulkan_icd is not None, vulkan_icd or "not found", args.require_carla
+    )
     report("CARLA_ROOT", carla_server, carla_root or "not set", args.require_carla)
     report(
         "CARLA Python API",

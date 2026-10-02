@@ -76,54 +76,26 @@ class VideoTransform:
         """
         # NOTE: Do NOT use 'T' as variable name — it shadows the
         # torchvision.transforms import alias 'T'.
-        n_channels, n_frames, height, width = video.shape
+        # torchvision ops accept a (T, C, H, W) stack and apply the same
+        # parameters to every frame, which keeps the clip consistent.
+        frames = video.permute(1, 0, 2, 3)
+        size = [self.spatial_size, self.spatial_size]
 
         if self.is_train and self.random_crop:
-            # Get crop parameters (same for all frames)
-            ratio = (0.9, 1.1)  # Slight aspect ratio variation
             i, j, h, w = T.RandomResizedCrop.get_params(
-                video[:, 0],  # Use first frame for param computation
+                frames[0],
                 scale=(self.crop_scale[0], self.crop_scale[1]),
-                ratio=ratio,
+                ratio=(0.9, 1.1),  # Slight aspect ratio variation
             )
+            frames = TF.resized_crop(frames, i, j, h, w, size, antialias=True)
+        elif tuple(frames.shape[-2:]) != tuple(size):
+            frames = TF.resize(frames, size, antialias=True)
 
-            # Apply same crop to all frames
-            frames = []
-            for t in range(n_frames):
-                frame = TF.resized_crop(
-                    video[:, t], i, j, h, w,
-                    [self.spatial_size, self.spatial_size],
-                    antialias=True,
-                )
-                frames.append(frame)
-            video = torch.stack(frames, dim=1)  # (C, T, H, W)
-        else:
-            # Evaluation: center resize
-            frames = []
-            for t in range(n_frames):
-                frame = TF.resize(
-                    video[:, t],
-                    [self.spatial_size, self.spatial_size],
-                    antialias=True,
-                )
-                frames.append(frame)
-            video = torch.stack(frames, dim=1)
-
-        # Color jitter (per-frame, but with temporal coherence from
-        # applying the same jitter instance)
         if self.color_jitter_transform is not None:
-            frames = []
-            for t in range(n_frames):
-                frames.append(self.color_jitter_transform(video[:, t]))
-            video = torch.stack(frames, dim=1)
+            frames = self.color_jitter_transform(frames)
 
-        # Normalize each frame
-        frames = []
-        for t in range(n_frames):
-            frames.append(self.normalize(video[:, t]))
-        video = torch.stack(frames, dim=1)
-
-        return video
+        frames = self.normalize(frames)
+        return frames.permute(1, 0, 2, 3)
 
 
 def create_video_transform(config: dict, is_train: bool = True) -> VideoTransform:

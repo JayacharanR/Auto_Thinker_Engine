@@ -27,6 +27,10 @@ CARLA_HOST="${CARLA_HOST:-localhost}"
 DATA_DIR="${DATA_DIR:-$PROJECT_ROOT/data/comma2k19}"
 PHASE2_CONFIG="${PHASE2_CONFIG:-configs/phase2_jepa_pretrain.yaml}"
 PHASE3_CONFIG="${PHASE3_CONFIG:-configs/phase3_transfer_arms.yaml}"
+OBS="${OBS:-bev}"
+ACTION="${ACTION:-discrete}"
+# Extra trainer arguments, e.g. TRAIN_ARGS="--set prefill=500 --logdir outputs/logs/try1"
+read -r -a TRAIN_EXTRA <<< "${TRAIN_ARGS:-}"
 
 mkdir -p outputs
 
@@ -219,7 +223,10 @@ case "$RUN_MODE" in
       --task "$TASK" \
       --seed "$SEED" \
       --steps "$STEPS" \
-      --config "$PHASE3_CONFIG"
+      --obs "$OBS" \
+      --action "$ACTION" \
+      --config "$PHASE3_CONFIG" \
+      "${TRAIN_EXTRA[@]}"
     ;;
   evaluate|eval)
     "$PYTHON_BIN" run.py evaluate \
@@ -234,7 +241,10 @@ case "$RUN_MODE" in
     "$PYTHON_BIN" run.py compare \
       --task "$TASK" \
       --steps "$STEPS" \
-      --config "$PHASE3_CONFIG"
+      --obs "$OBS" \
+      --action "$ACTION" \
+      --config "$PHASE3_CONFIG" \
+      "${TRAIN_EXTRA[@]}"
     ;;
   *)
     echo "ERROR: unsupported RUN_MODE=$RUN_MODE" >&2

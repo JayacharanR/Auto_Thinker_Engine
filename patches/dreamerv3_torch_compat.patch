@@ -49,30 +49,23 @@ index 91f756f..30619b7 100644
              config.dyn_stoch,
              config.dyn_deter,
 diff --git a/tools.py b/tools.py
-index 3efb932..f2956d2 100644
+index 3efb932..c91bced 100644
 --- a/tools.py
 +++ b/tools.py
-@@ -31,12 +31,17 @@ def symexp(x):
- class RequiresGrad:
-     def __init__(self, model):
+@@ -33,7 +33,11 @@ class RequiresGrad:
          self._model = model
-+        # Store original requires_grad setting per parameter
-+        self._requires_grad = {p: p.requires_grad for p in model.parameters()}
  
      def __enter__(self):
 -        self._model.requires_grad_(requires_grad=True)
-+        # Only set requires_grad=True for parameters that were originally trainable
-+        for p, req in self._requires_grad.items():
-+            p.requires_grad_(req)
++        # Enable gradients except for parameters marked as permanently frozen
++        # (e.g. a pretrained encoder). requires_grad itself cannot carry that
++        # intent, because __exit__ clears it on every parameter.
++        for p in self._model.parameters():
++            p.requires_grad_(not getattr(p, "_dreamer_frozen", False))
  
      def __exit__(self, *args):
--        self._model.requires_grad_(requires_grad=False)
-+        for p in self._model.parameters():
-+            p.requires_grad_(False)
- 
- 
- class TimeRecording:
-@@ -744,6 +749,7 @@ class Optimizer:
+         self._model.requires_grad_(requires_grad=False)
+@@ -744,6 +748,7 @@ class Optimizer:
              "sgd": lambda: torch.optim.SGD(parameters, lr=lr),
              "momentum": lambda: torch.optim.SGD(parameters, lr=lr, momentum=0.9),
          }[opt]()
@@ -80,7 +73,7 @@ index 3efb932..f2956d2 100644
          self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
  
      def __call__(self, loss, params, retain_graph=True):
-@@ -751,15 +757,20 @@ class Optimizer:
+@@ -751,15 +756,20 @@ class Optimizer:
          metrics = {}
          metrics[f"{self._name}_loss"] = loss.detach().cpu().numpy()
          self._opt.zero_grad()

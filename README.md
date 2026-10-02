@@ -172,7 +172,12 @@ mkdir -p outputs/long_runs
 setsid nohup systemd-inhibit --what=sleep:idle:handle-lid-switch --why=training \
   bash jobs/long_runs.sh > outputs/long_runs/run.log 2>&1 &
 touch outputs/long_runs/STOP     # stop cleanly; rerun the command above to resume
+python3 scripts/watch_queue.py   # live bars: current step, whole queue, GPU/RAM health
 ```
+
+Checkpoints: Phase 2 saves `latest.pt` every epoch (~1 min) and the Dreamer
+runner every 2,500 env steps (`--checkpoint-every`); both also save when stopped
+(SIGTERM / STOP file), and saves are atomic, so a crash loses at most that much.
 Each run writes `latest.pt`, `episodes.jsonl` (one line per episode),
 `eval.jsonl` and `metrics.json` to its log directory.
 

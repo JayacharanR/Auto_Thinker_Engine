@@ -292,3 +292,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** fake trainer with forked workers: only the main got SIGTERM and exited cleanly; interrupted-save test keeps the previous checkpoint; 125 tests pass.
 **Lesson:** Rehearse the stop path of a long job before relying on it, and never select self-supervised checkpoints by their own moving-target loss.
 **Interview angle:** How do you choose a checkpoint for a self-supervised model?
+
+## 2026-10-02 17:25 - Checkpoint cadence, end-to-end runner test, queue progress view
+**Type:** decision
+**Stage:** Long runs
+
+**What happened:** Reviewing crash exposure: Phase 2 saves every epoch (~1 min), but the Dreamer runner saved only every eval interval (10k env steps, ~30 min at train_ratio 512). A first end-to-end test of the runner took >10 min and slowed the live Phase 2 run (532 -> ~416 clips/s).
+**Cause:** Checkpoints tied to evaluation; the test's CPU torch used ~12 threads at full size and competed with the Phase 2 DataLoader workers.
+**How we handled it:** Runner checkpoints every 2,500 env steps inside each eval chunk (`--checkpoint-every`). New `tests/test_train_loop.py` runs `train_arm` end to end on a fake CarDreamer task (prefill, cadence 110/160/210/260, evals, metrics, refusal to overwrite, resume) with 2 threads and a tiny model: 4.4 s. `scripts/watch_queue.py`: live bars for the current step and the whole queue, plus GPU/RAM health. Merged to main locally; push needs the user's GitHub credentials (none on this machine).
+**Verified by:** 125 tests pass; watcher matches status/logs (Phase 2 at 42%, queue 6.8%).
+**Lesson:** Cap CPU threads in tests that run next to a training job.
+**Interview angle:** -

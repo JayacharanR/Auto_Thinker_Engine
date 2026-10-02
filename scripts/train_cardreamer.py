@@ -269,6 +269,7 @@ def train_arm(
     overrides: tuple = (),
     logdir: Optional[str] = None,
     resume: bool = False,
+    checkpoint_every: int = 2500,
 ) -> Dict:
     """
     Train one arm with dreamerv3-torch and return its metrics.
@@ -399,21 +400,26 @@ def train_arm(
                 "dreamer_config": vars(config),
             }, latest_pt)
 
-        # --- Train in chunks of eval_every env steps, evaluating after each ---
+        # --- Train in chunks of eval_every env steps, evaluating after each.
+        # Checkpoint every checkpoint_every steps within a chunk, so a hard crash
+        # (power loss, OOM kill) loses at most that many steps. ---
         target = int(config.steps)
         eval_summary = None
         train_started, train_start_step = time.time(), agent._step
-        print(f"[train] Training from env step {agent._step} to {target} (prefill included)")
+        print(f"[train] Training from env step {agent._step} to {target} (prefill included), "
+              f"checkpoint every {checkpoint_every} steps")
         while agent._step < target:
-            chunk = min(int(config.eval_every), target - agent._step)
+            chunk_end = min(target, agent._step + int(config.eval_every))
             recorder.mode = "train"
-            state = tools.simulate(
-                agent, train_envs, train_eps, train_dir, logger,
-                limit=config.dataset_size, steps=chunk, state=state,
-            )
-            save_checkpoint()
-            print(f"[train] env step {agent._step}/{target}, updates {agent._update_count}, "
-                  f"peak VRAM {_peak_vram_mb()} MB")
+            while agent._step < chunk_end:
+                state = tools.simulate(
+                    agent, train_envs, train_eps, train_dir, logger,
+                    limit=config.dataset_size,
+                    steps=min(checkpoint_every, chunk_end - agent._step), state=state,
+                )
+                save_checkpoint()
+                print(f"[train] env step {agent._step}/{target}, updates {agent._update_count}, "
+                      f"peak VRAM {_peak_vram_mb()} MB")
 
             if config.eval_episode_num > 0:
                 recorder.mode = "eval"
@@ -561,6 +567,8 @@ def main():
     parser.add_argument("--set", dest="overrides", action="append", default=[], metavar="KEY=VALUE",
                         help="Override a Dreamer config key, e.g. --set prefill=500 (repeatable)")
     parser.add_argument("--logdir", type=str, default=None)
+    parser.add_argument("--checkpoint-every", type=int, default=2500,
+                        help="Env steps between checkpoints (bounds the loss on a crash)")
     parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
     parser.add_argument("--arms", nargs="+", default=["cnn", "custom_jepa", "vjepa2"],
                         choices=["cnn", "custom_jepa", "vjepa2"], help="Arms for --comparison")
@@ -590,6 +598,7 @@ def main():
             steps=args.steps,
             logdir=args.logdir,
             resume=args.resume,
+            checkpoint_every=args.checkpoint_every,
             **run_kwargs,
         )
 

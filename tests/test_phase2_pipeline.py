@@ -140,7 +140,7 @@ def test_short_training_and_resume(tmp_path, regularizer):
 
     phase2.train(config)
     latest = torch.load(ckpt_dir / "latest.pt", weights_only=False)
-    assert (ckpt_dir / "best.pt").is_file()
+    assert (ckpt_dir / "final.pt").is_file() and not (ckpt_dir / "best.pt").exists()
     assert latest["global_step"] == 4 and latest["regularizer"] == regularizer
     assert ("target_encoder" in latest) == (regularizer == "ema")
 
@@ -178,12 +178,12 @@ def test_probe_uses_checkpoint_config(tmp_path, monkeypatch):
     config = tiny_config(tmp_path, "ema")
     config["linear_probe"].update(probe_epochs=1, probe_batch_size=4)
     phase2.train(config)
-    checkpoint = Path(config["experiment"]["checkpoint_dir"]) / "best.pt"
+    checkpoint = Path(config["experiment"]["checkpoint_dir"]) / "final.pt"
 
     monkeypatch.chdir(tmp_path)
     monkeypatch.setattr(sys, "argv", ["probe", "--checkpoint", str(checkpoint)])
     probe_phase2.main()
-    result = json.loads((tmp_path / "outputs/probe_results/probe_ckpt_ema_best_seed42.json")
+    result = json.loads((tmp_path / "outputs/probe_results/probe_ckpt_ema_final_seed42.json")
                         .read_text())
     assert result["regularizer"] == "ema" and set(result["results"]) >= {"trained", "random"}
 
@@ -228,3 +228,21 @@ def test_sigterm_saves_and_resumes(tmp_path, monkeypatch):
     monkeypatch.setattr(phase2, "compute_losses", original)
     assert phase2.train(config, resume=True) is True
     assert torch.load(ckpt_dir / "latest.pt", weights_only=False)["global_step"] == 50
+
+
+def test_interrupted_save_keeps_previous_checkpoint(tmp_path, monkeypatch):
+    """A kill during torch.save must not corrupt the existing checkpoint."""
+    from src.utils.checkpoint import atomic_save
+
+    path = tmp_path / "latest.pt"
+    atomic_save({"step": 1}, path)
+
+    def dying_save(obj, f):
+        Path(f).write_bytes(b"partial")  # what an interrupted torch.save leaves behind
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(torch, "save", dying_save)
+    with pytest.raises(KeyboardInterrupt):
+        atomic_save({"step": 2}, path)
+    monkeypatch.undo()
+    assert torch.load(path, weights_only=False) == {"step": 1}

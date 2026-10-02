@@ -281,3 +281,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** fake trainer stopped while a decoy shell survived; forced "low disk" trip skipped later steps; test sends SIGTERM at step 3 -> checkpoint at 3 -> resume to 50; 124 tests pass.
 **Lesson:** Kill by an anchored pattern or PID, never by a substring that your own tooling may contain.
 **Interview angle:** How did you keep long experiments safe on a laptop?
+
+## 2026-10-02 16:50 - First long-run attempt: wrong checkpoint choice, killed workers, corrupt save
+**Type:** bug
+**Stage:** Stage 4 - Phase 2 long run
+
+**What happened:** 12 min into Phase 2 EMA (~5.5k steps), `best.pt` had not changed since epoch 2 and the log was empty. Stopping the queue via the STOP file then crashed the trainer ("DataLoader worker killed by signal: Terminated") and left `latest.pt` as a 671-byte fragment.
+**Cause:** (1) Validation prediction loss is not comparable across epochs for JEPA - the EMA targets improve - so it fell to 0.049 at step 782 and rose to 0.090 while embedding std stayed ~0.85 (no collapse); "best by val loss" would have sent a nearly untrained encoder to the probe. (2) DataLoader workers share the trainer's command line, so the stop pattern hit them too. (3) `torch.save` writes in place, so dying mid-save corrupts the file. (4) Python buffers stdout to files.
+**How we handled it:** `final.pt` at the end of the budget, probe/selection use final weights; val loss kept as a diagnostic. `atomic_save` (write .tmp, rename) for Phase 2 and Dreamer checkpoints. Stop only processes whose parent is not a trainer (newline-safe cmdline check). `PYTHONUNBUFFERED=1`; readable STOP reason; one TensorBoard run per checkpoint dir. Lost: ~12 min of EMA training.
+**Verified by:** fake trainer with forked workers: only the main got SIGTERM and exited cleanly; interrupted-save test keeps the previous checkpoint; 125 tests pass.
+**Lesson:** Rehearse the stop path of a long job before relying on it, and never select self-supervised checkpoints by their own moving-target loss.
+**Interview angle:** How do you choose a checkpoint for a self-supervised model?

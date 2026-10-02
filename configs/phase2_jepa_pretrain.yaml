@@ -127,7 +127,7 @@ training:
     # Don't assume architecture is wrong before checking these.
 
   # Checkpointing
-  # latest.pt every epoch, best.pt on the lowest validation loss
+  # latest.pt every epoch, final.pt at the end (no selection by val loss; see the trainer)
   log_every: 50                      # steps
 
   # Mixed precision

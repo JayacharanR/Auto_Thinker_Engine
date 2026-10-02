@@ -39,6 +39,10 @@ runs not finished yet.
   **A (short):** Two options behind one switch: an EMA teacher with stop-gradient (V-JEPA) and SIGReg (LeJEPA), which pushes embeddings toward an isotropic Gaussian via random 1-D projections and the Epps-Pulley test. Both get the same step budget and the winner is the one with the larger linear steering-probe gain over a random encoder, not the lower loss. (pending: which won)
   **Evidence:** journal 2026-10-02 00:20; `src/jepa/sigreg.py`
 
+- **Q:** How do you choose a checkpoint for a self-supervised model?
+  **A (short):** Not by its own training loss: in JEPA the targets come from an improving EMA teacher (or the online encoder with SIGReg), so prediction loss fell for two epochs and then rose while the representation kept improving. We keep the final weights of a fixed budget and compare methods with a downstream linear probe against a random-init control.
+  **Evidence:** journal "First long-run attempt"; `scripts/train_phase2_jepa.py`
+
 - **Q:** Why tube masking?
   **A (short):** If a patch is hidden in one frame but visible in the next, the model can copy it instead of reasoning. Masking the same spatial blocks in every frame forces it to infer content from context.
   **Evidence:** journal 2026-10-02 00:20; `src/jepa/masking.py`

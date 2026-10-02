@@ -187,9 +187,10 @@ uv run python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.y
 uv run python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml \
     --regularizer sigreg --checkpoint-dir outputs/checkpoints/phase2_sigreg
 
-# Linear steering probe vs a random encoder; keep the larger gain as phase2/best.pt
-uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_ema/best.pt
-uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_sigreg/best.pt
+# Linear steering probe of the final weights vs a random encoder; the larger gain
+# becomes phase2/best.pt (jobs/long_runs.sh does this automatically)
+uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_ema/final.pt
+uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_sigreg/final.pt
 
 # Visualize representation clusters
 uv run python scripts/visualize_representations.py \

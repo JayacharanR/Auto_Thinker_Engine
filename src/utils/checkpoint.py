@@ -14,6 +14,18 @@ from typing import Any, Optional
 import torch
 
 
+def atomic_save(obj: Any, path: Path | str) -> None:
+    """``torch.save`` that never leaves a partial file at ``path``.
+
+    Writes to ``<path>.tmp`` and renames it into place, so a process killed
+    mid-save keeps the previous checkpoint instead of a corrupted one.
+    """
+    path = Path(path)
+    tmp = path.with_name(path.name + ".tmp")
+    torch.save(obj, tmp)
+    os.replace(tmp, path)
+
+
 class CheckpointManager:
     """
     Manages model checkpoints with automatic rotation.

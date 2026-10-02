@@ -52,6 +52,7 @@ from src.dreamer.cardreamer_encoder_hook import (
 )
 from src.dreamer.carla_wrappers import DreamerObservation, EpisodeMetricsRecorder
 from src.dreamer.encoder_adapter import freeze_parameters
+from src.utils.checkpoint import atomic_save
 
 DEFAULT_PROFILE = PROJECT_ROOT / "configs" / "laptop.yaml"
 
@@ -390,7 +391,7 @@ def train_arm(
             print(f"[train] Warning: Could not create manifest: {e}")
 
         def save_checkpoint():
-            torch.save({
+            atomic_save({
                 "agent_state_dict": agent.state_dict(),
                 "optims_state_dict": tools.recursively_collect_optim_state_dict(agent),
                 "step": agent._step,

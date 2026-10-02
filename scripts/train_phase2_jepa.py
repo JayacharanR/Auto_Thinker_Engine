@@ -17,8 +17,12 @@ Key training loop components:
      embeddings near an isotropic Gaussian (LeJEPA)
 8. Collapse monitoring throughout
 
-Writes ``latest.pt`` (for --resume) and ``best.pt`` (lowest validation
-prediction loss) to the checkpoint directory.
+Writes ``latest.pt`` every epoch (for --resume) and ``final.pt`` when the
+step budget is reached. There is no "best by validation loss": with an EMA
+teacher (or SIGReg's online targets) the targets change during training, so
+prediction loss is not comparable across epochs - it bottoms out within a few
+epochs and then rises while the representation keeps improving. Encoders are
+selected by the linear steering probe instead (scripts/probe_phase2.py).
 
 Usage:
     python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml
@@ -48,7 +52,8 @@ from src.jepa.masking import MaskGenerator, verify_no_leak  # noqa: E402
 from src.jepa.predictor import JEPAPredictor  # noqa: E402
 from src.jepa.sigreg import SIGReg  # noqa: E402
 from src.jepa.target_encoder import EMATargetEncoder  # noqa: E402
-from src.utils.logging_utils import ExperimentLogger, make_run_name  # noqa: E402
+from src.utils.checkpoint import atomic_save  # noqa: E402
+from src.utils.logging_utils import ExperimentLogger  # noqa: E402
 from src.utils.seeding import seed_everything  # noqa: E402
 
 REGULARIZERS = ("ema", "sigreg")
@@ -178,7 +183,7 @@ def train(config: dict, resume: bool = False):
 
     ckpt_dir = Path(exp_cfg["checkpoint_dir"])
     ckpt_dir.mkdir(parents=True, exist_ok=True)
-    latest_path, best_path = ckpt_dir / "latest.pt", ckpt_dir / "best.pt"
+    latest_path, final_path = ckpt_dir / "latest.pt", ckpt_dir / "final.pt"
     ckpt = None
     if resume:
         if not latest_path.is_file():
@@ -187,9 +192,9 @@ def train(config: dict, resume: bool = False):
     elif latest_path.is_file():
         raise FileExistsError(f"{ckpt_dir} holds an earlier run; pass --resume or another dir")
 
-    run_name = exp_cfg.get("run_name") or make_run_name(
-        phase=2, arm=f"jepa_{regularizer}", seed=seed
-    )
+    # One TensorBoard run per checkpoint directory: resumes append to it and
+    # different runs (ema, sigreg, tests) never share a folder.
+    run_name = exp_cfg.get("run_name") or f"{ckpt_dir.name}_seed{seed}"
     logger = ExperimentLogger(
         log_dir=exp_cfg["log_dir"],
         run_name=run_name,
@@ -377,7 +382,7 @@ def train(config: dict, resume: bool = False):
 
         if stop["requested"]:
             # Mid-epoch: record the previous epoch index so --resume repeats this one.
-            torch.save(checkpoint_state(epoch - 1, float("nan")), latest_path)
+            atomic_save(checkpoint_state(epoch - 1, float("nan")), latest_path)
             print(f"  Stopped by SIGTERM at step {global_step}; saved {latest_path}")
             break
 
@@ -389,13 +394,8 @@ def train(config: dict, resume: bool = False):
               f"val loss {val_loss:.4f}, {seen / max(epoch_time, 1e-9):.1f} clips/s, "
               f"step {global_step}/{total_steps}")
 
-        is_best = val_loss < best_val
-        best_val = min(best_val, val_loss)
-        state = checkpoint_state(epoch, val_loss)
-        torch.save(state, latest_path)
-        if is_best:
-            torch.save(state, best_path)
-            print(f"  New best -> {best_path}")
+        best_val = min(best_val, val_loss)  # diagnostic only, see module docstring
+        atomic_save(checkpoint_state(epoch, val_loss), latest_path)
         epoch += 1
 
     logger.close()
@@ -403,7 +403,8 @@ def train(config: dict, resume: bool = False):
     if stop["requested"]:
         print(f"\nPhase 2 training stopped at step {global_step}; resume with --resume")
         return False
-    print(f"\nPhase 2 training complete. Best val loss: {best_val:.4f} ({best_path})")
+    atomic_save(checkpoint_state(epoch - 1, float("nan")), final_path)
+    print(f"\nPhase 2 training complete at step {global_step}: {final_path}")
     return True
 
 

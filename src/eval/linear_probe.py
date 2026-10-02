@@ -30,6 +30,53 @@ RIDGE_ALPHAS = tuple(10.0 ** k for k in range(-2, 6))
 
 
 @torch.no_grad()
+def extract_token_grid(
+    encoder: nn.Module,
+    loader: DataLoader,
+    device: str = "cuda",
+    grid: int = 1,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Encode every clip once, keeping a coarse spatial layout.
+
+    Patch tokens (ordered time, row, column) are averaged over time and pooled
+    to a ``grid`` x ``grid`` layout, so left/right structure survives (a global
+    mean maps a left curve and its mirror image to nearly the same vector).
+
+    Returns:
+        (N, grid, grid, D) features, (N, A) clip-mean telemetry targets
+        (normalised steering, speed) and (N,) segment ids.
+    """
+    import torch.nn.functional as F
+
+    encoder.eval()
+    features, targets, groups = [], [], []
+    use_amp = str(device).startswith("cuda")
+    spatial = getattr(getattr(encoder, "patch_embed", None), "num_patches_spatial", None)
+    for batch in loader:
+        video = batch["video"].to(device, non_blocking=True)
+        with torch.autocast("cuda", dtype=torch.bfloat16, enabled=use_amp):
+            out = encoder(video).float()
+        if out.dim() == 3 and spatial and out.shape[1] % spatial == 0:
+            side = int(round(spatial ** 0.5))
+            tokens = out.reshape(out.shape[0], -1, side, side, out.shape[-1]).mean(1)
+            pooled = F.adaptive_avg_pool2d(tokens.permute(0, 3, 1, 2), grid).permute(0, 2, 3, 1)
+        else:  # no spatial layout known: global mean only
+            flat = out.mean(1) if out.dim() == 3 else out
+            pooled = flat[:, None, None, :].expand(-1, grid, grid, -1)
+        features.append(pooled.cpu().numpy())
+        targets.append(batch["telemetry"].mean(dim=1).numpy())
+        groups.extend(batch["segment_path"])
+    return np.concatenate(features), np.concatenate(targets), np.asarray(groups)
+
+
+def pool_grid(features: np.ndarray, grid: int) -> np.ndarray:
+    """(N, G, G, D) -> (N, grid * grid * D), averaging G x G down to grid x grid."""
+    n, g, _, d = features.shape
+    k = g // grid
+    return features.reshape(n, grid, k, grid, k, d).mean(axis=(2, 4)).reshape(n, -1)
+
+
 def extract_features(
     encoder: nn.Module,
     loader: DataLoader,
@@ -42,19 +89,8 @@ def extract_features(
         (N, D) mean-pooled encoder features, (N,) targets (the clip's mean
         normalised steering angle) and (N,) segment ids of the clips.
     """
-    encoder.eval()
-    features, targets, groups = [], [], []
-    use_amp = str(device).startswith("cuda")
-    for batch in loader:
-        video = batch["video"].to(device, non_blocking=True)
-        with torch.autocast("cuda", dtype=torch.bfloat16, enabled=use_amp):
-            out = encoder(video)
-        if out.dim() == 3:
-            out = out.mean(dim=1)  # pool patch tokens
-        features.append(out.float().cpu().numpy())
-        targets.append(batch["telemetry"][:, :, 0].mean(dim=1).numpy())
-        groups.extend(batch["segment_path"])
-    return np.concatenate(features), np.concatenate(targets), np.asarray(groups)
+    features, targets, groups = extract_token_grid(encoder, loader, device, grid=1)
+    return features.reshape(len(features), -1), targets[:, 0], groups
 
 
 def _ridge(x: np.ndarray, y: np.ndarray, alpha: float) -> tuple[np.ndarray, float]:

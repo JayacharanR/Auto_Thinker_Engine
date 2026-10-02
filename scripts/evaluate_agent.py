@@ -244,6 +244,7 @@ def run_evaluation(
     )
     obs_mode = run_spec.get("obs", "bev")
     action_mode = run_spec.get("action", "discrete")
+    env_overrides = tuple(run_spec.get("env_overrides", ()))
     image_size = tuple(run_spec.get("image_size", (64, 64)))
     config = load_dreamer_config(
         arm, task, seed, steps=1000, image_size=image_size, device=device, logdir=str(out_dir)
@@ -251,6 +252,7 @@ def run_evaluation(
     env, _ = make_carla_env(
         task, obs=obs_mode, action=action_mode, image_size=image_size,
         feature_extractor=build_feature_extractor(arm, phase3_config, device),
+        env_overrides=env_overrides,
     )
     if action_mode == "discrete" and use_safety_shield:
         # The supervisor edits continuous [acc, steer] actions only.

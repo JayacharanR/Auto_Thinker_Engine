@@ -92,6 +92,7 @@ runs not finished yet.
 - **Q:** How did you make sure your encoder evaluation was not fooling you?
   **A (short):** Every probe runs against a random-init encoder of the same architecture, and selection uses only the gain over it. Splits are by driving segment, including the inner holdout that picks the ridge strength: a random-clip holdout once produced a fake +0.24 R2 gain for an untrained encoder because neighbouring clips are near-duplicates.
   **Evidence:** journal "Linear probe: 30x faster, and a leaky holdout found"; `src/eval/linear_probe.py`
+  Later, a steering probe could not separate any encoder from random (R2 ~ 0 for all), so method selection moved to a speed probe where EMA beat random by +0.10 R2 and SIGReg fell below it; journal "Phase 2 results".
 
 ## Trade-offs & what I would do differently
 

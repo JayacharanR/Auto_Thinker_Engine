@@ -303,3 +303,36 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** 125 tests pass; watcher matches status/logs (Phase 2 at 42%, queue 6.8%).
 **Lesson:** Cap CPU threads in tests that run next to a training job.
 **Interview angle:** -
+
+## 2026-10-02 23:46 - Correction: right_turn_simple has no cross traffic
+**Type:** mistake
+**Stage:** Stage 2 (correction of 2026-10-01 23:18)
+
+**What happened:** The 23:18 entry claimed the server's Traffic Manager bypass "likely removed the task's traffic". Checked against the task config: CarDreamer spawns flow traffic only when `min_flow_dist` is set, which only the medium/hard variants do.
+**Cause:** Inferred from code that spawns traffic without checking the condition guarding it.
+**How we handled it:** Corrected here; the lazy Traffic Manager is still the right design (tasks with traffic start one, others never do).
+**Verified by:** `load_task_configs('carla_right_turn_simple').env` has no `min_flow_dist`.
+**Lesson:** Check the guard condition before claiming what code does at runtime.
+**Interview angle:** -
+
+## 2026-10-02 23:46 - Phase 2 results: EMA learns motion, SIGReg does not; steering probe is blind
+**Type:** result
+**Stage:** Stage 4 - JEPA pretraining and selection
+
+**What happened:** Both 30k-step runs finished (EMA 66 min, SIGReg 103 min; no collapse warnings; GPU peak 63 C). The queue's steering probe ranked them by noise (EMA -0.038, SIGReg -0.013, random -0.018 R2) and picked SIGReg. Diagnostics (`scripts/probe_diagnostics.py`, validation R2): speed - EMA 0.82/0.85/0.88 (mean/2x2/4x4 pooling), random 0.64/0.78/0.78, SIGReg 0.41/0.61/0.69; steering ~0 for every encoder and pooling (best 0.03).
+**Cause:** Clip-mean steering on comma2k19 highway driving is not linearly decodable even with spatial layout kept, so it cannot rank encoders. SIGReg with lambda 0.05 and no stop-gradient produced features less informative than random init for speed.
+**How we handled it:** Selection criterion changed to speed R2 gain over random with 4x4 pooling (EMA +0.10, SIGReg -0.09); EMA final weights installed as `outputs/checkpoints/phase2/best.pt` for the custom_jepa arm. Probe extended with spatial-grid pooling and multiple targets.
+**Verified by:** `outputs/probe_results/diagnostics.json`, `selection.json`; 126 tests pass.
+**Lesson:** Validate that a probe can separate trained from random encoders before using it to choose between methods.
+**Interview angle:** How did you make sure your encoder evaluation was not fooling you?
+
+## 2026-10-02 23:46 - Stage 3 at 150k steps: from "drive off" to "stop and wait"
+**Type:** result
+**Stage:** Stage 3 - learning gate (not passed)
+
+**What happened:** Resumed 82.5k -> 150k at train_ratio 512 (3 h, 33,750 updates, 6.2 env steps/s). Behaviour changed at ~100k: instead of leaving the lane at the turn, the car enters the intersection, partly turns, then brakes and holds until the 500-step time limit (81% of eval actions: full brake). Route completion 55-59%, success 0%.
+**Cause:** CarDreamer's reward for this task has `time: 0.0` and the speed term is 0 at standstill, so waiting is free while a failed turn costs the out-of-lane penalty: a stable local optimum.
+**How we handled it:** Added `--env-set KEY=VALUE` (validated CarDreamer overrides, recorded in the run spec) so a small time penalty can be tested; decision on the next run taken with the user.
+**Verified by:** `scripts/inspect_episode.py` frames/actions; eval.jsonl; reward config.
+**Lesson:** A graded metric (route completion) and a look at the frames distinguish a new failure mode from no progress.
+**Interview angle:** What did you do when the agent stopped improving?

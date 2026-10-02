@@ -30,7 +30,7 @@ TINY = (
 
 
 def fake_make_carla_env(task_name, obs="bev", action="discrete", image_size=(64, 64),
-                        metrics_path=None, feature_extractor=None):
+                        metrics_path=None, feature_extractor=None, env_overrides=()):
     import envs.wrappers as wrappers
 
     env = DreamerObservation(FakeCarDreamerTask(length=40, ending="time_exceeded"),
@@ -54,7 +54,8 @@ def test_train_arm_checkpoints_evaluates_and_resumes(tmp_path, monkeypatch, caps
     assert len(re.findall(r"\[train\] eval @", out)) == 2
     assert metrics["env_steps"] == 260 and metrics["updates"] > 0
     assert torch.load(tmp_path / "run" / "latest.pt", weights_only=False)["step"] == 260
-    evals = [json.loads(line) for line in (tmp_path / "run" / "eval.jsonl").read_text().splitlines()]
+    eval_lines = (tmp_path / "run" / "eval.jsonl").read_text().splitlines()
+    evals = [json.loads(line) for line in eval_lines]
     assert [e["agent_step"] for e in evals] == [160, 260]
     assert (tmp_path / "run" / "episodes.jsonl").read_text().count('"mode": "train"') >= 5
 
@@ -65,3 +66,15 @@ def test_train_arm_checkpoints_evaluates_and_resumes(tmp_path, monkeypatch, caps
     out = capsys.readouterr().out
     assert "Prefilling" not in out and re.findall(r"env step (\d+)/300", out) == ["300"]
     assert metrics["env_steps"] == 300
+
+
+def test_task_overrides_are_validated():
+    sys.path.insert(0, str(PROJECT_ROOT / "third_party" / "CarDreamer"))
+    from car_dreamer import load_task_configs
+    from car_dreamer.toolkit import Flags
+
+    argv = trainer.task_argv("carla_right_turn_simple", "discrete", ("reward.scales.time=0.1",))
+    config, _ = Flags(load_task_configs("carla_right_turn_simple")).parse_known(argv)
+    assert config.env.reward.scales.time == 0.1 and config.env.action.discrete is True
+    with pytest.raises(ValueError, match="Unknown CarDreamer options"):
+        trainer.task_argv("carla_right_turn_simple", "discrete", ("reward.scales.tme=0.1",))

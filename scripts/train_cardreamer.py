@@ -157,6 +157,31 @@ def build_agent(obs_space, act_space, config, logger, dataset, arm, phase3_confi
     return agent
 
 
+def task_argv(task_name: str, action: str = "discrete", env_overrides: tuple = ()) -> list:
+    """
+    CarDreamer command-line overrides for a task, validated.
+
+    ``env_overrides`` are ``key=value`` pairs under ``env.`` (for example
+    ``reward.scales.time=0.1``). CarDreamer silently drops options it does not
+    know, so every override is checked against the task config first.
+    """
+    from car_dreamer import load_task_configs
+    from car_dreamer.toolkit import Flags
+
+    argv = ["--env.action.discrete", str(action == "discrete")]
+    if os.environ.get("CARLA_PORT"):
+        argv.extend(["--env.world.carla_port", os.environ["CARLA_PORT"]])
+    for item in env_overrides:
+        key, sep, value = item.partition("=")
+        if not sep:
+            raise ValueError(f"--env-set expects key=value, got {item!r}")
+        argv.extend([f"--env.{key.strip()}", value.strip()])
+    _, unknown = Flags(load_task_configs(task_name)).parse_known(argv)
+    if unknown:
+        raise ValueError(f"Unknown CarDreamer options for {task_name}: {unknown}")
+    return argv
+
+
 def make_carla_env(
     task_name: str,
     obs: str = "bev",
@@ -164,6 +189,7 @@ def make_carla_env(
     image_size: tuple = (64, 64),
     metrics_path: Optional[Path] = None,
     feature_extractor=None,
+    env_overrides: tuple = (),
 ):
     """
     Create a CarDreamer CARLA task wrapped for dreamerv3-torch.
@@ -177,10 +203,9 @@ def make_carla_env(
     import car_dreamer
     import envs.wrappers as wrappers
 
-    task_argv = ["--env.action.discrete", str(action == "discrete")]
-    if os.environ.get("CARLA_PORT"):
-        task_argv.extend(["--env.world.carla_port", os.environ["CARLA_PORT"]])
-    env, _ = car_dreamer.create_task(task_name, argv=task_argv)
+    env, _ = car_dreamer.create_task(
+        task_name, argv=task_argv(task_name, action, env_overrides)
+    )
 
     env = DreamerObservation(env, obs=obs, size=image_size, feature_extractor=feature_extractor)
     recorder = None
@@ -270,6 +295,7 @@ def train_arm(
     logdir: Optional[str] = None,
     resume: bool = False,
     checkpoint_every: int = 2500,
+    env_overrides: tuple = (),
 ) -> Dict:
     """
     Train one arm with dreamerv3-torch and return its metrics.
@@ -319,6 +345,7 @@ def train_arm(
         task, obs=obs, action=action, image_size=image_size,
         metrics_path=logdir / "episodes.jsonl",
         feature_extractor=build_feature_extractor(arm, phase3_config, device),
+        env_overrides=env_overrides,
     )
     agent = None
 
@@ -378,7 +405,8 @@ def train_arm(
               f"encoder: {type(agent._wm.encoder).__name__}")
 
         run_spec = {"arm": arm, "task": task, "obs": obs, "action": action,
-                    "image_size": list(image_size), "seed": seed}
+                    "image_size": list(image_size), "seed": seed,
+                    "env_overrides": list(env_overrides)}
         try:
             from src.utils.manifest import create_run_manifest
             create_run_manifest(
@@ -567,6 +595,9 @@ def main():
     parser.add_argument("--set", dest="overrides", action="append", default=[], metavar="KEY=VALUE",
                         help="Override a Dreamer config key, e.g. --set prefill=500 (repeatable)")
     parser.add_argument("--logdir", type=str, default=None)
+    parser.add_argument("--env-set", dest="env_overrides", action="append", default=[],
+                        metavar="KEY=VALUE",
+                        help="CarDreamer task override under env., e.g. reward.scales.time=0.1")
     parser.add_argument("--checkpoint-every", type=int, default=2500,
                         help="Env steps between checkpoints (bounds the loss on a crash)")
     parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
@@ -582,6 +613,7 @@ def main():
         image_size=tuple(args.image_size),
         profile=args.profile,
         overrides=tuple(args.overrides),
+        env_overrides=tuple(args.env_overrides),
     )
 
     if args.comparison:

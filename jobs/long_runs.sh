@@ -2,8 +2,9 @@
 # Long-run queue for the laptop (one GPU, so steps run one after another):
 #   1. Phase 2 JEPA, EMA regulariser       (~1.4 h, 30k steps)
 #   2. Phase 2 JEPA, SIGReg regulariser    (~2.2 h, 30k steps)
-#   3. Linear steering probe for both      (~2 min, encode once + ridge)
-#   4. Pick the larger probe R2 gain over a random encoder (final weights of each run)
+#   3. Probe diagnostics for both + random init (~7 min): steering and speed,
+#      global-mean / 2x2 / 4x4 pooling (scripts/probe_diagnostics.py)
+#   4. Pick the larger speed-R2 gain over the random encoder (final weights)
 #      -> outputs/checkpoints/phase2/best.pt (used by the custom_jepa arm)
 #   5. Stage 3: resume the CNN/BEV run from its checkpoint with
 #      train_ratio 512 (CarDreamer's setting) up to DREAMER_STEPS (~3 h)
@@ -117,25 +118,32 @@ phase2() {  # regulariser
 }
 
 select_phase2() {
+  # Criterion: validation R2 gain over the random-init encoder for clip speed
+  # with 4x4 spatial pooling (scripts/probe_diagnostics.py). Steering is kept
+  # for information only: on comma2k19 highway driving it is not linearly
+  # decodable by any encoder, random included, so it cannot rank methods.
   "$PY" - <<'PY'
 import json, shutil
 from pathlib import Path
 
+r = json.loads(Path("outputs/probe_results/diagnostics.json").read_text())["results"]
+probe = "speed|4x4"
+random = r[f"random_init|{probe}"]["r2"]
 results = {}
 for reg in ("ema", "sigreg"):
-    path = Path(f"outputs/probe_results/probe_phase2_{reg}_final_seed42.json")
-    if path.is_file():
-        r = json.loads(path.read_text())["results"]
-        results[reg] = {"trained_r2": r["trained"]["r2"], "random_r2": r["random"]["r2"],
-                        "gain_r2": r["trained"]["r2"] - r["random"]["r2"],
-                        "trained_mae": r["trained"]["mae"], "random_mae": r["random"]["mae"]}
+    key = f"phase2_{reg}/final|{probe}"
+    if key in r:
+        results[reg] = {"speed_r2": r[key]["r2"], "random_speed_r2": random,
+                        "gain_r2": r[key]["r2"] - random,
+                        "steering_r2": r[f"phase2_{reg}/final|steering|4x4"]["r2"]}
 if not results:
-    raise SystemExit("no probe results")
+    raise SystemExit("no diagnostics results")
 winner = max(results, key=lambda k: results[k]["gain_r2"])
 dest = Path("outputs/checkpoints/phase2/best.pt")
 dest.parent.mkdir(parents=True, exist_ok=True)
 shutil.copy2(f"outputs/checkpoints/phase2_{winner}/final.pt", dest)
-summary = {"winner": winner, "criterion": "trained R2 - random R2", "results": results}
+summary = {"winner": winner, "criterion": "speed R2 (4x4 pooling) - random-init R2",
+           "results": results}
 Path("outputs/probe_results/selection.json").write_text(json.dumps(summary, indent=2))
 print(json.dumps(summary, indent=2))
 PY
@@ -147,12 +155,8 @@ MONITOR_PID=$!
 trap 'kill "$MONITOR_PID" 2>/dev/null' EXIT
 run_step phase2_ema phase2 ema
 run_step phase2_sigreg phase2 sigreg
-for reg in ema sigreg; do
-  if [[ -f "outputs/checkpoints/phase2_$reg/final.pt" ]]; then
-    run_step "probe_$reg" "$PY" scripts/probe_phase2.py \
-      --checkpoint "outputs/checkpoints/phase2_$reg/final.pt"
-  fi
-done
+run_step probe_diagnostics "$PY" scripts/probe_diagnostics.py \
+  outputs/checkpoints/phase2_ema/final.pt outputs/checkpoints/phase2_sigreg/final.pt
 run_step select_phase2 select_phase2
 run_step dreamer_resume env RUN_MODE=cnn STEPS="$DREAMER_STEPS" \
   TRAIN_ARGS="--resume --logdir $DREAMER_LOGDIR --set train_ratio=512" bash jobs/slurm_run.sh

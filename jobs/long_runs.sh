@@ -27,84 +27,13 @@ set -uo pipefail
 PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$PROJECT_ROOT"
 PY="$PROJECT_ROOT/.venv/bin/python"
-export PYTHONUNBUFFERED=1  # logs show progress as it happens
 OUT="outputs/long_runs"
-mkdir -p "$OUT"
 export CARLA_ROOT="${CARLA_ROOT:-$HOME/software/CARLA_0.9.15}"
 DREAMER_STEPS="${DREAMER_STEPS:-150000}"
 DREAMER_LOGDIR="${DREAMER_LOGDIR:-outputs/logs/cnn_bev_seed42}"
 CONFIG="configs/phase2_jepa_laptop.yaml"
-GPU_TEMP_LIMIT="${GPU_TEMP_LIMIT:-92}"
-MIN_RAM_GB="${MIN_RAM_GB:-2}"
-MIN_DISK_GB="${MIN_DISK_GB:-5}"
-STOP_FILE="$OUT/STOP"
-rm -f "$STOP_FILE"
+source "$PROJECT_ROOT/jobs/lib_queue.sh"
 
-status() { echo "$(date '+%Y-%m-%d %H:%M:%S')  $*" | tee -a "$OUT/status.txt"; }
-
-TRAINER_PATTERN='^[^ ]*python[0-9.]* [^ ]*scripts/(train_phase2_jepa|train_cardreamer|probe_phase2)\.py'
-
-stop_trainers() {
-  # SIGTERM only the main trainer processes. The pattern is anchored to a
-  # Python interpreter (never a shell that merely mentions the script), and
-  # children of a trainer (DataLoader workers share its command line) are
-  # skipped: the trainer shuts them down itself after checkpointing.
-  local pid parent
-  for pid in $(pgrep -f "$TRAINER_PATTERN"); do
-    parent="$(ps -o ppid= -p "$pid" | tr -d ' ')"
-    if [[ -n "$parent" ]] && tr '\0\n' '  ' < "/proc/$parent/cmdline" 2>/dev/null \
-        | grep -Eq "$TRAINER_PATTERN"; then
-      continue
-    fi
-    kill -TERM "$pid" 2>/dev/null
-  done
-}
-
-health_monitor() {
-  local hot=0 gpu ram disk cpu
-  while true; do
-    gpu="$(nvidia-smi --query-gpu=temperature.gpu,memory.used,utilization.gpu,power.draw \
-           --format=csv,noheader,nounits 2>/dev/null | head -1)"
-    ram="$(awk '/MemAvailable/ {printf "%.1f", $2 / 1048576}' /proc/meminfo)"
-    disk="$(df -BG --output=avail "$PROJECT_ROOT" | tail -1 | tr -dc 0-9)"
-    cpu="$(sensors 2>/dev/null | awk '/Package id 0/ {print $4; exit}')"
-    echo "$(date '+%H:%M:%S') gpu[temp,MiB,util,W]=${gpu// /} cpu=${cpu:-?} ram_avail=${ram}G disk_free=${disk}G" \
-      >> "$OUT/health.log"
-    if [[ "${gpu%%,*}" =~ ^[0-9]+$ ]] && (( ${gpu%%,*} >= GPU_TEMP_LIMIT )); then
-      hot=$((hot + 1))
-    else
-      hot=0
-    fi
-    local reason=""
-    (( hot >= 3 )) && reason="GPU at ${gpu%%,*} C for 90 s"
-    awk -v r="$ram" -v m="$MIN_RAM_GB" 'BEGIN { exit !(r < m) }' && reason="RAM available ${ram} GB"
-    (( disk < MIN_DISK_GB )) && reason="disk free ${disk} GB"
-    if [[ -n "$reason" ]]; then
-      echo "health monitor: $reason" > "$STOP_FILE"
-    fi
-    if [[ -f "$STOP_FILE" ]]; then
-      [[ -s "$STOP_FILE" ]] || echo "manual STOP file" > "$STOP_FILE"
-      status "STOP: $(cat "$STOP_FILE"); stopping trainers"
-      stop_trainers
-      return
-    fi
-    sleep 30
-  done
-}
-
-run_step() {  # name, command...
-  local name="$1"; shift
-  if [[ -f "$STOP_FILE" ]]; then
-    status "SKIP  $name (stopped: $(cat "$STOP_FILE"))"
-    return
-  fi
-  status "START $name"
-  if "$@" > "$OUT/$name.log" 2>&1; then
-    status "OK    $name"
-  else
-    status "FAIL  $name (exit $?, see $OUT/$name.log)"
-  fi
-}
 
 phase2() {  # regulariser
   local dir="outputs/checkpoints/phase2_$1" resume=()
@@ -149,10 +78,7 @@ print(json.dumps(summary, indent=2))
 PY
 }
 
-status "=== long-run queue started (Dreamer target ${DREAMER_STEPS} steps) ==="
-health_monitor &
-MONITOR_PID=$!
-trap 'kill "$MONITOR_PID" 2>/dev/null' EXIT
+start_queue "long-run queue (Dreamer target ${DREAMER_STEPS} steps)"
 run_step phase2_ema phase2 ema
 run_step phase2_sigreg phase2 sigreg
 run_step probe_diagnostics "$PY" scripts/probe_diagnostics.py \

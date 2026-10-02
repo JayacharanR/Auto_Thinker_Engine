@@ -79,6 +79,16 @@ def render(logdir: Path, target: int, history: list) -> str:
     return line
 
 
+def health_line() -> str:
+    """Latest line of the most recent queue health log, if written in the last 2 min."""
+    logs = sorted(Path("outputs").glob("*/health.log"), key=lambda p: p.stat().st_mtime)
+    if not logs or time.time() - logs[-1].stat().st_mtime > 120:
+        return ""
+    last = logs[-1].read_text().splitlines()[-1]
+    gpu = last.split("gpu[temp,MiB,util,W]=")[-1].split()[0].split(",")
+    return f"  | GPU {gpu[0]}°C {gpu[2]}%" if len(gpu) >= 3 else ""
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("logdir", type=Path, nargs="?", default=None,
@@ -98,6 +108,8 @@ def main() -> int:
     try:
         while True:
             line = render(args.logdir, args.target, history)
+            if not line.startswith("DONE"):
+                line += health_line()
             sys.stdout.write("\r\033[K" + line)
             sys.stdout.flush()
             if line.startswith("DONE"):

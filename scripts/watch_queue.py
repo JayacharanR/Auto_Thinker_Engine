@@ -23,8 +23,8 @@ OUT = Path("outputs/long_runs")
 # Queue steps with rough durations in hours (measured on the RTX 5070 Ti laptop),
 # used to weight the overall bar.
 STEPS = [
-    ("phase2_ema", 1.0), ("phase2_sigreg", 1.7), ("probe_ema", 0.02),
-    ("probe_sigreg", 0.02), ("select_phase2", 0.01), ("dreamer_resume", 3.5),
+    ("phase2_ema", 1.0), ("phase2_sigreg", 1.7), ("probe_diagnostics", 0.12),
+    ("select_phase2", 0.01), ("dreamer_resume", 3.5),
 ]
 DREAMER_LOGDIR = Path("outputs/logs/cnn_bev_seed42")
 DREAMER_TARGET = 150_000
@@ -50,7 +50,9 @@ def queue_state() -> dict:
     path = OUT / "status.txt"
     if path.is_file():
         lines = path.read_text().splitlines()
-        starts = [i for i, line in enumerate(lines) if "long-run queue started" in line]
+        # Start lines: "=== <title> started ===" (older: "=== ... queue started (...) ===").
+        starts = [i for i, line in enumerate(lines) if "===" in line
+                  and ("queue started" in line or line.rstrip().endswith("started ==="))]
         for line in lines[starts[-1] if starts else 0:]:
             m = re.match(r"\S+ \S+\s+(START|OK|FAIL|SKIP)\s+(\S+)", line)
             if m:

@@ -336,3 +336,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** `scripts/inspect_episode.py` frames/actions; eval.jsonl; reward config.
 **Lesson:** A graded metric (route completion) and a look at the frames distinguish a new failure mode from no progress.
 **Interview angle:** What did you do when the agent stopped improving?
+
+## 2026-10-03 00:15 - Stage 3 retry with a time penalty (user decision)
+**Type:** decision
+**Stage:** Stage 3 - learning gate retry
+
+**What happened:** Chosen with the user over "continue unchanged to 300k" and "start the comparison now": a fresh CNN/BEV run (`outputs/logs/cnn_bev_tp01_seed42`, 150k steps, train_ratio 512) with CarDreamer's `reward.scales.time` = 0.1 (default 0), launched 00:13 via `jobs/stage3_time_penalty.sh` (~6.6 h).
+**Cause:** Waiting at the intersection was free; a 0.1/step penalty makes a full-length stall cost ~-50, small next to the +2/step for driving at the desired speed.
+**How we handled it:** Fresh run rather than resuming, so replay does not mix two reward functions. Queue machinery moved to `jobs/lib_queue.sh` (shared by both job scripts). Documented deviation from CarDreamer's default reward; if it works, every comparison arm uses the same reward.
+**Verified by:** Same seed, identical random prefill trajectories: every 501-step episode scores exactly 50.1 lower (15.9 -> -34.2, 50.9 -> 0.8, 20.2 -> -29.9); override recorded in the run spec.
+**Lesson:** Verify a config override by its effect, not by the absence of an error.
+**Interview angle:** Did you change the benchmark's reward? Why, and how did you keep the comparison fair?

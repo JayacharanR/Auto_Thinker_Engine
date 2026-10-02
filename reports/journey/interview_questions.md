@@ -94,6 +94,10 @@ runs not finished yet.
   **Evidence:** journal "Linear probe: 30x faster, and a leaky holdout found"; `src/eval/linear_probe.py`
   Later, a steering probe could not separate any encoder from random (R2 ~ 0 for all), so method selection moved to a speed probe where EMA beat random by +0.10 R2 and SIGReg fell below it; journal "Phase 2 results".
 
+- **Q:** Did you change the benchmark's reward? Why, and how did you keep it fair?
+  **A (short):** Yes, one term: CarDreamer's per-step time penalty from 0 to 0.1, after the agent learned that stopping mid-turn was free while a failed turn was penalised. It is applied identically to every arm, recorded in each run's spec, and verified by its effect (same-seed episodes score exactly 0.1 x length lower).
+  **Evidence:** journal "Stage 3 at 150k steps", "Stage 3 retry with a time penalty"
+
 ## Trade-offs & what I would do differently
 
 - **Q:** What would you do differently?

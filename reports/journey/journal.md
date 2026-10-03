@@ -391,3 +391,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** Recovery rehearsal: CARLA killed with SIGSEGV mid-run -> checkpoint at exactly the crash step (1606) -> RETRY -> resumed at 1606 -> finished 3000 -> aggregated. Unit test with a simulated simulator crash. 129 tests pass.
 **Lesson:** In long simulation runs, plan for the simulator to crash: checkpoint at the failure and restart automatically.
 **Interview angle:** How did you handle an unreliable simulator in multi-day experiments?
+
+## 2026-10-03 23:23 - Comparison run 2 stopped by the user; cnn done, vjepa2 at 67k
+**Type:** result
+**Stage:** Stage 5 - encoder comparison (paused)
+
+**What happened:** cnn resumed from 22.5k and finished 100k (eval success 0% at 12.5k, 100% from 32.5k). vjepa2 needed three automatic retries after CARLA crashes (21:05, 22:19, 22:24) and reached 100% eval success by its ~30k eval; stopped at 23:23 with a checkpoint at 67,153 steps. custom_jepa (run 1): 0% / 70% / 100% at 12.5k / 22.5k / 32.5k.
+**Cause:** Stopped on request via the STOP file; the retries confirm CARLA segfaults recur roughly every 1-1.5 h of simulation, and the recovery handled each one.
+**How we handled it:** Resume later by rerunning `jobs/comparison.sh` (cnn and custom_jepa are skipped, vjepa2 resumes from 67k). Open issue: after a resume the eval schedule restarts from the resume step (cnn has no 22.5k eval; vjepa2 evaluated at 17k/30k/40k/56k/66k), so steps-to-80%-success is not measured at the same steps for every arm - evals should be aligned to multiples of eval_every before drawing conclusions on sample efficiency.
+**Verified by:** `outputs/comparison_queue/status.txt`, each arm's eval.jsonl, vjepa2 latest.pt step 67153.
+**Lesson:** A recovery mechanism can quietly change the measurement protocol; check that metrics are still comparable after restarts.
+**Interview angle:** How did you handle an unreliable simulator in multi-day experiments?

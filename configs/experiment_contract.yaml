@@ -21,11 +21,14 @@ stages:
     obs: bev                                  # birdeye_wpt -> image 64x64 (route drawn in)
     action: discrete                          # CarDreamer action table, one-hot actor
     arms: [cnn]
-  encoder_comparison:                         # Stage 5
+  encoder_comparison:                         # Stage 5 (jobs/comparison.sh)
     task: carla_right_turn_simple
     obs: camera_route                         # front camera -> image 64x64, + route vector
-    action: continuous                        # [acceleration, steering] in [-1, 1]
-    arms: [cnn, custom_jepa, vjepa2]
+    action: discrete                          # as in the passed Stage 3 run: only the
+                                              # observation changes from Stage 3
+    arms: [cnn, custom_jepa, vjepa2]          # custom_jepa = Phase 2 EMA (speed-probe winner)
+    train_ratio: 512
+    steps_per_arm: 100000                     # one seed (42) first
 
 observation:
   image: [64, 64, 3]                          # uint8, channel-last; decoder target for all arms
@@ -60,3 +63,6 @@ metrics:                                      # per run: episodes.jsonl, eval.js
                steps_to_threshold, wall_clock_hours, peak_vram_gb, train_steps_per_sec]
 
 reward_source: cardreamer_wpt                 # CarDreamer carla_wpt_env reward
+reward_overrides:                             # --env-set, recorded in each run's run_spec
+  reward.scales.time: 0.1                     # CarDreamer default 0: waiting was free and the
+                                              # agent stalled mid-turn (journal 2026-10-03)

@@ -354,8 +354,12 @@ def run_evaluation(
                 pass
             telemetry["ttc"] = ttc
 
-            # Filter action through Safety Supervisor
-            safe_action, intervention_info = supervisor.filter_action(raw_action, telemetry)
+            # Filter action through Safety Supervisor. It edits continuous
+            # [acc, steer] actions only (it would truncate a one-hot action).
+            if use_safety_shield:
+                safe_action, intervention_info = supervisor.filter_action(raw_action, telemetry)
+            else:
+                safe_action, intervention_info = raw_action, {"intervened": False, "reasons": []}
 
             # Step CARLA environment (SelectAction wrapper extracts dict['action'])
             next_obs, reward, done, info = env.step({"action": safe_action})

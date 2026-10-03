@@ -535,6 +535,8 @@ def run_comparison(
     arms: tuple = ("cnn", "custom_jepa", "vjepa2"),
     output_dir: Optional[str] = None,
     success_threshold: float = 0.8,
+    seeds: Optional[list] = None,
+    train_missing: bool = True,
     **run_kwargs,
 ):
     """
@@ -543,11 +545,12 @@ def run_comparison(
 
     Each run has its own log directory under ``output_dir``. Finished runs
     (metrics.json present) are reused and interrupted runs resume, so the
-    comparison can be restarted after a crash.
+    comparison can be restarted after a crash. With ``train_missing=False``
+    only finished runs are summarised (no CARLA needed).
     """
     from src.eval.metrics import ComparisonTable
 
-    seeds = phase3_config.get("experiment", {}).get("seeds", [42, 123, 456])
+    seeds = seeds or phase3_config.get("experiment", {}).get("seeds", [42, 123, 456])
     out = Path(output_dir or PROJECT_ROOT / "outputs" / "comparison"
                / f"{task}_{run_kwargs.get('obs', 'bev')}")
     out.mkdir(parents=True, exist_ok=True)
@@ -556,6 +559,9 @@ def run_comparison(
     for arm in arms:
         for seed in seeds:
             logdir = out / f"{arm}_seed{seed}"
+            if not (logdir / "metrics.json").is_file() and not train_missing:
+                print(f"[comparison] {arm} seed {seed}: no metrics.json yet, skipped")
+                continue
             if not (logdir / "metrics.json").is_file():
                 print(f"\n{'#' * 60}\n# Comparison: {arm} / seed {seed}\n{'#' * 60}")
                 train_arm(
@@ -603,6 +609,10 @@ def main():
     parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
     parser.add_argument("--arms", nargs="+", default=["cnn", "custom_jepa", "vjepa2"],
                         choices=["cnn", "custom_jepa", "vjepa2"], help="Arms for --comparison")
+    parser.add_argument("--seeds", nargs="+", type=int, default=None,
+                        help="Seeds for --comparison (default: Phase 3 config)")
+    parser.add_argument("--aggregate-only", action="store_true",
+                        help="--comparison: summarise finished runs only, train nothing")
     parser.add_argument("--resume", action="store_true", help="Resume from <logdir>/latest.pt")
     args = parser.parse_args()
 
@@ -619,7 +629,8 @@ def main():
     if args.comparison:
         run_comparison(
             task=args.task, phase3_config=phase3_config, steps=args.steps,
-            arms=tuple(args.arms), output_dir=args.logdir, **run_kwargs,
+            arms=tuple(args.arms), output_dir=args.logdir, seeds=args.seeds,
+            train_missing=not args.aggregate_only, **run_kwargs,
         )
     else:
         train_arm(

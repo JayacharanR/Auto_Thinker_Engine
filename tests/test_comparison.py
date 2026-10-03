@@ -58,3 +58,16 @@ def test_comparison_trains_missing_runs_and_aggregates(tmp_path, monkeypatch):
     ]
     table = (tmp_path / "comparison.md").read_text()
     assert "| steps_to_threshold |" in table and "cnn" in table and "vjepa2" in table
+
+
+def test_aggregate_only_skips_unfinished_runs(tmp_path, monkeypatch):
+    def must_not_train(**kwargs):
+        raise AssertionError("aggregate-only must not train")
+
+    monkeypatch.setattr(trainer, "train_arm", must_not_train)
+    _fake_run(tmp_path / "cnn_seed42", seed=42)
+    trainer.run_comparison("task", {}, steps=100, arms=("cnn", "vjepa2"), seeds=[42],
+                           output_dir=str(tmp_path), train_missing=False, obs="camera_route")
+    result = json.loads((tmp_path / "comparison.json").read_text())
+    assert [(r["arm"], r["seed"]) for r in result["runs"]] == [("cnn", 42)]
+    assert result["seeds"] == [42]

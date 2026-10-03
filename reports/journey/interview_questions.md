@@ -25,6 +25,10 @@ runs not finished yet.
   **A (short):** Looked at what it saw and did: BEV frames at episode end and the action histogram showed it always drove straight through the intersection where the route turns right. Compared settings with the reference implementation (4x fewer updates per env step, half the BEV resolution) and resumed training with the reference update ratio rather than restarting. (pending: outcome)
   **Evidence:** journal 2026-10-02 01:05
 
+- **Q:** What was the turning point in getting the car to drive?
+  **A (short):** Diagnosing a stall instead of adding compute. After 150k steps the agent reached the intersection, started the turn and braked forever (0% success): CarDreamer's reward made standing still free. A 0.1/step time penalty took the fresh run to 100% eval success within 22.5k steps and 20/20 on a final 20-episode evaluation with no collisions.
+  **Evidence:** journal "Stage 3 at 150k steps", "Stage 3 gate passed"; videos in outputs/eval_results/cnn_bev_tp01_150k
+
 - **Q:** How do you treat episodes that end by time-out?
   **A (short):** As truncations, not terminal states: discount stays 1 so the critic bootstraps. The original code marked them terminal, which teaches the value function that time-outs are dead ends.
   **Evidence:** journal 2026-10-01 23:30; `src/dreamer/carla_wrappers.py`

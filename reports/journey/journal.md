@@ -347,3 +347,36 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** Same seed, identical random prefill trajectories: every 501-step episode scores exactly 50.1 lower (15.9 -> -34.2, 50.9 -> 0.8, 20.2 -> -29.9); override recorded in the run spec.
 **Lesson:** Verify a config override by its effect, not by the absence of an error.
 **Interview angle:** Did you change the benchmark's reward? Why, and how did you keep the comparison fair?
+
+## 2026-10-03 07:38 - Stage 3 gate passed: the car completes the right turn
+**Type:** milestone
+**Stage:** Stage 3 - learning gate (passed)
+
+**What happened:** Fresh CNN/BEV run with time penalty 0.1 (150k steps, train_ratio 512, 6.6 h, 73,850 updates, GPU peak 61 C). Eval success 0% at 12.5k, **100% from 22.5k** onward in 13 of 14 evals (one dip to 10% at 72.5k, recovered next eval); eval return ~354 vs ~165 without the penalty; every training episode from 80k to 150k reached the destination (415/415). Final 20-episode evaluation: **20/20 success, 0 collisions, 0 out of lane**, ~139 steps per episode, 12 km/h; videos in `outputs/eval_results/cnn_bev_tp01_150k/videos`.
+**Cause:** The earlier plateau was entirely the free stall in the reward; with it priced, the agent learned the turn within ~20k steps.
+**How we handled it:** Gate recorded as passed with the time-penalty reward; that reward becomes part of the comparison contract for every arm.
+**Verified by:** `eval.jsonl`, `episodes.jsonl`, `outputs/eval_results/cnn_bev_tp01_150k/evaluation_metrics.json`.
+**Lesson:** When an agent settles into a degenerate behaviour, check what the reward makes free before adding capacity or compute.
+**Interview angle:** What was the turning point in getting the car to drive?
+
+## 2026-10-03 07:38 - Evaluator mangled discrete actions
+**Type:** bug
+**Stage:** Stage 3 - evaluation
+
+**What happened:** The 20-episode evaluation crashed on its first step: "Invalid one-hot action".
+**Cause:** With the safety shield disabled, `evaluate_agent.py` still passed actions through `SafetySupervisor.filter_action`, which sanitises to `[acc, steer]` and truncated the 15-way one-hot to 2 values.
+**How we handled it:** Bypass the supervisor entirely when the shield is off.
+**Verified by:** 20-episode evaluation completed (20/20 success).
+**Lesson:** A "disabled" component that still transforms its input is not disabled.
+**Interview angle:** -
+
+## 2026-10-03 07:49 - Encoder comparison designed, smoke-tested and launched
+**Type:** decision
+**Stage:** Stage 5 - encoder comparison
+
+**What happened:** Comparison set up as `jobs/comparison.sh`: cnn vs custom_jepa (Phase 2 EMA) vs vjepa2 on carla_right_turn_simple, front camera + route vector, discrete actions, time penalty 0.1, train_ratio 512, 100k env steps per arm, seed 42 first (~20 h). A 1k-step smoke test of all three arms plus aggregation passed (run specs identical apart from the arm; CARLA cleaned up after each arm).
+**Cause:** Discrete actions kept so that only the observation changes from the passed Stage 3 setup (one variable at a time); the contract's earlier "continuous" was an unresolved choice.
+**How we handled it:** One queue step per arm (independent resume), aggregate-only final step (no CARLA), `--seeds`, queue watcher generalised (`--out`, `steps.json`). Measured throughput at ratio 512: cnn 4.4, custom_jepa 4.7, vjepa2 3.6 env steps/s (the frozen JEPA arm is faster than CNN: only its adapter trains).
+**Verified by:** smoke comparison table and run specs; 127 tests pass.
+**Lesson:** Smoke-test the whole multi-step job, including aggregation, before committing a day of compute.
+**Interview angle:** How do you make the encoder comparison fair?

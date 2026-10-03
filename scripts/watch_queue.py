@@ -8,7 +8,10 @@ it only reads files the queue writes, so it is safe to run any time.
 Ctrl-C to stop watching (the queue keeps running).
 
 Usage:
-    python3 scripts/watch_queue.py
+    python3 scripts/watch_queue.py                                   # outputs/long_runs
+    python3 scripts/watch_queue.py --out outputs/comparison_queue    # any queue
+A queue may describe its steps in <out>/steps.json:
+    [{"name": ..., "hours": ..., "logdir": <Dreamer run dir>, "target": <env steps>}, ...]
 """
 
 import argparse
@@ -26,8 +29,19 @@ STEPS = [
     ("phase2_ema", 1.0), ("phase2_sigreg", 1.7), ("probe_diagnostics", 0.12),
     ("select_phase2", 0.01), ("dreamer_resume", 3.5),
 ]
-DREAMER_LOGDIR = Path("outputs/logs/cnn_bev_seed42")
+DREAMER_LOGDIR = "outputs/logs/cnn_bev_seed42"
 DREAMER_TARGET = 150_000
+DONE_STATES = ("OK", "FAIL", "SKIP", "DONE")
+
+
+def load_steps() -> list:
+    """Steps of the queue: <out>/steps.json if present, else the long-run queue."""
+    path = OUT / "steps.json"
+    if path.is_file():
+        return json.loads(path.read_text())
+    steps = [{"name": n, "hours": h} for n, h in STEPS]
+    steps[-1].update(logdir=DREAMER_LOGDIR, target=DREAMER_TARGET)
+    return steps
 BATCH = 64  # Phase 2 clips per step (configs/phase2_jepa_laptop.yaml)
 
 
@@ -54,7 +68,9 @@ def queue_state() -> dict:
         starts = [i for i, line in enumerate(lines) if "===" in line
                   and ("queue started" in line or line.rstrip().endswith("started ==="))]
         for line in lines[starts[-1] if starts else 0:]:
-            m = re.match(r"\S+ \S+\s+(START|OK|FAIL|SKIP)\s+(\S+)", line)
+            if "===" in line and line.rstrip().endswith("finished ==="):
+                state["__finished__"] = line.split("===")[1].strip()
+            m = re.match(r"\S+ \S+\s+(START|OK|FAIL|SKIP|DONE)\s+(\S+)", line)
             if m:
                 state[m.group(2)] = m.group(1)
     return state
@@ -77,8 +93,8 @@ def phase2_progress(step: str):
     return done_step, int(total[-1]), rate, time.time() - log.stat().st_mtime
 
 
-def dreamer_progress(history: list):
-    path = DREAMER_LOGDIR / "episodes.jsonl"
+def dreamer_progress(history: list, logdir: str, target: int):
+    path = Path(logdir) / "episodes.jsonl"
     if not path.is_file():
         return None
     with open(path, "rb") as f:
@@ -95,7 +111,7 @@ def dreamer_progress(history: list):
     rate = None
     if len(history) >= 2 and history[-1][1] > history[0][1]:
         rate = (history[-1][1] - history[0][1]) / (history[-1][0] - history[0][0])
-    return step, DREAMER_TARGET, rate
+    return step, target, rate
 
 
 def health() -> str:
@@ -112,17 +128,19 @@ def health() -> str:
             f"RAM free {ram} | disk free {disk}  (as of {last.split()[0]})")
 
 
-def render(dreamer_history: list) -> list:
+def render(histories: dict) -> list:
     width = max(10, min(40, shutil.get_terminal_size().columns - 70))
     state = queue_state()
     if not state:
-        return ["Queue not started (no outputs/long_runs/status.txt)."]
+        return [f"Queue not started (no {OUT}/status.txt)."]
 
-    total_h = sum(h for _, h in STEPS)
+    steps = load_steps()
+    total_h = sum(st["hours"] for st in steps)
     done_h, current, line, eta = 0.0, None, "", None
-    for name, hours in STEPS:
+    for st in steps:
+        name, hours = st["name"], st["hours"]
         s = state.get(name)
-        if s in ("OK", "FAIL", "SKIP"):
+        if s in DONE_STATES:
             done_h += hours
         elif s == "START" and current is None:
             current = name
@@ -137,8 +155,8 @@ def render(dreamer_history: list) -> list:
                     eta = (total - est) / rate if rate else None
                     rate_txt = (f"{int(est):>6,}/{total:,} steps  {rate or 0:4.1f} st/s  "
                                 f"ETA {fmt(eta)}")
-            elif name == "dreamer_resume":
-                p = dreamer_progress(dreamer_history)
+            elif "logdir" in st:
+                p = dreamer_progress(histories.setdefault(name, []), st["logdir"], st["target"])
                 if p:
                     step, total, rate = p
                     frac = step / total
@@ -150,19 +168,23 @@ def render(dreamer_history: list) -> list:
             done_h += hours * frac
             line = f"{name:15s} [{bar(frac, width)}] {frac:6.1%}  {rate_txt}"
 
-    finished = all(state.get(n) in ("OK", "FAIL", "SKIP") for n, _ in STEPS)
-    overall = done_h / total_h
+    names = [st["name"] for st in steps]
+    finished = "__finished__" in state or all(state.get(n) in DONE_STATES for n in names)
+    overall = 1.0 if finished else done_h / total_h
+    ran = [n for n in state if not n.startswith("__")]
+    done_count = len(ran) if finished else sum(state.get(n) in DONE_STATES for n in names)
+    total_count = len(ran) if finished else len(names)
     lines = []
     if finished:
-        lines.append("Queue finished: " + ", ".join(f"{n} {state.get(n, '-')}" for n, _ in STEPS))
+        lines.append("Queue finished: " + ", ".join(f"{n} {state[n]}" for n in ran))
     else:
         lines.append(line or "between steps...")
-    rest_h = sum(h for n, h in STEPS if state.get(n) not in ("OK", "FAIL", "SKIP", "START"))
+    rest_h = sum(st["hours"] for st in steps
+                 if state.get(st["name"]) not in (*DONE_STATES, "START"))
     total_eta = (eta or 0) + rest_h * 3600 if not finished else 0
     lines.append(f"{'whole queue':15s} [{bar(overall, width)}] {overall:6.1%}  "
-                 f"steps done {sum(state.get(n) in ('OK', 'FAIL', 'SKIP') for n, _ in STEPS)}"
-                 f"/{len(STEPS)}  ETA ~{fmt(total_eta)}")
-    failed = [n for n, _ in STEPS if state.get(n) == "FAIL"]
+                 f"steps done {done_count}/{total_count}  ETA ~{fmt(total_eta)}")
+    failed = [n for n in names if state.get(n) == "FAIL"]
     if failed:
         lines.append("FAILED: " + ", ".join(failed) + f"  (see {OUT}/<step>.log)")
     if (OUT / "STOP").exists():
@@ -174,8 +196,10 @@ def render(dreamer_history: list) -> list:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--interval", type=float, default=2.0, help="Refresh seconds")
+    parser.add_argument("--out", type=Path, default=OUT, help="Queue output directory")
     args = parser.parse_args()
-    history: list = []
+    globals()["OUT"] = args.out
+    history: dict = {}
     printed = 0
     try:
         while True:

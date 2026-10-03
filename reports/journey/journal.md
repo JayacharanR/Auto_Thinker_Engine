@@ -413,3 +413,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** test: crash after the 160 eval, resume -> evals at 160, 260, 360, 380; 129 tests pass.
 **Lesson:** Tie measurement schedules to absolute progress, not to when a process started.
 **Interview angle:** How do you make the encoder comparison fair?
+
+## 2026-10-04 02:17 - Cheaper second seed: early stopping, finer evals, matched-step summary
+**Type:** decision
+**Stage:** Stage 5 - encoder comparison
+
+**What happened:** Seed 42 result (camera + route): cnn, custom_jepa and vjepa2 all reach 100% eval success between ~30.8k and 32.5k steps and stay there (custom_jepa 70% already at 22.5k; vjepa2 stopped at 66.7k with four consecutive 100% evals). Running seed 123 for 100k steps per arm (~16-20 h) would mostly re-confirm a solved task.
+**Cause:** n/a (user decision: cut cost, keep the measurement that matters).
+**How we handled it:** Seed 123 at 50k steps per arm, evals every 5k (finer steps-to-threshold), early stop once 3 consecutive evals reach 90% (`--early-stop-evals`, history read across resumes) - ~6-7 h for all three arms. vjepa2 seed 42 not trained further. Comparison summary now: success at matched steps (`success_by_12.5k/22.5k/32.5k/42.5k`, NaN when that eval was lost to a crash, so missing data never reads as 0%), unfinished runs summarised from their evals (`--include-partial`, never trains), learning-curve plot `comparison_curves.png`. Bug caught on the way: aggregate-only with partial runs fell through to training (CARLA was down, nothing written); fixed with a test.
+**Verified by:** unit tests (early stop at 260 with K=2; partial aggregation never trains; matched-step values); real-CARLA smoke of the job (flags, 500-step eval grid, aggregate); 131 tests pass.
+**Lesson:** Spend compute on the measurement that can still change the conclusion; stop runs once the question they answer is settled.
+**Interview angle:** How did you budget compute on a single laptop GPU?

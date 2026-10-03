@@ -71,3 +71,20 @@ def test_aggregate_only_skips_unfinished_runs(tmp_path, monkeypatch):
     result = json.loads((tmp_path / "comparison.json").read_text())
     assert [(r["arm"], r["seed"]) for r in result["runs"]] == [("cnn", 42)]
     assert result["seeds"] == [42]
+
+
+def test_aggregate_only_with_partial_runs_never_trains(tmp_path, monkeypatch):
+    def must_not_train(**kwargs):
+        raise AssertionError("aggregate-only must not train")
+
+    monkeypatch.setattr(trainer, "train_arm", must_not_train)
+    _fake_run(tmp_path / "cnn_seed42", seed=42)
+    _fake_run(tmp_path / "vjepa2_seed42", seed=42, successes=(0.0, 1.0))
+    (tmp_path / "vjepa2_seed42" / "metrics.json").unlink()  # stopped before finishing
+    trainer.run_comparison("task", {}, steps=100, arms=("cnn", "vjepa2"), seeds=[42],
+                           output_dir=str(tmp_path), train_missing=False,
+                           include_partial=True, obs="camera_route")
+    runs = json.loads((tmp_path / "comparison.json").read_text())["runs"]
+    vjepa2 = next(r for r in runs if r["arm"] == "vjepa2")
+    assert vjepa2["partial"] == 1.0 and vjepa2["steps_to_threshold"] == 20000
+    assert vjepa2["success_by_12.5k"] == 0.0 and vjepa2["success_by_22.5k"] == 1.0

@@ -150,3 +150,25 @@ def test_evals_stay_on_fixed_steps_after_resume(tmp_path, monkeypatch):
     lines = (tmp_path / "run" / "eval.jsonl").read_text().splitlines()
     # prefill 60, eval_every 100: 160, then (resumed mid-chunk) 260, 360, and the target.
     assert [json.loads(line)["agent_step"] for line in lines] == [160, 260, 360, 380]
+
+
+def test_early_stop_after_k_successful_evals(tmp_path, monkeypatch):
+    import envs.wrappers as wrappers
+
+    torch.set_num_threads(2)
+
+    def always_arrives(task_name, obs="bev", action="discrete", image_size=(64, 64),
+                       metrics_path=None, feature_extractor=None, env_overrides=()):
+        env = DreamerObservation(FakeCarDreamerTask(length=30, ending="destination_reached"),
+                                 obs=obs, size=image_size)
+        env = recorder = EpisodeMetricsRecorder(env, metrics_path)
+        env = wrappers.UUID(wrappers.SelectAction(wrappers.OneHotAction(env), key="action"))
+        return env, recorder
+
+    monkeypatch.setattr(trainer.torch.cuda, "is_available", lambda: False)
+    monkeypatch.setattr(trainer, "make_carla_env", always_arrives)
+    metrics = trainer.train_arm(arm="cnn", task="fake", seed=0, phase3_config={},
+                                overrides=TINY, logdir=str(tmp_path / "run"), steps=1000,
+                                checkpoint_every=50, early_stop_evals=2)
+    assert metrics["early_stopped_at"] == 260 and metrics["env_steps"] == 260
+    assert metrics["final_eval"]["success_rate"] == 1.0

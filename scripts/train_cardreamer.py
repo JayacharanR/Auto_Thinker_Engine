@@ -296,6 +296,8 @@ def train_arm(
     resume: bool = False,
     checkpoint_every: int = 2500,
     env_overrides: tuple = (),
+    early_stop_evals: int = 0,
+    early_stop_success: float = 0.9,
 ) -> Dict:
     """
     Train one arm with dreamerv3-torch and return its metrics.
@@ -433,6 +435,7 @@ def train_arm(
         # (power loss, OOM kill) loses at most that many steps. ---
         target = int(config.steps)
         eval_summary = None
+        early_stopped_at = None
         train_started, train_start_step = time.time(), agent._step
         print(f"[train] Training from env step {agent._step} to {target} (prefill included), "
               f"checkpoint every {checkpoint_every} steps")
@@ -471,6 +474,17 @@ def train_arm(
                       f"return {eval_summary['mean_reward']:.1f}")
                 # Evaluation reset the shared environment; restart the train episode.
                 state = None
+                # Early stop: the task is mastered once the last K evals (this
+                # run's whole history, across resumes) all reach the threshold.
+                if early_stop_evals > 0:
+                    history = [json.loads(line)["success_rate"] for line in
+                               (logdir / "eval.jsonl").read_text().splitlines()]
+                    recent = history[-early_stop_evals:]
+                    if len(recent) == early_stop_evals and min(recent) >= early_stop_success:
+                        early_stopped_at = agent._step
+                        print(f"[train] Early stop at env step {agent._step}: last "
+                              f"{early_stop_evals} evals >= {early_stop_success:.0%} success")
+                        break
     except (KeyboardInterrupt, RuntimeError) as error:
         # Ctrl-C / SIGTERM, or the simulator crashing (CARLA raises RuntimeError
         # on a lost connection): keep everything learned so far for --resume.
@@ -490,6 +504,9 @@ def train_arm(
             print(f"[train] Warning: env.close() failed: {e}")
 
     train_seconds = time.time() - train_started
+    if eval_summary is None and (logdir / "eval.jsonl").is_file():
+        lines = (logdir / "eval.jsonl").read_text().splitlines()
+        eval_summary = json.loads(lines[-1]) if lines else None  # last eval before a resume
     final_metrics = {
         **run_spec,
         "env_steps": int(agent._step),
@@ -500,6 +517,7 @@ def train_arm(
         ),
         "peak_vram_mb": _peak_vram_mb(),
         "final_eval": eval_summary,
+        "early_stopped_at": early_stopped_at,
         "train": recorder.trackers["train"].summary(),
     }
     if eval_summary:
@@ -513,30 +531,77 @@ def train_arm(
     print(f"[train] Done: {json.dumps(final_metrics)}")
     return final_metrics
 
+MATCHED_STEPS = (12_500, 22_500, 32_500, 42_500)
+
+
 def summarize_run(logdir: Path, success_threshold: float = 0.8) -> Dict[str, float]:
     """
-    Comparison metrics of one finished run, from its metrics.json and eval.jsonl.
+    Comparison metrics of one run, from eval.jsonl (and metrics.json if finished).
 
     ``steps_to_threshold`` is the first evaluated env step whose success rate
-    reached ``success_threshold`` (NaN if never).
+    reached ``success_threshold`` (NaN if never). ``success_by_<k>k`` is the
+    success rate of the latest eval in the 10k steps up to that point (NaN if
+    none, e.g. lost to a crash), so runs with different eval spacing are
+    compared at the same points. A run stopped
+    before writing metrics.json is summarised from its evals (``partial``).
     """
-    metrics = json.loads((logdir / "metrics.json").read_text())
-    final = metrics.get("final_eval") or {}
     evals = []
     if (logdir / "eval.jsonl").is_file():
         evals = [json.loads(line) for line in (logdir / "eval.jsonl").read_text().splitlines()]
+    metrics = {}
+    if (logdir / "metrics.json").is_file():
+        metrics = json.loads((logdir / "metrics.json").read_text())
+    final = metrics.get("final_eval") or (evals[-1] if evals else {})
     reached = [e["agent_step"] for e in evals if e["success_rate"] >= success_threshold]
-    return {
+    summary = {
         "success_rate": final.get("success_rate", float("nan")),
         "route_completion": final.get("mean_route_completion", float("nan")),
         "collision_rate": final.get("collision_rate", float("nan")),
         "out_of_lane_rate": final.get("out_of_lane_rate", float("nan")),
         "eval_return": final.get("mean_reward", float("nan")),
         "steps_to_threshold": float(reached[0]) if reached else float("nan"),
+        "env_steps": float(metrics.get("env_steps", evals[-1]["agent_step"] if evals else "nan")),
         "wall_clock_hours": metrics.get("wall_clock_sec", float("nan")) / 3600,
         "peak_vram_gb": (metrics.get("peak_vram_mb") or float("nan")) / 1024,
         "train_steps_per_sec": metrics.get("train_steps_per_sec", float("nan")),
+        "partial": float(not metrics),
     }
+    for step in MATCHED_STEPS:
+        before = [e for e in evals if step - 10_000 < e["agent_step"] <= step]
+        summary[f"success_by_{step / 1000:g}k"] = (
+            before[-1]["success_rate"] if before else float("nan"))
+    return summary
+
+
+def plot_learning_curves(out: Path, runs: dict, threshold: float) -> Optional[Path]:
+    """Eval success vs env steps, one line per run, one colour per arm."""
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+    except ImportError:
+        return None
+    colours = {"cnn": "#1f77b4", "custom_jepa": "#d62728", "vjepa2": "#2ca02c"}
+    fig, ax = plt.subplots(figsize=(7, 4))
+    labelled = set()
+    for (arm, seed), logdir in runs.items():
+        path = logdir / "eval.jsonl"
+        if not path.is_file():
+            continue
+        evals = [json.loads(line) for line in path.read_text().splitlines()]
+        ax.plot([e["agent_step"] / 1000 for e in evals], [e["success_rate"] for e in evals],
+                marker="o", ms=3, color=colours.get(arm), alpha=0.85,
+                label=arm if arm not in labelled else None)
+        labelled.add(arm)
+    ax.axhline(threshold, ls="--", color="grey", lw=1)
+    ax.set(xlabel="environment steps (k)", ylabel="eval success rate", ylim=(-0.03, 1.03),
+           title="Encoder comparison: eval success (lines = seeds)")
+    ax.legend(frameon=False)
+    fig.tight_layout()
+    path = out / "comparison_curves.png"
+    fig.savefig(path, dpi=120)
+    plt.close(fig)
+    return path
 
 
 def run_comparison(
@@ -548,6 +613,7 @@ def run_comparison(
     success_threshold: float = 0.8,
     seeds: Optional[list] = None,
     train_missing: bool = True,
+    include_partial: bool = False,
     **run_kwargs,
 ):
     """
@@ -566,14 +632,17 @@ def run_comparison(
                / f"{task}_{run_kwargs.get('obs', 'bev')}")
     out.mkdir(parents=True, exist_ok=True)
 
-    table, runs = ComparisonTable(), []
+    table, runs, logdirs = ComparisonTable(), [], {}
     for arm in arms:
         for seed in seeds:
             logdir = out / f"{arm}_seed{seed}"
             if not (logdir / "metrics.json").is_file() and not train_missing:
-                print(f"[comparison] {arm} seed {seed}: no metrics.json yet, skipped")
-                continue
-            if not (logdir / "metrics.json").is_file():
+                if include_partial and (logdir / "eval.jsonl").is_file():
+                    print(f"[comparison] {arm} seed {seed}: unfinished, summarised from evals")
+                else:
+                    print(f"[comparison] {arm} seed {seed}: no metrics.json yet, skipped")
+                    continue
+            if not (logdir / "metrics.json").is_file() and train_missing:
                 print(f"\n{'#' * 60}\n# Comparison: {arm} / seed {seed}\n{'#' * 60}")
                 train_arm(
                     arm=arm, task=task, seed=seed, phase3_config=phase3_config, steps=steps,
@@ -582,13 +651,16 @@ def run_comparison(
             summary = summarize_run(logdir, success_threshold)
             table.add_result(arm, seed, summary)
             runs.append({"arm": arm, "seed": seed, **summary})
+            logdirs[(arm, seed)] = logdir
 
     table.save_table(str(out / "comparison.md"))
     (out / "comparison.json").write_text(json.dumps(
         {"task": task, "steps": steps, "seeds": seeds, "success_threshold": success_threshold,
          "runs": runs}, indent=2,
     ))
-    print(f"\n{table.generate_table()}\n\n[comparison] Results in {out}")
+    plot = plot_learning_curves(out, logdirs, success_threshold)
+    print(f"\n{table.generate_table()}\n\n[comparison] Results in {out}"
+          + (f" (curves: {plot.name})" if plot else ""))
 
 
 def main():
@@ -615,6 +687,9 @@ def main():
     parser.add_argument("--env-set", dest="env_overrides", action="append", default=[],
                         metavar="KEY=VALUE",
                         help="CarDreamer task override under env., e.g. reward.scales.time=0.1")
+    parser.add_argument("--early-stop-evals", type=int, default=0, metavar="K",
+                        help="Stop once the last K evals reach --early-stop-success (0 = off)")
+    parser.add_argument("--early-stop-success", type=float, default=0.9)
     parser.add_argument("--checkpoint-every", type=int, default=2500,
                         help="Env steps between checkpoints (bounds the loss on a crash)")
     parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
@@ -624,6 +699,8 @@ def main():
                         help="Seeds for --comparison (default: Phase 3 config)")
     parser.add_argument("--aggregate-only", action="store_true",
                         help="--comparison: summarise finished runs only, train nothing")
+    parser.add_argument("--include-partial", action="store_true",
+                        help="--aggregate-only: also summarise unfinished runs from their evals")
     parser.add_argument("--resume", action="store_true", help="Resume from <logdir>/latest.pt")
     args = parser.parse_args()
 
@@ -635,13 +712,16 @@ def main():
         profile=args.profile,
         overrides=tuple(args.overrides),
         env_overrides=tuple(args.env_overrides),
+        early_stop_evals=args.early_stop_evals,
+        early_stop_success=args.early_stop_success,
     )
 
     if args.comparison:
         run_comparison(
             task=args.task, phase3_config=phase3_config, steps=args.steps,
             arms=tuple(args.arms), output_dir=args.logdir, seeds=args.seeds,
-            train_missing=not args.aggregate_only, **run_kwargs,
+            train_missing=not args.aggregate_only, include_partial=args.include_partial,
+            **run_kwargs,
         )
     else:
         train_arm(

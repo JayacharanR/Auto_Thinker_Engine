@@ -93,23 +93,39 @@ def phase2_progress(step: str):
     return done_step, int(total[-1]), rate, time.time() - log.stat().st_mtime
 
 
+def rate_from_records(records: list, window: float = 600.0):
+    """Env steps/s from episode records' own timestamps over the last ``window`` s.
+
+    Works on a single read (no need to watch for a while). Eval episodes do not
+    advance the step counter, so time spent evaluating lowers the rate, as it
+    does the real ETA.
+    """
+    timed = [(r["time"], r["agent_step"]) for r in records if "time" in r]
+    if len(timed) < 2:
+        return None
+    recent = [(t, s) for t, s in timed if t >= timed[-1][0] - window]
+    (t0, s0), (t1, s1) = min(recent), max(recent)
+    return (s1 - s0) / (t1 - t0) if t1 - t0 > 30 and s1 > s0 else None
+
+
 def dreamer_progress(history: list, logdir: str, target: int):
     path = Path(logdir) / "episodes.jsonl"
     if not path.is_file():
         return None
     with open(path, "rb") as f:
         f.seek(0, 2)
-        f.seek(max(0, f.tell() - 16384))
+        f.seek(max(0, f.tell() - 65536))
         lines = f.read().decode(errors="ignore").splitlines()[1:]
-    steps = [json.loads(line)["agent_step"] for line in lines if line.startswith("{")]
+    records = [json.loads(line) for line in lines if line.startswith("{")]
+    steps = [r["agent_step"] for r in records]
     if not steps:
         return None
     step, now = max(steps), time.time()
     history.append((now, step))
     while len(history) > 2 and now - history[0][0] > 600:
         history.pop(0)
-    rate = None
-    if len(history) >= 2 and history[-1][1] > history[0][1]:
+    rate = rate_from_records(records)
+    if rate is None and len(history) >= 2 and history[-1][1] > history[0][1]:
         rate = (history[-1][1] - history[0][1]) / (history[-1][0] - history[0][0])
     return step, target, rate
 
@@ -197,9 +213,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--interval", type=float, default=2.0, help="Refresh seconds")
     parser.add_argument("--out", type=Path, default=OUT, help="Queue output directory")
+    parser.add_argument("--once", action="store_true",
+                        help="Print one plain-text snapshot and exit (for agents and logs)")
     args = parser.parse_args()
     globals()["OUT"] = args.out
     history: dict = {}
+    if args.once:
+        print("\n".join(render(history)))
+        return 0
     printed = 0
     try:
         while True:

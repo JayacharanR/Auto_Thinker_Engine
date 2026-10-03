@@ -40,8 +40,23 @@ def fmt_duration(seconds: float) -> str:
     return f"{h}h{rem // 60:02d}m" if h else f"{rem // 60}m{rem % 60:02d}s"
 
 
+def rate_from_records(records: list, window: float = 600.0):
+    """Env steps/s from episode records' own timestamps over the last ``window`` s.
+
+    Works on a single read (no need to watch for a while). Eval episodes do not
+    advance the step counter, so time spent evaluating lowers the rate, as it
+    does the real ETA.
+    """
+    timed = [(r["time"], r["agent_step"]) for r in records if "time" in r]
+    if len(timed) < 2:
+        return None
+    recent = [(t, s) for t, s in timed if t >= timed[-1][0] - window]
+    (t0, s0), (t1, s1) = min(recent), max(recent)
+    return (s1 - s0) / (t1 - t0) if t1 - t0 > 30 and s1 > s0 else None
+
+
 def render(logdir: Path, target: int, history: list) -> str:
-    episodes = last_json_lines(logdir / "episodes.jsonl", 20)
+    episodes = last_json_lines(logdir / "episodes.jsonl", 60)
     evals = last_json_lines(logdir / "eval.jsonl", 1)
     if (logdir / "metrics.json").is_file():
         m = json.loads((logdir / "metrics.json").read_text())
@@ -58,8 +73,8 @@ def render(logdir: Path, target: int, history: list) -> str:
     history.append((now, step))
     while len(history) > 2 and now - history[0][0] > 300:  # 5-minute rate window
         history.pop(0)
-    rate = 0.0
-    if len(history) >= 2 and history[-1][1] > history[0][1]:
+    rate = rate_from_records(episodes) or 0.0
+    if not rate and len(history) >= 2 and history[-1][1] > history[0][1]:
         rate = (history[-1][1] - history[0][1]) / (history[-1][0] - history[0][0])
     eta = fmt_duration((target - step) / rate) if rate > 0 else "--"
 
@@ -95,6 +110,8 @@ def main() -> int:
                         help="Run log directory (default: the most recently active one)")
     parser.add_argument("--target", type=int, default=100_000, help="Env-step budget of the run")
     parser.add_argument("--interval", type=float, default=2.0, help="Refresh seconds")
+    parser.add_argument("--once", action="store_true",
+                        help="Print one plain-text snapshot and exit (for agents and logs)")
     args = parser.parse_args()
 
     if args.logdir is None:
@@ -105,6 +122,10 @@ def main() -> int:
     print(f"Watching {args.logdir} (target {args.target:,} steps)")
 
     history: list = []
+    if args.once:
+        line = render(args.logdir, args.target, history)
+        print(line + ("" if line.startswith("DONE") else health_line()))
+        return 0
     try:
         while True:
             line = render(args.logdir, args.target, history)

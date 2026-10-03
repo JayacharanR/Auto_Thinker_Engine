@@ -10,3 +10,10 @@ passes or fails, a run finishes or is stopped, a blocker or bug is found or
 fixed, a design decision is made, or a mistake is recovered from. Add matching
 questions to `reports/journey/interview_questions.md`. Do this in the same
 turn as the event, without waiting to be asked.
+
+## Training progress
+
+When the user asks how training is going (or after launching a long run), use
+the `training-progress` skill (`.claude/skills/training-progress/SKILL.md`):
+show a `--once` snapshot in the chat and give the live-bar command for their
+terminal.

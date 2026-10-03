@@ -436,8 +436,13 @@ def train_arm(
         train_started, train_start_step = time.time(), agent._step
         print(f"[train] Training from env step {agent._step} to {target} (prefill included), "
               f"checkpoint every {checkpoint_every} steps")
+        # Evaluate at fixed steps prefill + k * eval_every (12.5k, 22.5k, ... with
+        # the laptop profile), also after a resume, so every run and every arm
+        # is measured at the same points.
+        eval_every, eval_offset = int(config.eval_every), int(config.prefill)
         while agent._step < target:
-            chunk_end = min(target, agent._step + int(config.eval_every))
+            next_eval = eval_offset + ((agent._step - eval_offset) // eval_every + 1) * eval_every
+            chunk_end = min(target, next_eval)
             recorder.mode = "train"
             while agent._step < chunk_end:
                 state = tools.simulate(

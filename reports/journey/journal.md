@@ -402,3 +402,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** `outputs/comparison_queue/status.txt`, each arm's eval.jsonl, vjepa2 latest.pt step 67153.
 **Lesson:** A recovery mechanism can quietly change the measurement protocol; check that metrics are still comparable after restarts.
 **Interview angle:** How did you handle an unreliable simulator in multi-day experiments?
+
+## 2026-10-04 01:45 - Fixed eval schedule; resumed with a second seed overnight
+**Type:** bug
+**Stage:** Stage 5 - encoder comparison
+
+**What happened:** After crash recovery, evals restarted counting from the resume step, so arms were measured at different steps (vjepa2 at 17k/30k/40k/56k/66k; cnn lost its 22.5k eval).
+**Cause:** Each eval chunk ended at "current step + eval_every".
+**How we handled it:** Evals at fixed steps prefill + k * eval_every (12.5k, 22.5k, ...), including after a resume. Queue relaunched with SEEDS="42 123": vjepa2 seed 42 resumes from 67k, then all three arms with seed 123 on the fixed schedule (night covers ~vjepa2 42 + cnn 123 + part of custom_jepa 123; the rest resumes on the next start). Seed 42's early vjepa2 evals stay misaligned, one reason the second seed matters.
+**Verified by:** test: crash after the 160 eval, resume -> evals at 160, 260, 360, 380; 129 tests pass.
+**Lesson:** Tie measurement schedules to absolute progress, not to when a process started.
+**Interview angle:** How do you make the encoder comparison fair?

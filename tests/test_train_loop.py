@@ -106,6 +106,7 @@ def test_simulator_crash_saves_checkpoint_and_resumes(tmp_path, monkeypatch):
         env = wrappers.UUID(wrappers.SelectAction(wrappers.OneHotAction(env), key="action"))
         return env, recorder
 
+    CrashingTask.steps_taken, CrashingTask.crash_at = 0, 150
     monkeypatch.setattr(trainer.torch.cuda, "is_available", lambda: False)
     monkeypatch.setattr(trainer, "make_carla_env", crashing_env)
     # No periodic checkpoint before the crash: eval and checkpoint intervals beyond it.
@@ -120,3 +121,32 @@ def test_simulator_crash_saves_checkpoint_and_resumes(tmp_path, monkeypatch):
     monkeypatch.setattr(trainer, "make_carla_env", fake_make_carla_env)
     metrics = trainer.train_arm(steps=200, resume=True, **run)
     assert metrics["env_steps"] == 200
+
+
+def test_evals_stay_on_fixed_steps_after_resume(tmp_path, monkeypatch):
+    """Eval points are prefill + k * eval_every, also when a crash forces a resume."""
+    import envs.wrappers as wrappers
+
+    torch.set_num_threads(2)
+    CrashingTask.steps_taken, CrashingTask.crash_at = 0, 215  # after the eval at 160
+
+    def crashing_env(task_name, obs="bev", action="discrete", image_size=(64, 64),
+                     metrics_path=None, feature_extractor=None, env_overrides=()):
+        env = DreamerObservation(CrashingTask(length=40, ending="time_exceeded"), obs=obs,
+                                 size=image_size)
+        env = recorder = EpisodeMetricsRecorder(env, metrics_path)
+        env = wrappers.UUID(wrappers.SelectAction(wrappers.OneHotAction(env), key="action"))
+        return env, recorder
+
+    monkeypatch.setattr(trainer.torch.cuda, "is_available", lambda: False)
+    monkeypatch.setattr(trainer, "make_carla_env", crashing_env)
+    run = dict(arm="cnn", task="fake", seed=0, phase3_config={}, overrides=TINY,
+               logdir=str(tmp_path / "run"), checkpoint_every=1000)
+    with pytest.raises(RuntimeError):
+        trainer.train_arm(steps=380, **run)
+    monkeypatch.setattr(trainer, "make_carla_env", fake_make_carla_env)
+    trainer.train_arm(steps=380, resume=True, **run)
+
+    lines = (tmp_path / "run" / "eval.jsonl").read_text().splitlines()
+    # prefill 60, eval_every 100: 160, then (resumed mid-chunk) 260, 360, and the target.
+    assert [json.loads(line)["agent_step"] for line in lines] == [160, 260, 360, 380]

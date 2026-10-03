@@ -5,9 +5,12 @@
 # same seed(s), step budget, observation (front camera + route vector),
 # discrete actions, reward (time penalty 0.1, as in the passed Stage 3 run) and
 # train_ratio 512. One queue step per arm and seed; each resumes from its own
-# checkpoint if the script is started again. Finally the finished runs are
-# aggregated into <dir>/comparison.md / comparison.json (mean +- std, steps to
-# 80% success, route completion, wall clock, VRAM).
+# checkpoint if the script is started again. CARLA 0.9.15 occasionally
+# segfaults on an episode reset; a failed arm is retried (CARLA restarted,
+# training resumed from its checkpoint) up to MAX_ATTEMPTS times, with a
+# separate CARLA log per attempt. Finally the finished runs are aggregated
+# into <dir>/comparison.md / comparison.json (mean +- std, steps to 80%
+# success, route completion, wall clock, VRAM).
 #
 # Start detached with sleep blocked:
 #   mkdir -p outputs/comparison_queue
@@ -30,6 +33,7 @@ ARMS="${ARMS:-cnn custom_jepa vjepa2}"
 TIME_PENALTY="${TIME_PENALTY:-0.1}"
 RUN_DIR="${RUN_DIR:-outputs/comparison/${TASK}_camera_route}"
 EXTRA_SET="${EXTRA_SET:-}"   # e.g. "--set prefill=500 --set eval_episode_num=1" for a smoke test
+MAX_ATTEMPTS="${MAX_ATTEMPTS:-6}"
 
 source "$PROJECT_ROOT/jobs/lib_queue.sh"
 
@@ -54,12 +58,21 @@ for seed in $SEEDS; do
       status "DONE  ${arm}_seed${seed} (metrics.json exists)"
       continue
     fi
-    resume=""
-    [[ -f "$logdir/latest.pt" ]] && resume="--resume"
-    run_step "${arm}_seed${seed}" env RUN_MODE="$arm" SEED="$seed" OBS=camera_route \
-      ACTION=discrete STEPS="$STEPS" \
-      TRAIN_ARGS="$resume --logdir $logdir --set train_ratio=512 --env-set reward.scales.time=$TIME_PENALTY $EXTRA_SET" \
-      bash jobs/slurm_run.sh
+    name="${arm}_seed${seed}"
+    for attempt in $(seq 1 "$MAX_ATTEMPTS"); do
+      resume=""
+      [[ -f "$logdir/latest.pt" ]] && resume="--resume"
+      run_step "$name" env RUN_MODE="$arm" SEED="$seed" OBS=camera_route \
+        ACTION=discrete STEPS="$STEPS" CARLA_LOG="$PROJECT_ROOT/$OUT/carla_${name}_try${attempt}.log" \
+        TRAIN_ARGS="$resume --logdir $logdir --set train_ratio=512 --env-set reward.scales.time=$TIME_PENALTY $EXTRA_SET" \
+        bash jobs/slurm_run.sh
+      [[ -f "$logdir/metrics.json" || -f "$STOP_FILE" ]] && break
+      mv "$OUT/$name.log" "$OUT/$name.try${attempt}.log" 2>/dev/null
+      if (( attempt < MAX_ATTEMPTS )); then
+        status "RETRY $name (attempt $((attempt + 1))/$MAX_ATTEMPTS, resuming from checkpoint)"
+        sleep 20
+      fi
+    done
   done
 done
 # shellcheck disable=SC2086

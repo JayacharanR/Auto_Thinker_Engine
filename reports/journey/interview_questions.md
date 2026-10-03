@@ -73,6 +73,10 @@ runs not finished yet.
   **A (short):** Runs are resumable and checkpoint on SIGTERM; a queue runs them one at a time under `systemd-inhibit` (no suspend) with a health monitor that stops trainers cleanly on GPU overheating, low RAM or low disk, and a STOP file for manual stops. A test of the emergency stop showed `pkill -f` can kill unrelated shells, so the pattern is anchored to the Python process.
   **Evidence:** journal "Crash protection for multi-hour runs"; `jobs/long_runs.sh`
 
+- **Q:** How did you handle an unreliable simulator in multi-day experiments?
+  **A (short):** CARLA 0.9.15 segfaulted on episode resets twice in one day. The trainer now checkpoints when the simulator connection is lost, and the queue restarts CARLA and resumes the arm (up to 6 attempts, one log per attempt). Rehearsed by killing CARLA with SIGSEGV mid-run: the checkpoint landed at exactly the crash step and the run finished after resuming.
+  **Evidence:** journal "Comparison run 1"; `jobs/comparison.sh`, `scripts/train_cardreamer.py`
+
 ## Debugging stories
 
 - **Q:** Tell me about a hard bug.

@@ -380,3 +380,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** smoke comparison table and run specs; 127 tests pass.
 **Lesson:** Smoke-test the whole multi-step job, including aggregation, before committing a day of compute.
 **Interview angle:** How do you make the encoder comparison fair?
+
+## 2026-10-03 16:50 - Comparison run 1: JEPA arm solves the task from the camera; CARLA crashed twice
+**Type:** result
+**Stage:** Stage 5 - encoder comparison
+
+**What happened:** custom_jepa (frozen Phase 2 EMA ViT-S + adapter, front camera + route): first training success at 9.3k env steps, eval success 0% / 70% / **100%** at 12.5k / 22.5k / 32.5k and 100% to 100k; after 50k, 325/325 training episodes reached the destination with 0 collisions; 4.2 h, 6.5 env steps/s, 3.5 GB. (Stage 3 CNN with the privileged bird's-eye view: 100% at 22.5k.) The cnn arm died after ~1 h (checkpoint 22.5k) and vjepa2 after 25 min (checkpoint 7.5k): `apply_settings` timed out during an episode reset.
+**Cause:** The CARLA server segfaulted (`Signal 11`, UE4 crash handler) - no OOM kill or GPU fault in the kernel log, GPU peak 59 C. It happens on reset, when CarDreamer toggles synchronous mode and respawns actors; a known instability of the 0.9.15 binary. The first crash's log was lost because every launch overwrote `carla_2000.log`.
+**How we handled it:** Trainer saves a checkpoint on `RuntimeError` (lost simulator) as well as on SIGTERM; `jobs/comparison.sh` retries a failed arm up to 6 times (CARLA restarted, training resumed) with one CARLA log per attempt. Comparison relaunched: cnn resumes from 22.5k, vjepa2 from 7.5k, custom_jepa kept.
+**Verified by:** Recovery rehearsal: CARLA killed with SIGSEGV mid-run -> checkpoint at exactly the crash step (1606) -> RETRY -> resumed at 1606 -> finished 3000 -> aggregated. Unit test with a simulated simulator crash. 129 tests pass.
+**Lesson:** In long simulation runs, plan for the simulator to crash: checkpoint at the failure and restart automatically.
+**Interview angle:** How did you handle an unreliable simulator in multi-day experiments?

@@ -78,3 +78,45 @@ def test_task_overrides_are_validated():
     assert config.env.reward.scales.time == 0.1 and config.env.action.discrete is True
     with pytest.raises(ValueError, match="Unknown CarDreamer options"):
         trainer.task_argv("carla_right_turn_simple", "discrete", ("reward.scales.tme=0.1",))
+
+
+class CrashingTask(FakeCarDreamerTask):
+    """Simulates the CARLA server dying: RuntimeError after ``crash_at`` steps."""
+
+    steps_taken = 0
+    crash_at = 150
+
+    def step(self, action):
+        CrashingTask.steps_taken += 1
+        if CrashingTask.steps_taken == CrashingTask.crash_at:
+            raise RuntimeError("time-out of 60000ms while waiting for the simulator")
+        return super().step(action)
+
+
+def test_simulator_crash_saves_checkpoint_and_resumes(tmp_path, monkeypatch):
+    import envs.wrappers as wrappers
+
+    torch.set_num_threads(2)
+
+    def crashing_env(task_name, obs="bev", action="discrete", image_size=(64, 64),
+                     metrics_path=None, feature_extractor=None, env_overrides=()):
+        env = DreamerObservation(CrashingTask(length=40, ending="time_exceeded"), obs=obs,
+                                 size=image_size)
+        env = recorder = EpisodeMetricsRecorder(env, metrics_path)
+        env = wrappers.UUID(wrappers.SelectAction(wrappers.OneHotAction(env), key="action"))
+        return env, recorder
+
+    monkeypatch.setattr(trainer.torch.cuda, "is_available", lambda: False)
+    monkeypatch.setattr(trainer, "make_carla_env", crashing_env)
+    # No periodic checkpoint before the crash: eval and checkpoint intervals beyond it.
+    overrides = tuple(o for o in TINY if not o.startswith("eval_every")) + ("eval_every=1000",)
+    run = dict(arm="cnn", task="fake", seed=0, phase3_config={}, overrides=overrides,
+               logdir=str(tmp_path / "run"), checkpoint_every=1000)
+    with pytest.raises(RuntimeError, match="simulator"):
+        trainer.train_arm(steps=300, **run)
+    crash_step = torch.load(tmp_path / "run" / "latest.pt", weights_only=False)["step"]
+    assert 60 < crash_step <= 150  # saved at the crash (no periodic save before it)
+
+    monkeypatch.setattr(trainer, "make_carla_env", fake_make_carla_env)
+    metrics = trainer.train_arm(steps=200, resume=True, **run)
+    assert metrics["env_steps"] == 200

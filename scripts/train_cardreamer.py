@@ -466,10 +466,16 @@ def train_arm(
                       f"return {eval_summary['mean_reward']:.1f}")
                 # Evaluation reset the shared environment; restart the train episode.
                 state = None
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, RuntimeError) as error:
+        # Ctrl-C / SIGTERM, or the simulator crashing (CARLA raises RuntimeError
+        # on a lost connection): keep everything learned so far for --resume.
         if agent is not None:
-            save_checkpoint()
-            print(f"\n[train] Interrupted; saved {latest_pt} at env step {agent._step}")
+            try:
+                save_checkpoint()
+                print(f"\n[train] {type(error).__name__}; saved {latest_pt} "
+                      f"at env step {agent._step}")
+            except Exception as save_error:
+                print(f"[train] Could not save checkpoint: {save_error}")
         raise
     finally:
         signal.signal(signal.SIGTERM, signal.SIG_DFL)

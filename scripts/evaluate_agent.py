@@ -51,6 +51,7 @@ from scripts.train_cardreamer import (
     make_carla_env,
     seed_everything,
 )
+from src.dreamer.carla_wrappers import DreamerObservation
 from src.eval.metrics import MetricsTracker
 from src.safety.supervisor import SafetySupervisor
 from src.utils.manifest import create_run_manifest
@@ -114,6 +115,9 @@ def draw_telemetry_hud(
         cv2.rectangle(canvas, (w - 240, 8), (w - 10, 48), (0, 0, 180), -1)
         cv2.putText(canvas, "SAFETY INTERVENTION", (w - 230, 25), font, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
         cv2.putText(canvas, reasons[:26], (w - 230, 42), font, 0.35, (220, 220, 220), 1, cv2.LINE_AA)
+    elif intervention_info and intervention_info.get("disabled"):
+        cv2.rectangle(canvas, (w - 170, 10), (w - 10, 45), (90, 90, 90), -1)
+        cv2.putText(canvas, "SHIELD: OFF", (w - 155, 32), font, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
     else:
         cv2.rectangle(canvas, (w - 170, 10), (w - 10, 45), (30, 120, 30), -1)
         cv2.putText(canvas, "SHIELD: SAFE", (w - 155, 32), font, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
@@ -216,6 +220,8 @@ def run_evaluation(
     record_video: bool = True,
     use_safety_shield: bool = True,
     fps: int = 20,
+    extra_env_overrides: tuple = (),
+    video_episodes: Optional[int] = None,
 ) -> Dict[str, Any]:
     """
     Execute closed-loop evaluation in CARLA, record video, and compute P0 metrics.
@@ -244,7 +250,9 @@ def run_evaluation(
     )
     obs_mode = run_spec.get("obs", "bev")
     action_mode = run_spec.get("action", "discrete")
-    env_overrides = tuple(run_spec.get("env_overrides", ()))
+    # Training overrides first, then evaluation conditions (e.g. world.weather=ClearNight).
+    env_overrides = tuple(run_spec.get("env_overrides", ())) + tuple(extra_env_overrides)
+    print(f"[eval] Task {task}, env overrides: {list(env_overrides)}")
     image_size = tuple(run_spec.get("image_size", (64, 64)))
     config = load_dreamer_config(
         arm, task, seed, steps=1000, image_size=image_size, device=device, logdir=str(out_dir)
@@ -254,6 +262,9 @@ def run_evaluation(
         feature_extractor=build_feature_extractor(arm, phase3_config, device),
         env_overrides=env_overrides,
     )
+    obs_wrapper = env  # wrapper holding the raw CarDreamer frames, for videos
+    while not isinstance(obs_wrapper, DreamerObservation) and hasattr(obs_wrapper, "env"):
+        obs_wrapper = obs_wrapper.env
     if action_mode == "discrete" and use_safety_shield:
         # The supervisor edits continuous [acc, steer] actions only.
         print("[eval] Safety shield disabled: the agent uses discrete actions.")
@@ -359,7 +370,8 @@ def run_evaluation(
             if use_safety_shield:
                 safe_action, intervention_info = supervisor.filter_action(raw_action, telemetry)
             else:
-                safe_action, intervention_info = raw_action, {"intervened": False, "reasons": []}
+                safe_action = raw_action
+                intervention_info = {"intervened": False, "reasons": [], "disabled": True}
 
             # Step CARLA environment (SelectAction wrapper extracts dict['action'])
             next_obs, reward, done, info = env.step({"action": safe_action})
@@ -385,13 +397,26 @@ def run_evaluation(
             metrics_tracker.step(info_record)
 
             # Render HUD video frame
-            if record_video:
-                raw_frame = obs["image"]
+            if record_video and (video_episodes is None or ep <= video_episodes):
+                # Commands in [-1, 1] as CARLA applies them (positive steer = right).
+                if action_mode == "discrete":
+                    table = env.unwrapped._config.action
+                    index = int(np.argmax(safe_action))
+                    n_steer = len(table.discrete_steer)
+                    hud_throttle = table.discrete_acc[index // n_steer] / max(
+                        abs(a) for a in table.discrete_acc)
+                    hud_steer = -table.discrete_steer[index % n_steer]  # CarDreamer negates it
+                else:
+                    hud_throttle, hud_steer = float(safe_action[0]), -float(safe_action[1])
+                # Native front camera with the bird's-eye view inset (what the
+                # agent sees is only a 64x64 version of one of these).
+                raw = getattr(obs_wrapper, "last_raw", None) or {}
                 hud_frame = draw_telemetry_hud(
-                    frame=raw_frame,
+                    frame=raw.get("camera", obs["image"]),
+                    bev_frame=raw.get("birdeye_wpt"),
                     speed_kmh=speed_norm * 3.6,
-                    steer=float(safe_action[1]),
-                    throttle=float(safe_action[0]),
+                    steer=hud_steer,
+                    throttle=hud_throttle,
                     reward=float(reward),
                     cumulative_reward=ep_return,
                     route_completion=route_completion,
@@ -405,7 +430,8 @@ def run_evaluation(
             obs = next_obs
 
         # Episode termination evaluation
-        is_success = bool(info.get("destination_reached", False) or route_completion >= 0.90)
+        # Same definition as training evaluation: reaching the destination.
+        is_success = bool(np.asarray(info.get("destination_reached", False)).any())
         is_collision = bool(info.get("is_collision", False))
         is_out_of_lane = bool(info.get("out_of_lane", False))
         is_time_exceeded = bool(info.get("time_exceeded", False))
@@ -501,6 +527,11 @@ def main():
     parser.add_argument("--no-video", action="store_true", help="Disable video recording")
     parser.add_argument("--no-shield", action="store_true", help="Disable SafetySupervisor shield")
     parser.add_argument("--fps", type=int, default=20, help="Video FPS")
+    parser.add_argument("--env-set", dest="env_overrides", action="append", default=[],
+                        metavar="KEY=VALUE",
+                        help="Extra CarDreamer override, e.g. world.weather=ClearNight")
+    parser.add_argument("--video-episodes", type=int, default=None,
+                        help="Record only the first N episodes (default: all)")
 
     args = parser.parse_args()
 
@@ -514,6 +545,8 @@ def main():
         record_video=not args.no_video,
         use_safety_shield=not args.no_shield,
         fps=args.fps,
+        extra_env_overrides=tuple(args.env_overrides),
+        video_episodes=args.video_episodes,
     )
 
 

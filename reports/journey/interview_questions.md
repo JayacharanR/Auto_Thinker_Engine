@@ -87,6 +87,10 @@ runs not finished yet.
   **A (short):** A patch meant to keep frozen encoders frozen made every parameter non-trainable after the first update, so the agent silently stopped learning; fp32 hid it, and the unit test only ran one step. fp16's GradScaler exposed it ("no inf checks recorded"). Fixed with a persistent per-parameter freeze marker and a test that checks the second update.
   **Evidence:** journal 2026-10-01 23:10
 
+- **Q:** Any bug where the workaround everyone used was wrong?
+  **A (short):** CARLA's Traffic Manager segfaulted the Python client; the previous setup simply disabled traffic. A gdb backtrace showed the crash in InMemoryMap::Load parsing the pre-built Traffic Manager map cache the server ships (Maps/TM/Town03_Opt.bin). Moving that cache aside makes the Traffic Manager build its map from the road graph, and traffic tasks work - which unblocked the whole traffic part of the roadmap.
+  **Evidence:** journal "Traffic Manager segfault root-caused"; scripts/configure_carla.sh
+
 - **Q:** What went wrong with the data pipeline?
   **A (short):** The download links were dead, the speed field name was wrong (it would have trained on zeros), telemetry timing was ~60 ms off, and per-sample HEVC decoding from frame 0 made training CPU-bound. Fixed with a one-time preprocessor aligned on recorded frame times and memory-mapped clips.
   **Evidence:** journal 2026-10-02 00:12

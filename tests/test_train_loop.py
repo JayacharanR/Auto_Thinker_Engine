@@ -172,3 +172,23 @@ def test_early_stop_after_k_successful_evals(tmp_path, monkeypatch):
                                 checkpoint_every=50, early_stop_evals=2)
     assert metrics["early_stopped_at"] == 260 and metrics["env_steps"] == 260
     assert metrics["final_eval"]["success_rate"] == 1.0
+
+
+def test_init_from_another_run(tmp_path, monkeypatch):
+    torch.set_num_threads(2)
+    monkeypatch.setattr(trainer.torch.cuda, "is_available", lambda: False)
+    monkeypatch.setattr(trainer, "make_carla_env", fake_make_carla_env)
+    base = dict(arm="cnn", task="fake", seed=0, phase3_config={}, overrides=TINY,
+                checkpoint_every=50)
+    trainer.train_arm(steps=160, logdir=str(tmp_path / "source"), **base)
+    source = str(tmp_path / "source" / "latest.pt")
+
+    metrics = trainer.train_arm(steps=160, logdir=str(tmp_path / "finetune"),
+                                init_from=source, **base)
+    assert metrics["env_steps"] == 160  # fresh step counter
+    spec = torch.load(tmp_path / "finetune" / "latest.pt", weights_only=False)["run_spec"]
+    assert spec["init_from"] == source
+
+    with pytest.raises(ValueError, match="obs"):
+        trainer.train_arm(steps=160, logdir=str(tmp_path / "mismatch"), init_from=source,
+                          obs="camera", **base)

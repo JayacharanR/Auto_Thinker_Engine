@@ -298,6 +298,7 @@ def train_arm(
     env_overrides: tuple = (),
     early_stop_evals: int = 0,
     early_stop_success: float = 0.9,
+    init_from: Optional[str] = None,
 ) -> Dict:
     """
     Train one arm with dreamerv3-torch and return its metrics.
@@ -402,13 +403,29 @@ def train_arm(
             tools.recursively_load_optim_state_dict(agent, ckpt["optims_state_dict"])
             agent._should_pretrain._once = False
             print(f"[train] Resumed from {latest_pt} at env step {agent._step}")
+        elif init_from:
+            # Curriculum / fine-tuning: start from another run's agent (weights
+            # only; fresh replay, optimiser and step counter). Must be the same
+            # arm and observation/action contract.
+            source = torch.load(init_from, map_location=device, weights_only=False)
+            spec = source.get("run_spec", {})
+            for key, value in (("arm", arm), ("obs", obs), ("action", action)):
+                if spec.get(key) != value:
+                    raise ValueError(f"--init-from {init_from}: {key}={spec.get(key)!r}, "
+                                     f"this run has {value!r}")
+            agent.load_state_dict(source["agent_state_dict"])
+            agent._should_pretrain._once = False  # already trained; no pretrain burst
+            print(f"[train] Initialised from {init_from} (trained {source.get('step')} steps "
+                  f"on {spec.get('task')})")
         recorder.step_fn = lambda: agent._step
         print(f"[train] Actor: {config.actor['dist']} over {config.num_actions} actions; "
               f"encoder: {type(agent._wm.encoder).__name__}")
 
         run_spec = {"arm": arm, "task": task, "obs": obs, "action": action,
                     "image_size": list(image_size), "seed": seed,
-                    "env_overrides": list(env_overrides)}
+                    "env_overrides": list(env_overrides),
+                    "init_from": init_from if ckpt is None else (ckpt.get("run_spec") or {}).get(
+                        "init_from")}
         try:
             from src.utils.manifest import create_run_manifest
             create_run_manifest(
@@ -690,6 +707,8 @@ def main():
     parser.add_argument("--early-stop-evals", type=int, default=0, metavar="K",
                         help="Stop once the last K evals reach --early-stop-success (0 = off)")
     parser.add_argument("--early-stop-success", type=float, default=0.9)
+    parser.add_argument("--init-from", type=str, default=None,
+                        help="Start from another run's checkpoint (weights only; fine-tuning)")
     parser.add_argument("--checkpoint-every", type=int, default=2500,
                         help="Env steps between checkpoints (bounds the loss on a crash)")
     parser.add_argument("--comparison", action="store_true", help="Run 3-arm comparison")
@@ -733,6 +752,7 @@ def main():
             logdir=args.logdir,
             resume=args.resume,
             checkpoint_every=args.checkpoint_every,
+            init_from=args.init_from,
             **run_kwargs,
         )
 

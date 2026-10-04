@@ -435,3 +435,25 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** eval.jsonl / metrics.json per run; aggregate table.
 **Lesson:** A second seed can flip the conclusion of a one-seed comparison.
 **Interview angle:** Did the pretrained encoders help?
+
+## 2026-10-04 12:13 - Roadmap agreed with the user
+**Type:** decision
+**Stage:** Planning (after the two-seed comparison)
+
+**What happened:** Next steps chosen, in order: (1) zero-shot robustness evaluation of the six trained comparison agents (night, rain, fog, cross traffic) with front-camera + bird's-eye videos; (2) traffic: train on `carla_right_turn_hard` (dense cross traffic); (4) traffic rules: `carla_traffic_lights` / `carla_stop_sign`; (5) pedestrians (custom task). Deferred: (3) a third seed (456) for the right-turn comparison - needed before presenting that result as firm, not blocking anything. Command: `SEEDS=456 STEPS=50000 EXTRA_SET="--set eval_every=5000" EARLY_STOP=3 AGG_SEEDS="42 123 456" bash jobs/comparison.sh` (~7 h).
+**Cause:** n/a
+**How we handled it:** Recorded here and in the session memory.
+**Verified by:** n/a
+**Lesson:** -
+**Interview angle:** -
+
+## 2026-10-04 12:32 - Traffic Manager segfault root-caused: a corrupt map cache
+**Type:** bug
+**Stage:** Roadmap (2) - traffic tasks
+
+**What happened:** The first evaluation on `carla_right_turn_hard` (dense cross traffic) killed the Python process with SIGSEGV (exit 245) when the first traffic car spawned - the same "get_trafficmanager() segfault" the server notes had worked around by disabling traffic. A bare `client.get_trafficmanager(8000)` crashed too (exit 139), in the Python 3.10 and 3.8 builds of carla 0.9.15 alike.
+**Cause:** gdb backtrace: `TrafficManagerLocal::SetupLocalMap` -> `InMemoryMap::Load(content)` -> `SimpleWaypoint::SetLeftWaypoint` -> `GetForwardVector` on a near-null pointer. The client was parsing the pre-built Traffic Manager map cache the server sends (`CarlaUE4/Content/Carla/Maps/TM/Town03_Opt.bin`), and that cache crashes the 0.9.15 loader.
+**How we handled it:** Renamed the cache folder (`TM` -> `TM.disabled`), so the Traffic Manager builds its map from the road topology (0.1 s). Made it reproducible in `scripts/configure_carla.sh`. Dead ends on the way: a Python 3.8 Traffic Manager host process (same crash), Python 3.7 (unavailable via uv).
+**Verified by:** Traffic Manager starts ("No InMemoryMap cache found"), an autopilot car drives 122 m in 150 ticks; CarDreamer `right_turn_hard` evaluation runs with cross traffic (the right-turn V-JEPA2 agent collides 3/3 zero-shot, as expected).
+**Lesson:** Get a native backtrace before working around a segfault - here it pointed straight at a data file, not the code.
+**Interview angle:** Tell me about a hard bug you found.

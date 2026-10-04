@@ -142,6 +142,7 @@ class DreamerObservation(gym.Wrapper):
         self.observation_space = gym.spaces.Dict(observation)
 
     def _observation(self, raw: dict, is_first: bool, is_last: bool, is_terminal: bool) -> dict:
+        self.last_raw = raw  # full CarDreamer observation (camera, bird's-eye view) for videos
         frame = np.asarray(raw[self._source], dtype=np.uint8)
         image = frame
         if image.shape[:2] != self._size:

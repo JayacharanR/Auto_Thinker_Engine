@@ -1,5 +1,17 @@
+diff --git a/car_dreamer/configs/common.yaml b/car_dreamer/configs/common.yaml
+index 25c42dd..f9dc1f9 100644
+--- a/car_dreamer/configs/common.yaml
++++ b/car_dreamer/configs/common.yaml
+@@ -6,6 +6,7 @@ env:
+     town: "Town04" # which town map to use
+     actor_active_distance: 100
+     fixed_delta_seconds: 0.1
++    weather: Default # carla.WeatherParameters preset, e.g. ClearNight, HardRainNoon
+     auto_lane_change: True
+     traffic:
+       tm_seed: 2024
 diff --git a/car_dreamer/toolkit/carla_manager/world_manager.py b/car_dreamer/toolkit/carla_manager/world_manager.py
-index bec496b..578f7f4 100644
+index bec496b..40d63ea 100644
 --- a/car_dreamer/toolkit/carla_manager/world_manager.py
 +++ b/car_dreamer/toolkit/carla_manager/world_manager.py
 @@ -1,3 +1,4 @@
@@ -46,9 +58,19 @@ index bec496b..578f7f4 100644
  
          settings = self._world.get_settings()
          settings.synchronous_mode = False
-@@ -49,7 +68,12 @@ class WorldManager:
+@@ -48,8 +67,22 @@ class WorldManager:
+         self._world.apply_settings(settings)
          self._settings = settings
  
++        # Weather preset (robustness evaluation). "Default" leaves the map's own
++        # weather untouched, so training conditions are unchanged.
++        weather = self._config.get("weather", "Default")
++        if weather and weather != "Default":
++            if not hasattr(carla.WeatherParameters, weather):
++                raise ValueError(f"Unknown CARLA weather preset: {weather}")
++            self._world.set_weather(getattr(carla.WeatherParameters, weather))
++            print(f"[CARLA] Weather: {weather}")
++
          self._tm_port = self._config.carla_port + 6000
 -        self._vehicle_manager = VehicleManager(self._client, self._tm_port, self._config.traffic)
 +        # The Traffic Manager starts on first use, so tasks without autopilot
@@ -60,7 +82,7 @@ index bec496b..578f7f4 100644
  
          self._on_reset = None
          self._apply_control = None
-@@ -59,6 +83,21 @@ class WorldManager:
+@@ -59,6 +92,21 @@ class WorldManager:
  
          self._ego_planner = None
  
@@ -82,7 +104,7 @@ index bec496b..578f7f4 100644
      def on_reset(self, callback: Callable[[], None]) -> None:
          """
          Register a callback function to be called when the environment is reset.
-@@ -200,6 +239,9 @@ class WorldManager:
+@@ -200,6 +248,9 @@ class WorldManager:
  
          :return: a list of spawned actors, note that the length of the list may be less than n.
          """
@@ -92,7 +114,7 @@ index bec496b..578f7f4 100644
          if transforms is None:
              transforms = self.get_spawn_points()
          if blueprints is None:
-@@ -240,6 +282,9 @@ class WorldManager:
+@@ -240,6 +291,9 @@ class WorldManager:
  
          .. seealso:: :py:meth:`try_spawn_actor`
          """
@@ -102,7 +124,7 @@ index bec496b..578f7f4 100644
          vehicle = self.try_spawn_actor(transform, blueprint)
          if vehicle is None:
              return None
-@@ -316,6 +361,8 @@ class WorldManager:
+@@ -316,6 +370,8 @@ class WorldManager:
      @cached_step_wise
      def _get_actor_actions(self) -> ActorActionDict:
          actor_actions: ActorActionDict = {}
@@ -111,7 +133,7 @@ index bec496b..578f7f4 100644
  
          for actor in self.actor_dict.values():
              try:
-@@ -358,7 +405,8 @@ class WorldManager:
+@@ -358,7 +414,8 @@ class WorldManager:
      def _set_synchronous_mode(self, synchronous=True):
          self._settings.synchronous_mode = synchronous
          self._world.apply_settings(self._settings)

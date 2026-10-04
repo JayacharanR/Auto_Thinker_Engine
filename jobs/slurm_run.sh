@@ -31,6 +31,8 @@ OBS="${OBS:-bev}"
 ACTION="${ACTION:-discrete}"
 # Extra trainer arguments, e.g. TRAIN_ARGS="--set prefill=500 --logdir outputs/logs/try1"
 read -r -a TRAIN_EXTRA <<< "${TRAIN_ARGS:-}"
+# Extra evaluation arguments, e.g. EVAL_ARGS="--env-set world.weather=ClearNight --video-episodes 2"
+read -r -a EVAL_EXTRA <<< "${EVAL_ARGS:-}"
 
 mkdir -p outputs
 
@@ -235,7 +237,8 @@ case "$RUN_MODE" in
       --arm "${ARM:-cnn}" \
       --episodes "${EPISODES:-5}" \
       --seed "$SEED" \
-      --output-dir "${OUTPUT_DIR:-outputs/eval_results}"
+      --output-dir "${OUTPUT_DIR:-outputs/eval_results}" \
+      "${EVAL_EXTRA[@]}"
     ;;
   comparison)
     "$PYTHON_BIN" run.py compare \

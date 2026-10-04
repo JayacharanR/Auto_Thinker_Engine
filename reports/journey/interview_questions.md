@@ -58,6 +58,7 @@ runs not finished yet.
 - **Q:** Did the pretrained encoders help?
   **A (short):** On the right-turn task from the front camera, with two seeds: both frozen pretrained encoders (our JEPA on comma2k19 and Meta's V-JEPA2) solved it on both seeds, while the CNN trained from scratch solved it on one of two within 50k steps. V-JEPA2 reached 80% success fastest (21.7k steps on average). With one seed all three looked tied - the second seed changed the conclusion, so I report it as suggestive pending more seeds.
   **Evidence:** journal "Seed 123: both pretrained encoders learn"; outputs/comparison/.../comparison.md
+  The clearest evidence is out of distribution: evaluated zero-shot at night, both pretrained-encoder agents still succeed 100% while the CNN agents leave the lane every time (0%); in heavy rain 95-100% vs 45%. Journal "Zero-shot robustness"; outputs/robustness/robustness.md and the videos.
 
 ## Simulation & infrastructure
 

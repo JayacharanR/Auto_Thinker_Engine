@@ -83,6 +83,13 @@ run_step() {  # name, command...
 }
 
 start_queue() {  # title
+  # One instance per queue directory: a second copy would share the CARLA port
+  # and the run directories with the first (two trainers in one world).
+  exec 9>"$OUT/.queue.lock"
+  if ! flock -n 9; then
+    echo "ERROR: a queue is already running in $OUT (lock $OUT/.queue.lock); not starting." >&2
+    exit 3
+  fi
   rm -f "$STOP_FILE"
   status "=== $1 started ==="
   health_monitor &

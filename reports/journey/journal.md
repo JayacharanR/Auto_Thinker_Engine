@@ -479,3 +479,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** `outputs/traffic_queue/status.txt`, cnn latest.pt step 12500.
 **Lesson:** -
 **Interview angle:** -
+
+## 2026-10-04 17:05 - Mistake: a second queue copy jammed the traffic run
+**Type:** mistake
+**Stage:** Roadmap (2) - traffic curriculum
+
+**What happened:** The user had already resumed `jobs/roadmap_1_2.sh` (16:30); Claude launched a second copy (16:32) without noticing - its process check printed the running jobs but was not read as a blocker. The duplicate's first attempt failed, its automatic retry started a second trainer on the same CARLA server and run directory, and the two deadlocked (~25 min, only ~500 env steps, 2-step collision episodes). Killing the duplicate left its car on the ego spawn point, so the real trainer looped on "Failed to spawn actor" indefinitely.
+**Cause:** No single-instance guard on queues; the crash-retry logic amplified the duplicate; CARLA keeps a killed client's actors.
+**How we handled it:** Killed only the duplicate's process group; stopped the real run cleanly (checkpoint at 12,988), which also restarted CARLA without the stray car; relaunched one copy - progressing again. `jobs/lib_queue.sh` now takes an flock per queue directory and refuses a second instance. Cost: ~30 min and a few hundred odd transitions in a 13k-step replay (negligible).
+**Verified by:** lock test (second copy exits with an error); run advancing 12,988 -> 13,910 in 3 min.
+**Lesson:** Treat "something is already running" output as a stop sign, and make job launchers refuse to run twice.
+**Interview angle:** -

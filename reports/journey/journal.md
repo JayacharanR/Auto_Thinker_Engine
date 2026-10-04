@@ -424,3 +424,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** unit tests (early stop at 260 with K=2; partial aggregation never trains; matched-step values); real-CARLA smoke of the job (flags, 500-step eval grid, aggregate); 131 tests pass.
 **Lesson:** Spend compute on the measurement that can still change the conclusion; stop runs once the question they answer is settled.
 **Interview angle:** How did you budget compute on a single laptop GPU?
+
+## 2026-10-04 12:03 - Seed 123: both pretrained encoders learn, the CNN does not (within 50k)
+**Type:** result
+**Stage:** Stage 5 - encoder comparison (2 seeds)
+
+**What happened:** Seed 123 (50k steps, evals every 5k, early stop K=3): cnn 0% at every eval to 50k; custom_jepa 90% at 27.5k, 100% from 37.5k (early-stopped at 47.5k); vjepa2 80% already at 12.5k, 100% at 27.5k, with dips to 70-80% before 100% at 47.5-50k. Two seeds combined: success within budget cnn 1/2, custom_jepa 2/2, vjepa2 2/2; steps to 80% success custom_jepa 30.0k +- 2.5k, vjepa2 21.7k +- 9.2k, cnn 32.5k (seed 42) / not reached (seed 123); 0 collisions everywhere. One CARLA crash per arm, all recovered automatically. Seed 123 took ~7 h instead of ~16-20 h.
+**Cause:** Interpretation (2 seeds, suggestive not conclusive): frozen pretrained video encoders make learning from the front camera more reliable and, for V-JEPA2, faster; the CNN has to learn its features from reward alone and failed on one seed within 50k steps.
+**How we handled it:** Results in `outputs/comparison/carla_right_turn_simple_camera_route/` (`comparison.md`, `comparison_curves.png`). Next steps under discussion with the user.
+**Verified by:** eval.jsonl / metrics.json per run; aggregate table.
+**Lesson:** A second seed can flip the conclusion of a one-seed comparison.
+**Interview angle:** Did the pretrained encoders help?

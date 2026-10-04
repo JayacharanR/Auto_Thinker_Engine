@@ -55,6 +55,10 @@ runs not finished yet.
   **A (short):** The predictor was given the clip's own steering and speed. With spatial masking, that hands it exactly the signal the steering probe measures, so the encoder would not need to learn it.
   **Evidence:** journal 2026-10-02 00:20
 
+- **Q:** Did the pretrained encoders help?
+  **A (short):** On the right-turn task from the front camera, with two seeds: both frozen pretrained encoders (our JEPA on comma2k19 and Meta's V-JEPA2) solved it on both seeds, while the CNN trained from scratch solved it on one of two within 50k steps. V-JEPA2 reached 80% success fastest (21.7k steps on average). With one seed all three looked tied - the second seed changed the conclusion, so I report it as suggestive pending more seeds.
+  **Evidence:** journal "Seed 123: both pretrained encoders learn"; outputs/comparison/.../comparison.md
+
 ## Simulation & infrastructure
 
 - **Q:** How did you make the simulator setup reproducible?

@@ -1051,3 +1051,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** 196 tests pass (CPU+GPU); carla.log shows the native segfault; the a1 attempt's records; an anchored process check shows nothing left running.
 **Lesson:** Every single-run assumption must be re-audited when moving to multi-route attempts, and a smoke test needs a stop condition computed from the actual frozen catalog.
 **Interview angle:** How did you make long simulator evaluations resumable without letting retries become outcome selection?
+
+## 2026-10-09 01:00 - Parallel CARLA slots after measuring a latency-bound single server
+**Type:** decision
+**Stage:** Navigation M0 expert ceiling
+
+**What happened:** The user noticed the GPU running at about 20% during the approved single-server expert run and asked for better use. Measured: CARLA about 1.9 cores and the evaluator/expert about 0.7, out of 24 (88% idle); GPU 11–17% at 40W; about 2GB VRAM per server; 19.7GB RAM available. The synchronous step–render–plan loop was latency-bound, not resource-bound.
+**Cause:** The plan deferred parallel servers until measurements justified them; these measurements now do.
+**How we handled it:** I implemented slots in a separate git worktree, so the live run never read half-edited code. Ports are 2100/8100 + 100×slot; slot 0 keeps the original lock; only sibling navigation servers are accepted; server starts are serialized and gated on at least 3GB free VRAM and 6GB available RAM; attempts refused before starting are not driving failures. Chunk composition, seeds and retry rules do not depend on the worker count. I then stopped the single-server run with STOP at 35/300 (preserved at outputs/navigation_expert_ceiling_20261009, results not inspected before stopping) and restarted fresh at outputs/navigation_expert_ceiling_parallel_20261009 with 3 workers. The 35 overlapping encounters will test whether parallel slots change outcomes.
+**Verified by:** 31 navigation tests, including slot ports, sibling-versus-foreign servers and refused attempts. With three servers: GPU 33–37% at 7.5/12.2GB, CPU 67% idle, no resource waits.
+**Lesson:** Low utilization in synchronous simulation usually means latency-bound, not overloaded; measure, then parallelize at the episode level, without editing code a live run is still reading.
+**Interview angle:** How did you speed up a synchronous simulator evaluation without changing its results?

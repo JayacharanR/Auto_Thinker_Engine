@@ -133,12 +133,16 @@ SignalizedJunctionLeftTurn and NonSignalizedJunctionLeft/RightTurn. Traffic seed
 ```bash
 systemd-inhibit --what=sleep:idle:handle-lid-switch --why=navigation \
   .venv/bin/python scripts/run_encounters.py \
-  --out outputs/navigation_expert_ceiling_NEW --seed 42
+  --out outputs/navigation_expert_ceiling_NEW --seed 42 --workers 3
 python3 scripts/watch_navigation.py --out outputs/navigation_expert_ceiling_NEW
 touch outputs/navigation_expert_ceiling_NEW/STOP   # clean stop; rerun the same command to resume
 ```
 
-Chunks of 10 routes each get a fresh owned server. Only a missing record or a
+Chunks of 10 routes each get a fresh owned server. `--workers N` (at most
+`runtime.max_servers`, currently 3) runs chunks on parallel slots: ports
+2100/8100 + 100×slot, a separate lock per slot, and serialized server starts
+that wait for at least 3 GB free VRAM and 6 GB available RAM. The worker count
+never changes chunk composition or seeds. Only a missing record or a
 simulator crash is retried, once, and every attempt is kept. Headline per family:
 `rule_safe` (completed with no collision, rule, route or blocking infraction).
 Min-speed infractions and the strict any-infraction count are reported beside

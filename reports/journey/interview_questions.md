@@ -321,3 +321,7 @@ runs not finished yet.
 - **Q:** How did you make long simulator evaluations resumable without letting retries become outcome selection?
   **A (short):** Encounters run in chunks, each with a fresh owned server and numbered attempt directories. Only infrastructure failures are retried, at most once: a missing record or a simulator crash. Agent failures, collisions and timeouts are results. Routes already recorded in the raw evaluator file are never rerun, a STOP-interrupted route is dropped rather than scored, and every attempt is kept in the summary.
   **Evidence:** scripts/run_encounters.py; tests/test_navigation.py runner tests; journal 2026-10-09 00:30.
+
+- **Q:** How did you speed up a synchronous simulator evaluation without changing its results?
+  **A (short):** Profiling showed one CARLA server used about 2.6 of 24 cores and 15% of the GPU, so the loop was latency-bound. I ran independent episode chunks on three servers with separate ports, locks and resource-gated starts. Chunk composition and per-route seeds stay identical, so results should not depend on the worker count, and the overlapping encounters from the stopped single-server run test exactly that.
+  **Evidence:** journal 2026-10-09 01:00; scripts/run_encounters.py (LaunchGate); src/navigation/runtime.py (slot_ports).

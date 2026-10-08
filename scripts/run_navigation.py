@@ -47,6 +47,10 @@ def main():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max-steps", type=int, default=0, help="0: whole route; >0: profile only")
     parser.add_argument("--max-wall", type=float, default=1800)
+    parser.add_argument("--routes-subset", default="", help="Evaluator route-id subset, e.g. 3-12")
+    parser.add_argument(
+        "--seed-per-route", action="store_true", help="Traffic seed = --seed + XML route id"
+    )
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     # These flags alter criteria at import time as well as expert behavior.
@@ -112,6 +116,8 @@ def main():
                 "free_gb_at_start": free,
                 "max_steps": args.max_steps,
                 "max_wall": args.max_wall,
+                "routes_subset": args.routes_subset,
+                "seed_per_route": args.seed_per_route,
                 "policy_kind": "privileged_pdm_lite_modified",
                 "final_benchmark": False,
             },
@@ -156,6 +162,9 @@ def main():
                     str(args.max_steps),
                     "--max-wall",
                     str(args.max_wall),
+                    "--routes-subset",
+                    args.routes_subset,
+                    *(["--seed-per-route"] if args.seed_per_route else []),
                 ]
                 # A native abort in CARLA's client remains inside this child. The parent
                 # owns the server and still executes cleanup and preserves the failure.
@@ -199,7 +208,8 @@ def run_worker(args, config, output, route):
         record=str(output),
         timeout=30.0,
         routes=str(route),
-        routes_subset="",
+        routes_subset=args.routes_subset,
+        seed_per_route=args.seed_per_route,
         repetitions=1,
         agent=str(ROOT / "src/navigation/pdm_agent.py"),
         agent_config=str(output / "agent.json"),
@@ -214,13 +224,16 @@ def run_worker(args, config, output, route):
     )
     stats = StatisticsManager(settings.checkpoint, settings.debug_checkpoint)
     evaluator = NavigationEvaluator(settings, stats)
-    crashed = evaluator.run(settings)
+    crashed = evaluator.run(settings) and not evaluator.navigation_halted
     result = json.loads((output / "leaderboard.json").read_text())
     records = result.get("_checkpoint", {}).get("records", [])
     reason = evaluator.manager.navigation_stop_reason
     status = execution_status(records, crashed, reason, args.max_steps)
     summary = summarize_records(
-        records, execution_failure=bool(crashed or reason or status == "failed")
+        records,
+        execution_failure=bool(crashed or reason or status == "failed"),
+        # Earlier routes in a multi-route attempt finished before the stop or crash.
+        last_route_only=bool(args.routes_subset),
     )
     summary.update(
         harness_crashed=bool(crashed),

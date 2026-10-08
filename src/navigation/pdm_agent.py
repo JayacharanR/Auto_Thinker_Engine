@@ -49,9 +49,18 @@ class NavigationExpert(AutoPilot):
             ]
         )
         length = float(np.linalg.norm(np.diff(xyz, axis=0), axis=1).sum())
-        expected = manifest["route"]["length_m"]
+        current = json.loads((Path(spec["out"]) / "current_route.json").read_text())
+        lengths = manifest["route"].get("lengths_m")
+        # A multi-route catalog registers one length per route id; never fall back.
+        expected = lengths[current["route_id"]] if lengths else manifest["route"]["length_m"]
         atomic_json(
-            self.out / "route_validation.json", {"expected_m": expected, "harness_m": length}
+            self.out / "route_validation.json",
+            {
+                "route_id": current["route_id"],
+                "seed": current["seed"],
+                "expected_m": expected,
+                "harness_m": length,
+            },
         )
         if abs(length - expected) > max(10, 0.02 * expected):
             raise ValueError(

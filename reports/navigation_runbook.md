@@ -120,6 +120,30 @@ process, so a native client abort cannot orphan the server. It never drives,
 never loads Town05 and freezes nothing. Current result:
 `outputs/navigation_encounter_inventory_v2_20261009`.
 
+## Development encounter catalog (frozen dev_v1)
+
+`configs/encounters/dev_v1` holds 300 encounters (50 per family) over the five
+training towns, selected by `scripts/build_encounter_catalog.py` with a fixed
+seed, without driving outcomes. Do not rebuild or edit it: the builder refuses
+to overwrite it, and `catalog.sha256` is checked by the runner. Scenarios:
+NavigationSignalHold (held red, declared release rule), HardBreakRoute,
+SignalizedJunctionLeftTurn and NonSignalizedJunctionLeft/RightTurn. Traffic seed
+= `--seed` + route id.
+
+```bash
+systemd-inhibit --what=sleep:idle:handle-lid-switch --why=navigation \
+  .venv/bin/python scripts/run_encounters.py \
+  --out outputs/navigation_expert_ceiling_NEW --seed 42
+python3 scripts/watch_navigation.py --out outputs/navigation_expert_ceiling_NEW
+touch outputs/navigation_expert_ceiling_NEW/STOP   # clean stop; rerun the same command to resume
+```
+
+Chunks of 10 routes each get a fresh owned server. Only a missing record or a
+simulator crash is retried, once, and every attempt is kept. Headline per family:
+`rule_safe` (completed with no collision, rule, route or blocking infraction).
+Min-speed infractions and the strict any-infraction count are reported beside
+it. Intervals must be clustered by junction/stop location before any claim.
+
 ## Current research boundary
 
 M0 integrates the privileged teacher, cameras and evaluator. It does not yet

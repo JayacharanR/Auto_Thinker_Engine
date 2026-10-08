@@ -1018,3 +1018,36 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** Per-town JSON, with source copies, in outputs/navigation_encounter_inventory_v2_20261009. The Town03 probe (outputs/navigation_encounter_probe_town03_20261009) and the rerun are identical. Planner turn labels agree with signed heading change. Added a helper test; 24 navigation tests pass and ruff is clean.
 **Lesson:** The stop-sign family is location-limited: 49 valid movements on 20 actors cannot give 50 independent encounters. Confidence intervals must be clustered by location, and the catalog needs a predeclared rule for reusing locations.
 **Interview angle:** How did you count traffic-rule opportunities so they match how the evaluator scores violations?
+
+## 2026-10-09 00:05 - Encounter-catalog design decisions approved; M0 work committed
+**Type:** decision
+**Stage:** Navigation M0 encounter catalog
+
+**What happened:** The user replied "start" to three proposals, taken as approval of the recommended options: (1) the stop-sign family reuses its 20 locations across traffic seeds, with intervals clustered by location; (2) red-light encounters use one predeclared light-hold rule for every driver; (3) commit the M0 work locally. Committed dfc532a on experiment/camera-world-model-navigation (not pushed; submodule changes left out).
+**Cause:** Only 49 valid stop movements exist at 20 actors, and a natural light cycle cannot guarantee a red on arrival.
+**How we handled it:** Reused the pinned harness wherever possible. HardBreakRoute covers following a stopped vehicle; SignalizedJunctionLeftTurn and NonSignalizedJunctionLeft/RightTurn cover crossing/yield. The only new scenario is NavigationSignalHold, built on the pinned TrafficLightFreezer and PriorityAtJunction pattern and registered without editing the vendor checkout. The harness now records every scenario that starts or is skipped (upstream silently skips failed setups). Seeds and route-length checks are keyed on the XML route id.
+**Verified by:** Commit dfc532a; unit tests for selection determinism, stratification, exclusion and outcome-blindness.
+**Lesson:** Reuse the evaluator's scenarios and criteria so that expert and student encounters have identical semantics, and add only the setup the evaluator lacks.
+**Interview angle:** How did you force a red-light opportunity without changing how violations are scored?
+
+## 2026-10-09 00:15 - Town03 pilot: signal hold works, release zone too small for queues
+**Type:** bug
+**Stage:** Navigation M0 encounter catalog
+
+**What happened:** A six-encounter Town03 pilot (one per family; outputs/navigation_encounter_pilot_20261009) started every declared scenario. Hold lights matched the inventory (59, 72), route lengths matched within 0.15m, and seeds came from the route id. The release/memory hold behaved as designed (stop at the line, 10s, clearance, green, go). In the signal_stop encounter, a background queue held the ego 25.6m from the line, outside the 20m release zone, so the light stayed red for the full 45s maximum. Four encounters recorded the evaluator's min-speed infraction (speed relative to traffic) during their mandated waits.
+**Cause:** The hold rule assumed an empty approach. MinSpeedTest compares ego speed to other traffic, so imposed waits trip it.
+**How we handled it:** Raised the signal_stop release zone to 40m, to cover a short queue (release/memory keeps 20m). Added rule_safe_completed: completed, with no infraction other than min-speed. Kept the strict any-infraction count and a per-episode min-speed count, so nothing is hidden. Both changes respond to setup behavior, not to how well the expert drove. Froze configs/encounters/dev_v1 (catalog sha256 716c3600…), whose encounters are byte-identical to the piloted candidate apart from that parameter.
+**Verified by:** Per-frame light state from world_trace versus ego speed and distance to the stop line; actor roles show the crossing scenario's oncoming flow and HardBreakRoute's lead vehicle; catalog diff against the candidate.
+**Lesson:** Pilot every scenario's mechanics against its intent before freezing; a rule that works on an empty road can silently become a fixed-duration wait in traffic.
+**Interview angle:** Why report min-speed infractions separately instead of counting them as unsafe?
+
+## 2026-10-09 00:30 - Encounter runner smoke test: simulator segfault, retry and stop-scoping bugs
+**Type:** bug
+**Stage:** Navigation M0 encounter catalog
+
+**What happened:** A Town10HD runner smoke test was meant to stop after one chunk, but my wait loop watched for a nonexistent chunk name (the frozen ids start at 248, not 246), so it kept running until I sent STOP after 22 of 52 encounters. STOP worked: the runner, evaluator and server exited within 6s. During the run, the CARLA server segfaulted (signal 11) at the start of route 263, before any frame. The chunk's retry ran 263–265 cleanly. Review found two of my bugs. The runner would have rerun routes that the evaluator had recorded in raw leaderboard.json before an abort. And the worker marked every route in a stopped multi-route attempt as an execution failure, so route 269, which finished at 100%, was not counted as completed.
+**Cause:** I hard-coded chunk ids from an earlier candidate. Both bugs carried single-route M0 assumptions (summary.json always written; one route per attempt) into multi-route runs.
+**How we handled it:** Raw records now settle routes when summary.json is missing; only the route running at a stop or crash is marked failed. Retry rule: only a missing record or a "Simulation crashed" record is retried, at most once, with every attempt kept. Agent failures, collisions and timeouts are never retried. Added tests for both bugs. The smoke run is preserved as outputs/navigation_encounter_runner_smoke_20261009 and is not part of the expert ceiling, which will be a fresh full run. Its 21 settled encounters: all rule-safe, zero collisions, zero red or stop violations.
+**Verified by:** 196 tests pass (CPU+GPU); carla.log shows the native segfault; the a1 attempt's records; an anchored process check shows nothing left running.
+**Lesson:** Every single-run assumption must be re-audited when moving to multi-route attempts, and a smoke test needs a stop condition computed from the actual frozen catalog.
+**Interview angle:** How did you make long simulator evaluations resumable without letting retries become outcome selection?

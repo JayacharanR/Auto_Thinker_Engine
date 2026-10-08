@@ -2,6 +2,7 @@
 
 import json
 from copy import deepcopy
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -183,3 +184,145 @@ def test_encounter_geometry_helpers():
     assert summary["movements"] == 3 and summary["valid_movements"] == 2
     assert summary["valid_by_control"] == {"signal": 1, "stop": 1}
     assert summary["valid_stop_actors"] == 1 and summary["valid_junctions"] == 2
+
+
+def _movement(town, junction, entry, control, turn, approach=50.0, signal=(), stop=()):
+    return {
+        "town": town,
+        "junction_id": junction,
+        "entry_lane": [entry, 0, -1],
+        "exit_lane": [entry + 100, 0, -1],
+        "control": control,
+        "planner_options": ["LANEFOLLOW", turn],
+        "signal_ids": list(signal),
+        "stop_ids": list(stop),
+        "approach_m": approach,
+        "valid": True,
+        "has_opposite_entry": True,
+        "has_left_entry": True,
+    }
+
+
+def test_catalog_selection_is_seeded_balanced_and_outcome_blind():
+    from src.navigation.catalog import coverage, select_catalog
+
+    movements = [
+        _movement(t, j, e, ["signal"], turn, signal=[j * 10 + e])
+        for t in ("TownA", "TownB")
+        for j in range(3)
+        for e, turn in enumerate(("LEFT", "RIGHT", "STRAIGHT"))
+    ]
+    movements += [_movement("TownA", 9, e, ["stop"], "STRAIGHT", stop=[90 + e]) for e in range(2)]
+    movements.append({**_movement("TownB", 7, 1, ["stop"], "LEFT", stop=[99]), "excluded": True})
+    families = ["signal_stop", "stop_sign", "route_junction"]
+    first = select_catalog(movements, families, 6, seed=1)
+    assert first == select_catalog(movements, families, 6, seed=1)
+    cov = coverage(first)
+    assert cov["signal_stop"]["towns"] == {"TownA": 3, "TownB": 3}
+    # Two stop actors share six encounters round-robin; the excluded stop is never used.
+    stops = [p["movement"]["stop_ids"][0] for p in first if p["family"] == "stop_sign"]
+    assert sorted(stops) == [90, 90, 90, 91, 91, 91]
+    assert cov["stop_sign"]["reused_movements"] == 4
+    assert all(p["occurrence"] == 0 for p in first if p["family"] == "signal_stop")
+    # Selection never reads outcome fields, so adding them cannot change the catalog.
+    with_outcomes = [{**m, "expert_result": "collision"} for m in movements]
+    assert [
+        p["movement"]["junction_id"] for p in select_catalog(with_outcomes, families, 6, 1)
+    ] == [p["movement"]["junction_id"] for p in first]
+
+
+def test_min_speed_is_reported_separately_but_never_hides_safety_infractions():
+    from src.navigation.metrics import summarize_records
+
+    def record(**infractions):
+        return {"status": "Completed", "scores": {"score_route": 100.0}, "infractions": infractions}
+
+    summary = summarize_records(
+        [
+            record(min_speed_infractions=["slow"]),
+            record(min_speed_infractions=["slow"], red_light=["ran"]),
+            record(collisions_vehicle=["hit"]),
+        ]
+    )
+    assert summary["safe_completed"] == 0
+    assert summary["rule_safe_completed"] == 1
+    assert summary["all_collisions"] == 1
+    assert [e["min_speed_infractions"] for e in summary["episodes"]] == [1, 1, 0]
+
+
+def _load_script(name):
+    import importlib.util
+
+    path = Path(__file__).resolve().parents[1] / "scripts" / f"{name}.py"
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_encounter_runner_retries_only_crashes_once_and_drops_interrupted_routes(tmp_path):
+    from types import SimpleNamespace
+
+    runner = _load_script("run_encounters")
+
+    def episode(rid, status):
+        return {"route_id": f"RouteScenario_{rid}_rep0", "status": status}
+
+    plan = {
+        # first attempt: 5 finishes, 6 crashes the simulator, 7 never gets a record
+        "chunk_a0": [episode(5, "Completed"), episode(6, "Failed - Simulation crashed")],
+        # retry: 6 now finishes (agent failure is a result), 7 still has no record
+        "chunk_a1": [episode(6, "Failed - Agent timed out")],
+    }
+    calls = []
+
+    def fake_run(args, xml, subset, chunk):
+        calls.append((chunk.name, subset))
+        chunk.mkdir()
+        (chunk / "summary.json").write_text(json.dumps({"episodes": plan[chunk.name]}))
+
+    runner.run_chunk = fake_run
+    args = SimpleNamespace(out=tmp_path)
+    attempts, finals = runner.settle_group(args, None, [5, 6, 7], tmp_path / "chunk")
+    # 7 failed to record twice, so the one-retry budget is spent and it stays unsettled.
+    assert calls == [("chunk_a0", "5-7"), ("chunk_a1", "6,7")]
+    assert set(finals) == {5, 6} and "Agent" in finals[6]["status"]
+    assert [a["status"] for a in attempts[7]] == ["no evaluator record"] * 2
+    # Resuming re-reads the same attempts without running anything again.
+    calls.clear()
+    assert runner.settle_group(args, None, [5, 6, 7], tmp_path / "chunk")[1].keys() == {5, 6}
+    assert calls == []
+
+    stopped = tmp_path / "stopped"
+    stopped.mkdir()
+    (stopped / "summary.json").write_text(
+        json.dumps({"episodes": [episode(1, "Completed"), episode(2, "Failed")]})
+    )
+    (stopped / "stopped.json").write_text(json.dumps({"reason": "user_stop"}))
+    records, was_stopped = runner.chunk_records(stopped)
+    assert was_stopped and set(records) == {1}  # route 2 was interrupted, not a result
+
+
+def test_encounter_runner_keeps_raw_records_written_before_a_native_abort(tmp_path):
+    runner = _load_script("run_encounters")
+    chunk = tmp_path / "chunk_a0"
+    chunk.mkdir()
+    raw = {"_checkpoint": {"records": [
+        {"route_id": "RouteScenario_4_rep0", "status": "Perfect", "scores": {"score_route": 100},
+         "infractions": {}},
+        {"route_id": "RouteScenario_5_rep0", "status": "Failed - Simulation crashed",
+         "scores": {"score_route": 10}, "infractions": {}},
+    ]}}  # fmt: skip
+    (chunk / "leaderboard.json").write_text(json.dumps(raw))
+    records, stopped = runner.chunk_records(chunk)
+    assert not stopped and set(records) == {4, 5}
+    assert records[4]["completed"] and runner.CRASH_STATUS in records[5]["status"]
+
+
+def test_multi_route_stop_fails_only_the_route_that_was_running():
+    from src.navigation.metrics import summarize_records
+
+    done = {"status": "Perfect", "scores": {"score_route": 100.0}, "infractions": {}}
+    summary = summarize_records([done, done], execution_failure=True, last_route_only=True)
+    assert [e["completed"] for e in summary["episodes"]] == [True, False]
+    assert summarize_records([done, done], execution_failure=True)["safe_completed"] == 0

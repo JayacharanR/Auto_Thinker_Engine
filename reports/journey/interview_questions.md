@@ -309,3 +309,15 @@ runs not finished yet.
 - **Q:** How did you count traffic-rule opportunities so they match how the evaluator scores violations?
   **A (short):** I called the pinned evaluator's own trigger-volume geometry for red lights and stop signs on every lane, then kept only junction movements with at least a 30m approach that the harness planner actually takes. That gives 326 signal, 49 stop and 166 uncontrolled valid movements across five towns. It also showed that six Town03 stop actors only cover lanes inside the junction, an evaluator quirk to avoid by design rather than by discarding results.
   **Evidence:** journal 2026-10-09 00:25; src/navigation/encounters.py; outputs/navigation_encounter_inventory_v2_20261009.
+
+- **Q:** How did you force a red-light opportunity without changing how violations are scored?
+  **A (short):** A small predeclared scenario, built from the evaluator's own TrafficLightFreezer, holds the ego's light red until the car has stood still near the line for a few seconds (or a maximum hold passes), then runs a yellow and all-red clearance before green. Scoring is untouched: the pinned red-light criterion judges every crossing, and the same hold rule applies to the expert and every student.
+  **Evidence:** src/navigation/scenarios.py; journal 2026-10-09 00:05 and 00:15; outputs/navigation_encounter_pilot_20261009.
+
+- **Q:** Why report min-speed infractions separately instead of counting them as unsafe?
+  **A (short):** The evaluator's min-speed check compares the ego's speed with surrounding traffic, so encounters that impose a wait (held reds, stop signs, a stopped lead car) trigger it by design. The headline counts every collision, rule, route and blocking infraction. Min-speed is still reported per encounter, alongside the strict any-infraction count, so a reader can apply either definition.
+  **Evidence:** src/navigation/metrics.py (PROGRESS_ONLY_INFRACTIONS); journal 2026-10-09 00:15.
+
+- **Q:** How did you make long simulator evaluations resumable without letting retries become outcome selection?
+  **A (short):** Encounters run in chunks, each with a fresh owned server and numbered attempt directories. Only infrastructure failures are retried, at most once: a missing record or a simulator crash. Agent failures, collisions and timeouts are results. Routes already recorded in the raw evaluator file are never rerun, a STOP-interrupted route is dropped rather than scored, and every attempt is kept in the summary.
+  **Evidence:** scripts/run_encounters.py; tests/test_navigation.py runner tests; journal 2026-10-09 00:30.

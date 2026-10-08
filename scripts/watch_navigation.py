@@ -24,6 +24,12 @@ def render(output):
         f"{p.get('frames', 0):,} frames | {p.get('frames_per_second', 0):.1f} fps | "
         f"{p.get('speed_kmh', 0):.1f} km/h | update {age:.0f}s ago"
     )
+    if p.get("encounters_total"):
+        text = (
+            f"{p['status']:16} [{bar}] encounters {p['encounters_done']}/{p['encounters_total']} "
+            f"| current {p.get('current_chunk')} | update {age:.0f}s ago\n"
+            "Live driving detail: watch the current chunk directory with --out."
+        )
     if p.get("error"):
         text += f"\n{p['error']}"
     if p.get("summary"):

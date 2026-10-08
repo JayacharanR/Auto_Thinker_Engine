@@ -9,10 +9,54 @@ import carla
 import numpy as np
 import torch
 from leaderboard.leaderboard_evaluator_local import LeaderboardEvaluator
+from leaderboard.scenarios.route_scenario import RouteScenario
 from leaderboard.scenarios.scenario_manager_local import ScenarioManager
 from srunner.scenariomanager.carla_data_provider import CarlaDataProvider
 
 from src.navigation.runtime import atomic_json
+from src.navigation.scenarios import NAVIGATION_SCENARIOS
+
+_pinned_scenario_classes = RouteScenario.get_all_scenario_classes
+_pinned_build_scenarios = RouteScenario.build_scenarios
+SCENARIO_LOG = {"path": None}
+
+
+def _scenario_classes(self):
+    classes = _pinned_scenario_classes(self)
+    clash = set(classes) & set(NAVIGATION_SCENARIOS)
+    if clash:
+        raise RuntimeError(f"Navigation scenario names shadow pinned scenarios: {clash}")
+    return {**classes, **NAVIGATION_SCENARIOS}
+
+
+def _build_scenarios(self, ego_vehicle, debug=False):
+    # Upstream prints and skips a scenario whose setup fails. An encounter whose
+    # declared scenario never started is not that encounter, so record both outcomes.
+    pending = list(self.missing_scenario_configurations)
+    started = len(self.list_scenarios)
+    _pinned_build_scenarios(self, ego_vehicle, debug)
+    if SCENARIO_LOG["path"] is None:
+        return
+    new = self.list_scenarios[started:]
+    names = {s.config.name for s in new}
+    log = json.loads(SCENARIO_LOG["path"].read_text()) if SCENARIO_LOG["path"].exists() else {}
+    for scenario in new:
+        log.setdefault("started", []).append(
+            {
+                "name": scenario.config.name,
+                "type": scenario.config.type,
+                "ego_light_id": getattr(scenario, "ego_light_id", None),
+            }
+        )
+    for config in pending:
+        if config not in self.missing_scenario_configurations and config.name not in names:
+            log.setdefault("skipped", []).append({"name": config.name, "type": config.type})
+    if new or log.get("skipped"):
+        atomic_json(SCENARIO_LOG["path"], log)
+
+
+RouteScenario.get_all_scenario_classes = _scenario_classes
+RouteScenario.build_scenarios = _build_scenarios
 
 
 class StopAwareManager(ScenarioManager):
@@ -23,6 +67,9 @@ class StopAwareManager(ScenarioManager):
         self.navigation_started = time.monotonic()
         self.navigation_ticks = 0
         self.navigation_stop_reason = None
+
+    def start_route(self):
+        self.navigation_ticks = 0
 
     def _tick_scenario(self):
         reason = None
@@ -61,6 +108,27 @@ class NavigationEvaluator(LeaderboardEvaluator):
         super().__init__(args, statistics_manager)
         self.manager = StopAwareManager(args.timeout, statistics_manager, args.debug)
         self.manager.configure_limits(args.navigation_out, args.max_steps, args.max_wall)
+        self.navigation_halted = False
+        self.navigation_seed = args.traffic_manager_seed
+
+    def _load_and_run_scenario(self, args, config):
+        # config.index is the position within a routes subset; the XML route id is
+        # the stable encounter identity, so seeds and records key on it.
+        if self.manager.navigation_stop_reason in ("user_stop", "wall_budget"):
+            # Starting further routes would record each one as an instant failure.
+            self.navigation_halted = True
+            return True
+        route_id = config.name.removeprefix("RouteScenario_")
+        self.navigation_seed = args.traffic_manager_seed + (
+            int(route_id) if args.seed_per_route else 0
+        )
+        out = Path(args.navigation_out)
+        SCENARIO_LOG["path"] = out / "scenario_setup" / f"{route_id}.json"
+        atomic_json(
+            out / "current_route.json", {"route_id": route_id, "seed": self.navigation_seed}
+        )
+        self.manager.start_route()
+        return super()._load_and_run_scenario(args, config)
 
     def _setup_simulation(self, args):
         # An owned server is already running. No external scripts, broad process matching,
@@ -93,11 +161,12 @@ class NavigationEvaluator(LeaderboardEvaluator):
         CarlaDataProvider.set_client(self.client)
         CarlaDataProvider.set_traffic_manager_port(self.traffic_manager_port)
         CarlaDataProvider.set_world(self.world)
-        CarlaDataProvider.set_random_seed(args.traffic_manager_seed)
-        self.traffic_manager.set_random_device_seed(args.traffic_manager_seed)
-        random.seed(args.traffic_manager_seed)
-        np.random.seed(args.traffic_manager_seed)
-        torch.manual_seed(args.traffic_manager_seed)
+        seed = self.navigation_seed
+        CarlaDataProvider.set_random_seed(seed)
+        self.traffic_manager.set_random_device_seed(seed)
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
         CarlaDataProvider.active_scenarios = []
         self.world.tick()
         signs = []

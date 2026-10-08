@@ -129,3 +129,24 @@ encounters need a predeclared location-reuse rule and location-clustered
 intervals. The first attempt's Town10HD client abort, and its orphaned server,
 are preserved and fixed (see the journal). This is still an inventory: no
 encounter has been selected, frozen or driven.
+
+## Addendum 2026-10-09 — frozen development catalog and pilot
+
+`configs/encounters/dev_v1` (catalog sha256 `716c3600…`) has 300 encounters:
+
+| Family | Distinct movements | Distinct junctions | Towns | Scenario |
+|---|---:|---:|---|---|
+| signal_stop | 50 | 35 | all five, 10 each | NavigationSignalHold (release within 40 m) |
+| signal_release_memory | 50 | 35 | all five, 10 each | NavigationSignalHold (start 12 m before line, 10 s hold) |
+| stop_sign | 43 | 7 | Town03 29, Town04 19, Town10HD 2 | none (runtime stop actors) |
+| crossing_yield | 45 | 36 | 5/5/15/15/10 | pinned junction-flow scenarios |
+| following_stopped_vehicle | 50 | 47 | all five, 10 each | HardBreakRoute |
+| route_junction | 49 | 46 | 8/8/12/12/10 | none |
+
+Stop-sign encounters cover all 20 usable stop actors, 2–3 times each, but only
+7 junctions, so clustered intervals are essential there. A six-encounter Town03
+pilot confirmed that every scenario starts and does what it is meant to.
+A runner smoke test (22 Town10HD encounters, stopped deliberately) exposed one
+CARLA segfault, handled by the declared one-time retry, and two runner bugs,
+both fixed before the expert-ceiling run. No student exists yet; these runs are
+privileged expert infrastructure checks.

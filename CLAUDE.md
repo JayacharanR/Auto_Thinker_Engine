@@ -1,6 +1,14 @@
 # Auto Thinker Engine
 
-Staged plan: `~/.claude/plans/robust-drifting-galaxy.md`.
+Staged plan: `~/.claude/plans/robust-drifting-galaxy.md` (historical Dreamer work).
+
+**Current work (branch `experiment/camera-world-model-navigation`): always follow
+`reports/navigation_review_plan.md`** (full user-approved plan, M0–M6) with its
+condensed form `reports/navigation_plan.md`, the runbook
+`reports/navigation_runbook.md`, and the latest status in
+`reports/navigation_m0_assessment_20261008.md` and the journal tail. Ask before
+multi-hour collection/training; Town05 stays held out; never present the
+privileged PDM-Lite expert as camera driving.
 
 ## Project journal
 

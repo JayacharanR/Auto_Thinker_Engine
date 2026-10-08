@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes>
+  <route id="0" town="Town04_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="26.99849" y="-336.48895" z="0.00000" />
+      <position x="-306.29608" y="-86.50890" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+</routes>

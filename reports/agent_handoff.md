@@ -5,20 +5,36 @@ then the files listed in "Reading order", before changing anything. Status
 below is as of 2026-10-04 19:05; check the live state (section "First commands")
 because training may have moved on.
 
-**Current update — 2026-10-08:** The historical status below is superseded by
+**Navigation update — 2026-10-08 23:36:** User approved the reviewed long-route
+redesign; implementation is on `experiment/camera-world-model-navigation`.
+Read `reports/navigation_plan.md`, `reports/navigation_runbook.md` and
+`reports/navigation_m0_assessment_20261008.md` before continuing this branch.
+Modified privileged PDM-Lite completed 1.23 km with 100% completion and no recorded
+infractions, capturing three aligned 512×288 views at 19.37 frames/s. All five
+training towns passed bounded probes. Two 200-frame runs matched ego controls,
+dynamic-actor poses/velocities and traffic-light phases exactly. This is M0
+integration evidence, not camera-student performance or calibrated reliability.
+Next: audited encounter catalog/expert ceiling, then crash-safe data collection
+and a compact camera imitation student. No multi-hour run is authorized by M0.
+Town05 remains held out. Runtime Town03/04 contain 20/8 stop actors despite zero
+OpenDRIVE stop signals; use runtime route encounters for coverage. Failed
+attempts, geometry corrections and summary-parser mistakes are preserved in the
+journal. Historical Dreamer code, jobs and reward/benchmark contract are unchanged.
+
+**BEV update — 2026-10-08:** The historical status below is superseded by
 `reports/overnight_bev_assessment_20261008.md` and the newest journal entries.
-The BEV overnight queue completed all32 stages on Oct6,00:45–07:46 IST. It
-selected the unchanged-reward control and added120k steps with replay/Adam
+The BEV overnight queue completed all 32 stages on Oct 6, 00:45–07:46 IST. It
+selected the unchanged-reward control and added 120k steps with replay/Adam
 preserved. Best checkpoint: `outputs/overnight_bev_20261006/best.pt`, run
-counter90k (60k added overnight); **do not resume the150k latest checkpoint**,
-which collapsed to1/90 safe medium arrivals and0/10 simple turns.
+counter 90k (60k added overnight); **do not resume the 150k latest checkpoint**,
+which collapsed to 1/90 safe medium arrivals and 0/10 simple turns.
 Best final separate-stream results: medium58/60 versus baseline56/60, simple
 10/10 for both, zero-shot hard27/30 versus26/30. This is a modest one-seed gain,
 not a solved traffic task or a JEPA comparison. The completed fixed300 pilot
-matched control/reference at51/60 medium safe arrivals; no driving benefit was
-shown, and overnight training retained fixed cost0. Queue is idle at review.
+matched control/reference at 51/60 medium safe arrivals; no driving benefit was
+shown, and overnight training retained fixed cost 0. Queue is idle at review.
 Next: reproduce the best candidate's safety across additional predeclared
-streams, diagnose the147.5k–150k stopping collapse, and use short protected
+streams, diagnose the 147.5k–150k stopping collapse, and use short protected
 continuations before another long run. See the assessment for seed, AMP/RNG
 and replay limitations; ask before new multi-hour training or reward/benchmark
 changes. The deferred third encoder-comparison seed remains deferred.

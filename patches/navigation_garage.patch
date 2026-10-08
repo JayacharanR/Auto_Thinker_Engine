@@ -1,0 +1,62 @@
+diff --git a/leaderboard_autopilot/leaderboard/leaderboard_evaluator_local.py b/leaderboard_autopilot/leaderboard/leaderboard_evaluator_local.py
+index 52a0d61..d785294 100644
+--- a/leaderboard_autopilot/leaderboard/leaderboard_evaluator_local.py
++++ b/leaderboard_autopilot/leaderboard/leaderboard_evaluator_local.py
+@@ -295,7 +295,7 @@ class LeaderboardEvaluator(object):
+             print(f"\n{traceback.format_exc()}\033[0m")
+ 
+             entry_status, crash_message = FAILURE_MESSAGES["Simulation"]
+-            self._register_statistics(config.index, entry_status, crash_message)
++            self._register_statistics("setup_failure", config.index, entry_status, crash_message)
+             self._cleanup()
+             return True
+ 
+diff --git a/team_code/autopilot.py b/team_code/autopilot.py
+index 2d463c3..f46ec2b 100644
+--- a/team_code/autopilot.py
++++ b/team_code/autopilot.py
+@@ -226,7 +226,7 @@ class AutoPilot(autonomous_agent_local.AutonomousAgent):
+       if "vehicle" in actor.type_id:
+         extent = actor.bounding_box.extent
+         if extent.x < 0.001 or extent.y < 0.001 or extent.z < 0.001:
+-          actor.destroy()
++          raise RuntimeError(f"Invalid actor bounding box: {actor.type_id}")
+ 
+     self.initialized = True
+ 
+@@ -403,9 +403,7 @@ class AutoPilot(autonomous_agent_local.AutonomousAgent):
+     else:
+       self.ego_blocked_for_ticks = 0
+ 
+-    if self.ego_blocked_for_ticks >= self.config.max_blocked_ticks:
+-      control.throttle = 1
+-      control.brake = 0
++    # Navigation contract: waiting never overrides a hazard or red light.
+ 
+     # Save control commands and target speed
+     self.steer = control.steer
+diff --git a/team_code/privileged_route_planner.py b/team_code/privileged_route_planner.py
+index 1d37349..f195215 100644
+--- a/team_code/privileged_route_planner.py
++++ b/team_code/privileged_route_planner.py
+@@ -4,6 +4,7 @@ simulation environment. The class provides functionalities to create a smooth an
+ compute distances to traffic lights and stop signs, handle lane changes, and identify leading and trailing vehicles.
+ """
+ 
++from pathlib import Path
+ import numpy as np
+ import carla
+ from scipy.interpolate import interp1d
+@@ -735,10 +736,10 @@ class PrivilegedRoutePlanner(object):
+             carla_map: Carla map instance.
+         """
+     # Get the name of the map
+-    map_name = carla_map.name.split("/")[-1]
++    map_name = carla_map.name.split("/")[-1].removesuffix("_Opt")
+ 
+     # Load speed limit data from file
+-    file_name_speed_limits = f"team_code/speed_limits/{map_name}_speed_limits.npy"
++    file_name_speed_limits = Path(__file__).parent / "speed_limits" / f"{map_name}_speed_limits.npy"
+     file_content = np.load(file_name_speed_limits, allow_pickle=True)
+     map_data = file_content.item()
+ 

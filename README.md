@@ -1,5 +1,11 @@
 # Vision World Model Driving Agent
 
+> **Navigation experiment (2026-10-08):** The new three-camera, long-route work
+> is isolated on `experiment/camera-world-model-navigation`. See the
+> [navigation runbook](reports/navigation_runbook.md) and
+> [approved staged plan](reports/navigation_plan.md). The historical results
+> below remain a separate experiment.
+
 A multi-phase autonomous driving agent combining **self-supervised JEPA pretraining** (on comma2k19 real driving data) with **DreamerV3 world-model RL** (in CARLA simulator), culminating in a **three-way encoder comparison** that measures the value of pretrained visual representations for driving.
 
 ## Architecture Overview

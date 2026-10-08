@@ -886,3 +886,135 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** Completed ablation results, raw final episode JSONs, finite optimizer audit, training eval curve, tools.py optimizer/checkpoint inspection and evaluate_agent.py/VehicleManager seed inspection. See reports/overnight_bev_assessment_20261008.md.
 **Lesson:** Correct collision accounting is not proof of policy benefit, and low collision rate can hide a policy that no longer drives.
 **Interview angle:** Why avoid another long continuation or larger collision penalty immediately?
+
+## 2026-10-08 14:47 - Research presentation and portable driving showcase completed
+**Type:** milestone
+**Stage:** Research communication / current experiment evidence
+
+**What happened:** Created a 30-slide editable PPTX and matching static PDF, covering abstract, seven-paper literature tables, methodology/architecture, datasets, metrics, results, gaps and proposed improvements. Packaged six PNG/PDF/CSV graphs, three SVG/PNG diagrams and 14 original MP4s, with five clips embedded in the PPT.
+**Cause:** User requested a simple, technically accurate presentation and an organized driving-video showcase of the project's current state.
+**How we handled it:** Built outputs/showcase_20261008 with an offline index.html gallery, speaker notes, primary-paper links, raw result snapshots, assessment reports, clip provenance and a rebuild script; packaged outputs/Auto_Thinker_Engine_Showcase_20261008.zip. Kept camera comparisons distinct from privileged-BEV diagnostics and presented the fixed-cost null result and 150k collapse alongside the preserved 90k result.
+**Verified by:** Reopened PPT: 30 slides/30 notes, all shapes inside canvas, five internally embedded MP4s; copied and embedded video hashes match originals. Checked 65 local gallery links, 104 bundled file hashes, ZIP CRC integrity, native diagram connectors, SVG parsing, contact sheets and a rendered vector-PDF architecture page. Actual PowerPoint playback remains viewer-dependent; standalone MP4s/gallery provide a fallback.
+**Lesson:** A research presentation should preserve experimental boundaries and provenance, with failed episodes visible alongside successful examples.
+**Interview angle:** How did you turn experiment artifacts into a reproducible research presentation?
+
+## 2026-10-08 15:13 - Fixed browser playback of showcase recordings; corrected compatibility verification
+**Type:** bug
+**Stage:** Research showcase / recorded driving media
+
+**What happened:** User reported Firefox's "no video with supported video format and MIME type" and Chrome play doing nothing. The 14 showcase MP4s contained MPEG-4 Part 2 (`mp4v`) from evaluate_agent.py's OpenCV recorder. The previous presentation milestone's file/hash checks did not establish browser playback; that missing check was my mistake.
+**Cause:** An MP4 container does not guarantee a browser-supported video codec; copied original recordings were incompatible with the gallery's browser playback path.
+**How we handled it:** Changed the showcase generator to transcode presentation copies into H.264 baseline/yuv420p/faststart MP4 and VP9/yuv420p WebM. The gallery offers WebM first and MP4 second; regenerated the five embedded PPT videos and updated clip provenance with separate source/conversion hashes. Original experiment recordings and training code remain intact. Rebuilt the original ZIP plus outputs/Auto_Thinker_Engine_Showcase_20261008_BrowserFixed.zip.
+**Verified by:** Native WebDriver BiDi in isolated Firefox 157.0.1 played all 14 actual file:// gallery clips and all 14 direct MP4s with advancing video time. Full frame decoding confirmed source frame counts, dimensions and durations; all 14 MP4s place moov before mdat. Verified 93 gallery links, internal PPT media hashes, ZIP CRC and 120 bundled file hashes. Browser test/report: outputs/showcase_20261008/07_sources/validate_browser_playback.mjs and browser_playback_validation.json. Chrome was unavailable for direct testing.
+**Lesson:** Test actual browser decoding and playback, rather than treating a file extension, MIME label or successful thumbnail extraction as proof of compatibility.
+**Interview angle:** Why did valid MP4 recordings fail in browsers, and how did you verify the fix?
+
+## 2026-10-08 21:04 - Approved camera navigation redesign; implementation branch created
+**Type:** decision
+**Stage:** Navigation M0
+
+**What happened:** User approved implementation of the reviewed long-route plan. Created experiment/camera-world-model-navigation from 67b3040, preserving existing dirty journal/presentation work and vendor patches.
+**Cause:** Right-turn continuation does not establish reliable multi-junction camera driving; the review identified weak teacher/evaluation controls and missing predictive-planning baselines.
+**How we handled it:** Added reports/navigation_plan.md and configs/navigation.yaml as a separate contract. Prioritize PDM-Lite, existing evaluation criteria, encounter data and an early camera imitation baseline; JEPA/causal planning follow controlled comparisons. No legacy reward or benchmark change and no long training launch.
+**Verified by:** Branch/status check, live host job check (idle), NVIDIA 5070 Ti 12GB, 79GB free disk. Source audit confirmed temporal action pooling, rectangular-position limitation, upstream force-kill cleanup and expert actor deletion requiring integration controls.
+**Lesson:** Establish a measured teacher, benchmark and simple planner before investing in a larger learned stack.
+**Interview angle:** Why redesign the project instead of continuing the right-turn agent?
+
+## 2026-10-08 21:28 - M0 native map reload failure and expert anti-stall audit
+**Type:** bug
+**Stage:** Navigation M0
+
+**What happened:** First 200-step profile aborted before camera frames: CARLA SIGSEGV during load_world(Town03), followed by Python-client SIGABRT after 30s timeout. Pinned PDM-Lite also forces full throttle after 170 stopped ticks (8.5s).
+**Cause:** Native map-reload failure on this installation; exact Unreal cause open. The expert's forced movement is explicitly intended to avoid blocked-agent scoring.
+**How we handled it:** Preserve outputs/navigation_m0_profile_20261008. Added tracked vendor patch removing forced throttle and replacing expert actor deletion with an explicit invalid-scene error. Move evaluator into an owned child process and start a fresh server directly on each registered map.
+**Verified by:** Console/carla.log, upstream autopilot.py/config.py, 18 passing frame/metric/adversarial harness tests. Host check confirmed the failed server exited; no force kill used.
+**Lesson:** Native crashes bypass Python finally blocks; simulator ownership belongs outside the native-client worker.
+**Interview angle:** What made the stronger expert and reused harness require adaptation?
+
+## 2026-10-08 23:18 - M0 profile passes after adapter and route-generation corrections
+**Type:** milestone
+**Stage:** Navigation M0 integration
+
+**What happened:** The corrected expert profile produced 200 aligned three-camera frames; measured 13.81 frames/s and 32.46ms p95 expert/control time. Harness route length 1233.36m, completion 8.11%, zero recorded infractions, intentionally truncated at 200 steps.
+**Cause:** Prior failures included my adapter accepting a timestamp where upstream calls a no-argument tick, an upstream builder thread left running on failure, and sparse route re-interpolation expanding 1238m to 2251m before driving.
+**How we handled it:** Corrected the signature with regression coverage; stop_scenario clears the thread flag. Generate endpoints with the harness's1m planner and reject unexpected length drift before driving. Town03_Opt and Town03 OpenDRIVE hashes match; use the working startup variant. Preserve all prior attempt directories.
+**Verified by:** 19 navigation/harness tests; profile/trace/route_validation under outputs/navigation_m0_profile_v2_20261008. All 100 video frames decode as H.264/yuv420p, 1536×288; inspected side-camera orientations. Fresh host check idle before the full bounded route launched.
+**Lesson:** Validate actual upstream call signatures and effective routes, not only imports and configuration intent.
+**Interview angle:** What did the first multi-camera navigation profile establish?
+
+## 2026-10-08 23:32 - First long expert route completes; summary status bug corrected
+**Type:** result
+**Stage:** Navigation M0
+
+**What happened:** Modified privileged PDM-Lite completed 1233.361 m in 255.4 simulated seconds/262.895 harness wall seconds: 100% completion, Driving Score 100, zero recorded infractions. 5108 synchronized three-camera frames; 19.37fps overall; 33.84ms p95 expert/control latency excluding rendering/video encoding.
+**Cause:** This establishes a working long-route reference and camera/evaluator integration, not learned camera driving or calibrated reliability. My parser incorrectly treated upstream `Perfect` as non-completion.
+**How we handled it:** Recognize both `Perfect` and `Completed`; add regression coverage; preserve original summary before rebuilding derived counts. Raw evaluator records remain unchanged. Recorded 2554 H.264 video frames.
+**Verified by:** outputs/navigation_m0_long_20261008/audit.json: source/archive hashes, all video frames decoded, complete frame sequence; first 200 ego poses/yaws/controls exactly match the earlier profile. Surrounding-actor determinism remains unmeasured.
+**Lesson:** Cross-check wrapper summaries against the evaluator's raw status vocabulary and preserve original evidence when fixing reporting.
+**Interview angle:** What does the first successful long drive prove, and what does it leave unproven?
+
+## 2026-10-08 23:32 - Town10HD route export drift caught before driving
+**Type:** bug
+**Stage:** Navigation M0 multi-town compatibility
+
+**What happened:** Town10HD loaded successfully before Traffic Manager initialization, but the registered 389.22m mission re-interpolated to 160.95m. The agent correctly refused setup with zero frames. My runner incorrectly labeled that attempt evaluation_complete because the upstream harness returned without crashing.
+**Cause:** Exporting the planner's snapped path endpoints changed the next shortest-path query; offline replay independently reproduced160.85m. A normal evaluator return does not mean successful agent setup.
+**How we handled it:** Plan from the exact serialized original start/end coordinates; preserve failed manifests/attempts. Explicitly fail setup errors and incomplete profiles. Generate a fresh first-qualifying seeded development pair, without driving-outcome filtering. New335.45m Town10HD route passes60 synchronized frames.
+**Verified by:** 22 navigation tests including exported-route round-trip and setup-failure regressions; outputs/navigation_m0_town10_v3_20261008. No existing jobs or benchmark routes changed.
+**Lesson:** Validate the artifact consumed by the evaluator, not an intermediate planner output; distinguish execution success from policy success.
+**Interview angle:** How did route provenance checks prevent a silently easier navigation task?
+
+## 2026-10-08 23:38 - All training-town probes pass; runtime stop-sign coverage corrects XML assumption
+**Type:** milestone
+**Stage:** Navigation M0
+
+**What happened:** Town01/02/03/04/10HD_Opt each passed 60-frame synchronized camera/expert probes, with no recorded infractions before intentional truncation. Loading maps before Traffic Manager initialization succeeded. Runtime stop-actor counts are 0/0/20/8/3 respectively, contradicting the review's implication that Town03/04 cannot provide stop-sign encounters.
+**Cause:** OpenDRIVE signal inventories omit packaged runtime stop actors. The earlier runbook's inference of no Town03 stop opportunities was incorrect.
+**How we handled it:** Persist runtime actor inventories; correct runbook/handoff and require lane/trigger-specific encounter denominators before coverage claims. Preserve all failed attempts and deprecated route manifests. No Town05 drive or camera training performed.
+**Verified by:** Per-town runtime_sign_inventory.json and audited profiles/videos under outputs/navigation_m0_*_20261008; reports/navigation_m0_assessment_20261008.md/json. Final CPU suite 189 passed/one GPU-only skipped; new-code lint/format and git diff whitespace checks pass.
+**Lesson:** Runtime semantics, not only source-map XML, determine which traffic rules can actually be exercised.
+**Interview angle:** Why did the stop-sign coverage conclusion change after simulator inspection?
+
+## 2026-10-08 23:38 - Observable-world repeatability passes the short prefix test
+**Type:** result
+**Stage:** Navigation M0 counterfactual prerequisites
+
+**What happened:** Two independent 200-frame Town03 seed42 probes matched exactly: ego controls/pose, poses and velocities of 19 dynamic actors including ego, and traffic-light states/elapsed phases. Maximum measured differences were zero.
+**Cause:** Fixed synchronous20Hz stepping and fresh seeded scenario/traffic initialization reproduce this10s prefix on this installation.
+**How we handled it:** Added audit-only world_trace.jsonl and comparator with declared tolerances; actor correspondence uses seeded creation order and requires matching types/roles. Added tests that fail on changed surrounding traffic or light states. Hidden simulator state and alternative-action branch determinism remain unproven.
+**Verified by:** outputs/navigation_m0_repeat_b_20261008/audit.json comparing repeat_a; both attempts retained, full video decoding/source hashes checked. All owned processes exited; no active training or simulation found by anchored process check.
+**Lesson:** Identical ego behavior alone is insufficient evidence for counterfactual replay; inspect surrounding actors and signal timing too.
+**Interview angle:** How did you validate repeatability before proposing rejected-trajectory replay?
+
+## 2026-10-08 23:58 - Plan recorded in full; navigation docs spacing and a stop-sign claim corrected
+**Type:** mistake
+**Stage:** Navigation M0 documentation
+
+**What happened:** The user asked that the reviewed navigation plan always be kept in mind. The navigation reports, journal entries, routes README and handoff had lost the space before or after most numbers ("Driving Score100", "from389m to161m", "port2100"). One interview answer still said the Town03 profile had no stop-sign opportunities, which the runtime inventory (20 stop actors) had already disproved.
+**Cause:** The text was mangled when it was written in the previous session. The question-bank answer predated the runtime sign inventory and was never revisited.
+**How we handled it:** Stored the user's full plan in reports/navigation_review_plan.md, and pointed CLAUDE.md and auto-memory at it. Re-inserted the spaces with a rule-based fixer limited to navigation-era text, leaving identifiers alone (best90k, Town03, seed42, hashes, paths, code spans). Checked the handoff with a word diff to confirm the changes were whitespace-only. Corrected the question-bank answer in place and marked the correction. No numbers, results or raw outputs changed.
+**Verified by:** Word diff of the handoff; grep for remaining word–digit joins; full CPU+GPU suite 190 passed; ruff check/format clean on navigation code. Re-ran assess_navigation.py on all five training-town probes, and each audit passed with a source snapshot and route hash.
+**Lesson:** Re-read generated reports as a reader would, not only for numerical accuracy; a later finding should be propagated to every earlier answer that relied on the old assumption.
+**Interview angle:** How did you keep documentation consistent when a later simulator finding overturned an earlier assumption?
+
+## 2026-10-09 00:20 - Encounter inventory: Town10HD load timeout aborted the client and orphaned the server
+**Type:** bug
+**Stage:** Navigation M0 encounter catalog
+
+**What happened:** The first five-town rule-applicability inventory finished Town01–04. On Town10HD_Opt, `load_world` exceeded the 20s client timeout and CARLA's C++ client aborted the Python process (SIGABRT), so the owned server (PID 45942) kept running with no owner.
+**Cause:** I ran the inventory in the same process that owned the server and reused the 20s startup timeout for a map load. The native abort skipped Python cleanup. This is the same failure class as the M0 map-reload crash, and I had not reused that fix.
+**How we handled it:** Confirmed PID 45942 matched the run's server.json, then stopped it with SIGTERM to its own process group (no SIGKILL, no broad matching). Moved each town's inventory into a child process while the parent owns the server lifecycle (same pattern as run_navigation.py), with STOP handling and a 120s load timeout. Preserved the failed attempt at outputs/navigation_encounter_inventory_20261009.
+**Verified by:** The rerun (outputs/navigation_encounter_inventory_v2_20261009) completed all five towns. Town01–04 summaries are identical to the failed attempt, and an anchored process check found no CARLA server afterwards.
+**Lesson:** Every process that talks to CARLA's native client must sit beneath an owner that survives its abort; apply an established isolation pattern to every new simulator tool, not just the main harness.
+**Interview angle:** Why does each simulator client run in a child process under a separate owner?
+
+## 2026-10-09 00:25 - Runtime rule-applicability inventory for all five training towns
+**Type:** milestone
+**Stage:** Navigation M0 encounter catalog
+
+**What happened:** Inventoried every junction movement in Town01/02/03/04/10HD_Opt using the pinned evaluator's own red-light (`get_traffic_light_waypoints`) and stop-sign (`is_actor_affected_by_stop`) geometry. 678 movements, 541 valid: 326 signal-controlled, 49 stop-controlled, 166 uncontrolled. A valid movement has an approach of at least 30m, and the harness's 1m planner must take that junction movement within 10% of the geometric length. Valid stop movements cover 20 of 31 runtime stop actors: Town03 11/20, Town04 8/8, Town10HD 1/3. Town01/02 have only signals.
+**Cause:** Rule coverage needs lane-level opportunity denominators that use the same applicability logic as scoring; actor counts are not enough.
+**How we handled it:** Added src/navigation/encounters.py and scripts/build_encounter_inventory.py. They load maps without a Traffic Manager, never drive, refuse Town05 and freeze nothing. Of the 11 excluded stop actors, 5 have approaches under 30m and 6 (all Town03) trigger only on junction-internal connector lanes. The evaluator would expect a full stop inside the junction on those connectors, so routes through them would record artifact stop infractions. Recorded this as a design constraint for the catalog, not as an outcome filter.
+**Verified by:** Per-town JSON, with source copies, in outputs/navigation_encounter_inventory_v2_20261009. The Town03 probe (outputs/navigation_encounter_probe_town03_20261009) and the rerun are identical. Planner turn labels agree with signed heading change. Added a helper test; 24 navigation tests pass and ruff is clean.
+**Lesson:** The stop-sign family is location-limited: 49 valid movements on 20 actors cannot give 50 independent encounters. Confidence intervals must be clustered by location, and the catalog needs a predeclared rule for reusing locations.
+**Interview angle:** How did you count traffic-rule opportunities so they match how the evaluator scores violations?

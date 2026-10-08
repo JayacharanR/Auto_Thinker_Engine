@@ -1,0 +1,17 @@
+{
+  "purpose": "M0 development integration; not a frozen benchmark",
+  "town": "Town10HD_Opt",
+  "seed": 20261008,
+  "selection_attempt": 2,
+  "length_m": 389.2168437339898,
+  "route_sha256": "544e3cc0c9d6cc5d7fcfef18f9ab90811b413498f8c11e8b1a4caff59acb093a",
+  "xodr_sha256": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7",
+  "junction_ids": [
+    23,
+    134,
+    189,
+    841,
+    895
+  ],
+  "waypoint_count": 2
+}

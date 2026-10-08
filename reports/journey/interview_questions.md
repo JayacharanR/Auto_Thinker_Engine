@@ -84,6 +84,10 @@ runs not finished yet.
 
 ## Debugging stories
 
+- **Q:** Why did valid MP4 recordings fail in browsers, and how did you verify the fix?
+  **A (short):** OpenCV wrote `mp4v` video inside MP4 containers; the container and MIME label did not guarantee a browser-supported codec. Transcoded showcase copies to H.264 MP4 plus VP9 WebM, preserved source provenance and frame counts, and tested all 14 actual gallery clips plus all 14 direct MP4s in Firefox using native WebDriver BiDi with advancing playback time.
+  **Evidence:** journal "Fixed browser playback of showcase recordings"; outputs/showcase_20261008/07_sources/build_showcase.py; validate_browser_playback.mjs; browser_playback_validation.json
+
 - **Q:** Tell me about a hard bug.
   **A (short):** A patch meant to keep frozen encoders frozen made every parameter non-trainable after the first update, so the agent silently stopped learning; fp32 hid it, and the unit test only ran one step. fp16's GradScaler exposed it ("no inf checks recorded"). Fixed with a persistent per-parameter freeze marker and a test that checks the second update.
   **Evidence:** journal 2026-10-01 23:10
@@ -97,6 +101,10 @@ runs not finished yet.
   **Evidence:** journal 2026-10-02 00:12
 
 ## Experiment design & evaluation
+
+- **Q:** How did you turn experiment artifacts into a reproducible research presentation?
+  **A (short):** Generated an editable 30-slide deck with graphs from recorded metrics, native architecture diagrams, primary-paper references and technical notes, then packaged 14 original driving videos with hashes and an offline gallery. The presentation separates camera encoder comparisons from privileged-BEV diagnostics, labels example clips, and reports the small final-stream gain, null reward ablation and late collapse with their limitations.
+  **Evidence:** journal "Research presentation and portable driving showcase completed"; outputs/showcase_20261008/07_sources/build_showcase.py; validation.json; video_catalog.json; outputs/Auto_Thinker_Engine_Showcase_20261008.zip
 
 - **Q:** How do you evaluate a driving agent beyond success rate?
   **A (short):** Per episode: return, route completion (fraction of planned waypoints passed), termination reason (collision / out of lane / destination / time-out), speed and wall clock. Route completion shows progress while success is still 0%; the comparison reports success, route completion, collision rate, steps to 80% success, and compute cost.
@@ -261,3 +269,43 @@ runs not finished yet.
 - **Q:** Why avoid another long continuation or larger collision penalty immediately?
   **A (short):** The completed fixed300 pilot matched control/reference at51/60 safe arrivals rather than improving driving, while unchanged-reward continuation peaked and then learned mostly to stop. Finite model/Adam tensors and nearly all expected updates argue against a broadly halted optimizer, but do not identify the collapse's cause. Reproduce the good checkpoint and investigate the final2.5k steps before a short protected continuation; recovery also needs scaler/RNG and replay provenance, and evaluation seeds are not independently seeded traffic scenes.
   **Evidence:** journal "Fixed-cost pilot completed without safety gain"; reports/overnight_bev_assessment_20261008.md; scripts/evaluate_agent.py; third_party/dreamerv3_torch/tools.py
+
+- **Q:** Why redesign the project instead of continuing the right-turn agent?
+  **A (short):** Long routes compound failures across encounters, and the best58/60 result used privileged BEV on one repeated turn. The approved redesign first measures a stronger expert and existing evaluator, then learns camera path/speed decisions from encounter data and tests whether JEPA improves label efficiency and predictive planning against strong baselines.
+  **Evidence:** journal "Approved camera navigation redesign"; reports/navigation_plan.md; configs/navigation.yaml
+
+- **Q:** What made the stronger expert and reused harness require adaptation?
+  **A (short):** The pinned PDM-Lite forced full throttle after 8.5s stopped and deleted invalid actors; we removed the throttle override and made invalid scenes fail explicitly. A native map-reload crash also showed that the evaluator must run in a child process while a separate owner controls simulator cleanup.
+  **Evidence:** journal "M0 native map reload failure and expert anti-stall audit"; patches/navigation_garage.patch; src/navigation/runtime.py
+
+- **Q:** What did the first multi-camera navigation profile establish?
+  **A (short):** The modified privileged expert, actual evaluator and three 512×288 cameras ran for 200 synchronized frames at 13.81 frames/s, with 32.46ms p95 expert/control latency. This validates integration and estimates throughput; it is deliberately truncated, does not prove camera-policy competence or long-route reliability, and says nothing about rule coverage. (Corrected 2026-10-08 23:50: an earlier version said the Town03 route had no stop-sign opportunities; the runtime world has 20 stop actors in Town03, so stop opportunities must be counted from runtime trigger/lane applicability, not OpenDRIVE signals.)
+  **Evidence:** journal "M0 profile passes after adapter and route-generation corrections"; outputs/navigation_m0_profile_v2_20261008; reports/navigation_runbook.md
+
+### Navigation integration follow-up (2026-10-08 23:32)
+
+- **Q:** What does the first successful long drive prove, and what does it leave unproven?
+  **A (short):** The privileged PDM-Lite reference completed 1.23 km with no recorded infractions while recording three synchronized views. It proves integration, not camera-policy learning or encounter reliability; the identical 200-frame ego prefix also does not establish surrounding-traffic determinism.
+  **Evidence:** journal 2026-10-08 23:32, outputs/navigation_m0_long_20261008/audit.json.
+- **Q:** How did route provenance checks prevent a silently easier navigation task?
+  **A (short):** A 389m planned route became 161m after snapped endpoint export. The agent rejected the drift before driving; exporting the exact planning inputs fixed it, and incomplete/setup-failed probes now return failure explicitly.
+  **Evidence:** journal 2026-10-08 23:32, src/navigation/routes.py, tests/test_navigation_harness.py.
+
+- **Q:** Why did the stop-sign coverage conclusion change after simulator inspection?
+  **A (short):** The OpenDRIVE XML reports no stop signals for Town03/04, but the loaded worlds contain20/8 stop actors. We now audit runtime lane/trigger encounters; actor presence and expert hazard flags alone do not establish a rule-opportunity denominator.
+  **Evidence:** journal 2026-10-08 23:38, reports/navigation_m0_assessment_20261008.md.
+- **Q:** How did you validate repeatability before proposing rejected-trajectory replay?
+  **A (short):** Two fresh seed42 runs matched 200 frames of ego controls, 19 dynamic actors' poses/velocities and signal phases exactly. This validates the observed prefix only; hidden-state agreement and reactive branches still need testing.
+  **Evidence:** journal 2026-10-08 23:38, outputs/navigation_m0_repeat_b_20261008/audit.json, src/navigation/replay.py.
+
+- **Q:** How did you keep documentation consistent when a later simulator finding overturned an earlier assumption?
+  **A (short):** After the runtime inventory showed 20 stop actors in Town03, I searched the earlier reports and the question bank for answers that relied on the OpenDRIVE-based assumption. I corrected each one in place with a dated note rather than silently rewriting it, and confirmed the edits changed only that claim and the text spacing, not any reported number.
+  **Evidence:** journal 2026-10-08 23:58; reports/journey/interview_questions.md; reports/navigation_review_plan.md.
+
+- **Q:** Why does each simulator client run in a child process under a separate owner?
+  **A (short):** CARLA's C++ client can abort the whole Python process on a timeout, which skips `finally` blocks. When a map load timed out during the encounter inventory, the server was left running with no owner. The fix gives the server lifecycle to a parent process that survives a child abort, keeps STOP-file handling, and uses SIGTERM only on processes it started.
+  **Evidence:** journal 2026-10-09 00:20; scripts/build_encounter_inventory.py; outputs/navigation_encounter_inventory_20261009 (failed, preserved).
+
+- **Q:** How did you count traffic-rule opportunities so they match how the evaluator scores violations?
+  **A (short):** I called the pinned evaluator's own trigger-volume geometry for red lights and stop signs on every lane, then kept only junction movements with at least a 30m approach that the harness planner actually takes. That gives 326 signal, 49 stop and 166 uncontrolled valid movements across five towns. It also showed that six Town03 stop actors only cover lanes inside the junction, an evaluator quirk to avoid by design rather than by discarding results.
+  **Evidence:** journal 2026-10-09 00:25; src/navigation/encounters.py; outputs/navigation_encounter_inventory_v2_20261009.

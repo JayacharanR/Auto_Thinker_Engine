@@ -1,0 +1,628 @@
+{
+  "generated_at": "2026-10-08T23:37:48.079601+05:30",
+  "branch": "experiment/camera-world-model-navigation",
+  "stage": "M0 integration validated; encounter calibration pending",
+  "policy_kind": "privileged_pdm_lite_modified",
+  "attempts": [
+    {
+      "output": "outputs/navigation_m0_long_20261008",
+      "town": "Town03_Opt",
+      "route_sha256": "a6670df4402816eed44b673a21e7f53a86768e024ff13d8a7e2691bacb9eee99",
+      "profile_only": false,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 1233.361,
+              "duration_game": 255.4,
+              "duration_system": 262.895
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 1,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.20654931437723745,
+          1.0
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": false,
+        "stop_reason": null,
+        "policy_kind": "privileged_pdm_lite_modified",
+        "parser_version": 2
+      },
+      "profiles": [
+        {
+          "frames": 5108,
+          "wall_seconds": 263.6527340480002,
+          "simulation_seconds": 255.35,
+          "frames_per_second": 19.373969393657212,
+          "expert_and_camera_p95_ms": 33.83936155000811,
+          "all_camera_frames_aligned": true,
+          "last_frame": 5412,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 2554,
+          "episode": "outputs/navigation_m0_long_20261008/episodes/navigation_m0_town03_opt_v2_route0_10_08_23_16_39"
+        }
+      ]
+    },
+    {
+      "output": "outputs/navigation_m0_town01_probe_v3_20261008",
+      "town": "Town01_Opt",
+      "route_sha256": "37067c75f47cc3eea5871e19b39cd94640c443d5a6118512aa8cb61bacfabea5",
+      "profile_only": true,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Failed",
+            "completion_percent": 3.51,
+            "completed": false,
+            "safe_completed": false,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 402.611,
+              "duration_game": 3.0,
+              "duration_system": 2.179
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 0,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.0,
+          0.7934506856227626
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": true,
+        "stop_reason": "profile_step_budget",
+        "policy_kind": "privileged_pdm_lite_modified",
+        "execution_status": "profile_complete"
+      },
+      "profiles": [
+        {
+          "frames": 60,
+          "wall_seconds": 2.8119926379999924,
+          "simulation_seconds": 2.95,
+          "frames_per_second": 21.337182462424412,
+          "expert_and_camera_p95_ms": 10.702762149981027,
+          "all_camera_frames_aligned": true,
+          "last_frame": 475,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 30,
+          "episode": "outputs/navigation_m0_town01_probe_v3_20261008/episodes/navigation_m0_town01_v3_route0_10_08_23_31_40"
+        }
+      ],
+      "runtime_sign_types": {
+        "traffic.speed_limit.30": 11,
+        "traffic.speed_limit.60": 5,
+        "traffic.speed_limit.90": 5,
+        "traffic.traffic_light": 36
+      }
+    },
+    {
+      "output": "outputs/navigation_m0_town02_probe_v3_20261008",
+      "town": "Town02_Opt",
+      "route_sha256": "df1c08f47064c7bea81a2a274f10bc8495a5062f2d68c6223281cee98a4d753a",
+      "profile_only": true,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Failed",
+            "completion_percent": 5.5,
+            "completed": false,
+            "safe_completed": false,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 301.448,
+              "duration_game": 3.0,
+              "duration_system": 1.867
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 0,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.0,
+          0.7934506856227626
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": true,
+        "stop_reason": "profile_step_budget",
+        "policy_kind": "privileged_pdm_lite_modified",
+        "execution_status": "profile_complete"
+      },
+      "profiles": [
+        {
+          "frames": 60,
+          "wall_seconds": 2.329628257999957,
+          "simulation_seconds": 2.95,
+          "frames_per_second": 25.755182095666832,
+          "expert_and_camera_p95_ms": 7.899637400055325,
+          "all_camera_frames_aligned": true,
+          "last_frame": 481,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 30,
+          "episode": "outputs/navigation_m0_town02_probe_v3_20261008/episodes/navigation_m0_town02_v3_route0_10_08_23_31_51"
+        }
+      ],
+      "runtime_sign_types": {
+        "traffic.speed_limit.30": 12,
+        "traffic.speed_limit.90": 2,
+        "traffic.speed_limit.60": 7,
+        "traffic.traffic_light": 24
+      }
+    },
+    {
+      "output": "outputs/navigation_m0_town03_probe_v3_20261008",
+      "town": "Town03_Opt",
+      "route_sha256": "a6670df4402816eed44b673a21e7f53a86768e024ff13d8a7e2691bacb9eee99",
+      "profile_only": true,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Failed",
+            "completion_percent": 1.67,
+            "completed": false,
+            "safe_completed": false,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 1233.361,
+              "duration_game": 3.0,
+              "duration_system": 2.796
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 0,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.0,
+          0.7934506856227626
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": true,
+        "stop_reason": "profile_step_budget",
+        "policy_kind": "privileged_pdm_lite_modified",
+        "execution_status": "profile_complete"
+      },
+      "profiles": [
+        {
+          "frames": 60,
+          "wall_seconds": 3.3875752609997107,
+          "simulation_seconds": 2.95,
+          "frames_per_second": 17.7117836143051,
+          "expert_and_camera_p95_ms": 10.856884049758262,
+          "all_camera_frames_aligned": true,
+          "last_frame": 479,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 30,
+          "episode": "outputs/navigation_m0_town03_probe_v3_20261008/episodes/navigation_m0_town03_opt_v2_route0_10_08_23_32_13"
+        }
+      ],
+      "runtime_sign_types": {
+        "traffic.traffic_light": 38,
+        "traffic.speed_limit.30": 7,
+        "traffic.speed_limit.60": 2,
+        "traffic.speed_limit.90": 2,
+        "traffic.stop": 20,
+        "traffic.unknown": 15
+      }
+    },
+    {
+      "output": "outputs/navigation_m0_town04_probe_v3_20261008",
+      "town": "Town04_Opt",
+      "route_sha256": "938c6d5c0d3f2c6160457901e185d89d046bcd92d581c3c187f14e4c5f7b6a40",
+      "profile_only": true,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Failed",
+            "completion_percent": 3.53,
+            "completed": false,
+            "safe_completed": false,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 438.239,
+              "duration_game": 3.0,
+              "duration_system": 2.796
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 0,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.0,
+          0.7934506856227626
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": true,
+        "stop_reason": "profile_step_budget",
+        "policy_kind": "privileged_pdm_lite_modified",
+        "execution_status": "profile_complete"
+      },
+      "profiles": [
+        {
+          "frames": 60,
+          "wall_seconds": 3.369651571999839,
+          "simulation_seconds": 2.95,
+          "frames_per_second": 17.805995284073504,
+          "expert_and_camera_p95_ms": 17.976443000156905,
+          "all_camera_frames_aligned": true,
+          "last_frame": 488,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 30,
+          "episode": "outputs/navigation_m0_town04_probe_v3_20261008/episodes/navigation_m0_town04_v3_route0_10_08_23_32_02"
+        }
+      ],
+      "runtime_sign_types": {
+        "traffic.traffic_light": 43,
+        "traffic.speed_limit.90": 29,
+        "traffic.speed_limit.60": 13,
+        "traffic.speed_limit.30": 19,
+        "traffic.speed_limit.40": 2,
+        "traffic.stop": 8,
+        "traffic.yield": 4,
+        "traffic.unknown": 4
+      }
+    },
+    {
+      "output": "outputs/navigation_m0_town10_v3_20261008",
+      "town": "Town10HD_Opt",
+      "route_sha256": "320972cc8d544ae9c30da2f7496bf03ba71db63b928ba40c271216f739921d9a",
+      "profile_only": true,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Failed",
+            "completion_percent": 4.69,
+            "completed": false,
+            "safe_completed": false,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 335.471,
+              "duration_game": 3.0,
+              "duration_system": 2.485
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 0,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.0,
+          0.7934506856227626
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": true,
+        "stop_reason": "profile_step_budget",
+        "policy_kind": "privileged_pdm_lite_modified",
+        "execution_status": "profile_complete"
+      },
+      "profiles": [
+        {
+          "frames": 60,
+          "wall_seconds": 3.3233965560002616,
+          "simulation_seconds": 2.95,
+          "frames_per_second": 18.053819033925507,
+          "expert_and_camera_p95_ms": 9.782574450150605,
+          "all_camera_frames_aligned": true,
+          "last_frame": 473,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 30,
+          "episode": "outputs/navigation_m0_town10_v3_20261008/episodes/navigation_m0_town10hd_v3_route0_10_08_23_30_46"
+        }
+      ],
+      "runtime_sign_types": {
+        "traffic.traffic_light": 15,
+        "traffic.unknown": 3,
+        "traffic.yield": 1,
+        "traffic.stop": 3
+      }
+    },
+    {
+      "output": "outputs/navigation_m0_repeat_a_20261008",
+      "town": "Town03_Opt",
+      "route_sha256": "a6670df4402816eed44b673a21e7f53a86768e024ff13d8a7e2691bacb9eee99",
+      "profile_only": true,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Failed",
+            "completion_percent": 8.11,
+            "completed": false,
+            "safe_completed": false,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 1233.361,
+              "duration_game": 10.0,
+              "duration_system": 8.087
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 0,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.0,
+          0.7934506856227626
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": true,
+        "stop_reason": "profile_step_budget",
+        "policy_kind": "privileged_pdm_lite_modified",
+        "execution_status": "profile_complete"
+      },
+      "profiles": [
+        {
+          "frames": 200,
+          "wall_seconds": 8.66596957899992,
+          "simulation_seconds": 9.95,
+          "frames_per_second": 23.07877937682313,
+          "expert_and_camera_p95_ms": 15.561640200212423,
+          "all_camera_frames_aligned": true,
+          "last_frame": 604,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 100,
+          "episode": "outputs/navigation_m0_repeat_a_20261008/episodes/navigation_m0_town03_opt_v2_route0_10_08_23_34_11"
+        }
+      ],
+      "runtime_sign_types": {
+        "traffic.traffic_light": 38,
+        "traffic.speed_limit.30": 7,
+        "traffic.speed_limit.90": 2,
+        "traffic.speed_limit.60": 2,
+        "traffic.unknown": 15,
+        "traffic.stop": 20
+      }
+    },
+    {
+      "output": "outputs/navigation_m0_repeat_b_20261008",
+      "town": "Town03_Opt",
+      "route_sha256": "a6670df4402816eed44b673a21e7f53a86768e024ff13d8a7e2691bacb9eee99",
+      "profile_only": true,
+      "summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_0_rep0",
+            "status": "Failed",
+            "completion_percent": 8.11,
+            "completed": false,
+            "safe_completed": false,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 1233.361,
+              "duration_game": 10.0,
+              "duration_system": 7.767
+            }
+          }
+        ],
+        "count": 1,
+        "safe_completed": 0,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.0,
+          0.7934506856227626
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": true,
+        "stop_reason": "profile_step_budget",
+        "policy_kind": "privileged_pdm_lite_modified",
+        "execution_status": "profile_complete"
+      },
+      "profiles": [
+        {
+          "frames": 200,
+          "wall_seconds": 8.369448582000132,
+          "simulation_seconds": 9.95,
+          "frames_per_second": 23.896436908655215,
+          "expert_and_camera_p95_ms": 15.111361950016542,
+          "all_camera_frames_aligned": true,
+          "last_frame": 636,
+          "note": "Expert latency excludes video encoding and simulator/render time",
+          "video_frames": 100,
+          "episode": "outputs/navigation_m0_repeat_b_20261008/episodes/navigation_m0_town03_opt_v2_route0_10_08_23_34_26"
+        }
+      ],
+      "runtime_sign_types": {
+        "traffic.traffic_light": 38,
+        "traffic.speed_limit.30": 7,
+        "traffic.speed_limit.60": 2,
+        "traffic.speed_limit.90": 2,
+        "traffic.stop": 20,
+        "traffic.unknown": 15
+      }
+    }
+  ],
+  "repeatability": {
+    "frames_compared": 200,
+    "max_position_difference_m": 0.0,
+    "max_yaw_difference_deg": 0.0,
+    "max_control_difference": 0.0,
+    "prefix_within_tolerance": true,
+    "tolerances": {
+      "position_m": 0.1,
+      "yaw_deg": 0.5,
+      "control": 0.01
+    },
+    "limitation": "Same ego prefix is necessary but not sufficient for reactive counterfactual replay; surrounding actor states need auditing too.",
+    "world_state": {
+      "frames_compared": 200,
+      "actor_type_role_sequence_equal": true,
+      "signals_equal": true,
+      "max_dynamic_actors_including_ego": 19,
+      "maximum_differences": {
+        "position_m": 0.0,
+        "rotation_deg": 0.0,
+        "velocity_mps": 0.0,
+        "signal_phase_s": 0.0
+      },
+      "tolerances": {
+        "position_m": 0.1,
+        "rotation_deg": 0.5,
+        "velocity_mps": 0.1,
+        "signal_phase_s": 0.051
+      },
+      "observable_prefix_within_tolerance": true,
+      "limitation": "Seeded actor creation order defines correspondence; observable state agreement does not prove hidden-state or post-branch determinism."
+    }
+  },
+  "limitations": [
+    "No camera student trained",
+    "No calibrated encounter reliability",
+    "No Town05 test run",
+    "No counterfactual branch validation",
+    "Development route success is not an official benchmark score"
+  ]
+}

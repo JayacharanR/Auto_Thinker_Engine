@@ -5,6 +5,24 @@ then the files listed in "Reading order", before changing anything. Status
 below is as of 2026-10-04 19:05; check the live state (section "First commands")
 because training may have moved on.
 
+**Current update — 2026-10-08:** The historical status below is superseded by
+`reports/overnight_bev_assessment_20261008.md` and the newest journal entries.
+The BEV overnight queue completed all32 stages on Oct6,00:45–07:46 IST. It
+selected the unchanged-reward control and added120k steps with replay/Adam
+preserved. Best checkpoint: `outputs/overnight_bev_20261006/best.pt`, run
+counter90k (60k added overnight); **do not resume the150k latest checkpoint**,
+which collapsed to1/90 safe medium arrivals and0/10 simple turns.
+Best final separate-stream results: medium58/60 versus baseline56/60, simple
+10/10 for both, zero-shot hard27/30 versus26/30. This is a modest one-seed gain,
+not a solved traffic task or a JEPA comparison. The completed fixed300 pilot
+matched control/reference at51/60 medium safe arrivals; no driving benefit was
+shown, and overnight training retained fixed cost0. Queue is idle at review.
+Next: reproduce the best candidate's safety across additional predeclared
+streams, diagnose the147.5k–150k stopping collapse, and use short protected
+continuations before another long run. See the assessment for seed, AMP/RNG
+and replay limitations; ask before new multi-hour training or reward/benchmark
+changes. The deferred third encoder-comparison seed remains deferred.
+
 ## 1. What the project is trying to achieve
 
 A self-driving agent in the CARLA simulator, and a controlled experiment on

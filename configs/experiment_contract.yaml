@@ -66,3 +66,9 @@ reward_source: cardreamer_wpt                 # CarDreamer carla_wpt_env reward
 reward_overrides:                             # --env-set, recorded in each run's run_spec
   reward.scales.time: 0.1                     # CarDreamer default 0: waiting was free and the
                                               # agent stalled mid-turn (journal 2026-10-03)
+
+# Optional reward.scales.collision_fixed defaults to 0.0 in the vendor patch.
+# The approved CNN BEV collision-cost pilot uses 300.0 only during variant
+# training, then explicitly restores 0.0 for canonical evaluation. This does
+# not replace the camera encoder comparison's reward above.
+# Protocol: reports/collision_cost_ablation_v1.md

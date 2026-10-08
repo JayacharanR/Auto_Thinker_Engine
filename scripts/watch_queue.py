@@ -67,6 +67,8 @@ def queue_state() -> dict:
         # Start lines: "=== <title> started ===" (older: "=== ... queue started (...) ===").
         starts = [i for i, line in enumerate(lines) if "===" in line
                   and ("queue started" in line or line.rstrip().endswith("started ==="))]
+        if starts:
+            state["__started__"] = True
         for line in lines[starts[-1] if starts else 0:]:
             if "===" in line and line.rstrip().endswith("finished ==="):
                 state["__finished__"] = line.split("===")[1].strip()
@@ -100,7 +102,10 @@ def rate_from_records(records: list, window: float = 600.0):
     advance the step counter, so time spent evaluating lowers the rate, as it
     does the real ETA.
     """
-    timed = [(r["time"], r["agent_step"]) for r in records if "time" in r]
+    # Prefill records all report step zero; the logger advances only after
+    # prefill finishes. Including that jump exaggerates the learning rate.
+    timed = [(r["time"], r["agent_step"]) for r in records
+             if "time" in r and r["agent_step"] > 0]
     if len(timed) < 2:
         return None
     recent = [(t, s) for t, s in timed if t >= timed[-1][0] - window]
@@ -153,6 +158,7 @@ def render(histories: dict) -> list:
     steps = load_steps()
     total_h = sum(st["hours"] for st in steps)
     done_h, current, line, eta = 0.0, None, "", None
+    current_remaining_h = 0.0
     for st in steps:
         name, hours = st["name"], st["hours"]
         s = state.get(name)
@@ -175,13 +181,17 @@ def render(histories: dict) -> list:
                 p = dreamer_progress(histories.setdefault(name, []), st["logdir"], st["target"])
                 if p:
                     step, total, rate = p
-                    frac = step / total
+                    # Continuations describe absolute trainer counters, but
+                    # only newly requested work belongs in this stage's bar.
+                    start = st.get("start", 0)
+                    frac = min(1.0, max(0.0, (step - start) / (total - start)))
                     eta = (total - step) / rate if rate else None
                     rate_txt = (f"{step:>7,}/{total:,} env steps  {rate or 0:4.1f} st/s  "
                                 f"ETA {fmt(eta)}")
             else:
                 rate_txt = "running (a few minutes)"
             done_h += hours * frac
+            current_remaining_h = hours * (1 - frac)
             line = f"{name:15s} [{bar(frac, width)}] {frac:6.1%}  {rate_txt}"
 
     names = [st["name"] for st in steps]
@@ -194,10 +204,11 @@ def render(histories: dict) -> list:
     if finished:
         lines.append("Queue finished: " + ", ".join(f"{n} {state[n]}" for n in ran))
     else:
-        lines.append(line or "between steps...")
+        lines.append(line or "waiting for the first step or between steps...")
     rest_h = sum(st["hours"] for st in steps
                  if state.get(st["name"]) not in (*DONE_STATES, "START"))
-    total_eta = (eta or 0) + rest_h * 3600 if not finished else 0
+    current_eta = eta if eta is not None else current_remaining_h * 3600
+    total_eta = current_eta + rest_h * 3600 if not finished else 0
     lines.append(f"{'whole queue':15s} [{bar(overall, width)}] {overall:6.1%}  "
                  f"steps done {done_count}/{total_count}  ETA ~{fmt(total_eta)}")
     failed = [n for n in names if state.get(n) == "FAIL"]

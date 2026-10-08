@@ -223,6 +223,22 @@ class EpisodeMetricsRecorder(gym.Wrapper):
             "speed_norm": float(info.get("speed_norm", 0.0)),
             "ttc": float(info.get("ttc", float("inf"))),
         })
+        if _flag(info, "collision_detected") or _flag(info, "is_collision"):
+            # Diagnostics only: do not add reward/event information to the
+            # agent observation. Capture first detection and terminal delay.
+            event = {
+                "time": time.time(), "mode": self.mode,
+                "episode": self._episode_index, "agent_step": int(self.step_fn()),
+                "done": bool(done), "collision": _flag(info, "is_collision"),
+                "collision_detected": _flag(info, "collision_detected"),
+                "total_reward": float(reward),
+                **{key: float(info[key]) for key in (
+                    "speed_norm", "r_collision", "r_collision_speed", "r_collision_fixed",
+                    "r_waypoints", "r_speed", "r_out_of_lane", "r_destination", "r_time",
+                ) if key in info},
+            }
+            with self.path.with_name("collision_events.jsonl").open("a", encoding="utf-8") as f:
+                f.write(json.dumps(event) + "\n")
         if done:
             self._finish(tracker, info)
         return obs, reward, done, info

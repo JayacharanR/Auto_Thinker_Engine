@@ -1,0 +1,1311 @@
+{
+  "queue": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/overnight_bev_20261006",
+  "completed": true,
+  "selected_source": "control",
+  "best_step": 90000,
+  "checkpoints": {
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/overnight_bev_20261006/baseline.pt": {
+      "sha256": "130a69e6b3f6ebadfa86b3099a968b7a7ed5686cd1d55e52359a7bfa775bccc0",
+      "step": 30000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 13735,
+          "max_step": 13735
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 13750,
+          "max_step": 13750
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 13750,
+          "max_step": 13750
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/overnight_bev_20261006/best.pt": {
+      "sha256": "5fe91136ac62dc0fc3ee9753627d221e95463cce7dbdd47fdeb1d850d25c759e",
+      "step": 90000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 43718,
+          "max_step": 43718
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 43745,
+          "max_step": 43745
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 43745,
+          "max_step": 43745
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/overnight_bev_20261006/checkpoints/step60000.pt": {
+      "sha256": "9d3095484e5f5476d83e555059f454d50c0f16f1b43943797c51198187071a2a",
+      "step": 60000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 28726,
+          "max_step": 28726
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 28747,
+          "max_step": 28747
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 28747,
+          "max_step": 28747
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/overnight_bev_20261006/checkpoints/step90000.pt": {
+      "sha256": "5fe91136ac62dc0fc3ee9753627d221e95463cce7dbdd47fdeb1d850d25c759e",
+      "step": 90000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 43718,
+          "max_step": 43718
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 43745,
+          "max_step": 43745
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 43745,
+          "max_step": 43745
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/overnight_bev_20261006/checkpoints/step120000.pt": {
+      "sha256": "57e5616fe0f145669fbb61c4dba46f5815a234aab9bb3469e02dccb3608e2368",
+      "step": 120000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 58706,
+          "max_step": 58706
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 58744,
+          "max_step": 58744
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 58743,
+          "max_step": 58743
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/overnight_bev_20261006/checkpoints/step150000.pt": {
+      "sha256": "be5ee3ae77a4f2156a212408a2b178aa3b8f781fec1b24e241d62867a99fe0d7",
+      "step": 150000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 73696,
+          "max_step": 73696
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 73742,
+          "max_step": 73742
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 73738,
+          "max_step": 73738
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/diagnostics/overnight_bev_20261006/latest.pt": {
+      "sha256": "be5ee3ae77a4f2156a212408a2b178aa3b8f781fec1b24e241d62867a99fe0d7",
+      "step": 150000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 73696,
+          "max_step": 73696
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 73742,
+          "max_step": 73742
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 73738,
+          "max_step": 73738
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt": {
+      "sha256": "0806bdc4e6f10ff8a217997e0c36a0f581fc19f8e801727de0d56dae0f1b8dcd",
+      "step": 60000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 28729,
+          "max_step": 28729
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 28747,
+          "max_step": 28747
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 28746,
+          "max_step": 28746
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/logs/cnn_bev_tp01_seed42/latest.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/diagnostics/collision_cost_ablation_v1/control/latest.pt": {
+      "sha256": "130a69e6b3f6ebadfa86b3099a968b7a7ed5686cd1d55e52359a7bfa775bccc0",
+      "step": 30000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 13735,
+          "max_step": 13735
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 13750,
+          "max_step": 13750
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 13750,
+          "max_step": 13750
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=0.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    },
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/diagnostics/collision_cost_ablation_v1/fixed300/latest.pt": {
+      "sha256": "17eaa9c61b4f7fcfdcdc4fff913c80fa6f777976b14d1df11eed931ab573b234",
+      "step": 30000,
+      "finite_weights_and_optimizer_tensors": true,
+      "optimizer_counters": {
+        "_wm._model_opt._opt": {
+          "min_step": 13737,
+          "max_step": 13737
+        },
+        "_task_behavior._actor_opt._opt": {
+          "min_step": 13750,
+          "max_step": 13750
+        },
+        "_task_behavior._value_opt._opt": {
+          "min_step": 13750,
+          "max_step": 13750
+        }
+      },
+      "run_spec": {
+        "arm": "cnn",
+        "task": "carla_right_turn_medium",
+        "obs": "bev",
+        "action": "discrete",
+        "image_size": [
+          64,
+          64
+        ],
+        "seed": 42,
+        "env_overrides": [
+          "reward.scales.time=0.1",
+          "reward.scales.collision_fixed=300.0"
+        ],
+        "init_from": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/collision_cost_ablation_queue/source_60k.pt"
+      },
+      "actor_lr": 3e-05,
+      "critic_lr": 3e-05
+    }
+  },
+  "evaluations": {
+    "choose_reference_medium_seed2028": {
+      "request_sha256": "102e03efe2f780c23610ecd377e61c6db05ff977ad26afe4a261bb4b495c6ce4",
+      "episodes_sha256": "fe12cf526a4330c77973619a20a082d4d76f359408036c99f9994e0c7fd1a21c",
+      "episodes": 30,
+      "safe_arrivals": 22,
+      "raw_arrivals": 23,
+      "collisions": 8,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 1,
+      "mean_reward": 213.0381971137632,
+      "mean_speed_kmh": 11.404592540192843
+    },
+    "reference_medium_seed2029": {
+      "request_sha256": "c7c4b6bbc417c2cf267b1df2ee4b6d330069bed4844da557490cc879e386c727",
+      "episodes_sha256": "c2199245e67ee4758ad705a9d20076f251049da05d3806c208b8a20f91371c41",
+      "episodes": 30,
+      "safe_arrivals": 26,
+      "raw_arrivals": 26,
+      "collisions": 4,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 282.7610361973445,
+      "mean_speed_kmh": 11.812961605391669
+    },
+    "reference_medium_seed2030": {
+      "request_sha256": "1fa5896bdf4027527bd97ad9375308e8c55528bf4fa6955fdfdcdd209c9d45cb",
+      "episodes_sha256": "dc6c1c8394218b5c5bdd89161c70e13f6865438d24cd4205c05a206643d20bda",
+      "episodes": 30,
+      "safe_arrivals": 25,
+      "raw_arrivals": 25,
+      "collisions": 5,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 270.49157789399794,
+      "mean_speed_kmh": 11.906408521792857
+    },
+    "reference_simple_seed2029": {
+      "request_sha256": "4854a1bf99b2541dcb5f86601385eb380138c99378e9af27f2f19e410f9affdc",
+      "episodes_sha256": "45b743a58f61301e7a83a29b6ab1c5691384b25c43693b084b19d3f96bd59276",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 340.96728359487025,
+      "mean_speed_kmh": 11.409836560679718
+    },
+    "choose_control_medium_seed2028": {
+      "request_sha256": "ead4b9ff93b762ad19136c996f3c437d19bec47eff9a39364a6350f4a9996132",
+      "episodes_sha256": "4171f3e24a39d9fb091218b78bed2752c0f50a25897260306dfde415ac9b055d",
+      "episodes": 30,
+      "safe_arrivals": 27,
+      "raw_arrivals": 27,
+      "collisions": 2,
+      "lane_failures": 0,
+      "timeouts": 1,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 200.33072300912085,
+      "mean_speed_kmh": 11.243655085017204
+    },
+    "control_medium_seed2029": {
+      "request_sha256": "d6fa08104588ad5f203bca474e9420721b768ba9cf8e88b79074031bf723b2c5",
+      "episodes_sha256": "8ce77563a63fa79e21067e0bdcd1f7de9031677791543cdd2368658a5d124c16",
+      "episodes": 30,
+      "safe_arrivals": 23,
+      "raw_arrivals": 23,
+      "collisions": 6,
+      "lane_failures": 1,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 244.45890830760766,
+      "mean_speed_kmh": 11.397441290851955
+    },
+    "control_medium_seed2030": {
+      "request_sha256": "60b5d22774f0b6346e517aee6b6302bc182ad31dcdf6a07f0a51a3b32d774c20",
+      "episodes_sha256": "b5e2fb00c99fc41b22e4bad5a0f6d5f3832929f33ee1a7bca91262b13c171f9b",
+      "episodes": 30,
+      "safe_arrivals": 28,
+      "raw_arrivals": 28,
+      "collisions": 2,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 296.70421817405645,
+      "mean_speed_kmh": 11.777099715559348
+    },
+    "control_simple_seed2029": {
+      "request_sha256": "8cd53413dc12bf9c808dc5c17886a069b41633c2f20eb1f5887d61053c2f24cd",
+      "episodes_sha256": "0113c0193862eaa362c0fa52a9de1bdc5c1b5ae191598ea71352d0d03bec3a0a",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 326.89096317291126,
+      "mean_speed_kmh": 10.412990522577635
+    },
+    "choose_fixed300_medium_seed2028": {
+      "request_sha256": "f56e2f169177bf4a44994994cb6f2dbdafd364a3568ec76ed1676e7fdb043579",
+      "episodes_sha256": "7996c41497cbb00697870d9bbe0599a06089381a1781a686de89805a2499254b",
+      "episodes": 30,
+      "safe_arrivals": 27,
+      "raw_arrivals": 27,
+      "collisions": 3,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 266.54459911923357,
+      "mean_speed_kmh": 11.526174429970666
+    },
+    "fixed300_medium_seed2029": {
+      "request_sha256": "7ab1c95c2b4414930e147fe2461f850dd80a09d8047a0c9bfe446eec68454b95",
+      "episodes_sha256": "65f14de150206085be6fff530c6ea711d7163950d913799098a8fd3718548094",
+      "episodes": 30,
+      "safe_arrivals": 23,
+      "raw_arrivals": 23,
+      "collisions": 7,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 187.34479442296276,
+      "mean_speed_kmh": 11.475201769327592
+    },
+    "fixed300_medium_seed2030": {
+      "request_sha256": "0aaf4bd1834772b47d242801aeaf1dfbe5e70945a23f1bfaedc83baea33c51ec",
+      "episodes_sha256": "03406ed36f0ed2f5dcbe4a9a008071f457b02c092be6d353dea23f76e850536e",
+      "episodes": 30,
+      "safe_arrivals": 28,
+      "raw_arrivals": 28,
+      "collisions": 2,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 276.7040262182142,
+      "mean_speed_kmh": 11.812086024081852
+    },
+    "fixed300_simple_seed2029": {
+      "request_sha256": "0f7b6870caff6592737c7c5787cb9fcec1dc7eacf764fd20645d06cffb47753f",
+      "episodes_sha256": "ee8c9066a1d99a2bb4ad290b69daf4c1c2771b0bc0f588bbf372c20d9966c41e",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 333.86222757744935,
+      "mean_speed_kmh": 8.960695005083963
+    },
+    "block1_medium_seed2028": {
+      "request_sha256": "00d88516af4ae520775a8cbc1f4bfbb8825c557235d553496660b646911f8d3a",
+      "episodes_sha256": "47b7cb3e227f8e73cdeb603aab1bb1eba753b1c9426271a8f84d19a84034c331",
+      "episodes": 30,
+      "safe_arrivals": 27,
+      "raw_arrivals": 27,
+      "collisions": 2,
+      "lane_failures": 1,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 287.7764269417642,
+      "mean_speed_kmh": 11.195875582924499
+    },
+    "block1_medium_seed2029": {
+      "request_sha256": "4695178ddc217b87063bf2d959aab103231ddb5a3b053c2d03154e2d53712bf4",
+      "episodes_sha256": "f3ea329ad13a4be312de83425f7ef058369336a81951d1a7d66549925d0a1290",
+      "episodes": 30,
+      "safe_arrivals": 28,
+      "raw_arrivals": 28,
+      "collisions": 1,
+      "lane_failures": 0,
+      "timeouts": 1,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 265.194399242339,
+      "mean_speed_kmh": 11.028992630689972
+    },
+    "block1_medium_seed2030": {
+      "request_sha256": "a2ac8dd4d41719653982427db2ced2b1c647618103c7629a1001fcf8367bddc6",
+      "episodes_sha256": "accdcbae3d68bcd98c0e85bcb2b1a1137a0431dfffcdcf872394da54c662cf50",
+      "episodes": 30,
+      "safe_arrivals": 27,
+      "raw_arrivals": 27,
+      "collisions": 3,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 280.71214198626654,
+      "mean_speed_kmh": 11.578518834059844
+    },
+    "block1_simple_seed2029": {
+      "request_sha256": "3dfdbde94e90c6c40c5db4b83ff4588cd4e53bc1f11e7e9d81acd0ee8bbfadc3",
+      "episodes_sha256": "7d7bf10d700b6bbc1146c4807f0e156b1b4bde5ac40c7a8e5237996bb48f9695",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 343.887090326046,
+      "mean_speed_kmh": 10.798269760905608
+    },
+    "block2_medium_seed2028": {
+      "request_sha256": "40653f316e7fe73e41dd78f6befe5a91cd55d8e8d6bd256d51dcf9e84e0ed446",
+      "episodes_sha256": "dd3bb8625adbfd0f07b2dbd8e7f7ff7578dbc5e3db2a37304267d20621f3363e",
+      "episodes": 30,
+      "safe_arrivals": 29,
+      "raw_arrivals": 29,
+      "collisions": 1,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 320.42338119451347,
+      "mean_speed_kmh": 10.368935062573902
+    },
+    "block2_medium_seed2029": {
+      "request_sha256": "0c88833e0393b1a51b1d5ea368435189cb4f4321d9db6ad6c95098a6b5657c6e",
+      "episodes_sha256": "fc89c5d851b60c1440a08f66ef57526dab068c80771a715b79fb9021a8235b9a",
+      "episodes": 30,
+      "safe_arrivals": 30,
+      "raw_arrivals": 30,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 338.9681229550419,
+      "mean_speed_kmh": 10.456181689399214
+    },
+    "block2_medium_seed2030": {
+      "request_sha256": "b1312963deefdb801d66a0ed670f3abe8b50971567442993d65dc6a641c75cdc",
+      "episodes_sha256": "f5dae24f1a89e055dc882824c9854f40180c7c5759981d85b737a483e4f4ec5c",
+      "episodes": 30,
+      "safe_arrivals": 30,
+      "raw_arrivals": 30,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 343.3705030703782,
+      "mean_speed_kmh": 10.914936954901014
+    },
+    "block2_simple_seed2029": {
+      "request_sha256": "3b1da869ddab56437d8ecf359c003b047d60805bc1dc9c944f3ca5e7ba862dc9",
+      "episodes_sha256": "8f3f5e9f5162cbcd904d5e00d8e16d85d71789cd72466d9b8e5087321ed83a19",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 348.50231254059247,
+      "mean_speed_kmh": 10.251625317315932
+    },
+    "block3_medium_seed2028": {
+      "request_sha256": "bb76ed17e5dfc9fd7866e5f0a498d31252db6223c3f0e5cf586e7a3b8992eb1c",
+      "episodes_sha256": "3e1d96a8916136ae2fc5e4593d4a78966afe21790f8284fb50690d78b560c2f5",
+      "episodes": 30,
+      "safe_arrivals": 26,
+      "raw_arrivals": 26,
+      "collisions": 4,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 272.42365571552443,
+      "mean_speed_kmh": 10.525192143412221
+    },
+    "block3_medium_seed2029": {
+      "request_sha256": "bb8a765913fd798ba984f44fd5186c1969a5dce0b20c223dc82c0b42094c2882",
+      "episodes_sha256": "3f5cbedba9dca2610afbedc68e37b148b23f82d2fdd7616b49c8579de4b4c0e8",
+      "episodes": 30,
+      "safe_arrivals": 25,
+      "raw_arrivals": 25,
+      "collisions": 5,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 264.934941730366,
+      "mean_speed_kmh": 10.521650296231815
+    },
+    "block3_medium_seed2030": {
+      "request_sha256": "eebacc8bab2d712f43d13ce007d76c3cf7e7651cc110856bc3316c02a99c33d6",
+      "episodes_sha256": "5c97bf649e5446adc45708de7adc28193b8bdb0441904bf06d85edcd013736be",
+      "episodes": 30,
+      "safe_arrivals": 29,
+      "raw_arrivals": 29,
+      "collisions": 0,
+      "lane_failures": 1,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 337.85579744498904,
+      "mean_speed_kmh": 11.18536743032353
+    },
+    "block3_simple_seed2029": {
+      "request_sha256": "e1c78269243ad4bbac43408dcc9b6f63b22b94c6134ccdbbbf3d90281d7c065b",
+      "episodes_sha256": "82af7fcbbb52a55183a8b2589030f86ace8099377ba65d1778a0ec8a733424b5",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 348.58005726124713,
+      "mean_speed_kmh": 10.606680280170284
+    },
+    "block4_medium_seed2028": {
+      "request_sha256": "e5fe9a20a515a9e50be83cc3f664876b8dbac92ccdcce0d3077faeeb65fe3016",
+      "episodes_sha256": "055962a209045d40cc46f81fd251cd96714570f33819041ddedb5606ad6b3030",
+      "episodes": 30,
+      "safe_arrivals": 0,
+      "raw_arrivals": 0,
+      "collisions": 6,
+      "lane_failures": 3,
+      "timeouts": 21,
+      "arrival_collision_overlap": 0,
+      "mean_reward": -58.68288458744232,
+      "mean_speed_kmh": 1.2522141705480685
+    },
+    "block4_medium_seed2029": {
+      "request_sha256": "38ca560e35e475849046ba773ce68b5a0db111ec836643c307cc005693a46f8f",
+      "episodes_sha256": "911c453b83fab6741d54eb781a2553f2cefa32267d77ab859478ef79608d369c",
+      "episodes": 30,
+      "safe_arrivals": 0,
+      "raw_arrivals": 0,
+      "collisions": 4,
+      "lane_failures": 0,
+      "timeouts": 26,
+      "arrival_collision_overlap": 0,
+      "mean_reward": -21.653200826846547,
+      "mean_speed_kmh": 0.9137884671208311
+    },
+    "block4_medium_seed2030": {
+      "request_sha256": "1f19a7e18b64c73bf4a1904ea011a0219137f7119bf2f877cd483889dccc9365",
+      "episodes_sha256": "2525d7ceac7ff9c55270dd12dd1576db7c02e3e7f21caac087aafde50be7d6e7",
+      "episodes": 30,
+      "safe_arrivals": 1,
+      "raw_arrivals": 1,
+      "collisions": 3,
+      "lane_failures": 1,
+      "timeouts": 25,
+      "arrival_collision_overlap": 0,
+      "mean_reward": -9.448716157787594,
+      "mean_speed_kmh": 1.2955969775108633
+    },
+    "block4_simple_seed2029": {
+      "request_sha256": "58978113c1b3c98fde783b9cb2a3b2b05e64233a6bdc8bba5d5145d0112d9674",
+      "episodes_sha256": "719a85d82379dd972a535ab3ac7b2f53b333f0538986c6969ee44d23b6ec870a",
+      "episodes": 10,
+      "safe_arrivals": 0,
+      "raw_arrivals": 0,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 10,
+      "arrival_collision_overlap": 0,
+      "mean_reward": -50.10000628355398,
+      "mean_speed_kmh": 4.92649866064639e-05
+    },
+    "holdout_baseline_medium_seed3031": {
+      "request_sha256": "6dc92b2b8a4eaca44b48d02aab279147a0a342afb7887969c7e948717116cee8",
+      "episodes_sha256": "4bc4d3e859eda954673793da248ed621de36b245e99af28e89b95070d968f8a6",
+      "episodes": 30,
+      "safe_arrivals": 30,
+      "raw_arrivals": 30,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 318.4951062925768,
+      "mean_speed_kmh": 11.28643751825936
+    },
+    "holdout_baseline_medium_seed4031": {
+      "request_sha256": "7c9ad705c709b508ca940fa28dfd3491afcfe3a265e006bcf9f37f6724248e3c",
+      "episodes_sha256": "c036baea8bfaecf4a81296fda882f147941ffdf80784426bb71429eb081f9d68",
+      "episodes": 30,
+      "safe_arrivals": 26,
+      "raw_arrivals": 26,
+      "collisions": 3,
+      "lane_failures": 1,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 272.89136296336176,
+      "mean_speed_kmh": 11.34232606434049
+    },
+    "holdout_baseline_simple_seed3031": {
+      "request_sha256": "9c1cc07b617721f32e5ed6112e0d26c1cf8f9c2c13bbe4c7037cb37bb2e56eb4",
+      "episodes_sha256": "7d328ebd836adf3a291a25c91ed20d32f63e689ab0f87bf9d4bfee568e5a64bf",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 332.55449551527596,
+      "mean_speed_kmh": 10.259563415444834
+    },
+    "holdout_baseline_hard_seed5031": {
+      "request_sha256": "332756f8b12a3733521cc160e6162117da96c878d8e8dfdff70e0fe852f81ded",
+      "episodes_sha256": "f2ff417e89523fd1660945ea480d0f2e64e8dda066947868c68c3300a12fa0b2",
+      "episodes": 30,
+      "safe_arrivals": 26,
+      "raw_arrivals": 26,
+      "collisions": 4,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 254.72375867705358,
+      "mean_speed_kmh": 11.384810400294697
+    },
+    "holdout_selected_medium_seed3031": {
+      "request_sha256": "9b6a5ef3cd64f83f8b50dd2e7c079e98b852ac40017cfbd039482c3882a6beed",
+      "episodes_sha256": "17575f49c6789c5b78419115d1d5f1b0b7c97ac3bc73ecda555934d2a3bcc571",
+      "episodes": 30,
+      "safe_arrivals": 29,
+      "raw_arrivals": 29,
+      "collisions": 1,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 335.35317979659646,
+      "mean_speed_kmh": 10.739076657537574
+    },
+    "holdout_selected_medium_seed4031": {
+      "request_sha256": "3a177dc673604d4dadbc0d5e0ba51e3e36e0b59ae896355d860b7406dad1f5c9",
+      "episodes_sha256": "49dc55dc1781670bb39c17045fe22f56e5886a4b2193bfaa8495b3b390576804",
+      "episodes": 30,
+      "safe_arrivals": 29,
+      "raw_arrivals": 29,
+      "collisions": 1,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 325.5874594024056,
+      "mean_speed_kmh": 10.845762701273811
+    },
+    "holdout_selected_simple_seed3031": {
+      "request_sha256": "99589d49eec7340378c8e9b5754fa78dcbcdd800e9a4b96d88c53052561907d5",
+      "episodes_sha256": "c047d35cc87ae76e65aac1d7a7bfcaaa1839e6bcb0b5308913a1f2b9ce584c3b",
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 347.6854413912489,
+      "mean_speed_kmh": 10.169009358151815
+    },
+    "holdout_selected_hard_seed5031": {
+      "request_sha256": "a6a9ee74b95659fc4aebed1e4d6734c6873629564967d0f398d079daee883def",
+      "episodes_sha256": "ea7879f514d24d2cd2d5d12640e0a371ca19558a42f47b2557016011f05b09dc",
+      "episodes": 30,
+      "safe_arrivals": 27,
+      "raw_arrivals": 27,
+      "collisions": 3,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 299.2808688038662,
+      "mean_speed_kmh": 11.15722276289619
+    }
+  },
+  "training_additional_steps": 120000,
+  "selection_baseline": {
+    "medium_seed2029": {
+      "episodes": 30,
+      "safe_arrivals": 23,
+      "raw_arrivals": 23,
+      "collisions": 6,
+      "lane_failures": 1,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 244.45890830760766,
+      "mean_speed_kmh": 11.397441290851955
+    },
+    "medium_seed2030": {
+      "episodes": 30,
+      "safe_arrivals": 28,
+      "raw_arrivals": 28,
+      "collisions": 2,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 296.70421817405645,
+      "mean_speed_kmh": 11.777099715559348
+    },
+    "simple_seed2029": {
+      "episodes": 10,
+      "safe_arrivals": 10,
+      "raw_arrivals": 10,
+      "collisions": 0,
+      "lane_failures": 0,
+      "timeouts": 0,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 326.89096317291126,
+      "mean_speed_kmh": 10.412990522577635
+    },
+    "medium_seed2028": {
+      "episodes": 30,
+      "safe_arrivals": 27,
+      "raw_arrivals": 27,
+      "collisions": 2,
+      "lane_failures": 0,
+      "timeouts": 1,
+      "arrival_collision_overlap": 0,
+      "mean_reward": 200.33072300912085,
+      "mean_speed_kmh": 11.243655085017204
+    }
+  },
+  "selection_blocks": [
+    {
+      "step": 60000,
+      "accepted": true,
+      "evaluations": {
+        "medium_seed2028": {
+          "episodes": 30,
+          "safe_arrivals": 27,
+          "raw_arrivals": 27,
+          "collisions": 2,
+          "lane_failures": 1,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 287.7764269417642,
+          "mean_speed_kmh": 11.195875582924499
+        },
+        "medium_seed2029": {
+          "episodes": 30,
+          "safe_arrivals": 28,
+          "raw_arrivals": 28,
+          "collisions": 1,
+          "lane_failures": 0,
+          "timeouts": 1,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 265.194399242339,
+          "mean_speed_kmh": 11.028992630689972
+        },
+        "medium_seed2030": {
+          "episodes": 30,
+          "safe_arrivals": 27,
+          "raw_arrivals": 27,
+          "collisions": 3,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 280.71214198626654,
+          "mean_speed_kmh": 11.578518834059844
+        },
+        "simple_seed2029": {
+          "episodes": 10,
+          "safe_arrivals": 10,
+          "raw_arrivals": 10,
+          "collisions": 0,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 343.887090326046,
+          "mean_speed_kmh": 10.798269760905608
+        }
+      }
+    },
+    {
+      "step": 90000,
+      "accepted": true,
+      "evaluations": {
+        "medium_seed2028": {
+          "episodes": 30,
+          "safe_arrivals": 29,
+          "raw_arrivals": 29,
+          "collisions": 1,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 320.42338119451347,
+          "mean_speed_kmh": 10.368935062573902
+        },
+        "medium_seed2029": {
+          "episodes": 30,
+          "safe_arrivals": 30,
+          "raw_arrivals": 30,
+          "collisions": 0,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 338.9681229550419,
+          "mean_speed_kmh": 10.456181689399214
+        },
+        "medium_seed2030": {
+          "episodes": 30,
+          "safe_arrivals": 30,
+          "raw_arrivals": 30,
+          "collisions": 0,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 343.3705030703782,
+          "mean_speed_kmh": 10.914936954901014
+        },
+        "simple_seed2029": {
+          "episodes": 10,
+          "safe_arrivals": 10,
+          "raw_arrivals": 10,
+          "collisions": 0,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 348.50231254059247,
+          "mean_speed_kmh": 10.251625317315932
+        }
+      }
+    },
+    {
+      "step": 120000,
+      "accepted": false,
+      "evaluations": {
+        "medium_seed2028": {
+          "episodes": 30,
+          "safe_arrivals": 26,
+          "raw_arrivals": 26,
+          "collisions": 4,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 272.42365571552443,
+          "mean_speed_kmh": 10.525192143412221
+        },
+        "medium_seed2029": {
+          "episodes": 30,
+          "safe_arrivals": 25,
+          "raw_arrivals": 25,
+          "collisions": 5,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 264.934941730366,
+          "mean_speed_kmh": 10.521650296231815
+        },
+        "medium_seed2030": {
+          "episodes": 30,
+          "safe_arrivals": 29,
+          "raw_arrivals": 29,
+          "collisions": 0,
+          "lane_failures": 1,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 337.85579744498904,
+          "mean_speed_kmh": 11.18536743032353
+        },
+        "simple_seed2029": {
+          "episodes": 10,
+          "safe_arrivals": 10,
+          "raw_arrivals": 10,
+          "collisions": 0,
+          "lane_failures": 0,
+          "timeouts": 0,
+          "arrival_collision_overlap": 0,
+          "mean_reward": 348.58005726124713,
+          "mean_speed_kmh": 10.606680280170284
+        }
+      }
+    },
+    {
+      "step": 150000,
+      "accepted": false,
+      "evaluations": {
+        "medium_seed2028": {
+          "episodes": 30,
+          "safe_arrivals": 0,
+          "raw_arrivals": 0,
+          "collisions": 6,
+          "lane_failures": 3,
+          "timeouts": 21,
+          "arrival_collision_overlap": 0,
+          "mean_reward": -58.68288458744232,
+          "mean_speed_kmh": 1.2522141705480685
+        },
+        "medium_seed2029": {
+          "episodes": 30,
+          "safe_arrivals": 0,
+          "raw_arrivals": 0,
+          "collisions": 4,
+          "lane_failures": 0,
+          "timeouts": 26,
+          "arrival_collision_overlap": 0,
+          "mean_reward": -21.653200826846547,
+          "mean_speed_kmh": 0.9137884671208311
+        },
+        "medium_seed2030": {
+          "episodes": 30,
+          "safe_arrivals": 1,
+          "raw_arrivals": 1,
+          "collisions": 3,
+          "lane_failures": 1,
+          "timeouts": 25,
+          "arrival_collision_overlap": 0,
+          "mean_reward": -9.448716157787594,
+          "mean_speed_kmh": 1.2955969775108633
+        },
+        "simple_seed2029": {
+          "episodes": 10,
+          "safe_arrivals": 0,
+          "raw_arrivals": 0,
+          "collisions": 0,
+          "lane_failures": 0,
+          "timeouts": 10,
+          "arrival_collision_overlap": 0,
+          "mean_reward": -50.10000628355398,
+          "mean_speed_kmh": 4.92649866064639e-05
+        }
+      }
+    }
+  ],
+  "holdouts": {
+    "baseline": {
+      "medium_seed3031": {
+        "episodes": 30,
+        "safe_arrivals": 30,
+        "raw_arrivals": 30,
+        "collisions": 0,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 318.4951062925768,
+        "mean_speed_kmh": 11.28643751825936
+      },
+      "medium_seed4031": {
+        "episodes": 30,
+        "safe_arrivals": 26,
+        "raw_arrivals": 26,
+        "collisions": 3,
+        "lane_failures": 1,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 272.89136296336176,
+        "mean_speed_kmh": 11.34232606434049
+      },
+      "simple_seed3031": {
+        "episodes": 10,
+        "safe_arrivals": 10,
+        "raw_arrivals": 10,
+        "collisions": 0,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 332.55449551527596,
+        "mean_speed_kmh": 10.259563415444834
+      },
+      "hard_seed5031": {
+        "episodes": 30,
+        "safe_arrivals": 26,
+        "raw_arrivals": 26,
+        "collisions": 4,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 254.72375867705358,
+        "mean_speed_kmh": 11.384810400294697
+      }
+    },
+    "selected": {
+      "medium_seed3031": {
+        "episodes": 30,
+        "safe_arrivals": 29,
+        "raw_arrivals": 29,
+        "collisions": 1,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 335.35317979659646,
+        "mean_speed_kmh": 10.739076657537574
+      },
+      "medium_seed4031": {
+        "episodes": 30,
+        "safe_arrivals": 29,
+        "raw_arrivals": 29,
+        "collisions": 1,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 325.5874594024056,
+        "mean_speed_kmh": 10.845762701273811
+      },
+      "simple_seed3031": {
+        "episodes": 10,
+        "safe_arrivals": 10,
+        "raw_arrivals": 10,
+        "collisions": 0,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 347.6854413912489,
+        "mean_speed_kmh": 10.169009358151815
+      },
+      "hard_seed5031": {
+        "episodes": 30,
+        "safe_arrivals": 27,
+        "raw_arrivals": 27,
+        "collisions": 3,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 299.2808688038662,
+        "mean_speed_kmh": 11.15722276289619
+      }
+    }
+  },
+  "completed_pilots": {
+    "reference": {
+      "medium_seed2029": {
+        "episodes": 30,
+        "safe_arrivals": 26,
+        "raw_arrivals": 26,
+        "collisions": 4,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 282.7610361973445,
+        "mean_speed_kmh": 11.812961605391669
+      },
+      "medium_seed2030": {
+        "episodes": 30,
+        "safe_arrivals": 25,
+        "raw_arrivals": 25,
+        "collisions": 5,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 270.49157789399794,
+        "mean_speed_kmh": 11.906408521792857
+      },
+      "simple_seed2029": {
+        "episodes": 10,
+        "safe_arrivals": 10,
+        "raw_arrivals": 10,
+        "collisions": 0,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 340.96728359487025,
+        "mean_speed_kmh": 11.409836560679718
+      }
+    },
+    "control": {
+      "medium_seed2029": {
+        "episodes": 30,
+        "safe_arrivals": 23,
+        "raw_arrivals": 23,
+        "collisions": 6,
+        "lane_failures": 1,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 244.45890830760766,
+        "mean_speed_kmh": 11.397441290851955
+      },
+      "medium_seed2030": {
+        "episodes": 30,
+        "safe_arrivals": 28,
+        "raw_arrivals": 28,
+        "collisions": 2,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 296.70421817405645,
+        "mean_speed_kmh": 11.777099715559348
+      },
+      "simple_seed2029": {
+        "episodes": 10,
+        "safe_arrivals": 10,
+        "raw_arrivals": 10,
+        "collisions": 0,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 326.89096317291126,
+        "mean_speed_kmh": 10.412990522577635
+      }
+    },
+    "fixed300": {
+      "medium_seed2029": {
+        "episodes": 30,
+        "safe_arrivals": 23,
+        "raw_arrivals": 23,
+        "collisions": 7,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 187.34479442296276,
+        "mean_speed_kmh": 11.475201769327592
+      },
+      "medium_seed2030": {
+        "episodes": 30,
+        "safe_arrivals": 28,
+        "raw_arrivals": 28,
+        "collisions": 2,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 276.7040262182142,
+        "mean_speed_kmh": 11.812086024081852
+      },
+      "simple_seed2029": {
+        "episodes": 10,
+        "safe_arrivals": 10,
+        "raw_arrivals": 10,
+        "collisions": 0,
+        "lane_failures": 0,
+        "timeouts": 0,
+        "arrival_collision_overlap": 0,
+        "mean_reward": 333.86222757744935,
+        "mean_speed_kmh": 8.960695005083963
+      }
+    }
+  },
+  "recorded_code_matches_current": {
+    "scripts/run_overnight_bev_improvement.py": true,
+    "scripts/train_cardreamer.py": true,
+    "scripts/evaluate_agent.py": true,
+    "scripts/run_traffic_curriculum.py": true,
+    "scripts/run_collision_cost_ablation.py": true,
+    "src/dreamer/carla_wrappers.py": true,
+    "configs/laptop.yaml": true,
+    "configs/experiment_contract.yaml": true,
+    "jobs/slurm_run.sh": true,
+    "patches/cardreamer_compat.patch": true
+  },
+  "queue_status_sha256": "ab9fc56c17c2d0b11ed144af36588a02ce55bace13033dad5ea966f44e9fae5b",
+  "source_selection_sha256": "06f6440097d031dffc27afca0ecab09995a3dd6e8f0f45d38889918e47830b33"
+}

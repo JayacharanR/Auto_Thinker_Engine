@@ -14,7 +14,13 @@ runtime:
   sensor_timeout_seconds: 10
   max_wall_seconds: 1800
   minimum_free_gb: 25
-  max_servers: 1
+  # Measured 2026-10-09 with one server: 88% CPU idle (24 cores), GPU 11-17%,
+  # ~3.5 GB VRAM and ~4 GB RAM per server+evaluator. Parallel slots use
+  # port/TM port + slot * slot_port_stride; each start is resource-gated.
+  max_servers: 3
+  slot_port_stride: 100
+  minimum_free_vram_gb: 3.0
+  minimum_available_ram_gb: 6.0
 camera:
   width: 512
   height: 288

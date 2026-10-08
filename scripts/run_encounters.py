@@ -12,18 +12,22 @@ import argparse
 import fcntl
 import hashlib
 import json
+import queue
 import re
 import subprocess
 import sys
+import threading
 import time
 from collections import Counter
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.navigation.metrics import summarize_records, wilson_interval  # noqa: E402
-from src.navigation.runtime import atomic_json  # noqa: E402
+from src.navigation.runtime import atomic_json, resource_shortfall  # noqa: E402
 
 CRASH_STATUS = "Simulation crashed"
 
@@ -65,21 +69,29 @@ def chunk_records(chunk):
     return records, stopped
 
 
-def settle_group(args, xml, group, base):
+def settle_group(args, xml, group, base, slot=0, gate=None):
     """Attempt dirs base_a0, base_a1, ...; returns per-route attempts and final record."""
     attempts, finals, failures = {r: [] for r in group}, {}, Counter()
-    k = 0
+    k = not_started = 0
     while True:
         chunk = base.with_name(f"{base.name}_a{k}")
         routes_file = chunk.with_name(chunk.name + ".routes.json")
         if not routes_file.exists():
             todo = [r for r in group if r not in finals and failures[r] < 2]
-            if not todo or (args.out / "STOP").exists():
+            if not todo or (args.out / "STOP").exists() or not_started >= 3:
                 return attempts, finals
             subset = f"{todo[0]}-{todo[-1]}" if todo == group else ",".join(map(str, todo))
             atomic_json(routes_file, todo)  # run_navigation requires an empty attempt dir
-            run_chunk(args, xml, subset, chunk)
+            run_chunk(args, xml, subset, chunk, slot, gate)
         asked = json.loads(routes_file.read_text())
+        if not (chunk / "manifest.json").exists():
+            # Refused before any server or route started (resources, lock, STOP):
+            # an infrastructure non-event, not a failed driving attempt.
+            for r in asked:
+                attempts[r].append({"attempt": chunk.name, "status": "not started"})
+            not_started += 1
+            k += 1
+            continue
         records, stopped = chunk_records(chunk)
         for r in asked:
             if r in records:
@@ -94,14 +106,45 @@ def settle_group(args, xml, group, base):
         k += 1
 
 
-def run_chunk(args, xml, subset, chunk):
+class LaunchGate:
+    """Serializes server starts and waits for resources, so parallel slots never
+    race each other's VRAM allocation."""
+
+    def __init__(self, runtime, stop_path):
+        self.runtime, self.stop_path, self.lock = runtime, stop_path, threading.Lock()
+
+    def launch(self, command, chunk, log):
+        with self.lock:
+            while (shortfall := resource_shortfall(self.runtime)) and not self.stop_path.exists():
+                atomic_json(chunk.with_name(chunk.name + ".waiting.json"), {"reason": shortfall})
+                time.sleep(10)
+            if self.stop_path.exists():
+                return None
+            child = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
+            deadline = time.monotonic() + 180
+            while (
+                child.poll() is None
+                and not (chunk / "startup_map.json").exists()
+                and time.monotonic() < deadline
+            ):
+                time.sleep(2)
+            return child
+
+
+def run_chunk(args, xml, subset, chunk, slot=0, gate=None):
     command = [
         sys.executable, "-u", str(ROOT / "scripts/run_navigation.py"), "expert",
         "--route", str(xml), "--routes-subset", subset, "--seed", str(args.seed),
         "--seed-per-route", "--out", str(chunk), "--max-wall", str(args.chunk_wall),
+        "--slot", str(slot),
     ]  # fmt: skip
     with (chunk.parent / f"{chunk.name}_console.log").open("a") as log:
-        child = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
+        if gate is None:
+            child = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
+        else:
+            child = gate.launch(command, chunk, log)
+            if child is None:
+                return None
         while child.poll() is None:
             if (args.out / "STOP").exists() and chunk.exists():
                 (chunk / "STOP").touch()  # the chunk owner stops its own evaluator/server
@@ -158,7 +201,12 @@ def main():
     parser.add_argument("--chunk", type=int, default=10)
     parser.add_argument("--chunk-wall", type=float, default=1800)
     parser.add_argument("--towns", nargs="*")
+    parser.add_argument("--workers", type=int, default=1, help="Parallel server slots")
+    parser.add_argument("--config", default="configs/navigation.yaml")
     args = parser.parse_args()
+    runtime = yaml.safe_load((ROOT / args.config).read_text())["runtime"]
+    if not 1 <= args.workers <= runtime["max_servers"]:
+        raise ValueError(f"--workers must be within 1..{runtime['max_servers']}")
     catalog_dir = (ROOT / args.catalog).resolve()
     catalog, digest = verify_catalog(catalog_dir)
     args.out = args.out.resolve()
@@ -168,25 +216,32 @@ def main():
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
         raise RuntimeError(f"Another encounter runner owns {args.out}") from None
+    # Worker count changes wall time, never chunk composition, seeds or results.
     request = {"catalog": str(catalog_dir), "catalog_sha256": digest, "seed": args.seed,
                "chunk": args.chunk, "policy_kind": "privileged_pdm_lite_modified"}  # fmt: skip
     previous = args.out / "request.json"
     if previous.exists() and json.loads(previous.read_text()) != request:
         raise ValueError("Output directory belongs to a different catalog/seed/chunk request")
     atomic_json(previous, request)
+    with (args.out / "invocations.jsonl").open("a") as log:
+        log.write(json.dumps({"started_at": time.time(), "workers": args.workers}) + "\n")
     towns = args.towns or list(catalog["towns"])
     total = sum(catalog["towns"][t]["count"] for t in towns)
-    finals, attempts, status = {}, {}, "running"
+    finals, attempts, errors, current = {}, {}, [], {}
+    state = threading.Lock()
+    stop_path = args.out / "STOP"
 
-    def progress(current=None):
+    def progress(status="running"):
         done = len(finals)
         atomic_json(
             args.out / "progress.json",
             {"status": status, "stage": "encounter expert ceiling", "route_progress_percent":
              100 * done / total, "frames": done, "target_frames": 0, "encounters_done": done,
-             "encounters_total": total, "current_chunk": current, "updated_at": time.time()},
+             "encounters_total": total, "current_chunk": ", ".join(sorted(current.values()))
+             or None, "workers": args.workers, "errors": errors, "updated_at": time.time()},
         )  # fmt: skip
 
+    work = queue.Queue()
     for town in towns:
         xml = catalog_dir / f"{town}.xml"
         ids = sorted(e["route_id"] for e in catalog["encounters"] if e["town"] == town)
@@ -194,22 +249,47 @@ def main():
             group = ids[start : start + args.chunk]
             base = args.out / town / f"chunk_{group[0]:03d}_{group[-1]:03d}"
             base.parent.mkdir(parents=True, exist_ok=True)
-            progress(base.name)
-            group_attempts, group_finals = settle_group(args, xml, group, base)
-            attempts.update(group_attempts)
-            finals.update(group_finals)
-            progress()
-            if (args.out / "STOP").exists():
-                status = "stopped"
-                break
-        if status == "stopped":
-            break
+            work.put((xml, group, base))
+    gate = LaunchGate(runtime, stop_path)
+
+    def slot_worker(slot):
+        while not stop_path.exists():
+            try:
+                xml, group, base = work.get_nowait()
+            except queue.Empty:
+                return
+            with state:
+                current[slot] = base.name
+                progress()
+            try:
+                group_attempts, group_finals = settle_group(args, xml, group, base, slot, gate)
+            except Exception as exc:  # preserve; other slots continue
+                with state:
+                    errors.append({"chunk": base.name, "error": f"{type(exc).__name__}: {exc}"})
+                    current.pop(slot, None)
+                    progress()
+                return
+            with state:
+                attempts.update(group_attempts)
+                finals.update(group_finals)
+                current.pop(slot, None)
+                progress()
+
+    threads = [threading.Thread(target=slot_worker, args=(k,)) for k in range(args.workers)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    if stop_path.exists():
+        status = "stopped"
+    elif errors or not work.empty():
+        status = "incomplete"
     else:
-        status = "complete"
+        status = "complete"  # unsettled routes, if any, are listed in the summary
     summary = aggregate(catalog, finals, attempts, towns)
-    summary.update(request=request, status=status, towns=towns)
+    summary.update(request=request, status=status, towns=towns, errors=errors)
     atomic_json(args.out / "summary.json", summary)
-    progress()
+    progress(status)
     print(json.dumps(summary["families"], indent=1))
 
 

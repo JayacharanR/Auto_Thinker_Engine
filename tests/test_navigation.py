@@ -276,9 +276,10 @@ def test_encounter_runner_retries_only_crashes_once_and_drops_interrupted_routes
     }
     calls = []
 
-    def fake_run(args, xml, subset, chunk):
+    def fake_run(args, xml, subset, chunk, slot=0, gate=None):
         calls.append((chunk.name, subset))
         chunk.mkdir()
+        (chunk / "manifest.json").write_text("{}")
         (chunk / "summary.json").write_text(json.dumps({"episodes": plan[chunk.name]}))
 
     runner.run_chunk = fake_run
@@ -326,3 +327,51 @@ def test_multi_route_stop_fails_only_the_route_that_was_running():
     summary = summarize_records([done, done], execution_failure=True, last_route_only=True)
     assert [e["completed"] for e in summary["episodes"]] == [True, False]
     assert summarize_records([done, done], execution_failure=True)["safe_completed"] == 0
+
+
+def test_refused_attempts_are_not_driving_failures_and_are_bounded(tmp_path):
+    from types import SimpleNamespace
+
+    runner = _load_script("run_encounters")
+    calls = []
+
+    def refused(args, xml, subset, chunk, slot=0, gate=None):
+        calls.append(chunk.name)  # e.g. lock busy or resources short: no manifest written
+
+    runner.run_chunk = refused
+    attempts, finals = runner.settle_group(
+        SimpleNamespace(out=tmp_path), None, [1, 2], tmp_path / "c"
+    )
+    assert finals == {} and len(calls) == 3
+    assert {a["status"] for a in attempts[1]} == {"not started"}
+
+
+def test_slot_ports_and_sibling_servers(monkeypatch, tmp_path):
+    import psutil
+
+    from src.navigation import runtime as rt
+
+    config = {"port": 2100, "traffic_manager_port": 8100, "max_servers": 3, "slot_port_stride": 100}
+    assert rt.slot_ports(config, 0) == (2100, 8100)
+    assert rt.slot_ports(config, 2) == (2300, 8300)
+    assert rt.navigation_ports(config) == {2100, 2200, 2300}
+    with pytest.raises(ValueError):
+        rt.slot_ports(config, 3)
+
+    class Proc:
+        def __init__(self, cmdline):
+            self.pid, self.info = 7, {"pid": 7, "cmdline": cmdline, "status": "running"}
+
+    carla = "/x/CarlaUE4-Linux-Shipping CarlaUE4 /Game/Carla/Maps/Town03_Opt -carla-rpc-port={}"
+    for port, allowed in ((2200, True), (2000, False)):
+        procs = [Proc(carla.format(port).split())]
+        monkeypatch.setattr(psutil, "process_iter", lambda attrs, procs=procs: procs)
+        if allowed:
+            rt.check_resources(tmp_path, 0, {2200, 2300})
+        else:
+            with pytest.raises(RuntimeError):  # a foreign (e.g. historical) server
+                rt.check_resources(tmp_path, 0, {2200, 2300})
+    trainer = [Proc("python scripts/train_cardreamer.py".split())]
+    monkeypatch.setattr(psutil, "process_iter", lambda attrs: trainer)
+    with pytest.raises(RuntimeError):
+        rt.check_resources(tmp_path, 0, {2200})

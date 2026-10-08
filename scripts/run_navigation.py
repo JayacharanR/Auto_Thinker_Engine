@@ -28,6 +28,9 @@ from src.navigation.runtime import (  # noqa: E402
     RunLock,
     atomic_json,
     check_resources,
+    navigation_ports,
+    resource_shortfall,
+    slot_ports,
 )
 from src.navigation.vendor import activate  # noqa: E402
 
@@ -51,6 +54,7 @@ def main():
     parser.add_argument(
         "--seed-per-route", action="store_true", help="Traffic seed = --seed + XML route id"
     )
+    parser.add_argument("--slot", type=int, default=0, help="Parallel server slot (ports/lock)")
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     # These flags alter criteria at import time as well as expert behavior.
@@ -101,8 +105,16 @@ def main():
         raise FileExistsError("Use a fresh output directory; attempts must not be overwritten")
     output.mkdir(parents=True, exist_ok=True)
     runtime = config["runtime"]
-    with RunLock(ROOT / "outputs/navigation/.gpu.lock"):
-        free = check_resources(output, runtime["minimum_free_gb"])
+    port, _ = slot_ports(runtime, args.slot)
+    # Slot 0 keeps the original lock, so single-server tools stay mutually exclusive with it.
+    lock = ".gpu.lock" if args.slot == 0 else f".slot{args.slot}.lock"
+    with RunLock(ROOT / "outputs/navigation" / lock):
+        free = check_resources(
+            output, runtime["minimum_free_gb"], navigation_ports(runtime) - {port}
+        )
+        shortfall = resource_shortfall(runtime)
+        if shortfall:
+            raise RuntimeError(f"Refusing to start another server: {shortfall}")
         request = {"config": str(config_path), "out": str(output)}
         atomic_json(output / "agent.json", request)
         atomic_json(
@@ -116,6 +128,8 @@ def main():
                 "free_gb_at_start": free,
                 "max_steps": args.max_steps,
                 "max_wall": args.max_wall,
+                "slot": args.slot,
+                "ports": slot_ports(runtime, args.slot),
                 "routes_subset": args.routes_subset,
                 "seed_per_route": args.seed_per_route,
                 "policy_kind": "privileged_pdm_lite_modified",
@@ -141,7 +155,7 @@ def main():
             {"status": "starting", "target_frames": args.max_steps, "updated_at": time.time()},
         )
         try:
-            with CarlaServer(args.carla_root, output, runtime["port"], town=manifest["town"]):
+            with CarlaServer(args.carla_root, output, port, town=manifest["town"]):
                 command = [
                     sys.executable,
                     "-u",
@@ -164,6 +178,8 @@ def main():
                     str(args.max_wall),
                     "--routes-subset",
                     args.routes_subset,
+                    "--slot",
+                    str(args.slot),
                     *(["--seed-per-route"] if args.seed_per_route else []),
                 ]
                 # A native abort in CARLA's client remains inside this child. The parent
@@ -199,10 +215,11 @@ def run_worker(args, config, output, route):
     from src.navigation.harness import NavigationEvaluator
 
     runtime = config["runtime"]
+    port, traffic_manager_port = slot_ports(runtime, args.slot)
     settings = SimpleNamespace(
         host=runtime["host"],
-        port=runtime["port"],
-        traffic_manager_port=runtime["traffic_manager_port"],
+        port=port,
+        traffic_manager_port=traffic_manager_port,
         traffic_manager_seed=args.seed,
         debug=0,
         record=str(output),

@@ -44,7 +44,42 @@ class RunLock:
         self.file.close()
 
 
-def check_resources(output, minimum_free_gb):
+def slot_ports(runtime, slot):
+    """RPC and Traffic Manager ports of a parallel server slot."""
+    if not 0 <= slot < runtime["max_servers"]:
+        raise ValueError(f"Slot {slot} outside 0..{runtime['max_servers'] - 1}")
+    stride = runtime.get("slot_port_stride", 100)
+    return runtime["port"] + stride * slot, runtime["traffic_manager_port"] + stride * slot
+
+
+def navigation_ports(runtime):
+    return {slot_ports(runtime, k)[0] for k in range(runtime["max_servers"])}
+
+
+def free_vram_gb():
+    try:
+        out = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"], text=True
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return min(float(x) for x in out.split()) / 1024
+
+
+def resource_shortfall(runtime):
+    """Reason a further server must not start now, or None."""
+    vram = free_vram_gb()
+    if vram is not None and vram < runtime.get("minimum_free_vram_gb", 0):
+        return f"{vram:.1f} GB VRAM free; require {runtime['minimum_free_vram_gb']}"
+    ram = psutil.virtual_memory().available / 1e9
+    if ram < runtime.get("minimum_available_ram_gb", 0):
+        return f"{ram:.1f} GB RAM available; require {runtime['minimum_available_ram_gb']}"
+    return None
+
+
+def check_resources(output, minimum_free_gb, allowed_carla_ports=()):
+    """Refuse low disk and any foreign simulator/trainer. CARLA servers on other
+    navigation slot ports belong to sibling slots; each slot's own port must be free."""
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     free = shutil.disk_usage(output).free / 1e9
@@ -59,6 +94,13 @@ def check_resources(output, minimum_free_gb):
         try:
             command = " ".join(proc.info["cmdline"] or [])
             if proc.info["status"] != psutil.STATUS_ZOMBIE and pattern.search(command):
+                port = re.search(r"-carla-rpc-port=(\d+)", command)
+                if (
+                    "CarlaUE4" in command.split()[0]
+                    and port
+                    and int(port[1]) in allowed_carla_ports
+                ):
+                    continue
                 raise RuntimeError(f"Existing simulation/training process {proc.pid}: {command}")
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             continue

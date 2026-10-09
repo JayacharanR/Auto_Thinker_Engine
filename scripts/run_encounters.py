@@ -73,8 +73,9 @@ def chunk_records(chunk):
     return records, stopped or (chunk / "interrupted.json").exists()
 
 
-def settle_group(args, xml, group, base, slot=0, gate=None):
-    """Attempt dirs base_a0, base_a1, ...; returns per-route attempts and final record."""
+def settle_group(args, xml, group, base, slot=0, gate=None, launch=True):
+    """Attempt dirs base_a0, base_a1, ...; returns per-route attempts and final record.
+    With launch=False it only replays existing attempts (used by assessment)."""
     attempts, finals, failures = {r: [] for r in group}, {}, Counter()
     k = not_started = 0
     while True:
@@ -82,7 +83,7 @@ def settle_group(args, xml, group, base, slot=0, gate=None):
         routes_file = chunk.with_name(chunk.name + ".routes.json")
         if not routes_file.exists():
             todo = [r for r in group if r not in finals and failures[r] < 2]
-            if not todo or (args.out / "STOP").exists() or not_started >= 3:
+            if not todo or not launch or (args.out / "STOP").exists() or not_started >= 3:
                 return attempts, finals
             subset = f"{todo[0]}-{todo[-1]}" if todo == group else ",".join(map(str, todo))
             atomic_json(routes_file, todo)  # run_navigation requires an empty attempt dir

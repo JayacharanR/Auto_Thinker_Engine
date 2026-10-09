@@ -457,3 +457,15 @@ def test_crash_charges_only_the_route_that_was_running(tmp_path):
     assert calls == ["10-12", "10-12"] and set(finals) == {10, 11, 12}
     assert [a["status"] for a in attempts[10]] == ["no evaluator record", "Completed"]
     assert attempts[11][0]["status"] == "not reached"
+
+
+def test_signal_hold_picks_exactly_the_light_governing_the_entry_lane():
+    pytest.importorskip("srunner")
+    from src.navigation.scenarios import pick_ego_light
+
+    lanes = {59: {(5, 0, -1), (5, 0, -2)}, 60: {(7, 0, 1)}, 61: {(8, 0, -1)}}
+    assert pick_ego_light((5, 0, -2), lanes) == 59
+    with pytest.raises(ValueError):
+        pick_ego_light((9, 0, -1), lanes)  # no light governs this lane: refuse, never guess
+    with pytest.raises(ValueError):
+        pick_ego_light((7, 0, 1), {**lanes, 62: {(7, 0, 1)}})  # ambiguous

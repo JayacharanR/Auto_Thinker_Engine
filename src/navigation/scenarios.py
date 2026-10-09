@@ -8,6 +8,8 @@ the ego's green, which then holds until the ego leaves the junction. The same ru
 applies to every driver; the red-light criterion itself is the pinned evaluator's.
 """
 
+from types import SimpleNamespace
+
 import carla
 import py_trees
 from srunner.scenariomanager.carla_data_provider import CarlaDataProvider
@@ -15,6 +17,7 @@ from srunner.scenariomanager.scenarioatomics.atomic_behaviors import (
     AtomicBehavior,
     TrafficLightFreezer,
 )
+from srunner.scenariomanager.scenarioatomics.atomic_criteria import RunningRedLightTest
 from srunner.scenariomanager.scenarioatomics.atomic_trigger_conditions import (
     WaitEndIntersection,
 )
@@ -26,6 +29,15 @@ RED, YELLOW, GREEN = (
     carla.TrafficLightState.Yellow,
     carla.TrafficLightState.Green,
 )
+
+
+def pick_ego_light(entry_lane, light_lanes):
+    """The single light whose red-light stop lanes (pinned evaluator geometry) include
+    the ego's junction-entry lane; anything else is a setup error, never a guess."""
+    matches = sorted(light for light, lanes in light_lanes.items() if entry_lane in lanes)
+    if len(matches) != 1:
+        raise ValueError(f"Entry lane {entry_lane} matches traffic lights {matches}")
+    return matches[0]
 
 
 def parameter(config, name, default):
@@ -76,23 +88,36 @@ class NavigationSignalHold(BasicScenario):
 
     def _initialize_actors(self, config):
         wp = self._map.get_waypoint(config.trigger_points[0].location)
-        self._stop_location, distance = wp.transform.location, 0
+        entry = wp
         while not wp.is_junction:
             nxt = wp.next(1.0)
             if not nxt:
                 raise ValueError("No junction ahead of the signal-hold trigger")
             if not nxt[0].is_junction:
-                self._stop_location = nxt[0].transform.location
-            wp, distance = nxt[0], distance + 1
+                entry = nxt[0]
+            wp = nxt[0]
+        self._stop_location = entry.transform.location
         self._junction = wp.get_junction()
-        start = self._map.get_waypoint(config.trigger_points[0].location)
-        landmarks = start.get_landmarks_of_type(distance + 1, "1000001")
-        if not landmarks:
-            raise ValueError("No traffic-light landmark on the ego approach")
-        ego_light = self._world.get_traffic_light(landmarks[0])
-        lights = self._world.get_traffic_lights_in_junction(self._junction.id)
-        if ego_light is None or ego_light.id not in {x.id for x in lights}:
-            raise ValueError("Ego traffic light is not part of the approached junction")
+        # OpenDRIVE light landmarks are missing on many Town03/04 approaches, so the
+        # landmark lookup used by PriorityAtJunction skipped 35/100 dev holds. Use the
+        # pinned red-light criterion's own lane geometry, as the inventory did.
+        helper = SimpleNamespace(
+            _map=self._map, rotate_point=lambda p, a: RunningRedLightTest.rotate_point(None, p, a)
+        )
+        every_light = {x.id: x for x in self._world.get_actors().filter("traffic.traffic_light*")}
+        light_lanes = {
+            light_id: {
+                (w.road_id, w.section_id, w.lane_id)
+                for w in RunningRedLightTest.get_traffic_light_waypoints(helper, light)[1]
+            }
+            for light_id, light in every_light.items()
+        }
+        ego_light = every_light[
+            pick_ego_light((entry.road_id, entry.section_id, entry.lane_id), light_lanes)
+        ]
+        lights = list(self._world.get_traffic_lights_in_junction(self._junction.id))
+        if ego_light.id not in {x.id for x in lights}:
+            lights.append(ego_light)
         self.ego_light_id = ego_light.id
 
         def states(ego, others):

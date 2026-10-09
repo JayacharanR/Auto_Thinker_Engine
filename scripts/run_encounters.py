@@ -97,6 +97,13 @@ def settle_group(args, xml, group, base, slot=0, gate=None):
             k += 1
             continue
         records, stopped = chunk_records(chunk)
+        # A crash charges its one retry to the route that was running: the evaluator's
+        # current_route.json, or the first unrecorded route if it died before any route.
+        current = chunk / "current_route.json"
+        unrecorded = [r for r in asked if r not in records]
+        running = int(json.loads(current.read_text())["route_id"]) if current.exists() else None
+        if running not in unrecorded:
+            running = unrecorded[0] if unrecorded and not current.exists() else None
         for r in asked:
             if r in records:
                 attempts[r].append({"attempt": chunk.name, **records[r]})
@@ -104,9 +111,13 @@ def settle_group(args, xml, group, base, slot=0, gate=None):
                     failures[r] += 1
                 else:
                     finals[r] = records[r]
-            elif not stopped:
+            elif stopped:
+                attempts[r].append({"attempt": chunk.name, "status": "interrupted"})
+            elif r == running:
                 attempts[r].append({"attempt": chunk.name, "status": "no evaluator record"})
                 failures[r] += 1
+            else:
+                attempts[r].append({"attempt": chunk.name, "status": "not reached"})
         k += 1
 
 
@@ -242,6 +253,9 @@ def main():
         "--min-ram-gb", type=float, default=12.0, help="Available RAM needed to start a server"
     )
     parser.add_argument(
+        "--min-vram-gb", type=float, default=6.0, help="Free VRAM needed to start a server"
+    )
+    parser.add_argument(
         "--critical-ram-gb", type=float, default=6.0, help="Pause the newest chunk below this"
     )
     args = parser.parse_args()
@@ -267,6 +281,7 @@ def main():
     with (args.out / "invocations.jsonl").open("a") as log:
         log.write(json.dumps({"started_at": time.time(), "workers": args.workers,
                               "min_ram_gb": args.min_ram_gb,
+                              "min_vram_gb": args.min_vram_gb,
                               "critical_ram_gb": args.critical_ram_gb}) + "\n")  # fmt: skip
     towns = args.towns or list(catalog["towns"])
     total = sum(catalog["towns"][t]["count"] for t in towns)
@@ -294,7 +309,14 @@ def main():
             base = args.out / town / f"chunk_{group[0]:03d}_{group[-1]:03d}"
             base.parent.mkdir(parents=True, exist_ok=True)
             work.put((xml, group, base))
-    gate = LaunchGate({**runtime, "minimum_available_ram_gb": args.min_ram_gb}, stop_path)
+    # A Town10HD server needs ~5 GB VRAM once its map is loaded; two loading next to
+    # each other with 3 GB headroom crashed CARLA. Gate on the larger margin.
+    gate_runtime = {
+        **runtime,
+        "minimum_available_ram_gb": args.min_ram_gb,
+        "minimum_free_vram_gb": args.min_vram_gb,
+    }
+    gate = LaunchGate(gate_runtime, stop_path)
     memory_events, done = [], threading.Event()
     watchdog = threading.Thread(
         target=memory_watchdog,

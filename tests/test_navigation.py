@@ -404,7 +404,8 @@ def test_externally_killed_attempt_keeps_records_and_spends_no_retry(tmp_path):
     runner.run_chunk = rerun
     attempts, finals = runner.settle_group(SimpleNamespace(out=tmp_path), None, [1, 2, 3], base)
     assert calls == ["2,3"] and set(finals) == {1, 2, 3}
-    assert len(attempts[1]) == 1 and len(attempts[2]) == 1  # no failure entries for the kill
+    assert len(attempts[1]) == 1
+    assert [a["status"] for a in attempts[2]] == ["interrupted", "Completed"]  # no failure
 
 
 def test_memory_watchdog_pauses_only_the_newest_chunk(tmp_path, monkeypatch):
@@ -429,3 +430,30 @@ def test_memory_watchdog_pauses_only_the_newest_chunk(tmp_path, monkeypatch):
     # The second critical check falls inside the 60 s back-off: one pause, newest chunk only.
     assert (new / "STOP").exists() and not (old / "STOP").exists()
     assert events == [{"chunk": "new_a0", "available_gb": 4.0}]
+
+
+def test_crash_charges_only_the_route_that_was_running(tmp_path):
+    from types import SimpleNamespace
+
+    runner = _load_script("run_encounters")
+    calls = []
+
+    def run(args, xml, subset, chunk, slot=0, gate=None):
+        calls.append(subset)
+        chunk.mkdir()
+        (chunk / "manifest.json").write_text("{}")
+        if len(calls) == 1:  # simulator dies while setting up the first route
+            (chunk / "current_route.json").write_text(json.dumps({"route_id": "10"}))
+            return
+        episodes = [
+            {"route_id": f"RouteScenario_{r}_rep0", "status": "Completed"} for r in (10, 11, 12)
+        ]
+        (chunk / "summary.json").write_text(json.dumps({"episodes": episodes}))
+
+    runner.run_chunk = run
+    attempts, finals = runner.settle_group(
+        SimpleNamespace(out=tmp_path), None, [10, 11, 12], tmp_path / "c"
+    )
+    assert calls == ["10-12", "10-12"] and set(finals) == {10, 11, 12}
+    assert [a["status"] for a in attempts[10]] == ["no evaluator record", "Completed"]
+    assert attempts[11][0]["status"] == "not reached"

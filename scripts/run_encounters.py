@@ -21,6 +21,7 @@ import time
 from collections import Counter
 from pathlib import Path
 
+import psutil
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,7 +67,10 @@ def chunk_records(chunk):
     if stopped and records:
         # The route running when STOP arrived is interrupted, not a driving result.
         records.pop(list(records)[-1])
-    return records, stopped
+    # An attempt killed from outside (e.g. host memory pressure) is annotated with
+    # interrupted.json. Its running route never got a record, so recorded routes are
+    # kept, and the unrecorded ones are reattempted without spending their retry.
+    return records, stopped or (chunk / "interrupted.json").exists()
 
 
 def settle_group(args, xml, group, base, slot=0, gate=None):
@@ -108,10 +112,13 @@ def settle_group(args, xml, group, base, slot=0, gate=None):
 
 class LaunchGate:
     """Serializes server starts and waits for resources, so parallel slots never
-    race each other's VRAM allocation."""
+    race each other's memory. A start is complete only once its chunk is driving:
+    the server boots on its default map and loads the requested (possibly much
+    larger) map afterwards, so earlier measurements understate its footprint."""
 
     def __init__(self, runtime, stop_path):
         self.runtime, self.stop_path, self.lock = runtime, stop_path, threading.Lock()
+        self.running, self.running_lock = {}, threading.Lock()  # chunk -> start time
 
     def launch(self, command, chunk, log):
         with self.lock:
@@ -121,14 +128,40 @@ class LaunchGate:
             if self.stop_path.exists():
                 return None
             child = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
-            deadline = time.monotonic() + 180
+            with self.running_lock:
+                self.running[chunk] = time.monotonic()
+            deadline = time.monotonic() + 300
             while (
                 child.poll() is None
-                and not (chunk / "startup_map.json").exists()
+                and not any(p.stat().st_size for p in chunk.glob("episodes/*/trace.jsonl"))
                 and time.monotonic() < deadline
             ):
                 time.sleep(2)
             return child
+
+    def finished(self, chunk):
+        with self.running_lock:
+            self.running.pop(chunk, None)
+
+    def newest(self):
+        with self.running_lock:
+            return max(self.running, key=self.running.get) if self.running else None
+
+
+def memory_watchdog(gate, critical_gb, events, state, done):
+    """Pause (STOP) the newest running chunk when available RAM is critical. Its
+    interrupted route is dropped and reattempted later through the gate."""
+    last = 0.0
+    while not done.wait(5):
+        available = psutil.virtual_memory().available / 1e9
+        chunk = gate.newest()
+        if available >= critical_gb or time.monotonic() - last < 60 or chunk is None:
+            continue
+        (chunk / "STOP").touch()
+        atomic_json(chunk / "memory_pause.json", {"available_gb": available, "at": time.time()})
+        with state:
+            events.append({"chunk": chunk.name, "available_gb": round(available, 2)})
+        last = time.monotonic()
 
 
 def run_chunk(args, xml, subset, chunk, slot=0, gate=None):
@@ -149,6 +182,8 @@ def run_chunk(args, xml, subset, chunk, slot=0, gate=None):
             if (args.out / "STOP").exists() and chunk.exists():
                 (chunk / "STOP").touch()  # the chunk owner stops its own evaluator/server
             time.sleep(2)
+    if gate is not None:
+        gate.finished(chunk)
     return child.returncode
 
 
@@ -203,6 +238,12 @@ def main():
     parser.add_argument("--towns", nargs="*")
     parser.add_argument("--workers", type=int, default=1, help="Parallel server slots")
     parser.add_argument("--config", default="configs/navigation.yaml")
+    parser.add_argument(
+        "--min-ram-gb", type=float, default=12.0, help="Available RAM needed to start a server"
+    )
+    parser.add_argument(
+        "--critical-ram-gb", type=float, default=6.0, help="Pause the newest chunk below this"
+    )
     args = parser.parse_args()
     runtime = yaml.safe_load((ROOT / args.config).read_text())["runtime"]
     if not 1 <= args.workers <= runtime["max_servers"]:
@@ -224,7 +265,9 @@ def main():
         raise ValueError("Output directory belongs to a different catalog/seed/chunk request")
     atomic_json(previous, request)
     with (args.out / "invocations.jsonl").open("a") as log:
-        log.write(json.dumps({"started_at": time.time(), "workers": args.workers}) + "\n")
+        log.write(json.dumps({"started_at": time.time(), "workers": args.workers,
+                              "min_ram_gb": args.min_ram_gb,
+                              "critical_ram_gb": args.critical_ram_gb}) + "\n")  # fmt: skip
     towns = args.towns or list(catalog["towns"])
     total = sum(catalog["towns"][t]["count"] for t in towns)
     finals, attempts, errors, current = {}, {}, [], {}
@@ -238,7 +281,8 @@ def main():
             {"status": status, "stage": "encounter expert ceiling", "route_progress_percent":
              100 * done / total, "frames": done, "target_frames": 0, "encounters_done": done,
              "encounters_total": total, "current_chunk": ", ".join(sorted(current.values()))
-             or None, "workers": args.workers, "errors": errors, "updated_at": time.time()},
+             or None, "workers": args.workers, "errors": errors, "memory_pauses":
+             memory_events, "updated_at": time.time()},
         )  # fmt: skip
 
     work = queue.Queue()
@@ -250,7 +294,14 @@ def main():
             base = args.out / town / f"chunk_{group[0]:03d}_{group[-1]:03d}"
             base.parent.mkdir(parents=True, exist_ok=True)
             work.put((xml, group, base))
-    gate = LaunchGate(runtime, stop_path)
+    gate = LaunchGate({**runtime, "minimum_available_ram_gb": args.min_ram_gb}, stop_path)
+    memory_events, done = [], threading.Event()
+    watchdog = threading.Thread(
+        target=memory_watchdog,
+        args=(gate, args.critical_ram_gb, memory_events, state, done),
+        daemon=True,
+    )
+    watchdog.start()
 
     def slot_worker(slot):
         while not stop_path.exists():
@@ -280,6 +331,7 @@ def main():
         thread.start()
     for thread in threads:
         thread.join()
+    done.set()
     if stop_path.exists():
         status = "stopped"
     elif errors or not work.empty():
@@ -287,7 +339,9 @@ def main():
     else:
         status = "complete"  # unsettled routes, if any, are listed in the summary
     summary = aggregate(catalog, finals, attempts, towns)
-    summary.update(request=request, status=status, towns=towns, errors=errors)
+    summary.update(
+        request=request, status=status, towns=towns, errors=errors, memory_pauses=memory_events
+    )
     atomic_json(args.out / "summary.json", summary)
     progress(status)
     print(json.dumps(summary["families"], indent=1))

@@ -375,3 +375,57 @@ def test_slot_ports_and_sibling_servers(monkeypatch, tmp_path):
     monkeypatch.setattr(psutil, "process_iter", lambda attrs: trainer)
     with pytest.raises(RuntimeError):
         rt.check_resources(tmp_path, 0, {2200})
+
+
+def test_externally_killed_attempt_keeps_records_and_spends_no_retry(tmp_path):
+    from types import SimpleNamespace
+
+    runner = _load_script("run_encounters")
+    base = tmp_path / "chunk"
+    killed = tmp_path / "chunk_a0"
+    killed.mkdir()
+    (killed / "manifest.json").write_text("{}")
+    raw = {"_checkpoint": {"records": [
+        {"route_id": "RouteScenario_1_rep0", "status": "Completed",
+         "scores": {"score_route": 100}, "infractions": {}},
+    ]}}  # fmt: skip
+    (killed / "leaderboard.json").write_text(json.dumps(raw))
+    (killed / "interrupted.json").write_text(json.dumps({"reason": "host memory pressure"}))
+    (tmp_path / "chunk_a0.routes.json").write_text(json.dumps([1, 2, 3]))
+    calls = []
+
+    def rerun(args, xml, subset, chunk, slot=0, gate=None):
+        calls.append(subset)
+        chunk.mkdir()
+        (chunk / "manifest.json").write_text("{}")
+        episodes = [{"route_id": f"RouteScenario_{r}_rep0", "status": "Completed"} for r in (2, 3)]
+        (chunk / "summary.json").write_text(json.dumps({"episodes": episodes}))
+
+    runner.run_chunk = rerun
+    attempts, finals = runner.settle_group(SimpleNamespace(out=tmp_path), None, [1, 2, 3], base)
+    assert calls == ["2,3"] and set(finals) == {1, 2, 3}
+    assert len(attempts[1]) == 1 and len(attempts[2]) == 1  # no failure entries for the kill
+
+
+def test_memory_watchdog_pauses_only_the_newest_chunk(tmp_path, monkeypatch):
+    import threading
+    from types import SimpleNamespace
+
+    runner = _load_script("run_encounters")
+    gate = runner.LaunchGate({}, tmp_path / "STOP")
+    old, new = tmp_path / "old_a0", tmp_path / "new_a0"
+    for i, chunk in enumerate((old, new)):
+        chunk.mkdir()
+        gate.running[chunk] = float(i)
+    monkeypatch.setattr(runner.psutil, "virtual_memory", lambda: SimpleNamespace(available=4e9))
+    ticks = iter([False, False, True])  # two checks, then the run ends
+
+    class Done:
+        def wait(self, seconds):
+            return next(ticks)
+
+    events = []
+    runner.memory_watchdog(gate, 6.0, events, threading.Lock(), Done())
+    # The second critical check falls inside the 60 s back-off: one pause, newest chunk only.
+    assert (new / "STOP").exists() and not (old / "STOP").exists()
+    assert events == [{"chunk": "new_a0", "available_gb": 4.0}]

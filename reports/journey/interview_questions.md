@@ -325,3 +325,15 @@ runs not finished yet.
 - **Q:** How did you speed up a synchronous simulator evaluation without changing its results?
   **A (short):** Profiling showed one CARLA server used about 2.6 of 24 cores and 15% of the GPU, so the loop was latency-bound. I ran independent episode chunks on three servers with separate ports, locks and resource-gated starts. Chunk composition and per-route seeds stay identical, so results should not depend on the worker count, and the overlapping encounters from the stopped single-server run test exactly that.
   **Evidence:** journal 2026-10-09 01:00; scripts/run_encounters.py (LaunchGate); src/navigation/runtime.py (slot_ports).
+
+- **Q:** How did you make parallel simulation safe on a 32GB laptop?
+  **A (short):** The first gate checked memory as soon as a server answered, before it loaded its map. Three heavy Town10HD servers then exhausted memory and the run was killed. Server starts now count as complete only once the chunk is driving, need 12GB RAM and 6GB VRAM free, and a watchdog pauses the newest chunk below 6GB so its route is simply reattempted. Killed attempts are annotated, so infrastructure loss never counts as a driving failure.
+  **Evidence:** journal 2026-10-09 09:05; scripts/run_encounters.py (LaunchGate, memory_watchdog).
+
+- **Q:** How did you tell a simulator crash from the simulator's normal shutdown noise?
+  **A (short):** I first read "signal 11" in CARLA's log as a segfault, then found the same lines at the end of a clean, fully successful drive: UE4 prints them during normal termination. The reliable marker is the evaluator process dying, plus the route it was running, so the assessment now uses those and the journal entry was corrected.
+  **Evidence:** journal 2026-10-09 09:10; scripts/assess_encounters.py (evaluator_failures).
+
+- **Q:** How did you discover that a third of your red-light tests never actually forced a red light?
+  **A (short):** The harness logs every scenario that starts or is skipped, because the upstream route runner only prints a warning when setup fails. Auditing all 300 trials showed that 35 light holds had been skipped: the copied landmark lookup found no light on many Town03/04 approaches. I fixed the lookup to use the evaluator's own red-light lane geometry, reported v1 over valid encounters only, and reran everything with one code version.
+  **Evidence:** journal 2026-10-09 09:25; src/navigation/scenarios.py (pick_ego_light); reports/navigation_expert_ceiling_v1_20261009.json.

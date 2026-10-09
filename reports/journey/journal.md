@@ -1045,7 +1045,7 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Type:** bug
 **Stage:** Navigation M0 encounter catalog
 
-**What happened:** A Town10HD runner smoke test was meant to stop after one chunk, but my wait loop watched for a nonexistent chunk name (the frozen ids start at 248, not 246), so it kept running until I sent STOP after 22 of 52 encounters. STOP worked: the runner, evaluator and server exited within 6s. During the run, the CARLA server segfaulted (signal 11) at the start of route 263, before any frame. The chunk's retry ran 263–265 cleanly. Review found two of my bugs. The runner would have rerun routes that the evaluator had recorded in raw leaderboard.json before an abort. And the worker marked every route in a stopped multi-route attempt as an execution failure, so route 269, which finished at 100%, was not counted as completed.
+**What happened:** A Town10HD runner smoke test was meant to stop after one chunk, but my wait loop watched for a nonexistent chunk name (the frozen ids start at 248, not 246), so it kept running until I sent STOP after 22 of 52 encounters. STOP worked: the runner, evaluator and server exited within 6s. During the run, the evaluator lost the simulator (30s timeout) at the start of route 263, before any frame (corrected 2026-10-09 09:10: originally misreported as a segfault). The chunk's retry ran 263–265 cleanly. Review found two of my bugs. The runner would have rerun routes that the evaluator had recorded in raw leaderboard.json before an abort. And the worker marked every route in a stopped multi-route attempt as an execution failure, so route 269, which finished at 100%, was not counted as completed.
 **Cause:** I hard-coded chunk ids from an earlier candidate. Both bugs carried single-route M0 assumptions (summary.json always written; one route per attempt) into multi-route runs.
 **How we handled it:** Raw records now settle routes when summary.json is missing; only the route running at a stop or crash is marked failed. Retry rule: only a missing record or a "Simulation crashed" record is retried, at most once, with every attempt kept. Agent failures, collisions and timeouts are never retried. Added tests for both bugs. The smoke run is preserved as outputs/navigation_encounter_runner_smoke_20261009 and is not part of the expert ceiling, which will be a fresh full run. Its 21 settled encounters: all rule-safe, zero collisions, zero red or stop violations.
 **Verified by:** 196 tests pass (CPU+GPU); carla.log shows the native segfault; the a1 attempt's records; an anchored process check shows nothing left running.
@@ -1062,3 +1062,36 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Verified by:** 31 navigation tests, including slot ports, sibling-versus-foreign servers and refused attempts. With three servers: GPU 33–37% at 7.5/12.2GB, CPU 67% idle, no resource waits.
 **Lesson:** Low utilization in synchronous simulation usually means latency-bound, not overloaded; measure, then parallelize at the episode level, without editing code a live run is still reading.
 **Interview angle:** How did you speed up a synchronous simulator evaluation without changing its results?
+
+## 2026-10-09 09:05 - Overnight expert run killed by host memory pressure; gate measured too early
+**Type:** bug
+**Stage:** Navigation M0 expert ceiling
+
+**What happened:** The 3-slot expert run reached 258/300 at 01:46. Claude Code then killed the background runner tree because the system was critically low on memory. Three Town10HD_Opt servers had started within 9 s of each other (01:40:48, 01:46:01, 01:46:10). Nothing was left running and raw outputs were intact. The user asked to rerun without memory getting full.
+**Cause:** My launch gate measured RAM/VRAM as soon as a server answered RPC. CARLA boots on its default map, and the evaluator loads the requested map afterwards, so a Town10HD server's real footprint (about 4–5GB RSS and about 5GB VRAM) wasn't counted yet. The 6GB RAM margin was too small, and nothing reacted once chunks were running.
+**How we handled it:** A start now completes only once its chunk is driving (a non-empty trace), and new servers need 12GB available RAM. A watchdog STOPs the newest chunk below 6GB, and its route is reattempted. I annotated the three killed attempts with interrupted.json, listing the evidence (reaper notice, RequestExit in carla.log, no error.json). Their recorded routes are kept, and the kill spends no retry. The resumed run held 13–21GB available with zero watchdog pauses.
+**Verified by:** Memory sampling every 15–20s during the resume; unit tests for interrupted attempts and the watchdog.
+**Lesson:** Gate parallel simulator starts on the footprint after the map loads, not on the boot state, and keep a live watchdog: a host-level kill is far more expensive than a paused chunk.
+**Interview angle:** How did you make parallel simulation safe on a 32GB laptop?
+
+## 2026-10-09 09:10 - Crash accounting charged never-started routes; VRAM gate raised; "segfault" misread corrected
+**Type:** mistake
+**Stage:** Navigation M0 expert ceiling
+
+**What happened:** On resume, route 262 failed to start again: the evaluator died on a 30s simulator timeout while a second Town10HD map loaded next to a running one (VRAM peaked at 11.7/12.2GB). Two of my errors surfaced. (1) When a chunk died on its first route, the runner charged a crash to every route in the chunk, including nine that never started. (2) I had described these failures (and the smoke-test one on route 263) as CARLA segfaults because carla.log contains "signal 11". The same lines end every normal SIGTERM shutdown, including the clean M0 long drive, so they are not crash evidence.
+**Cause:** Single-route assumptions in the retry bookkeeping, and reading the simulator log without a clean baseline.
+**How we handled it:** A crash now charges only the route in the evaluator's current_route.json, or the first unrecorded route if none started; the others are "not reached". New servers need 6GB free VRAM, so Town10HD runs one server at a time. The assessment detects evaluator failures from error.json. Correction to the 2026-10-09 00:30 entry: route 263 was a 30s simulator timeout at route start, not a demonstrated segfault. The VRAM link is a likely cause, not a proven one.
+**Verified by:** current_route.json and empty traces of the failed attempts; the M0 long drive's carla.log shows the same shutdown lines; a test checks that only the running route is charged; final accounting charges routes 258 and 262 only.
+**Lesson:** Compare failure logs against a clean run before naming a cause, and charge a failure to the trial that was actually running.
+**Interview angle:** How did you tell a simulator crash from the simulator's normal shutdown noise?
+
+## 2026-10-09 09:25 - v1 expert ceiling complete but 35 signal holds never started; v2 rerun launched
+**Type:** bug
+**Stage:** Navigation M0 expert ceiling
+
+**What happened:** The first full catalog run (outputs/navigation_expert_ceiling_parallel_20261009) settled all 300 encounters. The 35 shared encounters match the stopped single-server run exactly (status, completion, every infraction count), so parallel slots do not change results. The setup audit then showed that NavigationSignalHold never started on 35 of 100 signal encounters (17 signal_stop, 18 release/memory, mostly Town03/04): "No traffic-light landmark on the ego approach". Upstream skipped them with a printed warning, so they ran on natural light cycles and were not the declared test. I had copied the pinned PriorityAtJunction landmark lookup without checking it on these maps, and the six-encounter pilot happened to use approaches that have landmarks.
+**Cause:** OpenDRIVE light landmarks are missing on many Town03/04 approaches.
+**How we handled it:** The hold now resolves the ego light with the pinned red-light criterion's own lane geometry (the same as the inventory), and refuses on zero or several matches. A check of four previously skipped encounters bound lights 57, 68, 198 and 168, matching the inventory. The assessment now audits every declared setup and reports invalid ones separately, never as passes. v1 is preserved with its report (reports/navigation_expert_ceiling_v1_20261009.json). Over valid encounters only, v1 had: signal_stop 33/33, release/memory 30/32, crossing/yield 45/50, stopped lead vehicle 50/50, route/junction 50/50, stop sign 50/50; collisions all count. A fresh v2 run of all 300 with one code version started at 09:26.
+**Verified by:** Per-encounter scenario_setup logs versus the catalog; the four-encounter check; 201 tests pass.
+**Lesson:** A setup that can fail silently must be audited on every trial, not only in a pilot; a pilot sample can miss a map-specific failure.
+**Interview angle:** How did you discover that a third of your red-light tests never actually forced a red light?

@@ -1,0 +1,663 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes>
+  <route id="0" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="88.37200" y="12.15000" z="0.00000" />
+      <position x="126.57200" y="59.49600" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="SignalizedJunctionLeftTurn_0" type="SignalizedJunctionLeftTurn">
+        <trigger_point x="88.37200" y="12.15000" z="0.00000" yaw="89.991" />
+        <flow_speed value="10.0" />
+        <source_dist_interval from="25.0" to="50.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="1" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="338.74300" y="260.16100" z="0.00000" />
+      <position x="300.31100" y="195.15700" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="SignalizedJunctionLeftTurn_1" type="SignalizedJunctionLeftTurn">
+        <trigger_point x="338.74300" y="260.16100" z="0.00000" yaw="270.035" />
+        <flow_speed value="10.0" />
+        <source_dist_interval from="25.0" to="50.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="2" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="88.39200" y="142.33000" z="0.00000" />
+      <position x="127.02600" y="199.14300" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="SignalizedJunctionLeftTurn_2" type="SignalizedJunctionLeftTurn">
+        <trigger_point x="88.39200" y="142.33000" z="0.00000" yaw="89.991" />
+        <flow_speed value="10.0" />
+        <source_dist_interval from="25.0" to="50.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="3" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="101.99000" y="59.49900" z="0.00000" />
+      <position x="158.05400" y="21.02900" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="SignalizedJunctionLeftTurn_3" type="SignalizedJunctionLeftTurn">
+        <trigger_point x="101.99000" y="59.49900" z="0.00000" yaw="-0.007" />
+        <flow_speed value="10.0" />
+        <source_dist_interval from="25.0" to="50.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="4" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="338.82700" y="120.03100" z="0.00000" />
+      <position x="299.66000" y="55.47500" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="SignalizedJunctionLeftTurn_4" type="SignalizedJunctionLeftTurn">
+        <trigger_point x="338.82700" y="120.03100" z="0.00000" yaw="270.035" />
+        <flow_speed value="10.0" />
+        <source_dist_interval from="25.0" to="50.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="5" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="274.16000" y="59.47800" z="0.00000" />
+      <position x="338.88700" y="20.98700" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_5" type="HardBreakRoute">
+        <trigger_point x="294.16000" y="59.47500" z="0.00000" yaw="-0.007" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="6" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="396.37300" y="8.52300" z="0.00000" />
+      <position x="334.87800" y="36.07000" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_6" type="HardBreakRoute">
+        <trigger_point x="379.16500" y="-1.98300" z="0.00000" yaw="-179.970" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="7" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="392.34200" y="320.03700" z="0.00000" />
+      <position x="299.73000" y="326.61000" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_7" type="HardBreakRoute">
+        <trigger_point x="378.86400" y="326.61000" z="0.00000" yaw="180.000" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="8" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="338.74300" y="260.16100" z="0.00000" />
+      <position x="338.80300" y="160.16100" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_8" type="HardBreakRoute">
+        <trigger_point x="338.75500" y="240.16100" z="0.00000" yaw="270.035" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="9" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="28.63900" y="330.55000" z="0.00000" />
+      <position x="126.64100" y="330.59200" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_9" type="HardBreakRoute">
+        <trigger_point x="48.63900" y="330.56100" z="0.00000" yaw="0.031" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="10" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="92.38800" y="119.15000" z="0.00000" />
+      <position x="92.37300" y="20.15000" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_10" type="HardBreakRoute">
+        <trigger_point x="92.38500" y="99.15000" z="0.00000" yaw="269.991" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="11" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="152.42000" y="195.14500" z="0.00000" />
+      <position x="88.40600" y="234.03300" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_11" type="HardBreakRoute">
+        <trigger_point x="132.42000" y="195.14300" z="0.00000" yaw="180.005" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="12" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="152.42100" y="129.43800" z="0.00000" />
+      <position x="92.38400" y="94.80600" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_12" type="HardBreakRoute">
+        <trigger_point x="132.42100" y="129.42900" z="0.00000" yaw="180.026" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="13" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="218.17000" y="55.48400" z="0.00000" />
+      <position x="158.05400" y="20.97500" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_13" type="HardBreakRoute">
+        <trigger_point x="198.17000" y="55.48700" z="0.00000" yaw="179.993" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="14" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="274.63000" y="1.96800" z="0.00000" />
+      <position x="334.87800" y="36.11600" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="HardBreakRoute_14" type="HardBreakRoute">
+        <trigger_point x="294.62900" y="1.97200" z="0.00000" yaw="0.030" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="15" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="274.67000" y="199.15500" z="0.00000" />
+      <position x="338.80300" y="160.40900" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="16" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="88.38000" y="68.84000" z="0.00000" />
+      <position x="126.68100" y="133.42600" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="17" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="88.41000" y="266.30000" z="0.00000" />
+      <position x="54.05000" y="326.56400" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="18" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="88.37200" y="12.15000" z="0.00000" />
+      <position x="88.38400" y="94.15000" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="19" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="154.06600" y="11.19800" z="0.00000" />
+      <position x="192.48300" y="59.48800" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="20" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="338.82700" y="120.03100" z="0.00000" />
+      <position x="299.66000" y="55.47500" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="21" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="152.42000" y="195.14500" z="0.00000" />
+      <position x="92.39400" y="160.72200" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="22" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="274.72000" y="330.60800" z="0.00000" />
+      <position x="373.72000" y="330.61000" z="0.00000" />
+    </waypoints>
+    <scenarios />
+  </route>
+  <route id="23" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="338.85000" y="82.03100" z="0.00000" />
+      <position x="338.88700" y="21.03100" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_23" type="NavigationSignalHold">
+        <trigger_point x="338.85000" y="82.03100" z="0.00000" yaw="270.035" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="24" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="114.39000" y="55.49700" z="0.00000" />
+      <position x="92.37300" y="20.79800" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_24" type="NavigationSignalHold">
+        <trigger_point x="114.39000" y="55.49700" z="0.00000" yaw="179.993" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="25" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="312.72000" y="330.61000" z="0.00000" />
+      <position x="338.72400" y="292.09300" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_25" type="NavigationSignalHold">
+        <trigger_point x="312.72000" y="330.61000" z="0.00000" yaw="-0.000" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="26" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="361.23100" y="-1.99200" z="0.00000" />
+      <position x="300.23100" y="-2.02500" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_26" type="NavigationSignalHold">
+        <trigger_point x="361.23100" y="-1.99200" z="0.00000" yaw="-179.970" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="27" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="131.99000" y="59.49500" z="0.00000" />
+      <position x="192.99000" y="59.48700" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_27" type="NavigationSignalHold">
+        <trigger_point x="131.99000" y="59.49500" z="0.00000" yaw="-0.007" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="28" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="88.41600" y="304.30000" z="0.00000" />
+      <position x="126.87500" y="330.59200" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_28" type="NavigationSignalHold">
+        <trigger_point x="88.41600" y="304.30000" z="0.00000" yaw="89.991" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="29" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="180.17000" y="55.48900" z="0.00000" />
+      <position x="119.17000" y="55.49600" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_29" type="NavigationSignalHold">
+        <trigger_point x="180.17000" y="55.48900" z="0.00000" yaw="179.993" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="30" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="66.63900" y="330.57000" z="0.00000" />
+      <position x="92.41400" y="291.70900" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_30" type="NavigationSignalHold">
+        <trigger_point x="66.63900" y="330.57000" z="0.00000" yaw="0.031" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="31" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="92.38200" y="81.15000" z="0.00000" />
+      <position x="126.81400" y="59.49600" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_31" type="NavigationSignalHold">
+        <trigger_point x="92.38200" y="81.15000" z="0.00000" yaw="269.991" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="32" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="312.16000" y="59.47300" z="0.00000" />
+      <position x="334.84300" y="94.31700" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_32" type="NavigationSignalHold">
+        <trigger_point x="312.16000" y="59.47300" z="0.00000" yaw="-0.007" />
+        <stationary_s value="10.0" />
+        <max_hold_s value="30.0" />
+        <near_m value="20.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="33" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="144.39000" y="55.49300" z="0.00000" />
+      <position x="88.38400" y="94.05000" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_33" type="NavigationSignalHold">
+        <trigger_point x="144.39000" y="55.49300" z="0.00000" yaw="179.993" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="34" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="274.63000" y="1.96800" z="0.00000" />
+      <position x="373.62900" y="2.01400" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_34" type="NavigationSignalHold">
+        <trigger_point x="274.63000" y="1.96800" z="0.00000" yaw="0.006" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="35" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="88.38000" y="68.84000" z="0.00000" />
+      <position x="88.39600" y="167.84000" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_35" type="NavigationSignalHold">
+        <trigger_point x="88.38000" y="68.84000" z="0.00000" yaw="89.991" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="36" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="152.62000" y="326.59500" z="0.00000" />
+      <position x="92.41400" y="292.04500" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_36" type="NavigationSignalHold">
+        <trigger_point x="152.62000" y="326.59500" z="0.00000" yaw="180.006" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="37" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="218.17000" y="55.48400" z="0.00000" />
+      <position x="158.05400" y="20.97500" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_37" type="NavigationSignalHold">
+        <trigger_point x="218.17000" y="55.48400" z="0.00000" yaw="179.993" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="38" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="392.34200" y="320.03700" z="0.00000" />
+      <position x="338.72400" y="291.71200" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_38" type="NavigationSignalHold">
+        <trigger_point x="392.34200" y="320.03700" z="0.00000" yaw="92.888" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="39" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="152.42100" y="129.43800" z="0.00000" />
+      <position x="88.39500" y="167.60200" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_39" type="NavigationSignalHold">
+        <trigger_point x="152.42100" y="129.43800" z="0.00000" yaw="180.026" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="40" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="338.87200" y="45.79100" z="0.00000" />
+      <position x="300.10300" y="-2.02500" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_40" type="NavigationSignalHold">
+        <trigger_point x="338.87200" y="45.79100" z="0.00000" yaw="270.035" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="41" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="334.81300" y="144.64900" z="0.00000" />
+      <position x="300.50800" y="195.15700" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_41" type="NavigationSignalHold">
+        <trigger_point x="334.81300" y="144.64900" z="0.00000" yaw="90.035" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+  <route id="42" town="Town01_Opt">
+    <weathers>
+      <weather route_percentage="0" cloudiness="0" precipitation="0" sun_altitude_angle="70" />
+    </weathers>
+    <waypoints>
+      <position x="92.39800" y="185.84000" z="0.00000" />
+      <position x="92.38400" y="93.84000" z="0.00000" />
+    </waypoints>
+    <scenarios>
+      <scenario name="NavigationSignalHold_42" type="NavigationSignalHold">
+        <trigger_point x="92.39800" y="185.84000" z="0.00000" yaw="269.991" />
+        <stationary_s value="3.0" />
+        <max_hold_s value="45.0" />
+        <near_m value="40.0" />
+        <clearance_s value="3.0" />
+      </scenario>
+    </scenarios>
+  </route>
+</routes>

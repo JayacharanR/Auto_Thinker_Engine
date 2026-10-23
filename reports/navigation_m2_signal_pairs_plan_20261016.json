@@ -1,0 +1,94 @@
+{
+  "kind": "Static perception-training pairs; no driving/control/future-action targets",
+  "catalog": "/home/deepakbalaji/Project/Auto_Thinker_Engine/configs/encounters/location_split_v1/train/catalog.json",
+  "catalog_sha256": "9be92e0219bfc7f0b04ebf36b9eaade22d8e5acde81ae3b0fa4a603993fff2de",
+  "guard": "/home/deepakbalaji/Project/Auto_Thinker_Engine/reports/navigation_m2_dagger_guard_20261016.json",
+  "guard_sha256": "ae79acb29cb658544b9455f4fa19863170a3e677f95c4a6d96e02664c71d62f6",
+  "selection": "First4 distinct junctions per TRAIN town; stop before memory, route ID order; poses40/20/6m before evaluator line, deduplicate start clamps",
+  "cases": [],
+  "skipped_geometry": [
+    {
+      "route_id": 33,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 34,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 35,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 36,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 77,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 78,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 79,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 80,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 133,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 134,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 135,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 136,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 223,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 224,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 225,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 226,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    },
+    {
+      "route_id": 288,
+      "reason": "No unambiguous evaluator-line lane on frozen route"
+    }
+  ],
+  "map_sha256": {
+    "Town01_Opt": "97a7f6ac67812567e5c8ee0599cd823b23f80f30f3f97c502212e38b72e2b709",
+    "Town02_Opt": "953c05f17def231239ffcadba3307628a82d0d335b67b4e29c3098f7aed1dd7d",
+    "Town03_Opt": "abf177bcd9b66cfefb7ac4919f6456815f1384f4229f1343c8a6a90bbb7713c9",
+    "Town04_Opt": "4dddd1560ab7812b0e89cd4a523d8b6f2b93947eafb496d9eeb83cc772116c85",
+    "Town10HD_Opt": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7"
+  },
+  "pose_note": "Road pose plus0.35m stationary car height; declared rig, no physics driving",
+  "labels": "Red/green/yellow/red-repeat with seeded background phases; training labels only",
+  "phase_response_filter": "RG MAE>=2 and>=5*max(RR MAE,.25); R/G/R-repeat dominance>=30. Chosen from prior TRAIN pixel probe, not benchmark outcomes",
+  "minimum_data_gate": {
+    "towns": 5,
+    "responsive_junctions": 10
+  },
+  "maximum_wall_seconds": 900
+}

@@ -1,0 +1,2593 @@
+{
+  "schema": "recorder-contact-reference-v1",
+  "run": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018",
+  "headline": {
+    "expected": 300,
+    "recorded": 300,
+    "valid_setups": 298,
+    "setup_failures": [
+      116,
+      189
+    ],
+    "missing": [],
+    "raw_completed": 299,
+    "completed": 297,
+    "rule_safe": 293,
+    "strict_safe": 56,
+    "all_collision_events": 6,
+    "rule_safe_fraction": 0.9766666666666667,
+    "strict_safe_fraction": 0.18666666666666668,
+    "rule_safe_wilson95_unclustered": [
+      0.9526280277317246,
+      0.9886523397008747
+    ],
+    "rule_safe_cluster_bootstrap95": [
+      0.9539748953974896,
+      0.9921259842519685
+    ],
+    "locations": 17,
+    "note": "All planned cases retained; missing/wrong setups cannot pass. Family valid-only rates are diagnostic."
+  },
+  "families": {
+    "crossing_yield": {
+      "expected": 50,
+      "recorded": 50,
+      "valid_setups": 50,
+      "setup_failures": [],
+      "missing": [],
+      "raw_completed": 50,
+      "completed": 50,
+      "rule_safe": 47,
+      "strict_safe": 40,
+      "all_collision_events": 6,
+      "rule_safe_fraction": 0.94,
+      "strict_safe_fraction": 0.8,
+      "rule_safe_wilson95_unclustered": [
+        0.8378290831116182,
+        0.979385029651026
+      ],
+      "rule_safe_cluster_bootstrap95": [
+        0.8611111111111112,
+        1.0
+      ],
+      "locations": 14,
+      "note": "All planned cases retained; missing/wrong setups cannot pass. Family valid-only rates are diagnostic."
+    },
+    "following_stopped_vehicle": {
+      "expected": 50,
+      "recorded": 50,
+      "valid_setups": 48,
+      "setup_failures": [
+        116,
+        189
+      ],
+      "missing": [],
+      "raw_completed": 50,
+      "completed": 48,
+      "rule_safe": 47,
+      "strict_safe": 8,
+      "all_collision_events": 0,
+      "rule_safe_fraction": 0.94,
+      "strict_safe_fraction": 0.16,
+      "rule_safe_wilson95_unclustered": [
+        0.8378290831116182,
+        0.979385029651026
+      ],
+      "rule_safe_cluster_bootstrap95": [
+        0.8571428571428571,
+        1.0
+      ],
+      "locations": 17,
+      "note": "All planned cases retained; missing/wrong setups cannot pass. Family valid-only rates are diagnostic."
+    },
+    "route_junction": {
+      "expected": 50,
+      "recorded": 50,
+      "valid_setups": 50,
+      "setup_failures": [],
+      "missing": [],
+      "raw_completed": 50,
+      "completed": 50,
+      "rule_safe": 50,
+      "strict_safe": 8,
+      "all_collision_events": 0,
+      "rule_safe_fraction": 1.0,
+      "strict_safe_fraction": 0.16,
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ],
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "locations": 17,
+      "note": "All planned cases retained; missing/wrong setups cannot pass. Family valid-only rates are diagnostic."
+    },
+    "signal_release_memory": {
+      "expected": 50,
+      "recorded": 50,
+      "valid_setups": 50,
+      "setup_failures": [],
+      "missing": [],
+      "raw_completed": 49,
+      "completed": 49,
+      "rule_safe": 49,
+      "strict_safe": 0,
+      "all_collision_events": 0,
+      "rule_safe_fraction": 0.98,
+      "strict_safe_fraction": 0.0,
+      "rule_safe_wilson95_unclustered": [
+        0.8950455641036219,
+        0.9964607407283539
+      ],
+      "rule_safe_cluster_bootstrap95": [
+        0.9318181818181818,
+        1.0
+      ],
+      "locations": 12,
+      "note": "All planned cases retained; missing/wrong setups cannot pass. Family valid-only rates are diagnostic."
+    },
+    "signal_stop": {
+      "expected": 50,
+      "recorded": 50,
+      "valid_setups": 50,
+      "setup_failures": [],
+      "missing": [],
+      "raw_completed": 50,
+      "completed": 50,
+      "rule_safe": 50,
+      "strict_safe": 0,
+      "all_collision_events": 0,
+      "rule_safe_fraction": 1.0,
+      "strict_safe_fraction": 0.0,
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ],
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "locations": 12,
+      "note": "All planned cases retained; missing/wrong setups cannot pass. Family valid-only rates are diagnostic."
+    },
+    "stop_sign": {
+      "expected": 50,
+      "recorded": 50,
+      "valid_setups": 50,
+      "setup_failures": [],
+      "missing": [],
+      "raw_completed": 50,
+      "completed": 50,
+      "rule_safe": 50,
+      "strict_safe": 0,
+      "all_collision_events": 0,
+      "rule_safe_fraction": 1.0,
+      "strict_safe_fraction": 0.0,
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ],
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "locations": 2,
+      "note": "All planned cases retained; missing/wrong setups cannot pass. Family valid-only rates are diagnostic."
+    }
+  },
+  "final_contact_evidence": {
+    "0": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_0_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "1": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_1_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "2": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_2_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "3": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_3_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "4": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_4_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "5": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_5_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "6": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_6_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "7": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_7_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "8": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_8_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "9": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_000_009_a0/recordings/route_9_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "10": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_10_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "11": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_11_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "12": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_12_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "13": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_13_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "14": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_14_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "15": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_15_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "16": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_16_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "17": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_17_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "18": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_18_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "19": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_010_019_a0/recordings/route_19_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "20": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_20_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "21": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_21_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "22": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_22_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "23": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_23_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "24": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_24_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "25": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_25_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "26": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_26_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "27": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_27_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "28": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_28_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "29": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_020_029_a0/recordings/route_29_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "30": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_30_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "31": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_31_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "32": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_32_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "33": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_33_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "34": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_34_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "35": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_35_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "36": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_36_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "37": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_37_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "38": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_38_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "39": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_030_039_a0/recordings/route_39_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "40": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_040_043_a0/recordings/route_40_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "41": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_040_043_a0/recordings/route_41_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "42": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_040_043_a0/recordings/route_42_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "43": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town01_Opt/chunk_040_043_a0/recordings/route_43_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "44": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_44_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "45": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_45_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "46": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_46_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "47": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_47_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "48": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_48_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "49": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_49_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "50": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_50_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "51": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_51_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "52": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_52_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "53": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_044_053_a0/recordings/route_53_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "54": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_54_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "55": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_55_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "56": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_56_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "57": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_57_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "58": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_58_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "59": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_59_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "60": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_60_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "61": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_61_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "62": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_62_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "63": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_054_063_a0/recordings/route_63_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "64": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_64_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "65": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_65_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "66": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_66_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "67": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_67_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "68": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_68_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "69": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_69_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "70": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_70_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "71": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_71_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "72": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_72_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "73": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_064_073_a0/recordings/route_73_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "74": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_74_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "75": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_75_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "76": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_76_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "77": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_77_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "78": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_78_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "79": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_79_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "80": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_80_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "81": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_81_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "82": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_82_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "83": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_074_083_a0/recordings/route_83_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "84": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_084_089_a0/recordings/route_84_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "85": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_084_089_a0/recordings/route_85_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "86": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_084_089_a0/recordings/route_86_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "87": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_084_089_a0/recordings/route_87_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "88": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_084_089_a0/recordings/route_88_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "89": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town02_Opt/chunk_084_089_a0/recordings/route_89_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "90": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_90_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "91": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_91_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "92": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_92_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "93": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_93_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "94": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_94_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "95": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_95_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "96": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_96_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "97": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_97_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "98": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_98_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "99": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_090_099_a0/recordings/route_99_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "100": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_100_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "101": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_101_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "102": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_102_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 1,
+      "native_collision_events": 1,
+      "native_rule_safe": false,
+      "recorder_rule_safe": false
+    },
+    "103": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_103_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "104": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_104_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "105": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_105_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "106": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_106_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "107": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_107_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "108": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_108_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "109": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_100_109_a0/recordings/route_109_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "110": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_110_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "111": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_111_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "112": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_112_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "113": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_113_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "114": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_114_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "115": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_115_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "116": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_116_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "117": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_117_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "118": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_118_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "119": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_110_119_a0/recordings/route_119_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "120": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_120_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "121": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_121_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "122": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_122_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "123": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_123_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "124": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_124_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "125": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_125_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "126": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_126_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "127": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_127_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "128": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_128_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "129": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_120_129_a0/recordings/route_129_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "130": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_130_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "131": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_131_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "132": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_132_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "133": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_133_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "134": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_134_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "135": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_135_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "136": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_136_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "137": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_137_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "138": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_138_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "139": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_130_139_a0/recordings/route_139_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "140": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_140_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": false,
+      "recorder_rule_safe": false
+    },
+    "141": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_141_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "142": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_142_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "143": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_143_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "144": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_144_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "145": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_145_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "146": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_146_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "147": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_147_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "148": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_148_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "149": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_140_149_a0/recordings/route_149_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "150": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_150_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "151": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_151_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "152": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_152_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "153": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_153_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "154": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_154_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "155": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_155_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "156": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_156_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "157": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_157_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "158": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_158_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "159": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_150_159_a0/recordings/route_159_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "160": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_160_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "161": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_161_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "162": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_162_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "163": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_163_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "164": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_164_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "165": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_165_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "166": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_166_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "167": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_167_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "168": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_168_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "169": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town03_Opt/chunk_160_169_a0/recordings/route_169_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "170": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_170_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 2,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": false
+    },
+    "171": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_171_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "172": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_172_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "173": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_173_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "174": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_174_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "175": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_175_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "176": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_176_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "177": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_177_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 3,
+      "native_collision_events": 1,
+      "native_rule_safe": false,
+      "recorder_rule_safe": false
+    },
+    "178": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_178_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "179": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_170_179_a0/recordings/route_179_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "180": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_180_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "181": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_181_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "182": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_182_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "183": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_183_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "184": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_184_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "185": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_185_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "186": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_186_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "187": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_187_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": false,
+      "recorder_rule_safe": false
+    },
+    "188": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_188_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "189": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_180_189_a0/recordings/route_189_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "190": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_190_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "191": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_191_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "192": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_192_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "193": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_193_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "194": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_194_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "195": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_195_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "196": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_196_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "197": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_197_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "198": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_198_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "199": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_190_199_a0/recordings/route_199_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "200": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_200_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "201": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_201_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "202": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_202_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "203": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_203_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "204": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_204_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "205": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_205_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "206": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_206_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "207": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_207_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "208": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_208_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "209": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_200_209_a0/recordings/route_209_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "210": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_210_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "211": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_211_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "212": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_212_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "213": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_213_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "214": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_214_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "215": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_215_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "216": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_216_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "217": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_217_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "218": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_218_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "219": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_210_219_a0/recordings/route_219_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "220": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_220_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "221": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_221_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "222": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_222_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "223": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_223_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "224": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_224_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "225": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_225_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "226": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_226_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "227": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_227_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "228": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_228_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "229": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_220_229_a0/recordings/route_229_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "230": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_230_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "231": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_231_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "232": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_232_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "233": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_233_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "234": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_234_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "235": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_235_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "236": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_236_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "237": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_237_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "238": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_238_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "239": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_230_239_a0/recordings/route_239_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "240": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_240_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "241": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_241_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "242": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_242_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "243": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_243_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "244": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_244_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "245": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_245_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "246": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_246_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "247": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_247_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "248": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_248_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "249": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_240_249_a0/recordings/route_249_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "250": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_250_254_a0/recordings/route_250_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "251": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_250_254_a0/recordings/route_251_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "252": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_250_254_a0/recordings/route_252_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "253": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_250_254_a0/recordings/route_253_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "254": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town04_Opt/chunk_250_254_a0/recordings/route_254_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "255": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_255_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "256": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_256_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "257": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_257_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "258": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_258_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "259": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_259_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "260": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_260_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "261": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_261_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "262": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_262_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "263": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_263_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "264": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_255_264_a0/recordings/route_264_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "265": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a0/recordings/route_265_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "266": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_266_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "267": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_267_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "268": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_268_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "269": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_269_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "270": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_270_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "271": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_271_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "272": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_272_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "273": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_273_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "274": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a1/recordings/route_274_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "275": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_275_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "276": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_276_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "277": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_277_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "278": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_278_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "279": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_279_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "280": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_280_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "281": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_281_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "282": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_282_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "283": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_283_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "284": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_275_284_a0/recordings/route_284_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "285": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_285_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "286": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_286_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "287": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_287_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "288": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_288_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "289": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_289_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "290": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_290_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "291": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_291_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "292": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_292_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "293": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_293_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "294": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_285_294_a0/recordings/route_294_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "295": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_295_299_a0/recordings/route_295_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "296": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_295_299_a0/recordings/route_296_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "297": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_295_299_a0/recordings/route_297_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "298": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_295_299_a0/recordings/route_298_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    },
+    "299": {
+      "recorder": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_295_299_a0/recordings/route_299_rep0.log",
+      "complete_and_rpc_verified": true,
+      "recorder_contact_starts": 0,
+      "native_collision_events": 0,
+      "native_rule_safe": true,
+      "recorder_rule_safe": true
+    }
+  },
+  "incomplete_final_contact_evidence": [],
+  "all_attempt_partial_recordings": [
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_heldout_expert_20261018/Town10HD_Opt/chunk_265_274_a0/recordings/route_266_rep0.log"
+  ],
+  "native_results_preserved": true,
+  "all_attempt_contacts": 6,
+  "contact_audit_sha256": "c7e2dee6916d0a9c2cb7b6e723e1ae11e9e4d842dd05e2c497ffd43ddab95b1e",
+  "official_query_verification_sha256": "de3537af3ee5ea7b4d845c866b230927d78616e6e95d7e552c378651586b0fb6",
+  "catalog_sha256": "559993385c5d6765c9b94d514ca942a0e1e7a1cc0ba07a75577b6465bda06595",
+  "script_sha256": "0b0dd05c72966875c6b764ee0f7e3aff6c9b157cc9284baacbb11b214fc80532",
+  "note": "Every planned mission/invalid setup retained; all recorded contacts, no fault/speed filter. Partial recordings give lower-bound contacts only."
+}

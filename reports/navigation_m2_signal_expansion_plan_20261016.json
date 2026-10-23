@@ -1,0 +1,4923 @@
+{
+  "kind": "TRAIN-only static signal approach supplement; no new validation",
+  "catalog": "/home/deepakbalaji/Project/Auto_Thinker_Engine/configs/encounters/location_split_v1/train/catalog.json",
+  "catalog_sha256": "9be92e0219bfc7f0b04ebf36b9eaade22d8e5acde81ae3b0fa4a603993fff2de",
+  "guard": "/home/deepakbalaji/Project/Auto_Thinker_Engine/reports/navigation_m2_dagger_guard_20261016.json",
+  "guard_sha256": "ae79acb29cb658544b9455f4fa19863170a3e677f95c4a6d96e02664c71d62f6",
+  "selection": "Original13 TRAIN groups only; first3 light/incoming-lane approaches in route-ID order;32/12/2m; deduplicate poses",
+  "cases": [
+    {
+      "route_id": 10000,
+      "source_route_id": 0,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        88.37201690673828,
+        13.240303993225098,
+        0.35,
+        0.0,
+        89.99127960205078,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        85.73,
+        45.78,
+        0.104
+      ],
+      "inventory_light_id": 89,
+      "evaluator_stop_lane": {
+        "lane": [
+          21,
+          0,
+          -1
+        ],
+        "xyz": [
+          88.377,
+          45.785,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        21,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.54469638829627,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026300032,
+      "reserved_clearance": {
+        "clearance_m": 2.0000000232830644,
+        "junction_id": 110
+      }
+    },
+    {
+      "route_id": 10001,
+      "source_route_id": 0,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        88.37505340576172,
+        33.24030303955078,
+        0.35,
+        0.0,
+        89.99127960205078,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        85.73,
+        45.78,
+        0.104
+      ],
+      "inventory_light_id": 89,
+      "evaluator_stop_lane": {
+        "lane": [
+          21,
+          0,
+          -1
+        ],
+        "xyz": [
+          88.377,
+          45.785,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        21,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.544697111410034,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026300012,
+      "reserved_clearance": {
+        "clearance_m": 21.999999300116386,
+        "junction_id": 110
+      }
+    },
+    {
+      "route_id": 10002,
+      "source_route_id": 0,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        88.37657928466797,
+        43.24030303955078,
+        0.35,
+        0.0,
+        89.99127960205078,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        85.73,
+        45.78,
+        0.104
+      ],
+      "inventory_light_id": 89,
+      "evaluator_stop_lane": {
+        "lane": [
+          21,
+          0,
+          -1
+        ],
+        "xyz": [
+          88.377,
+          45.785,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        21,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.5446969949947125,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026300002,
+      "reserved_clearance": {
+        "clearance_m": 31.999999416530056,
+        "junction_id": 110
+      }
+    },
+    {
+      "route_id": 10003,
+      "source_route_id": 6,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        380.591064453125,
+        -1.98212468624115,
+        0.35,
+        0.0,
+        -179.96954345703125,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        348.43,
+        -4.48,
+        0.104
+      ],
+      "inventory_light_id": 108,
+      "evaluator_stop_lane": {
+        "lane": [
+          0,
+          0,
+          -1
+        ],
+        "xyz": [
+          348.392,
+          -1.999,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        0,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.1990688744338,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026300632,
+      "reserved_clearance": {
+        "clearance_m": 63.90126423846604,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10004,
+      "source_route_id": 6,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        360.591064453125,
+        -1.9927494525909424,
+        0.35,
+        0.0,
+        -179.96954345703125,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        348.43,
+        -4.48,
+        0.104
+      ],
+      "inventory_light_id": 108,
+      "evaluator_stop_lane": {
+        "lane": [
+          0,
+          0,
+          -1
+        ],
+        "xyz": [
+          348.392,
+          -1.999,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        0,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.199066052292444,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026300612,
+      "reserved_clearance": {
+        "clearance_m": 53.062539916051676,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10005,
+      "source_route_id": 6,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        350.591064453125,
+        -1.9980617761611938,
+        0.35,
+        0.0,
+        -179.96954345703125,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        348.43,
+        -4.48,
+        0.104
+      ],
+      "inventory_light_id": 108,
+      "evaluator_stop_lane": {
+        "lane": [
+          0,
+          0,
+          -1
+        ],
+        "xyz": [
+          348.392,
+          -1.999,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        0,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.1990646412534147,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026300602,
+      "reserved_clearance": {
+        "clearance_m": 49.81730629780133,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10006,
+      "source_route_id": 10,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        92.38533020019531,
+        100.83969116210938,
+        0.35,
+        360.0,
+        269.99127197265625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        94.99,
+        70.41,
+        0.103
+      ],
+      "inventory_light_id": 87,
+      "evaluator_stop_lane": {
+        "lane": [
+          22,
+          0,
+          1
+        ],
+        "xyz": [
+          92.38,
+          68.378,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        22,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.46169159797718,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026301032,
+      "reserved_clearance": {
+        "clearance_m": 66.90886181571643,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10007,
+      "source_route_id": 10,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        92.38229370117188,
+        80.8396987915039,
+        0.35,
+        360.0,
+        269.99127197265625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        94.99,
+        70.41,
+        0.103
+      ],
+      "inventory_light_id": 87,
+      "evaluator_stop_lane": {
+        "lane": [
+          22,
+          0,
+          1
+        ],
+        "xyz": [
+          92.38,
+          68.378,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        22,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.46169899681108,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026301012,
+      "reserved_clearance": {
+        "clearance_m": 56.77377904206217,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10008,
+      "source_route_id": 10,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        92.38077545166016,
+        70.8396987915039,
+        0.35,
+        360.0,
+        269.99127197265625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        94.99,
+        70.41,
+        0.103
+      ],
+      "inventory_light_id": 87,
+      "evaluator_stop_lane": {
+        "lane": [
+          22,
+          0,
+          1
+        ],
+        "xyz": [
+          92.38,
+          68.378,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        22,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.4616988815308076,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026301002,
+      "reserved_clearance": {
+        "clearance_m": 53.819093050753864,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10009,
+      "source_route_id": 12,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        134.64089965820312,
+        129.42974853515625,
+        0.35,
+        360.0,
+        180.02560424804688,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        102.72,
+        126.82,
+        0.103
+      ],
+      "inventory_light_id": 91,
+      "evaluator_stop_lane": {
+        "lane": [
+          4,
+          0,
+          1
+        ],
+        "xyz": [
+          101.824,
+          129.415,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        4,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.816902973271525,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026301232,
+      "reserved_clearance": {
+        "clearance_m": 70.69800868270802,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10010,
+      "source_route_id": 12,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        114.6408920288086,
+        129.42080688476562,
+        0.35,
+        360.0,
+        180.02560424804688,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        102.72,
+        126.82,
+        0.103
+      ],
+      "inventory_light_id": 91,
+      "evaluator_stop_lane": {
+        "lane": [
+          4,
+          0,
+          1
+        ],
+        "xyz": [
+          101.824,
+          129.415,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        4,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.816893344561116,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026301212,
+      "reserved_clearance": {
+        "clearance_m": 61.10117241011208,
+        "junction_id": 255
+      }
+    },
+    {
+      "route_id": 10011,
+      "source_route_id": 12,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        104.6408920288086,
+        129.4163360595703,
+        0.35,
+        360.0,
+        180.02560424804688,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        102.72,
+        126.82,
+        0.103
+      ],
+      "inventory_light_id": 91,
+      "evaluator_stop_lane": {
+        "lane": [
+          4,
+          0,
+          1
+        ],
+        "xyz": [
+          101.824,
+          129.415,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        4,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.8168923449028185,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026301202,
+      "reserved_clearance": {
+        "clearance_m": 58.21521212250562,
+        "junction_id": 255
+      }
+    },
+    {
+      "route_id": 10012,
+      "source_route_id": 14,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        293.0789489746094,
+        1.9713863134384155,
+        0.35,
+        360.0,
+        0.03045654296875,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        323.8,
+        4.98,
+        0.103
+      ],
+      "inventory_light_id": 122,
+      "evaluator_stop_lane": {
+        "lane": [
+          1,
+          0,
+          1
+        ],
+        "xyz": [
+          325.411,
+          1.989,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        1,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.33205582019839,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026301432,
+      "reserved_clearance": {
+        "clearance_m": 61.01000414242376,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10013,
+      "source_route_id": 14,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        313.0789489746094,
+        1.982011079788208,
+        0.35,
+        360.0,
+        0.03045654296875,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        323.8,
+        4.98,
+        0.103
+      ],
+      "inventory_light_id": 122,
+      "evaluator_stop_lane": {
+        "lane": [
+          1,
+          0,
+          1
+        ],
+        "xyz": [
+          325.411,
+          1.989,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        1,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.332052998057051,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026301412,
+      "reserved_clearance": {
+        "clearance_m": 49.49301670614335,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10014,
+      "source_route_id": 14,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        323.0789489746094,
+        1.9873234033584595,
+        0.35,
+        360.0,
+        0.03045654296875,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        323.8,
+        4.98,
+        0.103
+      ],
+      "inventory_light_id": 122,
+      "evaluator_stop_lane": {
+        "lane": [
+          1,
+          0,
+          1
+        ],
+        "xyz": [
+          325.411,
+          1.989,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        1,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.3320515870180216,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026301402,
+      "reserved_clearance": {
+        "clearance_m": 45.96985796414301,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10015,
+      "source_route_id": 16,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        88.38325500488281,
+        87.15030670166016,
+        0.35,
+        0.0,
+        89.99127960205078,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        85.73,
+        119.75,
+        0.104
+      ],
+      "inventory_light_id": 92,
+      "evaluator_stop_lane": {
+        "lane": [
+          22,
+          0,
+          -1
+        ],
+        "xyz": [
+          88.388,
+          119.766,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        22,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.615693642569966,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026301632,
+      "reserved_clearance": {
+        "clearance_m": 63.002042133975905,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10016,
+      "source_route_id": 16,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        88.38629150390625,
+        107.15030670166016,
+        0.35,
+        0.0,
+        89.99127960205078,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        85.73,
+        119.75,
+        0.104
+      ],
+      "inventory_light_id": 92,
+      "evaluator_stop_lane": {
+        "lane": [
+          22,
+          0,
+          -1
+        ],
+        "xyz": [
+          88.388,
+          119.766,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        22,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.61569341200942,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026301612,
+      "reserved_clearance": {
+        "clearance_m": 73.99453883197201,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10017,
+      "source_route_id": 16,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        88.38780975341797,
+        117.15030670166016,
+        0.35,
+        0.0,
+        89.99127960205078,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        85.73,
+        119.75,
+        0.104
+      ],
+      "inventory_light_id": 92,
+      "evaluator_stop_lane": {
+        "lane": [
+          22,
+          0,
+          -1
+        ],
+        "xyz": [
+          88.388,
+          119.766,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        22,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.615693296729148,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026301602,
+      "reserved_clearance": {
+        "clearance_m": 69.18000110519077,
+        "junction_id": 255
+      }
+    },
+    {
+      "route_id": 10018,
+      "source_route_id": 24,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        113.98975372314453,
+        55.497127532958984,
+        0.35,
+        360.0,
+        179.99301147460938,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        102.72,
+        52.85,
+        0.103
+      ],
+      "inventory_light_id": 88,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          101.475,
+          55.499,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.51475385914446,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026302432,
+      "reserved_clearance": {
+        "clearance_m": 30.99999260064314,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10019,
+      "source_route_id": 24,
+      "town": "Town01_Opt",
+      "junction_id": 171,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        103.98975372314453,
+        55.49834442138672,
+        0.35,
+        360.0,
+        179.99301147460938,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        102.72,
+        52.85,
+        0.103
+      ],
+      "inventory_light_id": 88,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          101.475,
+          55.499,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.5147537850970387,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026302402,
+      "reserved_clearance": {
+        "clearance_m": 40.999992674683945,
+        "junction_id": 332
+      }
+    },
+    {
+      "route_id": 10020,
+      "source_route_id": 40,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        338.8736877441406,
+        43.421199798583984,
+        0.35,
+        360.0,
+        270.03460693359375,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        341.36,
+        12.71,
+        0.103
+      ],
+      "inventory_light_id": 107,
+      "evaluator_stop_lane": {
+        "lane": [
+          16,
+          0,
+          1
+        ],
+        "xyz": [
+          338.893,
+          10.952,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        16,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.46920554431074,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026304032,
+      "reserved_clearance": {
+        "clearance_m": 3.000000540322265,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10021,
+      "source_route_id": 40,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        338.8857727050781,
+        23.421201705932617,
+        0.35,
+        360.0,
+        270.03460693359375,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        341.36,
+        12.71,
+        0.103
+      ],
+      "inventory_light_id": 107,
+      "evaluator_stop_lane": {
+        "lane": [
+          16,
+          0,
+          1
+        ],
+        "xyz": [
+          338.893,
+          10.952,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        16,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.46920379901222,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026304012,
+      "reserved_clearance": {
+        "clearance_m": 23.000002284109073,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10022,
+      "source_route_id": 40,
+      "town": "Town01_Opt",
+      "junction_id": 26,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        338.8918151855469,
+        13.4212064743042,
+        0.35,
+        360.0,
+        270.03460693359375,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        341.36,
+        12.71,
+        0.103
+      ],
+      "inventory_light_id": 107,
+      "evaluator_stop_lane": {
+        "lane": [
+          16,
+          0,
+          1
+        ],
+        "xyz": [
+          338.893,
+          10.952,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        16,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.4692067410595158,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026304002,
+      "reserved_clearance": {
+        "clearance_m": 32.99999934131572,
+        "junction_id": 222
+      }
+    },
+    {
+      "route_id": 10023,
+      "source_route_id": 42,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        92.39649963378906,
+        174.32968139648438,
+        0.35,
+        360.0,
+        269.99127197265625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        94.99,
+        144.38,
+        0.103
+      ],
+      "inventory_light_id": 90,
+      "evaluator_stop_lane": {
+        "lane": [
+          23,
+          0,
+          1
+        ],
+        "xyz": [
+          92.392,
+          142.026,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        23,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.30368170668008,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026304232,
+      "reserved_clearance": {
+        "clearance_m": 12.000015398487271,
+        "junction_id": 255
+      }
+    },
+    {
+      "route_id": 10024,
+      "source_route_id": 42,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        92.39346313476562,
+        154.32969665527344,
+        0.35,
+        360.0,
+        269.99127197265625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        94.99,
+        144.38,
+        0.103
+      ],
+      "inventory_light_id": 90,
+      "evaluator_stop_lane": {
+        "lane": [
+          23,
+          0,
+          1
+        ],
+        "xyz": [
+          92.392,
+          142.026,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        23,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.30369673490842,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026304212,
+      "reserved_clearance": {
+        "clearance_m": 32.00000037020436,
+        "junction_id": 255
+      }
+    },
+    {
+      "route_id": 10025,
+      "source_route_id": 42,
+      "town": "Town01_Opt",
+      "junction_id": 306,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        92.3919448852539,
+        144.32969665527344,
+        0.35,
+        360.0,
+        269.99127197265625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        94.99,
+        144.38,
+        0.103
+      ],
+      "inventory_light_id": 90,
+      "evaluator_stop_lane": {
+        "lane": [
+          23,
+          0,
+          1
+        ],
+        "xyz": [
+          92.392,
+          142.026,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        23,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.3036966196281483,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026304202,
+      "reserved_clearance": {
+        "clearance_m": 42.00000048545812,
+        "junction_id": 255
+      }
+    },
+    {
+      "route_id": 10026,
+      "source_route_id": 44,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        91.71880340576172,
+        240.8992462158203,
+        0.35,
+        360.0,
+        0.0348052978515625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        122.48,
+        243.817,
+        0.22
+      ],
+      "inventory_light_id": 89,
+      "evaluator_stop_lane": {
+        "lane": [
+          11,
+          0,
+          1
+        ],
+        "xyz": [
+          124.582,
+          240.919,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        11,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.863202531462704,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026304432,
+      "reserved_clearance": {
+        "clearance_m": 61.98287071833481,
+        "junction_id": 188
+      }
+    },
+    {
+      "route_id": 10027,
+      "source_route_id": 44,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        111.71880340576172,
+        240.91139221191406,
+        0.35,
+        360.0,
+        0.0348052978515625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        122.48,
+        243.817,
+        0.22
+      ],
+      "inventory_light_id": 89,
+      "evaluator_stop_lane": {
+        "lane": [
+          11,
+          0,
+          1
+        ],
+        "xyz": [
+          124.582,
+          240.919,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        11,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.863198842959974,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026304412,
+      "reserved_clearance": {
+        "clearance_m": 70.91290964942489,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10028,
+      "source_route_id": 44,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        121.71879577636719,
+        240.91746520996094,
+        0.35,
+        360.0,
+        0.0348052978515625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        122.48,
+        243.817,
+        0.22
+      ],
+      "inventory_light_id": 89,
+      "evaluator_stop_lane": {
+        "lane": [
+          11,
+          0,
+          1
+        ],
+        "xyz": [
+          124.582,
+          240.919,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        11,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.8632046281016983,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026304402,
+      "reserved_clearance": {
+        "clearance_m": 60.931447955215546,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10029,
+      "source_route_id": 45,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        177.5408935546875,
+        187.63360595703125,
+        0.35,
+        360.0,
+        180.02626037597656,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        146.0,
+        184.83,
+        0.22
+      ],
+      "inventory_light_id": 92,
+      "evaluator_stop_lane": {
+        "lane": [
+          6,
+          0,
+          1
+        ],
+        "xyz": [
+          145.534,
+          187.619,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        6,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.00689688808975,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026304532,
+      "reserved_clearance": {
+        "clearance_m": 44.41239017011811,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10030,
+      "source_route_id": 45,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        157.54090881347656,
+        187.62445068359375,
+        0.35,
+        360.0,
+        180.02626037597656,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        146.0,
+        184.83,
+        0.22
+      ],
+      "inventory_light_id": 92,
+      "evaluator_stop_lane": {
+        "lane": [
+          6,
+          0,
+          1
+        ],
+        "xyz": [
+          145.534,
+          187.619,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        6,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.00691005140154,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026304512,
+      "reserved_clearance": {
+        "clearance_m": 53.473558713487364,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10031,
+      "source_route_id": 45,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        147.54090881347656,
+        187.61985778808594,
+        0.35,
+        360.0,
+        180.02626037597656,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        146.0,
+        184.83,
+        0.22
+      ],
+      "inventory_light_id": 92,
+      "evaluator_stop_lane": {
+        "lane": [
+          6,
+          0,
+          1
+        ],
+        "xyz": [
+          145.534,
+          187.619,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        6,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.0069089965623803,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026304502,
+      "reserved_clearance": {
+        "clearance_m": 60.02419157536997,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10032,
+      "source_route_id": 48,
+      "town": "Town02_Opt",
+      "junction_id": 76,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        87.98123168945312,
+        236.89698791503906,
+        0.35,
+        0.0,
+        -179.96519470214844,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        56.26,
+        234.2,
+        0.22
+      ],
+      "inventory_light_id": 105,
+      "evaluator_stop_lane": {
+        "lane": [
+          11,
+          0,
+          -1
+        ],
+        "xyz": [
+          55.134,
+          236.877,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        11,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.84723777137191,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026304832,
+      "reserved_clearance": {
+        "clearance_m": 56.52690206944998,
+        "junction_id": 188
+      }
+    },
+    {
+      "route_id": 10033,
+      "source_route_id": 48,
+      "town": "Town02_Opt",
+      "junction_id": 76,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        67.98123931884766,
+        236.8848419189453,
+        0.35,
+        0.0,
+        -179.96519470214844,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        56.26,
+        234.2,
+        0.22
+      ],
+      "inventory_light_id": 105,
+      "evaluator_stop_lane": {
+        "lane": [
+          11,
+          0,
+          -1
+        ],
+        "xyz": [
+          55.134,
+          236.877,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        11,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.847241712262367,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026304812,
+      "reserved_clearance": {
+        "clearance_m": 43.69393771160438,
+        "junction_id": 188
+      }
+    },
+    {
+      "route_id": 10034,
+      "source_route_id": 48,
+      "town": "Town02_Opt",
+      "junction_id": 76,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        57.981239318847656,
+        236.87876892089844,
+        0.35,
+        0.0,
+        -179.96519470214844,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        56.26,
+        234.2,
+        0.22
+      ],
+      "inventory_light_id": 105,
+      "evaluator_stop_lane": {
+        "lane": [
+          11,
+          0,
+          -1
+        ],
+        "xyz": [
+          55.134,
+          236.877,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        11,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.847239868010945,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026304802,
+      "reserved_clearance": {
+        "clearance_m": 39.57391501416429,
+        "junction_id": 188
+      }
+    },
+    {
+      "route_id": 10035,
+      "source_route_id": 51,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        189.69923400878906,
+        148.0672607421875,
+        0.35,
+        360.0,
+        90.07783508300781,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        186.95,
+        176.77,
+        0.22
+      ],
+      "inventory_light_id": 96,
+      "evaluator_stop_lane": {
+        "lane": [
+          15,
+          0,
+          1
+        ],
+        "xyz": [
+          189.684,
+          180.875,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        15,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.807752520064554,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026305132,
+      "reserved_clearance": {
+        "clearance_m": 82.28318795605722,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10036,
+      "source_route_id": 51,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        189.68130493164062,
+        168.07041931152344,
+        0.35,
+        360.0,
+        89.98705291748047,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        186.95,
+        176.77,
+        0.22
+      ],
+      "inventory_light_id": 96,
+      "evaluator_stop_lane": {
+        "lane": [
+          15,
+          0,
+          1
+        ],
+        "xyz": [
+          189.684,
+          180.875,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        15,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.804580971079602,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026305112,
+      "reserved_clearance": {
+        "clearance_m": 62.28003088932106,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10037,
+      "source_route_id": 51,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        189.68356323242188,
+        178.07041931152344,
+        0.35,
+        360.0,
+        89.98705291748047,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        186.95,
+        176.77,
+        0.22
+      ],
+      "inventory_light_id": 96,
+      "evaluator_stop_lane": {
+        "lane": [
+          15,
+          0,
+          1
+        ],
+        "xyz": [
+          189.684,
+          180.875,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        15,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.8045807158972167,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026305102,
+      "reserved_clearance": {
+        "clearance_m": 52.280030634325506,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10038,
+      "source_route_id": 52,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        90.6990737915039,
+        191.5938262939453,
+        0.35,
+        0.0,
+        0.02626265585422516,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        121.37,
+        194.09,
+        0.22
+      ],
+      "inventory_light_id": 90,
+      "evaluator_stop_lane": {
+        "lane": [
+          5,
+          0,
+          -1
+        ],
+        "xyz": [
+          123.083,
+          191.609,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        5,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.3839297602064,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026305232,
+      "reserved_clearance": {
+        "clearance_m": 38.03876895192061,
+        "junction_id": 188
+      }
+    },
+    {
+      "route_id": 10039,
+      "source_route_id": 52,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        110.69906616210938,
+        191.6029815673828,
+        0.35,
+        0.0,
+        0.02626265585422516,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        121.37,
+        194.09,
+        0.22
+      ],
+      "inventory_light_id": 90,
+      "evaluator_stop_lane": {
+        "lane": [
+          5,
+          0,
+          -1
+        ],
+        "xyz": [
+          123.083,
+          191.609,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        5,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.38393529412447,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026305212,
+      "reserved_clearance": {
+        "clearance_m": 58.03876341799901,
+        "junction_id": 188
+      }
+    },
+    {
+      "route_id": 10040,
+      "source_route_id": 52,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        120.69906616210938,
+        191.60757446289062,
+        0.35,
+        0.0,
+        0.02626265585422516,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        121.37,
+        194.09,
+        0.22
+      ],
+      "inventory_light_id": 90,
+      "evaluator_stop_lane": {
+        "lane": [
+          5,
+          0,
+          -1
+        ],
+        "xyz": [
+          123.083,
+          191.609,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        5,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.38393423928531,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026305202,
+      "reserved_clearance": {
+        "clearance_m": 68.03876447272877,
+        "junction_id": 188
+      }
+    },
+    {
+      "route_id": 10041,
+      "source_route_id": 58,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        132.1503143310547,
+        199.15797424316406,
+        0.35,
+        360.0,
+        90.0580825805664,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        129.55,
+        226.56,
+        0.22
+      ],
+      "inventory_light_id": 88,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          132.119,
+          229.693,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 30.535041808156354,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026305832,
+      "reserved_clearance": {
+        "clearance_m": 62.97458054693142,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10042,
+      "source_route_id": 58,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        132.13206481933594,
+        217.15797424316406,
+        0.35,
+        360.0,
+        90.0580825805664,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        129.55,
+        226.56,
+        0.22
+      ],
+      "inventory_light_id": 88,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          132.119,
+          229.693,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.535032556400271,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026305812,
+      "reserved_clearance": {
+        "clearance_m": 54.138393000226756,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10043,
+      "source_route_id": 58,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        132.12193298339844,
+        227.157958984375,
+        0.35,
+        360.0,
+        90.0580825805664,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        129.55,
+        226.56,
+        0.22
+      ],
+      "inventory_light_id": 88,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          132.119,
+          229.693,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.535042682198533,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026305802,
+      "reserved_clearance": {
+        "clearance_m": 51.34256248908076,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10044,
+      "source_route_id": 60,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        136.11886596679688,
+        230.18202209472656,
+        0.35,
+        0.0,
+        -89.9419174194336,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        138.93,
+        201.82,
+        0.22
+      ],
+      "inventory_light_id": 91,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          -1
+        ],
+        "xyz": [
+          136.15,
+          199.33,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        -1
+      ],
+      "reference_distance_m": 30.852037804064803,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026306032,
+      "reserved_clearance": {
+        "clearance_m": 46.893964522785424,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10045,
+      "source_route_id": 60,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        136.13711547851562,
+        212.18203735351562,
+        0.35,
+        0.0,
+        -89.9419174194336,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        138.93,
+        201.82,
+        0.22
+      ],
+      "inventory_light_id": 91,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          -1
+        ],
+        "xyz": [
+          136.15,
+          199.33,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.85204381108981,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026306012,
+      "reserved_clearance": {
+        "clearance_m": 52.58474249037449,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10046,
+      "source_route_id": 60,
+      "town": "Town02_Opt",
+      "junction_id": 298,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        136.14724731445312,
+        202.18203735351562,
+        0.35,
+        0.0,
+        -89.9419174194336,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        138.93,
+        201.82,
+        0.22
+      ],
+      "inventory_light_id": 91,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          -1
+        ],
+        "xyz": [
+          136.15,
+          199.33,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.852038678106748,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026306002,
+      "reserved_clearance": {
+        "clearance_m": 57.962594969321074,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10047,
+      "source_route_id": 68,
+      "town": "Town02_Opt",
+      "junction_id": 76,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        45.85620880126953,
+        260.9598083496094,
+        0.35,
+        0.0,
+        -90.00496673583984,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        48.53,
+        251.76,
+        0.22
+      ],
+      "inventory_light_id": 104,
+      "evaluator_stop_lane": {
+        "lane": [
+          7,
+          0,
+          -1
+        ],
+        "xyz": [
+          45.855,
+          248.148,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        7,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.81180840624452,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026306832,
+      "reserved_clearance": {
+        "clearance_m": 35.000000132050104,
+        "junction_id": 349
+      }
+    },
+    {
+      "route_id": 10048,
+      "source_route_id": 68,
+      "town": "Town02_Opt",
+      "junction_id": 76,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        45.85533905029297,
+        250.95982360839844,
+        0.35,
+        0.0,
+        -90.00496673583984,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        48.53,
+        251.76,
+        0.22
+      ],
+      "inventory_light_id": 104,
+      "evaluator_stop_lane": {
+        "lane": [
+          7,
+          0,
+          -1
+        ],
+        "xyz": [
+          45.855,
+          248.148,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        7,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.811823627198544,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026306802,
+      "reserved_clearance": {
+        "clearance_m": 44.9999849110844,
+        "junction_id": 349
+      }
+    },
+    {
+      "route_id": 10049,
+      "source_route_id": 69,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        169.0990753173828,
+        191.62974548339844,
+        0.35,
+        0.0,
+        0.02626265585422516,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        179.22,
+        194.33,
+        0.22
+      ],
+      "inventory_light_id": 97,
+      "evaluator_stop_lane": {
+        "lane": [
+          6,
+          0,
+          -1
+        ],
+        "xyz": [
+          182.069,
+          191.636,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        6,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.969926189456109,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026306932,
+      "reserved_clearance": {
+        "clearance_m": 43.85773568390432,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10050,
+      "source_route_id": 69,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        179.0990753173828,
+        191.6343231201172,
+        0.35,
+        0.0,
+        0.02626265585422516,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        179.22,
+        194.33,
+        0.22
+      ],
+      "inventory_light_id": 97,
+      "evaluator_stop_lane": {
+        "lane": [
+          6,
+          0,
+          -1
+        ],
+        "xyz": [
+          182.069,
+          191.636,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        6,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.9699251417182673,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026306902,
+      "reserved_clearance": {
+        "clearance_m": 40.14000787391454,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10051,
+      "source_route_id": 73,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        193.69131469726562,
+        212.3495330810547,
+        0.35,
+        0.0,
+        -90.01294708251953,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        196.21,
+        201.4,
+        0.22
+      ],
+      "inventory_light_id": 98,
+      "evaluator_stop_lane": {
+        "lane": [
+          14,
+          0,
+          -1
+        ],
+        "xyz": [
+          193.688,
+          199.289,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        14,
+        0,
+        -1
+      ],
+      "reference_distance_m": 13.060533493919536,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026307332,
+      "reserved_clearance": {
+        "clearance_m": 18.000000461062875,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10052,
+      "source_route_id": 73,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        193.6910858154297,
+        211.3495330810547,
+        0.35,
+        0.0,
+        -90.01294708251953,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        196.21,
+        201.4,
+        0.22
+      ],
+      "inventory_light_id": 98,
+      "evaluator_stop_lane": {
+        "lane": [
+          14,
+          0,
+          -1
+        ],
+        "xyz": [
+          193.688,
+          199.289,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        14,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.060533467726088,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026307312,
+      "reserved_clearance": {
+        "clearance_m": 19.00000048725326,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10053,
+      "source_route_id": 73,
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        193.68882751464844,
+        201.3495330810547,
+        0.35,
+        0.0,
+        -90.01294708251953,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        196.21,
+        201.4,
+        0.22
+      ],
+      "inventory_light_id": 98,
+      "evaluator_stop_lane": {
+        "lane": [
+          14,
+          0,
+          -1
+        ],
+        "xyz": [
+          193.688,
+          199.289,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        14,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.060533212543705,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026307302,
+      "reserved_clearance": {
+        "clearance_m": 29.000000742248027,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10054,
+      "source_route_id": 74,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        155.52122497558594,
+        236.93800354003906,
+        0.35,
+        0.0,
+        -179.96519470214844,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        147.11,
+        234.222,
+        0.22
+      ],
+      "inventory_light_id": 87,
+      "evaluator_stop_lane": {
+        "lane": [
+          10,
+          0,
+          -1
+        ],
+        "xyz": [
+          143.201,
+          236.931,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        10,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.320226953686129,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026307432,
+      "reserved_clearance": {
+        "clearance_m": 27.00000497341731,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10055,
+      "source_route_id": 74,
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        145.521240234375,
+        236.9319305419922,
+        0.35,
+        0.0,
+        -179.96519470214844,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        147.11,
+        234.222,
+        0.22
+      ],
+      "inventory_light_id": 87,
+      "evaluator_stop_lane": {
+        "lane": [
+          10,
+          0,
+          -1
+        ],
+        "xyz": [
+          143.201,
+          236.931,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        10,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.3202403682209933,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026307402,
+      "reserved_clearance": {
+        "clearance_m": 36.99999155869573,
+        "junction_id": 20
+      }
+    },
+    {
+      "route_id": 10056,
+      "source_route_id": 88,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        38.13204574584961,
+        -133.95462036132812,
+        2.6752711296081544,
+        371.16748046875,
+        1.227264404296875,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        95.88,
+        -124.722,
+        8.143
+      ],
+      "inventory_light_id": 62,
+      "evaluator_stop_lane": {
+        "lane": [
+          18,
+          0,
+          1
+        ],
+        "xyz": [
+          70.561,
+          -133.26,
+          7.929
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        18,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.96619357766013,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026308832,
+      "reserved_clearance": {
+        "clearance_m": 56.99421530616121,
+        "junction_id": 655
+      }
+    },
+    {
+      "route_id": 10057,
+      "source_route_id": 88,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        58.12745666503906,
+        -133.52626037597656,
+        6.917956924438476,
+        370.2538146972656,
+        1.227264404296875,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        95.88,
+        -124.722,
+        8.143
+      ],
+      "inventory_light_id": 62,
+      "evaluator_stop_lane": {
+        "lane": [
+          18,
+          0,
+          1
+        ],
+        "xyz": [
+          70.561,
+          -133.26,
+          7.929
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        18,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.520404550572351,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026308812,
+      "reserved_clearance": {
+        "clearance_m": 53.527942442689074,
+        "junction_id": 1794
+      }
+    },
+    {
+      "route_id": 10058,
+      "source_route_id": 88,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        68.12516021728516,
+        -133.3120880126953,
+        8.148458576202392,
+        363.8467102050781,
+        1.227264404296875,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        95.88,
+        -124.722,
+        8.143
+      ],
+      "inventory_light_id": 62,
+      "evaluator_stop_lane": {
+        "lane": [
+          18,
+          0,
+          1
+        ],
+        "xyz": [
+          70.561,
+          -133.26,
+          7.929
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        18,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.439943793608016,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026308802,
+      "reserved_clearance": {
+        "clearance_m": 50.05822091461151,
+        "junction_id": 1794
+      }
+    },
+    {
+      "route_id": 10059,
+      "source_route_id": 91,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        50.84410858154297,
+        -137.18310546875,
+        5.386314487457275,
+        -12.42184829711914,
+        -178.77273559570312,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -12.016,
+        -147.885,
+        0.152
+      ],
+      "inventory_light_id": 77,
+      "evaluator_stop_lane": {
+        "lane": [
+          18,
+          0,
+          -1
+        ],
+        "xyz": [
+          19.24,
+          -137.86,
+          0.098
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        18,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.04783106969636,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026309132,
+      "reserved_clearance": {
+        "clearance_m": 55.50502641324095,
+        "junction_id": 576
+      }
+    },
+    {
+      "route_id": 10060,
+      "source_route_id": 91,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        31.848466873168945,
+        -137.59005737304688,
+        1.600860333442688,
+        -8.190744400024414,
+        -178.77273559570312,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -12.016,
+        -147.885,
+        0.152
+      ],
+      "inventory_light_id": 77,
+      "evaluator_stop_lane": {
+        "lane": [
+          18,
+          0,
+          -1
+        ],
+        "xyz": [
+          19.24,
+          -137.86,
+          0.098
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        18,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.66942189243013,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026309112,
+      "reserved_clearance": {
+        "clearance_m": 50.91894618823763,
+        "junction_id": 655
+      }
+    },
+    {
+      "route_id": 10061,
+      "source_route_id": 91,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        21.85076332092285,
+        -137.80422973632812,
+        0.5797498434782028,
+        -3.5103189945220947,
+        -178.77273559570312,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -12.016,
+        -147.885,
+        0.152
+      ],
+      "inventory_light_id": 77,
+      "evaluator_stop_lane": {
+        "lane": [
+          18,
+          0,
+          -1
+        ],
+        "xyz": [
+          19.24,
+          -137.86,
+          0.098
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        18,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.614716908657286,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026309102,
+      "reserved_clearance": {
+        "clearance_m": 47.49446918154826,
+        "junction_id": 655
+      }
+    },
+    {
+      "route_id": 10062,
+      "source_route_id": 103,
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -130.39315795898438,
+        135.46780395507812,
+        0.35,
+        0.0,
+        18.35693359375,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -66.787,
+        142.753,
+        0.148
+      ],
+      "inventory_light_id": 49,
+      "evaluator_stop_lane": {
+        "lane": [
+          23,
+          0,
+          -1
+        ],
+        "xyz": [
+          -98.182,
+          136.192,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        23,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.352622480007355,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026310332,
+      "reserved_clearance": {
+        "clearance_m": 27.417425394843626,
+        "junction_id": 1669
+      }
+    },
+    {
+      "route_id": 10063,
+      "source_route_id": 103,
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -110.93174743652344,
+        136.48043823242188,
+        0.35,
+        0.0,
+        -1.2968021631240845,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -66.787,
+        142.753,
+        0.148
+      ],
+      "inventory_light_id": 49,
+      "evaluator_stop_lane": {
+        "lane": [
+          23,
+          0,
+          -1
+        ],
+        "xyz": [
+          -98.182,
+          136.192,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        23,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.75300969431671,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026310312,
+      "reserved_clearance": {
+        "clearance_m": 41.860647350246516,
+        "junction_id": 1669
+      }
+    },
+    {
+      "route_id": 10064,
+      "source_route_id": 103,
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -100.93431091308594,
+        136.25411987304688,
+        0.35,
+        0.0,
+        -1.2968021631240845,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -66.787,
+        142.753,
+        0.148
+      ],
+      "inventory_light_id": 49,
+      "evaluator_stop_lane": {
+        "lane": [
+          23,
+          0,
+          -1
+        ],
+        "xyz": [
+          -98.182,
+          136.192,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        23,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.7530118421310377,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026310302,
+      "reserved_clearance": {
+        "clearance_m": 50.253329780350825,
+        "junction_id": 1669
+      }
+    },
+    {
+      "route_id": 10065,
+      "source_route_id": 113,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        5.263998985290527,
+        -90.90164947509766,
+        0.35,
+        0.0,
+        -88.58645629882812,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        16.628,
+        -146.756,
+        0.0
+      ],
+      "inventory_light_id": 74,
+      "evaluator_stop_lane": {
+        "lane": [
+          28,
+          0,
+          -1
+        ],
+        "xyz": [
+          6.066,
+          -123.398,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        28,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.50624560066427,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026311332,
+      "reserved_clearance": {
+        "clearance_m": 45.999994582462215,
+        "junction_id": 1682
+      }
+    },
+    {
+      "route_id": 10066,
+      "source_route_id": 113,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        5.757367134094238,
+        -110.89556121826172,
+        0.35,
+        0.0,
+        -88.58645629882812,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        16.628,
+        -146.756,
+        0.0
+      ],
+      "inventory_light_id": 74,
+      "evaluator_stop_lane": {
+        "lane": [
+          28,
+          0,
+          -1
+        ],
+        "xyz": [
+          6.066,
+          -123.398,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        28,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.50624762757171,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026311312,
+      "reserved_clearance": {
+        "clearance_m": 65.99999255555431,
+        "junction_id": 1682
+      }
+    },
+    {
+      "route_id": 10067,
+      "source_route_id": 113,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        6.004051685333252,
+        -120.89252471923828,
+        0.35,
+        0.0,
+        -88.58645629882812,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        16.628,
+        -146.756,
+        0.0
+      ],
+      "inventory_light_id": 74,
+      "evaluator_stop_lane": {
+        "lane": [
+          28,
+          0,
+          -1
+        ],
+        "xyz": [
+          6.066,
+          -123.398,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        28,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.506241002189718,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026311302,
+      "reserved_clearance": {
+        "clearance_m": 63.26999386053158,
+        "junction_id": 655
+      }
+    },
+    {
+      "route_id": 10068,
+      "source_route_id": 114,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        128.73623657226562,
+        -135.51441955566406,
+        8.35,
+        0.0,
+        -178.77273559570312,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        71.476,
+        -145.198,
+        8.151
+      ],
+      "inventory_light_id": 63,
+      "evaluator_stop_lane": {
+        "lane": [
+          17,
+          0,
+          -1
+        ],
+        "xyz": [
+          96.552,
+          -136.204,
+          8.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        17,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.19162321053487,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026311432,
+      "reserved_clearance": {
+        "clearance_m": 11.000005557718977,
+        "junction_id": 1696
+      }
+    },
+    {
+      "route_id": 10069,
+      "source_route_id": 114,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        108.74083709716797,
+        -135.94277954101562,
+        8.35,
+        0.0,
+        -178.77273559570312,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        71.476,
+        -145.198,
+        8.151
+      ],
+      "inventory_light_id": 63,
+      "evaluator_stop_lane": {
+        "lane": [
+          17,
+          0,
+          -1
+        ],
+        "xyz": [
+          96.552,
+          -136.204,
+          8.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        17,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.191635898862124,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026311412,
+      "reserved_clearance": {
+        "clearance_m": 30.999992868859408,
+        "junction_id": 1696
+      }
+    },
+    {
+      "route_id": 10070,
+      "source_route_id": 114,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        98.74313354492188,
+        -136.15696716308594,
+        8.35,
+        0.0,
+        -178.77273559570312,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        71.476,
+        -145.198,
+        8.151
+      ],
+      "inventory_light_id": 63,
+      "evaluator_stop_lane": {
+        "lane": [
+          17,
+          0,
+          -1
+        ],
+        "xyz": [
+          96.552,
+          -136.204,
+          8.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        17,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.1916382658151576,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026311402,
+      "reserved_clearance": {
+        "clearance_m": 40.999990501658594,
+        "junction_id": 1696
+      }
+    },
+    {
+      "route_id": 10071,
+      "source_route_id": 123,
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -78.02680206298828,
+        159.6511688232422,
+        0.35,
+        0.0,
+        266.7278747558594,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -67.82,
+        121.064,
+        0.003
+      ],
+      "inventory_light_id": 48,
+      "evaluator_stop_lane": {
+        "lane": [
+          69,
+          0,
+          -1
+        ],
+        "xyz": [
+          -78.135,
+          147.048,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        69,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.604535336426649,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026312332,
+      "reserved_clearance": {
+        "clearance_m": 30.877010847032842,
+        "junction_id": 1932
+      }
+    },
+    {
+      "route_id": 10072,
+      "source_route_id": 123,
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -78.12409973144531,
+        149.9329071044922,
+        0.35,
+        0.0,
+        -90.21229553222656,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -67.82,
+        121.064,
+        0.003
+      ],
+      "inventory_light_id": 48,
+      "evaluator_stop_lane": {
+        "lane": [
+          69,
+          0,
+          -1
+        ],
+        "xyz": [
+          -78.135,
+          147.048,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        69,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.8849276898933187,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026312302,
+      "reserved_clearance": {
+        "clearance_m": 39.54535759688067,
+        "junction_id": 1932
+      }
+    },
+    {
+      "route_id": 10073,
+      "source_route_id": 124,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        0.02424764633178711,
+        -162.32264709472656,
+        0.35,
+        360.0,
+        91.41354370117188,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -11.506,
+        -125.106,
+        0.152
+      ],
+      "inventory_light_id": 75,
+      "evaluator_stop_lane": {
+        "lane": [
+          29,
+          0,
+          2
+        ],
+        "xyz": [
+          -0.295,
+          -149.366,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        29,
+        0,
+        2
+      ],
+      "reference_distance_m": 12.960579569669452,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026312432,
+      "reserved_clearance": {
+        "clearance_m": 22.27666050102423,
+        "junction_id": 655
+      }
+    },
+    {
+      "route_id": 10074,
+      "source_route_id": 124,
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -0.22243642807006836,
+        -152.32569885253906,
+        0.35,
+        360.0,
+        91.41354370117188,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -11.506,
+        -125.106,
+        0.152
+      ],
+      "inventory_light_id": 75,
+      "evaluator_stop_lane": {
+        "lane": [
+          29,
+          0,
+          2
+        ],
+        "xyz": [
+          -0.295,
+          -149.366,
+          0.0
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        29,
+        0,
+        2
+      ],
+      "reference_distance_m": 2.960588210195951,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026312402,
+      "reserved_clearance": {
+        "clearance_m": 32.190819649409214,
+        "junction_id": 655
+      }
+    },
+    {
+      "route_id": 10075,
+      "source_route_id": 128,
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -84.57164001464844,
+        107.56063842773438,
+        0.5823873788118362,
+        -0.9480111002922058,
+        89.84373474121094,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -93.983,
+        145.859,
+        0.173
+      ],
+      "inventory_light_id": 47,
+      "evaluator_stop_lane": {
+        "lane": [
+          4,
+          0,
+          -1
+        ],
+        "xyz": [
+          -84.538,
+          120.046,
+          0.072
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        4,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.486465871478513,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026312832,
+      "reserved_clearance": {
+        "clearance_m": 60.7589188680894,
+        "junction_id": 1669
+      }
+    },
+    {
+      "route_id": 10076,
+      "source_route_id": 128,
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        -84.54436492919922,
+        117.56060791015625,
+        0.4463798388838768,
+        -0.6105204820632935,
+        89.84373474121094,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        -93.983,
+        145.859,
+        0.173
+      ],
+      "inventory_light_id": 47,
+      "evaluator_stop_lane": {
+        "lane": [
+          4,
+          0,
+          -1
+        ],
+        "xyz": [
+          -84.538,
+          120.046,
+          0.072
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        4,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.485520025336486,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026312802,
+      "reserved_clearance": {
+        "clearance_m": 60.8196424752767,
+        "junction_id": 1669
+      }
+    },
+    {
+      "route_id": 10077,
+      "source_route_id": 135,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        82.68107604980469,
+        -179.3495330810547,
+        0.4583939671516418,
+        8.994657516479492,
+        90.153564453125,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        73.222,
+        -123.293,
+        8.075
+      ],
+      "inventory_light_id": 64,
+      "evaluator_stop_lane": {
+        "lane": [
+          41,
+          0,
+          -1
+        ],
+        "xyz": [
+          82.177,
+          -147.492,
+          7.653
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        41,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.85654002432335,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026313532,
+      "reserved_clearance": {
+        "clearance_m": 3.009512140913776,
+        "junction_id": 576
+      }
+    },
+    {
+      "route_id": 10078,
+      "source_route_id": 135,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        82.54490661621094,
+        -159.3822021484375,
+        6.253594493865966,
+        10.137228965759277,
+        91.19721984863281,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        73.222,
+        -123.293,
+        8.075
+      ],
+      "inventory_light_id": 64,
+      "evaluator_stop_lane": {
+        "lane": [
+          41,
+          0,
+          -1
+        ],
+        "xyz": [
+          82.177,
+          -147.492,
+          7.653
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        41,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.024304590144634,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026313512,
+      "reserved_clearance": {
+        "clearance_m": 23.74724634622613,
+        "junction_id": 576
+      }
+    },
+    {
+      "route_id": 10079,
+      "source_route_id": 135,
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        82.27976989746094,
+        -150.4114990234375,
+        7.587728595733642,
+        8.271767616271973,
+        92.02412414550781,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        73.222,
+        -123.293,
+        8.075
+      ],
+      "inventory_light_id": 64,
+      "evaluator_stop_lane": {
+        "lane": [
+          41,
+          0,
+          -1
+        ],
+        "xyz": [
+          82.177,
+          -147.492,
+          7.653
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        41,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.950679102696057,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026313502,
+      "reserved_clearance": {
+        "clearance_m": 32.77955305765367,
+        "junction_id": 576
+      }
+    },
+    {
+      "route_id": 10080,
+      "source_route_id": 176,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        85.61875915527344,
+        -170.1692352294922,
+        0.545892333984375,
+        0.0,
+        0.3261248767375946,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        135.65,
+        -166.7,
+        -0.3
+      ],
+      "inventory_light_id": 192,
+      "evaluator_stop_lane": {
+        "lane": [
+          8,
+          0,
+          -1
+        ],
+        "xyz": [
+          118.294,
+          -169.983,
+          0.196
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        8,
+        0,
+        -1
+      ],
+      "reference_distance_m": 32.67577157277483,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026317632,
+      "reserved_clearance": {
+        "clearance_m": 11.110500981522394,
+        "junction_id": 1197
+      }
+    },
+    {
+      "route_id": 10081,
+      "source_route_id": 176,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        105.6184310913086,
+        -170.05538940429688,
+        0.545892333984375,
+        0.0,
+        0.3261248767375946,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        135.65,
+        -166.7,
+        -0.3
+      ],
+      "inventory_light_id": 192,
+      "evaluator_stop_lane": {
+        "lane": [
+          8,
+          0,
+          -1
+        ],
+        "xyz": [
+          118.294,
+          -169.983,
+          0.196
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        8,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.67577561214042,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026317612,
+      "reserved_clearance": {
+        "clearance_m": 31.110496942041625,
+        "junction_id": 1197
+      }
+    },
+    {
+      "route_id": 10082,
+      "source_route_id": 176,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        115.61827087402344,
+        -169.99847412109375,
+        0.545892333984375,
+        0.0,
+        0.3261248767375946,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        135.65,
+        -166.7,
+        -0.3
+      ],
+      "inventory_light_id": 192,
+      "evaluator_stop_lane": {
+        "lane": [
+          8,
+          0,
+          -1
+        ],
+        "xyz": [
+          118.294,
+          -169.983,
+          0.196
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        8,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.6757738606691532,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026317602,
+      "reserved_clearance": {
+        "clearance_m": 41.11049869351233,
+        "junction_id": 1197
+      }
+    },
+    {
+      "route_id": 10083,
+      "source_route_id": 189,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        174.23724365234375,
+        -173.1648712158203,
+        0.545892333984375,
+        360.0,
+        180.3261260986328,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        121.95,
+        -179.4,
+        0.3
+      ],
+      "inventory_light_id": 193,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          141.555,
+          -173.351,
+          0.196
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.6827736590277,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026318932,
+      "reserved_clearance": {
+        "clearance_m": 17.000000775572552,
+        "junction_id": 1452
+      }
+    },
+    {
+      "route_id": 10084,
+      "source_route_id": 189,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        154.23756408691406,
+        -173.27870178222656,
+        0.545892333984375,
+        360.0,
+        180.3261260986328,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        121.95,
+        -179.4,
+        0.3
+      ],
+      "inventory_light_id": 193,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          141.555,
+          -173.351,
+          0.196
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.682770156085155,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026318912,
+      "reserved_clearance": {
+        "clearance_m": 37.00000427851139,
+        "junction_id": 1452
+      }
+    },
+    {
+      "route_id": 10085,
+      "source_route_id": 189,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        144.23773193359375,
+        -173.3356170654297,
+        0.545892333984375,
+        360.0,
+        180.3261260986328,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        121.95,
+        -179.4,
+        0.3
+      ],
+      "inventory_light_id": 193,
+      "evaluator_stop_lane": {
+        "lane": [
+          9,
+          0,
+          1
+        ],
+        "xyz": [
+          141.555,
+          -173.351,
+          0.196
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        9,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.682776033884842,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026318902,
+      "reserved_clearance": {
+        "clearance_m": 46.99999840071105,
+        "junction_id": 1452
+      }
+    },
+    {
+      "route_id": 10086,
+      "source_route_id": 195,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        161.21014404296875,
+        -237.00933837890625,
+        0.3886962890625,
+        360.0,
+        -29.8197021484375,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        209.4,
+        -240.1,
+        0.3
+      ],
+      "inventory_light_id": 179,
+      "evaluator_stop_lane": {
+        "lane": [
+          52,
+          0,
+          1
+        ],
+        "xyz": [
+          192.037,
+          -245.132,
+          0.039
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        52,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.24273099099587,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026319532,
+      "reserved_clearance": {
+        "clearance_m": 67.9229217782161,
+        "junction_id": 1452
+      }
+    },
+    {
+      "route_id": 10087,
+      "source_route_id": 195,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        179.3212432861328,
+        -243.8525848388672,
+        0.3886962890625,
+        360.0,
+        -11.57818603515625,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        209.4,
+        -240.1,
+        0.3
+      ],
+      "inventory_light_id": 179,
+      "evaluator_stop_lane": {
+        "lane": [
+          52,
+          0,
+          1
+        ],
+        "xyz": [
+          192.037,
+          -245.132,
+          0.039
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        52,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.800088114894862,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026319512,
+      "reserved_clearance": {
+        "clearance_m": 58.96621871528668,
+        "junction_id": 148
+      }
+    },
+    {
+      "route_id": 10088,
+      "source_route_id": 195,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        189.93270874023438,
+        -245.07308959960938,
+        0.3886962890625,
+        360.0,
+        358.4046630859375,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        209.4,
+        -240.1,
+        0.3
+      ],
+      "inventory_light_id": 179,
+      "evaluator_stop_lane": {
+        "lane": [
+          52,
+          0,
+          1
+        ],
+        "xyz": [
+          192.037,
+          -245.132,
+          0.039
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        52,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.1051156838914906,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026319502,
+      "reserved_clearance": {
+        "clearance_m": 54.64539604409113,
+        "junction_id": 148
+      }
+    },
+    {
+      "route_id": 10089,
+      "source_route_id": 211,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        225.73651123046875,
+        -249.50619506835938,
+        0.35433349609375,
+        0.0,
+        179.60549926757812,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        191.6,
+        -253.1,
+        0.3
+      ],
+      "inventory_light_id": 181,
+      "evaluator_stop_lane": {
+        "lane": [
+          27,
+          0,
+          -1
+        ],
+        "xyz": [
+          212.919,
+          -249.418,
+          0.004
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        27,
+        0,
+        -1
+      ],
+      "reference_distance_m": 12.81781465393103,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026321132,
+      "reserved_clearance": {
+        "clearance_m": 20.99999425001918,
+        "junction_id": 53
+      }
+    },
+    {
+      "route_id": 10090,
+      "source_route_id": 211,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        215.7367401123047,
+        -249.43734741210938,
+        0.35433349609375,
+        0.0,
+        179.60549926757812,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        191.6,
+        -253.1,
+        0.3
+      ],
+      "inventory_light_id": 181,
+      "evaluator_stop_lane": {
+        "lane": [
+          27,
+          0,
+          -1
+        ],
+        "xyz": [
+          212.919,
+          -249.418,
+          0.004
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        27,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.817806532976096,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026321102,
+      "reserved_clearance": {
+        "clearance_m": 31.00000237078667,
+        "junction_id": 53
+      }
+    },
+    {
+      "route_id": 10091,
+      "source_route_id": 216,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        128.7889404296875,
+        -196.2193603515625,
+        0.3886962890625,
+        0.0,
+        -260.70379638671875,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        120.55,
+        -166.4,
+        0.3
+      ],
+      "inventory_light_id": 194,
+      "evaluator_stop_lane": {
+        "lane": [
+          52,
+          0,
+          -1
+        ],
+        "xyz": [
+          127.795,
+          -183.249,
+          0.039
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        52,
+        0,
+        -1
+      ],
+      "reference_distance_m": 13.01836381270573,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026321632,
+      "reserved_clearance": {
+        "clearance_m": 58.720204573943,
+        "junction_id": 1197
+      }
+    },
+    {
+      "route_id": 10092,
+      "source_route_id": 216,
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        127.91527557373047,
+        -186.0559844970703,
+        0.3886962890625,
+        0.0,
+        92.4569320678711,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        120.55,
+        -166.4,
+        0.3
+      ],
+      "inventory_light_id": 194,
+      "evaluator_stop_lane": {
+        "lane": [
+          52,
+          0,
+          -1
+        ],
+        "xyz": [
+          127.795,
+          -183.249,
+          0.039
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        52,
+        0,
+        -1
+      ],
+      "reference_distance_m": 2.8095601345361807,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026321602,
+      "reserved_clearance": {
+        "clearance_m": 54.77453647369018,
+        "junction_id": 1197
+      }
+    },
+    {
+      "route_id": 10093,
+      "source_route_id": 225,
+      "town": "Town04_Opt",
+      "junction_id": 1249,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        348.9358825683594,
+        -212.34725952148438,
+        0.35433349609375,
+        360.0,
+        90.77144622802734,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        343.05,
+        -163.6,
+        0.5
+      ],
+      "inventory_light_id": 191,
+      "evaluator_stop_lane": {
+        "lane": [
+          25,
+          0,
+          1
+        ],
+        "xyz": [
+          348.499,
+          -179.931,
+          0.004
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        25,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.41920338030474,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026322532,
+      "reserved_clearance": {
+        "clearance_m": 28.507677866648216,
+        "junction_id": 459
+      }
+    },
+    {
+      "route_id": 10094,
+      "source_route_id": 225,
+      "town": "Town04_Opt",
+      "junction_id": 1249,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        348.6666259765625,
+        -192.3490753173828,
+        0.35433349609375,
+        360.0,
+        90.77144622802734,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        343.05,
+        -163.6,
+        0.5
+      ],
+      "inventory_light_id": 191,
+      "evaluator_stop_lane": {
+        "lane": [
+          25,
+          0,
+          1
+        ],
+        "xyz": [
+          348.499,
+          -179.931,
+          0.004
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        25,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.419206614781721,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026322512,
+      "reserved_clearance": {
+        "clearance_m": 23.058140532410565,
+        "junction_id": 870
+      }
+    },
+    {
+      "route_id": 10095,
+      "source_route_id": 225,
+      "town": "Town04_Opt",
+      "junction_id": 1249,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        348.531982421875,
+        -182.3499755859375,
+        0.35433349609375,
+        360.0,
+        90.77144622802734,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        343.05,
+        -163.6,
+        0.5
+      ],
+      "inventory_light_id": 191,
+      "evaluator_stop_lane": {
+        "lane": [
+          25,
+          0,
+          1
+        ],
+        "xyz": [
+          348.499,
+          -179.931,
+          0.004
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        25,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.4192003977270033,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026322502,
+      "reserved_clearance": {
+        "clearance_m": 15.04726331207037,
+        "junction_id": 870
+      }
+    },
+    {
+      "route_id": 10096,
+      "source_route_id": 226,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        202.8874969482422,
+        -204.37472534179688,
+        0.36959228515625,
+        360.0,
+        271.3144226074219,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        209.9,
+        -255.0,
+        0.3
+      ],
+      "inventory_light_id": 180,
+      "evaluator_stop_lane": {
+        "lane": [
+          17,
+          0,
+          1
+        ],
+        "xyz": [
+          203.642,
+          -237.253,
+          0.02
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        17,
+        0,
+        1
+      ],
+      "reference_distance_m": 32.88693082994132,
+      "requested_reference_distance_m": 32,
+      "include_yellow": true,
+      "background_seed": 2026322632,
+      "reserved_clearance": {
+        "clearance_m": 23.99999809080805,
+        "junction_id": 1452
+      }
+    },
+    {
+      "route_id": 10097,
+      "source_route_id": 226,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        203.34628295898438,
+        -224.3694610595703,
+        0.36959228515625,
+        360.0,
+        271.3144226074219,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        209.9,
+        -255.0,
+        0.3
+      ],
+      "inventory_light_id": 180,
+      "evaluator_stop_lane": {
+        "lane": [
+          17,
+          0,
+          1
+        ],
+        "xyz": [
+          203.642,
+          -237.253,
+          0.02
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        17,
+        0,
+        1
+      ],
+      "reference_distance_m": 12.886932303723633,
+      "requested_reference_distance_m": 12,
+      "include_yellow": true,
+      "background_seed": 2026322612,
+      "reserved_clearance": {
+        "clearance_m": 43.999996616489085,
+        "junction_id": 1452
+      }
+    },
+    {
+      "route_id": 10098,
+      "source_route_id": 226,
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "role": "train",
+      "ego_blueprint": "vehicle.lincoln.mkz_2020",
+      "ego_pose": [
+        203.57566833496094,
+        -234.36683654785156,
+        0.36959228515625,
+        360.0,
+        271.3144226074219,
+        0.0
+      ],
+      "inventory_light_xyz": [
+        209.9,
+        -255.0,
+        0.3
+      ],
+      "inventory_light_id": 180,
+      "evaluator_stop_lane": {
+        "lane": [
+          17,
+          0,
+          1
+        ],
+        "xyz": [
+          203.642,
+          -237.253,
+          0.02
+        ],
+        "in_junction": false
+      },
+      "approach_lane": [
+        17,
+        0,
+        1
+      ],
+      "reference_distance_m": 2.8869255882593876,
+      "requested_reference_distance_m": 2,
+      "include_yellow": true,
+      "background_seed": 2026322602,
+      "reserved_clearance": {
+        "clearance_m": 44.86487210522232,
+        "junction_id": 53
+      }
+    }
+  ],
+  "skipped_geometry": [
+    {
+      "source_route_id": 24,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 68,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 69,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 74,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 123,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 124,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 128,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 211,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    },
+    {
+      "source_route_id": 216,
+      "distance": 12,
+      "reason": "Duplicate existing or clamped pose"
+    }
+  ],
+  "map_sha256": {
+    "Town01_Opt": "97a7f6ac67812567e5c8ee0599cd823b23f80f30f3f97c502212e38b72e2b709",
+    "Town02_Opt": "953c05f17def231239ffcadba3307628a82d0d335b67b4e29c3098f7aed1dd7d",
+    "Town03_Opt": "abf177bcd9b66cfefb7ac4919f6456815f1384f4229f1343c8a6a90bbb7713c9",
+    "Town04_Opt": "4dddd1560ab7812b0e89cd4a523d8b6f2b93947eafb496d9eeb83cc772116c85",
+    "Town10HD_Opt": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7"
+  },
+  "pose_note": "Road pose plus0.35m stationary car height; declared rig, no physics driving",
+  "labels": "Red/green/yellow/red-repeat with seeded background phases; training labels only",
+  "phase_response_filter": "RG MAE>=2 and>=5*max(RR MAE,.25); separate red-on and green-on intensity gains>=20 and max channel change>=25. No absolute green-hue assumption. Developed on prior TRAIN captures; original v1 data gate remains failed.",
+  "phase_filter_version": 2,
+  "minimum_data_gate": {
+    "towns": 4,
+    "responsive_junctions": 10,
+    "supported_pairs": 45,
+    "multilane_junctions": 6
+  },
+  "maximum_wall_seconds": 900,
+  "expansion": {
+    "base_corpus": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_signal_corpus_v2_20261016",
+    "base_audit_sha256": "ec1632bab904092d595371b0b3d1cdb2c49c5e0caa2b65cbce58af4005844a48",
+    "base_plan_sha256": "92335457bb8521593450eff76007a119e663a49b01c9820689b049b7c32c911e",
+    "original_groups": [
+      {
+        "town": "Town01_Opt",
+        "junction_id": 26,
+        "role": "train"
+      },
+      {
+        "town": "Town01_Opt",
+        "junction_id": 87,
+        "role": "validation"
+      },
+      {
+        "town": "Town01_Opt",
+        "junction_id": 171,
+        "role": "train"
+      },
+      {
+        "town": "Town01_Opt",
+        "junction_id": 306,
+        "role": "train"
+      },
+      {
+        "town": "Town02_Opt",
+        "junction_id": 76,
+        "role": "train"
+      },
+      {
+        "town": "Town02_Opt",
+        "junction_id": 132,
+        "role": "train"
+      },
+      {
+        "town": "Town02_Opt",
+        "junction_id": 242,
+        "role": "train"
+      },
+      {
+        "town": "Town02_Opt",
+        "junction_id": 298,
+        "role": "train"
+      },
+      {
+        "town": "Town03_Opt",
+        "junction_id": 238,
+        "role": "train"
+      },
+      {
+        "town": "Town03_Opt",
+        "junction_id": 356,
+        "role": "train"
+      },
+      {
+        "town": "Town03_Opt",
+        "junction_id": 655,
+        "role": "validation"
+      },
+      {
+        "town": "Town03_Opt",
+        "junction_id": 1221,
+        "role": "train"
+      },
+      {
+        "town": "Town04_Opt",
+        "junction_id": 335,
+        "role": "validation"
+      },
+      {
+        "town": "Town04_Opt",
+        "junction_id": 916,
+        "role": "train"
+      },
+      {
+        "town": "Town04_Opt",
+        "junction_id": 1103,
+        "role": "train"
+      },
+      {
+        "town": "Town04_Opt",
+        "junction_id": 1249,
+        "role": "train"
+      },
+      {
+        "town": "Town10HD_Opt",
+        "junction_id": 468,
+        "role": "validation"
+      }
+    ]
+  },
+  "additional_sources": [
+    "scripts/prepare_navigation_signal_expansion.py",
+    "reports/navigation_m2_signal_expansion_protocol_20261016.md"
+  ]
+}

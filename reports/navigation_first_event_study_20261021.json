@@ -1,0 +1,277 @@
+{
+  "criteria": {
+    "jepa": {
+      "checks": {
+        "beats_constant_brier": false,
+        "beats_CV_brier": false,
+        "beats_action_only_brier": false,
+        "beats_constant_NLL": true,
+        "beats_CV_NLL": true,
+        "misses_no_worse_than_CV": true,
+        "false_alarms_no_worse_than_CV": true
+      },
+      "offline_countermeasure_passed": false,
+      "planner_qualified": false
+    },
+    "rssm": {
+      "checks": {
+        "beats_constant_brier": false,
+        "beats_CV_brier": false,
+        "beats_action_only_brier": false,
+        "beats_constant_NLL": true,
+        "beats_CV_NLL": true,
+        "misses_no_worse_than_CV": true,
+        "false_alarms_no_worse_than_CV": true
+      },
+      "offline_countermeasure_passed": false,
+      "planner_qualified": false
+    }
+  },
+  "primary_metrics": {
+    "jepa": {
+      "train": {
+        "examples": 50,
+        "positives": 12,
+        "endpoint_brier": 0.17330202834424013,
+        "sequence_nll": 1.5292380990373389,
+        "misses": 12,
+        "false_alarms": 0
+      },
+      "calibration": {
+        "examples": 18,
+        "positives": 4,
+        "endpoint_brier": 0.17706185824726284,
+        "sequence_nll": 1.492306172950222,
+        "misses": 4,
+        "false_alarms": 0
+      }
+    },
+    "rssm": {
+      "train": {
+        "examples": 50,
+        "positives": 12,
+        "endpoint_brier": 0.17493913430529928,
+        "sequence_nll": 1.5465138874238786,
+        "misses": 12,
+        "false_alarms": 0
+      },
+      "calibration": {
+        "examples": 18,
+        "positives": 4,
+        "endpoint_brier": 0.17727625389687096,
+        "sequence_nll": 1.4924670170153405,
+        "misses": 4,
+        "false_alarms": 0
+      }
+    }
+  },
+  "baselines": {
+    "constant": {
+      "examples": 18,
+      "positives": 4,
+      "endpoint_brier": 0.17284591496318394,
+      "sequence_nll": 1.5191349672134886,
+      "misses": 4,
+      "false_alarms": 0
+    },
+    "cv": {
+      "examples": 18,
+      "positives": 4,
+      "endpoint_brier": 0.17596855170525136,
+      "sequence_nll": 4.139413684306639,
+      "misses": 4,
+      "false_alarms": 0
+    },
+    "raw_cv": {
+      "examples": 18,
+      "positives": 4,
+      "endpoint_brier": 0.7033339869092926,
+      "sequence_nll": 17.336859387023946,
+      "misses": 0,
+      "false_alarms": 14
+    },
+    "action_only": {
+      "endpoint_brier": 0.16328264495746267,
+      "misses": 4,
+      "false_alarms": 0
+    }
+  },
+  "by_mechanism": {
+    "jepa": {
+      "crossing": {
+        "examples": 6,
+        "positives": 1,
+        "endpoint_brier": 0.15189118791259282,
+        "sequence_nll": 1.1990982148162075,
+        "misses": 1,
+        "false_alarms": 0
+      },
+      "lead": {
+        "examples": 6,
+        "positives": 2,
+        "endpoint_brier": 0.23053923117726974,
+        "sequence_nll": 2.080690378425755,
+        "misses": 2,
+        "false_alarms": 0
+      },
+      "rear": {
+        "examples": 6,
+        "positives": 1,
+        "endpoint_brier": 0.14875515565192593,
+        "sequence_nll": 1.1971299256086874,
+        "misses": 1,
+        "false_alarms": 0
+      }
+    },
+    "rssm": {
+      "crossing": {
+        "examples": 6,
+        "positives": 1,
+        "endpoint_brier": 0.15110668033477292,
+        "sequence_nll": 1.1975444079842679,
+        "misses": 1,
+        "false_alarms": 0
+      },
+      "lead": {
+        "examples": 6,
+        "positives": 2,
+        "endpoint_brier": 0.23196586374328731,
+        "sequence_nll": 2.0841119147718827,
+        "misses": 2,
+        "false_alarms": 0
+      },
+      "rear": {
+        "examples": 6,
+        "positives": 1,
+        "endpoint_brier": 0.14875621761255262,
+        "sequence_nll": 1.195744728289862,
+        "misses": 1,
+        "false_alarms": 0
+      }
+    }
+  },
+  "by_calibration_route": {
+    "jepa": {
+      "124": {
+        "examples": 9,
+        "positives": 3,
+        "endpoint_brier": 0.24693060017385784,
+        "sequence_nll": 2.1606859679976047,
+        "misses": 3,
+        "false_alarms": 0
+      },
+      "211": {
+        "examples": 9,
+        "positives": 1,
+        "endpoint_brier": 0.1071931163206678,
+        "sequence_nll": 0.8239263779028286,
+        "misses": 1,
+        "false_alarms": 0
+      }
+    },
+    "rssm": {
+      "124": {
+        "examples": 9,
+        "positives": 3,
+        "endpoint_brier": 0.24326480279078597,
+        "sequence_nll": 2.1405732836069276,
+        "misses": 3,
+        "false_alarms": 0
+      },
+      "211": {
+        "examples": 9,
+        "positives": 1,
+        "endpoint_brier": 0.11128770500295587,
+        "sequence_nll": 0.8443607504237477,
+        "misses": 1,
+        "false_alarms": 0
+      }
+    }
+  },
+  "original_attempts": 73,
+  "eligible": 68,
+  "unknown": 5,
+  "original_contact_starts": 16,
+  "all15_predictions_retained": true,
+  "unexecuted_outcomes_unknown": true,
+  "no_automatic_driving_or_promotion": true,
+  "M5_qualified": false,
+  "M6_not_run": true,
+  "elapsed_seconds": 5.423266822999722,
+  "selected_members": [
+    {
+      "kind": "jepa",
+      "seed": 42,
+      "selected_step": 100,
+      "trainable_parameters": 453613,
+      "elapsed_seconds": 17.81882985899938
+    },
+    {
+      "kind": "jepa",
+      "seed": 1051,
+      "selected_step": 0,
+      "trainable_parameters": 453613,
+      "elapsed_seconds": 2.3358620420003717
+    },
+    {
+      "kind": "jepa",
+      "seed": 2060,
+      "selected_step": 0,
+      "trainable_parameters": 453613,
+      "elapsed_seconds": 2.346779572999367
+    },
+    {
+      "kind": "rssm",
+      "seed": 42,
+      "selected_step": 100,
+      "trainable_parameters": 622701,
+      "elapsed_seconds": 11.679613722997601
+    },
+    {
+      "kind": "rssm",
+      "seed": 1051,
+      "selected_step": 0,
+      "trainable_parameters": 622701,
+      "elapsed_seconds": 11.52924604600048
+    },
+    {
+      "kind": "rssm",
+      "seed": 2060,
+      "selected_step": 0,
+      "trainable_parameters": 622701,
+      "elapsed_seconds": 11.820402213001216
+    }
+  ],
+  "all15_batch_shape_parity": [
+    {
+      "kind": "jepa",
+      "seed": 42,
+      "maximum_cumulative_difference": 0.0005145692867867258
+    },
+    {
+      "kind": "jepa",
+      "seed": 1051,
+      "maximum_cumulative_difference": 1.6168851146858287e-08
+    },
+    {
+      "kind": "jepa",
+      "seed": 2060,
+      "maximum_cumulative_difference": 1.6168851146858287e-08
+    },
+    {
+      "kind": "rssm",
+      "seed": 42,
+      "maximum_cumulative_difference": 0.00037533078225268635
+    },
+    {
+      "kind": "rssm",
+      "seed": 1051,
+      "maximum_cumulative_difference": 1.6168851146858287e-08
+    },
+    {
+      "kind": "rssm",
+      "seed": 2060,
+      "maximum_cumulative_difference": 1.6168851146858287e-08
+    }
+  ]
+}

@@ -1,0 +1,2054 @@
+{
+  "independent_component_recount_exact": true,
+  "component": {
+    "labels": 72,
+    "localized": 55,
+    "joint": 55,
+    "background_peaks": 127,
+    "unknown_peaks": 193,
+    "towns": {
+      "Town01_Opt": {
+        "labels": 8,
+        "localized": 7,
+        "joint": 7
+      },
+      "Town03_Opt": {
+        "labels": 20,
+        "localized": 17,
+        "joint": 17
+      },
+      "Town04_Opt": {
+        "labels": 12,
+        "localized": 12,
+        "joint": 12
+      },
+      "Town10HD_Opt": {
+        "labels": 32,
+        "localized": 19,
+        "joint": 19
+      }
+    },
+    "classes": {
+      "1": {
+        "labels": 36,
+        "localized": 30,
+        "joint": 30
+      },
+      "3": {
+        "labels": 18,
+        "localized": 13,
+        "joint": 13
+      },
+      "2": {
+        "labels": 18,
+        "localized": 12,
+        "joint": 12
+      }
+    }
+  },
+  "component_assessment": {
+    "complete": true,
+    "no_new_fit": true,
+    "metrics": {
+      "towns": {
+        "Town01_Opt": {
+          "labels": 8,
+          "localized": 7,
+          "joint": 7,
+          "background_peaks": 64,
+          "unknown_peaks": 11,
+          "classes": {
+            "1": {
+              "labels": 4,
+              "localized": 4,
+              "joint": 4
+            },
+            "3": {
+              "labels": 2,
+              "localized": 2,
+              "joint": 2
+            },
+            "2": {
+              "labels": 2,
+              "localized": 1,
+              "joint": 1
+            }
+          }
+        },
+        "Town03_Opt": {
+          "labels": 20,
+          "localized": 17,
+          "joint": 17,
+          "background_peaks": 41,
+          "unknown_peaks": 108,
+          "classes": {
+            "1": {
+              "labels": 10,
+              "localized": 8,
+              "joint": 8
+            },
+            "3": {
+              "labels": 5,
+              "localized": 4,
+              "joint": 4
+            },
+            "2": {
+              "labels": 5,
+              "localized": 5,
+              "joint": 5
+            }
+          }
+        },
+        "Town04_Opt": {
+          "labels": 12,
+          "localized": 12,
+          "joint": 12,
+          "background_peaks": 8,
+          "unknown_peaks": 58,
+          "classes": {
+            "1": {
+              "labels": 6,
+              "localized": 6,
+              "joint": 6
+            },
+            "3": {
+              "labels": 3,
+              "localized": 3,
+              "joint": 3
+            },
+            "2": {
+              "labels": 3,
+              "localized": 3,
+              "joint": 3
+            }
+          }
+        },
+        "Town10HD_Opt": {
+          "labels": 32,
+          "localized": 19,
+          "joint": 19,
+          "background_peaks": 14,
+          "unknown_peaks": 16,
+          "classes": {
+            "1": {
+              "labels": 16,
+              "localized": 12,
+              "joint": 12
+            },
+            "3": {
+              "labels": 8,
+              "localized": 4,
+              "joint": 4
+            },
+            "2": {
+              "labels": 8,
+              "localized": 3,
+              "joint": 3
+            }
+          }
+        }
+      },
+      "labels": 72,
+      "localized": 55,
+      "joint": 55,
+      "background_peaks": 127,
+      "unknown_peaks": 193,
+      "classes": {
+        "1": {
+          "labels": 36,
+          "localized": 30,
+          "joint": 30
+        },
+        "3": {
+          "labels": 18,
+          "localized": 13,
+          "joint": 13
+        },
+        "2": {
+          "labels": 18,
+          "localized": 12,
+          "joint": 12
+        }
+      }
+    },
+    "supported_baseline": {
+      "towns": {
+        "Town01_Opt": {
+          "labels": 8,
+          "localized": 7,
+          "joint": 7,
+          "background_peaks": 15,
+          "unknown_peaks": 1,
+          "classes": {
+            "1": {
+              "labels": 4,
+              "localized": 4,
+              "joint": 4
+            },
+            "3": {
+              "labels": 2,
+              "localized": 2,
+              "joint": 2
+            },
+            "2": {
+              "labels": 2,
+              "localized": 1,
+              "joint": 1
+            }
+          }
+        },
+        "Town03_Opt": {
+          "labels": 20,
+          "localized": 16,
+          "joint": 16,
+          "background_peaks": 12,
+          "unknown_peaks": 59,
+          "classes": {
+            "1": {
+              "labels": 10,
+              "localized": 8,
+              "joint": 8
+            },
+            "3": {
+              "labels": 5,
+              "localized": 3,
+              "joint": 3
+            },
+            "2": {
+              "labels": 5,
+              "localized": 5,
+              "joint": 5
+            }
+          }
+        },
+        "Town04_Opt": {
+          "labels": 12,
+          "localized": 12,
+          "joint": 12,
+          "background_peaks": 4,
+          "unknown_peaks": 31,
+          "classes": {
+            "1": {
+              "labels": 6,
+              "localized": 6,
+              "joint": 6
+            },
+            "3": {
+              "labels": 3,
+              "localized": 3,
+              "joint": 3
+            },
+            "2": {
+              "labels": 3,
+              "localized": 3,
+              "joint": 3
+            }
+          }
+        },
+        "Town10HD_Opt": {
+          "labels": 32,
+          "localized": 8,
+          "joint": 8,
+          "background_peaks": 9,
+          "unknown_peaks": 7,
+          "classes": {
+            "1": {
+              "labels": 16,
+              "localized": 4,
+              "joint": 4
+            },
+            "3": {
+              "labels": 8,
+              "localized": 3,
+              "joint": 3
+            },
+            "2": {
+              "labels": 8,
+              "localized": 1,
+              "joint": 1
+            }
+          }
+        }
+      },
+      "labels": 72,
+      "localized": 43,
+      "joint": 43,
+      "background_peaks": 40,
+      "unknown_peaks": 98,
+      "classes": {
+        "1": {
+          "labels": 36,
+          "localized": 22,
+          "joint": 22
+        },
+        "3": {
+          "labels": 18,
+          "localized": 11,
+          "joint": 11
+        },
+        "2": {
+          "labels": 18,
+          "localized": 10,
+          "joint": 10
+        }
+      }
+    },
+    "original_parent": {
+      "labels": 72,
+      "localized": 56,
+      "joint": 44,
+      "background_peaks": 37241,
+      "unknown_peaks": 1246,
+      "towns": {
+        "Town01_Opt": {
+          "labels": 8,
+          "localized": 7,
+          "joint": 7
+        },
+        "Town03_Opt": {
+          "labels": 20,
+          "localized": 16,
+          "joint": 15
+        },
+        "Town04_Opt": {
+          "labels": 12,
+          "localized": 12,
+          "joint": 12
+        },
+        "Town10HD_Opt": {
+          "labels": 32,
+          "localized": 21,
+          "joint": 10
+        }
+      },
+      "classes": {
+        "1": {
+          "labels": 36,
+          "localized": 28,
+          "joint": 22
+        },
+        "3": {
+          "labels": 18,
+          "localized": 13,
+          "joint": 7
+        },
+        "2": {
+          "labels": 18,
+          "localized": 15,
+          "joint": 15
+        }
+      }
+    },
+    "criteria": {
+      "coverage_protected": false,
+      "background_reduced90": true
+    },
+    "component_pass": false,
+    "driving_qualified": false,
+    "exact_original_feature_probability_rows": 38543,
+    "total_points": 92642,
+    "added_points": 54099,
+    "repeatedly_inspected_development_set": true,
+    "incremental_refinement_timing": {
+      "total_seconds": 14.938658171002317,
+      "median_seconds": 0.09695857699989574,
+      "p95_seconds": 0.20452438319980487,
+      "not_full_runtime": true
+    },
+    "artifact_sha256": {
+      "points.npy": "ae9f2c3cbb28f94c566bd68bd4d88bd28dceffa4d6808710db457c5e190bf240",
+      "probability.npy": "799290532ed16ca0b8ce0ccb4b79cb6aeb0565167d093f379d0bb37d0062415a",
+      "offsets.npz": "26244f0eb74822f0f1baba44fa0978cc4a4630159582c2eb0285d832310d488e"
+    },
+    "elapsed_seconds": 31.565375299999687
+  },
+  "train_assessment": {
+    "complete": true,
+    "train_only": true,
+    "no_new_fit": true,
+    "no_component_val": true,
+    "metrics": {
+      "towns": {
+        "Town01_Opt": {
+          "labels": 296,
+          "localized": 272,
+          "joint": 272,
+          "background_peaks": 252,
+          "unknown_peaks": 387,
+          "classes": {
+            "1": {
+              "labels": 148,
+              "localized": 137,
+              "joint": 137
+            },
+            "3": {
+              "labels": 74,
+              "localized": 68,
+              "joint": 68
+            },
+            "2": {
+              "labels": 74,
+              "localized": 67,
+              "joint": 67
+            }
+          }
+        },
+        "Town02_Opt": {
+          "labels": 128,
+          "localized": 124,
+          "joint": 124,
+          "background_peaks": 952,
+          "unknown_peaks": 189,
+          "classes": {
+            "1": {
+              "labels": 64,
+              "localized": 60,
+              "joint": 60
+            },
+            "3": {
+              "labels": 32,
+              "localized": 32,
+              "joint": 32
+            },
+            "2": {
+              "labels": 32,
+              "localized": 32,
+              "joint": 32
+            }
+          }
+        },
+        "Town03_Opt": {
+          "labels": 556,
+          "localized": 534,
+          "joint": 534,
+          "background_peaks": 679,
+          "unknown_peaks": 2677,
+          "classes": {
+            "1": {
+              "labels": 280,
+              "localized": 268,
+              "joint": 268
+            },
+            "3": {
+              "labels": 140,
+              "localized": 139,
+              "joint": 139
+            },
+            "2": {
+              "labels": 136,
+              "localized": 127,
+              "joint": 127
+            }
+          }
+        },
+        "Town04_Opt": {
+          "labels": 268,
+          "localized": 259,
+          "joint": 259,
+          "background_peaks": 785,
+          "unknown_peaks": 980,
+          "classes": {
+            "1": {
+              "labels": 134,
+              "localized": 132,
+              "joint": 132
+            },
+            "3": {
+              "labels": 67,
+              "localized": 66,
+              "joint": 66
+            },
+            "2": {
+              "labels": 67,
+              "localized": 61,
+              "joint": 61
+            }
+          }
+        }
+      },
+      "labels": 1248,
+      "localized": 1189,
+      "joint": 1189,
+      "background_peaks": 2668,
+      "unknown_peaks": 4233,
+      "classes": {
+        "1": {
+          "labels": 626,
+          "localized": 597,
+          "joint": 597
+        },
+        "3": {
+          "labels": 313,
+          "localized": 305,
+          "joint": 305
+        },
+        "2": {
+          "labels": 309,
+          "localized": 287,
+          "joint": 287
+        }
+      }
+    },
+    "baseline": {
+      "towns": {
+        "Town01_Opt": {
+          "labels": 296,
+          "localized": 262,
+          "joint": 262,
+          "background_peaks": 114,
+          "unknown_peaks": 72,
+          "classes": {
+            "1": {
+              "labels": 148,
+              "localized": 131,
+              "joint": 131
+            },
+            "3": {
+              "labels": 74,
+              "localized": 67,
+              "joint": 67
+            },
+            "2": {
+              "labels": 74,
+              "localized": 64,
+              "joint": 64
+            }
+          }
+        },
+        "Town02_Opt": {
+          "labels": 128,
+          "localized": 117,
+          "joint": 117,
+          "background_peaks": 217,
+          "unknown_peaks": 43,
+          "classes": {
+            "1": {
+              "labels": 64,
+              "localized": 54,
+              "joint": 54
+            },
+            "3": {
+              "labels": 32,
+              "localized": 32,
+              "joint": 32
+            },
+            "2": {
+              "labels": 32,
+              "localized": 31,
+              "joint": 31
+            }
+          }
+        },
+        "Town03_Opt": {
+          "labels": 556,
+          "localized": 507,
+          "joint": 507,
+          "background_peaks": 163,
+          "unknown_peaks": 1694,
+          "classes": {
+            "1": {
+              "labels": 280,
+              "localized": 261,
+              "joint": 261
+            },
+            "3": {
+              "labels": 140,
+              "localized": 136,
+              "joint": 136
+            },
+            "2": {
+              "labels": 136,
+              "localized": 110,
+              "joint": 110
+            }
+          }
+        },
+        "Town04_Opt": {
+          "labels": 268,
+          "localized": 258,
+          "joint": 258,
+          "background_peaks": 230,
+          "unknown_peaks": 582,
+          "classes": {
+            "1": {
+              "labels": 134,
+              "localized": 132,
+              "joint": 132
+            },
+            "3": {
+              "labels": 67,
+              "localized": 65,
+              "joint": 65
+            },
+            "2": {
+              "labels": 67,
+              "localized": 61,
+              "joint": 61
+            }
+          }
+        }
+      },
+      "labels": 1248,
+      "localized": 1144,
+      "joint": 1144,
+      "background_peaks": 724,
+      "unknown_peaks": 2391,
+      "classes": {
+        "1": {
+          "labels": 626,
+          "localized": 578,
+          "joint": 578
+        },
+        "3": {
+          "labels": 313,
+          "localized": 300,
+          "joint": 300
+        },
+        "2": {
+          "labels": 309,
+          "localized": 266,
+          "joint": 266
+        }
+      }
+    },
+    "criteria": {
+      "joint_improves": true,
+      "every_town_protected": true,
+      "every_phase_protected": true,
+      "background_reduced90_vs_raw": true
+    },
+    "train_pass": true,
+    "exact_sampled_rows": 48865,
+    "original_points": 715825,
+    "added_points": 1054818,
+    "total_points": 1770643,
+    "candidate_generation_plus_new_points_seconds": {
+      "total": 279.8956977499872,
+      "median": 0.09086089000004449,
+      "p95": 0.1848020350501656,
+      "excludes_original_proposer_and_original_point_scoring": true,
+      "not_a_runtime_profile": true
+    },
+    "elapsed_seconds": 317.25075618999995,
+    "artifact_sha256": {
+      "probability.npy": "e970abfb461c40d3f60dbf2bef0c822fb0416391bfed649defaafcb45a893095",
+      "points.npy": "d757c8821cf8ecc96eb03a741de8d3449174a97520030feba0389650805a4e3a",
+      "offsets.npz": "e81af0a7e11607f86128cbd9e4249a85a3d8f2785bdbcc2229bc447e021c0d66"
+    }
+  },
+  "residual_diagnosis_TRAIN_only": true,
+  "oracle_diagnostic_not_runtime": true,
+  "residual_summary": {
+    "missed": 59,
+    "outcomes": {
+      "no_candidate": 39,
+      "all_filtered": 20
+    },
+    "recognized_missing_oracle": 49,
+    "phases": {
+      "red": 15,
+      "red_repeat": 14,
+      "green": 8,
+      "yellow": 22
+    }
+  },
+  "residuals": [
+    {
+      "sample": 36,
+      "box_index": 0,
+      "box": [
+        268,
+        140,
+        271,
+        148,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          269,
+          142
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 39,
+      "box_index": 0,
+      "box": [
+        268,
+        140,
+        271,
+        148,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          269,
+          142
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 60,
+      "box_index": 0,
+      "box": [
+        350,
+        118,
+        372,
+        174,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "red",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 3
+    },
+    {
+      "sample": 61,
+      "box_index": 0,
+      "box": [
+        350,
+        118,
+        372,
+        174,
+        3
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "green",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 5
+    },
+    {
+      "sample": 62,
+      "box_index": 0,
+      "box": [
+        350,
+        118,
+        372,
+        174,
+        2
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "yellow",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 4
+    },
+    {
+      "sample": 63,
+      "box_index": 0,
+      "box": [
+        350,
+        118,
+        372,
+        174,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "red_repeat",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 3
+    },
+    {
+      "sample": 68,
+      "box_index": 0,
+      "box": [
+        98,
+        116,
+        124,
+        176,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "red",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 9
+    },
+    {
+      "sample": 70,
+      "box_index": 0,
+      "box": [
+        98,
+        116,
+        124,
+        176,
+        2
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "yellow",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 11
+    },
+    {
+      "sample": 71,
+      "box_index": 0,
+      "box": [
+        98,
+        116,
+        124,
+        176,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "red_repeat",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 12
+    },
+    {
+      "sample": 204,
+      "box_index": 0,
+      "box": [
+        260,
+        110,
+        262,
+        115,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 356,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          260,
+          111
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 206,
+      "box_index": 0,
+      "box": [
+        260,
+        110,
+        262,
+        115,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 356,
+      "phase": "yellow",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 207,
+      "box_index": 0,
+      "box": [
+        260,
+        110,
+        262,
+        115,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 356,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          260,
+          111
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 564,
+      "box_index": 0,
+      "box": [
+        272,
+        139,
+        276,
+        149,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "red",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 2
+    },
+    {
+      "sample": 565,
+      "box_index": 0,
+      "box": [
+        272,
+        139,
+        276,
+        149,
+        3
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "green",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          273,
+          146
+        ],
+        [
+          274,
+          146
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 566,
+      "box_index": 0,
+      "box": [
+        272,
+        139,
+        276,
+        149,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 306,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          273,
+          144
+        ],
+        [
+          274,
+          144
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 672,
+      "box_index": 0,
+      "box": [
+        314,
+        126,
+        325,
+        158,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town02_Opt",
+      "junction": 298,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          318,
+          133
+        ],
+        [
+          320,
+          134
+        ],
+        [
+          320,
+          137
+        ]
+      ],
+      "refined_candidates_inside": 4
+    },
+    {
+      "sample": 675,
+      "box_index": 0,
+      "box": [
+        314,
+        126,
+        325,
+        158,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town02_Opt",
+      "junction": 298,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          318,
+          133
+        ],
+        [
+          320,
+          134
+        ],
+        [
+          320,
+          137
+        ]
+      ],
+      "refined_candidates_inside": 8
+    },
+    {
+      "sample": 680,
+      "box_index": 0,
+      "box": [
+        42,
+        120,
+        60,
+        162,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town02_Opt",
+      "junction": 298,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          50,
+          129
+        ],
+        [
+          52,
+          133
+        ]
+      ],
+      "refined_candidates_inside": 5
+    },
+    {
+      "sample": 683,
+      "box_index": 0,
+      "box": [
+        42,
+        120,
+        60,
+        162,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town02_Opt",
+      "junction": 298,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          50,
+          129
+        ],
+        [
+          52,
+          133
+        ]
+      ],
+      "refined_candidates_inside": 6
+    },
+    {
+      "sample": 1022,
+      "box_index": 0,
+      "box": [
+        267,
+        140,
+        270,
+        148,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 194,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          268,
+          144
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1105,
+      "box_index": 0,
+      "box": [
+        283,
+        137,
+        290,
+        152,
+        3
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 332,
+      "phase": "green",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          285,
+          148
+        ],
+        [
+          286,
+          146
+        ],
+        [
+          286,
+          147
+        ],
+        [
+          287,
+          148
+        ]
+      ],
+      "refined_candidates_inside": 3
+    },
+    {
+      "sample": 1176,
+      "box_index": 0,
+      "box": [
+        282,
+        136,
+        289,
+        153,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 143,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          284,
+          140
+        ],
+        [
+          284,
+          141
+        ],
+        [
+          285,
+          140
+        ],
+        [
+          286,
+          141
+        ]
+      ],
+      "refined_candidates_inside": 4
+    },
+    {
+      "sample": 1177,
+      "box_index": 0,
+      "box": [
+        282,
+        136,
+        289,
+        153,
+        3
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 143,
+      "phase": "green",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          284,
+          147
+        ],
+        [
+          285,
+          148
+        ],
+        [
+          285,
+          149
+        ],
+        [
+          286,
+          147
+        ]
+      ],
+      "refined_candidates_inside": 3
+    },
+    {
+      "sample": 1179,
+      "box_index": 0,
+      "box": [
+        282,
+        136,
+        289,
+        153,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town01_Opt",
+      "junction": 143,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          284,
+          140
+        ],
+        [
+          284,
+          141
+        ],
+        [
+          285,
+          140
+        ],
+        [
+          286,
+          141
+        ]
+      ],
+      "refined_candidates_inside": 4
+    },
+    {
+      "sample": 1202,
+      "box_index": 0,
+      "box": [
+        268,
+        140,
+        272,
+        148,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 255,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          269,
+          144
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1273,
+      "box_index": 0,
+      "box": [
+        267,
+        140,
+        271,
+        148,
+        3
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 332,
+      "phase": "green",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          268,
+          145
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1274,
+      "box_index": 0,
+      "box": [
+        267,
+        140,
+        271,
+        148,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 332,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          268,
+          144
+        ],
+        [
+          269,
+          144
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1309,
+      "box_index": 0,
+      "box": [
+        270,
+        140,
+        274,
+        148,
+        3
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 26,
+      "phase": "green",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          272,
+          145
+        ],
+        [
+          272,
+          146
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1344,
+      "box_index": 0,
+      "box": [
+        269,
+        140,
+        273,
+        148,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 194,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          271,
+          142
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1346,
+      "box_index": 0,
+      "box": [
+        269,
+        140,
+        273,
+        148,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 194,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          271,
+          144
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1347,
+      "box_index": 0,
+      "box": [
+        269,
+        140,
+        273,
+        148,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town01_Opt",
+      "junction": 194,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          271,
+          142
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1716,
+      "box_index": 0,
+      "box": [
+        98,
+        129,
+        101,
+        133,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          99,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1717,
+      "box_index": 0,
+      "box": [
+        98,
+        129,
+        101,
+        133,
+        3
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "green",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          99,
+          131
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1719,
+      "box_index": 0,
+      "box": [
+        98,
+        129,
+        101,
+        133,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          99,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 1863,
+      "box_index": 1,
+      "box": [
+        282,
+        40,
+        285,
+        47,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town03_Opt",
+      "junction": 576,
+      "phase": "red_repeat",
+      "recognized_oracle": false,
+      "oracle_coordinates": [],
+      "refined_candidates_inside": 4
+    },
+    {
+      "sample": 2040,
+      "box_index": 0,
+      "box": [
+        257,
+        125,
+        259,
+        130,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town03_Opt",
+      "junction": 1352,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          257,
+          126
+        ]
+      ],
+      "refined_candidates_inside": 1
+    },
+    {
+      "sample": 2043,
+      "box_index": 0,
+      "box": [
+        257,
+        125,
+        259,
+        130,
+        1
+      ],
+      "outcome": "all_filtered",
+      "town": "Town03_Opt",
+      "junction": 1352,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          257,
+          126
+        ]
+      ],
+      "refined_candidates_inside": 1
+    },
+    {
+      "sample": 2064,
+      "box_index": 0,
+      "box": [
+        98,
+        129,
+        101,
+        133,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          99,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2067,
+      "box_index": 0,
+      "box": [
+        98,
+        129,
+        101,
+        133,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          99,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2068,
+      "box_index": 0,
+      "box": [
+        350,
+        130,
+        353,
+        134,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          351,
+          131
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2071,
+      "box_index": 0,
+      "box": [
+        350,
+        130,
+        353,
+        134,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          351,
+          131
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2090,
+      "box_index": 0,
+      "box": [
+        250,
+        120,
+        253,
+        127,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          251,
+          123
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2090,
+      "box_index": 1,
+      "box": [
+        268,
+        120,
+        271,
+        127,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 238,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          269,
+          123
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2102,
+      "box_index": 0,
+      "box": [
+        256,
+        130,
+        259,
+        134,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 356,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          257,
+          132
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2102,
+      "box_index": 1,
+      "box": [
+        266,
+        130,
+        269,
+        134,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 356,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          267,
+          132
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2246,
+      "box_index": 0,
+      "box": [
+        250,
+        120,
+        253,
+        127,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 576,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          251,
+          123
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2282,
+      "box_index": 0,
+      "box": [
+        243,
+        125,
+        245,
+        130,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 1352,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          243,
+          127
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2294,
+      "box_index": 0,
+      "box": [
+        238,
+        121,
+        241,
+        127,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 1352,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          239,
+          123
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2304,
+      "box_index": 1,
+      "box": [
+        268,
+        131,
+        270,
+        135,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 1696,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          268,
+          131
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2306,
+      "box_index": 1,
+      "box": [
+        268,
+        131,
+        270,
+        135,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town03_Opt",
+      "junction": 1696,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          268,
+          132
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2485,
+      "box_index": 0,
+      "box": [
+        222,
+        127,
+        224,
+        132,
+        3
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 1197,
+      "phase": "green",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          223,
+          130
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2486,
+      "box_index": 0,
+      "box": [
+        222,
+        127,
+        224,
+        132,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 1197,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          223,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2524,
+      "box_index": 0,
+      "box": [
+        330,
+        129,
+        333,
+        134,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 1008,
+      "phase": "red",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          331,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2527,
+      "box_index": 0,
+      "box": [
+        330,
+        129,
+        333,
+        134,
+        1
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 1008,
+      "phase": "red_repeat",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          331,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2678,
+      "box_index": 0,
+      "box": [
+        244,
+        124,
+        247,
+        130,
+        2
+      ],
+      "outcome": "all_filtered",
+      "town": "Town04_Opt",
+      "junction": 1103,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          245,
+          127
+        ]
+      ],
+      "refined_candidates_inside": 1
+    },
+    {
+      "sample": 2810,
+      "box_index": 0,
+      "box": [
+        222,
+        127,
+        224,
+        132,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 1197,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          223,
+          129
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2850,
+      "box_index": 0,
+      "box": [
+        330,
+        129,
+        333,
+        134,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 1008,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          331,
+          131
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2906,
+      "box_index": 0,
+      "box": [
+        258,
+        115,
+        262,
+        123,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 785,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          259,
+          118
+        ]
+      ],
+      "refined_candidates_inside": 0
+    },
+    {
+      "sample": 2966,
+      "box_index": 0,
+      "box": [
+        256,
+        117,
+        259,
+        124,
+        2
+      ],
+      "outcome": "no_candidate",
+      "town": "Town04_Opt",
+      "junction": 1249,
+      "phase": "yellow",
+      "recognized_oracle": true,
+      "oracle_coordinates": [
+        [
+          257,
+          120
+        ]
+      ],
+      "refined_candidates_inside": 0
+    }
+  ],
+  "source_sha256": "baf953ee8b7312ddfe2c38577f3bf024498740282c37bde62a99277db5b9e551",
+  "no_new_fit_or_component_reselection": true
+}

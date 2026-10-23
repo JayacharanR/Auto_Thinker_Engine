@@ -1,0 +1,39 @@
+{
+  "original_assessment_sha256": "af22daae57ff8d26a38aa534d518d0624ebb15f92b06b247d9bbd2560b57ac0e",
+  "common_supported": {
+    "constant": {
+      "count": 921,
+      "mean_absolute_log_error": 0.4233262637861104,
+      "mae_m": 10.086229743450136,
+      "median_absolute_error_m": 7.65228271484375,
+      "p95_absolute_error_m": 30.911863327026367,
+      "mean_absolute_relative_error": 0.4242450209053029
+    },
+    "flat": {
+      "count": 921,
+      "mean_absolute_log_error": 0.052357068518056986,
+      "mae_m": 1.5272479279794724,
+      "median_absolute_error_m": 0.684407088573252,
+      "p95_absolute_error_m": 6.585499479801463,
+      "mean_absolute_relative_error": 0.05448269882057122
+    },
+    "ridge": {
+      "count": 921,
+      "mean_absolute_log_error": 0.1202848976533673,
+      "mae_m": 3.1451421487190707,
+      "median_absolute_error_m": 1.6664823537241134,
+      "p95_absolute_error_m": 11.716374858704249,
+      "mean_absolute_relative_error": 0.11333302241496117
+    },
+    "boosting": {
+      "count": 921,
+      "mean_absolute_log_error": 0.06396402344947588,
+      "mae_m": 1.7731721137520988,
+      "median_absolute_error_m": 1.011717897027026,
+      "p95_absolute_error_m": 6.239825980158287,
+      "mean_absolute_relative_error": 0.06279360768664301
+    }
+  },
+  "selected_offline": null,
+  "generating_source_sha256": "ce3b6769d2db62e266a2c8626f99b8ad0c3558999210ea73b327428e4b25a89d"
+}

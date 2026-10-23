@@ -69,6 +69,8 @@ def free_vram_gb():
 def resource_shortfall(runtime):
     """Reason a further server must not start now, or None."""
     vram = free_vram_gb()
+    if vram is None and runtime.get("minimum_free_vram_gb", 0) > 0:
+        return "GPU memory query failed; resolve NVIDIA driver/runtime state before simulation"
     if vram is not None and vram < runtime.get("minimum_free_vram_gb", 0):
         return f"{vram:.1f} GB VRAM free; require {runtime['minimum_free_vram_gb']}"
     ram = psutil.virtual_memory().available / 1e9
@@ -92,6 +94,8 @@ def check_resources(output, minimum_free_gb, allowed_carla_ports=()):
     )
     for proc in psutil.process_iter(["pid", "cmdline", "status"]):
         try:
+            if proc.pid == os.getpid():
+                continue  # A standalone probe/trainer must not count itself as a rival.
             command = " ".join(proc.info["cmdline"] or [])
             if proc.info["status"] != psutil.STATUS_ZOMBIE and pattern.search(command):
                 port = re.search(r"-carla-rpc-port=(\d+)", command)

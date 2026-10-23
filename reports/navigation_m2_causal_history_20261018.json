@@ -1,0 +1,306 @@
+{
+  "run": "outputs/navigation_m2_causal_history_20261018",
+  "selected_step": 0,
+  "parent_sha256": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+  "candidate_improved": false,
+  "evaluations": [
+    {
+      "step": 0,
+      "causal": {
+        "speed_mae_mps": 2.582856059074402,
+        "go_speed_mae_mps": 1.9802911927028255,
+        "controller_stop_recall": 0.425,
+        "controller_false_hold_fraction": 0.048109965635738834,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.35116080667192595
+      },
+      "clipped": {
+        "speed_mae_mps": 2.5827112299640005,
+        "go_speed_mae_mps": 1.9797483649701704,
+        "stopped_speed_mae_mps": 3.40175928518043,
+        "go_predicted_stop_fraction": 0.049723756906077346,
+        "path_correction_mae_m": 0.040143687810216634,
+        "brake_accuracy": 0.6112804878048781,
+        "light_accuracy": 0.3521341463414634,
+        "red_recall": 0.4156545209176788,
+        "controller_stop_recall": 0.425,
+        "controller_false_hold_fraction": 0.048109965635738834,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "path": 6720.0,
+          "red": 741,
+          "controller_go": 582
+        },
+        "selection_score": 0.35114995011727285
+      },
+      "accepted": false
+    },
+    {
+      "step": 250,
+      "causal": {
+        "speed_mae_mps": 4.033222838145931,
+        "go_speed_mae_mps": 3.170659397188471,
+        "controller_stop_recall": 0.2839285714285714,
+        "controller_false_hold_fraction": 0.013745704467353952,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.4283217544631607
+      },
+      "clipped": {
+        "speed_mae_mps": 4.0386986005597,
+        "go_speed_mae_mps": 3.1635345701354645,
+        "stopped_speed_mae_mps": 5.255138473904559,
+        "go_predicted_stop_fraction": 0.015193370165745856,
+        "path_correction_mae_m": 0.04009255695910681,
+        "brake_accuracy": 0.5670731707317073,
+        "light_accuracy": 0.3132621951219512,
+        "red_recall": 0.3076923076923077,
+        "controller_stop_recall": 0.28035714285714286,
+        "controller_false_hold_fraction": 0.013745704467353952,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "path": 6720.0,
+          "red": 741,
+          "controller_go": 582
+        },
+        "selection_score": 0.4299649722078148
+      },
+      "accepted": false
+    },
+    {
+      "step": 500,
+      "causal": {
+        "speed_mae_mps": 3.730953344484655,
+        "go_speed_mae_mps": 2.698105806803835,
+        "controller_stop_recall": 0.22142857142857142,
+        "controller_false_hold_fraction": 0.00859106529209622,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.4475433630678391
+      },
+      "clipped": {
+        "speed_mae_mps": 3.698071424554034,
+        "go_speed_mae_mps": 2.666202313333585,
+        "stopped_speed_mae_mps": 5.106260302716068,
+        "go_predicted_stop_fraction": 0.011049723756906077,
+        "path_correction_mae_m": 0.03812682309320995,
+        "brake_accuracy": 0.5541158536585366,
+        "light_accuracy": 0.3407012195121951,
+        "red_recall": 0.2739541160593792,
+        "controller_stop_recall": 0.22142857142857142,
+        "controller_false_hold_fraction": 0.00859106529209622,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "path": 6720.0,
+          "red": 741,
+          "controller_go": 582
+        },
+        "selection_score": 0.4469052931984341
+      },
+      "accepted": false
+    },
+    {
+      "step": 750,
+      "causal": {
+        "speed_mae_mps": 3.257662813837935,
+        "go_speed_mae_mps": 2.3289599866498243,
+        "controller_stop_recall": 0.21785714285714286,
+        "controller_false_hold_fraction": 0.005154639175257732,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.4402279478920539
+      },
+      "clipped": {
+        "speed_mae_mps": 3.255428673290625,
+        "go_speed_mae_mps": 2.3365640324123658,
+        "stopped_speed_mae_mps": 4.501382218993136,
+        "go_predicted_stop_fraction": 0.006906077348066298,
+        "path_correction_mae_m": 0.05370590332008544,
+        "brake_accuracy": 0.5533536585365854,
+        "light_accuracy": 0.3117378048780488,
+        "red_recall": 0.3630229419703104,
+        "controller_stop_recall": 0.21785714285714286,
+        "controller_false_hold_fraction": 0.005154639175257732,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "path": 6720.0,
+          "red": 741,
+          "controller_go": 582
+        },
+        "selection_score": 0.44038002880730476
+      },
+      "accepted": false
+    },
+    {
+      "step": 1000,
+      "causal": {
+        "speed_mae_mps": 3.489948900734506,
+        "go_speed_mae_mps": 2.575856266759377,
+        "controller_stop_recall": 0.23392857142857143,
+        "controller_false_hold_fraction": 0.001718213058419244,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.4354119461501114
+      },
+      "clipped": {
+        "speed_mae_mps": 3.577814724387192,
+        "go_speed_mae_mps": 2.668392144514052,
+        "stopped_speed_mae_mps": 4.8246022765657735,
+        "go_predicted_stop_fraction": 0.0055248618784530384,
+        "path_correction_mae_m": 0.051109842175529115,
+        "brake_accuracy": 0.5594512195121951,
+        "light_accuracy": 0.31478658536585363,
+        "red_recall": 0.349527665317139,
+        "controller_stop_recall": 0.23392857142857143,
+        "controller_false_hold_fraction": 0.001718213058419244,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "path": 6720.0,
+          "red": 741,
+          "controller_go": 582
+        },
+        "selection_score": 0.43726266370520495
+      },
+      "accepted": false
+    }
+  ],
+  "diagnosis": {
+    "kind": "Post-hoc diagnostics; no fit or new selection",
+    "family": {
+      "parent": {
+        "crossing_yield": {
+          "labels": 112,
+          "stop": 0,
+          "stop_hit": 0,
+          "go": 92,
+          "false_hold": 0
+        },
+        "route_junction": {
+          "labels": 128,
+          "stop": 18,
+          "stop_hit": 18,
+          "go": 83,
+          "false_hold": 6
+        },
+        "signal_release_memory": {
+          "labels": 432,
+          "stop": 278,
+          "stop_hit": 33,
+          "go": 130,
+          "false_hold": 4
+        },
+        "signal_stop": {
+          "labels": 448,
+          "stop": 201,
+          "stop_hit": 146,
+          "go": 173,
+          "false_hold": 16
+        },
+        "stop_sign": {
+          "labels": 144,
+          "stop": 63,
+          "stop_hit": 41,
+          "go": 60,
+          "false_hold": 2
+        },
+        "following_stopped_vehicle": {
+          "labels": 48,
+          "stop": 0,
+          "stop_hit": 0,
+          "go": 44,
+          "false_hold": 0
+        }
+      },
+      "rejected_latest1000": {
+        "crossing_yield": {
+          "labels": 112,
+          "stop": 0,
+          "stop_hit": 0,
+          "go": 92,
+          "false_hold": 0
+        },
+        "route_junction": {
+          "labels": 128,
+          "stop": 18,
+          "stop_hit": 18,
+          "go": 83,
+          "false_hold": 1
+        },
+        "signal_release_memory": {
+          "labels": 432,
+          "stop": 278,
+          "stop_hit": 0,
+          "go": 130,
+          "false_hold": 0
+        },
+        "signal_stop": {
+          "labels": 448,
+          "stop": 201,
+          "stop_hit": 88,
+          "go": 173,
+          "false_hold": 0
+        },
+        "stop_sign": {
+          "labels": 144,
+          "stop": 63,
+          "stop_hit": 25,
+          "go": 60,
+          "false_hold": 0
+        },
+        "following_stopped_vehicle": {
+          "labels": 48,
+          "stop": 0,
+          "stop_hit": 0,
+          "go": 44,
+          "false_hold": 0
+        }
+      }
+    },
+    "exact_sampler_updates_replayed": 1000,
+    "stop_label_fraction_equal_update_weight": {
+      "original": 0.42246188675311885,
+      "approach": 0.5245128455671277
+    },
+    "combined_stop_label_fraction": 0.4734873661601233,
+    "source_sha256": "d80913e921716fd129b6f50e0c5a8bb200ef2dde60a3cfeaa0e28dcbebc04234",
+    "parent_sha256": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+    "latest_sha256": "4562819a618a2a7a08d4193c5f3a29e73ae54d79bb17289bd711d02eb6e10332",
+    "request_sha256": "979546ccf95cf4d2e61d3c8c2b00fa2314fa2d0336eb4a5c84e034d27b0341d9",
+    "visibility_labels_approved": false
+  },
+  "request_sha256": "979546ccf95cf4d2e61d3c8c2b00fa2314fa2d0336eb4a5c84e034d27b0341d9",
+  "diagnosis_sha256": "10d483dbd078df7dadc7ccf965fda071ed2af6bec5ed58fa2337c7fa908cfdb7",
+  "scope": "Internal validation only; no new driving rollout; every trained update rejected",
+  "protocol_deviation": "750 was evaluated in addition to declared0/250/500/1000; rejected with no selection effect"
+}

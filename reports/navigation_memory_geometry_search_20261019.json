@@ -1,0 +1,2242 @@
+{
+  "purpose": "Outcome-blind strict-TRAIN setup geometry; native render/physical certification still required",
+  "rows": [
+    {
+      "route_id": 33,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        104.475,
+        55.498634051324395,
+        0.0,
+        0,
+        179.99301147460938,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              1687.7379462467202,
+              -3412.169265503763,
+              10583.54004223984,
+              1314.7973514515281
+            ],
+            "height_px": 4726.966616955291,
+            "width_px": 8895.80209599312,
+            "minimum_depth_m": 0.05550338640149732
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.2832139958866144
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              340.47423138340014,
+              42.694542070710405,
+              374.13372688065425,
+              177.3527886261608
+            ],
+            "height_px": 134.65824655545038,
+            "width_px": 33.65949549725411,
+            "minimum_depth_m": 1.9483593568093198
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 34,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        322.41100035762787,
+        1.987405299091246,
+        0.0,
+        0,
+        0.03045654296875,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -0.3088210103000506
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.7625419452789117
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              383.0266521518969,
+              48.34785875190594,
+              417.1423504897296,
+              175.4942198538223
+            ],
+            "height_px": 127.14636110191637,
+            "width_px": 34.115698337832725,
+            "minimum_depth_m": 2.063469629599126
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 35,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        88.3875434403536,
+        116.766,
+        0.0,
+        0,
+        89.99127960205078,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              557.5006099045979,
+              -20.97803332302331,
+              720.6956032100268,
+              198.0904400427086
+            ],
+            "height_px": 219.0684733657319,
+            "width_px": 163.19499330542885,
+            "minimum_depth_m": 1.1976285342064585
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -1.6449014328694886
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              235.43480575916846,
+              68.08024474975328,
+              275.51463387995113,
+              168.8913924278639
+            ],
+            "height_px": 100.81114767811063,
+            "width_px": 40.07982812078268,
+            "minimum_depth_m": 2.6025162959712596
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 37,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        170.579,
+        55.49063405132439,
+        0.0,
+        0,
+        179.99301147460938,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "crosses_near_plane",
+            "in_image": null,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": 0.009532424901038894
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.14335515024343
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              342.6087712537169,
+              32.01691509988186,
+              378.922068647901,
+              180.87131150160053
+            ],
+            "height_px": 148.85439640171867,
+            "width_px": 36.31329739418413,
+            "minimum_depth_m": 1.762545554514901
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 38,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        350.896,
+        326.61000026226833,
+        0.0,
+        0,
+        180.0,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -0.40314550781249636
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.4096227270323993
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              394.58840719778425,
+              21.866970385688326,
+              441.89672948844,
+              184.2132606327113
+            ],
+            "height_px": 162.34629024702298,
+            "width_px": 47.308322290655724,
+            "minimum_depth_m": 1.616068061971987
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 39,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        104.82399964237213,
+        129.4163406514481,
+        0.0,
+        0,
+        180.02560424804688,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              936.7271321271129,
+              -342.38244634978975,
+              1639.6775873981244,
+              304.1316578214621
+            ],
+            "height_px": 646.5141041712518,
+            "width_px": 702.9504552710115,
+            "minimum_depth_m": 0.4058111848683694
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.0618682043637833
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              303.56880739522245,
+              48.98698149801279,
+              339.21363430005175,
+              175.28112924618716
+            ],
+            "height_px": 126.29414774817437,
+            "width_px": 35.6448269048293,
+            "minimum_depth_m": 2.077393603154036
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 40,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        338.89118750633855,
+        13.951999463558197,
+        0.0,
+        0,
+        270.03460693359375,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -0.5427242232944742
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.3508068660360664
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              391.21638873294967,
+              18.13135334781861,
+              465.8658674806972,
+              185.4397254823264
+            ],
+            "height_px": 167.30837213450778,
+            "width_px": 74.64947874774754,
+            "minimum_depth_m": 1.56813823062555
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 41,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        334.789811516122,
+        182.6110005364418,
+        0.0,
+        0,
+        90.03459930419922,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              1259.644673754273,
+              -2504.032510501776,
+              8111.293312484758,
+              1015.8855320708642
+            ],
+            "height_px": 3519.91804257264,
+            "width_px": 6851.648638730485,
+            "minimum_depth_m": 0.07453658053245249
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.3284756614435764
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              325.4614235983377,
+              52.752149409059946,
+              372.30986946175125,
+              174.04407251319174
+            ],
+            "height_px": 121.2919231041318,
+            "width_px": 46.84844586341353,
+            "minimum_depth_m": 2.163067811387606
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 42,
+      "town": "Town01_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        92.39245772787416,
+        145.026,
+        0.0,
+        0,
+        269.99127197265625,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -1.140382777160113
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.761591206478414
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              472.6473078041766,
+              1.098150235452198,
+              584.8073893237104,
+              191.0515580234565
+            ],
+            "height_px": 189.95340778800428,
+            "width_px": 112.16008151953378,
+            "minimum_depth_m": 1.3811947766720536
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town01_Opt/geometry.json",
+      "geometry_sha256": "5b19260b1f3eb708b893143024a34e7a55e497c7a2b5da768c05c2a048b383ae"
+    },
+    {
+      "route_id": 77,
+      "town": "Town02_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        58.1339994635582,
+        236.87882220916032,
+        0.0,
+        0,
+        -179.96519470214844,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              1320.4536875721444,
+              -1118.5455059976239,
+              3539.7576788984634,
+              370.49000193698157
+            ],
+            "height_px": 1489.0355079346054,
+            "width_px": 2219.303991326319,
+            "minimum_depth_m": 0.17619637224888152
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.2479679264847903
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              328.25296395051214,
+              34.626816934123205,
+              361.966286072878,
+              163.6206254164837
+            ],
+            "height_px": 128.9938084823605,
+            "width_px": 33.71332212236587,
+            "minimum_depth_m": 2.033916648671749
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town02_Opt/geometry.json",
+      "geometry_sha256": "a4f7556212714ce5cbbc176cf2ca19ed9c2fd2eb01ff7564df21fcab585fc695"
+    },
+    {
+      "route_id": 78,
+      "town": "Town02_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        148.53399964237212,
+        187.6203749837235,
+        0.0,
+        0,
+        180.02626037597656,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              711.0994996474965,
+              -122.128859844016,
+              977.7099606663259,
+              191.74127007321613
+            ],
+            "height_px": 313.87012991723213,
+            "width_px": 266.61046101882937,
+            "minimum_depth_m": 0.8358955811342526
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.0147084586917288
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              273.78295864485074,
+              53.5826896048037,
+              307.2735340707527,
+              160.22010193633625
+            ],
+            "height_px": 106.63741233153254,
+            "width_px": 33.490575425901966,
+            "minimum_depth_m": 2.4603246544671435
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town02_Opt/geometry.json",
+      "geometry_sha256": "a4f7556212714ce5cbbc176cf2ca19ed9c2fd2eb01ff7564df21fcab585fc695"
+    },
+    {
+      "route_id": 79,
+      "town": "Town02_Opt",
+      "eligible_at_3m": true,
+      "ego_pose": [
+        189.6833220687029,
+        177.875,
+        0.0,
+        0,
+        89.98705291748047,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.891575322042371
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -3.7544085942046763
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              936.313008489069,
+              -213.15395062526866,
+              1531.5022886687154,
+              208.07040267827776
+            ],
+            "height_px": 421.2243533035464,
+            "width_px": 595.1892801796464,
+            "minimum_depth_m": 0.6228572792389855
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town02_Opt/geometry.json",
+      "geometry_sha256": "a4f7556212714ce5cbbc176cf2ca19ed9c2fd2eb01ff7564df21fcab585fc695"
+    },
+    {
+      "route_id": 80,
+      "town": "Town02_Opt",
+      "eligible_at_3m": true,
+      "ego_pose": [
+        146.2009994635582,
+        236.93282220916032,
+        0.0,
+        0,
+        -179.96519470214844,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.6068165485237387
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -3.668554138308849
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              861.31362105184,
+              -187.2861329012786,
+              1342.9456229069417,
+              203.42993462498367
+            ],
+            "height_px": 390.71606752626224,
+            "width_px": 481.63200185510175,
+            "minimum_depth_m": 0.671491849078393
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town02_Opt/geometry.json",
+      "geometry_sha256": "a4f7556212714ce5cbbc176cf2ca19ed9c2fd2eb01ff7564df21fcab585fc695"
+    },
+    {
+      "route_id": 82,
+      "town": "Town02_Opt",
+      "eligible_at_3m": true,
+      "ego_pose": [
+        179.06900035762786,
+        191.63462489063525,
+        0.0,
+        0,
+        0.02626265585422516,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -1.5471159287628211
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -3.1247984479687574
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              563.5127400532041,
+              -43.34659689976848,
+              703.2026037272235,
+              177.60839739490177
+            ],
+            "height_px": 220.95499429467026,
+            "width_px": 139.68986367401942,
+            "minimum_depth_m": 1.1874031428226317
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town02_Opt/geometry.json",
+      "geometry_sha256": "a4f7556212714ce5cbbc176cf2ca19ed9c2fd2eb01ff7564df21fcab585fc695"
+    },
+    {
+      "route_id": 84,
+      "town": "Town02_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        120.08300035762787,
+        191.60762489063526,
+        0.0,
+        0,
+        0.02626265585422516,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -0.41125791988164906
+          }
+        ],
+        "left": [
+          {
+            "status": "behind_near_plane",
+            "in_image": false,
+            "bbox_xyxy": null,
+            "height_px": null,
+            "width_px": null,
+            "minimum_depth_m": -2.371976794806642
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              395.8356032045308,
+              2.3479731868228306,
+              444.97582889077194,
+              169.41117739906178
+            ],
+            "height_px": 167.06320421223896,
+            "width_px": 49.14022568624114,
+            "minimum_depth_m": 1.5704394985417593
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town02_Opt/geometry.json",
+      "geometry_sha256": "a4f7556212714ce5cbbc176cf2ca19ed9c2fd2eb01ff7564df21fcab585fc695"
+    },
+    {
+      "route_id": 134,
+      "town": "Town03_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        -88.04618168115802,
+        117.04713786554336,
+        0.072,
+        0,
+        89.84373474121094,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              239.14229311874672,
+              110.62541200240211,
+              241.5458926076204,
+              117.8842481611292
+            ],
+            "height_px": 7.258836158727078,
+            "width_px": 2.403599488873681,
+            "minimum_depth_m": 27.14300705004966
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              262.7986696207216,
+              110.61534849415077,
+              265.07994395636473,
+              117.87648236909226
+            ],
+            "height_px": 7.261133874941493,
+            "width_px": 2.2812743356431042,
+            "minimum_depth_m": 27.13482503037615
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              211.45992339471428,
+              110.63714507100279,
+              214.243909883661,
+              117.89330239862313
+            ],
+            "height_px": 7.256157327620343,
+            "width_px": 2.7839864889467094,
+            "minimum_depth_m": 27.152552718860832
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              568.6990447763138,
+              84.30894197851319,
+              576.2794942519313,
+              97.93986646036456
+            ],
+            "height_px": 13.630924481851366,
+            "width_px": 7.580449475617456,
+            "minimum_depth_m": 15.176254322468413
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              656.8329105701574,
+              71.95612326588231,
+              667.2499126799449,
+              88.72271984742814
+            ],
+            "height_px": 16.766596581545826,
+            "width_px": 10.417002109787518,
+            "minimum_depth_m": 12.574096764039115
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              496.9774137628081,
+              94.2590713120061,
+              503.10704783917805,
+              105.44092102123153
+            ],
+            "height_px": 11.181849709225432,
+            "width_px": 6.129634076369939,
+            "minimum_depth_m": 18.2120981896737
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -194.09932667444232,
+              66.7526905239852,
+              -181.50462640262162,
+              84.87642981983562
+            ],
+            "height_px": 18.123739295850427,
+            "width_px": 12.594700271820699,
+            "minimum_depth_m": 11.727096820020364
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -90.27961428773781,
+              80.74449408419038,
+              -82.21890056722935,
+              95.2729439568805
+            ],
+            "height_px": 14.528449872690118,
+            "width_px": 8.06071372050846,
+            "minimum_depth_m": 14.32107235877615
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -394.0608550623038,
+              39.88465189164564,
+              -367.8643982507023,
+              65.28170931138102
+            ],
+            "height_px": 25.397057419735383,
+            "width_px": 26.19645681160148,
+            "minimum_depth_m": 8.700798621626205
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town03_Opt/geometry.json",
+      "geometry_sha256": "7b7861e9ac47a04b187d9781a21bd485b97d3ed219541ad0c276c5d7c9d5e46b"
+    },
+    {
+      "route_id": 135,
+      "town": "Town03_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        82.28210598123074,
+        -150.4659428758621,
+        7.653,
+        0,
+        92.02412414550781,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              255.62608228576687,
+              105.79067358841556,
+              258.06467476920795,
+              113.58736744514457
+            ],
+            "height_px": 7.796693856729007,
+            "width_px": 2.4385924834410844,
+            "minimum_depth_m": 25.514708506413868
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              280.3975188667576,
+              105.94868673274617,
+              283.183535220213,
+              113.71125436285514
+            ],
+            "height_px": 7.762567630108975,
+            "width_px": 2.786016353455409,
+            "minimum_depth_m": 25.620661730405402
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              226.14041791947417,
+              105.60464433291018,
+              228.78776271929024,
+              113.44153482272448
+            ],
+            "height_px": 7.836890489814294,
+            "width_px": 2.647344799816068,
+            "minimum_depth_m": 25.391087246878215
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              626.5698090100302,
+              66.31740676581778,
+              636.4595005372556,
+              83.33464353332491
+            ],
+            "height_px": 17.01723676750713,
+            "width_px": 9.88969152722541,
+            "minimum_depth_m": 12.549784771976666
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              749.5507640599411,
+              46.57145611282014,
+              767.3184235664538,
+              68.55875175851833
+            ],
+            "height_px": 21.98729564569819,
+            "width_px": 17.7676595065127,
+            "minimum_depth_m": 10.006306024104296
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              531.7990311303936,
+              81.17286732599497,
+              538.7979185675656,
+              94.6184705190228
+            ],
+            "height_px": 13.445603193027821,
+            "width_px": 6.998887437172016,
+            "minimum_depth_m": 15.517178392916952
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -117.56117791559231,
+              67.41673896028848,
+              -107.9375232894777,
+              84.10355563392123
+            ],
+            "height_px": 16.686816673632748,
+            "width_px": 9.623654626114615,
+            "minimum_depth_m": 12.729933570111001
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -34.513155204473236,
+              80.6098801047935,
+              -26.875142268569977,
+              94.14581443884434
+            ],
+            "height_px": 13.535934334050836,
+            "width_px": 7.638012935903259,
+            "minimum_depth_m": 15.37936554197492
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -273.3747405027078,
+              42.85796768196329,
+              -255.50679140995805,
+              65.7034269294275
+            ],
+            "height_px": 22.845459247464206,
+            "width_px": 17.867949092749768,
+            "minimum_depth_m": 9.638918689635062
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town03_Opt/geometry.json",
+      "geometry_sha256": "7b7861e9ac47a04b187d9781a21bd485b97d3ed219541ad0c276c5d7c9d5e46b"
+    },
+    {
+      "route_id": 136,
+      "town": "Town03_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        9.492994405522943,
+        -120.38691302394867,
+        0.0,
+        0,
+        -88.58645629882812,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              241.6288793701609,
+              108.14528629013743,
+              244.1465152931131,
+              116.16752747995136
+            ],
+            "height_px": 8.022241189813926,
+            "width_px": 2.5176359229522234,
+            "minimum_depth_m": 24.662213494095127
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              267.4586483786992,
+              108.25255591147294,
+              270.1182819906535,
+              116.24951478639528
+            ],
+            "height_px": 7.996958874922342,
+            "width_px": 2.659633611954291,
+            "minimum_depth_m": 24.736218961346296
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              210.9953604806635,
+              108.01932183727511,
+              213.99618385550474,
+              116.07126120846169
+            ],
+            "height_px": 8.051939371186577,
+            "width_px": 3.0008233748412465,
+            "minimum_depth_m": 24.57587375877641
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              576.5459197009744,
+              78.61311645935012,
+              584.7833860163231,
+              94.05225477084403
+            ],
+            "height_px": 15.439138311493906,
+            "width_px": 8.237466315348684,
+            "minimum_depth_m": 13.523455414916107
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              678.5614859691985,
+              63.34300049604807,
+              691.7887862501315,
+              82.83244798270076
+            ],
+            "height_px": 19.489447486652686,
+            "width_px": 13.227300280932923,
+            "minimum_depth_m": 10.963172566802022
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              495.9742222401547,
+              90.44261704785059,
+              502.55328554617716,
+              102.85683881374639
+            ],
+            "height_px": 12.414221765895803,
+            "width_px": 6.579063306022476,
+            "minimum_depth_m": 16.510452071049194
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -181.07964259136293,
+              62.89201096356945,
+              -168.4854980046365,
+              82.45253606807357
+            ],
+            "height_px": 19.560525104504123,
+            "width_px": 12.59414458672643,
+            "minimum_depth_m": 10.902213392137199
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -74.10302512643074,
+              78.6761354307515,
+              -65.3596207010131,
+              94.06531646589443
+            ],
+            "height_px": 15.389181035142926,
+            "width_px": 8.743404425417637,
+            "minimum_depth_m": 13.536501707502438
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -398.61196911327363,
+              31.05191100429572,
+              -370.123339877817,
+              59.53575573726486
+            ],
+            "height_px": 28.483844732969136,
+            "width_px": 28.488629235456642,
+            "minimum_depth_m": 7.828876186793394
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town03_Opt/geometry.json",
+      "geometry_sha256": "7b7861e9ac47a04b187d9781a21bd485b97d3ed219541ad0c276c5d7c9d5e46b"
+    },
+    {
+      "route_id": 137,
+      "town": "Town03_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        243.57706213705242,
+        84.0720108013153,
+        0.084,
+        0,
+        271.3931884765625,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              237.18027965955224,
+              119.39015767183584,
+              238.99456352521366,
+              124.67291346408207
+            ],
+            "height_px": 5.282755792246235,
+            "width_px": 1.814283865661423,
+            "minimum_depth_m": 36.94353073308056
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              254.57437225404348,
+              119.26377561045099,
+              256.2198020470814,
+              124.57479115044201
+            ],
+            "height_px": 5.311015539991018,
+            "width_px": 1.6454297930378914,
+            "minimum_depth_m": 36.754779228592525
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              217.11029944115634,
+              119.53597365235967,
+              219.12017346467826,
+              124.7861545242443
+            ],
+            "height_px": 5.2501808718846235,
+            "width_px": 2.009874023521917,
+            "minimum_depth_m": 37.16372985653254
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              562.7003819558385,
+              100.81715781439223,
+              568.2415654237526,
+              110.35668247065377
+            ],
+            "height_px": 9.539524656261534,
+            "width_px": 5.541183467914152,
+            "minimum_depth_m": 21.054067318658667
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              622.4232790914391,
+              94.49795470778565,
+              628.9417531986654,
+              105.54149293608168
+            ],
+            "height_px": 11.043538228296029,
+            "width_px": 6.518474107226325,
+            "minimum_depth_m": 18.36640205510446
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              509.6370057797399,
+              106.41407034063128,
+              514.3544882901389,
+              114.64470640402354
+            ],
+            "height_px": 8.230636063392254,
+            "width_px": 4.717482510398952,
+            "minimum_depth_m": 24.189223856544345
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -204.8067789854979,
+              86.00059363953963,
+              -194.891874907793,
+              99.18401876871376
+            ],
+            "height_px": 13.183425129174125,
+            "width_px": 9.914904077704904,
+            "minimum_depth_m": 15.675582276418027
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -121.82980829087371,
+              93.97427128349877,
+              -115.18333129868563,
+              105.20142569877585
+            ],
+            "height_px": 11.227154415277084,
+            "width_px": 6.646476992188084,
+            "minimum_depth_m": 18.174137383168272
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -342.6827564157657,
+              72.75142204047664,
+              -326.0137892697521,
+              89.28532003822443
+            ],
+            "height_px": 16.533897997747786,
+            "width_px": 16.668967146013586,
+            "minimum_depth_m": 12.760598069807173
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town03_Opt/geometry.json",
+      "geometry_sha256": "7b7861e9ac47a04b187d9781a21bd485b97d3ed219541ad0c276c5d7c9d5e46b"
+    },
+    {
+      "route_id": 138,
+      "town": "Town03_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        153.7198275477886,
+        -117.35445365095138,
+        8.0,
+        0,
+        270.9964599609375,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              260.07447484737366,
+              111.33290868671517,
+              262.4428546771983,
+              118.79409706920866
+            ],
+            "height_px": 7.461188382493489,
+            "width_px": 2.368379829824619,
+            "minimum_depth_m": 26.37399126822268
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              284.10335052563283,
+              111.39740173971946,
+              286.80800720068146,
+              118.84314587478438
+            ],
+            "height_px": 7.445744135064928,
+            "width_px": 2.704656675048625,
+            "minimum_depth_m": 26.42616315965344
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              231.6284174682195,
+              111.25734355831773,
+              234.1561038877168,
+              118.7366311766394
+            ],
+            "height_px": 7.479287618321678,
+            "width_px": 2.527686419497286,
+            "minimum_depth_m": 26.313124061553424
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              644.9125113929109,
+              75.09831353389194,
+              655.244590799752,
+              91.86635039179313
+            ],
+            "height_px": 16.768036857901194,
+            "width_px": 10.332079406841103,
+            "minimum_depth_m": 12.504216155559547
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              773.4111333575175,
+              57.25937308037687,
+              792.022963516646,
+              78.93284748199426
+            ],
+            "height_px": 21.67347440161739,
+            "width_px": 18.61183015912843,
+            "minimum_depth_m": 9.932618792957996
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              546.5856084752795,
+              88.4312031234336,
+              553.7703297557903,
+              101.6802983487985
+            ],
+            "height_px": 13.249095225364897,
+            "width_px": 7.184721280510757,
+            "minimum_depth_m": 15.50441307859468
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -100.28149271032204,
+              80.79948889082624,
+              -91.56227307288317,
+              96.02461765925779
+            ],
+            "height_px": 15.225128768431546,
+            "width_px": 8.719219637438869,
+            "minimum_depth_m": 13.632193251831922
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -24.4148501899311,
+              91.00027262341416,
+              -17.349875275145816,
+              103.56999760503476
+            ],
+            "height_px": 12.569724981620595,
+            "width_px": 7.064974914785285,
+            "minimum_depth_m": 16.25596250586426
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -237.39002414656431,
+              62.49862289058787,
+              -222.11624981845412,
+              82.67135052689821
+            ],
+            "height_px": 20.17272763631034,
+            "width_px": 15.273774328110193,
+            "minimum_depth_m": 10.571129122127559
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town03_Opt/geometry.json",
+      "geometry_sha256": "7b7861e9ac47a04b187d9781a21bd485b97d3ed219541ad0c276c5d7c9d5e46b"
+    },
+    {
+      "route_id": 141,
+      "town": "Town03_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        150.7715600927174,
+        -149.10533466672896,
+        7.446,
+        0,
+        90.99647521972656,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              246.1873732154116,
+              104.04412454705408,
+              248.53965852567674,
+              111.73816749501056
+            ],
+            "height_px": 7.694042947956476,
+            "width_px": 2.352285310265131,
+            "minimum_depth_m": 25.928578908323942
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              270.75893168200713,
+              104.1042827617866,
+              273.2982879676239,
+              111.78602605519644
+            ],
+            "height_px": 7.681743293409838,
+            "width_px": 2.5393562856167478,
+            "minimum_depth_m": 25.967676263269666
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              217.12512147115586,
+              103.9737258518921,
+              219.90884495168126,
+              111.68216201974171
+            ],
+            "height_px": 7.708436167849612,
+            "width_px": 2.7837234805253956,
+            "minimum_depth_m": 25.882975410086857
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              591.6883224608318,
+              68.67214467143242,
+              599.9128463377666,
+              84.15366329539799
+            ],
+            "height_px": 15.48151862396557,
+            "width_px": 8.224523876934768,
+            "minimum_depth_m": 13.753200127814821
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              695.0712039047834,
+              51.288229254573324,
+              708.4694674726784,
+              70.85919900020015
+            ],
+            "height_px": 19.570969745626826,
+            "width_px": 13.398263567895015,
+            "minimum_depth_m": 11.17440710282169
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              509.6713692729931,
+              82.19013093722302,
+              516.2379766521734,
+              94.62419509697128
+            ],
+            "height_px": 12.43406415974826,
+            "width_px": 6.5666073791803115,
+            "minimum_depth_m": 16.76106235527959
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -158.68386073787764,
+              57.22230066017645,
+              -147.8123259387726,
+              75.34654235299607
+            ],
+            "height_px": 18.124241692819616,
+            "width_px": 10.871534799105035,
+            "minimum_depth_m": 11.9385404016748
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -63.30360363249749,
+              72.82638543584606,
+              -55.33750939490598,
+              87.34192323373453
+            ],
+            "height_px": 14.51553779788847,
+            "width_px": 7.966094237591513,
+            "minimum_depth_m": 14.555942899303659
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -342.5569490254262,
+              27.39784030284469,
+              -319.6810903665566,
+              52.83415067059675
+            ],
+            "height_px": 25.43631036775206,
+            "width_px": 22.875858658869618,
+            "minimum_depth_m": 8.884904638332756
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town03_Opt/geometry.json",
+      "geometry_sha256": "7b7861e9ac47a04b187d9781a21bd485b97d3ed219541ad0c276c5d7c9d5e46b"
+    },
+    {
+      "route_id": 142,
+      "town": "Town03_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        -101.1812316365242,
+        136.25989460591973,
+        0.0,
+        0,
+        -1.2968021631240845,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              249.9051677138098,
+              116.06604948655902,
+              252.46254889517408,
+              121.9631305421552
+            ],
+            "height_px": 5.897081055596175,
+            "width_px": 2.557381181364292,
+            "minimum_depth_m": 32.79264346934495
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              269.50157289091305,
+              116.00809443381895,
+              272.07142970819353,
+              121.91780595054186
+            ],
+            "height_px": 5.909711516722908,
+            "width_px": 2.569856817280481,
+            "minimum_depth_m": 32.72474886398274
+          },
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              227.06002971974038,
+              116.13335466797072,
+              229.7963509322427,
+              122.0157695764246
+            ],
+            "height_px": 5.882414908453882,
+            "width_px": 2.736321212502304,
+            "minimum_depth_m": 32.87184621482709
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              604.8236272764725,
+              89.71164448776217,
+              614.3035840567824,
+              101.96109962954559
+            ],
+            "height_px": 12.249455141783415,
+            "width_px": 9.479956780309863,
+            "minimum_depth_m": 16.873380511058258
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              688.6649782184506,
+              79.6813202436866,
+              701.9175593178571,
+              94.44024977923912
+            ],
+            "height_px": 14.758929535552525,
+            "width_px": 13.252581099406484,
+            "minimum_depth_m": 14.242022431868719
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              534.2027829846754,
+              98.0683674398779,
+              541.5292541126703,
+              108.28437796755614
+            ],
+            "height_px": 10.216010527678236,
+            "width_px": 7.326471127994864,
+            "minimum_depth_m": 19.94329460592465
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -141.70032840711173,
+              85.26003737513776,
+              -130.62623536618673,
+              98.62043362750299
+            ],
+            "height_px": 13.360396252365234,
+            "width_px": 11.074093040924993,
+            "minimum_depth_m": 15.594631643328256
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -67.35690160986061,
+              93.55263346912734,
+              -59.15017023476308,
+              104.86570730493722
+            ],
+            "height_px": 11.313073835809874,
+            "width_px": 8.206731375097533,
+            "minimum_depth_m": 18.15809511715557
+          },
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -267.0551406441225,
+              71.32194852428582,
+              -248.95386844617096,
+              88.23858885273852
+            ],
+            "height_px": 16.9166403284527,
+            "width_px": 18.101272197951545,
+            "minimum_depth_m": 12.603916330691561
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town03_Opt/geometry.json",
+      "geometry_sha256": "7b7861e9ac47a04b187d9781a21bd485b97d3ed219541ad0c276c5d7c9d5e46b"
+    },
+    {
+      "route_id": 223,
+      "town": "Town04_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        144.55495136260987,
+        -173.3339245293513,
+        0.196,
+        0,
+        180.3261260986328,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              263.49551303225877,
+              100.80048378040566,
+              267.49797887751345,
+              110.16651412466858
+            ],
+            "height_px": 9.366030344262924,
+            "width_px": 4.002465845254676,
+            "minimum_depth_m": 20.98690829369447
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              659.9716456233613,
+              48.782183586693684,
+              678.7525354411753,
+              71.97299473574475
+            ],
+            "height_px": 23.190811149051065,
+            "width_px": 18.780889817814,
+            "minimum_depth_m": 9.521582403205542
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -87.78770598492754,
+              62.596399480105354,
+              -73.97122818760555,
+              81.99833934138243
+            ],
+            "height_px": 19.40193986127708,
+            "width_px": 13.816477797321994,
+            "minimum_depth_m": 11.13739784778953
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town04_Opt/geometry.json",
+      "geometry_sha256": "bbeb56504deb83466d9ab95917c4c6bade837e9b390443f0a7aaab7844615f3f"
+    },
+    {
+      "route_id": 225,
+      "town": "Town04_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        348.5393915476054,
+        -182.9307280240059,
+        0.004,
+        0,
+        90.77144622802734,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              257.00905106739197,
+              87.89304654289433,
+              260.4630694463109,
+              99.45613401200862
+            ],
+            "height_px": 11.563087469114294,
+            "width_px": 3.4540183789189314,
+            "minimum_depth_m": 17.659657330265645
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              632.1302969280235,
+              27.621742612364613,
+              646.5796868819621,
+              54.16290907837078
+            ],
+            "height_px": 26.541166466006167,
+            "width_px": 14.449389953938521,
+            "minimum_depth_m": 8.51387187039046
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -112.05735398153557,
+              32.76638160734275,
+              -98.8288327006125,
+              57.90309554091599
+            ],
+            "height_px": 25.13671393357324,
+            "width_px": 13.228521280923076,
+            "minimum_depth_m": 8.907644884840465
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town04_Opt/geometry.json",
+      "geometry_sha256": "bbeb56504deb83466d9ab95917c4c6bade837e9b390443f0a7aaab7844615f3f"
+    },
+    {
+      "route_id": 226,
+      "town": "Town04_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        203.57318266388774,
+        -234.25378946352004,
+        0.02,
+        0,
+        271.3144226074219,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              263.7894885410135,
+              94.53778039685012,
+              267.1563750243528,
+              105.123609330132
+            ],
+            "height_px": 10.585828933281874,
+            "width_px": 3.3668864833393286,
+            "minimum_depth_m": 19.093982567762936
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              661.3070632266489,
+              35.33326580225076,
+              677.0976251529629,
+              61.00934064695909
+            ],
+            "height_px": 25.67607484470833,
+            "width_px": 15.790561926314012,
+            "minimum_depth_m": 8.691075201972595
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -86.7443534608527,
+              51.09994924096527,
+              -75.11850624234262,
+              72.49840566718956
+            ],
+            "height_px": 21.398456426224286,
+            "width_px": 11.625847218510074,
+            "minimum_depth_m": 10.166095186697817
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town04_Opt/geometry.json",
+      "geometry_sha256": "bbeb56504deb83466d9ab95917c4c6bade837e9b390443f0a7aaab7844615f3f"
+    },
+    {
+      "route_id": 227,
+      "town": "Town04_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        243.53504863739013,
+        -169.27007576680927,
+        0.196,
+        0,
+        0.3261248767375946,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              263.7205468733893,
+              94.03850796218849,
+              268.3528349901453,
+              104.95081884020397
+            ],
+            "height_px": 10.912310878015475,
+            "width_px": 4.632288116756001,
+            "minimum_depth_m": 18.146461369617384
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              660.9932817842773,
+              33.03660015908444,
+              682.9382846857927,
+              60.70731219079053
+            ],
+            "height_px": 27.67071203170609,
+            "width_px": 21.94500290151541,
+            "minimum_depth_m": 8.170480415455813
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -86.98861732776547,
+              50.03033648997562,
+              -71.12537898700721,
+              72.86936719929832
+            ],
+            "height_px": 22.839030709322707,
+            "width_px": 15.863238340758258,
+            "minimum_depth_m": 9.648052907371298
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town04_Opt/geometry.json",
+      "geometry_sha256": "bbeb56504deb83466d9ab95917c4c6bade837e9b390443f0a7aaab7844615f3f"
+    },
+    {
+      "route_id": 228,
+      "town": "Town04_Opt",
+      "eligible_at_3m": false,
+      "ego_pose": [
+        254.97025445300528,
+        -183.62898569488524,
+        0.02,
+        0,
+        90.17675018310547,
+        0
+      ],
+      "views": {
+        "front": [
+          {
+            "status": "projected",
+            "in_image": true,
+            "fully_in_image": true,
+            "bbox_xyxy": [
+              255.58639903902184,
+              93.10092565726914,
+              258.8003758451996,
+              104.00587994738137
+            ],
+            "height_px": 10.90495429011223,
+            "width_px": 3.2139768061777545,
+            "minimum_depth_m": 18.554969241798887
+          }
+        ],
+        "left": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              626.41207918017,
+              39.854949845990795,
+              639.5212601408538,
+              64.2740293502439
+            ],
+            "height_px": 24.419079504253098,
+            "width_px": 13.109180960683716,
+            "minimum_depth_m": 9.068417149627237
+          }
+        ],
+        "right": [
+          {
+            "status": "projected",
+            "in_image": false,
+            "fully_in_image": false,
+            "bbox_xyxy": [
+              -117.72092366849105,
+              41.86543777755886,
+              -105.10682526198164,
+              65.73513245496356
+            ],
+            "height_px": 23.869694677404702,
+            "width_px": 12.614098406509413,
+            "minimum_depth_m": 9.24692619535108
+          }
+        ]
+      },
+      "geometry_path": "outputs/navigation_m2_signal_corpus_v2_20261016/Town04_Opt/geometry.json",
+      "geometry_sha256": "bbeb56504deb83466d9ab95917c4c6bade837e9b390443f0a7aaab7844615f3f"
+    }
+  ],
+  "eligible": [
+    {
+      "route_id": 79,
+      "town": "Town02_Opt",
+      "ego_pose": [
+        189.6833220687029,
+        177.875,
+        0.0,
+        0,
+        89.98705291748047,
+        0
+      ]
+    },
+    {
+      "route_id": 80,
+      "town": "Town02_Opt",
+      "ego_pose": [
+        146.2009994635582,
+        236.93282220916032,
+        0.0,
+        0,
+        -179.96519470214844,
+        0
+      ]
+    },
+    {
+      "route_id": 82,
+      "town": "Town02_Opt",
+      "ego_pose": [
+        179.06900035762786,
+        191.63462489063525,
+        0.0,
+        0,
+        0.02626265585422516,
+        0
+      ]
+    }
+  ]
+}

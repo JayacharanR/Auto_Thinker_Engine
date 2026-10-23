@@ -1,0 +1,5082 @@
+{
+  "status": "complete",
+  "completed_cells": 67,
+  "planned_cells": 67,
+  "request_sha256": "6ea7fb6395310af00b008f88596ff1fcbfce5b093bd7fdfeb192a6a9fa78f116",
+  "script_sha256": "887e5af2de6f0c5267d9dd6ec83988509a5fd722e67a0de9af5ab36f09a6aa08",
+  "selection_protocol_sha256": "151588b9cf177a41bdb44ee0c8e5e1de66cc5cd7c6c86fd84a19d05fab80cbae",
+  "groups": [
+    {
+      "encoder": "cnn_scratch",
+      "nominal_fraction": 0.05,
+      "labels": 549,
+      "actual_fraction": 0.03494144602851324,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5725230210664692,
+        "controller_stop_recall": 0.2226190476190476,
+        "controller_false_hold_fraction": 0.16437571592210767,
+        "go_speed_mae_mps": 5.082234345746962,
+        "path_correction_mae_m": 0.14882166830320206
+      },
+      "minima": {
+        "selection_score": 0.5364352528377702,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.0,
+        "go_speed_mae_mps": 3.56479502514581,
+        "path_correction_mae_m": 0.09353715834163484
+      },
+      "maxima": {
+        "selection_score": 0.6172354307227372,
+        "controller_stop_recall": 0.5946428571428571,
+        "controller_false_hold_fraction": 0.43470790378006874,
+        "go_speed_mae_mps": 5.861771536136859,
+        "path_correction_mae_m": 0.20281486567996798
+      },
+      "individual": [
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.05,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f005_seed42",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 6.104906995122025,
+            "go_speed_mae_mps": 3.56479502514581,
+            "controller_stop_recall": 0.07321428571428572,
+            "controller_false_hold_fraction": 0.058419243986254296,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5638983796389005,
+            "path_correction_mae_m": 0.1501129808880034,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 41,
+                "controller_go": 173,
+                "false_holds": 34
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "3a48d518dca6d1c69b2d4187fa85f558666755c513eb75a938cdb64758cfc504",
+          "labels": 549,
+          "elapsed_s": 522.3770220549995,
+          "request_sha256": "a51862eb421e2dabe86edd8193283d958491d71f614b014d0029aba0d67faa59",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.05,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f005_seed123",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 4.398846614651564,
+            "go_speed_mae_mps": 5.820136475958218,
+            "controller_stop_recall": 0.5946428571428571,
+            "controller_false_hold_fraction": 0.43470790378006874,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5364352528377702,
+            "path_correction_mae_m": 0.20281486567996798,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 63
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 25
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 174,
+                "controller_go": 130,
+                "false_holds": 46
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 150,
+                "controller_go": 173,
+                "false_holds": 74
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 9,
+                "controller_go": 60,
+                "false_holds": 28
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 17
+              }
+            }
+          },
+          "policy_sha256": "1da7652c76fb3fb0aa944a3575022f042b2e87dba418ec04e0effbd23d95ee46",
+          "labels": 549,
+          "elapsed_s": 510.6049377340005,
+          "request_sha256": "639f3a039c7940430ef3b4a7914efe27a39c8da9ee7d41e15ee4bf798f38a025",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.05,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f005_seed456",
+          "selected_step": 0,
+          "metrics": {
+            "speed_mae_mps": 3.93193444973085,
+            "go_speed_mae_mps": 5.861771536136859,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.6172354307227372,
+            "path_correction_mae_m": 0.09353715834163484,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "6b5e5669ac5fd7e5ff80d6c7a35d168a879c10a18dd4e75aa6687a0ed93cc7d6",
+          "labels": 549,
+          "elapsed_s": 515.6249865730006,
+          "request_sha256": "26c57e47d5af5a6cc8430050de800107d08bbd9080a7e15b82e5a0657acc6ba8",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        }
+      ],
+      "fit_wall_seconds": 1548.6069463620006
+    },
+    {
+      "encoder": "cnn_scratch",
+      "nominal_fraction": 0.1,
+      "labels": 1516,
+      "actual_fraction": 0.0964867617107943,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5561040495320766,
+        "controller_stop_recall": 0.0023809523809523807,
+        "controller_false_hold_fraction": 0.0,
+        "go_speed_mae_mps": 2.864726286127642,
+        "path_correction_mae_m": 0.11170077806427366
+      },
+      "minima": {
+        "selection_score": 0.5539561358830453,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.0,
+        "go_speed_mae_mps": 2.705165367758735,
+        "path_correction_mae_m": 0.10794935339973086
+      },
+      "maxima": {
+        "selection_score": 0.56025270535801,
+        "controller_stop_recall": 0.007142857142857143,
+        "controller_false_hold_fraction": 0.0,
+        "go_speed_mae_mps": 3.0126352679004986,
+        "path_correction_mae_m": 0.11760968622707185
+      },
+      "individual": [
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.1,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f010_seed42",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 4.110761363331864,
+            "go_speed_mae_mps": 3.0126352679004986,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.56025270535801,
+            "path_correction_mae_m": 0.10794935339973086,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "d5b4656a01cdba02373c4ca86a7526f522f1b4fd2671fb64becca30dc4ad0988",
+          "labels": 1516,
+          "elapsed_s": 358.20991050500015,
+          "request_sha256": "15afecbeba38345e5f8c3db51996ad992987e35fef91125992766c10ea161051",
+          "sampler_draws_sha256": "b4f372401627cf9ca5737fa95cd25553dc81f6fe94d1a5d115997fe282712850"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.1,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f010_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.693396818347093,
+            "go_speed_mae_mps": 2.705165367758735,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5541033073551747,
+            "path_correction_mae_m": 0.11760968622707185,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "93ce38ad3a126732d6197a7d3b50f4e876e80cbd852d38de8b475fdd0914172f",
+          "labels": 1516,
+          "elapsed_s": 368.6851857829988,
+          "request_sha256": "7b76f86d8419e67574bbf79de0d978789923ca5c2fbf4db2b0de455f5dd1c796",
+          "sampler_draws_sha256": "f8f75a7c50997f424be84b65af508f044883082a1991ae39281413ed8a7adb63"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.1,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f010_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.61474032227586,
+            "go_speed_mae_mps": 2.8763782227236923,
+            "controller_stop_recall": 0.007142857142857143,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5539561358830453,
+            "path_correction_mae_m": 0.10954329456601825,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 4,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "f66b3c6eff236bb00c82eb7fdc4e2ae09dcca16d4d92d08752350e581c52b403",
+          "labels": 1516,
+          "elapsed_s": 359.3653932449997,
+          "request_sha256": "a6435333f65699e0a5bc0d974a053e8fc22ba1664d54b3cb51a95766072f376f",
+          "sampler_draws_sha256": "5eea84d0b5ab5ab96671695e29d32e52ac1ccf0407b81c9197c5147f9d5c772c"
+        }
+      ],
+      "fit_wall_seconds": 1086.2604895329987
+    },
+    {
+      "encoder": "cnn_scratch",
+      "nominal_fraction": 0.25,
+      "labels": 3857,
+      "actual_fraction": 0.24548116089613034,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.4728912224100424,
+        "controller_stop_recall": 0.35654761904761906,
+        "controller_false_hold_fraction": 0.10481099656357389,
+        "go_speed_mae_mps": 4.937976682603249,
+        "path_correction_mae_m": 0.10705341990031893
+      },
+      "minima": {
+        "selection_score": 0.4248436706633769,
+        "controller_stop_recall": 0.29464285714285715,
+        "controller_false_hold_fraction": 0.044673539518900345,
+        "go_speed_mae_mps": 4.072479311273901,
+        "path_correction_mae_m": 0.08938428049995786
+      },
+      "maxima": {
+        "selection_score": 0.5213493147486031,
+        "controller_stop_recall": 0.3982142857142857,
+        "controller_false_hold_fraction": 0.20618556701030927,
+        "go_speed_mae_mps": 5.868183705029566,
+        "path_correction_mae_m": 0.11633986007599603
+      },
+      "individual": [
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.25,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f025_seed42",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 5.555067661331921,
+            "go_speed_mae_mps": 5.868183705029566,
+            "controller_stop_recall": 0.3982142857142857,
+            "controller_false_hold_fraction": 0.20618556701030927,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5213493147486031,
+            "path_correction_mae_m": 0.08938428049995786,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 92,
+                "controller_go": 130,
+                "false_holds": 40
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 83,
+                "controller_go": 173,
+                "false_holds": 41
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 48,
+                "controller_go": 60,
+                "false_holds": 39
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "3708c197eccca8a1413db24eb82a08815edfb656a585b3dde47c1caa2565ee54",
+          "labels": 3857,
+          "elapsed_s": 283.3553316130001,
+          "request_sha256": "d4bac33c7abaafb95d6440f48a5832a916ef139ad60ccb7b43d2f1952c3d528e",
+          "sampler_draws_sha256": "fcebd9857951868bb0ca4743a4a30b2812476930ccbc50532a1b8ce3020e2c34"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.25,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f025_seed123",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 3.1911704947308794,
+            "go_speed_mae_mps": 4.072479311273901,
+            "controller_stop_recall": 0.3767857142857143,
+            "controller_false_hold_fraction": 0.06357388316151202,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4248436706633769,
+            "path_correction_mae_m": 0.11633986007599603,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 11,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 87,
+                "controller_go": 130,
+                "false_holds": 1
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 82,
+                "controller_go": 173,
+                "false_holds": 5
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 31,
+                "controller_go": 60,
+                "false_holds": 14
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 11
+              }
+            }
+          },
+          "policy_sha256": "956b05e09ea219cbf48779d5db71e6e11f7637eb502bd667ab028b4aa542991b",
+          "labels": 3857,
+          "elapsed_s": 288.16159683299884,
+          "request_sha256": "e09aa953d9183b85616c4190aab6b0983008a9a02ee5d7372d6d8b9fb654b6a0",
+          "sampler_draws_sha256": "3480adc6fe790bcfd2bd9a59d1b68138a2ca4bf20e7af4398ab672b345e0f631"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 0.25,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f025_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.904630079502013,
+            "go_speed_mae_mps": 4.8732670315062805,
+            "controller_stop_recall": 0.29464285714285715,
+            "controller_false_hold_fraction": 0.044673539518900345,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4724806818181472,
+            "path_correction_mae_m": 0.1154361191250029,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 3
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 72,
+                "controller_go": 130,
+                "false_holds": 5
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 71,
+                "controller_go": 173,
+                "false_holds": 17
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 22,
+                "controller_go": 60,
+                "false_holds": 1
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "c58bb4ceaa1d5e81fcc09edb2f30294d76dc6f82d0c7fd1ad6a8edfa1305563b",
+          "labels": 3857,
+          "elapsed_s": 288.1812377140013,
+          "request_sha256": "864e8fe4492846d0ad4b5aab708a5c2bed4883797af644a3d26a180098eaa654",
+          "sampler_draws_sha256": "2adeb891ef9dca88979c1254d08ede242fd08c8805ea64f7d1129195135895fc"
+        }
+      ],
+      "fit_wall_seconds": 859.6981661600003
+    },
+    {
+      "encoder": "cnn_scratch",
+      "nominal_fraction": 1.0,
+      "labels": 15712,
+      "actual_fraction": 1.0,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.38738236579981616,
+        "controller_stop_recall": 0.5589285714285714,
+        "controller_false_hold_fraction": 0.18213058419243988,
+        "go_speed_mae_mps": 3.7890679708940986,
+        "path_correction_mae_m": 0.09408286828843375
+      },
+      "minima": {
+        "selection_score": 0.3533268638440351,
+        "controller_stop_recall": 0.48928571428571427,
+        "controller_false_hold_fraction": 0.09450171821305842,
+        "go_speed_mae_mps": 3.5445479345585102,
+        "path_correction_mae_m": 0.0818625264224552
+      },
+      "maxima": {
+        "selection_score": 0.4348299621275964,
+        "controller_stop_recall": 0.625,
+        "controller_false_hold_fraction": 0.29037800687285226,
+        "go_speed_mae_mps": 4.253542504916534,
+        "path_correction_mae_m": 0.10730963207426525
+      },
+      "individual": [
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 1.0,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f100_seed42",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 2.943582057952881,
+            "go_speed_mae_mps": 3.5691134732072523,
+            "controller_stop_recall": 0.48928571428571427,
+            "controller_false_hold_fraction": 0.09450171821305842,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.3739902714278171,
+            "path_correction_mae_m": 0.09307644636858077,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 15,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 107,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 104,
+                "controller_go": 173,
+                "false_holds": 28
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 48,
+                "controller_go": 60,
+                "false_holds": 20
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 1
+              }
+            }
+          },
+          "policy_sha256": "7e68203822c6e10c0f48c129a45942d067fdf9648cff2831444e50ed48fc20a3",
+          "labels": 15712,
+          "elapsed_s": 391.2532936179996,
+          "request_sha256": "04f4c1882259fc65e4ea5e68bd54bad45d09f4283034184941ec6d57e4cf2605",
+          "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 1.0,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f100_seed123",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 2.929599224067316,
+            "go_speed_mae_mps": 3.5445479345585102,
+            "controller_stop_recall": 0.5625,
+            "controller_false_hold_fraction": 0.29037800687285226,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4348299621275964,
+            "path_correction_mae_m": 0.0818625264224552,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 8
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 19
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 129,
+                "controller_go": 130,
+                "false_holds": 19
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 120,
+                "controller_go": 173,
+                "false_holds": 71
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 59,
+                "controller_go": 60,
+                "false_holds": 24
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 28
+              }
+            }
+          },
+          "policy_sha256": "5d6d0af8fe32d919ef2c2613d4a7195b7c82ca0d19426f7e50549dfb78228ae1",
+          "labels": 15712,
+          "elapsed_s": 320.3138498919998,
+          "request_sha256": "8ea55e078c53fb94206e4fa657a4fa35450c0be57c7c6b6724d4898e1cabd0e5",
+          "sampler_draws_sha256": "bea8b5d01dc8349b2819a39ff12a895b97f64cffbc9992ddc062f4f9b2df495a"
+        },
+        {
+          "encoder": "cnn_scratch",
+          "fraction": 1.0,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f100_seed456",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 3.1172663176931987,
+            "go_speed_mae_mps": 4.253542504916534,
+            "controller_stop_recall": 0.625,
+            "controller_false_hold_fraction": 0.16151202749140894,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.3533268638440351,
+            "path_correction_mae_m": 0.10730963207426525,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 2
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 7
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 140,
+                "controller_go": 130,
+                "false_holds": 13
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 154,
+                "controller_go": 173,
+                "false_holds": 54
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 49,
+                "controller_go": 60,
+                "false_holds": 18
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "1db115cf665cb1cf1673051ca4e9f8356f9394a2f5097d0144c3505f2abc1c6b",
+          "labels": 15712,
+          "elapsed_s": 308.44249294899964,
+          "request_sha256": "45822aafa9ca67e3b7eeabcf20e8904780a853a1ede64bb7ea85829a94bd4c35",
+          "sampler_draws_sha256": "5dced0f646113396151ac359071b4a7f43b5682b6df74c13a49f10f629213fdb"
+        }
+      ],
+      "fit_wall_seconds": 1020.009636458999
+    },
+    {
+      "encoder": "imagenet_resnet18",
+      "nominal_fraction": 0.05,
+      "labels": 549,
+      "actual_fraction": 0.03494144602851324,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5667702069203885,
+        "controller_stop_recall": 0.044642857142857144,
+        "controller_false_hold_fraction": 0.04639175257731959,
+        "go_speed_mae_mps": 3.2947879601578687,
+        "path_correction_mae_m": 0.26394190315216304
+      },
+      "minima": {
+        "selection_score": 0.555413723045693,
+        "controller_stop_recall": 0.008928571428571428,
+        "controller_false_hold_fraction": 0.015463917525773196,
+        "go_speed_mae_mps": 2.9625308316056898,
+        "path_correction_mae_m": 0.21877208664303735
+      },
+      "maxima": {
+        "selection_score": 0.5789421819179196,
+        "controller_stop_recall": 0.11607142857142858,
+        "controller_false_hold_fraction": 0.1013745704467354,
+        "go_speed_mae_mps": 3.7837254434659338,
+        "path_correction_mae_m": 0.2908811410268148
+      },
+      "individual": [
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.05,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f005_seed42",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 3.954278957553026,
+            "go_speed_mae_mps": 3.138107605401982,
+            "controller_stop_recall": 0.11607142857142858,
+            "controller_false_hold_fraction": 0.1013745704467354,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.555413723045693,
+            "path_correction_mae_m": 0.28217248178663706,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 1
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 6,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 45,
+                "controller_go": 130,
+                "false_holds": 20
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 3,
+                "controller_go": 173,
+                "false_holds": 17
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 11,
+                "controller_go": 60,
+                "false_holds": 12
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 9
+              }
+            }
+          },
+          "policy_sha256": "a6671fb094dca8fdf44816ff9305d949d68dc917b6921c99e2d5d4b01813d70d",
+          "labels": 549,
+          "elapsed_s": 65.01735132399972,
+          "request_sha256": "7c4bc69d005700ed1856a1db775dbe2fa30e75a1e3e14ee9f8ac93878d60d734",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.05,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f005_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.638313165525111,
+            "go_speed_mae_mps": 2.9625308316056898,
+            "controller_stop_recall": 0.008928571428571428,
+            "controller_false_hold_fraction": 0.022336769759450172,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5659547157975532,
+            "path_correction_mae_m": 0.21877208664303735,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 5,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 4
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 9
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "43966a3af62aa27518734832d6202add134654ed774bff92385bd8da92a73bd1",
+          "labels": 549,
+          "elapsed_s": 68.99773601500056,
+          "request_sha256": "b62eaa4e66e562341c431a332d7c231b4a54b173ef6142e2064d9379d584ad6a",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.05,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f005_seed456",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 3.746883764499571,
+            "go_speed_mae_mps": 3.7837254434659338,
+            "controller_stop_recall": 0.008928571428571428,
+            "controller_false_hold_fraction": 0.015463917525773196,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5789421819179196,
+            "path_correction_mae_m": 0.2908811410268148,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 5,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 3
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 6
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "d2ec2e4aebdc75fddc042e11f0934ac70ad65d7e9b0eff5348d68feee1d0daee",
+          "labels": 549,
+          "elapsed_s": 69.77803222700004,
+          "request_sha256": "b42c9b3acf4d17de92af42ba58751ff82b5dfc095703ada56bec6aa907a12a80",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        }
+      ],
+      "fit_wall_seconds": 203.7931195660003
+    },
+    {
+      "encoder": "imagenet_resnet18",
+      "nominal_fraction": 0.1,
+      "labels": 1516,
+      "actual_fraction": 0.0964867617107943,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5541452928961357,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.00286368843069874,
+        "go_speed_mae_mps": 2.635672434039318,
+        "path_correction_mae_m": 0.12478228078948128
+      },
+      "minima": {
+        "selection_score": 0.5498456525012274,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.0,
+        "go_speed_mae_mps": 2.4922826250613723,
+        "path_correction_mae_m": 0.11106155060586476
+      },
+      "maxima": {
+        "selection_score": 0.5574974272922917,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.00859106529209622,
+        "go_speed_mae_mps": 2.8748713646145814,
+        "path_correction_mae_m": 0.1481362087385995
+      },
+      "individual": [
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.1,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f010_seed42",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.370750194642602,
+            "go_speed_mae_mps": 2.8748713646145814,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5574974272922917,
+            "path_correction_mae_m": 0.11514908302397955,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "b96a05b6b89d1c6e2a1a8d85af4db7159840bc2eff3979fa0cccafd478deaf38",
+          "labels": 1516,
+          "elapsed_s": 61.981724317000044,
+          "request_sha256": "2a356eed7e7176c6c302589adc21147ee9c6af46ce62dc5536a09b6b248c2f55",
+          "sampler_draws_sha256": "b4f372401627cf9ca5737fa95cd25553dc81f6fe94d1a5d115997fe282712850"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.1,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f010_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.308229510377093,
+            "go_speed_mae_mps": 2.539863312442,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.00859106529209622,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.555092798894888,
+            "path_correction_mae_m": 0.11106155060586476,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 3
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 2
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "8983b7b05761cd24ca528888f5f9fe984c9655ecee12cad3c37f34d1c0c43820",
+          "labels": 1516,
+          "elapsed_s": 50.2061717710003,
+          "request_sha256": "956a03280e9a10094d55ca83853e398a5c5122a33e75edda4d6950c17d684d50",
+          "sampler_draws_sha256": "f8f75a7c50997f424be84b65af508f044883082a1991ae39281413ed8a7adb63"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.1,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f010_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.727189904305993,
+            "go_speed_mae_mps": 2.4922826250613723,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5498456525012274,
+            "path_correction_mae_m": 0.1481362087385995,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "b4fd70717dc054dc30b76127a0d8fa76b3178533eac062de2560c2a7b97354af",
+          "labels": 1516,
+          "elapsed_s": 54.616033016000074,
+          "request_sha256": "45c6f3fdcd4251fef3efc8f9fb9406ffd0682ef1990743085138d901424576ad",
+          "sampler_draws_sha256": "5eea84d0b5ab5ab96671695e29d32e52ac1ccf0407b81c9197c5147f9d5c772c"
+        }
+      ],
+      "fit_wall_seconds": 166.80392910400042
+    },
+    {
+      "encoder": "imagenet_resnet18",
+      "nominal_fraction": 0.25,
+      "labels": 3857,
+      "actual_fraction": 0.24548116089613034,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.4884699839184046,
+        "controller_stop_recall": 0.22857142857142856,
+        "controller_false_hold_fraction": 0.016036655211912946,
+        "go_speed_mae_mps": 4.736868529908126,
+        "path_correction_mae_m": 0.09996465250613197
+      },
+      "minima": {
+        "selection_score": 0.46251156895431045,
+        "controller_stop_recall": 0.175,
+        "controller_false_hold_fraction": 0.00859106529209622,
+        "go_speed_mae_mps": 4.117846488952637,
+        "path_correction_mae_m": 0.07162878868125734
+      },
+      "maxima": {
+        "selection_score": 0.5292911887168431,
+        "controller_stop_recall": 0.26071428571428573,
+        "controller_false_hold_fraction": 0.029209621993127148,
+        "go_speed_mae_mps": 5.1093188860139795,
+        "path_correction_mae_m": 0.11447240114212036
+      },
+      "individual": [
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.25,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f025_seed42",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 4.965093077682868,
+            "go_speed_mae_mps": 4.117846488952637,
+            "controller_stop_recall": 0.25,
+            "controller_false_hold_fraction": 0.010309278350515464,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.46251156895431045,
+            "path_correction_mae_m": 0.11447240114212036,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 3
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 66,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 74,
+                "controller_go": 173,
+                "false_holds": 3
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "5c9b3ddcf4c1aae61ac758d07621553f0d229269deef6f2e19d1403dcabb48bc",
+          "labels": 3857,
+          "elapsed_s": 57.51409001100001,
+          "request_sha256": "cb0155748288a7e3dc4805f42f17b1130ee5dcee476738f48cc58db6d7dd7ac2",
+          "sampler_draws_sha256": "fcebd9857951868bb0ca4743a4a30b2812476930ccbc50532a1b8ce3020e2c34"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.25,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f025_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 5.832659628333115,
+            "go_speed_mae_mps": 4.983440214757762,
+            "controller_stop_recall": 0.26071428571428573,
+            "controller_false_hold_fraction": 0.00859106529209622,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4736071940840605,
+            "path_correction_mae_m": 0.07162878868125734,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 70,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 65,
+                "controller_go": 173,
+                "false_holds": 4
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 11,
+                "controller_go": 60,
+                "false_holds": 1
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "52ddf3a478a8f148ed500bdd9c860420ab41abcd15995d4ff52c3ef306db8f83",
+          "labels": 3857,
+          "elapsed_s": 57.78317564699955,
+          "request_sha256": "1751e916ff706d38dc717c6fe864c8d7d3879ae59d70a2f003259a89dcf97811",
+          "sampler_draws_sha256": "3480adc6fe790bcfd2bd9a59d1b68138a2ca4bf20e7af4398ab672b345e0f631"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 0.25,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f025_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 6.286382372786359,
+            "go_speed_mae_mps": 5.1093188860139795,
+            "controller_stop_recall": 0.175,
+            "controller_false_hold_fraction": 0.029209621993127148,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5292911887168431,
+            "path_correction_mae_m": 0.11379276769501823,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 9
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 9,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 89,
+                "controller_go": 173,
+                "false_holds": 8
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "260f584364621e63f2ef17bae388976c3f624b5a824957b74b6ed7cf87fba357",
+          "labels": 3857,
+          "elapsed_s": 45.44829231099993,
+          "request_sha256": "813bf28d1dd5b07d08fcdc5fa834a573158d7ce1a71eec0afbc3427c0c3501e5",
+          "sampler_draws_sha256": "2adeb891ef9dca88979c1254d08ede242fd08c8805ea64f7d1129195135895fc"
+        }
+      ],
+      "fit_wall_seconds": 160.7455579689995
+    },
+    {
+      "encoder": "imagenet_resnet18",
+      "nominal_fraction": 1.0,
+      "labels": 15712,
+      "actual_fraction": 1.0,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.447664919932308,
+        "controller_stop_recall": 0.3678571428571429,
+        "controller_false_hold_fraction": 0.15406643757159222,
+        "go_speed_mae_mps": 2.728013628754168,
+        "path_correction_mae_m": 0.06353979697303166
+      },
+      "minima": {
+        "selection_score": 0.4443807693737747,
+        "controller_stop_recall": 0.2910714285714286,
+        "controller_false_hold_fraction": 0.08762886597938144,
+        "go_speed_mae_mps": 2.5378267857251244,
+        "path_correction_mae_m": 0.05317377703530448
+      },
+      "maxima": {
+        "selection_score": 0.4532207340409984,
+        "controller_stop_recall": 0.41964285714285715,
+        "controller_false_hold_fraction": 0.19243986254295534,
+        "go_speed_mae_mps": 2.8991133336862807,
+        "path_correction_mae_m": 0.07802387163752601
+      },
+      "individual": [
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 1.0,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f100_seed42",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 3.9894089291735395,
+            "go_speed_mae_mps": 2.7471007668510987,
+            "controller_stop_recall": 0.2910714285714286,
+            "controller_false_hold_fraction": 0.08762886597938144,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4532207340409984,
+            "path_correction_mae_m": 0.07802387163752601,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 18,
+                "controller_go": 83,
+                "false_holds": 33
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 111,
+                "controller_go": 173,
+                "false_holds": 8
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 34,
+                "controller_go": 60,
+                "false_holds": 10
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "65d020c285002e73e5c438b6496831eb7cfac812a5dea845f2fbff9d0472750a",
+          "labels": 15712,
+          "elapsed_s": 64.43390427299983,
+          "request_sha256": "c5f37a50eee770820ff89bbfa5766380770fef42ef3a3dc9c90dc7d93193136b",
+          "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 1.0,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f100_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.065795293668422,
+            "go_speed_mae_mps": 2.8991133336862807,
+            "controller_stop_recall": 0.41964285714285715,
+            "controller_false_hold_fraction": 0.19243986254295534,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4443807693737747,
+            "path_correction_mae_m": 0.05317377703530448,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 16,
+                "controller_go": 83,
+                "false_holds": 49
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 3,
+                "controller_go": 130,
+                "false_holds": 20
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 178,
+                "controller_go": 173,
+                "false_holds": 31
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 38,
+                "controller_go": 60,
+                "false_holds": 12
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "5e3f728670fc6ce3e76492095df1bf53e2a3aa89334d3758c2a3b30596a00554",
+          "labels": 15712,
+          "elapsed_s": 52.08636252100041,
+          "request_sha256": "d59cefdce21359ec6020a71115864ec04c6de25f073bf9f92cf4d400b15b8d8e",
+          "sampler_draws_sha256": "bea8b5d01dc8349b2819a39ff12a895b97f64cffbc9992ddc062f4f9b2df495a"
+        },
+        {
+          "encoder": "imagenet_resnet18",
+          "fraction": 1.0,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f100_seed456",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 3.5836786264326514,
+            "go_speed_mae_mps": 2.5378267857251244,
+            "controller_stop_recall": 0.39285714285714285,
+            "controller_false_hold_fraction": 0.18213058419243985,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.44539325638215105,
+            "path_correction_mae_m": 0.0594217422462645,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 11,
+                "controller_go": 83,
+                "false_holds": 41
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 36,
+                "controller_go": 130,
+                "false_holds": 19
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 131,
+                "controller_go": 173,
+                "false_holds": 21
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 42,
+                "controller_go": 60,
+                "false_holds": 25
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "06727ddf3a887c4eeda8202ff2eedf9b58ff82c27d015e1e33bcc84d2ae44321",
+          "labels": 15712,
+          "elapsed_s": 62.48017900499963,
+          "request_sha256": "f8e173a6863f1609c78486e124a914e8867637b40ca3a19e6ef9d123c02b1138",
+          "sampler_draws_sha256": "5dced0f646113396151ac359071b4a7f43b5682b6df74c13a49f10f629213fdb"
+        }
+      ],
+      "fit_wall_seconds": 179.00044579899986
+    },
+    {
+      "encoder": "dinov2_small",
+      "nominal_fraction": 0.05,
+      "labels": 549,
+      "actual_fraction": 0.03494144602851324,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5712745214043192,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.003436426116838488,
+        "go_speed_mae_mps": 3.477815417295003,
+        "path_correction_mae_m": 0.13611300190289816
+      },
+      "minima": {
+        "selection_score": 0.5619846114269278,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.0,
+        "go_speed_mae_mps": 3.0992305713463884,
+        "path_correction_mae_m": 0.10975734165736607
+      },
+      "maxima": {
+        "selection_score": 0.5789049388713633,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.010309278350515464,
+        "go_speed_mae_mps": 3.687514984805281,
+        "path_correction_mae_m": 0.18645318349202475
+      },
+      "individual": [
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.05,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f005_seed42",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.6646005235067225,
+            "go_speed_mae_mps": 3.0992305713463884,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5619846114269278,
+            "path_correction_mae_m": 0.10975734165736607,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "9b04e6bd04b1ec9d0e859de5b1bc305f8fd3486e84f6faf991c53d1b322fe08e",
+          "labels": 549,
+          "elapsed_s": 64.25469772500037,
+          "request_sha256": "0adf324a1e2e6d18ff023ca78404fb72e8c33190e47d58384f7f66391d011170",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.05,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f005_seed123",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 6.719206996080352,
+            "go_speed_mae_mps": 3.646700695733339,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.0,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5729340139146668,
+            "path_correction_mae_m": 0.11212848055930365,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "ee052f15ced5b5c323523c8eee273cd836d1bc6c83a9235f99ee4412b315514f",
+          "labels": 549,
+          "elapsed_s": 63.112352145999466,
+          "request_sha256": "bcd7aaff4e39e5fadcab193cc7a519bc38d26c089f1548da2f905e6a7bc458a9",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.05,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f005_seed456",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 5.808122181310886,
+            "go_speed_mae_mps": 3.687514984805281,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.010309278350515464,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5789049388713633,
+            "path_correction_mae_m": 0.18645318349202475,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 3
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 3
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "c1560ea59381629b1a2a25832d4472abb3505f490febfa0db991e714ae4ffe25",
+          "labels": 549,
+          "elapsed_s": 72.03005282699996,
+          "request_sha256": "a80641627b507591d388231d80c8620392ff5e3d37941f4d6624fdeabf0e9696",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        }
+      ],
+      "fit_wall_seconds": 199.3971026979998
+    },
+    {
+      "encoder": "dinov2_small",
+      "nominal_fraction": 0.1,
+      "labels": 1516,
+      "actual_fraction": 0.0964867617107943,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5500508784688665,
+        "controller_stop_recall": 0.036904761904761905,
+        "controller_false_hold_fraction": 0.033218785796105384,
+        "go_speed_mae_mps": 2.5946933261597356,
+        "path_correction_mae_m": 0.0956218342459391
+      },
+      "minima": {
+        "selection_score": 0.543577955133594,
+        "controller_stop_recall": 0.019642857142857142,
+        "controller_false_hold_fraction": 0.024054982817869417,
+        "go_speed_mae_mps": 2.2524603743579505,
+        "path_correction_mae_m": 0.05908797511032649
+      },
+      "maxima": {
+        "selection_score": 0.5593194099483403,
+        "controller_stop_recall": 0.05892857142857143,
+        "controller_false_hold_fraction": 0.044673539518900345,
+        "go_speed_mae_mps": 2.878916166105323,
+        "path_correction_mae_m": 0.12127929017657325
+      },
+      "individual": [
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.1,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f010_seed42",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.373627261417668,
+            "go_speed_mae_mps": 2.6527034380159327,
+            "controller_stop_recall": 0.03214285714285714,
+            "controller_false_hold_fraction": 0.044673539518900345,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5593194099483403,
+            "path_correction_mae_m": 0.12127929017657325,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 12
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 18,
+                "controller_go": 60,
+                "false_holds": 14
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "8d2de9a3a4d26d6e735700f519c8566aff6c8579b9d154f5544787ce5bc4ff13",
+          "labels": 1516,
+          "elapsed_s": 49.0763672589992,
+          "request_sha256": "385036443263bf3ccc90449acc6a5bccc8385cca9cbef9050ab3ff341250cd0f",
+          "sampler_draws_sha256": "b4f372401627cf9ca5737fa95cd25553dc81f6fe94d1a5d115997fe282712850"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.1,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f010_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.317957767626134,
+            "go_speed_mae_mps": 2.2524603743579505,
+            "controller_stop_recall": 0.019642857142857142,
+            "controller_false_hold_fraction": 0.024054982817869417,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5472552703246651,
+            "path_correction_mae_m": 0.05908797511032649,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 12
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 11,
+                "controller_go": 60,
+                "false_holds": 2
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "bbdfb53d704f2067ef6ac49b6594f792f82d9bb65ac39419a542e3e0210ed020",
+          "labels": 1516,
+          "elapsed_s": 52.45504186300059,
+          "request_sha256": "063cf2684b395666fc198acd452fd874f81331c7094fe141f2de290febd6ec9d",
+          "sampler_draws_sha256": "f8f75a7c50997f424be84b65af508f044883082a1991ae39281413ed8a7adb63"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.1,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f010_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.47227554786496,
+            "go_speed_mae_mps": 2.878916166105323,
+            "controller_stop_recall": 0.05892857142857143,
+            "controller_false_hold_fraction": 0.030927835051546393,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.543577955133594,
+            "path_correction_mae_m": 0.10649823745091756,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 4
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 32,
+                "controller_go": 130,
+                "false_holds": 11
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 1,
+                "controller_go": 60,
+                "false_holds": 3
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "9992a6d0d2e5223e617cae1fdab8a4ed831fe367e1b357b5fae47bc261653c13",
+          "labels": 1516,
+          "elapsed_s": 47.80531595299999,
+          "request_sha256": "c181d71c87644fc6897e13793a73856c6f99ce107c509dd7ec9194be5930dfcb",
+          "sampler_draws_sha256": "5eea84d0b5ab5ab96671695e29d32e52ac1ccf0407b81c9197c5147f9d5c772c"
+        }
+      ],
+      "fit_wall_seconds": 149.33672507499978
+    },
+    {
+      "encoder": "dinov2_small",
+      "nominal_fraction": 0.25,
+      "labels": 3857,
+      "actual_fraction": 0.24548116089613034,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.496502146491743,
+        "controller_stop_recall": 0.2970238095238095,
+        "controller_false_hold_fraction": 0.1265750286368843,
+        "go_speed_mae_mps": 4.08632684676028,
+        "path_correction_mae_m": 0.09738391207324133
+      },
+      "minima": {
+        "selection_score": 0.4263345022804761,
+        "controller_stop_recall": 0.05178571428571429,
+        "controller_false_hold_fraction": 0.04982817869415808,
+        "go_speed_mae_mps": 3.3400744021926796,
+        "path_correction_mae_m": 0.06706274989105407
+      },
+      "maxima": {
+        "selection_score": 0.573815907072305,
+        "controller_stop_recall": 0.4982142857142857,
+        "controller_false_hold_fraction": 0.2697594501718213,
+        "go_speed_mae_mps": 5.179172394684007,
+        "path_correction_mae_m": 0.1285446320261274
+      },
+      "individual": [
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.25,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f025_seed42",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 4.749329846079757,
+            "go_speed_mae_mps": 3.7397337434041567,
+            "controller_stop_recall": 0.05178571428571429,
+            "controller_false_hold_fraction": 0.04982817869415808,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.573815907072305,
+            "path_correction_mae_m": 0.1285446320261274,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 4
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 0
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 29,
+                "controller_go": 60,
+                "false_holds": 25
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "fcce679fa9cfb5570a73245c02cab2ee53fb9405330d5b1638e501c85fd682cd",
+          "labels": 3857,
+          "elapsed_s": 51.77847000499969,
+          "request_sha256": "fae87d1a5ccf346be4c4bb488ddc5958c332b69021942d5f5852a6620b8ab26d",
+          "sampler_draws_sha256": "fcebd9857951868bb0ca4743a4a30b2812476930ccbc50532a1b8ce3020e2c34"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.25,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f025_seed123",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 3.5619114608299443,
+            "go_speed_mae_mps": 3.3400744021926796,
+            "controller_stop_recall": 0.3410714285714286,
+            "controller_false_hold_fraction": 0.06013745704467354,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4263345022804761,
+            "path_correction_mae_m": 0.09654435430254255,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 6
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 10,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 53,
+                "controller_go": 130,
+                "false_holds": 6
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 75,
+                "controller_go": 173,
+                "false_holds": 5
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 53,
+                "controller_go": 60,
+                "false_holds": 12
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "13595c1c930eee8905259e8aaaa7ddbbecdd37353dcd0d8ba2830fc9731df98e",
+          "labels": 3857,
+          "elapsed_s": 59.66769946699969,
+          "request_sha256": "fc3be68942cd2398ea29ae487a754289f868ca3cac79006f686f88fccdf71bc5",
+          "sampler_draws_sha256": "3480adc6fe790bcfd2bd9a59d1b68138a2ca4bf20e7af4398ab672b345e0f631"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 0.25,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f025_seed456",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 5.178113855966708,
+            "go_speed_mae_mps": 5.179172394684007,
+            "controller_stop_recall": 0.4982142857142857,
+            "controller_false_hold_fraction": 0.2697594501718213,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4893560301224479,
+            "path_correction_mae_m": 0.06706274989105407,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 35
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 18,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 137,
+                "controller_go": 130,
+                "false_holds": 48
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 117,
+                "controller_go": 173,
+                "false_holds": 64
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 7,
+                "controller_go": 60,
+                "false_holds": 4
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "81927da236799df2f03f0f64eab5552e482f2e11066cfaeac523786470b963a9",
+          "labels": 3857,
+          "elapsed_s": 43.36900521299958,
+          "request_sha256": "ccf520db3558d7e05466ecf8ddf54428ce9a5c9169a739ad7303fb5510bdcd7b",
+          "sampler_draws_sha256": "2adeb891ef9dca88979c1254d08ede242fd08c8805ea64f7d1129195135895fc"
+        }
+      ],
+      "fit_wall_seconds": 154.81517468499896
+    },
+    {
+      "encoder": "dinov2_small",
+      "nominal_fraction": 1.0,
+      "labels": 15712,
+      "actual_fraction": 1.0,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.4323406367268741,
+        "controller_stop_recall": 0.4488095238095238,
+        "controller_false_hold_fraction": 0.18041237113402062,
+        "go_speed_mae_mps": 3.326960653231289,
+        "path_correction_mae_m": 0.10746515535172962
+      },
+      "minima": {
+        "selection_score": 0.4022810250769974,
+        "controller_stop_recall": 0.39107142857142857,
+        "controller_false_hold_fraction": 0.07560137457044673,
+        "go_speed_mae_mps": 3.0008026038744173,
+        "path_correction_mae_m": 0.09501230546406338
+      },
+      "maxima": {
+        "selection_score": 0.4808144722747084,
+        "controller_stop_recall": 0.5071428571428571,
+        "controller_false_hold_fraction": 0.27147766323024053,
+        "go_speed_mae_mps": 3.5209401799828965,
+        "path_correction_mae_m": 0.12222231172379994
+      },
+      "individual": [
+        {
+          "encoder": "dinov2_small",
+          "fraction": 1.0,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f100_seed42",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 3.3971527960242294,
+            "go_speed_mae_mps": 3.4591391758365524,
+            "controller_stop_recall": 0.44821428571428573,
+            "controller_false_hold_fraction": 0.27147766323024053,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4808144722747084,
+            "path_correction_mae_m": 0.10516084886732556,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 9
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 14,
+                "controller_go": 83,
+                "false_holds": 25
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 53,
+                "controller_go": 130,
+                "false_holds": 25
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 141,
+                "controller_go": 173,
+                "false_holds": 62
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 43,
+                "controller_go": 60,
+                "false_holds": 37
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "85ef816e89832d5dc589f0d2397a86dbdecf0b93036f6614d95adcca441ca3d6",
+          "labels": 15712,
+          "elapsed_s": 58.15818332299932,
+          "request_sha256": "a6dee33fe468006560c432bec9db3fe650d3eb41c7a64e74e977cff15dfc4b77",
+          "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 1.0,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f100_seed123",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 3.357299287144731,
+            "go_speed_mae_mps": 3.0008026038744173,
+            "controller_stop_recall": 0.39107142857142857,
+            "controller_false_hold_fraction": 0.07560137457044673,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4022810250769974,
+            "path_correction_mae_m": 0.09501230546406338,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 17,
+                "controller_go": 83,
+                "false_holds": 18
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 67,
+                "controller_go": 130,
+                "false_holds": 5
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 95,
+                "controller_go": 173,
+                "false_holds": 15
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 40,
+                "controller_go": 60,
+                "false_holds": 6
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "7682076f9a65ecf3901478b7c4205dde8e82756b5500611570438dfb8d30a130",
+          "labels": 15712,
+          "elapsed_s": 53.51998765299959,
+          "request_sha256": "1fa786cb55fe119e77d08061986cb3bf4ed1b3b71de2f4a06ee5090d4410f7fb",
+          "sampler_draws_sha256": "bea8b5d01dc8349b2819a39ff12a895b97f64cffbc9992ddc062f4f9b2df495a"
+        },
+        {
+          "encoder": "dinov2_small",
+          "fraction": 1.0,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f100_seed456",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 4.202785032551463,
+            "go_speed_mae_mps": 3.5209401799828965,
+            "controller_stop_recall": 0.5071428571428571,
+            "controller_false_hold_fraction": 0.19415807560137457,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4139264128289166,
+            "path_correction_mae_m": 0.12222231172379994,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 15,
+                "controller_go": 83,
+                "false_holds": 40
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 68,
+                "controller_go": 130,
+                "false_holds": 12
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 150,
+                "controller_go": 173,
+                "false_holds": 46
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 51,
+                "controller_go": 60,
+                "false_holds": 15
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "643f767114e8dc6533619bd97f62418b1ee74306fc61e1695e95f16810ae9782",
+          "labels": 15712,
+          "elapsed_s": 55.865900700000566,
+          "request_sha256": "dd59ab9a640a76d0f8a7e69f1114d081abe3a069b6d1f924deb16b0d77c36fd7",
+          "sampler_draws_sha256": "5dced0f646113396151ac359071b4a7f43b5682b6df74c13a49f10f629213fdb"
+        }
+      ],
+      "fit_wall_seconds": 167.54407167599948
+    },
+    {
+      "encoder": "jepa_comma2k19",
+      "nominal_fraction": 0.05,
+      "labels": 549,
+      "actual_fraction": 0.03494144602851324,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5635555755098437,
+        "controller_stop_recall": 0.6226190476190476,
+        "controller_false_hold_fraction": 0.511454753722795,
+        "go_speed_mae_mps": 5.956886122898503,
+        "path_correction_mae_m": 0.23467615369766479
+      },
+      "minima": {
+        "selection_score": 0.5434592623136626,
+        "controller_stop_recall": 0.5142857142857142,
+        "controller_false_hold_fraction": 0.38316151202749144,
+        "go_speed_mae_mps": 5.451068172138699,
+        "path_correction_mae_m": 0.22921719267254784
+      },
+      "maxima": {
+        "selection_score": 0.5987526460078111,
+        "controller_stop_recall": 0.6821428571428572,
+        "controller_false_hold_fraction": 0.6219931271477663,
+        "go_speed_mae_mps": 6.246071789146129,
+        "path_correction_mae_m": 0.23960723876953124
+      },
+      "individual": [
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.05,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f005_seed42",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.198361303748154,
+            "go_speed_mae_mps": 5.451068172138699,
+            "controller_stop_recall": 0.5142857142857142,
+            "controller_false_hold_fraction": 0.38316151202749144,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5434592623136626,
+            "path_correction_mae_m": 0.23520402965091525,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 48
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 180,
+                "controller_go": 130,
+                "false_holds": 94
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 108,
+                "controller_go": 173,
+                "false_holds": 75
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 6
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "f5a853c8b132f88573e9193e262d9f390b58585afaee8b6f208b3b3ac889cc54",
+          "labels": 549,
+          "elapsed_s": 66.33148692000032,
+          "request_sha256": "c6a71b5f99fcbff40c94f2030603a0f8b48a6a49d615f84ca60042f9d361078d",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.05,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f005_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.258540595450053,
+            "go_speed_mae_mps": 6.246071789146129,
+            "controller_stop_recall": 0.6821428571428572,
+            "controller_false_hold_fraction": 0.5292096219931272,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5484548182080575,
+            "path_correction_mae_m": 0.22921719267254784,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 65
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 18,
+                "controller_go": 83,
+                "false_holds": 46
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 160,
+                "controller_go": 130,
+                "false_holds": 64
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 141,
+                "controller_go": 173,
+                "false_holds": 73
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 63,
+                "controller_go": 60,
+                "false_holds": 60
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "1c44ff7eda1bee017403934ac74cba6d04bb296b054b45347d6ca8c0618ac850",
+          "labels": 549,
+          "elapsed_s": 62.50617715699991,
+          "request_sha256": "e8ca6e501cb1228084f6b3cb467ff44a6df7a9891bc7fbd1867a84b5f117fe81",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.05,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f005_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.231185017562494,
+            "go_speed_mae_mps": 6.17351840741068,
+            "controller_stop_recall": 0.6714285714285714,
+            "controller_false_hold_fraction": 0.6219931271477663,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5987526460078111,
+            "path_correction_mae_m": 0.23960723876953124,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 78
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 18,
+                "controller_go": 83,
+                "false_holds": 44
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 160,
+                "controller_go": 130,
+                "false_holds": 89
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 135,
+                "controller_go": 173,
+                "false_holds": 91
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 63,
+                "controller_go": 60,
+                "false_holds": 60
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "dc42d66434bdb013e111e52cca9c7fac70bc9cc47777179c7325e7cb16077fff",
+          "labels": 549,
+          "elapsed_s": 64.15434442699916,
+          "request_sha256": "aacf2254400ddfe1b157d991dfac24b9eeb0caf6953206360701d617947a2610",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        }
+      ],
+      "fit_wall_seconds": 192.9920085039994
+    },
+    {
+      "encoder": "jepa_comma2k19",
+      "nominal_fraction": 0.1,
+      "labels": 1516,
+      "actual_fraction": 0.0964867617107943,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.48514086564157316,
+        "controller_stop_recall": 0.2726190476190476,
+        "controller_false_hold_fraction": 0.09221076746849943,
+        "go_speed_mae_mps": 3.767250285842362,
+        "path_correction_mae_m": 0.1527628018742516
+      },
+      "minima": {
+        "selection_score": 0.4592803308012467,
+        "controller_stop_recall": 0.18214285714285713,
+        "controller_false_hold_fraction": 0.06357388316151202,
+        "go_speed_mae_mps": 3.681830727593016,
+        "path_correction_mae_m": 0.14900842848278228
+      },
+      "maxima": {
+        "selection_score": 0.5184116997283472,
+        "controller_stop_recall": 0.32321428571428573,
+        "controller_false_hold_fraction": 0.11855670103092783,
+        "go_speed_mae_mps": 3.8848093359509885,
+        "path_correction_mae_m": 0.15567237933476766
+      },
+      "individual": [
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.1,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f010_seed42",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 3.7071071485193765,
+            "go_speed_mae_mps": 3.681830727593016,
+            "controller_stop_recall": 0.32321428571428573,
+            "controller_false_hold_fraction": 0.09450171821305842,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4592803308012467,
+            "path_correction_mae_m": 0.15360759780520483,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 3,
+                "controller_go": 83,
+                "false_holds": 22
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 100,
+                "controller_go": 130,
+                "false_holds": 2
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 70,
+                "controller_go": 173,
+                "false_holds": 24
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 8,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 7
+              }
+            }
+          },
+          "policy_sha256": "782b898ae3b433504c9b79ceeff1a0a031cbd8ce1198a90f8e3362f633897eb4",
+          "labels": 1516,
+          "elapsed_s": 57.75323617999857,
+          "request_sha256": "9321536645ceea5edffd8e1c89b735274a4531310890a3a6a5a5869e48cc04b2",
+          "sampler_draws_sha256": "b4f372401627cf9ca5737fa95cd25553dc81f6fe94d1a5d115997fe282712850"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.1,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f010_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.281050879780839,
+            "go_speed_mae_mps": 3.8848093359509885,
+            "controller_stop_recall": 0.18214285714285713,
+            "controller_false_hold_fraction": 0.06357388316151202,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5184116997283472,
+            "path_correction_mae_m": 0.14900842848278228,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 88,
+                "controller_go": 130,
+                "false_holds": 5
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 2,
+                "controller_go": 173,
+                "false_holds": 31
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 5,
+                "controller_go": 60,
+                "false_holds": 1
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "86ff5ca3d65ed951d75906b4e3b184cbdf0a9d4cc32b730651b2ad644a22abd8",
+          "labels": 1516,
+          "elapsed_s": 52.0260038560009,
+          "request_sha256": "38dc272ccb731c47d35580aab6ef84d7d11cbcd5cfea62c5cfce09c3f37fff67",
+          "sampler_draws_sha256": "f8f75a7c50997f424be84b65af508f044883082a1991ae39281413ed8a7adb63"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.1,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f010_seed456",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.262130341878751,
+            "go_speed_mae_mps": 3.7351107939830803,
+            "controller_stop_recall": 0.3125,
+            "controller_false_hold_fraction": 0.11855670103092783,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.47773056639512557,
+            "path_correction_mae_m": 0.15567237933476766,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 3
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 3
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 120,
+                "controller_go": 130,
+                "false_holds": 6
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 46,
+                "controller_go": 173,
+                "false_holds": 55
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 9,
+                "controller_go": 60,
+                "false_holds": 2
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "f7687c7b1456f7a876315fc11cc3ef3dac55a52941a4d617cfb056901937a27a",
+          "labels": 1516,
+          "elapsed_s": 53.912381647000075,
+          "request_sha256": "26fa1055376f4afb0819f42032525fee575ec2d20a2adcdbe926913fccb86366",
+          "sampler_draws_sha256": "5eea84d0b5ab5ab96671695e29d32e52ac1ccf0407b81c9197c5147f9d5c772c"
+        }
+      ],
+      "fit_wall_seconds": 163.69162168299954
+    },
+    {
+      "encoder": "jepa_comma2k19",
+      "nominal_fraction": 0.25,
+      "labels": 3857,
+      "actual_fraction": 0.24548116089613034,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.4198321744457026,
+        "controller_stop_recall": 0.4523809523809524,
+        "controller_false_hold_fraction": 0.10996563573883163,
+        "go_speed_mae_mps": 4.551991638338149,
+        "path_correction_mae_m": 0.10685826275083754
+      },
+      "minima": {
+        "selection_score": 0.41502717335377404,
+        "controller_stop_recall": 0.3767857142857143,
+        "controller_false_hold_fraction": 0.058419243986254296,
+        "go_speed_mae_mps": 4.407805400658708,
+        "path_correction_mae_m": 0.07840088236899603
+      },
+      "maxima": {
+        "selection_score": 0.42897287286344415,
+        "controller_stop_recall": 0.5107142857142857,
+        "controller_false_hold_fraction": 0.16323024054982818,
+        "go_speed_mae_mps": 4.8097097175556,
+        "path_correction_mae_m": 0.13145938998176937
+      },
+      "individual": [
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.25,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f025_seed42",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 3.766422353139738,
+            "go_speed_mae_mps": 4.8097097175556,
+            "controller_stop_recall": 0.46964285714285714,
+            "controller_false_hold_fraction": 0.10824742268041238,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4154964771198896,
+            "path_correction_mae_m": 0.13145938998176937,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 23
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 8
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 118,
+                "controller_go": 130,
+                "false_holds": 18
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 116,
+                "controller_go": 173,
+                "false_holds": 10
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 22,
+                "controller_go": 60,
+                "false_holds": 4
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "601c559bb700573d1b979b1890a1325fe897b44cf5f0f2354759968899dedeb1",
+          "labels": 3857,
+          "elapsed_s": 43.47995146199992,
+          "request_sha256": "b3c5e18666a5092c8cb4eda8e00f14825619163266687a5b4b97b8a4ddbd00ee",
+          "sampler_draws_sha256": "fcebd9857951868bb0ca4743a4a30b2812476930ccbc50532a1b8ce3020e2c34"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.25,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f025_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 3.7837471729371606,
+            "go_speed_mae_mps": 4.407805400658708,
+            "controller_stop_recall": 0.3767857142857143,
+            "controller_false_hold_fraction": 0.058419243986254296,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.42897287286344415,
+            "path_correction_mae_m": 0.07840088236899603,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 4
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 113,
+                "controller_go": 130,
+                "false_holds": 3
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 73,
+                "controller_go": 173,
+                "false_holds": 22
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 18,
+                "controller_go": 60,
+                "false_holds": 3
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 2
+              }
+            }
+          },
+          "policy_sha256": "0408ba40fb151808048324159ac2a02a2968e2ccec296e5f89fb7be8f31f4e5e",
+          "labels": 3857,
+          "elapsed_s": 42.73477368099975,
+          "request_sha256": "91876d80e725cf8609f90e8270abf4c3f19dd47100b2972a531151b6dcfef2e7",
+          "sampler_draws_sha256": "3480adc6fe790bcfd2bd9a59d1b68138a2ca4bf20e7af4398ab672b345e0f631"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 0.25,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f025_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 3.5015346538729784,
+            "go_speed_mae_mps": 4.43845979680014,
+            "controller_stop_recall": 0.5107142857142857,
+            "controller_false_hold_fraction": 0.16323024054982818,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.41502717335377404,
+            "path_correction_mae_m": 0.1107145159017472,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 23
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 18,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 154,
+                "controller_go": 130,
+                "false_holds": 25
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 113,
+                "controller_go": 173,
+                "false_holds": 23
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 1,
+                "controller_go": 60,
+                "false_holds": 18
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "02740d603538db321149a55fa08658def1094f9a0a5d8364e681eb790a9d7911",
+          "labels": 3857,
+          "elapsed_s": 42.55998029899911,
+          "request_sha256": "31c6caa8866bbb0aa13122c07ea4bb35cd82e285fa7f7f1be26310a93359b8c9",
+          "sampler_draws_sha256": "2adeb891ef9dca88979c1254d08ede242fd08c8805ea64f7d1129195135895fc"
+        }
+      ],
+      "fit_wall_seconds": 128.77470544199878
+    },
+    {
+      "encoder": "jepa_comma2k19",
+      "nominal_fraction": 1.0,
+      "labels": 15712,
+      "actual_fraction": 1.0,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.37553539226587795,
+        "controller_stop_recall": 0.5202380952380953,
+        "controller_false_hold_fraction": 0.10022909507445592,
+        "go_speed_mae_mps": 4.27699461738488,
+        "path_correction_mae_m": 0.10251122949615359
+      },
+      "minima": {
+        "selection_score": 0.3514074394985026,
+        "controller_stop_recall": 0.4375,
+        "controller_false_hold_fraction": 0.07388316151202749,
+        "go_speed_mae_mps": 4.0761063718005435,
+        "path_correction_mae_m": 0.08897452127365839
+      },
+      "maxima": {
+        "selection_score": 0.4100229865425401,
+        "controller_stop_recall": 0.5803571428571429,
+        "controller_false_hold_fraction": 0.1323024054982818,
+        "go_speed_mae_mps": 4.4601559718010835,
+        "path_correction_mae_m": 0.12286794497853233
+      },
+      "individual": [
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 1.0,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f100_seed42",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 3.5677059976066032,
+            "go_speed_mae_mps": 4.294721508553015,
+            "controller_stop_recall": 0.5428571428571428,
+            "controller_false_hold_fraction": 0.07388316151202749,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.3514074394985026,
+            "path_correction_mae_m": 0.08897452127365839,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 2
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 13
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 133,
+                "controller_go": 130,
+                "false_holds": 10
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 141,
+                "controller_go": 173,
+                "false_holds": 15
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 23,
+                "controller_go": 60,
+                "false_holds": 3
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "937d3d1ee0f07f7ed2d655207907386862bd7f71ce4ff9aa79dc16c03b653c52",
+          "labels": 15712,
+          "elapsed_s": 47.83430880999913,
+          "request_sha256": "f1b95444ea31e0386d3ac5644e59ce47888ae03daedb2f14be00c8718b0a7257",
+          "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 1.0,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f100_seed123",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 3.537574861107803,
+            "go_speed_mae_mps": 4.0761063718005435,
+            "controller_stop_recall": 0.4375,
+            "controller_false_hold_fraction": 0.09450171821305842,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4100229865425401,
+            "path_correction_mae_m": 0.12286794497853233,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 17
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 113,
+                "controller_go": 130,
+                "false_holds": 17
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 108,
+                "controller_go": 173,
+                "false_holds": 21
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 17,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "7cfde5f02b70071c58ac48bdd775b13e9051f82575ea9599ecdcbe30cb50aac5",
+          "labels": 15712,
+          "elapsed_s": 46.99034454899993,
+          "request_sha256": "f5eea771dc637d7354ba261a9f683a62427929a05fd1893706796b5dafd9f4dc",
+          "sampler_draws_sha256": "bea8b5d01dc8349b2819a39ff12a895b97f64cffbc9992ddc062f4f9b2df495a"
+        },
+        {
+          "encoder": "jepa_comma2k19",
+          "fraction": 1.0,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f100_seed456",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 3.669267328774057,
+            "go_speed_mae_mps": 4.4601559718010835,
+            "controller_stop_recall": 0.5803571428571429,
+            "controller_false_hold_fraction": 0.1323024054982818,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.3651757507565911,
+            "path_correction_mae_m": 0.09569122223627,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 13
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 15
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 167,
+                "controller_go": 130,
+                "false_holds": 29
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 122,
+                "controller_go": 173,
+                "false_holds": 19
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 29,
+                "controller_go": 60,
+                "false_holds": 1
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "752d47c0c6e7a73de2ad7c488ae1b2d11bbbe59cd532d1283702376c72fe5936",
+          "labels": 15712,
+          "elapsed_s": 41.7454022740003,
+          "request_sha256": "e85792bb5b6b7383a8fead8607ed2619fdea69df257d3cdc96d1a5f920262c97",
+          "sampler_draws_sha256": "5dced0f646113396151ac359071b4a7f43b5682b6df74c13a49f10f629213fdb"
+        }
+      ],
+      "fit_wall_seconds": 136.57005563299936
+    },
+    {
+      "encoder": "jepa_carla",
+      "nominal_fraction": 0.05,
+      "labels": 549,
+      "actual_fraction": 0.03494144602851324,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5970626903944244,
+        "controller_stop_recall": 0.531547619047619,
+        "controller_false_hold_fraction": 0.506872852233677,
+        "go_speed_mae_mps": 5.470003690069771,
+        "path_correction_mae_m": 0.17387499638966153
+      },
+      "minima": {
+        "selection_score": 0.5879508346740832,
+        "controller_stop_recall": 0.4660714285714286,
+        "controller_false_hold_fraction": 0.47594501718213056,
+        "go_speed_mae_mps": 5.307950362316153,
+        "path_correction_mae_m": 0.14660530317397344
+      },
+      "maxima": {
+        "selection_score": 0.6119530451686106,
+        "controller_stop_recall": 0.6142857142857143,
+        "controller_false_hold_fraction": 0.5601374570446735,
+        "go_speed_mae_mps": 5.751248164730177,
+        "path_correction_mae_m": 0.21907550380343482
+      },
+      "individual": [
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.05,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f005_seed42",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.468372693875941,
+            "go_speed_mae_mps": 5.350812543162983,
+            "controller_stop_recall": 0.4660714285714286,
+            "controller_false_hold_fraction": 0.47594501718213056,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.6119530451686106,
+            "path_correction_mae_m": 0.14660530317397344,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 57
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 31
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 118,
+                "controller_go": 130,
+                "false_holds": 47
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 96,
+                "controller_go": 173,
+                "false_holds": 82
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 47,
+                "controller_go": 60,
+                "false_holds": 60
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "6c1934670687fe1daaef08ac9a133bd244691b6d6627a968ed4ce4ade1a3abc5",
+          "labels": 549,
+          "elapsed_s": 59.624766524000734,
+          "request_sha256": "4c10682ccb13db068d374bda67fc7653bc17f293facd571c8831713030fb9f41",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.05,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f005_seed123",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.372396457486037,
+            "go_speed_mae_mps": 5.751248164730177,
+            "controller_stop_recall": 0.6142857142857143,
+            "controller_false_hold_fraction": 0.5601374570446735,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5879508346740832,
+            "path_correction_mae_m": 0.15594418219157627,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 80
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 26
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 178,
+                "controller_go": 130,
+                "false_holds": 55
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 103,
+                "controller_go": 173,
+                "false_holds": 105
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 63,
+                "controller_go": 60,
+                "false_holds": 60
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "3a83c837544b9683eb6e05c47b4f8b0b2eea9f803be312afd3342810b1aeecb7",
+          "labels": 549,
+          "elapsed_s": 60.08541372000036,
+          "request_sha256": "64d02b506403c57e90d6d5becc87f2d3e78c2589ed7090d5f37baa53c60ea444",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.05,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f005_seed456",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 4.204613359963021,
+            "go_speed_mae_mps": 5.307950362316153,
+            "controller_stop_recall": 0.5142857142857142,
+            "controller_false_hold_fraction": 0.4845360824742268,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5912841913405794,
+            "path_correction_mae_m": 0.21907550380343482,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 80
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 24
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 122,
+                "controller_go": 130,
+                "false_holds": 48
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 103,
+                "controller_go": 173,
+                "false_holds": 70
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 63,
+                "controller_go": 60,
+                "false_holds": 60
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "962da26bd06c07514bb3c227f1f93ae01adb04118b2753590e68831fa4591c73",
+          "labels": 549,
+          "elapsed_s": 61.28130934699948,
+          "request_sha256": "abaac9f9a482d11f1998243096d4cb535bc2aabb7ec8886cdc638cbb5042c4c3",
+          "sampler_draws_sha256": "0fee0a6fd771ef3c590e0504626eeb1edfe4816bf2cf3edd4eace5c75c4b21e2"
+        }
+      ],
+      "fit_wall_seconds": 180.99148959100057
+    },
+    {
+      "encoder": "jepa_carla",
+      "nominal_fraction": 0.1,
+      "labels": 1516,
+      "actual_fraction": 0.0964867617107943,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5769026283600018,
+        "controller_stop_recall": 0.16666666666666666,
+        "controller_false_hold_fraction": 0.1672394043528064,
+        "go_speed_mae_mps": 3.8308129758466016,
+        "path_correction_mae_m": 0.10800592274892899
+      },
+      "minima": {
+        "selection_score": 0.5663924643173662,
+        "controller_stop_recall": 0.0,
+        "controller_false_hold_fraction": 0.012027491408934709,
+        "go_speed_mae_mps": 3.2965770637132845,
+        "path_correction_mae_m": 0.0956210854507628
+      },
+      "maxima": {
+        "selection_score": 0.5923701337839063,
+        "controller_stop_recall": 0.275,
+        "controller_false_hold_fraction": 0.24570446735395188,
+        "go_speed_mae_mps": 4.143850331807005,
+        "path_correction_mae_m": 0.13110852099600293
+      },
+      "individual": [
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.1,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f010_seed42",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 6.0020961238116755,
+            "go_speed_mae_mps": 3.2965770637132845,
+            "controller_stop_recall": 0.0,
+            "controller_false_hold_fraction": 0.012027491408934709,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.571945286978733,
+            "path_correction_mae_m": 0.09728816180002121,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 0,
+                "controller_go": 83,
+                "false_holds": 0
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 0,
+                "controller_go": 130,
+                "false_holds": 2
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 1
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 4
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "06a5d703942525ecb2e6cc0c744acd591d54cf812449bd12685b3bc43fe259ab",
+          "labels": 1516,
+          "elapsed_s": 47.6759028330016,
+          "request_sha256": "b680f3e0cdf7e4a74dc754d1c557d922083189bf1062c1a26deb5a54b44c84b7",
+          "sampler_draws_sha256": "b4f372401627cf9ca5737fa95cd25553dc81f6fe94d1a5d115997fe282712850"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.1,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f010_seed123",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 4.973922473628346,
+            "go_speed_mae_mps": 4.143850331807005,
+            "controller_stop_recall": 0.225,
+            "controller_false_hold_fraction": 0.24398625429553264,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5923701337839063,
+            "path_correction_mae_m": 0.13110852099600293,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 4
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 21
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 53,
+                "controller_go": 130,
+                "false_holds": 26
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 43,
+                "controller_go": 173,
+                "false_holds": 49
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 23,
+                "controller_go": 60,
+                "false_holds": 19
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 23
+              }
+            }
+          },
+          "policy_sha256": "6baabf2c343e309396aa767a443ef4631aecbeaac84e186de1ef73675ec4c5cc",
+          "labels": 1516,
+          "elapsed_s": 48.715068334000534,
+          "request_sha256": "dc70ebadf861e15344ceaf583635fafd5ad2268125a51a9d9b0396c7d7d81038",
+          "sampler_draws_sha256": "f8f75a7c50997f424be84b65af508f044883082a1991ae39281413ed8a7adb63"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.1,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f010_seed456",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 4.626292339185389,
+            "go_speed_mae_mps": 4.052011532019515,
+            "controller_stop_recall": 0.275,
+            "controller_false_hold_fraction": 0.24570446735395188,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5663924643173662,
+            "path_correction_mae_m": 0.0956210854507628,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 17
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 10,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 135,
+                "controller_go": 130,
+                "false_holds": 33
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 4,
+                "controller_go": 173,
+                "false_holds": 37
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 5,
+                "controller_go": 60,
+                "false_holds": 20
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 30
+              }
+            }
+          },
+          "policy_sha256": "2b1fc2f130d50205aba317de95d8426b4a52a2ef51fcba59e1827216523d4703",
+          "labels": 1516,
+          "elapsed_s": 53.64382156300053,
+          "request_sha256": "0baba612441130a5cc6ff4ffc49f53a4e2dff5c4a8feaa0c31292f5eafe25ad7",
+          "sampler_draws_sha256": "5eea84d0b5ab5ab96671695e29d32e52ac1ccf0407b81c9197c5147f9d5c772c"
+        }
+      ],
+      "fit_wall_seconds": 150.03479273000266
+    },
+    {
+      "encoder": "jepa_carla",
+      "nominal_fraction": 0.25,
+      "labels": 3857,
+      "actual_fraction": 0.24548116089613034,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.5282667730895976,
+        "controller_stop_recall": 0.17380952380952383,
+        "controller_false_hold_fraction": 0.05441008018327606,
+        "go_speed_mae_mps": 4.398324745136072,
+        "path_correction_mae_m": 0.15873426558479428
+      },
+      "minima": {
+        "selection_score": 0.4999547028136955,
+        "controller_stop_recall": 0.09821428571428571,
+        "controller_false_hold_fraction": 0.03264604810996564,
+        "go_speed_mae_mps": 3.8741465299827618,
+        "path_correction_mae_m": 0.13085474655741736
+      },
+      "maxima": {
+        "selection_score": 0.5537542839027427,
+        "controller_stop_recall": 0.23035714285714284,
+        "controller_false_hold_fraction": 0.09278350515463918,
+        "go_speed_mae_mps": 4.993907570180314,
+        "path_correction_mae_m": 0.2041971200988406
+      },
+      "individual": [
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.25,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f025_seed42",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 5.094982833397098,
+            "go_speed_mae_mps": 4.993907570180314,
+            "controller_stop_recall": 0.23035714285714284,
+            "controller_false_hold_fraction": 0.09278350515463918,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5310913325523544,
+            "path_correction_mae_m": 0.13085474655741736,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 5
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 8
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 33,
+                "controller_go": 130,
+                "false_holds": 10
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 78,
+                "controller_go": 173,
+                "false_holds": 17
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 11,
+                "controller_go": 60,
+                "false_holds": 14
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "99186972121ff4ee7c93df84c312dccbc4723e650d366b2b98b83c3364d508a9",
+          "labels": 3857,
+          "elapsed_s": 39.73914179299936,
+          "request_sha256": "eeb8247035e66d3e5b8d49a1d18aaa12f75c3d8820ddf6deb42f7d3cfbc393db",
+          "sampler_draws_sha256": "fcebd9857951868bb0ca4743a4a30b2812476930ccbc50532a1b8ce3020e2c34"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.25,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f025_seed123",
+          "selected_step": 1000,
+          "metrics": {
+            "speed_mae_mps": 5.77154038010574,
+            "go_speed_mae_mps": 4.326920135245139,
+            "controller_stop_recall": 0.09821428571428571,
+            "controller_false_hold_fraction": 0.03264604810996564,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.5537542839027427,
+            "path_correction_mae_m": 0.2041971200988406,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 48,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 0,
+                "controller_go": 173,
+                "false_holds": 9
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 4
+              }
+            }
+          },
+          "policy_sha256": "3907f597ba9283fb64b0e536c625bebff87668e808f540e471cc1fbe4494d77a",
+          "labels": 3857,
+          "elapsed_s": 42.656430707000254,
+          "request_sha256": "76d00adf7f8b273bf9a3275fbb53cc339d3ac64ae121b433ac0c4106d86dc018",
+          "sampler_draws_sha256": "3480adc6fe790bcfd2bd9a59d1b68138a2ca4bf20e7af4398ab672b345e0f631"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 0.25,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f025_seed456",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 4.501500542570905,
+            "go_speed_mae_mps": 3.8741465299827618,
+            "controller_stop_recall": 0.19285714285714287,
+            "controller_false_hold_fraction": 0.037800687285223365,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4999547028136955,
+            "path_correction_mae_m": 0.1411509300981249,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 2
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 6
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 43,
+                "controller_go": 130,
+                "false_holds": 0
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 48,
+                "controller_go": 173,
+                "false_holds": 8
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 10,
+                "controller_go": 60,
+                "false_holds": 6
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "5eb9a428eff8f9632bfdecbd378326fb054574cfc47759cffc094c31af944289",
+          "labels": 3857,
+          "elapsed_s": 38.615525830999104,
+          "request_sha256": "947cc08ea3f53ab78b62b343e676c4d01b65390c8cf7c7964c55bb316994877f",
+          "sampler_draws_sha256": "2adeb891ef9dca88979c1254d08ede242fd08c8805ea64f7d1129195135895fc"
+        }
+      ],
+      "fit_wall_seconds": 121.01109833099872
+    },
+    {
+      "encoder": "jepa_carla",
+      "nominal_fraction": 1.0,
+      "labels": 15712,
+      "actual_fraction": 1.0,
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "means": {
+        "selection_score": 0.46281905878387614,
+        "controller_stop_recall": 0.3773809523809524,
+        "controller_false_hold_fraction": 0.13631156930126,
+        "go_speed_mae_mps": 4.1676875161861195,
+        "path_correction_mae_m": 0.11859119619641985
+      },
+      "minima": {
+        "selection_score": 0.42299130517209077,
+        "controller_stop_recall": 0.35535714285714287,
+        "controller_false_hold_fraction": 0.07216494845360824,
+        "go_speed_mae_mps": 3.6757986901214768,
+        "path_correction_mae_m": 0.11009169164158049
+      },
+      "maxima": {
+        "selection_score": 0.485107552905382,
+        "controller_stop_recall": 0.4035714285714286,
+        "controller_false_hold_fraction": 0.20962199312714777,
+        "go_speed_mae_mps": 4.723150327060763,
+        "path_correction_mae_m": 0.12517391187804086
+      },
+      "individual": [
+        {
+          "encoder": "jepa_carla",
+          "fraction": 1.0,
+          "seed": 42,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f100_seed42",
+          "selected_step": 1500,
+          "metrics": {
+            "speed_mae_mps": 3.712466315525334,
+            "go_speed_mae_mps": 3.6757986901214768,
+            "controller_stop_recall": 0.3732142857142857,
+            "controller_false_hold_fraction": 0.07216494845360824,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.42299130517209077,
+            "path_correction_mae_m": 0.12517391187804086,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 6
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 12,
+                "controller_go": 83,
+                "false_holds": 10
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 94,
+                "controller_go": 130,
+                "false_holds": 4
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 89,
+                "controller_go": 173,
+                "false_holds": 22
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 14,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "47b59587ec8e7cf7b260084084cd51f8462531104edbd7ee621d6ea3c1c393e6",
+          "labels": 15712,
+          "elapsed_s": 40.81772390900005,
+          "request_sha256": "a22d35fd90fdba233c3d80bc3930b503d3ec7bc11564d68572a127667a73e216",
+          "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 1.0,
+          "seed": 123,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f100_seed123",
+          "selected_step": 500,
+          "metrics": {
+            "speed_mae_mps": 3.7770104582716777,
+            "go_speed_mae_mps": 4.104113531376117,
+            "controller_stop_recall": 0.4035714285714286,
+            "controller_false_hold_fraction": 0.20962199312714777,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.485107552905382,
+            "path_correction_mae_m": 0.12050798506963821,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 16,
+                "controller_go": 83,
+                "false_holds": 32
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 71,
+                "controller_go": 130,
+                "false_holds": 33
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 139,
+                "controller_go": 173,
+                "false_holds": 57
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "58ad7c2c5f0677d439bffb5daf574eea0c031f1b7310f3c926e76cb49b93769b",
+          "labels": 15712,
+          "elapsed_s": 43.03646181300064,
+          "request_sha256": "f427b35c25b0fa8b7bab5dddab6848fd5edc200abc33b1bf6e7767da938c772c",
+          "sampler_draws_sha256": "bea8b5d01dc8349b2819a39ff12a895b97f64cffbc9992ddc062f4f9b2df495a"
+        },
+        {
+          "encoder": "jepa_carla",
+          "fraction": 1.0,
+          "seed": 456,
+          "color_enabled": true,
+          "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f100_seed456",
+          "selected_step": 2000,
+          "metrics": {
+            "speed_mae_mps": 4.815923283739788,
+            "go_speed_mae_mps": 4.723150327060763,
+            "controller_stop_recall": 0.35535714285714287,
+            "controller_false_hold_fraction": 0.12714776632302405,
+            "counts": {
+              "speed": 1312,
+              "go": 724,
+              "stopped": 560,
+              "controller_go": 582
+            },
+            "selection_score": 0.4803583182741558,
+            "path_correction_mae_m": 0.11009169164158049,
+            "families": {
+              "crossing_yield": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 92,
+                "false_holds": 0
+              },
+              "route_junction": {
+                "stopped": 18,
+                "stop_hits": 7,
+                "controller_go": 83,
+                "false_holds": 26
+              },
+              "signal_release_memory": {
+                "stopped": 278,
+                "stop_hits": 87,
+                "controller_go": 130,
+                "false_holds": 9
+              },
+              "signal_stop": {
+                "stopped": 201,
+                "stop_hits": 105,
+                "controller_go": 173,
+                "false_holds": 39
+              },
+              "stop_sign": {
+                "stopped": 63,
+                "stop_hits": 0,
+                "controller_go": 60,
+                "false_holds": 0
+              },
+              "following_stopped_vehicle": {
+                "stopped": 0,
+                "stop_hits": 0,
+                "controller_go": 44,
+                "false_holds": 0
+              }
+            }
+          },
+          "policy_sha256": "78210bdc5dd8eace9a8036e0a6660baeb748f93bc898d2c64176eeb5ad544601",
+          "labels": 15712,
+          "elapsed_s": 42.17969751899909,
+          "request_sha256": "a434bdfd26dd23988617a33a2c763882c68f66c9dab52a285d392de1fb80071e",
+          "sampler_draws_sha256": "5dced0f646113396151ac359071b4a7f43b5682b6df74c13a49f10f629213fdb"
+        }
+      ],
+      "fit_wall_seconds": 126.03388324099978
+    }
+  ],
+  "component_ablations": [
+    {
+      "encoder": "jepa_carla",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": false,
+      "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f100_seed42_no_color",
+      "selected_step": 2000,
+      "metrics": {
+        "speed_mae_mps": 4.501932051123642,
+        "go_speed_mae_mps": 4.845953019284412,
+        "controller_stop_recall": 0.3535714285714286,
+        "controller_false_hold_fraction": 0.1958762886597938,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.5180714904298708,
+        "path_correction_mae_m": 0.13997012376785278,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 35
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 7,
+            "controller_go": 83,
+            "false_holds": 21
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 108,
+            "controller_go": 130,
+            "false_holds": 29
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 61,
+            "controller_go": 173,
+            "false_holds": 23
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 22,
+            "controller_go": 60,
+            "false_holds": 6
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 0
+          }
+        }
+      },
+      "policy_sha256": "10a7b0c8d9b22a06e618e44f23f7c6347371a48ce3c820a8f2bf0b2c4d848fce",
+      "labels": 15712,
+      "elapsed_s": 39.80535758200131,
+      "request_sha256": "223588988e672f17e2a6d60c562890aac467990166cf2208ac7a6bf00fee7566",
+      "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+    },
+    {
+      "encoder": "cnn_scratch",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": false,
+      "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f100_seed42_no_color",
+      "selected_step": 1000,
+      "metrics": {
+        "speed_mae_mps": 4.015198631984432,
+        "go_speed_mae_mps": 4.153093201020805,
+        "controller_stop_recall": 0.4446428571428571,
+        "controller_false_hold_fraction": 0.19072164948453607,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.4561012601912556,
+        "path_correction_mae_m": 0.106531309229987,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 18,
+            "controller_go": 83,
+            "false_holds": 11
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 116,
+            "controller_go": 130,
+            "false_holds": 3
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 115,
+            "controller_go": 173,
+            "false_holds": 63
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 0,
+            "controller_go": 60,
+            "false_holds": 0
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 34
+          }
+        }
+      },
+      "policy_sha256": "ee5675cd60f5aee9bb60e9c78a2e84ec44565598d033c724dc3c6b982044afe4",
+      "labels": 15712,
+      "elapsed_s": 305.6744907329994,
+      "request_sha256": "c2050083cc4f2f77bbd2d254fce5695024228e2f2495b089ea3fc19bc1befcd3",
+      "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+    },
+    {
+      "encoder": "jepa_comma2k19",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": false,
+      "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f100_seed42_no_color",
+      "selected_step": 1000,
+      "metrics": {
+        "speed_mae_mps": 3.100221633911133,
+        "go_speed_mae_mps": 4.153567709316865,
+        "controller_stop_recall": 0.6053571428571428,
+        "controller_false_hold_fraction": 0.1254295532646048,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.3431075593900683,
+        "path_correction_mae_m": 0.07856577180680774,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 12
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 7,
+            "controller_go": 83,
+            "false_holds": 10
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 178,
+            "controller_go": 130,
+            "false_holds": 21
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 137,
+            "controller_go": 173,
+            "false_holds": 29
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 17,
+            "controller_go": 60,
+            "false_holds": 1
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 0
+          }
+        }
+      },
+      "policy_sha256": "6f27a7b42d9fe5bbd32949987c51ae3c6b1614af2cd6ca61140607926171d1ce",
+      "labels": 15712,
+      "elapsed_s": 40.739515277000464,
+      "request_sha256": "cf867c484473e98c5f62ff167dd5b7d35b7dbe0d4484e79e8de65c568b8ee1aa",
+      "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+    },
+    {
+      "encoder": "dinov2_small",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": false,
+      "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f100_seed42_no_color",
+      "selected_step": 500,
+      "metrics": {
+        "speed_mae_mps": 4.550251768856514,
+        "go_speed_mae_mps": 3.988154037222678,
+        "controller_stop_recall": 0.3821428571428571,
+        "controller_false_hold_fraction": 0.21649484536082475,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.49693907485343736,
+        "path_correction_mae_m": 0.06765393160638355,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 4
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 18,
+            "controller_go": 83,
+            "false_holds": 40
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 71,
+            "controller_go": 130,
+            "false_holds": 19
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 106,
+            "controller_go": 173,
+            "false_holds": 63
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 19,
+            "controller_go": 60,
+            "false_holds": 0
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 0
+          }
+        }
+      },
+      "policy_sha256": "6c6259a867aab422c4e51845807db91617ceb83f371bac637302cb62b05e3a5d",
+      "labels": 15712,
+      "elapsed_s": 47.930823154999416,
+      "request_sha256": "4862f68c0f03f19f453a6e02f2310aa22b7d61e78d5b7e2f2fa42bd0b0d09ae6",
+      "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+    },
+    {
+      "encoder": "nav_color_only",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": true,
+      "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/nav_color_only_f100_seed42",
+      "selected_step": 1500,
+      "metrics": {
+        "speed_mae_mps": 3.977640250834023,
+        "go_speed_mae_mps": 3.6454692650895093,
+        "controller_stop_recall": 0.42857142857142855,
+        "controller_false_hold_fraction": 0.1323024054982818,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.4247748737652168,
+        "path_correction_mae_m": 0.10115891836938404,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 7,
+            "controller_go": 83,
+            "false_holds": 11
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 119,
+            "controller_go": 130,
+            "false_holds": 20
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 96,
+            "controller_go": 173,
+            "false_holds": 31
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 18,
+            "controller_go": 60,
+            "false_holds": 15
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 0
+          }
+        }
+      },
+      "policy_sha256": "c7817442a82591b5e9bbf2e00e1329cf15abf1fac6e7ae2ad69e8d18df86f1b6",
+      "labels": 15712,
+      "elapsed_s": 49.10739660000036,
+      "request_sha256": "e409c610ed7afd2897f6ed325bafef4a324d56fee636ce84b6fab65137cd7207",
+      "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+    },
+    {
+      "encoder": "imagenet_resnet18",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": false,
+      "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f100_seed42_no_color",
+      "selected_step": 2000,
+      "metrics": {
+        "speed_mae_mps": 4.722492508771943,
+        "go_speed_mae_mps": 2.866623167174956,
+        "controller_stop_recall": 0.25892857142857145,
+        "controller_false_hold_fraction": 0.058419243986254296,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.4570777996223406,
+        "path_correction_mae_m": 0.08604910146622431,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 17,
+            "controller_go": 83,
+            "false_holds": 18
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 1,
+            "controller_go": 130,
+            "false_holds": 1
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 114,
+            "controller_go": 173,
+            "false_holds": 1
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 13,
+            "controller_go": 60,
+            "false_holds": 14
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 0
+          }
+        }
+      },
+      "policy_sha256": "53728ec08ff8ada9d105366381039182f4c9b484d344304e3596cdd7b407318a",
+      "labels": 15712,
+      "elapsed_s": 46.58251953299987,
+      "request_sha256": "564ee423c38bb0c69ab7d9ed2ddaf279d77cf60cbfe5e2bc7912050131b82725",
+      "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+    }
+  ],
+  "primary_candidate": {
+    "encoder": "jepa_comma2k19",
+    "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f100_seed42",
+    "policy_sha256": "937d3d1ee0f07f7ed2d655207907386862bd7f71ce4ff9aa79dc16c03b653c52",
+    "selection": "Lowest mean full-label internal score over all3 seeds; fixed seed42 weights",
+    "driving_qualified": false
+  },
+  "figure": "reports/navigation_m4_repaired_20261020.png",
+  "driving_improvement_established": false,
+  "random_vit_diagnostic_pending": false,
+  "random_vit_diagnostic": [
+    {
+      "encoder": "jepa_random",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": true,
+      "fit": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/jepa_random_f100_seed42",
+      "selected_step": 1000,
+      "metrics": {
+        "speed_mae_mps": 4.030176366247782,
+        "go_speed_mae_mps": 4.133807387799848,
+        "controller_stop_recall": 0.5821428571428572,
+        "controller_false_hold_fraction": 0.27147766323024053,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.42734355079968867,
+        "path_correction_mae_m": 0.12454075742335546,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 17,
+            "controller_go": 83,
+            "false_holds": 19
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 152,
+            "controller_go": 130,
+            "false_holds": 50
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 157,
+            "controller_go": 173,
+            "false_holds": 89
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 0,
+            "controller_go": 60,
+            "false_holds": 0
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 0
+          }
+        }
+      },
+      "policy_sha256": "04c1ee5016880eb5fac749ced2f847d880db7c2c424e424340e0f171020c7fb7",
+      "labels": 15712,
+      "elapsed_s": 49.574151398999675,
+      "request_sha256": "4d7379fd9e359c30f46ecf635e78d60d7f9b0e84f181ee3c2e3aa990e9df00be",
+      "sampler_draws_sha256": "d7774d802cae60957b25796bf19d3573b9155c3557d72cd334432ddb3ceed619"
+    }
+  ],
+  "actual_geography_repaired": true,
+  "repair_protocol_sha256": "5e21fdf941e3a8dd5ead9c74bc90c3a519d2f1a4fbecfd7d9cafe909cd8d0205",
+  "note": "Fixed original13 validation episodes/1312 positions; offline familiar validation. All cells/seeds/failures retained."
+}

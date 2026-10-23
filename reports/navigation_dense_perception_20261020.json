@@ -1,0 +1,97 @@
+{
+  "original_assessment_sha256": "b8bd732059b4153bbabf0e8a13ef24794aadc7e10d2a5bef8cec37b9f31bc389",
+  "generating_source_sha256": "e99993ea08eaba943385c359f04a79b10da1af1e28bdc7c84251081ebe5fe451",
+  "breakdown": {
+    "all": {
+      "visible": 1584,
+      "raw": 1110,
+      "projectable": 926,
+      "fused": 666
+    },
+    "depth:15-30": {
+      "visible": 465,
+      "raw": 432,
+      "projectable": 431,
+      "fused": 287
+    },
+    "depth:30-60": {
+      "visible": 591,
+      "raw": 414,
+      "projectable": 273,
+      "fused": 246
+    },
+    "depth:<15": {
+      "visible": 253,
+      "raw": 223,
+      "projectable": 214,
+      "fused": 125
+    },
+    "depth:>=60": {
+      "visible": 275,
+      "raw": 41,
+      "projectable": 8,
+      "fused": 8
+    },
+    "group:vehicle": {
+      "visible": 1584,
+      "raw": 1110,
+      "projectable": 926,
+      "fused": 666
+    },
+    "pixels:128-511": {
+      "visible": 393,
+      "raw": 380,
+      "projectable": 365,
+      "fused": 266
+    },
+    "pixels:32-127": {
+      "visible": 434,
+      "raw": 315,
+      "projectable": 226,
+      "fused": 199
+    },
+    "pixels:8-31": {
+      "visible": 430,
+      "raw": 91,
+      "projectable": 20,
+      "fused": 17
+    },
+    "pixels:>=512": {
+      "visible": 327,
+      "raw": 324,
+      "projectable": 315,
+      "fused": 184
+    },
+    "town:Town03_Opt": {
+      "visible": 946,
+      "raw": 703,
+      "projectable": 546,
+      "fused": 382
+    },
+    "town:Town04_Opt": {
+      "visible": 638,
+      "raw": 407,
+      "projectable": 380,
+      "fused": 284
+    },
+    "truncated:False": {
+      "visible": 1328,
+      "raw": 919,
+      "projectable": 754,
+      "fused": 570
+    },
+    "truncated:True": {
+      "visible": 256,
+      "raw": 191,
+      "projectable": 172,
+      "fused": 96
+    }
+  },
+  "all_observed_groups": [
+    "vehicle"
+  ],
+  "tiny_instance_views": 140,
+  "posthoc_descriptive_breakdown": true,
+  "no_model_updates": true,
+  "independent_locations": 2
+}

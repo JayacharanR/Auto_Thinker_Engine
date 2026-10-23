@@ -1,0 +1,281 @@
+{
+  "status": "M2 remains open; no component or driving-policy promotion",
+  "corpus_v2": {
+    "audit_complete": true,
+    "all_cases_complete": true,
+    "static_label_data_gate_passed": true,
+    "cases": 51,
+    "native_rgb_images": 612,
+    "responsive_junctions": [
+      [
+        "Town01_Opt",
+        26
+      ],
+      [
+        "Town01_Opt",
+        87
+      ],
+      [
+        "Town01_Opt",
+        306
+      ],
+      [
+        "Town02_Opt",
+        76
+      ],
+      [
+        "Town02_Opt",
+        132
+      ],
+      [
+        "Town02_Opt",
+        242
+      ],
+      [
+        "Town02_Opt",
+        298
+      ],
+      [
+        "Town03_Opt",
+        238
+      ],
+      [
+        "Town03_Opt",
+        356
+      ],
+      [
+        "Town03_Opt",
+        655
+      ],
+      [
+        "Town03_Opt",
+        1221
+      ],
+      [
+        "Town04_Opt",
+        335
+      ],
+      [
+        "Town04_Opt",
+        916
+      ],
+      [
+        "Town04_Opt",
+        1103
+      ],
+      [
+        "Town04_Opt",
+        1249
+      ],
+      [
+        "Town10HD_Opt",
+        468
+      ]
+    ],
+    "supported_head_view_pairs": 63,
+    "yellow_supported_pairs": 62,
+    "plan_sha256": "92335457bb8521593450eff76007a119e663a49b01c9820689b049b7c32c911e",
+    "scope": "Static TRAIN perception pairs; no driving, action target, policy performance or original-traffic visibility claim"
+  },
+  "previous_corpus_gate_retained_failed": true,
+  "center_supervision": {
+    "status": "complete",
+    "selected_step": 200,
+    "validation": {
+      "selection_score": 1.5581609511328147,
+      "foreground_cross_entropy": 1.2508551875750225,
+      "background_cross_entropy": 1.5365288177889607,
+      "center_class_accuracy": 0.4444444444444444,
+      "supported_points": 72,
+      "class_counts": {
+        "1": {
+          "correct": 22,
+          "total": 36
+        },
+        "2": {
+          "correct": 6,
+          "total": 18
+        },
+        "3": {
+          "correct": 4,
+          "total": 18
+        }
+      },
+      "within4px_at_probability_half": 0.5555555555555556,
+      "background_active_fraction_at_half": 0.09379188209660919,
+      "background_active_fraction_at_nine": 0.005021658618697007,
+      "scope": "Sparse static lamp centers/background; not detection AP or driving reliability"
+    },
+    "wall_seconds": 13.174590435000937,
+    "parameters": 37772,
+    "component_sha256": "6ce6b4604ee0bb28c0ff73f528228c848024158ceed1bc7dcd755d67df9b7407",
+    "scope": "RGB phase-localization prototype only; no driving claim or policy promotion"
+  },
+  "region_supervision": {
+    "status": "complete",
+    "selected_step": 1000,
+    "validation": {
+      "selection_score": 1.5785345679532394,
+      "foreground_cross_entropy": 1.2559835645887587,
+      "background_cross_entropy": 1.6127550168224039,
+      "center_class_accuracy": 0.3888888888888889,
+      "supported_points": 72,
+      "class_counts": {
+        "1": {
+          "correct": 26,
+          "total": 36
+        },
+        "2": {
+          "correct": 0,
+          "total": 18
+        },
+        "3": {
+          "correct": 2,
+          "total": 18
+        }
+      },
+      "within4px_at_probability_half": 0.027777777777777776,
+      "background_active_fraction_at_half": 0.0298522624527528,
+      "background_active_fraction_at_nine": 0.00021460405361518252,
+      "scope": "Sparse static lamp centers/background; not detection AP or driving reliability"
+    },
+    "wall_seconds": 11.14395599800082,
+    "parameters": 37772,
+    "component_sha256": "95e31671a8c9ae72717e1f4eceda2331f9bab5b4a44353e3f4ec9d0727066771",
+    "scope": "RGB phase-localization prototype only; no driving claim or policy promotion"
+  },
+  "oracle_crop_state": {
+    "diagnostic_complete": true,
+    "oracle_crops": true,
+    "training_crops": 179,
+    "validation_crops": 72,
+    "validation_correct": 61,
+    "validation_accuracy": 0.8472222222222222,
+    "training_accuracy": 1.0,
+    "classes": [
+      "Red",
+      "Yellow",
+      "Green"
+    ],
+    "confusion_matrix": [
+      [
+        30,
+        4,
+        2
+      ],
+      [
+        0,
+        17,
+        1
+      ],
+      [
+        3,
+        1,
+        14
+      ]
+    ],
+    "by_junction_correct_total": {
+      "Town01_Opt:87": [
+        7,
+        8
+      ],
+      "Town03_Opt:655": [
+        16,
+        20
+      ],
+      "Town04_Opt:335": [
+        12,
+        12
+      ],
+      "Town10HD_Opt:468": [
+        26,
+        32
+      ]
+    },
+    "iterations": [
+      28
+    ],
+    "wall_seconds": 2.565467564001665,
+    "artifact_predictions_verified": true,
+    "artifact_sha256": "928e47ef9c29a2ddb64b4d1aeeadaa144351cc63b7f8bed394a7e6ba4873f832",
+    "scope": "Annotation-provided ROI ceiling only; no learned localization, lane applicability, camera-only deployment or driving result",
+    "limitations": [
+      "Only4 TRAIN validation junctions and72 correlated crops",
+      "Annotation development inspected some of those TRAIN locations",
+      "Different model/input normalization from whole-frame CNN, not an isolated architecture or encoder ablation"
+    ]
+  },
+  "reference_detector": {
+    "diagnostic_complete": true,
+    "counts": {
+      "centers": 72,
+      "detected_iou3": 14,
+      "detected_iou5": 8,
+      "contained": 14,
+      "detected_iou3_state_correct": 14,
+      "images": 144,
+      "traffic_light_predictions": 134
+    },
+    "mean_three_view_seconds": 0.18266897551044128,
+    "p95_three_view_seconds": 0.19529450769878168,
+    "peak_torch_allocated_gb": 1.668914688,
+    "weights_sha256": "dd69338a24b8d7381807e247652bdc356325bcbaf1cd3e092e00e0a1a58706bf",
+    "wall_seconds": 94.6954178829983,
+    "scope": "RGB-only TRAIN diagnostics, no driving/lane result. Sparse projected geometry is not a full detection benchmark."
+  },
+  "detector_native_crop_height_correct_total": {
+    "8\u201315 px": [
+      12,
+      28
+    ],
+    "\u226516 px": [
+      2,
+      4
+    ],
+    "<8 px": [
+      0,
+      40
+    ]
+  },
+  "detector_by_town_correct_total": {
+    "Town01_Opt": [
+      2,
+      8
+    ],
+    "Town03_Opt": [
+      0,
+      20
+    ],
+    "Town04_Opt": [
+      8,
+      12
+    ],
+    "Town10HD_Opt": [
+      4,
+      32
+    ]
+  },
+  "unchanged_parent_and_cache_hashes": {
+    "outputs/navigation_m2_stop_go_20261016/best_policy.pt": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+    "outputs/navigation_m2_cache_20k_20261015/manifest.json": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae"
+  },
+  "evidence_sha256": {
+    "outputs/navigation_m2_signal_corpus_v2_20261016/data_audit.json": "ec1632bab904092d595371b0b3d1cdb2c49c5e0caa2b65cbce58af4005844a48",
+    "outputs/navigation_m2_signal_corpus_retry2_20261016/data_audit.json": "c4b1ec131aa253c86252f0c310dadc0ab36d09c96c7aa8ba40e4dc16c90dca82",
+    "outputs/navigation_m2_signal_grid_20261016/review.json": "094455eba985d8e35aed6830c80bb7329613fa471d5b7c4588874e8d9d969c9f",
+    "outputs/navigation_m2_signal_grid_region_20261016/review.json": "b2d56026a27ba996eb6199d560084aa42cfaea7caead16b6f170f890554ab7f5",
+    "outputs/navigation_m2_signal_oracle_crops_20261016/assessment.json": "0c19422c7656d6a3603ec43b612d3033e247cb58e8883bbe6267a0b1920eb243",
+    "outputs/navigation_m2_reference_detector_20261016/assessment.json": "a09ed69f23fcef582b79be55a4abe73cf33b737cf5b7992970b67fca577a89c4",
+    "outputs/navigation_m2_reference_detector_20261016/predictions.json": "b46a8239582a818c63ca84a2cc21f044175162816c78e3567ceecd3c50222f76",
+    "outputs/navigation_m2_signal_response_20261016/assessment.json": "f26eda60780d87820e439464efa25c0dab6d7e09a247f6d438d43442256aeddb"
+  },
+  "analysis_source_sha256": "ac8c1eeb78fb53625778bb4ec853e192bcd4a4ceb975269acabd9ff8841372e4",
+  "limitations": [
+    "Only four component-validation junctions within TRAIN; 72 correlated labels",
+    "Some TRAIN validation locations inspected during annotation development",
+    "Sparse housing geometry is not a complete detection benchmark",
+    "Oracle crops use privileged geometry and are not deployable RGB perception",
+    "COCO supervised pretraining is not a matched-compute JEPA ablation",
+    "No heldout_dev, Town05 or new driving success result"
+  ]
+}

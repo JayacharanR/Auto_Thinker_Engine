@@ -1,0 +1,11 @@
+{
+  "independent_oof_recount": true,
+  "independent_component_recount": true,
+  "whole_locations_verified": 21,
+  "convergence_verified_fits": 16,
+  "selected_before_final_fit": true,
+  "selected_C": 0.0001,
+  "selection_sha256": "8925b4f8c2e5d643e19038887699c5ab37d3178ee1541ba9b9a14d669b7238cd",
+  "assessment_sha256": "c6af6ffbff019e90adfdf97160bd702249c0e4429c97014ca6e2cbdbaae5abc4",
+  "component_pass": false
+}

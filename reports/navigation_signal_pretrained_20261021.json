@@ -1,0 +1,64 @@
+{
+  "posthoc_diagnosis_only": true,
+  "no_reselection": true,
+  "sizes": {
+    "parent": {
+      "<8": {
+        "labels": 40,
+        "localized": 32,
+        "joint": 22
+      },
+      "8\u201315": {
+        "labels": 28,
+        "localized": 20,
+        "joint": 18
+      },
+      ">=16": {
+        "labels": 4,
+        "localized": 4,
+        "joint": 4
+      }
+    },
+    "rgb": {
+      "<8": {
+        "labels": 40,
+        "localized": 26,
+        "joint": 19
+      },
+      "8\u201315": {
+        "labels": 28,
+        "localized": 17,
+        "joint": 16
+      },
+      ">=16": {
+        "labels": 4,
+        "localized": 3,
+        "joint": 3
+      }
+    },
+    "resnet": {
+      "<8": {
+        "labels": 40,
+        "localized": 14,
+        "joint": 12
+      },
+      "8\u201315": {
+        "labels": 28,
+        "localized": 11,
+        "joint": 10
+      },
+      ">=16": {
+        "labels": 4,
+        "localized": 4,
+        "joint": 4
+      }
+    }
+  },
+  "source_hashes": {
+    "outputs/navigation_signal_pixel_study_20261021/bulb/predictions1000.json": "f9894fe924fe6e74101cb5eb136987c2325a009df7045ad91c424c665f466819",
+    "outputs/navigation_signal_pretrained_20261021/rgb/validation_probability.npy": "c6bce1bf2b2fa95cd3c354db80d737b2d80142f639ff2c41ced5283804013781",
+    "outputs/navigation_signal_pretrained_20261021/resnet/validation_probability.npy": "60b7bdb0f75e249601e35775973faeb0419e0c55ca6ba1f17b499693f9823a09"
+  },
+  "full_metric_recount": true,
+  "study_assessment_sha256": "78a23b3672a75089f7dc9a1e2f5737ddf748397e63ebfbd9ac4d8e2a4ca08d0d"
+}

@@ -1,0 +1,38 @@
+{
+  "repository": "https://github.com/autonomousvision/carla_garage.git",
+  "branch": "leaderboard_2",
+  "revision": "48e6a6dbcb133220333bd65e242fbc2b492bb15b",
+  "directory": "outputs/navigation_vendor/carla_garage",
+  "sparse_paths": [
+    "team_code",
+    "Bench2Drive",
+    "leaderboard_autopilot",
+    "scenario_runner_autopilot",
+    "leaderboard",
+    "scenario_runner"
+  ],
+  "patch": "patches/navigation_garage.patch",
+  "python_target": "outputs/navigation_vendor/python",
+  "dependencies": [
+    "certifi==2026.7.22",
+    "charset-normalizer==3.5.2",
+    "dictor==0.1.12",
+    "elementpath==1.4.6",
+    "ephem==4.1.5",
+    "idna==3.20",
+    "pexpect==4.9.0",
+    "ptyprocess==0.7.0",
+    "py-trees==0.8.3",
+    "pydot==1.4.2",
+    "pygame==2.6.0",
+    "rdp==0.8",
+    "requests==2.31.0",
+    "simple_watchdog_timer==0.1.1",
+    "simplejson==3.20.2",
+    "tabulate==0.9.0",
+    "transforms3d==0.4.1",
+    "ujson==5.9.0",
+    "urllib3==2.8.0",
+    "xmlschema==1.0.18"
+  ]
+}

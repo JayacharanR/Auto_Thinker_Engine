@@ -1,0 +1,11 @@
+{
+  "encoder": "imagenet_resnet18",
+  "episode_id": "original:Town03_Opt:110:202610185:8684",
+  "frames": 1190,
+  "forward_backward_s": 12.192226010000013,
+  "peak_vram_gb": 0.876670464,
+  "trainable_parameters": 397083,
+  "finite_gradients": true,
+  "optimizer_updates": 0,
+  "note": "Longest TRAIN episode feasibility, includes first-call warmup; no trained checkpoint or validation result"
+}

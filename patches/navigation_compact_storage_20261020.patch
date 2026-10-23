@@ -1,0 +1,99 @@
+--- a/configs/navigation.yaml
++++ b/configs/navigation.yaml
+@@ -13,7 +13,7 @@
+   planner_hz: 5
+   sensor_timeout_seconds: 10
+   max_wall_seconds: 1800
+-  minimum_free_gb: 25
++  minimum_free_gb: 10
+   # Measured 2026-10-09 with one server: 88% CPU idle (24 cores), GPU 11-17%,
+   # ~3.5 GB VRAM and ~4 GB RAM per server+evaluator. Parallel slots use
+   # port/TM port + slot * slot_port_stride; each start is resource-gated.
+--- a/src/navigation/final_evaluation.py
++++ b/src/navigation/final_evaluation.py
+@@ -3,6 +3,8 @@
+ import hashlib
+ import json
+ from pathlib import Path
++
++from src.navigation.recording_policy import frozen_showcase_policy
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+ SUITE = ROOT / "configs/routes/town05_final_v2"
+@@ -43,6 +45,7 @@
+         count_all_collisions=True,
+         rule_overrides=False,
+         candidate_once=True,
++        recording_policy=frozen_showcase_policy(),
+         inference_source_sha256={
+             str(p.relative_to(ROOT)): digest(p)
+             for p in [
+@@ -116,6 +119,8 @@
+ ):
+     suite, sha = verify_final_suite()
+     request = json.loads(Path(registration).read_text())
++    if request.get("recording_policy") != frozen_showcase_policy():
++        raise ValueError("Registered final recording-only policy changed")
+     if any(digest(ROOT / p) != h for p, h in request["inference_source_sha256"].items()):
+         raise ValueError("Registered inference/evaluation source changed")
+     if request["suite_sha256"] != sha or request["suite"] != str(SUITE.resolve()):
+@@ -155,4 +160,5 @@
+         registration_sha256=digest(registration),
+         suite_sha256=sha,
+         candidate_once=True,
++        recording_policy=request["recording_policy"],
+     )
+--- a/src/navigation/pdm_agent.py
++++ b/src/navigation/pdm_agent.py
+@@ -15,6 +15,7 @@
+ 
+ from src.navigation.contracts import VIEWS
+ from src.navigation.replay import capture_world_state
++from src.navigation.recording_policy import preview_enabled
+ from src.navigation.runtime import atomic_json
+ from src.navigation.sensors import camera_specs
+ from src.navigation.video import VideoWriter
+@@ -52,6 +53,7 @@
+         )
+         length = float(np.linalg.norm(np.diff(xyz, axis=0), axis=1).sum())
+         current = json.loads((Path(spec["out"]) / "current_route.json").read_text())
++        self.record_preview = preview_enabled(manifest, current)
+         lengths = manifest["route"].get("lengths_m")
+         # A multi-route catalog registers one length per route id; never fall back.
+         expected = lengths[current["route_id"]] if lengths else manifest["route"]["length_m"]
+@@ -141,7 +143,7 @@
+         if world_state["frame"] != int(frames[0]):
+             raise RuntimeError("World audit snapshot differs from the camera frame")
+         self.world_trace.write(json.dumps(world_state, allow_nan=False) + "\n")
+-        if self.step % 2 == 0:
++        if self.record_preview and self.step % 2 == 0:
+             canvas = np.concatenate([rgb[v] for v in ("left", "front", "right")], axis=1)
+             for i, view in enumerate(("left", "front", "right")):
+                 cv2.putText(
+--- a/src/navigation/camera_agent.py
++++ b/src/navigation/camera_agent.py
+@@ -17,6 +17,7 @@
+ from src.navigation.contracts import VIEWS, ControlCommand, SensorPacket
+ from src.navigation.policy_ipc import PolicyClient
+ from src.navigation.replay import capture_world_state
++from src.navigation.recording_policy import preview_enabled
+ from src.navigation.runtime import atomic_json
+ from src.navigation.sensors import calibrations, camera_specs
+ from src.navigation.video import VideoWriter
+@@ -41,6 +42,7 @@
+         manifest = json.loads((Path(self.spec["out"]) / "manifest.json").read_text())
+         self.policy_kind = manifest["policy_kind"]
+         current = json.loads((Path(self.spec["out"]) / "current_route.json").read_text())
++        self.record_preview = preview_enabled(manifest, current)
+         route = manifest["route"]
+         expected = (
+             route["lengths_m"][current["route_id"]] if route.get("lengths_m") else route["length_m"]
+@@ -152,7 +154,7 @@
+         if world["frame"] != self.last_frame:
+             raise RuntimeError("Audit-only world snapshot differs from camera frame")
+         self.world_trace.write(json.dumps(world, allow_nan=False) + "\n")
+-        if self.frames % 2 == 1:
++        if self.record_preview and self.frames % 2 == 1:
+             canvas = np.concatenate([rgb[v] for v in ("left", "front", "right")], axis=1)
+             label = "CAMERA STUDENT"
+             if self.rule_runtime is not None:

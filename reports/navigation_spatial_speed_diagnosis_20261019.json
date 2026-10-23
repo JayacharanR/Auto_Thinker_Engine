@@ -1,0 +1,231 @@
+{
+  "schema": "spatial-speed-posthoc-v1",
+  "policy_sha256": "a2c479c06c27275fe48e7a2e33b49ea072a90a30c89d5aff433b2c572c1d14f0",
+  "cache_manifest_sha256": "495eeabd441450f3ffb6456be880bd33a72a04ac7bc89899732067a366a3e241",
+  "script_sha256": "fd8d230702585ec001a52da5ae86bb184797953e7a77ef5f8efff32743058fec",
+  "metrics": {
+    "observed": {
+      "speed_mae_mps": 0.9168105808700003,
+      "go_speed_mae_mps": 1.522832736125967,
+      "controller_stop_recall": 0.9678571428571429,
+      "controller_false_hold_fraction": 0.044673539518900345,
+      "counts": {
+        "speed": 1312,
+        "go": 724,
+        "stopped": 560,
+        "controller_go": 582
+      },
+      "selection_score": 0.0688648530533981,
+      "path_correction_mae_m": 0.07229741130556379,
+      "families": {
+        "crossing_yield": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 92,
+          "false_holds": 0
+        },
+        "route_junction": {
+          "stopped": 18,
+          "stop_hits": 18,
+          "controller_go": 83,
+          "false_holds": 4
+        },
+        "signal_release_memory": {
+          "stopped": 278,
+          "stop_hits": 277,
+          "controller_go": 130,
+          "false_holds": 9
+        },
+        "signal_stop": {
+          "stopped": 201,
+          "stop_hits": 190,
+          "controller_go": 173,
+          "false_holds": 3
+        },
+        "stop_sign": {
+          "stopped": 63,
+          "stop_hits": 57,
+          "controller_go": 60,
+          "false_holds": 10
+        },
+        "following_stopped_vehicle": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 44,
+          "false_holds": 0
+        }
+      }
+    },
+    "zero_speed": {
+      "speed_mae_mps": 3.958014371918469,
+      "go_speed_mae_mps": 7.1459385150045325,
+      "controller_stop_recall": 0.9928571428571429,
+      "controller_false_hold_fraction": 0.8350515463917526,
+      "counts": {
+        "speed": 1312,
+        "go": 724,
+        "stopped": 560,
+        "controller_go": 582
+      },
+      "selection_score": 0.5640159720673955,
+      "path_correction_mae_m": 0.051885469328789485,
+      "families": {
+        "crossing_yield": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 92,
+          "false_holds": 48
+        },
+        "route_junction": {
+          "stopped": 18,
+          "stop_hits": 18,
+          "controller_go": 83,
+          "false_holds": 70
+        },
+        "signal_release_memory": {
+          "stopped": 278,
+          "stop_hits": 278,
+          "controller_go": 130,
+          "false_holds": 126
+        },
+        "signal_stop": {
+          "stopped": 201,
+          "stop_hits": 201,
+          "controller_go": 173,
+          "false_holds": 154
+        },
+        "stop_sign": {
+          "stopped": 63,
+          "stop_hits": 59,
+          "controller_go": 60,
+          "false_holds": 44
+        },
+        "following_stopped_vehicle": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 44,
+          "false_holds": 44
+        }
+      }
+    },
+    "speed_5mps": {
+      "speed_mae_mps": 3.626361963225574,
+      "go_speed_mae_mps": 4.484979713819303,
+      "controller_stop_recall": 0.0,
+      "controller_false_hold_fraction": 0.0,
+      "counts": {
+        "speed": 1312,
+        "go": 724,
+        "stopped": 560,
+        "controller_go": 582
+      },
+      "selection_score": 0.5896995942763861,
+      "path_correction_mae_m": 0.12758015394210814,
+      "families": {
+        "crossing_yield": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 92,
+          "false_holds": 0
+        },
+        "route_junction": {
+          "stopped": 18,
+          "stop_hits": 0,
+          "controller_go": 83,
+          "false_holds": 0
+        },
+        "signal_release_memory": {
+          "stopped": 278,
+          "stop_hits": 0,
+          "controller_go": 130,
+          "false_holds": 0
+        },
+        "signal_stop": {
+          "stopped": 201,
+          "stop_hits": 0,
+          "controller_go": 173,
+          "false_holds": 0
+        },
+        "stop_sign": {
+          "stopped": 63,
+          "stop_hits": 0,
+          "controller_go": 60,
+          "false_holds": 0
+        },
+        "following_stopped_vehicle": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 44,
+          "false_holds": 0
+        }
+      }
+    },
+    "blank_rgb_features": {
+      "speed_mae_mps": 3.26445000346114,
+      "go_speed_mae_mps": 5.864422160617554,
+      "controller_stop_recall": 0.9785714285714285,
+      "controller_false_hold_fraction": 0.25773195876288657,
+      "counts": {
+        "speed": 1312,
+        "go": 724,
+        "stopped": 560,
+        "controller_go": 582
+      },
+      "selection_score": 0.2568687083080801,
+      "path_correction_mae_m": 0.06985899351892016,
+      "families": {
+        "crossing_yield": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 92,
+          "false_holds": 0
+        },
+        "route_junction": {
+          "stopped": 18,
+          "stop_hits": 18,
+          "controller_go": 83,
+          "false_holds": 29
+        },
+        "signal_release_memory": {
+          "stopped": 278,
+          "stop_hits": 278,
+          "controller_go": 130,
+          "false_holds": 20
+        },
+        "signal_stop": {
+          "stopped": 201,
+          "stop_hits": 193,
+          "controller_go": 173,
+          "false_holds": 74
+        },
+        "stop_sign": {
+          "stopped": 63,
+          "stop_hits": 59,
+          "controller_go": 60,
+          "false_holds": 27
+        },
+        "following_stopped_vehicle": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 44,
+          "false_holds": 0
+        }
+      }
+    }
+  },
+  "strata": {
+    "train": {
+      "frames": 16639,
+      "stationary_go_labels": 392,
+      "stationary_stop_labels": 8910,
+      "stationary_go_in_burnin8": 273
+    },
+    "validation": {
+      "frames": 2822,
+      "stationary_go_labels": 69,
+      "stationary_stop_labels": 1077,
+      "stationary_go_in_burnin8": 39
+    }
+  },
+  "note": "Artificial input sensitivity, not a physical counterfactual or valid driving result. Post-hoc after pilot launch; no reselection/tuning on heldout_dev or Town05."
+}

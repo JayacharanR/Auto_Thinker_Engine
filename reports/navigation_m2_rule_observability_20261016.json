@@ -1,0 +1,115 @@
+{
+  "scope": "Six familiar internal-TRAIN correction episodes; no driving/generalization claim",
+  "counts": {
+    "samples": 1729,
+    "applicable_light": 766,
+    "known_state": 766,
+    "known_within_80m": 677,
+    "known_no_housing_in_any_image": 0,
+    "known_within_80m_no_housing": 0,
+    "red_no_housing_in_any_image": 0,
+    "known_housing_in_any_image": 766,
+    "known_front_no_housing": 227,
+    "indeterminate_geometry": 0,
+    "known_any_head_at_least_6px": 210
+  },
+  "height_percentiles_order": [
+    0,
+    25,
+    50,
+    75,
+    100
+  ],
+  "largest_native_housing_height_px": [
+    1.9847870731859416,
+    2.6974228567579246,
+    3.6007154796163263,
+    6.441966961684962,
+    13.78308051086745
+  ],
+  "largest_effective_input_housing_height_px": [
+    0.9923935365929708,
+    1.3487114283789623,
+    3.6007154796163263,
+    5.3237346660083915,
+    9.833393849043489
+  ],
+  "largest_native_housing_under_6px": 556,
+  "largest_effective_housing_under_6px": 717,
+  "effective_resolution": "front512x288; left/right context256x144 (half native size)",
+  "teacher_zero_speed_events": 13,
+  "events_longer_than_3_2s": [
+    {
+      "route_id": 123,
+      "start_frame": 1673,
+      "end_frame": 1953,
+      "samples": 141,
+      "duration_s": 14.100000208616256,
+      "longer_than_3_2s": true,
+      "release_observed": true,
+      "release_frame": 1955,
+      "cause_at_start": {
+        "vehicle_hazard": false,
+        "walker_hazard": false,
+        "light_hazard": true,
+        "stop_sign_hazard": false
+      }
+    },
+    {
+      "route_id": 133,
+      "start_frame": 2350,
+      "end_frame": 2504,
+      "samples": 78,
+      "duration_s": 7.800000114738941,
+      "longer_than_3_2s": true,
+      "release_observed": true,
+      "release_frame": 2506,
+      "cause_at_start": {
+        "vehicle_hazard": false,
+        "walker_hazard": false,
+        "light_hazard": false,
+        "stop_sign_hazard": false
+      }
+    },
+    {
+      "route_id": 143,
+      "start_frame": 3171,
+      "end_frame": 3315,
+      "samples": 73,
+      "duration_s": 7.30000010728836,
+      "longer_than_3_2s": true,
+      "release_observed": true,
+      "release_frame": 3317,
+      "cause_at_start": {
+        "vehicle_hazard": false,
+        "walker_hazard": false,
+        "light_hazard": false,
+        "stop_sign_hazard": false
+      }
+    },
+    {
+      "route_id": 143,
+      "start_frame": 3375,
+      "end_frame": 3645,
+      "samples": 136,
+      "duration_s": 13.600000201165676,
+      "longer_than_3_2s": true,
+      "release_observed": true,
+      "release_frame": 3647,
+      "cause_at_start": {
+        "vehicle_hazard": false,
+        "walker_hazard": false,
+        "light_hazard": false,
+        "stop_sign_hazard": false
+      }
+    }
+  ],
+  "teacher_stop_samples": 500,
+  "teacher_stop_samples_in_long_events": 428,
+  "visibility_valid": null,
+  "state_supervision_approved": false,
+  "threshold_6px": "Descriptive diagnostic, not a legibility cutoff or pass gate",
+  "original_audit_sha256": "48ec61a215d6840e08e7468cdbff66d6cb1b93f13e70776420e3867ed7f1f791",
+  "samples_sha256": "ec33045e661376f5649d610fd8e7cc09a0252d03e15cf1c5b7d5c2602cd66430",
+  "script_sha256": "72dcfb056ebbf5478fce78057ea001ec2def0f93f831838741d4c44de5c412f8"
+}

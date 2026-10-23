@@ -1,0 +1,3771 @@
+{
+  "rows": [
+    {
+      "name": "cnn_f100_seed42",
+      "candidate": {
+        "name": "cnn_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/cnn_f100_seed42/best_policy.pt",
+        "sha256": "7e68203822c6e10c0f48c129a45942d067fdf9648cff2831444e50ed48fc20a3",
+        "selected_step": 2000
+      },
+      "planned": 6,
+      "observed": 4,
+      "unknown": 2,
+      "arrived": 0,
+      "strict": 0,
+      "rule_safe": 0,
+      "contacts": 1,
+      "contact_lower_bound": false,
+      "red": 1,
+      "stop": 0,
+      "native_summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_86_rep0",
+            "status": "Failed - Agent timed out",
+            "completion_percent": 97.16,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 2,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 22.07% of the surrounding traffic's one",
+                "Average speed is 22.07% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [
+                "Agent timed out a scenario at (x=-25.495, y=207.596, z=-0.005)"
+              ],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": [
+                "Route timeout."
+              ]
+            },
+            "meta": {
+              "route_length": 105.514,
+              "duration_game": 372.2,
+              "duration_system": 356.698
+            }
+          },
+          {
+            "route_id": "RouteScenario_101_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 70.62,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 2,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 52.54% of the surrounding traffic's one",
+                "Average speed is 15.94% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=11.848, y=196.893, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 80.27,
+              "duration_game": 226.2,
+              "duration_system": 282.336
+            }
+          },
+          {
+            "route_id": "RouteScenario_111_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 94.53,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 1,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [
+                "Agent collided against object with type=vehicle.dodge.charger_2020 and id=507 at (x=7.287, y=-172.629, z=-0.004)"
+              ],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=-31.219, y=-205.173, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 91.426,
+              "duration_game": 195.0,
+              "duration_system": 181.019
+            }
+          },
+          {
+            "route_id": "RouteScenario_123_rep0",
+            "status": "Failed",
+            "completion_percent": 93.82,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 1,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [
+                "Agent ran a red light 48 at (x=-67.82, y=121.064, z=0.003)"
+              ],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 64.673,
+              "duration_game": 83.95,
+              "duration_system": 70.477
+            }
+          }
+        ],
+        "count": 4,
+        "safe_completed": 0,
+        "rule_safe_completed": 0,
+        "all_collisions": 1,
+        "safe_completion_wilson95": [
+          0.0,
+          0.4898908364545973
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": false,
+        "stop_reason": "wall_budget",
+        "policy_kind": "spatial-visual-decision-v2_map_ego",
+        "execution_status": "stopped",
+        "training_mixture_not_camera_evaluation": false
+      },
+      "control": false
+    },
+    {
+      "name": "resnet_f100_seed42",
+      "candidate": {
+        "name": "resnet_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/resnet_f100_seed42/best_policy.pt",
+        "sha256": "65d020c285002e73e5c438b6496831eb7cfac812a5dea845f2fbff9d0472750a",
+        "selected_step": 1000
+      },
+      "planned": 6,
+      "observed": 6,
+      "unknown": 0,
+      "arrived": 6,
+      "strict": 3,
+      "rule_safe": 4,
+      "contacts": 0,
+      "contact_lower_bound": false,
+      "red": 1,
+      "stop": 1,
+      "native_summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_86_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 105.514,
+              "duration_game": 16.25,
+              "duration_system": 14.909
+            }
+          },
+          {
+            "route_id": "RouteScenario_101_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 80.27,
+              "duration_game": 12.8,
+              "duration_system": 17.086
+            }
+          },
+          {
+            "route_id": "RouteScenario_111_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 91.426,
+              "duration_game": 17.4,
+              "duration_system": 17.401
+            }
+          },
+          {
+            "route_id": "RouteScenario_123_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 1,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [
+                "Agent ran a red light 48 at (x=-67.82, y=121.064, z=0.003)"
+              ],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 64.673,
+              "duration_game": 10.6,
+              "duration_system": 12.429
+            }
+          },
+          {
+            "route_id": "RouteScenario_133_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 86.26% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 106.828,
+              "duration_game": 29.25,
+              "duration_system": 33.544
+            }
+          },
+          {
+            "route_id": "RouteScenario_143_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 1,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [
+                "Agent ran a stop with id=35 at (x=-65.597, y=-139.815, z=0.0)"
+              ],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 73.03% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 110.227,
+              "duration_game": 47.1,
+              "duration_system": 52.842
+            }
+          }
+        ],
+        "count": 6,
+        "safe_completed": 3,
+        "rule_safe_completed": 4,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.1876163064826506,
+          0.8123836935173494
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": false,
+        "stop_reason": null,
+        "policy_kind": "spatial-visual-decision-v2_map_ego",
+        "execution_status": "evaluation_complete",
+        "training_mixture_not_camera_evaluation": false
+      },
+      "control": false
+    },
+    {
+      "name": "dino_f100_seed42",
+      "candidate": {
+        "name": "dino_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/dino_f100_seed42/best_policy.pt",
+        "sha256": "85ef816e89832d5dc589f0d2397a86dbdecf0b93036f6614d95adcca441ca3d6",
+        "selected_step": 1000
+      },
+      "planned": 6,
+      "observed": 5,
+      "unknown": 1,
+      "arrived": 1,
+      "strict": 1,
+      "rule_safe": 1,
+      "contacts": 0,
+      "contact_lower_bound": false,
+      "red": 0,
+      "stop": 0,
+      "native_summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_86_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 105.514,
+              "duration_game": 16.3,
+              "duration_system": 16.14
+            }
+          },
+          {
+            "route_id": "RouteScenario_101_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 78.5,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=6.174, y=195.267, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 80.27,
+              "duration_game": 190.6,
+              "duration_system": 254.603
+            }
+          },
+          {
+            "route_id": "RouteScenario_111_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 32.94,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=7.506, y=-179.343, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 91.426,
+              "duration_game": 217.6,
+              "duration_system": 220.919
+            }
+          },
+          {
+            "route_id": "RouteScenario_123_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 18.32,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=-78.166, y=147.771, z=-0.004)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 64.673,
+              "duration_game": 183.25,
+              "duration_system": 254.908
+            }
+          },
+          {
+            "route_id": "RouteScenario_133_rep0",
+            "status": "Failed",
+            "completion_percent": 98.13,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 2,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 77.52% of the surrounding traffic's one",
+                "Average speed is 6.45% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 106.828,
+              "duration_game": 133.05,
+              "duration_system": 133.512
+            }
+          }
+        ],
+        "count": 5,
+        "safe_completed": 1,
+        "rule_safe_completed": 1,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          0.03622410863243014,
+          0.6244653702374747
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": false,
+        "stop_reason": "wall_budget",
+        "policy_kind": "spatial-visual-decision-v2_map_ego",
+        "execution_status": "stopped",
+        "training_mixture_not_camera_evaluation": false
+      },
+      "control": false
+    },
+    {
+      "name": "carla_f100_seed42",
+      "candidate": {
+        "name": "carla_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/carla_f100_seed42/best_policy.pt",
+        "sha256": "47b59587ec8e7cf7b260084084cd51f8462531104edbd7ee621d6ea3c1c393e6",
+        "selected_step": 1500
+      },
+      "planned": 6,
+      "observed": 6,
+      "unknown": 0,
+      "arrived": 3,
+      "strict": 0,
+      "rule_safe": 1,
+      "contacts": 1,
+      "contact_lower_bound": false,
+      "red": 2,
+      "stop": 0,
+      "native_summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_86_rep0",
+            "status": "Failed - Agent timed out",
+            "completion_percent": 95.26,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 2,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 19.45% of the surrounding traffic's one",
+                "Average speed is 19.45% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [
+                "Agent timed out a scenario at (x=-27.719, y=207.671, z=-0.005)"
+              ],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": [
+                "Route timeout."
+              ]
+            },
+            "meta": {
+              "route_length": 105.514,
+              "duration_game": 371.4,
+              "duration_system": 385.264
+            }
+          },
+          {
+            "route_id": "RouteScenario_101_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 2,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 97.57% of the surrounding traffic's one",
+                "Average speed is 62.43% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 80.27,
+              "duration_game": 17.8,
+              "duration_system": 24.221
+            }
+          },
+          {
+            "route_id": "RouteScenario_111_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 1,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [
+                "Agent ran a red light 72 at (x=18.702, y=-213.847, z=0.0)"
+              ],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 12.94% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 91.426,
+              "duration_game": 100.0,
+              "duration_system": 100.021
+            }
+          },
+          {
+            "route_id": "RouteScenario_123_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 1,
+            "collisions": 1,
+            "red_violations": 1,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [
+                "Agent collided against object with type=vehicle.mini.cooper_s_2021 and id=317 at (x=-90.271, y=133.553, z=0.011)"
+              ],
+              "red_light": [
+                "Agent ran a red light 48 at (x=-67.82, y=121.064, z=0.003)"
+              ],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 92.47% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 64.673,
+              "duration_game": 13.35,
+              "duration_system": 16.764
+            }
+          },
+          {
+            "route_id": "RouteScenario_133_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 19.77,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=49.075, y=-203.027, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 106.828,
+              "duration_game": 188.8,
+              "duration_system": 214.259
+            }
+          },
+          {
+            "route_id": "RouteScenario_143_rep0",
+            "status": "Failed",
+            "completion_percent": 28.23,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 87.4% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 110.227,
+              "duration_game": 125.2,
+              "duration_system": 142.525
+            }
+          }
+        ],
+        "count": 6,
+        "safe_completed": 0,
+        "rule_safe_completed": 1,
+        "all_collisions": 1,
+        "safe_completion_wilson95": [
+          2.7755575615628914e-17,
+          0.3903342879021653
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": false,
+        "stop_reason": "wall_budget",
+        "policy_kind": "spatial-visual-decision-v2_map_ego",
+        "execution_status": "stopped",
+        "training_mixture_not_camera_evaluation": false
+      },
+      "control": false
+    },
+    {
+      "name": "comma_f100_seed42",
+      "candidate": {
+        "name": "comma_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f100_seed42/best_policy.pt",
+        "sha256": "937d3d1ee0f07f7ed2d655207907386862bd7f71ce4ff9aa79dc16c03b653c52",
+        "selected_step": 1000
+      },
+      "planned": 6,
+      "observed": 6,
+      "unknown": 0,
+      "arrived": 4,
+      "strict": 2,
+      "rule_safe": 2,
+      "contacts": 10,
+      "contact_lower_bound": false,
+      "red": 2,
+      "stop": 1,
+      "native_summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_86_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 105.514,
+              "duration_game": 16.95,
+              "duration_system": 17.075
+            }
+          },
+          {
+            "route_id": "RouteScenario_101_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 80.27,
+              "duration_game": 14.65,
+              "duration_system": 19.561
+            }
+          },
+          {
+            "route_id": "RouteScenario_111_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 74.84,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 1,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [
+                "Agent ran a red light 72 at (x=18.702, y=-213.847, z=0.0)"
+              ],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 23.62% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=-13.711, y=-204.654, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 91.426,
+              "duration_game": 218.3,
+              "duration_system": 216.086
+            }
+          },
+          {
+            "route_id": "RouteScenario_123_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 1,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [
+                "Agent ran a red light 48 at (x=-67.82, y=121.064, z=0.003)"
+              ],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 98.28% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 64.673,
+              "duration_game": 12.75,
+              "duration_system": 16.142
+            }
+          },
+          {
+            "route_id": "RouteScenario_133_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 86.89,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 2,
+            "collisions": 1,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [
+                "Agent collided against object with type=vehicle.ford.mustang and id=252 at (x=42.576, y=-203.429, z=-0.006)"
+              ],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 57.48% of the surrounding traffic's one",
+                "Average speed is 46.62% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=-22.594, y=-205.08, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 106.828,
+              "duration_game": 233.85,
+              "duration_system": 235.974
+            }
+          },
+          {
+            "route_id": "RouteScenario_143_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 1,
+            "collisions": 2,
+            "red_violations": 0,
+            "stop_violations": 1,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [
+                "Agent collided against object with type=vehicle.lincoln.mkz_2020 and id=299 at (x=-54.296, y=-139.397, z=-0.005)",
+                "Agent collided against object with type=vehicle.lincoln.mkz_2020 and id=299 at (x=-60.711, y=-139.543, z=-0.006)"
+              ],
+              "red_light": [],
+              "stop_infraction": [
+                "Agent ran a stop with id=35 at (x=-65.597, y=-139.815, z=0.0)"
+              ],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 89.95% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 110.227,
+              "duration_game": 27.9,
+              "duration_system": 30.428
+            }
+          }
+        ],
+        "count": 6,
+        "safe_completed": 2,
+        "rule_safe_completed": 2,
+        "all_collisions": 3,
+        "safe_completion_wilson95": [
+          0.09677141110578041,
+          0.700006684861608
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": false,
+        "stop_reason": null,
+        "policy_kind": "spatial-visual-decision-v2_map_ego",
+        "execution_status": "evaluation_complete",
+        "training_mixture_not_camera_evaluation": false
+      },
+      "control": false
+    },
+    {
+      "name": "comma_f100_seed42_no_color",
+      "candidate": {
+        "name": "comma_f100_seed42_no_color",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_repaired_study_v4_20261020/fits/comma_f100_seed42_no_color/best_policy.pt",
+        "sha256": "6f27a7b42d9fe5bbd32949987c51ae3c6b1614af2cd6ca61140607926171d1ce",
+        "selected_step": 1000
+      },
+      "planned": 6,
+      "observed": 6,
+      "unknown": 0,
+      "arrived": 2,
+      "strict": 0,
+      "rule_safe": 1,
+      "contacts": 0,
+      "contact_lower_bound": false,
+      "red": 1,
+      "stop": 0,
+      "native_summary": {
+        "episodes": [
+          {
+            "route_id": "RouteScenario_86_rep0",
+            "status": "Failed - Agent timed out",
+            "completion_percent": 0.0,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [
+                "Agent timed out a scenario at (x=-88.635, y=146.958, z=-0.005)"
+              ],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": [
+                "Route timeout."
+              ]
+            },
+            "meta": {
+              "route_length": 105.514,
+              "duration_game": 300.05,
+              "duration_system": 231.572
+            }
+          },
+          {
+            "route_id": "RouteScenario_101_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 2,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 31.72% of the surrounding traffic's one",
+                "Average speed is 17.45% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 80.27,
+              "duration_game": 54.45,
+              "duration_system": 72.031
+            }
+          },
+          {
+            "route_id": "RouteScenario_111_rep0",
+            "status": "Failed - Agent timed out",
+            "completion_percent": 3.41,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": [
+                "Route timeout."
+              ]
+            },
+            "meta": {
+              "route_length": 91.426,
+              "duration_game": 303.8,
+              "duration_system": 271.101
+            }
+          },
+          {
+            "route_id": "RouteScenario_123_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 2,
+            "collisions": 0,
+            "red_violations": 1,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [
+                "Agent ran a red light 48 at (x=-67.82, y=121.064, z=0.003)"
+              ],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 41.3% of the surrounding traffic's one",
+                "Average speed is 5.92% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 64.673,
+              "duration_game": 101.55,
+              "duration_system": 99.964
+            }
+          },
+          {
+            "route_id": "RouteScenario_133_rep0",
+            "status": "Failed - Agent got blocked",
+            "completion_percent": 0.0,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [
+                "Agent got blocked at (x=70.709, y=-202.729, z=-0.005)"
+              ],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 106.828,
+              "duration_game": 180.05,
+              "duration_system": 200.603
+            }
+          },
+          {
+            "route_id": "RouteScenario_143_rep0",
+            "status": "Failed",
+            "completion_percent": 5.55,
+            "completed": false,
+            "safe_completed": false,
+            "rule_safe_completed": false,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 110.227,
+              "duration_game": 6.8,
+              "duration_system": 7.45
+            }
+          }
+        ],
+        "count": 6,
+        "safe_completed": 0,
+        "rule_safe_completed": 1,
+        "all_collisions": 0,
+        "safe_completion_wilson95": [
+          2.7755575615628914e-17,
+          0.3903342879021653
+        ],
+        "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+        "harness_crashed": false,
+        "profile_only": false,
+        "stop_reason": "wall_budget",
+        "policy_kind": "spatial-visual-decision-v2_map_ego",
+        "execution_status": "stopped",
+        "training_mixture_not_camera_evaluation": false
+      },
+      "control": true
+    }
+  ],
+  "main_planned": 30,
+  "main_native_observed": 27,
+  "main_unknown_failures": 3,
+  "primary": "comma_f100_seed42",
+  "primary_reselected": false,
+  "no_driver_promoted": true,
+  "matched_request_sha256": "252e7a8a9a697b96a1ef1fdb770270ec47283147dacd17fa52d854cb19f25b9a",
+  "matched_assessment_sha256": "7ef2b224245a2b9764c26d0ab9a14e45ca0c2b4ed7ab007d179bacf7a54a9689",
+  "original_primary_summary_sha256": "fa2125587a52d2d071fb6b29f21d8701cb76acf876d2edf3b3dbd0e020d455a3",
+  "original_primary_recorders": [
+    {
+      "schema": "carla015-recorder-ego-contacts-v1",
+      "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_corrected_pilot_continuation_v2_20261020/comma_f100_seed42/comma_f100_seed42/recordings/route_101_rep0.log",
+      "sha256": "ad42257e8617c094ad7c0224b931004c907b5e5f88fa1732ffe30b57b3f3f488",
+      "version": 1,
+      "town": "Town03_Opt",
+      "recorder_date": 1792478678,
+      "frames": 304,
+      "duration_s": 15.150000225752592,
+      "packets": 4256,
+      "complete": true,
+      "errors": [],
+      "ego_contact_starts": 0,
+      "ego_raw_contact_samples": 0,
+      "official_ordered_ego_contact_starts": 0,
+      "official_h_a_contact_starts": 0,
+      "official_a_h_contact_starts": 0,
+      "all_actor_raw_contact_samples": 0,
+      "starts": [],
+      "ordered_starts": [],
+      "raw_samples": [],
+      "fault_speed_or_impact_filter": false,
+      "count_unit": "Unordered ego-involved actor-pair contact starts; adjacent-frame continuation merges",
+      "source_urls": [
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderInfo.h",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderFrames.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderCollision.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderQuery.cpp"
+      ],
+      "official_rpc_crosscheck_complete": false
+    },
+    {
+      "schema": "carla015-recorder-ego-contacts-v1",
+      "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_corrected_pilot_continuation_v2_20261020/comma_f100_seed42/comma_f100_seed42/recordings/route_111_rep0.log",
+      "sha256": "10cd330cef8f7e8244116312ddcd43797c6854c6c601379de4fdab8327cb3376",
+      "version": 1,
+      "town": "Town03_Opt",
+      "recorder_date": 1792478700,
+      "frames": 4377,
+      "duration_s": 218.80000326037407,
+      "packets": 61278,
+      "complete": true,
+      "errors": [],
+      "ego_contact_starts": 0,
+      "ego_raw_contact_samples": 0,
+      "official_ordered_ego_contact_starts": 0,
+      "official_h_a_contact_starts": 0,
+      "official_a_h_contact_starts": 0,
+      "all_actor_raw_contact_samples": 0,
+      "starts": [],
+      "ordered_starts": [],
+      "raw_samples": [],
+      "fault_speed_or_impact_filter": false,
+      "count_unit": "Unordered ego-involved actor-pair contact starts; adjacent-frame continuation merges",
+      "source_urls": [
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderInfo.h",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderFrames.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderCollision.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderQuery.cpp"
+      ],
+      "official_rpc_crosscheck_complete": false
+    },
+    {
+      "schema": "carla015-recorder-ego-contacts-v1",
+      "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_corrected_pilot_continuation_v2_20261020/comma_f100_seed42/comma_f100_seed42/recordings/route_123_rep0.log",
+      "sha256": "283909e54d861ddc43ffbc645fd9fe9cb2fc6fe1337ac818330f5096a7135c4f",
+      "version": 1,
+      "town": "Town03_Opt",
+      "recorder_date": 1792478919,
+      "frames": 266,
+      "duration_s": 13.250000197440386,
+      "packets": 3724,
+      "complete": true,
+      "errors": [],
+      "ego_contact_starts": 0,
+      "ego_raw_contact_samples": 0,
+      "official_ordered_ego_contact_starts": 0,
+      "official_h_a_contact_starts": 0,
+      "official_a_h_contact_starts": 0,
+      "all_actor_raw_contact_samples": 0,
+      "starts": [],
+      "ordered_starts": [],
+      "raw_samples": [],
+      "fault_speed_or_impact_filter": false,
+      "count_unit": "Unordered ego-involved actor-pair contact starts; adjacent-frame continuation merges",
+      "source_urls": [
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderInfo.h",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderFrames.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderCollision.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderQuery.cpp"
+      ],
+      "official_rpc_crosscheck_complete": false
+    },
+    {
+      "schema": "carla015-recorder-ego-contacts-v1",
+      "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_corrected_pilot_continuation_v2_20261020/comma_f100_seed42/comma_f100_seed42/recordings/route_133_rep0.log",
+      "sha256": "52708a86d1a02997ee3f1e1891c608cca1e660b9f363b458ad20be62cbe75665",
+      "version": 1,
+      "town": "Town03_Opt",
+      "recorder_date": 1792478939,
+      "frames": 4688,
+      "duration_s": 234.35000349208713,
+      "packets": 65632,
+      "complete": true,
+      "errors": [],
+      "ego_contact_starts": 5,
+      "ego_raw_contact_samples": 132,
+      "official_ordered_ego_contact_starts": 5,
+      "official_h_a_contact_starts": 5,
+      "official_a_h_contact_starts": 0,
+      "all_actor_raw_contact_samples": 132,
+      "starts": [
+        {
+          "frame": 354,
+          "time_s": 17.650000263005495,
+          "collision_id": 0,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            247,
+            252
+          ]
+        },
+        {
+          "frame": 361,
+          "time_s": 18.0000002682209,
+          "collision_id": 1,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            247,
+            252
+          ]
+        },
+        {
+          "frame": 363,
+          "time_s": 18.100000269711018,
+          "collision_id": 2,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            247,
+            252
+          ]
+        },
+        {
+          "frame": 377,
+          "time_s": 18.80000028014183,
+          "collision_id": 5,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            247,
+            252
+          ]
+        },
+        {
+          "frame": 466,
+          "time_s": 23.250000346451998,
+          "collision_id": 87,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            247,
+            252
+          ]
+        }
+      ],
+      "ordered_starts": [
+        {
+          "frame": 354,
+          "time_s": 17.650000263005495,
+          "collision_id": 0,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 361,
+          "time_s": 18.0000002682209,
+          "collision_id": 1,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 363,
+          "time_s": 18.100000269711018,
+          "collision_id": 2,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 377,
+          "time_s": 18.80000028014183,
+          "collision_id": 5,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 466,
+          "time_s": 23.250000346451998,
+          "collision_id": 87,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        }
+      ],
+      "raw_samples": [
+        {
+          "frame": 354,
+          "time_s": 17.650000263005495,
+          "collision_id": 0,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 361,
+          "time_s": 18.0000002682209,
+          "collision_id": 1,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 363,
+          "time_s": 18.100000269711018,
+          "collision_id": 2,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 364,
+          "time_s": 18.150000270456076,
+          "collision_id": 3,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 365,
+          "time_s": 18.200000271201134,
+          "collision_id": 4,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 377,
+          "time_s": 18.80000028014183,
+          "collision_id": 5,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 378,
+          "time_s": 18.85000028088689,
+          "collision_id": 6,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 379,
+          "time_s": 18.900000281631947,
+          "collision_id": 7,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 380,
+          "time_s": 18.950000282377005,
+          "collision_id": 8,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 381,
+          "time_s": 19.000000283122063,
+          "collision_id": 9,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 382,
+          "time_s": 19.05000028386712,
+          "collision_id": 10,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 383,
+          "time_s": 19.10000028461218,
+          "collision_id": 11,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 384,
+          "time_s": 19.150000285357237,
+          "collision_id": 12,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 385,
+          "time_s": 19.200000286102295,
+          "collision_id": 13,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 386,
+          "time_s": 19.250000286847353,
+          "collision_id": 14,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 387,
+          "time_s": 19.30000028759241,
+          "collision_id": 15,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 388,
+          "time_s": 19.35000028833747,
+          "collision_id": 16,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 389,
+          "time_s": 19.400000289082527,
+          "collision_id": 17,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 390,
+          "time_s": 19.450000289827585,
+          "collision_id": 18,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 391,
+          "time_s": 19.500000290572643,
+          "collision_id": 19,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 392,
+          "time_s": 19.5500002913177,
+          "collision_id": 20,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 393,
+          "time_s": 19.60000029206276,
+          "collision_id": 21,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 394,
+          "time_s": 19.650000292807817,
+          "collision_id": 22,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 395,
+          "time_s": 19.700000293552876,
+          "collision_id": 23,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 396,
+          "time_s": 19.750000294297934,
+          "collision_id": 24,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 397,
+          "time_s": 19.80000029504299,
+          "collision_id": 25,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 398,
+          "time_s": 19.85000029578805,
+          "collision_id": 26,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 399,
+          "time_s": 19.900000296533108,
+          "collision_id": 27,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 400,
+          "time_s": 19.950000297278166,
+          "collision_id": 28,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 401,
+          "time_s": 20.000000298023224,
+          "collision_id": 29,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 402,
+          "time_s": 20.050000298768282,
+          "collision_id": 30,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 403,
+          "time_s": 20.10000029951334,
+          "collision_id": 31,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 404,
+          "time_s": 20.150000300258398,
+          "collision_id": 32,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 405,
+          "time_s": 20.200000301003456,
+          "collision_id": 33,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 406,
+          "time_s": 20.250000301748514,
+          "collision_id": 34,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 407,
+          "time_s": 20.300000302493572,
+          "collision_id": 35,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 408,
+          "time_s": 20.35000030323863,
+          "collision_id": 36,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 409,
+          "time_s": 20.40000030398369,
+          "collision_id": 37,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 410,
+          "time_s": 20.450000304728746,
+          "collision_id": 38,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 411,
+          "time_s": 20.500000305473804,
+          "collision_id": 39,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 412,
+          "time_s": 20.550000306218863,
+          "collision_id": 40,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 413,
+          "time_s": 20.60000030696392,
+          "collision_id": 41,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 414,
+          "time_s": 20.65000030770898,
+          "collision_id": 42,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 415,
+          "time_s": 20.700000308454037,
+          "collision_id": 43,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 416,
+          "time_s": 20.750000309199095,
+          "collision_id": 44,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 417,
+          "time_s": 20.800000309944153,
+          "collision_id": 45,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 418,
+          "time_s": 20.85000031068921,
+          "collision_id": 46,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 419,
+          "time_s": 20.90000031143427,
+          "collision_id": 47,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 420,
+          "time_s": 20.950000312179327,
+          "collision_id": 48,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 421,
+          "time_s": 21.000000312924385,
+          "collision_id": 49,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 422,
+          "time_s": 21.050000313669443,
+          "collision_id": 50,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 423,
+          "time_s": 21.1000003144145,
+          "collision_id": 51,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 424,
+          "time_s": 21.15000031515956,
+          "collision_id": 52,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 425,
+          "time_s": 21.200000315904617,
+          "collision_id": 53,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 426,
+          "time_s": 21.250000316649675,
+          "collision_id": 54,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 427,
+          "time_s": 21.300000317394733,
+          "collision_id": 55,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 428,
+          "time_s": 21.35000031813979,
+          "collision_id": 56,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 429,
+          "time_s": 21.40000031888485,
+          "collision_id": 57,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 430,
+          "time_s": 21.450000319629908,
+          "collision_id": 58,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 431,
+          "time_s": 21.500000320374966,
+          "collision_id": 59,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 432,
+          "time_s": 21.550000321120024,
+          "collision_id": 60,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 433,
+          "time_s": 21.600000321865082,
+          "collision_id": 61,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 434,
+          "time_s": 21.65000032261014,
+          "collision_id": 62,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 435,
+          "time_s": 21.700000323355198,
+          "collision_id": 63,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 436,
+          "time_s": 21.750000324100256,
+          "collision_id": 64,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 437,
+          "time_s": 21.800000324845314,
+          "collision_id": 65,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 438,
+          "time_s": 21.850000325590372,
+          "collision_id": 66,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 439,
+          "time_s": 21.90000032633543,
+          "collision_id": 67,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 440,
+          "time_s": 21.950000327080488,
+          "collision_id": 68,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 441,
+          "time_s": 22.000000327825546,
+          "collision_id": 69,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 442,
+          "time_s": 22.050000328570604,
+          "collision_id": 70,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 443,
+          "time_s": 22.100000329315662,
+          "collision_id": 71,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 444,
+          "time_s": 22.15000033006072,
+          "collision_id": 72,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 445,
+          "time_s": 22.20000033080578,
+          "collision_id": 73,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 446,
+          "time_s": 22.250000331550837,
+          "collision_id": 74,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 447,
+          "time_s": 22.300000332295895,
+          "collision_id": 75,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 448,
+          "time_s": 22.350000333040953,
+          "collision_id": 76,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 449,
+          "time_s": 22.40000033378601,
+          "collision_id": 77,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 450,
+          "time_s": 22.45000033453107,
+          "collision_id": 78,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 451,
+          "time_s": 22.500000335276127,
+          "collision_id": 79,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 452,
+          "time_s": 22.550000336021185,
+          "collision_id": 80,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 453,
+          "time_s": 22.600000336766243,
+          "collision_id": 81,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 454,
+          "time_s": 22.6500003375113,
+          "collision_id": 82,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 455,
+          "time_s": 22.70000033825636,
+          "collision_id": 83,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 456,
+          "time_s": 22.750000339001417,
+          "collision_id": 84,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 457,
+          "time_s": 22.800000339746475,
+          "collision_id": 85,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 458,
+          "time_s": 22.850000340491533,
+          "collision_id": 86,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 466,
+          "time_s": 23.250000346451998,
+          "collision_id": 87,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 467,
+          "time_s": 23.300000347197056,
+          "collision_id": 88,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 468,
+          "time_s": 23.350000347942114,
+          "collision_id": 89,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 469,
+          "time_s": 23.400000348687172,
+          "collision_id": 90,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 470,
+          "time_s": 23.45000034943223,
+          "collision_id": 91,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 471,
+          "time_s": 23.500000350177288,
+          "collision_id": 92,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 472,
+          "time_s": 23.550000350922346,
+          "collision_id": 93,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 473,
+          "time_s": 23.600000351667404,
+          "collision_id": 94,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 474,
+          "time_s": 23.650000352412462,
+          "collision_id": 95,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 475,
+          "time_s": 23.70000035315752,
+          "collision_id": 96,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 476,
+          "time_s": 23.75000035390258,
+          "collision_id": 97,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 477,
+          "time_s": 23.800000354647636,
+          "collision_id": 98,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 478,
+          "time_s": 23.850000355392694,
+          "collision_id": 99,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 479,
+          "time_s": 23.900000356137753,
+          "collision_id": 100,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 480,
+          "time_s": 23.95000035688281,
+          "collision_id": 101,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 481,
+          "time_s": 24.00000035762787,
+          "collision_id": 102,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 482,
+          "time_s": 24.050000358372927,
+          "collision_id": 103,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 483,
+          "time_s": 24.100000359117985,
+          "collision_id": 104,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 484,
+          "time_s": 24.150000359863043,
+          "collision_id": 105,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 485,
+          "time_s": 24.2000003606081,
+          "collision_id": 106,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 486,
+          "time_s": 24.25000036135316,
+          "collision_id": 107,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 487,
+          "time_s": 24.300000362098217,
+          "collision_id": 108,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 488,
+          "time_s": 24.350000362843275,
+          "collision_id": 109,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 489,
+          "time_s": 24.400000363588333,
+          "collision_id": 110,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 490,
+          "time_s": 24.45000036433339,
+          "collision_id": 111,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 491,
+          "time_s": 24.50000036507845,
+          "collision_id": 112,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 492,
+          "time_s": 24.550000365823507,
+          "collision_id": 113,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 493,
+          "time_s": 24.600000366568565,
+          "collision_id": 114,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 494,
+          "time_s": 24.650000367313623,
+          "collision_id": 115,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 495,
+          "time_s": 24.70000036805868,
+          "collision_id": 116,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 496,
+          "time_s": 24.75000036880374,
+          "collision_id": 117,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 497,
+          "time_s": 24.800000369548798,
+          "collision_id": 118,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 498,
+          "time_s": 24.850000370293856,
+          "collision_id": 119,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 499,
+          "time_s": 24.900000371038914,
+          "collision_id": 120,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 500,
+          "time_s": 24.950000371783972,
+          "collision_id": 121,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 501,
+          "time_s": 25.00000037252903,
+          "collision_id": 122,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 502,
+          "time_s": 25.050000373274088,
+          "collision_id": 123,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 503,
+          "time_s": 25.100000374019146,
+          "collision_id": 124,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 504,
+          "time_s": 25.150000374764204,
+          "collision_id": 125,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 505,
+          "time_s": 25.200000375509262,
+          "collision_id": 126,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 506,
+          "time_s": 25.25000037625432,
+          "collision_id": 127,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 507,
+          "time_s": 25.300000376999378,
+          "collision_id": 128,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 508,
+          "time_s": 25.350000377744436,
+          "collision_id": 129,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 509,
+          "time_s": 25.400000378489494,
+          "collision_id": 130,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 510,
+          "time_s": 25.450000379234552,
+          "collision_id": 131,
+          "actor1": 247,
+          "actor2": 252,
+          "hero1": true,
+          "hero2": false
+        }
+      ],
+      "fault_speed_or_impact_filter": false,
+      "count_unit": "Unordered ego-involved actor-pair contact starts; adjacent-frame continuation merges",
+      "source_urls": [
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderInfo.h",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderFrames.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderCollision.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderQuery.cpp"
+      ],
+      "official_rpc_crosscheck_complete": false
+    },
+    {
+      "schema": "carla015-recorder-ego-contacts-v1",
+      "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_corrected_pilot_continuation_v2_20261020/comma_f100_seed42/comma_f100_seed42/recordings/route_143_rep0.log",
+      "sha256": "b48c76f7b96570a6e768cb69aa2dcd0b46e0a1e220f7026a7abd210b11d21065",
+      "version": 1,
+      "town": "Town03_Opt",
+      "recorder_date": 1792479178,
+      "frames": 569,
+      "duration_s": 28.400000423192978,
+      "packets": 7966,
+      "complete": true,
+      "errors": [],
+      "ego_contact_starts": 5,
+      "ego_raw_contact_samples": 88,
+      "official_ordered_ego_contact_starts": 5,
+      "official_h_a_contact_starts": 5,
+      "official_a_h_contact_starts": 0,
+      "all_actor_raw_contact_samples": 88,
+      "starts": [
+        {
+          "frame": 250,
+          "time_s": 12.450000185519457,
+          "collision_id": 0,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            294,
+            299
+          ]
+        },
+        {
+          "frame": 254,
+          "time_s": 12.650000188499689,
+          "collision_id": 1,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            294,
+            299
+          ]
+        },
+        {
+          "frame": 259,
+          "time_s": 12.90000019222498,
+          "collision_id": 4,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            294,
+            299
+          ]
+        },
+        {
+          "frame": 319,
+          "time_s": 15.900000236928463,
+          "collision_id": 63,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            294,
+            299
+          ]
+        },
+        {
+          "frame": 387,
+          "time_s": 19.30000028759241,
+          "collision_id": 82,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false,
+          "unordered_pair": [
+            294,
+            299
+          ]
+        }
+      ],
+      "ordered_starts": [
+        {
+          "frame": 250,
+          "time_s": 12.450000185519457,
+          "collision_id": 0,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 254,
+          "time_s": 12.650000188499689,
+          "collision_id": 1,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 259,
+          "time_s": 12.90000019222498,
+          "collision_id": 4,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 319,
+          "time_s": 15.900000236928463,
+          "collision_id": 63,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 387,
+          "time_s": 19.30000028759241,
+          "collision_id": 82,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        }
+      ],
+      "raw_samples": [
+        {
+          "frame": 250,
+          "time_s": 12.450000185519457,
+          "collision_id": 0,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 254,
+          "time_s": 12.650000188499689,
+          "collision_id": 1,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 255,
+          "time_s": 12.700000189244747,
+          "collision_id": 2,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 256,
+          "time_s": 12.750000189989805,
+          "collision_id": 3,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 259,
+          "time_s": 12.90000019222498,
+          "collision_id": 4,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 260,
+          "time_s": 12.950000192970037,
+          "collision_id": 5,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 261,
+          "time_s": 13.000000193715096,
+          "collision_id": 6,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 262,
+          "time_s": 13.050000194460154,
+          "collision_id": 7,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 263,
+          "time_s": 13.100000195205212,
+          "collision_id": 8,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 264,
+          "time_s": 13.15000019595027,
+          "collision_id": 9,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 265,
+          "time_s": 13.200000196695328,
+          "collision_id": 10,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 266,
+          "time_s": 13.250000197440386,
+          "collision_id": 11,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 267,
+          "time_s": 13.300000198185444,
+          "collision_id": 12,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 268,
+          "time_s": 13.350000198930502,
+          "collision_id": 13,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 269,
+          "time_s": 13.40000019967556,
+          "collision_id": 14,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 270,
+          "time_s": 13.450000200420618,
+          "collision_id": 15,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 271,
+          "time_s": 13.500000201165676,
+          "collision_id": 16,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 272,
+          "time_s": 13.550000201910734,
+          "collision_id": 17,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 273,
+          "time_s": 13.600000202655792,
+          "collision_id": 18,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 274,
+          "time_s": 13.65000020340085,
+          "collision_id": 19,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 275,
+          "time_s": 13.700000204145908,
+          "collision_id": 20,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 276,
+          "time_s": 13.750000204890966,
+          "collision_id": 21,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 277,
+          "time_s": 13.800000205636024,
+          "collision_id": 22,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 278,
+          "time_s": 13.850000206381083,
+          "collision_id": 23,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 279,
+          "time_s": 13.90000020712614,
+          "collision_id": 24,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 280,
+          "time_s": 13.950000207871199,
+          "collision_id": 25,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 281,
+          "time_s": 14.000000208616257,
+          "collision_id": 26,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 282,
+          "time_s": 14.050000209361315,
+          "collision_id": 27,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 283,
+          "time_s": 14.100000210106373,
+          "collision_id": 28,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 284,
+          "time_s": 14.150000210851431,
+          "collision_id": 29,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 285,
+          "time_s": 14.200000211596489,
+          "collision_id": 30,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 286,
+          "time_s": 14.250000212341547,
+          "collision_id": 31,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 287,
+          "time_s": 14.300000213086605,
+          "collision_id": 32,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 288,
+          "time_s": 14.350000213831663,
+          "collision_id": 33,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 289,
+          "time_s": 14.400000214576721,
+          "collision_id": 34,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 290,
+          "time_s": 14.45000021532178,
+          "collision_id": 35,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 291,
+          "time_s": 14.500000216066837,
+          "collision_id": 36,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 292,
+          "time_s": 14.550000216811895,
+          "collision_id": 37,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 293,
+          "time_s": 14.600000217556953,
+          "collision_id": 38,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 294,
+          "time_s": 14.650000218302011,
+          "collision_id": 39,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 295,
+          "time_s": 14.70000021904707,
+          "collision_id": 40,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 296,
+          "time_s": 14.750000219792128,
+          "collision_id": 41,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 297,
+          "time_s": 14.800000220537186,
+          "collision_id": 42,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 298,
+          "time_s": 14.850000221282244,
+          "collision_id": 43,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 299,
+          "time_s": 14.900000222027302,
+          "collision_id": 44,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 300,
+          "time_s": 14.95000022277236,
+          "collision_id": 45,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 301,
+          "time_s": 15.000000223517418,
+          "collision_id": 46,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 302,
+          "time_s": 15.050000224262476,
+          "collision_id": 47,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 303,
+          "time_s": 15.100000225007534,
+          "collision_id": 48,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 304,
+          "time_s": 15.150000225752592,
+          "collision_id": 49,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 305,
+          "time_s": 15.20000022649765,
+          "collision_id": 50,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 306,
+          "time_s": 15.250000227242708,
+          "collision_id": 51,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 307,
+          "time_s": 15.300000227987766,
+          "collision_id": 52,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 308,
+          "time_s": 15.350000228732824,
+          "collision_id": 53,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 309,
+          "time_s": 15.400000229477882,
+          "collision_id": 54,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 310,
+          "time_s": 15.45000023022294,
+          "collision_id": 55,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 311,
+          "time_s": 15.500000230967999,
+          "collision_id": 56,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 312,
+          "time_s": 15.550000231713057,
+          "collision_id": 57,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 313,
+          "time_s": 15.600000232458115,
+          "collision_id": 58,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 314,
+          "time_s": 15.650000233203173,
+          "collision_id": 59,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 315,
+          "time_s": 15.70000023394823,
+          "collision_id": 60,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 316,
+          "time_s": 15.750000234693289,
+          "collision_id": 61,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 317,
+          "time_s": 15.800000235438347,
+          "collision_id": 62,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 319,
+          "time_s": 15.900000236928463,
+          "collision_id": 63,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 320,
+          "time_s": 15.950000237673521,
+          "collision_id": 64,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 321,
+          "time_s": 16.00000023841858,
+          "collision_id": 65,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 322,
+          "time_s": 16.050000239163637,
+          "collision_id": 66,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 323,
+          "time_s": 16.100000239908695,
+          "collision_id": 67,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 324,
+          "time_s": 16.150000240653753,
+          "collision_id": 68,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 325,
+          "time_s": 16.20000024139881,
+          "collision_id": 69,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 326,
+          "time_s": 16.25000024214387,
+          "collision_id": 70,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 327,
+          "time_s": 16.300000242888927,
+          "collision_id": 71,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 328,
+          "time_s": 16.350000243633986,
+          "collision_id": 72,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 329,
+          "time_s": 16.400000244379044,
+          "collision_id": 73,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 330,
+          "time_s": 16.4500002451241,
+          "collision_id": 74,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 331,
+          "time_s": 16.50000024586916,
+          "collision_id": 75,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 332,
+          "time_s": 16.550000246614218,
+          "collision_id": 76,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 333,
+          "time_s": 16.600000247359276,
+          "collision_id": 77,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 334,
+          "time_s": 16.650000248104334,
+          "collision_id": 78,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 335,
+          "time_s": 16.700000248849392,
+          "collision_id": 79,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 336,
+          "time_s": 16.75000024959445,
+          "collision_id": 80,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 337,
+          "time_s": 16.800000250339508,
+          "collision_id": 81,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 387,
+          "time_s": 19.30000028759241,
+          "collision_id": 82,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 388,
+          "time_s": 19.35000028833747,
+          "collision_id": 83,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 389,
+          "time_s": 19.400000289082527,
+          "collision_id": 84,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 390,
+          "time_s": 19.450000289827585,
+          "collision_id": 85,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 391,
+          "time_s": 19.500000290572643,
+          "collision_id": 86,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        },
+        {
+          "frame": 392,
+          "time_s": 19.5500002913177,
+          "collision_id": 87,
+          "actor1": 294,
+          "actor2": 299,
+          "hero1": true,
+          "hero2": false
+        }
+      ],
+      "fault_speed_or_impact_filter": false,
+      "count_unit": "Unordered ego-involved actor-pair contact starts; adjacent-frame continuation merges",
+      "source_urls": [
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderInfo.h",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderFrames.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderCollision.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderQuery.cpp"
+      ],
+      "official_rpc_crosscheck_complete": false
+    },
+    {
+      "schema": "carla015-recorder-ego-contacts-v1",
+      "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_corrected_pilot_continuation_v2_20261020/comma_f100_seed42/comma_f100_seed42/recordings/route_86_rep0.log",
+      "sha256": "996e29142f639d48c977a94a4ea75995cf6a4b70484b5e57cb756c3128b079bf",
+      "version": 1,
+      "town": "Town03_Opt",
+      "recorder_date": 1792478657,
+      "frames": 350,
+      "duration_s": 17.450000260025263,
+      "packets": 4900,
+      "complete": true,
+      "errors": [],
+      "ego_contact_starts": 0,
+      "ego_raw_contact_samples": 0,
+      "official_ordered_ego_contact_starts": 0,
+      "official_h_a_contact_starts": 0,
+      "official_a_h_contact_starts": 0,
+      "all_actor_raw_contact_samples": 0,
+      "starts": [],
+      "ordered_starts": [],
+      "raw_samples": [],
+      "fault_speed_or_impact_filter": false,
+      "count_unit": "Unordered ego-involved actor-pair contact starts; adjacent-frame continuation merges",
+      "source_urls": [
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderInfo.h",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderFrames.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderCollision.cpp",
+        "https://github.com/carla-simulator/carla/blob/0.9.15/Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Recorder/CarlaRecorderQuery.cpp"
+      ],
+      "official_rpc_crosscheck_complete": false
+    }
+  ],
+  "original_primary_source_differences": [
+    "src/navigation/camera_agent.py",
+    "src/navigation/final_evaluation.py",
+    "src/navigation/pdm_agent.py"
+  ],
+  "source_difference_explanation": "Three recording/final-registration modules differ across the approved compact-storage activation. All nonfinal videos remain full; runtime free-space floor25\u219210GB. Policy/physics/scoring equations unchanged. Later feedback patch applied only AFTER every matrix drive; none used own-actuatorv2.",
+  "reporting_source_sha256": "0d5d086526b3d888ae6f79b7f58634908603221558b61c31f88e33e77dd1d4ae",
+  "note": "One training seed/checkpoint, six familiar TRAINengineering cases. Paired data but highly correlated geography; no statistical encoder superiority or M6qualification."
+}

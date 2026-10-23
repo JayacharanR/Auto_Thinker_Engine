@@ -1,0 +1,599 @@
+{
+  "diagnostic_complete": true,
+  "scope": "Familiar assisted TRAIN component replay only",
+  "counts": {
+    "timestamps": 518,
+    "detections_all_views": 10785,
+    "known_timestamps": 440,
+    "projected_housings": 1534,
+    "matched_housings": 769,
+    "known_timestamps_with_match": 213,
+    "matched_truth_Yellow": 5,
+    "raw_state_correct": 715,
+    "tracked_argmax_correct": 721,
+    "tracked_confident": 690,
+    "tracked_confident_correct": 660,
+    "tracked_unknown": 79,
+    "consecutive_matched_housing_pairs": 734,
+    "consecutive_track_id_changes": 133,
+    "matched_truth_Red": 610,
+    "raw_red_called_green": 6,
+    "tracked_red_called_green": 0,
+    "matched_truth_Green": 154
+  },
+  "excluded": [
+    {
+      "route_id": 111,
+      "family": "route_junction",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route2_10_16_11_23_59/data",
+      "junction_ids": [
+        655
+      ],
+      "samples": 169,
+      "eligible": false,
+      "component_validation_overlap": [
+        655
+      ]
+    },
+    {
+      "route_id": 133,
+      "family": "signal_stop",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route4_10_16_11_24_46/data",
+      "junction_ids": [
+        655
+      ],
+      "samples": 322,
+      "eligible": false,
+      "component_validation_overlap": [
+        655
+      ]
+    }
+  ],
+  "episodes": [
+    {
+      "route_id": 101,
+      "metrics": {
+        "counts": {
+          "timestamps": 261,
+          "detections_all_views": 1635,
+          "known_timestamps": 261,
+          "projected_housings": 814,
+          "matched_housings": 51,
+          "known_timestamps_with_match": 34,
+          "matched_truth_Yellow": 5,
+          "raw_state_correct": 42,
+          "tracked_argmax_correct": 49,
+          "tracked_confident": 26,
+          "tracked_confident_correct": 25,
+          "tracked_unknown": 25,
+          "consecutive_matched_housing_pairs": 22,
+          "consecutive_track_id_changes": 12,
+          "matched_truth_Red": 46,
+          "raw_red_called_green": 6,
+          "tracked_red_called_green": 0
+        },
+        "maximum_known_no_detection_run_s": 10.9,
+        "confusion_order": [
+          "Red",
+          "Yellow",
+          "Green"
+        ],
+        "confusion": {
+          "raw_state": [
+            [
+              38,
+              2,
+              6
+            ],
+            [
+              0,
+              4,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "tracked_argmax": [
+            [
+              44,
+              1,
+              1
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "transitions": [
+        {
+          "frame": 968,
+          "timestamp": 9.250000137835741,
+          "previous_state": "Green",
+          "next_state": "Yellow",
+          "first_correct_associated_evidence_delay_s": {
+            "raw_state": 1.700000025331974,
+            "tracked_argmax": 1.700000025331974,
+            "tracked_state": 1.8000000268220901
+          },
+          "observed_window_s": 3.0000000447034836
+        },
+        {
+          "frame": 1030,
+          "timestamp": 12.35000018402934,
+          "previous_state": "Yellow",
+          "next_state": "Red",
+          "first_correct_associated_evidence_delay_s": {
+            "raw_state": 1.2000000178813934,
+            "tracked_argmax": 1.2000000178813934,
+            "tracked_state": 2.0000000298023224
+          },
+          "observed_window_s": 3.0000000447034836
+        }
+      ]
+    },
+    {
+      "route_id": 123,
+      "metrics": {
+        "counts": {
+          "timestamps": 257,
+          "detections_all_views": 9150,
+          "known_timestamps": 179,
+          "projected_housings": 720,
+          "matched_housings": 718,
+          "known_timestamps_with_match": 179,
+          "matched_truth_Red": 564,
+          "raw_state_correct": 673,
+          "tracked_argmax_correct": 672,
+          "tracked_confident": 664,
+          "tracked_confident_correct": 635,
+          "tracked_unknown": 54,
+          "raw_red_called_green": 0,
+          "tracked_red_called_green": 0,
+          "consecutive_matched_housing_pairs": 712,
+          "consecutive_track_id_changes": 121,
+          "matched_truth_Green": 154
+        },
+        "maximum_known_no_detection_run_s": 0.0,
+        "confusion_order": [
+          "Red",
+          "Yellow",
+          "Green"
+        ],
+        "confusion": {
+          "raw_state": [
+            [
+              564,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              32,
+              13,
+              109
+            ]
+          ],
+          "tracked_argmax": [
+            [
+              564,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              43,
+              3,
+              108
+            ]
+          ]
+        }
+      },
+      "transitions": [
+        {
+          "frame": 1955,
+          "timestamp": 14.150000210851431,
+          "previous_state": "Red",
+          "next_state": "Green",
+          "first_correct_associated_evidence_delay_s": {
+            "raw_state": 0.0,
+            "tracked_argmax": 0.10000000149011612,
+            "tracked_state": 0.20000000298023224
+          },
+          "observed_window_s": 3.0000000447034836
+        }
+      ]
+    }
+  ],
+  "stop_events": [
+    {
+      "route_id": 86,
+      "family": "crossing_yield",
+      "samples": 163,
+      "stop_events": []
+    },
+    {
+      "route_id": 101,
+      "family": "following_stopped_vehicle",
+      "samples": 261,
+      "stop_events": [
+        {
+          "start_frame": 1064,
+          "end_frame": 1092,
+          "samples": 15,
+          "duration_s": 1.5000000208616258,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 1094,
+          "cause_at_start": {
+            "vehicle_hazard": true,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": {
+            "label_state": "Red",
+            "matched_housings": 0,
+            "raw_states": [],
+            "tracked_states": []
+          },
+          "at_release": {
+            "label_state": "Red",
+            "matched_housings": 0,
+            "raw_states": [],
+            "tracked_states": []
+          },
+          "matched_housing_frames_during_stop": 4,
+          "rgb_replayed": true
+        },
+        {
+          "start_frame": 1126,
+          "end_frame": 1150,
+          "samples": 13,
+          "duration_s": 1.3000000178813935,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 1152,
+          "cause_at_start": {
+            "vehicle_hazard": true,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": {
+            "label_state": "Red",
+            "matched_housings": 0,
+            "raw_states": [],
+            "tracked_states": []
+          },
+          "at_release": {
+            "label_state": "Red",
+            "matched_housings": 0,
+            "raw_states": [],
+            "tracked_states": []
+          },
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": true
+        }
+      ]
+    },
+    {
+      "route_id": 123,
+      "family": "signal_release_memory",
+      "samples": 257,
+      "stop_events": [
+        {
+          "start_frame": 1673,
+          "end_frame": 1953,
+          "samples": 141,
+          "duration_s": 14.100000208616256,
+          "longer_than_3_2s": true,
+          "release_observed": true,
+          "release_frame": 1955,
+          "cause_at_start": {
+            "vehicle_hazard": false,
+            "walker_hazard": false,
+            "light_hazard": true,
+            "stop_sign_hazard": false
+          },
+          "left_censored": true,
+          "at_start": {
+            "label_state": "Red",
+            "matched_housings": 4,
+            "raw_states": [
+              "Red",
+              "Red",
+              "Red",
+              "Red"
+            ],
+            "tracked_states": [
+              "Unknown",
+              "Unknown",
+              "Unknown",
+              "Unknown"
+            ]
+          },
+          "at_release": {
+            "label_state": "Green",
+            "matched_housings": 4,
+            "raw_states": [
+              "Green",
+              "Green",
+              "Green",
+              "Red"
+            ],
+            "tracked_states": [
+              "Red",
+              "Red",
+              "Red",
+              "Red"
+            ]
+          },
+          "matched_housing_frames_during_stop": 141,
+          "rgb_replayed": true
+        }
+      ]
+    },
+    {
+      "route_id": 143,
+      "family": "stop_sign",
+      "samples": 557,
+      "stop_events": [
+        {
+          "start_frame": 3165,
+          "end_frame": 3165,
+          "samples": 1,
+          "duration_s": 0.1,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 3167,
+          "cause_at_start": {
+            "vehicle_hazard": false,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        },
+        {
+          "start_frame": 3171,
+          "end_frame": 3315,
+          "samples": 73,
+          "duration_s": 7.30000010728836,
+          "longer_than_3_2s": true,
+          "release_observed": true,
+          "release_frame": 3317,
+          "cause_at_start": {
+            "vehicle_hazard": false,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        },
+        {
+          "start_frame": 3319,
+          "end_frame": 3365,
+          "samples": 24,
+          "duration_s": 2.400000034272671,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 3367,
+          "cause_at_start": {
+            "vehicle_hazard": true,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        },
+        {
+          "start_frame": 3369,
+          "end_frame": 3369,
+          "samples": 1,
+          "duration_s": 0.1,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 3371,
+          "cause_at_start": {
+            "vehicle_hazard": false,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        },
+        {
+          "start_frame": 3375,
+          "end_frame": 3645,
+          "samples": 136,
+          "duration_s": 13.600000201165676,
+          "longer_than_3_2s": true,
+          "release_observed": true,
+          "release_frame": 3647,
+          "cause_at_start": {
+            "vehicle_hazard": false,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        },
+        {
+          "start_frame": 3735,
+          "end_frame": 3737,
+          "samples": 2,
+          "duration_s": 0.20000000149011612,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 3739,
+          "cause_at_start": {
+            "vehicle_hazard": false,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": true
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        },
+        {
+          "start_frame": 3741,
+          "end_frame": 3767,
+          "samples": 14,
+          "duration_s": 1.4000000193715096,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 3769,
+          "cause_at_start": {
+            "vehicle_hazard": false,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": true
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        },
+        {
+          "start_frame": 3849,
+          "end_frame": 3849,
+          "samples": 1,
+          "duration_s": 0.1,
+          "longer_than_3_2s": false,
+          "release_observed": true,
+          "release_frame": 3851,
+          "cause_at_start": {
+            "vehicle_hazard": true,
+            "walker_hazard": false,
+            "light_hazard": false,
+            "stop_sign_hazard": false
+          },
+          "left_censored": false,
+          "at_start": null,
+          "at_release": null,
+          "matched_housing_frames_during_stop": 0,
+          "rgb_replayed": false
+        }
+      ]
+    }
+  ],
+  "component_and_tracking_seconds": {
+    "mean": 0.19717660633396922,
+    "p95": 0.2066071840488803,
+    "excludes": "Shard decode, projection scoring and IO"
+  },
+  "wall_seconds": 118.98903555000106,
+  "predictions_sha256": "5ba9416e9f3cb38d0c2c3690a04a8b2268b3299bd5d53a644a4f8671e1d8b4f2",
+  "request_sha256": "f85d58361915bdfd38136918fd29e01d1ca5a1b499bec42d3d1b296f332bb208",
+  "applicability_confirmed": false,
+  "visibility_certified": false,
+  "state_labels_released": false,
+  "driving_policy_changed": false,
+  "tracker_selected_for_driver": false,
+  "limitations": [
+    "GT association is scoring only, not a runtime applicable-light selector",
+    "Projected overlap/phase are not verified facing, visibility or legibility labels",
+    "Per-view identities; no cross-view identity, depth, stop line or applicability",
+    "Angular association ignores translation/ego tilt; nearby heads may merge/switch",
+    "Teacher stop/release and assisted actual speed are not student driving",
+    "State probabilities are uncalibrated; no threshold tuning or independent test here"
+  ],
+  "posthoc_identity_and_range": {
+    "kind": "Post-hoc descriptive analysis; no tuning, fitting or changed selection",
+    "change_decomposition": {
+      "old_id_active_elsewhere": 21,
+      "old_id_absent_current_detections": 25,
+      "old_id_still_overlaps_same_housing": 87
+    },
+    "ranges": [
+      {
+        "route_id": 101,
+        "known_timestamps": 261,
+        "first_last_label_distance_m": [
+          113.1,
+          37.2
+        ],
+        "largest_native_housing_height_min_median_max_px": [
+          1.9847870731859416,
+          2.6960273965583212,
+          4.050000567063535
+        ],
+        "assigned_track_change_decomposition": {
+          "old_id_active_elsewhere": 7,
+          "old_id_absent_current_detections": 3,
+          "old_id_still_overlaps_same_housing": 2
+        }
+      },
+      {
+        "route_id": 123,
+        "known_timestamps": 179,
+        "first_last_label_distance_m": [
+          4.6,
+          0.0
+        ],
+        "largest_native_housing_height_min_median_max_px": [
+          8.123033708645679,
+          8.123042407141,
+          13.78308051086745
+        ],
+        "assigned_track_change_decomposition": {
+          "old_id_still_overlaps_same_housing": 85,
+          "old_id_active_elsewhere": 14,
+          "old_id_absent_current_detections": 22
+        }
+      }
+    ],
+    "interpretation": "Competing overlapping predictions can change scoring-associated track ID even when the older ID still covers that housing. This is not a calibrated physical identity-switch rate."
+  },
+  "evidence_verified": true,
+  "preserved_policy_and_cache": {
+    "outputs/navigation_m2_stop_go_20261016/best_policy.pt": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+    "outputs/navigation_m2_cache_20k_20261015/manifest.json": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae"
+  },
+  "summarizer_sha256": "d78471e9417e672247c9828c5a303e4c0dc04ae7617fda5c64c73491e17d1ed6"
+}

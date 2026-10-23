@@ -1,0 +1,982 @@
+{
+  "records": [
+    {
+      "id": "original:Town01_Opt:1:202610150:0",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00000/episodes/Town01_Opt_route0_10_15_14_57_49/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        194
+      ],
+      "actual_rgb_junction_counts": {
+        "194": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:43:202610151:99",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00001/episodes/Town02_Opt_route0_10_15_14_58_07/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        188
+      ],
+      "actual_rgb_junction_counts": {
+        "188": 14
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:92:202610152:403",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00002/episodes/Town03_Opt_route0_10_15_14_58_32/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1932
+      ],
+      "actual_rgb_junction_counts": {
+        "238": 6,
+        "1932": 22
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:174:202610153:482",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00003/episodes/Town04_Opt_route0_10_15_14_58_48/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1593
+      ],
+      "actual_rgb_junction_counts": {
+        "1593": 25
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:253:202610154:571",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00004/episodes/Town10HD_Opt_route0_10_15_14_59_08/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        719
+      ],
+      "actual_rgb_junction_counts": {
+        "719": 43
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:6:202610155:706",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00005/episodes/Town01_Opt_route0_10_15_14_59_30/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        26
+      ],
+      "actual_rgb_junction_counts": {
+        "26": 28
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:48:202610156:1186",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00006/episodes/Town02_Opt_route0_10_15_15_00_12/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        76
+      ],
+      "actual_rgb_junction_counts": {
+        "76": 19
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:107:202610157:1380",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00007/episodes/Town03_Opt_route0_10_15_15_00_31/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1221
+      ],
+      "actual_rgb_junction_counts": {
+        "1221": 13
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:190:202610158:1929",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00008/episodes/Town04_Opt_route0_10_15_15_01_31/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        850
+      ],
+      "actual_rgb_junction_counts": {
+        "850": 21
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:263:202610159:2026",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00009/episodes/Town10HD_Opt_route0_10_15_15_01_54/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        895
+      ],
+      "actual_rgb_junction_counts": {
+        "895": 47
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:16:202610160:2937",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00010/episodes/Town01_Opt_route0_10_15_15_03_11/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        306
+      ],
+      "actual_rgb_junction_counts": {
+        "306": 20
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:60:202610161:3343",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00011/episodes/Town02_Opt_route0_10_15_15_03_51/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        298
+      ],
+      "actual_rgb_junction_counts": {
+        "132": 5,
+        "298": 17
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:118:202610162:3536",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00012/episodes/Town03_Opt_route0_10_15_15_04_10/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        475
+      ],
+      "actual_rgb_junction_counts": {
+        "475": 25
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:199:202610163:3661",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00013/episodes/Town04_Opt_route0_10_15_15_04_32/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        621
+      ],
+      "actual_rgb_junction_counts": {
+        "621": 22
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:268:202610164:3844",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00014/episodes/Town10HD_Opt_route0_10_15_15_04_59/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        895
+      ],
+      "actual_rgb_junction_counts": {
+        "895": 41
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:31:202610165:4231",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00015/episodes/Town01_Opt_route0_10_15_15_05_41/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        171
+      ],
+      "actual_rgb_junction_counts": {
+        "171": 15
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:68:202610166:4465",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00016/episodes/Town02_Opt_route0_10_15_15_06_08/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        76
+      ],
+      "actual_rgb_junction_counts": {
+        "76": 14
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:125:202610167:4681",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00017/episodes/Town03_Opt_route0_10_15_15_06_31/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        576
+      ],
+      "actual_rgb_junction_counts": {
+        "576": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:220:202610168:4890",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00018/episodes/Town04_Opt_route0_10_15_15_06_55/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1197
+      ],
+      "actual_rgb_junction_counts": {
+        "1197": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:281:202610169:5120",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00019/episodes/Town10HD_Opt_route0_10_15_15_07_25/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        189
+      ],
+      "actual_rgb_junction_counts": {
+        "189": 45
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:76:202610171:5349",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00021/episodes/Town02_Opt_route0_10_15_15_08_26/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        349
+      ],
+      "actual_rgb_junction_counts": {
+        "76": 5,
+        "349": 14
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:134:202610172:5538",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00022/episodes/Town03_Opt_route0_10_15_15_08_45/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        238
+      ],
+      "actual_rgb_junction_counts": {
+        "238": 34
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:227:202610173:5804",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00023/episodes/Town04_Opt_route0_10_15_15_09_18/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        785
+      ],
+      "actual_rgb_junction_counts": {
+        "785": 20
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:293:202610174:6420",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00024/episodes/Town10HD_Opt_route0_10_15_15_10_07/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        189
+      ],
+      "actual_rgb_junction_counts": {
+        "189": 79
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:151:202610175:6905",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00025/episodes/Town03_Opt_route0_10_15_15_10_55/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1038
+      ],
+      "actual_rgb_junction_counts": {
+        "1038": 58
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:297:202610177:7208",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00027/episodes/Town10HD_Opt_route0_10_15_15_12_03/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        134
+      ],
+      "actual_rgb_junction_counts": {
+        "134": 37
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:0:202610178:7468",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00028/episodes/Town01_Opt_route0_10_15_15_12_36/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        171
+      ],
+      "actual_rgb_junction_counts": {
+        "171": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:47:202610179:7568",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00029/episodes/Town02_Opt_route0_10_15_15_12_54/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        349
+      ],
+      "actual_rgb_junction_counts": {
+        "349": 15
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:177:202610181:7670",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00031/episodes/Town04_Opt_route0_10_15_15_13_28/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1593
+      ],
+      "actual_rgb_junction_counts": {
+        "1593": 27
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:250:202610182:7767",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00032/episodes/Town10HD_Opt_route0_10_15_15_13_49/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        895
+      ],
+      "actual_rgb_junction_counts": {
+        "895": 28
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:11:202610183:8074",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00033/episodes/Town01_Opt_route0_10_15_15_14_21/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        255
+      ],
+      "actual_rgb_junction_counts": {
+        "255": 16
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:53:202610184:8338",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00034/episodes/Town02_Opt_route0_10_15_15_14_50/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        132
+      ],
+      "actual_rgb_junction_counts": {
+        "132": 16
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:110:202610185:8684",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00035/episodes/Town03_Opt_route0_10_15_15_15_21/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1669
+      ],
+      "actual_rgb_junction_counts": {
+        "1669": 79
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:194:202610186:9874",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00036/episodes/Town04_Opt_route0_10_15_15_16_58/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        134
+      ],
+      "actual_rgb_junction_counts": {
+        "134": 54
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:63:202610189:10207",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00039/episodes/Town02_Opt_route0_10_15_15_18_27/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        242
+      ],
+      "actual_rgb_junction_counts": {
+        "242": 12
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:115:202610190:10285",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00040/episodes/Town03_Opt_route0_10_15_15_18_41/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1696
+      ],
+      "actual_rgb_junction_counts": {
+        "1696": 14
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:208:202610191:10400",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00041/episodes/Town04_Opt_route0_10_15_15_18_59/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1593
+      ],
+      "actual_rgb_junction_counts": {
+        "1593": 39
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:270:202610192:10537",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00042/episodes/Town10HD_Opt_route0_10_15_15_19_24/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        134
+      ],
+      "actual_rgb_junction_counts": {
+        "134": 34
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:70:202610194:10987",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00044/episodes/Town02_Opt_route0_10_15_15_20_20/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        349
+      ],
+      "actual_rgb_junction_counts": {
+        "349": 17
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:128:202610195:11208",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00045/episodes/Town03_Opt_route0_10_15_15_20_42/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        238
+      ],
+      "actual_rgb_junction_counts": {
+        "238": 28
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:213:202610196:11438",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00046/episodes/Town04_Opt_route0_10_15_15_21_09/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        785
+      ],
+      "actual_rgb_junction_counts": {
+        "785": 12
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:279:202610197:11734",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00047/episodes/Town10HD_Opt_route0_10_15_15_21_47/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        189
+      ],
+      "actual_rgb_junction_counts": {
+        "189": 23
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:37:202610198:11969",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00048/episodes/Town01_Opt_route0_10_15_15_22_18/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        332
+      ],
+      "actual_rgb_junction_counts": {
+        "332": 20
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:85:202610199:12601",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00049/episodes/Town02_Opt_route0_10_15_15_23_06/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        76
+      ],
+      "actual_rgb_junction_counts": {
+        "349": 5,
+        "76": 18
+      },
+      "strict_train_violations": [
+        {
+          "frame": 441,
+          "junction_id": 349
+        },
+        {
+          "frame": 443,
+          "junction_id": 349
+        },
+        {
+          "frame": 445,
+          "junction_id": 349
+        },
+        {
+          "frame": 447,
+          "junction_id": 349
+        },
+        {
+          "frame": 449,
+          "junction_id": 349
+        }
+      ]
+    },
+    {
+      "id": "original:Town03_Opt:138:202610200:12811",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00050/episodes/Town03_Opt_route0_10_15_15_23_28/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1696
+      ],
+      "actual_rgb_junction_counts": {
+        "1441": 3,
+        "1696": 17
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:230:202610201:13052",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00051/episodes/Town04_Opt_route0_10_15_15_23_53/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        621
+      ],
+      "actual_rgb_junction_counts": {
+        "621": 20
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:241:202610204:13563",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00054/episodes/Town04_Opt_route0_10_15_15_26_13/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1452
+      ],
+      "actual_rgb_junction_counts": {
+        "1452": 19
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:299:202610205:14183",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00055/episodes/Town10HD_Opt_route0_10_15_15_27_10/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        134
+      ],
+      "actual_rgb_junction_counts": {
+        "134": 37
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:3:202610206:14496",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00056/episodes/Town01_Opt_route0_10_15_15_27_48/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        332
+      ],
+      "actual_rgb_junction_counts": {
+        "332": 17
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:86:202610208:14599",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00058/episodes/Town03_Opt_route0_10_15_15_31_42/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1932
+      ],
+      "actual_rgb_junction_counts": {
+        "1932": 25
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:10:202610211:14682",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00061/episodes/Town01_Opt_route0_10_15_15_32_52/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        171
+      ],
+      "actual_rgb_junction_counts": {
+        "171": 22
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:51:202610212:15176",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00062/episodes/Town02_Opt_route0_10_15_15_33_36/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        242
+      ],
+      "actual_rgb_junction_counts": {
+        "242": 12
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:109:202610213:15254",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00063/episodes/Town03_Opt_route0_10_15_15_33_50/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        1352
+      ],
+      "actual_rgb_junction_counts": {
+        "1352": 29
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:191:202610214:15752",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00064/episodes/Town04_Opt_route0_10_15_15_34_45/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        255
+      ],
+      "actual_rgb_junction_counts": {
+        "255": 25
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:21:202610216:15871",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00066/episodes/Town01_Opt_route0_10_15_15_35_47/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        255
+      ],
+      "actual_rgb_junction_counts": {
+        "255": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town02_Opt:65:202610217:16329",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00067/episodes/Town02_Opt_route0_10_15_15_36_28/data",
+      "town": "Town02_Opt",
+      "declared_junction_ids": [
+        298
+      ],
+      "actual_rgb_junction_counts": {
+        "242": 5,
+        "298": 19
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town03_Opt:114:202610218:16675",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00068/episodes/Town03_Opt_route0_10_15_15_36_59/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        356
+      ],
+      "actual_rgb_junction_counts": {
+        "356": 21
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town04_Opt:202:202610219:16914",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00069/episodes/Town04_Opt_route0_10_15_15_37_30/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1593
+      ],
+      "actual_rgb_junction_counts": {
+        "1593": 41
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town10HD_Opt:275:202610220:17052",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00070/episodes/Town10HD_Opt_route0_10_15_15_37_56/data",
+      "town": "Town10HD_Opt",
+      "declared_junction_ids": [
+        134
+      ],
+      "actual_rgb_junction_counts": {
+        "134": 34
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "original:Town01_Opt:23:202610221:17328",
+      "role": "validation",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00071/episodes/Town01_Opt_route0_10_15_15_38_30/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        222
+      ],
+      "actual_rgb_junction_counts": {
+        "222": 20
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town01_Opt:34:202610280:0",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00003/episodes/Town01_Opt_route0_10_18_14_49_33/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        26
+      ],
+      "actual_rgb_junction_counts": {
+        "26": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town01_Opt:34:202610281:174",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00004/episodes/Town01_Opt_route0_10_18_14_49_53/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        26
+      ],
+      "actual_rgb_junction_counts": {
+        "26": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town01_Opt:34:202610282:388",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00005/episodes/Town01_Opt_route0_10_18_14_50_14/data",
+      "town": "Town01_Opt",
+      "declared_junction_ids": [
+        26
+      ],
+      "actual_rgb_junction_counts": {
+        "26": 18
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town03_Opt:134:202610580:642",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00012/episodes/Town03_Opt_route0_10_18_14_52_48/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        238
+      ],
+      "actual_rgb_junction_counts": {
+        "238": 23
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town03_Opt:134:202610581:816",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00013/episodes/Town03_Opt_route0_10_18_14_53_07/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        238
+      ],
+      "actual_rgb_junction_counts": {
+        "238": 23
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town03_Opt:134:202610582:1030",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00014/episodes/Town03_Opt_route0_10_18_14_53_27/data",
+      "town": "Town03_Opt",
+      "declared_junction_ids": [
+        238
+      ],
+      "actual_rgb_junction_counts": {
+        "238": 23
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town04_Opt:223:202610780:1284",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00018/episodes/Town04_Opt_route0_10_18_14_55_06/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1103
+      ],
+      "actual_rgb_junction_counts": {
+        "1103": 15
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town04_Opt:223:202610781:1456",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00019/episodes/Town04_Opt_route0_10_18_14_55_27/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1103
+      ],
+      "actual_rgb_junction_counts": {
+        "1103": 15
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town04_Opt:223:202610782:1668",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00020/episodes/Town04_Opt_route0_10_18_14_55_49/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1103
+      ],
+      "actual_rgb_junction_counts": {
+        "1103": 15
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town04_Opt:225:202610880:1920",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00021/episodes/Town04_Opt_route0_10_18_14_56_14/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1249
+      ],
+      "actual_rgb_junction_counts": {
+        "1249": 13
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town04_Opt:225:202610881:2090",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00022/episodes/Town04_Opt_route0_10_18_14_56_40/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1249
+      ],
+      "actual_rgb_junction_counts": {
+        "1249": 13
+      },
+      "strict_train_violations": []
+    },
+    {
+      "id": "approach:Town04_Opt:225:202610882:2300",
+      "role": "train",
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00023/episodes/Town04_Opt_route0_10_18_14_57_03/data",
+      "town": "Town04_Opt",
+      "declared_junction_ids": [
+        1249
+      ],
+      "actual_rgb_junction_counts": {
+        "1249": 13
+      },
+      "strict_train_violations": []
+    }
+  ],
+  "actual_training_validation_location_overlap": [
+    [
+      "Town02_Opt",
+      76
+    ],
+    [
+      "Town02_Opt",
+      349
+    ]
+  ],
+  "episodes_with_strict_train_violations": [
+    "original:Town02_Opt:85:202610199:12601"
+  ],
+  "data_manifest_sha256": "3347e0955b443993ffe4f77b8d85fcbc79eac042e4df24fc8e006add951a8354",
+  "prior_declared_only_audit_insufficient": true
+}

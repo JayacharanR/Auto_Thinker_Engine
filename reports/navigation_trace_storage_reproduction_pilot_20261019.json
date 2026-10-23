@@ -1,0 +1,835 @@
+{
+  "scope": "Six fixed TRAIN-location engineering diagnostics; not a held-out benchmark, generalization estimate or training dataset. Every raw-attempt collision reported.",
+  "protocol": {
+    "created_at": "2026-10-19 18:31",
+    "scope": "Same six-case engineering diagnostic; internal development, no heldout_dev/Town05 inference or new training data",
+    "selection_rule": "First geometry-eligible Town03 route id per family, independent of student outcomes",
+    "catalog_sha256": "9be92e0219bfc7f0b04ebf36b9eaade22d8e5acde81ae3b0fa4a603993fff2de",
+    "route": "configs/encounters/location_split_v1/train/Town03_Opt.xml",
+    "route_sha256": "f71eddccd879ba54ba90ccf9924be3b006e1e43497fdd1d53d46b4f97bfb74c3",
+    "seed": 4242,
+    "seed_per_route": true,
+    "overrides": false,
+    "max_wall_per_candidate": 900,
+    "selection": "All six outcomes retained, no route replacements",
+    "candidates": [
+      "navigation_spatial_resnet_f100_seed42_20261019"
+    ],
+    "encounters": [
+      {
+        "route_id": 86,
+        "town": "Town03_Opt",
+        "family": "crossing_yield",
+        "scenario": "NonSignalizedJunctionLeftTurn",
+        "parameters": {
+          "flow_speed": 8.3,
+          "source_dist_interval": [
+            15.0,
+            30.0
+          ]
+        },
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "1932",
+          "(69, 0, 3)",
+          "(68, 0, 3)"
+        ],
+        "junction_id": 1932,
+        "crossed_junction_ids": [
+          1932
+        ],
+        "turn": "LEFT",
+        "control": [
+          "none"
+        ],
+        "signal_ids_at_inventory": [],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          -88.635,
+          146.972,
+          0.0
+        ],
+        "end_xyz": [
+          -21.224,
+          207.584,
+          0.0
+        ],
+        "trigger_xyz": [
+          -88.635,
+          146.972,
+          0.0
+        ],
+        "trigger_yaw": 89.78770446777344,
+        "planned_length_m": 105.396
+      },
+      {
+        "route_id": 101,
+        "town": "Town03_Opt",
+        "family": "following_stopped_vehicle",
+        "scenario": "HardBreakRoute",
+        "parameters": {},
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "82",
+          "(67, 0, -1)",
+          "(33, 0, 4)"
+        ],
+        "junction_id": 82,
+        "crossed_junction_ids": [
+          82
+        ],
+        "turn": "RIGHT",
+        "control": [
+          "none"
+        ],
+        "signal_ids_at_inventory": [],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          68.274,
+          196.861,
+          0.597
+        ],
+        "end_xyz": [
+          2.297,
+          180.138,
+          0.0
+        ],
+        "trigger_xyz": [
+          48.274,
+          196.911,
+          0.177
+        ],
+        "trigger_yaw": 179.85702514648438,
+        "planned_length_m": 80.142
+      },
+      {
+        "route_id": 111,
+        "town": "Town03_Opt",
+        "family": "route_junction",
+        "scenario": null,
+        "parameters": {},
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "655",
+          "(29, 0, -1)",
+          "(2, 0, -1)"
+        ],
+        "junction_id": 655,
+        "crossed_junction_ids": [
+          655
+        ],
+        "turn": "LEFT",
+        "control": [
+          "signal"
+        ],
+        "signal_ids_at_inventory": [
+          72
+        ],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          6.701,
+          -149.154,
+          0.0
+        ],
+        "end_xyz": [
+          -37.632,
+          -205.452,
+          0.0
+        ],
+        "trigger_xyz": [
+          6.701,
+          -149.154,
+          0.0
+        ],
+        "trigger_yaw": -88.58645629882812,
+        "planned_length_m": 91.308
+      },
+      {
+        "route_id": 123,
+        "town": "Town03_Opt",
+        "family": "signal_release_memory",
+        "scenario": "NavigationSignalHold",
+        "parameters": {
+          "stationary_s": 10.0,
+          "max_hold_s": 30.0,
+          "near_m": 20.0,
+          "clearance_s": 3.0
+        },
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "238",
+          "(69, 0, -1)",
+          "(23, 0, 1)"
+        ],
+        "junction_id": 238,
+        "crossed_junction_ids": [
+          238
+        ],
+        "turn": "LEFT",
+        "control": [
+          "signal"
+        ],
+        "signal_ids_at_inventory": [
+          48
+        ],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          -78.03,
+          159.589,
+          0.0
+        ],
+        "end_xyz": [
+          -123.132,
+          133.229,
+          0.0
+        ],
+        "trigger_xyz": [
+          -78.03,
+          159.589,
+          0.0
+        ],
+        "trigger_yaw": 266.8109130859375,
+        "planned_length_m": 64.542
+      },
+      {
+        "route_id": 133,
+        "town": "Town03_Opt",
+        "family": "signal_stop",
+        "scenario": "NavigationSignalHold",
+        "parameters": {
+          "stationary_s": 3.0,
+          "max_hold_s": 45.0,
+          "near_m": 40.0,
+          "clearance_s": 3.0
+        },
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "655",
+          "(1, 0, -1)",
+          "(2, 0, -1)"
+        ],
+        "junction_id": 655,
+        "crossed_junction_ids": [
+          655
+        ],
+        "turn": "STRAIGHT",
+        "control": [
+          "signal"
+        ],
+        "signal_ids_at_inventory": [
+          71
+        ],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          70.799,
+          -202.727,
+          0.0
+        ],
+        "end_xyz": [
+          -37.167,
+          -205.44,
+          0.0
+        ],
+        "trigger_xyz": [
+          70.799,
+          -202.727,
+          0.0
+        ],
+        "trigger_yaw": -178.56044006347656,
+        "planned_length_m": 106.71
+      },
+      {
+        "route_id": 143,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "scenario": null,
+        "parameters": {},
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "730",
+          "(19, 0, -1)",
+          "(20, 0, -1)"
+        ],
+        "junction_id": 730,
+        "crossed_junction_ids": [
+          730
+        ],
+        "turn": "STRAIGHT",
+        "control": [
+          "stop"
+        ],
+        "signal_ids_at_inventory": [],
+        "stop_ids_at_inventory": [
+          35
+        ],
+        "start_xyz": [
+          -14.091,
+          -138.574,
+          0.0
+        ],
+        "end_xyz": [
+          -124.982,
+          -134.406,
+          0.748
+        ],
+        "trigger_xyz": [
+          -14.091,
+          -138.574,
+          0.0
+        ],
+        "trigger_yaw": -178.77273559570312,
+        "planned_length_m": 110.11
+      }
+    ],
+    "original_protocol_sha256": "ac2d6ad952b2efb21e4fd667ac31b357428bf969a5f1a7cdff19c4a82601d96a"
+  },
+  "candidates": {
+    "navigation_spatial_resnet_f100_seed42_20261019": {
+      "episodes": [
+        {
+          "route_id": "RouteScenario_86_rep0",
+          "status": "Failed - Agent timed out",
+          "completion_percent": 0.0,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [
+              "Agent timed out a scenario at (x=-88.635, y=146.902, z=-0.005)"
+            ],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": [
+              "Route timeout."
+            ]
+          },
+          "meta": {
+            "route_length": 105.514,
+            "duration_game": 300.05,
+            "duration_system": 135.013
+          }
+        },
+        {
+          "route_id": "RouteScenario_101_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 0.0,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=68.662, y=196.86, z=0.601)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 80.27,
+            "duration_game": 180.05,
+            "duration_system": 126.336
+          }
+        },
+        {
+          "route_id": "RouteScenario_111_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 0.0,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=6.696, y=-148.924, z=-0.005)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 91.426,
+            "duration_game": 180.05,
+            "duration_system": 83.803
+          }
+        },
+        {
+          "route_id": "RouteScenario_123_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 0.0,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=-78.027, y=159.651, z=-0.005)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 64.673,
+            "duration_game": 180.05,
+            "duration_system": 149.625
+          }
+        },
+        {
+          "route_id": "RouteScenario_133_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 0.0,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=70.709, y=-202.729, z=-0.005)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 106.828,
+            "duration_game": 180.05,
+            "duration_system": 121.061
+          }
+        },
+        {
+          "route_id": "RouteScenario_143_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 0.0,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=-14.361, y=-138.58, z=-0.005)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 110.227,
+            "duration_game": 180.05,
+            "duration_system": 107.711
+          }
+        }
+      ],
+      "count": 6,
+      "safe_completed": 0,
+      "rule_safe_completed": 0,
+      "all_collisions": 0,
+      "safe_completion_wilson95": [
+        2.7755575615628914e-17,
+        0.3903342879021653
+      ],
+      "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+      "execution_status": "evaluation_complete",
+      "setup_audit": {
+        "86": {
+          "status": "setup_started"
+        },
+        "101": {
+          "status": "setup_started"
+        },
+        "111": {
+          "status": "no_setup_declared"
+        },
+        "123": {
+          "runtime_id": 48,
+          "entry_lane": [
+            69,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            48
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -67.82001495361328,
+            121.06434631347656,
+            0.003034059889614582
+          ],
+          "inventory_xyz": [
+            -67.82,
+            121.064,
+            0.003
+          ],
+          "position_difference_m": 0.0003483054847179613,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 281,
+            "Green": 3320
+          }
+        },
+        "133": {
+          "runtime_id": 71,
+          "entry_lane": [
+            1,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            71
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -9.5888032913208,
+            -214.24734497070312,
+            0.1399131566286087
+          ],
+          "inventory_xyz": [
+            -9.589,
+            -214.247,
+            0.14
+          ],
+          "position_difference_m": 0.0004064982922865764,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 981,
+            "Green": 2620
+          }
+        },
+        "143": {
+          "status": "no_setup_declared"
+        }
+      },
+      "profiles": [
+        {
+          "episode": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019/episodes/Town03_Opt_route0_10_19_18_31_46",
+          "profile": {
+            "frames": 6001,
+            "wall_seconds": 135.72412757200073,
+            "frames_per_second": 44.2146883339995,
+            "camera_policy_ipc_p95_ms": 13.07457100119791,
+            "all_camera_frames_aligned": true,
+            "last_frame": 6440,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 6001,
+            "brake_ticks": 6001,
+            "zero_speed_ticks": 5997,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 2.961328675610275e-07,
+              "control": [
+                -0.025924945022210495,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.9431939125061035
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "3001"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019/episodes/Town03_Opt_route1_10_19_18_34_04",
+          "profile": {
+            "frames": 3601,
+            "wall_seconds": 127.26577299699966,
+            "frames_per_second": 28.295117494669167,
+            "camera_policy_ipc_p95_ms": 13.856957000825787,
+            "all_camera_frames_aligned": true,
+            "last_frame": 10057,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3601,
+            "brake_ticks": 3601,
+            "zero_speed_ticks": 3597,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 4.368412555777468e-05,
+              "control": [
+                0.0030724893513096353,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.9504411816596985
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1801"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019/episodes/Town03_Opt_route2_10_19_18_36_13",
+          "profile": {
+            "frames": 3601,
+            "wall_seconds": 84.56994146799843,
+            "frames_per_second": 42.58014062079765,
+            "camera_policy_ipc_p95_ms": 12.95458200002031,
+            "all_camera_frames_aligned": true,
+            "last_frame": 13673,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3601,
+            "brake_ticks": 3601,
+            "zero_speed_ticks": 3596,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 5.723071581087424e-07,
+              "control": [
+                0.0038941088011789755,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.9594994187355042
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1801"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019/episodes/Town03_Opt_route3_10_19_18_37_39",
+          "profile": {
+            "frames": 3601,
+            "wall_seconds": 150.50862312000027,
+            "frames_per_second": 23.925539449848856,
+            "camera_policy_ipc_p95_ms": 14.185845000611152,
+            "all_camera_frames_aligned": true,
+            "last_frame": 17290,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3601,
+            "brake_ticks": 3587,
+            "zero_speed_ticks": 3597,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 5.913157679060532e-07,
+              "control": [
+                0.07501956308042988,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.8883328437805176
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1801"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019/episodes/Town03_Opt_route4_10_19_18_40_11",
+          "profile": {
+            "frames": 3601,
+            "wall_seconds": 121.95600190000187,
+            "frames_per_second": 29.5270420799187,
+            "camera_policy_ipc_p95_ms": 13.844380002410617,
+            "all_camera_frames_aligned": true,
+            "last_frame": 20907,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3601,
+            "brake_ticks": 3601,
+            "zero_speed_ticks": 3597,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 1.0299683026460116e-06,
+              "control": [
+                -0.002598813390526032,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.9312940835952759
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1801"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019/episodes/Town03_Opt_route5_10_19_18_42_15",
+          "profile": {
+            "frames": 3601,
+            "wall_seconds": 108.52989723400242,
+            "frames_per_second": 33.17979738095437,
+            "camera_policy_ipc_p95_ms": 13.690351999684935,
+            "all_camera_frames_aligned": true,
+            "last_frame": 24523,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3601,
+            "brake_ticks": 3601,
+            "zero_speed_ticks": 3596,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 8.392368044951581e-07,
+              "control": [
+                -0.011601282909893595,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.8720320463180542
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1801"
+          },
+          "full_video_decode_passed": true
+        }
+      ],
+      "source_archive_verified": true,
+      "checkpoint_sha256": "a2c479c06c27275fe48e7a2e33b49ea072a90a30c89d5aff433b2c572c1d14f0",
+      "distinct_recorders_verified": true
+    }
+  },
+  "raw_attempts": [
+    {
+      "attempt": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019",
+      "count": 6,
+      "all_collisions": 0
+    }
+  ],
+  "all_attempt_collisions": 0,
+  "spatial_audit": {
+    "timestamps": {
+      "navigation_spatial_resnet_f100_seed42_20261019": 24006
+    },
+    "violations": [],
+    "assignments_sha256": "6f0f6b8d435fbed3bff236f08a976abeac8f21c50a285199481566910f078cf9",
+    "map_sha256": "abf177bcd9b66cfefb7ac4919f6456815f1384f4229f1343c8a6a90bbb7713c9",
+    "scope": "Stored ego centre mapped to nearest driving waypoint; not proof of visual/geographic independence."
+  },
+  "audit_passed": true
+}

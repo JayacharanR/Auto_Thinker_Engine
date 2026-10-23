@@ -1,0 +1,380 @@
+{
+  "seed": 20261015,
+  "selection_attempt": 3,
+  "fraction": 0.2,
+  "rule": "first seeded partition with geometry coverage; no driving outcomes",
+  "assignments": {
+    "Town01_Opt": {
+      "train": [
+        26,
+        87,
+        143,
+        171,
+        194,
+        222,
+        255,
+        306,
+        332
+      ],
+      "heldout_dev": [
+        54,
+        110,
+        278
+      ]
+    },
+    "Town02_Opt": {
+      "train": [
+        76,
+        132,
+        188,
+        242,
+        298,
+        349
+      ],
+      "heldout_dev": [
+        20,
+        400
+      ]
+    },
+    "Town03_Opt": {
+      "train": [
+        82,
+        238,
+        356,
+        475,
+        498,
+        576,
+        655,
+        730,
+        1038,
+        1168,
+        1221,
+        1352,
+        1427,
+        1441,
+        1669,
+        1682,
+        1696,
+        1736,
+        1901,
+        1932
+      ],
+      "heldout_dev": [
+        103,
+        861,
+        1135,
+        1794,
+        1820
+      ]
+    },
+    "Town04_Opt": {
+      "train": [
+        134,
+        255,
+        278,
+        335,
+        483,
+        621,
+        745,
+        764,
+        785,
+        850,
+        890,
+        916,
+        1008,
+        1061,
+        1103,
+        1176,
+        1197,
+        1249,
+        1452,
+        1593
+      ],
+      "heldout_dev": [
+        53,
+        148,
+        1082,
+        1159,
+        1368
+      ]
+    },
+    "Town10HD_Opt": {
+      "train": [
+        134,
+        189,
+        468,
+        664,
+        719,
+        841,
+        895
+      ],
+      "heldout_dev": [
+        23,
+        532
+      ]
+    }
+  },
+  "catalogs": {
+    "train": {
+      "sha256": "9be92e0219bfc7f0b04ebf36b9eaade22d8e5acde81ae3b0fa4a603993fff2de",
+      "coverage": {
+        "crossing_yield": {
+          "encounters": 50,
+          "distinct_movements": 41,
+          "distinct_junctions": 33,
+          "reused_movements": 9,
+          "towns": {
+            "Town01_Opt": 5,
+            "Town02_Opt": 5,
+            "Town03_Opt": 15,
+            "Town04_Opt": 15,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "LEFT": 35,
+            "RIGHT": 15
+          },
+          "scenarios": {
+            "SignalizedJunctionLeftTurn": 25,
+            "NonSignalizedJunctionLeftTurn": 10,
+            "NonSignalizedJunctionRightTurn": 15
+          }
+        },
+        "following_stopped_vehicle": {
+          "encounters": 50,
+          "distinct_movements": 50,
+          "distinct_junctions": 42,
+          "reused_movements": 0,
+          "towns": {
+            "Town01_Opt": 10,
+            "Town02_Opt": 10,
+            "Town03_Opt": 10,
+            "Town04_Opt": 10,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "LEFT": 10,
+            "STRAIGHT": 26,
+            "RIGHT": 14
+          },
+          "scenarios": {
+            "HardBreakRoute": 50
+          }
+        },
+        "route_junction": {
+          "encounters": 50,
+          "distinct_movements": 48,
+          "distinct_junctions": 43,
+          "reused_movements": 2,
+          "towns": {
+            "Town01_Opt": 8,
+            "Town02_Opt": 8,
+            "Town03_Opt": 12,
+            "Town04_Opt": 12,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "LEFT": 24,
+            "RIGHT": 16,
+            "STRAIGHT": 10
+          },
+          "scenarios": {
+            "None": 50
+          }
+        },
+        "signal_release_memory": {
+          "encounters": 50,
+          "distinct_movements": 50,
+          "distinct_junctions": 27,
+          "reused_movements": 0,
+          "towns": {
+            "Town01_Opt": 10,
+            "Town02_Opt": 10,
+            "Town03_Opt": 10,
+            "Town04_Opt": 10,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "STRAIGHT": 20,
+            "RIGHT": 16,
+            "LEFT": 14
+          },
+          "scenarios": {
+            "NavigationSignalHold": 50
+          }
+        },
+        "signal_stop": {
+          "encounters": 50,
+          "distinct_movements": 50,
+          "distinct_junctions": 27,
+          "reused_movements": 0,
+          "towns": {
+            "Town01_Opt": 10,
+            "Town02_Opt": 10,
+            "Town03_Opt": 10,
+            "Town04_Opt": 10,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "LEFT": 11,
+            "STRAIGHT": 20,
+            "RIGHT": 19
+          },
+          "scenarios": {
+            "NavigationSignalHold": 50
+          }
+        },
+        "stop_sign": {
+          "encounters": 50,
+          "distinct_movements": 33,
+          "distinct_junctions": 5,
+          "reused_movements": 17,
+          "towns": {
+            "Town03_Opt": 31,
+            "Town04_Opt": 16,
+            "Town10HD_Opt": 3
+          },
+          "turns": {
+            "STRAIGHT": 21,
+            "LEFT": 13,
+            "RIGHT": 16
+          },
+          "scenarios": {
+            "None": 50
+          }
+        }
+      }
+    },
+    "heldout_dev": {
+      "sha256": "559993385c5d6765c9b94d514ca942a0e1e7a1cc0ba07a75577b6465bda06595",
+      "coverage": {
+        "crossing_yield": {
+          "encounters": 50,
+          "distinct_movements": 24,
+          "distinct_junctions": 14,
+          "reused_movements": 26,
+          "towns": {
+            "Town01_Opt": 6,
+            "Town02_Opt": 7,
+            "Town03_Opt": 19,
+            "Town04_Opt": 12,
+            "Town10HD_Opt": 6
+          },
+          "turns": {
+            "LEFT": 37,
+            "RIGHT": 13
+          },
+          "scenarios": {
+            "SignalizedJunctionLeftTurn": 31,
+            "NonSignalizedJunctionRightTurn": 13,
+            "NonSignalizedJunctionLeftTurn": 6
+          }
+        },
+        "following_stopped_vehicle": {
+          "encounters": 50,
+          "distinct_movements": 43,
+          "distinct_junctions": 17,
+          "reused_movements": 7,
+          "towns": {
+            "Town01_Opt": 10,
+            "Town02_Opt": 10,
+            "Town03_Opt": 10,
+            "Town04_Opt": 10,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "LEFT": 9,
+            "STRAIGHT": 29,
+            "RIGHT": 12
+          },
+          "scenarios": {
+            "HardBreakRoute": 50
+          }
+        },
+        "route_junction": {
+          "encounters": 50,
+          "distinct_movements": 47,
+          "distinct_junctions": 17,
+          "reused_movements": 3,
+          "towns": {
+            "Town01_Opt": 8,
+            "Town02_Opt": 9,
+            "Town03_Opt": 14,
+            "Town04_Opt": 10,
+            "Town10HD_Opt": 9
+          },
+          "turns": {
+            "LEFT": 25,
+            "STRAIGHT": 11,
+            "RIGHT": 14
+          },
+          "scenarios": {
+            "None": 50
+          }
+        },
+        "signal_release_memory": {
+          "encounters": 50,
+          "distinct_movements": 50,
+          "distinct_junctions": 12,
+          "reused_movements": 0,
+          "towns": {
+            "Town01_Opt": 10,
+            "Town02_Opt": 10,
+            "Town03_Opt": 10,
+            "Town04_Opt": 10,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "RIGHT": 18,
+            "STRAIGHT": 19,
+            "LEFT": 13
+          },
+          "scenarios": {
+            "NavigationSignalHold": 50
+          }
+        },
+        "signal_stop": {
+          "encounters": 50,
+          "distinct_movements": 50,
+          "distinct_junctions": 12,
+          "reused_movements": 0,
+          "towns": {
+            "Town01_Opt": 10,
+            "Town02_Opt": 10,
+            "Town03_Opt": 10,
+            "Town04_Opt": 10,
+            "Town10HD_Opt": 10
+          },
+          "turns": {
+            "RIGHT": 15,
+            "STRAIGHT": 18,
+            "LEFT": 17
+          },
+          "scenarios": {
+            "NavigationSignalHold": 50
+          }
+        },
+        "stop_sign": {
+          "encounters": 50,
+          "distinct_movements": 16,
+          "distinct_junctions": 2,
+          "reused_movements": 34,
+          "towns": {
+            "Town03_Opt": 17,
+            "Town04_Opt": 33
+          },
+          "turns": {
+            "STRAIGHT": 20,
+            "RIGHT": 18,
+            "LEFT": 12
+          },
+          "scenarios": {
+            "None": 50
+          }
+        }
+      }
+    }
+  },
+  "approval": "User approved new location split before student training, 2026-10-15",
+  "legacy_dev_v1": "Preserved expert calibration; report shared-location status explicitly"
+}

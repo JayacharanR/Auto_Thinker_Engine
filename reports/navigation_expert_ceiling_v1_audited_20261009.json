@@ -1,0 +1,882 @@
+{
+  "assessment_version": 2,
+  "run": "outputs/navigation_expert_ceiling_parallel_20261009",
+  "catalog_sha256": "716c36005d6c00af8d5905491a9acc8c4363e541a5fd4acf309a5463e2aa535c",
+  "policy_kind": "privileged_pdm_lite_modified",
+  "settled": 300,
+  "total": 300,
+  "families": {
+    "signal_stop": {
+      "planned_encounters": 50,
+      "encounters": 33,
+      "setup_failed": [
+        0,
+        44,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        172,
+        173,
+        176,
+        179,
+        181,
+        253
+      ],
+      "unsettled": [],
+      "settled": 33,
+      "rule_safe": 33,
+      "strict_safe": 0,
+      "completed": 33,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 33,
+      "locations": 24,
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.895730002457548,
+        1.0
+      ]
+    },
+    "signal_release_memory": {
+      "planned_encounters": 50,
+      "encounters": 32,
+      "setup_failed": [
+        12,
+        55,
+        56,
+        58,
+        97,
+        98,
+        99,
+        100,
+        102,
+        103,
+        104,
+        105,
+        182,
+        183,
+        185,
+        187,
+        191,
+        264
+      ],
+      "unsettled": [],
+      "settled": 32,
+      "rule_safe": 30,
+      "strict_safe": 0,
+      "completed": 30,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 31,
+      "locations": 24,
+      "rule_safe_cluster_bootstrap95": [
+        0.84375,
+        1.0
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.7985287685584542,
+        0.982689432968359
+      ]
+    },
+    "crossing_yield": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 45,
+      "strict_safe": 39,
+      "completed": 50,
+      "collision_events": 5,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 6,
+      "locations": 36,
+      "rule_safe_cluster_bootstrap95": [
+        0.75,
+        1.0
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.7863976856252035,
+        0.9565242350681096
+      ]
+    },
+    "following_stopped_vehicle": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 50,
+      "strict_safe": 14,
+      "completed": 50,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 36,
+      "locations": 47,
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ]
+    },
+    "route_junction": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 50,
+      "strict_safe": 11,
+      "completed": 50,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 39,
+      "locations": 46,
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ]
+    },
+    "stop_sign": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 50,
+      "strict_safe": 0,
+      "completed": 50,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 50,
+      "locations": 7,
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ]
+    }
+  },
+  "all_collision_events": 7,
+  "collision_event_audit": [
+    {
+      "attempt": "Town03_Opt/chunk_096_105_a0",
+      "route_id": 103,
+      "type": "collisions_layout",
+      "detail": "Agent collided against object with type=static.road and id=0 at (x=82.74, y=-179.732, z=0.029)"
+    },
+    {
+      "attempt": "Town03_Opt/chunk_136_145_a0",
+      "route_id": 140,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.lincoln.mkz_2020 and id=209 at (x=152.035, y=-70.562, z=7.95)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_268_277_a1",
+      "route_id": 270,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.mini.cooper_s_2021 and id=166 at (x=-41.083, y=57.39, z=0.001)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_268_277_a1",
+      "route_id": 272,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.mercedes.coupe_2020 and id=227 at (x=-41.664, y=46.709, z=-0.003)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_268_277_a2",
+      "route_id": 276,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.ford.mustang and id=182 at (x=-41.665, y=46.828, z=-0.003)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_278_287_a1",
+      "route_id": 278,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.mercedes.coupe_2020 and id=128 at (x=-39.948, y=59.848, z=0.0)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_278_287_a2",
+      "route_id": 278,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.mercedes.coupe_2020 and id=128 at (x=-39.948, y=59.848, z=0.0)"
+    }
+  ],
+  "valid_final_collision_events": 5,
+  "setup_status_counts": {
+    "setup_failed": 35,
+    "setup_started": 165,
+    "no_setup_declared": 100
+  },
+  "not_rule_safe": [
+    {
+      "route_id": 0,
+      "family": "signal_stop",
+      "town": "Town01_Opt",
+      "junction_id": 194,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 12,
+      "family": "signal_release_memory",
+      "town": "Town01_Opt",
+      "junction_id": 194,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 44,
+      "family": "signal_stop",
+      "town": "Town02_Opt",
+      "junction_id": 400,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 3
+      }
+    },
+    {
+      "route_id": 54,
+      "family": "signal_release_memory",
+      "town": "Town02_Opt",
+      "junction_id": 400,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Failed - Agent got blocked",
+      "setup": "setup_started",
+      "completion_percent": 32.36,
+      "infractions": {
+        "min_speed_infractions": 1,
+        "vehicle_blocked": 1
+      }
+    },
+    {
+      "route_id": 55,
+      "family": "signal_release_memory",
+      "town": "Town02_Opt",
+      "junction_id": 400,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 56,
+      "family": "signal_release_memory",
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 58,
+      "family": "signal_release_memory",
+      "town": "Town02_Opt",
+      "junction_id": 132,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 87,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 861,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 3
+      }
+    },
+    {
+      "route_id": 88,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 498,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 89,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 1820,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 90,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 3
+      }
+    },
+    {
+      "route_id": 91,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 92,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 103,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 93,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 94,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 95,
+      "family": "signal_stop",
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 97,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 498,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 98,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 576,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 99,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 356,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 100,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 238,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 102,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 1820,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 103,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 576,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_layout": 1,
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 104,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 1221,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 105,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 103,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 140,
+      "family": "crossing_yield",
+      "town": "Town03_Opt",
+      "junction_id": 1441,
+      "turn": "LEFT",
+      "scenario": "NonSignalizedJunctionLeftTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 172,
+      "family": "signal_stop",
+      "town": "Town04_Opt",
+      "junction_id": 278,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 173,
+      "family": "signal_stop",
+      "town": "Town04_Opt",
+      "junction_id": 621,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 3
+      }
+    },
+    {
+      "route_id": 176,
+      "family": "signal_stop",
+      "town": "Town04_Opt",
+      "junction_id": 148,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 179,
+      "family": "signal_stop",
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 181,
+      "family": "signal_stop",
+      "town": "Town04_Opt",
+      "junction_id": 621,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 2
+      }
+    },
+    {
+      "route_id": 182,
+      "family": "signal_release_memory",
+      "town": "Town04_Opt",
+      "junction_id": 916,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 183,
+      "family": "signal_release_memory",
+      "town": "Town04_Opt",
+      "junction_id": 1103,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 185,
+      "family": "signal_release_memory",
+      "town": "Town04_Opt",
+      "junction_id": 148,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Perfect",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {}
+    },
+    {
+      "route_id": 187,
+      "family": "signal_release_memory",
+      "town": "Town04_Opt",
+      "junction_id": 148,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 190,
+      "family": "signal_release_memory",
+      "town": "Town04_Opt",
+      "junction_id": 785,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Failed - Agent got blocked",
+      "setup": "setup_started",
+      "completion_percent": 16.28,
+      "infractions": {
+        "vehicle_blocked": 1
+      }
+    },
+    {
+      "route_id": 191,
+      "family": "signal_release_memory",
+      "town": "Town04_Opt",
+      "junction_id": 621,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 3
+      }
+    },
+    {
+      "route_id": 253,
+      "family": "signal_stop",
+      "town": "Town10HD_Opt",
+      "junction_id": 719,
+      "turn": "STRAIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 264,
+      "family": "signal_release_memory",
+      "town": "Town10HD_Opt",
+      "junction_id": 719,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_failed",
+      "completion_percent": 100,
+      "infractions": {
+        "min_speed_infractions": 3
+      }
+    },
+    {
+      "route_id": 270,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 272,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 276,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 278,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    }
+  ],
+  "non_final_attempt_statuses": {
+    "no evaluator record": 2,
+    "not reached": 14,
+    "interrupted": 40,
+    "not started": 10
+  },
+  "routes_with_several_attempts": [
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297
+  ],
+  "routes_charged_a_crash": [
+    258,
+    262
+  ],
+  "evaluator_failures": [
+    {
+      "attempt": "Town10HD_Opt/chunk_258_267_a0",
+      "error": "Evaluator child exited -6; preserved console/attempt",
+      "running_route": "258"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_258_267_a2",
+      "error": "Evaluator child exited -6; preserved console/attempt",
+      "running_route": "262"
+    }
+  ],
+  "interrupted_attempts": [
+    "Town10HD_Opt/chunk_258_267_a1",
+    "Town10HD_Opt/chunk_268_277_a0",
+    "Town10HD_Opt/chunk_278_287_a0"
+  ],
+  "note": "Privileged modified PDM-Lite expert; development towns only; not a camera result. Family rates use valid settled encounters; pending and invalid setups remain explicit. All collision events include every raw attempt. Cluster bootstrap resamples junctions; null bounds mean empty/degenerate data, not zero risk. Wilson assumes independent encounters and can be optimistic for reused locations."
+}

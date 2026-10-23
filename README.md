@@ -1,312 +1,192 @@
-# Vision World Model Driving Agent
+# Auto Thinker Engine
 
-> **Navigation experiment (2026-10-08):** The new three-camera, long-route work
-> is isolated on `experiment/camera-world-model-navigation`. See the
-> [navigation runbook](reports/navigation_runbook.md) and
-> [approved staged plan](reports/navigation_plan.md). The historical results
-> below remain a separate experiment.
+Camera-based driving research in CARLA, combining self-supervised video encoders,
+DreamerV3 world-model reinforcement learning, and a later multi-camera navigation
+pipeline. The research question is whether visual pretraining improves learning,
+robustness and driving decisions over a CNN trained from scratch.
 
-A multi-phase autonomous driving agent combining **self-supervised JEPA pretraining** (on comma2k19 real driving data) with **DreamerV3 world-model RL** (in CARLA simulator), culminating in a **three-way encoder comparison** that measures the value of pretrained visual representations for driving.
+> **Paused by the user on 23 October 2026.** No training, collection, evaluation,
+> CARLA server or storage guardian was running at the pause check. Do not launch
+> or resume experiments until the user explicitly requests it. The M0–M6 goal is
+> **unfinished**: camera safety/rule/planning gates remain open and final Town05
+> driving has not run. See the [pause record](reports/navigation_pause_20261023.json).
 
-## Architecture Overview
+## Start here
 
+- [Detailed project report: completed work, experiments, failures and future work](reports/journey/summary.md)
+- [Interview preparation: project explanation, technical questions and answers](reports/interview_preparation_20261023.md)
+- [Seven-page conference paper, DOCX](reports/conference_20261023/Auto_Thinker_Engine_Conference_Paper.docx)
+- [Conference paper PDF preview](reports/conference_20261023/qa/Auto_Thinker_Engine_Conference_Paper.pdf)
+- [Results index](reports/navigation_results_index_20261020.md),
+  [chronological journal](reports/journey/journal.md) and
+  [historical interview question bank](reports/journey/interview_questions.md)
+- [Approved navigation plan](reports/navigation_review_plan.md),
+  [runbook](reports/navigation_runbook.md),
+  [execution ledger](reports/navigation_execution_20261018.json) and
+  [agent handoff](reports/agent_handoff.md)
+
+The journal preserves historical mistakes and superseded findings. Use the pause
+report and corrected assessments for current numbers rather than treating every
+old “running” or “next” paragraph as current authorization.
+
+## What works, and what remains open
+
+| Evidence | Measured result | Meaning and limit |
+|---|---|---|
+| Historical right-turn encoder comparison | Two seeds: custom JEPA 100%, V-JEPA 2 100%, scratch CNN 50% mean evaluated success | A constrained front-camera maneuver; one V-JEPA 2 run is partial and the third seed was deferred. |
+| Zero-shot weather | Night success: JEPA arms 100%, CNN 0%; rain: custom 95%, V-JEPA 2 100%, CNN 45% | Appearance robustness improves; traffic success remains 20–35%. |
+| Privileged BEV traffic line | Selected checkpoint: 58/60 safe medium arrivals, 27/30 hard, 10/10 simple retention | One training seed; BEV is privileged and is not camera-only or JEPA evidence. Latest 150k checkpoint collapsed and must not be resumed. |
+| Corrected encoder study | 67 fits; 55 TRAIN episodes/15,712 labels; 13 VAL episodes/2,822 timestamps | Full-label mean offline score: comma JEPA 0.3755, CNN 0.3874, DINOv2 0.4323, ResNet 0.4477, CARLA JEPA 0.4628; lower is better. |
+| Matched camera pilots | 30 planned cases, 27 observed/3 unknown; ResNet 6/6 arrivals, zero contacts, one red and one stop violation | No encoder passes every pilot safely; offline score does not predict the safest native outcome. |
+| Familiar camera long drive | ResNet completes 1,375.64 m with zero recorded contacts/interventions | TRAIN route; five minimum-speed infractions; **zero red/stop opportunities**, so no traffic-rule claim. |
+| Override-disabled rule study | CNN-facts: 15/72 passes, 22 contacts, 15 red and five stop violations; 0/36 pairs pass both arms | Rule understanding is not qualified. |
+| First-event world models | Calibration Brier: action-only 0.16328, calibrated CV 0.17597, JEPA 0.17706, RSSM 0.17728 | Both learned ensembles rejected; all miss 4/4 observed calibration contacts at the fixed threshold. |
+| Latest full signal audit | Spatial context: 1,228/1,248 correct, 3,221 background detections | Fails original protection of ≥1,234 correct, every town/phase, and ≤3,075.8 backgrounds. |
+| Staged exact preprocessing | 236,284-point parity audit; GPU feature-plus-head median 22.87 ms/image | Features exact; probability error ≤6.66e−16 and zero decisions changed. Excludes proposer and full driving control; not deployed as a qualified stack. |
+
+The older split-contaminated encoder study and unsafe Town03 integration drive
+remain historical evidence. They do not replace the corrected comparison or
+establish held-out reliability. Every recorded contact and unknown failed attempt
+is retained in its proper denominator.
+
+## Two experimental branches
+
+```mermaid
+flowchart LR
+    Real[comma2k19 highway video] --> JEPA[Custom JEPA pretraining]
+    Sim[CARLA / CarDreamer] --> Obs[Front RGB + route]
+    Obs --> Enc[CNN or frozen JEPA / V-JEPA 2]
+    JEPA --> Enc
+    Enc --> RSSM[DreamerV3 RSSM]
+    RSSM --> AC[Imagination actor / critic]
+    AC --> Act[Discrete controls]
+    Act --> Sim
 ```
-comma2k19 video + telemetry         CARLA (via CarDreamer tasks)
-        │                                    │
-  Phase 2: JEPA                    Phase 1 & 3: DreamerV3
-  self-supervised                  (dreamerv3-torch, PyTorch)
-  pretraining                              │
-        │                           ┌──────┼──────┐
-        ▼                           ▼      ▼      ▼
-  ViT-S encoder ──────────────► [Arm 2] [Arm 1] [Arm 3]
-  (frozen weights)               JEPA    CNN    V-JEPA2
-                                   │      │       │
-                                   └──────┼───────┘
-                                          ▼
-                                  EncoderAdapter (same capacity)
-                                          │
-                                          ▼
-                               dreamerv3-torch RSSM
-                               + Actor-Critic (PyTorch)
-                                          │
-                                          ▼
-                                   Driving Actions
+
+The later navigation branch adds synchronized front/left/right 512×288 RGB views,
+calibration, route waypoints, ego motion and timestamps. A recurrent camera policy
+separates path correction from speed/stop decisions. A versioned, user-approved
+extension supplies only the ego's past applied controls and their frame IDs.
+Constant-velocity forecasts are compared with small JEPA/RSSM ensembles; the
+learned planners are not qualified. Privileged expert/world labels are for
+collection, supervision and scoring, never undisclosed camera-policy inputs.
+
+![Project architecture](reports/conference_20261023/figures/architecture.png)
+
+## Milestone status at pause
+
+| Stage | Status |
+|---|---|
+| M0: harness, synchronized rig, expert, scoring | Implemented and calibrated; later held-out expert reference is recorder-corrected 293/300 rule-safe and 56/300 strict, with six contacts across three missions. |
+| M1: data engine | Initial 20,000 timestamps collected/audited; 17,567 eligible for imitation. Further targeted datasets and causal recordings retained. No claim of a completed 100k corpus. |
+| M2: camera student | Sustained familiar long drive demonstrated; broad safety and rule gates not passed. |
+| M3: rule understanding | Original 72 trials completed; gate failed. |
+| M4: representation comparison | Corrected 67-fit comparison and matched native pilots completed; no safe encoder winner established. |
+| M5: predictive planning | Baselines, recorded action studies and ensembles evaluated; learned models rejected. |
+| M6: final Town05 | Suite registered: 12 routes × 3 seeds. No qualified candidate and no final driving run. |
+
+The immediate unstarted experiment has a verified cache of 1,596 additional exact
+TRAIN bulb positives, including 4,788 original/gamma feature vectors. Its
+three-fold fit is prepared but **has not started**. It is a future option, not a
+running queue or an accepted model.
+
+## Repository layout
+
+```text
+configs/             Historical experiment contract, navigation inputs, frozen suites
+src/jepa/            Encoder, predictor, masking and representation learning
+src/dreamer/         CarDreamer wrappers and PyTorch Dreamer encoder integration
+src/navigation/      Sensors, experts, policies, data, scoring, dynamics and runtime
+scripts/             Collection, fitting, audits, reports and read-only watchers
+jobs/                Historical guarded training queues
+tests/              Automated software tests
+patches/             Reproducible vendor changes and explicitly staged candidates
+reports/             Research evidence, protocols, journal, paper and pause reports
+outputs/             Local checkpoints, data, recordings and native traces (ignored)
+third_party/         Pinned Dreamer/CarDreamer submodules
 ```
 
-## Project Structure
+`patches/*_candidate.py` contains staged experiments, not automatically imported
+production implementations. A clean Git checkout includes the source, reports,
+selected report figures and paper; it does **not** include local datasets,
+checkpoints, simulator binaries or recordings. Links into `outputs/` require the
+retained local artifacts. This repository does not claim a public release of those
+artifacts or a safe pretrained driver.
 
-```
-├── configs/                     # YAML configs for all phases
-│   ├── phase1_dreamer_baseline.yaml
-│   ├── phase2_jepa_pretrain.yaml
-│   └── phase3_transfer_arms.yaml
-├── src/
-│   ├── jepa/                    # ViT encoder, EMA target, predictor, masking
-│   ├── dreamer/                 # Encoder adapters + dreamerv3-torch hook
-│   ├── data/                    # comma2k19 dataset loader + transforms
-│   ├── eval/                    # Linear probe, driving metrics, comparison
-│   └── utils/                   # Logging, checkpointing, seeding
-├── scripts/
-│   ├── setup_cardreamer.sh      # CarDreamer + CARLA setup (run first)
-│   ├── train_cardreamer.py      # Phase 1 & 3: DreamerV3 training
-│   ├── train_phase2_jepa.py     # Phase 2: JEPA pretraining on comma2k19
-│   ├── probe_phase2.py          # Linear probe evaluation
-│   ├── visualize_representations.py  # PCA/t-SNE maneuver clustering
-│   └── download_comma2k19.py    # Dataset download + verification
-├── third_party/
-│   ├── dreamerv3_torch/         # Git submodule (NM512/dreamerv3-torch, PyTorch)
-│   └── CarDreamer/              # Git submodule (CARLA task definitions only)
-├── tests/                       # Unit tests (73 passing)
-├── outputs/                     # Checkpoints, logs, videos (gitignored)
-└── reports/                     # Phase writeups + future work
-```
+## Environment and reproducibility
 
-## Phases
+Measured development hardware: RTX 5070 Ti Laptop GPU, **12 GB VRAM**, approximately
+32 GB host RAM, native Arch/CachyOS. Python 3.10 and the CUDA 12.8 PyTorch build are
+pinned for this implementation. CARLA is version 0.9.15. The separate A4000/Docker
+instructions remain in [SERVER_RUNBOOK_A4000.md](SERVER_RUNBOOK_A4000.md) and
+[DOCKER_CARLA_RUNBOOK.md](DOCKER_CARLA_RUNBOOK.md); they are not the laptop's measured
+hardware requirements.
 
-| Phase | Goal | Key Output |
-|-------|------|-----------|
-| **0** | Environment setup | CARLA + dreamerv3-torch smoke test |
-| **1** | DreamerV3 baseline | CNN agent via dreamerv3-torch training loop |
-| **2** | JEPA pretraining | ViT-Small encoder on 33h driving video |
-| **3** | Three-way comparison | CNN vs custom-JEPA vs V-JEPA2 |
-
-## Setup
-
-### Requirements
-- Python 3.10 (pinned for CARLA compatibility)
-- CUDA-capable GPU with ≥16GB VRAM (A4000-class)
-- 64GB RAM
-- CARLA 0.9.15
-
-### Installation
+Setup commands below install/check the software; they do not authorize restarting
+paused training:
 
 ```bash
-# Clone repository with submodules
-git clone --recursive <this-repo>
+git clone --recursive https://github.com/JayacharanR/Auto_Thinker_Engine.git
 cd Auto_Thinker_Engine
-
-# Install uv if not present
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Install dependencies (Python 3.10 will be auto-installed by uv)
-uv sync
-
-# Install optional dependencies
-uv sync --extra dev --extra carla  # pytest, ruff, CARLA Python API
-uv sync --extra wandb    # Weights & Biases
-uv sync --extra viz      # UMAP, seaborn
-
-# Set up CarDreamer + CARLA (on target hardware)
-bash scripts/setup_cardreamer.sh /path/to/carla
+uv sync --frozen --extra dev --extra carla --extra viz
+export CARLA_ROOT=/path/to/CARLA_0.9.15
+bash scripts/setup_cardreamer.sh "$CARLA_ROOT"
+python run.py doctor --require-cuda --require-carla
 ```
 
-For the A4000 Docker path, use the checked-in [CARLA Docker runbook](DOCKER_CARLA_RUNBOOK.md).
-It builds a non-root Python 3.10 image and starts the container with the
-graphics-capable NVIDIA runtime, a 2 GiB `/dev/shm`, Vulkan ICD validation,
-dummy audio, and CARLA 0.9.15 mounted at `/opt/carla`. A CUDA-only container
-with `NVIDIA_DRIVER_CAPABILITIES=compute,utility` is not sufficient for CARLA.
+The setup script applies the tracked Dreamer and CarDreamer compatibility patches.
+[The vendor patch audit](reports/vendor_patch_audit_20261023.json) independently
+reproduces all eight modified vendor files from pinned bases. Their working trees
+can intentionally appear dirty after patch application; the superproject retains
+the upstream gitlinks and patches rather than referencing unpublished vendor commits.
 
-### Laptop (native, no Docker)
+The original right-turn comparison uses **discrete actions**, a time cost of 0.1
+and `train_ratio=512`; its authoritative description is
+[configs/experiment_contract.yaml](configs/experiment_contract.yaml).
+Encoder geometry comes from the actual checkpoints, not a blanket 224-pixel rule:
+the custom JEPA laptop configuration is 128 pixels/eight frames during pretraining.
+Action conditioning was off in that original pretraining run. The later
+[navigation contract](configs/navigation.yaml) is a separate experiment.
 
-Tested on an RTX 5070 Ti Laptop GPU (12 GB, Blackwell sm_120) under Arch/CachyOS.
-Blackwell needs the CUDA 12.8 torch build pinned in `pyproject.toml`.
+## Verification and monitoring
+
+The pause checkpoint's full software test run: **559 passed, 3 skipped**. The
+skips are environment-dependent; this is software verification, not fresh native
+driving qualification. Native simulator runs were not restarted for this handoff.
 
 ```bash
-uv sync --extra dev --extra carla --extra viz
-git submodule update --init --recursive
-# CARLA 0.9.15 (8.4 GB; the tiny.carla.org link may return 403, use the origin):
-mkdir -p ~/software/CARLA_0.9.15 && cd ~/software
-curl -L -o CARLA_0.9.15.tar.gz \
-  https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/CARLA_0.9.15.tar.gz
-tar -xzf CARLA_0.9.15.tar.gz -C CARLA_0.9.15 && cd -
-export CARLA_ROOT=~/software/CARLA_0.9.15
-bash scripts/setup_cardreamer.sh "$CARLA_ROOT"   # applies patches/*.patch to the submodules
-bash scripts/configure_carla.sh                    # Town03_Opt as the startup map
-uv run python run.py doctor --require-cuda --require-carla
-RUN_MODE=smoke bash jobs/slurm_run.sh              # starts, checks and stops CARLA
+.venv/bin/pytest -q
+.venv/bin/python scripts/watch_navigation_execution.py --once
+.venv/bin/python scripts/watch_navigation_execution.py --history --once
 ```
 
-`jobs/slurm_run.sh` runs without Slurm: it launches CARLA headless, waits for
-it, runs the requested mode and always stops CARLA. CARLA at Low quality uses
-about 2 GB of VRAM; a Dreamer run (batch 16 x 64, AMP) about 4 GB. Train on AC
-power. Long runs: start them detached, e.g. `setsid nohup bash jobs/slurm_run.sh &`.
+The watcher is read-only. A completed status file is historical evidence, and a
+stale heartbeat is not proof of a live process. For any future active queue, stop
+only through its owned `STOP` file; do not use broad process-name kills. Preserve
+the current pause until the user resumes. Never restart a completed failed
+experiment to seek a better outcome.
 
-### Dataset Download
+## Future work, when explicitly resumed
 
-```bash
-# Download comma2k19 (~100 GB, 10 chunks × ~10 GB)
-uv run python scripts/download_comma2k19.py --output-dir data/comma2k19
+1. Run the prospective positive-coverage comparison, preserving the original
+   full-distribution and per-town/per-phase gates.
+2. Verify applicable-light association and complete approach/stop/wait/release
+   sequences before retraining a camera controller.
+3. Gather genuinely reactive, observed alternative-action outcomes; include
+   rear hazards and red-light cases, and require learned predictors to beat
+   constant-velocity/action-only baselines on held-out calibration.
+4. Profile the entire three-camera pipeline and test recurrent control without
+   safety overrides on the registered rule/development suites.
+5. Only after qualification, run frozen Town05 final candidates and report every
+   collision, failure, rule opportunity and intervention. Never lower the bar or
+   relabel an engineering drive as the final test.
 
-# Download single chunk for development (~10 GB)
-uv run python scripts/download_comma2k19.py --output-dir data/comma2k19 --chunks 1
+See the detailed report for rejected approaches, limitations, exact evidence
+links and restart prerequisites.
 
-# Verify downloaded data (checks CAN field completeness)
-uv run python scripts/download_comma2k19.py --output-dir data/comma2k19 --verify
-```
+## Licensing
 
-## Running
-
-### Phase 1: DreamerV3 Baseline
-```bash
-# First working car: bird's-eye view + discrete actions (the launcher manages CARLA)
-RUN_MODE=cnn STEPS=100000 TRAIN_ARGS="--logdir outputs/logs/cnn_bev_seed42" \
-  bash jobs/slurm_run.sh
-
-# Short integration run with config overrides; resume an interrupted run
-RUN_MODE=cnn STEPS=2000 TRAIN_ARGS="--set prefill=500 --set eval_every=1000" bash jobs/slurm_run.sh
-RUN_MODE=cnn STEPS=100000 TRAIN_ARGS="--resume --logdir outputs/logs/cnn_bev_seed42" \
-  bash jobs/slurm_run.sh
-```
-
-Dreamer settings come from `configs/laptop.yaml` (`--profile`, `--set key=value`).
-Monitoring and diagnosis (read-only, safe during training):
-
-```bash
-python3 scripts/watch_run.py                                   # live progress bar of the latest run
-uv run python scripts/inspect_episode.py outputs/logs/cnn_bev_seed42 --eval -n 1
-#   -> frames before the episode ended + decoded action shares (straight/left/right)
-```
-
-Long jobs (Phase 2 EMA + SIGReg, probes, encoder selection, Stage 3 resume) are
-queued in `jobs/long_runs.sh`; it resumes if restarted, logs progress to
-`outputs/long_runs/status.txt` and machine health to `outputs/long_runs/health.log`,
-and stops the trainers cleanly (checkpoints saved) if the GPU overheats or RAM or
-disk run low:
-
-```bash
-mkdir -p outputs/long_runs
-setsid nohup systemd-inhibit --what=sleep:idle:handle-lid-switch --why=training \
-  bash jobs/long_runs.sh > outputs/long_runs/run.log 2>&1 &
-touch outputs/long_runs/STOP     # stop cleanly; rerun the command above to resume
-python3 scripts/watch_queue.py   # live bars: current step, whole queue, GPU/RAM health
-```
-
-Checkpoints: Phase 2 saves `latest.pt` every epoch (~1 min) and the Dreamer
-runner every 2,500 env steps (`--checkpoint-every`); both also save when stopped
-(SIGTERM / STOP file), and saves are atomic, so a crash loses at most that much.
-Each run writes `latest.pt`, `episodes.jsonl` (one line per episode),
-`eval.jsonl` and `metrics.json` to its log directory.
-
-### Phase 2: JEPA Pretraining
-```bash
-# Decode the videos once (128 px, 10 Hz, memory-mapped arrays)
-uv run python scripts/preprocess_comma2k19.py --src data/comma2k19 --out data/comma2k19_128
-
-# Same budget for both collapse-prevention methods
-uv run python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml \
-    --regularizer ema --checkpoint-dir outputs/checkpoints/phase2_ema
-uv run python scripts/train_phase2_jepa.py --config configs/phase2_jepa_laptop.yaml \
-    --regularizer sigreg --checkpoint-dir outputs/checkpoints/phase2_sigreg
-
-# Linear steering probe of the final weights vs a random encoder; the larger gain
-# becomes phase2/best.pt (jobs/long_runs.sh does this automatically)
-uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_ema/final.pt
-uv run python scripts/probe_phase2.py --checkpoint outputs/checkpoints/phase2_sigreg/final.pt
-
-# Visualize representation clusters
-uv run python scripts/visualize_representations.py \
-    --checkpoint outputs/checkpoints/phase2/best.pt \
-    --data-dir data/comma2k19
-```
-
-### Phase 3: Three-way Comparison
-Front camera + route vector, continuous actions. Frozen encoders run once per
-environment step and replay stores their embeddings, so training never runs
-the ViT.
-```bash
-# One arm (2k-step check)
-RUN_MODE=custom_jepa OBS=camera_route ACTION=continuous STEPS=2000 bash jobs/slurm_run.sh
-
-# All arms x seeds; finished runs are reused and interrupted runs resume
-RUN_MODE=comparison OBS=camera_route ACTION=continuous STEPS=200000 bash jobs/slurm_run.sh
-# -> outputs/comparison/<task>_camera_route/comparison.md (mean ± std per arm)
-```
-
-### Tests
-```bash
-uv run pytest tests/ -v
-```
-
-### Terminal / HPC launcher
-
-The project does not need a graphical terminal session. Use the root launcher
-to run the existing scripts through one stable command:
-
-```bash
-python run.py doctor
-python run.py smoke --host localhost --port 2000
-python run.py train --arm cnn --task carla_right_turn_simple --steps 10000
-python run.py phase2 --config configs/phase2_jepa_pretrain.yaml
-python run.py compare --steps 500000
-```
-
-For a Slurm allocation, copy CARLA to persistent storage and submit the
-headless job template. The default is a deliberately short 10,000-step CNN
-validation run:
-
-```bash
-CARLA_ROOT=/scratch/$USER/software \
-RUN_MODE=cnn STEPS=10000 \
-sbatch jobs/slurm_run.sh
-```
-
-Other modes are `phase2`, `smoke`, `custom_jepa`, `vjepa2`, and `comparison`.
-Keep CARLA, datasets, checkpoints, and `outputs/` outside temporary job-local
-storage when allocations can be preempted.
-
-For the complete runbook tailored to the Ubuntu 22.04 + RTX A4000 container,
-see [SERVER_RUNBOOK_A4000.md](SERVER_RUNBOOK_A4000.md).
-For the exact Docker build, `docker run`, and Gate 0 smoke commands, see
-[DOCKER_CARLA_RUNBOOK.md](DOCKER_CARLA_RUNBOOK.md).
-
-## Key Design Decisions
-
-### DreamerV3 Backbone: dreamerv3-torch (PyTorch)
-The project initially attempted to use CarDreamer's JAX-based DreamerV3. Code review
-identified a **framework mismatch**: our PyTorch encoders cannot be inserted into
-JAX's JIT-compiled function graph. We pivoted to `NM512/dreamerv3-torch`, a well-tested
-PyTorch implementation. CarDreamer's CARLA task definitions (reward functions, route
-logic) are still used — they're framework-agnostic Python.
-
-### Temporal Input: Frame Stacking (Option A)
-For temporal encoders (custom_jepa, vjepa2), we maintain a rolling buffer of
-the last 4 CARLA frames. This preserves the scientific claim that **temporal
-video pretraining transfers to control**, rather than degenerating to 2D patches.
-Clips always satisfy `T >= tubelet_size` to avoid 3D convolution errors.
-
-### Resolution: Per-arm
-- JEPA/V-JEPA2: 224×224 (matching pretrained positional embeddings)
-- CNN: 64×64 (dreamerv3-torch default, saves VRAM)
-
-Temporal PE interpolation handles frame-count mismatches between Phase 2
-pretraining (16 frames) and Phase 3 RL (4-frame clips).
-
-## Architecture Details
-
-### JEPA (Phase 2)
-- **Context Encoder**: ViT-Small (384-dim, 12 layers, 6 heads)
-- **Target Encoder**: EMA copy of context encoder (momentum τ=0.996)
-- **Predictor**: Lightweight transformer (192-dim, 6 layers)
-- **Training**: Smooth L1 loss on masked patch predictions, no pixel reconstruction
-- **Action Conditioning**: V-JEPA-AC style injection of steering/speed
-
-### DreamerV3 (Phases 1 & 3) — via dreamerv3-torch
-- **RSSM**: PyTorch implementation (32×32 categorical latents)
-- **Actor-Critic**: Learned, symlog returns
-- **Reward**: CarDreamer's built-in task rewards (right-turn, traffic-light, etc.)
-- **Encoder Swap**: `patch_dreamerv3_encoder()` replaces `MultiEncoder` (both nn.Module)
-
-### Phase 3 Arms
-| Arm | Encoder | Params | Frozen | Input |
-|-----|---------|--------|--------|-------|
-| CNN | DreamerV3 default | ~2M | No | Single frame (64×64) |
-| Custom JEPA | Phase 2 ViT-S | ~22M | Yes | 4-frame clip (224×224) |
-| V-JEPA2 | Meta ViT-L | ~300M | Yes | 4-frame clip (224×224) |
-
-## Licenses
-- **This project**: MIT
-- **CARLA**: MIT
-- **dreamerv3-torch**: MIT
-- **CarDreamer**: Apache 2.0
-- **comma2k19**: MIT
-- **V-JEPA2**: CC-BY-NC-4.0 (non-commercial)
+This project uses the license in [LICENSE](LICENSE). Third-party code, datasets
+and model checkpoints retain their respective upstream licenses and usage terms;
+this project does not relicense them. Verify the exact checkpoint terms before
+redistributing weights or using them outside this research setting.

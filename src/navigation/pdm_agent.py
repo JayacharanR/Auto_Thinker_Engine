@@ -14,6 +14,7 @@ import yaml
 from autopilot import AutoPilot
 
 from src.navigation.contracts import VIEWS
+from src.navigation.recording_policy import preview_enabled
 from src.navigation.replay import capture_world_state
 from src.navigation.runtime import atomic_json
 from src.navigation.sensors import camera_specs
@@ -41,6 +42,8 @@ class NavigationExpert(AutoPilot):
         self.last_frame = -1
         self.frame_count = 0
         self.navigation_spec = spec
+        self.driver_label = "PRIVILEGED EXPERT"
+        self.trace_policy_kind = "privileged_pdm_lite_modified"
         manifest = json.loads((Path(spec["out"]) / "manifest.json").read_text())
         xyz = np.array(
             [
@@ -50,6 +53,7 @@ class NavigationExpert(AutoPilot):
         )
         length = float(np.linalg.norm(np.diff(xyz, axis=0), axis=1).sum())
         current = json.loads((Path(spec["out"]) / "current_route.json").read_text())
+        self.record_preview = preview_enabled(manifest, current)
         lengths = manifest["route"].get("lengths_m")
         # A multi-route catalog registers one length per route id; never fall back.
         expected = lengths[current["route_id"]] if lengths else manifest["route"]["length_m"]
@@ -67,6 +71,25 @@ class NavigationExpert(AutoPilot):
                 f"Harness route length {length:.1f}m differs from manifest "
                 f"{expected:.1f}m; refusing to silently change the mission"
             )
+        self.rule_runtime = None
+        if spec.get("rule_test"):
+            from srunner.scenariomanager.carla_data_provider import CarlaDataProvider
+
+            from src.navigation.collection import RouteProjector
+            from src.navigation.rule_case_runtime import ACTIVE, RuleCaseRuntime
+            from src.navigation.sensors import calibrations
+
+            self.rule_runtime = RuleCaseRuntime(
+                CarlaDataProvider.get_hero_actor().get_world(),
+                CarlaDataProvider.get_hero_actor(),
+                spec["rule_test"],
+                self.out / "controlled_rule",
+                RouteProjector(xyz[:, :2]),
+                calibrations(self.navigation),
+            )
+            ACTIVE["runtime"] = self.rule_runtime
+            self.driver_label = "CONTROLLED RULE COMPONENT | PRIVILEGED REFERENCE"
+            self.trace_policy_kind = "controlled_component_privileged_reference"
 
     def sensors(self):
         return super().sensors() + camera_specs(self.navigation)
@@ -85,6 +108,11 @@ class NavigationExpert(AutoPilot):
                 raise ValueError(f"Invalid {view} camera output: {bgra.shape}/{bgra.dtype}")
             rgb[view] = np.ascontiguousarray(bgra[:, :, :3][:, :, ::-1])
         control = super().run_step(input_data, timestamp, sensors, plant)
+        if self.rule_runtime is not None:
+            chosen = self.rule_runtime.selected_control(
+                timestamp, [control.steer, control.throttle, control.brake], rgb
+            )
+            control.steer, control.throttle, control.brake = chosen
         self.timings.append(time.monotonic() - started)
         self.first_timestamp = timestamp if self.first_timestamp is None else self.first_timestamp
         transform = self._vehicle.get_transform()
@@ -103,14 +131,19 @@ class NavigationExpert(AutoPilot):
                 "stop": bool(self.stop_sign_hazard),
                 "vehicle": bool(self.vehicle_hazard),
             },
-            "policy_kind": "privileged_pdm_lite_modified",
+            "policy_kind": self.trace_policy_kind,
+            "control_semantics": (
+                "controlled component executed control; requested proposals in dedicated log"
+                if self.rule_runtime is not None
+                else "privileged teacher proposal before collection mixing"
+            ),
         }
         self.trace.write(json.dumps(record, allow_nan=False) + "\n")
         world_state = capture_world_state(self._world)
         if world_state["frame"] != int(frames[0]):
             raise RuntimeError("World audit snapshot differs from the camera frame")
         self.world_trace.write(json.dumps(world_state, allow_nan=False) + "\n")
-        if self.step % 2 == 0:
+        if self.record_preview and self.step % 2 == 0:
             canvas = np.concatenate([rgb[v] for v in ("left", "front", "right")], axis=1)
             for i, view in enumerate(("left", "front", "right")):
                 cv2.putText(
@@ -122,9 +155,16 @@ class NavigationExpert(AutoPilot):
                     (255, 255, 255),
                     1,
                 )
+            setup_label = (
+                "SCRIPTED SETUP | "
+                if self.rule_runtime is not None and self.rule_runtime.prefix.handoff_time is None
+                else ""
+            )
             cv2.putText(
                 canvas,
-                f"PRIVILEGED EXPERT | {record['speed_mps'] * 3.6:.1f} km/h | frame {frames[0]}",
+                f"{self.driver_label} | "
+                f"{setup_label}"
+                f"{record['speed_mps'] * 3.6:.1f} km/h | frame {frames[0]}",
                 (12, c["height"] - 15),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.6,
@@ -160,6 +200,11 @@ class NavigationExpert(AutoPilot):
         return control
 
     def destroy(self, results=None):
+        if getattr(self, "rule_runtime", None):
+            from src.navigation.rule_case_runtime import ACTIVE
+
+            self.rule_runtime.close()
+            ACTIVE["runtime"] = None
         if getattr(self, "video", None):
             self.video.close()
         if getattr(self, "trace", None):

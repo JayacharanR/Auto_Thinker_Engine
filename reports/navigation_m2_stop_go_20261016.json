@@ -1,0 +1,192 @@
+{
+  "run": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_stop_go_20261016",
+  "best_step": 1500,
+  "architecture": "camera-stop-go-v2",
+  "evaluation_clip_length": 32,
+  "checkpoint_sha256": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+  "internal_validation": {
+    "speed_mae_mps": 2.5827112299640005,
+    "go_speed_mae_mps": 1.9797483649701704,
+    "stopped_speed_mae_mps": 3.40175928518043,
+    "go_predicted_stop_fraction": 0.049723756906077346,
+    "path_correction_mae_m": 0.040143687810216634,
+    "brake_accuracy": 0.6112804878048781,
+    "light_accuracy": 0.3521341463414634,
+    "red_recall": 0.4156545209176788,
+    "controller_stop_recall": 0.425,
+    "controller_false_hold_fraction": 0.048109965635738834,
+    "counts": {
+      "speed": 1312,
+      "go": 724,
+      "stopped": 560,
+      "path": 6720.0,
+      "red": 741,
+      "controller_go": 582
+    },
+    "selection_score": 0.35114995011727285
+  },
+  "all_images_blanked": {
+    "speed_mae_mps": 3.74071861476433,
+    "go_speed_mae_mps": 6.742072827249601,
+    "stopped_speed_mae_mps": 0.024253575407367733,
+    "go_predicted_stop_fraction": 0.31767955801104975,
+    "path_correction_mae_m": 0.0675425926844279,
+    "brake_accuracy": 0.7439024390243902,
+    "light_accuracy": 0.21646341463414634,
+    "red_recall": 0.0,
+    "controller_stop_recall": 0.9732142857142857,
+    "controller_false_hold_fraction": 0.3230240549828179,
+    "counts": {
+      "speed": 1312,
+      "go": 724,
+      "stopped": 560,
+      "path": 6720.0,
+      "red": 741,
+      "controller_go": 582
+    },
+    "selection_score": 0.30974634117925814
+  },
+  "baselines": {
+    "always_stop_speed_mae_mps": 4.103877544403076,
+    "train_mean_speed_mae_mps": 3.91780424118042,
+    "route_without_correction_mae_m": 0.0030263285152614117,
+    "train_majority_brake": true,
+    "train_majority_brake_accuracy": 0.5320121951219512,
+    "train_majority_light": 1,
+    "train_majority_light_accuracy": 0.5647865853658537,
+    "evaluated_frames": 1312,
+    "scope": "Exactly the same held-out-internal clip positions and burn-in as model metrics"
+  },
+  "controller_diagnostics": {
+    "counts": {
+      "frames": 1312,
+      "positive_speed_and_brake": 0,
+      "teacher_go": 582,
+      "held_on_teacher_go": 28,
+      "teacher_start_go": 13,
+      "held_on_teacher_start_go": 0,
+      "teacher_stopped": 560,
+      "held_on_teacher_stopped": 238
+    },
+    "held_on_teacher_go_fraction": 0.048109965635738834,
+    "held_on_teacher_start_go_fraction": 0.0,
+    "held_on_teacher_stopped_fraction": 0.425,
+    "scope": "Same internal validation windows; deployed hold = speed<0.15 or brake>=0.5. Teacher-go excludes teacher braking; not a closed-loop success metric."
+  },
+  "label_observability": null,
+  "frozen_training_source_changes": [],
+  "archived_training_sources_verified": true,
+  "scope": "Internal location validation only. Blanking is an input-sensitivity diagnostic, not a trained navigation-only baseline or evidence of driving performance. No heldout_dev or Town05 samples used.",
+  "reference": {
+    "run": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_student_smoke_20261015",
+    "best_step": 300,
+    "architecture": "camera-student-v1",
+    "evaluation_clip_length": 32,
+    "checkpoint_sha256": "9cc1c2f7f8d260883f427251027f969f4337cbf95267056a67aece895bd15681",
+    "internal_validation": {
+      "speed_mae_mps": 2.6210079629246783,
+      "go_speed_mae_mps": 2.1255838647073144,
+      "stopped_speed_mae_mps": 3.32004012635776,
+      "go_predicted_stop_fraction": 0.0027624309392265192,
+      "path_correction_mae_m": 0.03631665309270223,
+      "brake_accuracy": 0.6227134146341463,
+      "light_accuracy": 0.5038109756097561,
+      "red_recall": 0.7854251012145749,
+      "controller_stop_recall": 0.44642857142857145,
+      "controller_false_hold_fraction": 0.07560137457044673,
+      "counts": {
+        "speed": 1312,
+        "go": 724,
+        "stopped": 560,
+        "path": 6720.0,
+        "red": 741,
+        "controller_go": 582
+      },
+      "selection_score": 3.477385166264245
+    },
+    "all_images_blanked": {
+      "speed_mae_mps": 3.8209724978702826,
+      "go_speed_mae_mps": 6.492432968392556,
+      "stopped_speed_mae_mps": 0.5457570164863552,
+      "go_predicted_stop_fraction": 0.0,
+      "path_correction_mae_m": 0.0549907291219348,
+      "brake_accuracy": 0.5403963414634146,
+      "light_accuracy": 0.555640243902439,
+      "red_recall": 0.8124156545209177,
+      "controller_stop_recall": 1.0,
+      "controller_false_hold_fraction": 0.9725085910652921,
+      "counts": {
+        "speed": 1312,
+        "go": 724,
+        "stopped": 560,
+        "path": 6720.0,
+        "red": 741,
+        "controller_go": 582
+      },
+      "selection_score": 4.438302309512626
+    },
+    "baselines": {
+      "always_stop_speed_mae_mps": 4.103877544403076,
+      "train_mean_speed_mae_mps": 3.91780424118042,
+      "route_without_correction_mae_m": 0.0030263285152614117,
+      "train_majority_brake": true,
+      "train_majority_brake_accuracy": 0.5320121951219512,
+      "train_majority_light": 1,
+      "train_majority_light_accuracy": 0.5647865853658537,
+      "evaluated_frames": 1312,
+      "scope": "Exactly the same held-out-internal clip positions and burn-in as model metrics"
+    },
+    "controller_diagnostics": {
+      "counts": {
+        "frames": 1312,
+        "positive_speed_and_brake": 347,
+        "teacher_go": 582,
+        "held_on_teacher_go": 44,
+        "teacher_start_go": 13,
+        "held_on_teacher_start_go": 0,
+        "teacher_stopped": 560,
+        "held_on_teacher_stopped": 250
+      },
+      "held_on_teacher_go_fraction": 0.07560137457044673,
+      "held_on_teacher_start_go_fraction": 0.0,
+      "held_on_teacher_stopped_fraction": 0.44642857142857145,
+      "scope": "Same internal validation windows; deployed hold = speed<0.15 or brake>=0.5. Teacher-go excludes teacher braking; not a closed-loop success metric."
+    },
+    "label_observability": {
+      "all_clean_samples": 17567,
+      "known_light_state_samples": 13703,
+      "known_light_outside_80m_or_missing_distance": 523,
+      "known_light_distance_over_40m": 2738,
+      "visible_light_validity_labels_stored": false,
+      "note": "Route applicability does not establish image visibility; around-corner and subpixel lamps require separate observability labels."
+    },
+    "frozen_training_source_changes": [
+      "scripts/train_navigation_student.py",
+      "src/navigation/student.py"
+    ],
+    "archived_training_sources_verified": true,
+    "scope": "Internal location validation only. Blanking is an input-sensitivity diagnostic, not a trained navigation-only baseline or evidence of driving performance. No heldout_dev or Town05 samples used."
+  },
+  "comparison_note": "Frozen checkpoints on identical windows/burn-in. The countermeasure bundle changes architecture, loss, history, learning rate and training budget; not an isolated architecture ablation or a matched-compute study.",
+  "braking_semantics_note": "Positive target plus actuator braking can be valid deceleration. Co-occurrence counts are not error counts; see the separate teacher_braking_audit.json. The zero-speed blocked route is a demonstrated release failure.",
+  "teacher_braking_audit": {
+    "cache_manifest_sha256": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae",
+    "roles": {
+      "train": {
+        "timestamps": 14745,
+        "positive_target_actuator_braking": 987,
+        "positive_target_braking_actual_below_target": 0,
+        "positive_target_braking_ego_below_0_2": 0,
+        "minimum_overspeed_margin_mps": 0.01475188136100769
+      },
+      "validation": {
+        "timestamps": 2822,
+        "positive_target_actuator_braking": 268,
+        "positive_target_braking_actual_below_target": 0,
+        "positive_target_braking_ego_below_0_2": 0,
+        "minimum_overspeed_margin_mps": 0.016054242849349976
+      }
+    },
+    "interpretation": "Positive target with actuator brake can be ordinary deceleration, not contradictory stop intent. Every observed teacher case is above its target. The frozen policy becoming blocked at zero ego speed with positive target and active brake remains a demonstrated release failure."
+  }
+}

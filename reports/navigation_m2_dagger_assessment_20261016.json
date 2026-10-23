@@ -1,0 +1,212 @@
+{
+  "audit_passed": true,
+  "correction_data_gate_passed": true,
+  "exposure_gate_passed": true,
+  "all_recorded_collisions": 0,
+  "recorded_red_violations": 0,
+  "recorded_stop_violations": 0,
+  "counts": {
+    "samples": 1729,
+    "teacher_stop": 500,
+    "teacher_go": 1139,
+    "stationary_go": 143,
+    "stationary_go_after_5s": 118,
+    "recovery_events": 2,
+    "privileged_ticks": 1168,
+    "physics_frames": 3454
+  },
+  "correction_sources_10hz": {
+    "student": 1106,
+    "privileged_teacher_hazard": 242,
+    "privileged_teacher_recovery": 50,
+    "privileged_teacher_braking": 331
+  },
+  "episodes": [
+    {
+      "route_id": 86,
+      "correction_eligible": true,
+      "counts": {
+        "samples": 163,
+        "teacher_stop": 0,
+        "teacher_go": 163,
+        "stationary_go": 5,
+        "stationary_go_after_5s": 0
+      },
+      "setup_status": "setup_started",
+      "profile": {
+        "samples": 163,
+        "shards": 6,
+        "control_differences": 0,
+        "unacknowledged_samples": 0,
+        "noise_ticks": 0,
+        "safety_stop_ticks": 0,
+        "dagger_control_ticks": {
+          "student": 325
+        },
+        "privileged_intervention_ticks": 0,
+        "training_mixture_not_camera_evaluation": true
+      },
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route0_10_16_11_23_12/data",
+      "full_video_decode_passed": true
+    },
+    {
+      "route_id": 101,
+      "correction_eligible": true,
+      "counts": {
+        "samples": 261,
+        "teacher_stop": 28,
+        "teacher_go": 233,
+        "stationary_go": 70,
+        "stationary_go_after_5s": 65
+      },
+      "setup_status": "setup_started",
+      "profile": {
+        "samples": 261,
+        "shards": 9,
+        "control_differences": 0,
+        "unacknowledged_samples": 0,
+        "noise_ticks": 0,
+        "safety_stop_ticks": 80,
+        "dagger_control_ticks": {
+          "student": 381,
+          "teacher_hazard": 80,
+          "recovery_events": 1,
+          "teacher_recovery": 60
+        },
+        "privileged_intervention_ticks": 140,
+        "training_mixture_not_camera_evaluation": true
+      },
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route1_10_16_11_23_28/data",
+      "full_video_decode_passed": true
+    },
+    {
+      "route_id": 111,
+      "correction_eligible": true,
+      "counts": {
+        "samples": 169,
+        "teacher_stop": 0,
+        "teacher_go": 169,
+        "stationary_go": 5,
+        "stationary_go_after_5s": 0
+      },
+      "setup_status": "no_setup_declared",
+      "profile": {
+        "samples": 169,
+        "shards": 6,
+        "control_differences": 0,
+        "unacknowledged_samples": 0,
+        "noise_ticks": 0,
+        "safety_stop_ticks": 0,
+        "dagger_control_ticks": {
+          "student": 337
+        },
+        "privileged_intervention_ticks": 0,
+        "training_mixture_not_camera_evaluation": true
+      },
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route2_10_16_11_23_59/data",
+      "full_video_decode_passed": true
+    },
+    {
+      "route_id": 123,
+      "correction_eligible": true,
+      "counts": {
+        "samples": 257,
+        "teacher_stop": 141,
+        "teacher_go": 116,
+        "stationary_go": 6,
+        "stationary_go_after_5s": 6
+      },
+      "setup_status": "setup_started",
+      "profile": {
+        "samples": 257,
+        "shards": 9,
+        "control_differences": 0,
+        "unacknowledged_samples": 0,
+        "noise_ticks": 0,
+        "safety_stop_ticks": 281,
+        "dagger_control_ticks": {
+          "teacher_hazard": 281,
+          "student": 232
+        },
+        "privileged_intervention_ticks": 281,
+        "training_mixture_not_camera_evaluation": true
+      },
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route3_10_16_11_24_16/data",
+      "full_video_decode_passed": true
+    },
+    {
+      "route_id": 133,
+      "correction_eligible": true,
+      "counts": {
+        "samples": 322,
+        "teacher_stop": 79,
+        "teacher_go": 211,
+        "stationary_go": 5,
+        "stationary_go_after_5s": 0
+      },
+      "setup_status": "setup_started",
+      "profile": {
+        "samples": 322,
+        "shards": 11,
+        "control_differences": 0,
+        "unacknowledged_samples": 0,
+        "noise_ticks": 0,
+        "safety_stop_ticks": 194,
+        "dagger_control_ticks": {
+          "teacher_hazard": 1,
+          "student": 450,
+          "teacher_braking": 193
+        },
+        "privileged_intervention_ticks": 194,
+        "training_mixture_not_camera_evaluation": true
+      },
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route4_10_16_11_24_46/data",
+      "full_video_decode_passed": true
+    },
+    {
+      "route_id": 143,
+      "correction_eligible": true,
+      "counts": {
+        "samples": 557,
+        "teacher_stop": 252,
+        "teacher_go": 247,
+        "stationary_go": 52,
+        "stationary_go_after_5s": 47
+      },
+      "setup_status": "no_setup_declared",
+      "profile": {
+        "samples": 557,
+        "shards": 18,
+        "control_differences": 0,
+        "unacknowledged_samples": 0,
+        "noise_ticks": 0,
+        "safety_stop_ticks": 512,
+        "dagger_control_ticks": {
+          "teacher_hazard": 119,
+          "student": 561,
+          "recovery_events": 1,
+          "teacher_recovery": 41,
+          "teacher_braking": 393
+        },
+        "privileged_intervention_ticks": 553,
+        "training_mixture_not_camera_evaluation": true
+      },
+      "data": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route5_10_16_11_25_23/data",
+      "full_video_decode_passed": true
+    }
+  ],
+  "spatial_violations": [],
+  "unknown_failures": [],
+  "eligible_correction_paths": [
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route0_10_16_11_23_12/data",
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route1_10_16_11_23_28/data",
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route2_10_16_11_23_59/data",
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route3_10_16_11_24_16/data",
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route4_10_16_11_24_46/data",
+    "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/episodes/Town03_Opt_route5_10_16_11_25_23/data"
+  ],
+  "request_sha256": "aca2e811aa542118ac95d8656fdf838668a839a97db64b364213af2eddf2d97f",
+  "data_audit_sha256": "5a73cc79ed59a451157f13ed648a66901be48c7e1cd89dc7306f5953386b124f",
+  "internal_manifest_sha256": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae",
+  "scope": "Privileged assisted TRAIN data, not camera evaluation. Instantaneous expert corrections only; censored future/unsafe/executed-student actions are not labels."
+}

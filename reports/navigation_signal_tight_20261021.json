@@ -1,0 +1,294 @@
+{
+  "diagnosis": {
+    "RGB": {
+      "train": {
+        "supported": 51094,
+        "unknown": 0,
+        "positives": 5600,
+        "recall": 0.7358928571428571,
+        "specificity": 0.7868949751615598,
+        "balanced_accuracy": 0.7613939161522085,
+        "auc": 0.8546343748626193
+      },
+      "train_predicted_only": {
+        "supported": 48865,
+        "unknown": 0,
+        "positives": 3371,
+        "recall": 0.6016018985464254,
+        "specificity": 0.7868949751615598,
+        "balanced_accuracy": 0.6942484368539926,
+        "auc": 0.7916348141109868
+      },
+      "validation": {
+        "supported": 37314,
+        "unknown": 1229,
+        "positives": 73,
+        "recall": 0.6986301369863014,
+        "specificity": 0.753604897827663,
+        "balanced_accuracy": 0.7261175174069823,
+        "auc": 0.7765888457742663
+      },
+      "metrics": {
+        "labels": 72,
+        "localized": 46,
+        "joint": 38,
+        "background_peaks": 9176,
+        "unknown_peaks": 311,
+        "towns": {
+          "Town01_Opt": {
+            "labels": 8,
+            "localized": 6,
+            "joint": 6
+          },
+          "Town03_Opt": {
+            "labels": 20,
+            "localized": 14,
+            "joint": 13
+          },
+          "Town04_Opt": {
+            "labels": 12,
+            "localized": 12,
+            "joint": 12
+          },
+          "Town10HD_Opt": {
+            "labels": 32,
+            "localized": 14,
+            "joint": 7
+          }
+        },
+        "classes": {
+          "1": {
+            "labels": 36,
+            "localized": 25,
+            "joint": 22
+          },
+          "3": {
+            "labels": 18,
+            "localized": 9,
+            "joint": 4
+          },
+          "2": {
+            "labels": 18,
+            "localized": 12,
+            "joint": 12
+          }
+        }
+      },
+      "sizes": {
+        "<8": {
+          "labels": 40,
+          "localized": 26,
+          "joint": 19
+        },
+        "8\u201315": {
+          "labels": 28,
+          "localized": 17,
+          "joint": 16
+        },
+        ">=16": {
+          "labels": 4,
+          "localized": 3,
+          "joint": 3
+        }
+      }
+    },
+    "ResNet 32/96": {
+      "train": {
+        "supported": 51094,
+        "unknown": 0,
+        "positives": 5600,
+        "recall": 1.0,
+        "specificity": 0.994394865256957,
+        "balanced_accuracy": 0.9971974326284785,
+        "auc": 0.9997375321078446
+      },
+      "train_predicted_only": {
+        "supported": 48865,
+        "unknown": 0,
+        "positives": 3371,
+        "recall": 1.0,
+        "specificity": 0.994394865256957,
+        "balanced_accuracy": 0.9971974326284785,
+        "auc": 0.9997167584611906
+      },
+      "validation": {
+        "supported": 37314,
+        "unknown": 1229,
+        "positives": 73,
+        "recall": 0.4794520547945205,
+        "specificity": 0.978813673102226,
+        "balanced_accuracy": 0.7291328639483733,
+        "auc": 0.9155092358436883
+      },
+      "metrics": {
+        "labels": 72,
+        "localized": 29,
+        "joint": 26,
+        "background_peaks": 789,
+        "unknown_peaks": 193,
+        "towns": {
+          "Town01_Opt": {
+            "labels": 8,
+            "localized": 4,
+            "joint": 4
+          },
+          "Town03_Opt": {
+            "labels": 20,
+            "localized": 8,
+            "joint": 8
+          },
+          "Town04_Opt": {
+            "labels": 12,
+            "localized": 12,
+            "joint": 12
+          },
+          "Town10HD_Opt": {
+            "labels": 32,
+            "localized": 5,
+            "joint": 2
+          }
+        },
+        "classes": {
+          "1": {
+            "labels": 36,
+            "localized": 15,
+            "joint": 14
+          },
+          "3": {
+            "labels": 18,
+            "localized": 6,
+            "joint": 4
+          },
+          "2": {
+            "labels": 18,
+            "localized": 8,
+            "joint": 8
+          }
+        }
+      },
+      "sizes": {
+        "<8": {
+          "labels": 40,
+          "localized": 14,
+          "joint": 12
+        },
+        "8\u201315": {
+          "labels": 28,
+          "localized": 11,
+          "joint": 10
+        },
+        ">=16": {
+          "labels": 4,
+          "localized": 4,
+          "joint": 4
+        }
+      }
+    },
+    "ResNet 8/16": {
+      "train": {
+        "supported": 51094,
+        "unknown": 0,
+        "positives": 5600,
+        "recall": 0.9775,
+        "specificity": 0.960170571943553,
+        "balanced_accuracy": 0.9688352859717766,
+        "auc": 0.9942795321518064
+      },
+      "train_predicted_only": {
+        "supported": 48865,
+        "unknown": 0,
+        "positives": 3371,
+        "recall": 0.9724117472560071,
+        "specificity": 0.960170571943553,
+        "balanced_accuracy": 0.9662911595997801,
+        "auc": 0.9925903562222378
+      },
+      "validation": {
+        "supported": 37314,
+        "unknown": 1229,
+        "positives": 73,
+        "recall": 0.5616438356164384,
+        "specificity": 0.9395827179721274,
+        "balanced_accuracy": 0.7506132767942829,
+        "auc": 0.8375119041357055
+      },
+      "metrics": {
+        "labels": 72,
+        "localized": 33,
+        "joint": 28,
+        "background_peaks": 2250,
+        "unknown_peaks": 290,
+        "towns": {
+          "Town01_Opt": {
+            "labels": 8,
+            "localized": 6,
+            "joint": 6
+          },
+          "Town03_Opt": {
+            "labels": 20,
+            "localized": 8,
+            "joint": 7
+          },
+          "Town04_Opt": {
+            "labels": 12,
+            "localized": 12,
+            "joint": 12
+          },
+          "Town10HD_Opt": {
+            "labels": 32,
+            "localized": 7,
+            "joint": 3
+          }
+        },
+        "classes": {
+          "1": {
+            "labels": 36,
+            "localized": 18,
+            "joint": 16
+          },
+          "3": {
+            "labels": 18,
+            "localized": 8,
+            "joint": 5
+          },
+          "2": {
+            "labels": 18,
+            "localized": 7,
+            "joint": 7
+          }
+        }
+      },
+      "sizes": {
+        "<8": {
+          "labels": 40,
+          "localized": 15,
+          "joint": 11
+        },
+        "8\u201315": {
+          "labels": 28,
+          "localized": 14,
+          "joint": 13
+        },
+        ">=16": {
+          "labels": 4,
+          "localized": 4,
+          "joint": 4
+        }
+      }
+    }
+  },
+  "posthoc_diagnosis_only": true,
+  "no_reselection": true,
+  "source_hashes": {
+    "outputs/navigation_signal_pretrained_20261021/assessment.json": "78a23b3672a75089f7dc9a1e2f5737ddf748397e63ebfbd9ac4d8e2a4ca08d0d",
+    "outputs/navigation_signal_pretrained_20261021/rgb/head.npz": "239fa45548cc6adb39385e265f6ef6dc08d81cb85faeb1dd0accf33ed8fe3bad",
+    "outputs/navigation_signal_pretrained_20261021/rgb/validation_probability.npy": "c6bce1bf2b2fa95cd3c354db80d737b2d80142f639ff2c41ced5283804013781",
+    "outputs/navigation_signal_pretrained_20261021/resnet/head.npz": "d5bfef75f123f866eb9afaf5f138556bab3fc2d2d860041a0f8a356328d243df",
+    "outputs/navigation_signal_pretrained_20261021/resnet/validation_probability.npy": "60b7bdb0f75e249601e35775973faeb0419e0c55ca6ba1f17b499693f9823a09",
+    "outputs/navigation_signal_tight_20261021/assessment.json": "898c0859264903e9db77557e58e6cac6e37b36595b0cb7829521831db7a47e25",
+    "outputs/navigation_signal_tight_20261021/resnet/head.npz": "492c58315de5ed87e3e66db54707cc61ae882d25ef4683ab90ae7f177733fac7",
+    "outputs/navigation_signal_tight_20261021/resnet/validation_probability.npy": "77b24df2912ea2c7c540e79d3dca2bc3c1cbb654cec9b2704f0bfb9073c7bc5f"
+  },
+  "exact_rgb_control": true,
+  "full_metric_recount": true
+}

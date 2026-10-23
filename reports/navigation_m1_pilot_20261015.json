@@ -1,0 +1,467 @@
+{
+  "stage": "M1 implementation and small pilot;20k stage blocked by driver mismatch",
+  "generated_at": "2026-10-15T14:24:54.426555+05:30",
+  "split_sha256": "6f0f6b8d435fbed3bff236f08a976abeac8f21c50a285199481566910f078cf9",
+  "catalog_sha256": {
+    "train": "9be92e0219bfc7f0b04ebf36b9eaade22d8e5acde81ae3b0fa4a603993fff2de",
+    "heldout_dev": "559993385c5d6765c9b94d514ca942a0e1e7a1cc0ba07a75577b6465bda06595"
+  },
+  "location_counts": {
+    "Town01_Opt": {
+      "train": 9,
+      "heldout_dev": 3
+    },
+    "Town02_Opt": {
+      "train": 6,
+      "heldout_dev": 2
+    },
+    "Town03_Opt": {
+      "train": 20,
+      "heldout_dev": 5
+    },
+    "Town04_Opt": {
+      "train": 20,
+      "heldout_dev": 5
+    },
+    "Town10HD_Opt": {
+      "train": 7,
+      "heldout_dev": 2
+    }
+  },
+  "pilot": {
+    "output": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_pilot_20261015",
+    "audit_passed": true,
+    "episodes": [
+      {
+        "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_pilot_20261015/Town01_Opt/episodes/Town01_Opt_route0_10_15_14_11_18/data",
+        "route_id": 33,
+        "family": "signal_stop",
+        "town": "Town01_Opt",
+        "samples": 262,
+        "shards": 9,
+        "bytes": 112129096,
+        "control_differences": 0,
+        "partial_archives": 0,
+        "outcome": {
+          "evaluator_record": {
+            "route_id": "RouteScenario_33_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 53.44% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 87.951,
+              "duration_game": 26.15,
+              "duration_system": 35.086
+            }
+          },
+          "declared_scenario_started": true,
+          "imitation_eligible": true,
+          "prediction_eligible": true,
+          "episode_censored": false,
+          "note": "Unknown/truncated/unsafe episodes are never clean imitation targets; committed observations remain available for prediction with explicit censoring."
+        }
+      },
+      {
+        "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_pilot_20261015/Town02_Opt/episodes/Town02_Opt_route0_10_15_14_12_04/data",
+        "route_id": 48,
+        "family": "following_stopped_vehicle",
+        "town": "Town02_Opt",
+        "samples": 194,
+        "shards": 7,
+        "bytes": 88624791,
+        "control_differences": 0,
+        "partial_archives": 0,
+        "outcome": {
+          "evaluator_record": {
+            "route_id": "RouteScenario_48_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 65.2% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 95.574,
+              "duration_game": 19.35,
+              "duration_system": 21.431
+            }
+          },
+          "declared_scenario_started": true,
+          "imitation_eligible": true,
+          "prediction_eligible": true,
+          "episode_censored": false,
+          "note": "Unknown/truncated/unsafe episodes are never clean imitation targets; committed observations remain available for prediction with explicit censoring."
+        }
+      },
+      {
+        "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_pilot_20261015/Town03_Opt/episodes/Town03_Opt_route0_10_15_14_12_34/data",
+        "route_id": 143,
+        "family": "stop_sign",
+        "town": "Town03_Opt",
+        "samples": 520,
+        "shards": 17,
+        "bytes": 180429061,
+        "control_differences": 0,
+        "partial_archives": 0,
+        "outcome": {
+          "evaluator_record": {
+            "route_id": "RouteScenario_143_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 83.94% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 110.227,
+              "duration_game": 51.95,
+              "duration_system": 79.518
+            }
+          },
+          "declared_scenario_started": true,
+          "imitation_eligible": true,
+          "prediction_eligible": true,
+          "episode_censored": false,
+          "note": "Unknown/truncated/unsafe episodes are never clean imitation targets; committed observations remain available for prediction with explicit censoring."
+        }
+      },
+      {
+        "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_pilot_20261015/Town04_Opt/episodes/Town04_Opt_route0_10_15_14_14_04/data",
+        "route_id": 199,
+        "family": "route_junction",
+        "town": "Town04_Opt",
+        "samples": 128,
+        "shards": 4,
+        "bytes": 83981294,
+        "control_differences": 0,
+        "partial_archives": 0,
+        "outcome": {
+          "evaluator_record": {
+            "route_id": "RouteScenario_199_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 78.384,
+              "duration_game": 12.75,
+              "duration_system": 19.247
+            }
+          },
+          "declared_scenario_started": true,
+          "imitation_eligible": true,
+          "prediction_eligible": true,
+          "episode_censored": false,
+          "note": "Unknown/truncated/unsafe episodes are never clean imitation targets; committed observations remain available for prediction with explicit censoring."
+        }
+      },
+      {
+        "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_pilot_20261015/Town04_Opt/episodes/Town04_Opt_route1_10_15_14_14_24/data",
+        "route_id": 211,
+        "family": "signal_release_memory",
+        "town": "Town04_Opt",
+        "samples": 233,
+        "shards": 8,
+        "bytes": 90797401,
+        "control_differences": 0,
+        "partial_archives": 0,
+        "outcome": {
+          "evaluator_record": {
+            "route_id": "RouteScenario_211_rep0",
+            "status": "Completed",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": false,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 1,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [
+                "Average speed is 20.25% of the surrounding traffic's one"
+              ],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 58.405,
+              "duration_game": 23.25,
+              "duration_system": 34.159
+            }
+          },
+          "declared_scenario_started": true,
+          "imitation_eligible": true,
+          "prediction_eligible": true,
+          "episode_censored": false,
+          "note": "Unknown/truncated/unsafe episodes are never clean imitation targets; committed observations remain available for prediction with explicit censoring."
+        }
+      },
+      {
+        "path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_pilot_20261015/Town10HD_Opt/episodes/Town10HD_Opt_route0_10_15_14_15_16/data",
+        "route_id": 247,
+        "family": "crossing_yield",
+        "town": "Town10HD_Opt",
+        "samples": 123,
+        "shards": 4,
+        "bytes": 95345131,
+        "control_differences": 0,
+        "partial_archives": 0,
+        "outcome": {
+          "evaluator_record": {
+            "route_id": "RouteScenario_247_rep0",
+            "status": "Perfect",
+            "completion_percent": 100,
+            "completed": true,
+            "safe_completed": true,
+            "rule_safe_completed": true,
+            "min_speed_infractions": 0,
+            "collisions": 0,
+            "red_violations": 0,
+            "stop_violations": 0,
+            "infractions": {
+              "collisions_layout": [],
+              "collisions_pedestrian": [],
+              "collisions_vehicle": [],
+              "red_light": [],
+              "stop_infraction": [],
+              "outside_route_lanes": [],
+              "min_speed_infractions": [],
+              "yield_emergency_vehicle_infractions": [],
+              "scenario_timeouts": [],
+              "route_dev": [],
+              "vehicle_blocked": [],
+              "route_timeout": []
+            },
+            "meta": {
+              "route_length": 102.544,
+              "duration_game": 12.25,
+              "duration_system": 25.779
+            }
+          },
+          "declared_scenario_started": true,
+          "imitation_eligible": true,
+          "prediction_eligible": true,
+          "episode_censored": false,
+          "note": "Unknown/truncated/unsafe episodes are never clean imitation targets; committed observations remain available for prediction with explicit censoring."
+        }
+      }
+    ],
+    "totals": {
+      "samples": 1460,
+      "shards": 49,
+      "bytes": 651306774
+    },
+    "coverage": {
+      "towns": {
+        "Town01_Opt": 1,
+        "Town02_Opt": 1,
+        "Town03_Opt": 1,
+        "Town04_Opt": 2,
+        "Town10HD_Opt": 1
+      },
+      "families": {
+        "signal_stop": 1,
+        "following_stopped_vehicle": 1,
+        "stop_sign": 1,
+        "route_junction": 1,
+        "signal_release_memory": 1,
+        "crossing_yield": 1
+      }
+    },
+    "bytes_per_timestamp": 446100.5301369863,
+    "estimated_rgb_shards_gb": {
+      "20000": 8.922010602739725,
+      "100000": 44.61005301369863
+    },
+    "scope": "Every committed RGB frame decoded and member hashed; partial archives ignored. Eligible imitation episodes require durable safe outcomes; no policy learning claim.",
+    "status": "complete",
+    "simulator_errors": []
+  },
+  "noisy_sample_cap": {
+    "audit": {
+      "output": "outputs/navigation_m1_noisy_cap_retry_20261015",
+      "audit_passed": true,
+      "episodes": [
+        {
+          "path": "outputs/navigation_m1_noisy_cap_retry_20261015/episodes/Town04_Opt_route0_10_15_14_19_26/data",
+          "route_id": 199,
+          "family": "route_junction",
+          "town": "Town04_Opt",
+          "samples": 96,
+          "shards": 3,
+          "bytes": 61152372,
+          "control_differences": 0,
+          "partial_archives": 0,
+          "outcome": {
+            "evaluator_record": {
+              "route_id": "RouteScenario_199_rep0",
+              "status": "Failed",
+              "completion_percent": 67.07,
+              "completed": false,
+              "safe_completed": false,
+              "rule_safe_completed": false,
+              "min_speed_infractions": 0,
+              "collisions": 0,
+              "red_violations": 0,
+              "stop_violations": 0,
+              "infractions": {
+                "collisions_layout": [],
+                "collisions_pedestrian": [],
+                "collisions_vehicle": [],
+                "red_light": [],
+                "stop_infraction": [],
+                "outside_route_lanes": [],
+                "min_speed_infractions": [],
+                "yield_emergency_vehicle_infractions": [],
+                "scenario_timeouts": [],
+                "route_dev": [],
+                "vehicle_blocked": [],
+                "route_timeout": []
+              },
+              "meta": {
+                "route_length": 78.384,
+                "duration_game": 9.6,
+                "duration_system": 14.279
+              }
+            },
+            "declared_scenario_started": true,
+            "imitation_eligible": false,
+            "prediction_eligible": true,
+            "episode_censored": true,
+            "counterfactual_safe_label": false,
+            "note": "Unknown/truncated/unsafe episodes are never clean imitation targets; committed observations remain available for prediction with explicit censoring."
+          }
+        }
+      ],
+      "totals": {
+        "samples": 96,
+        "shards": 3,
+        "bytes": 61152372
+      },
+      "coverage": {
+        "towns": {
+          "Town04_Opt": 1
+        },
+        "families": {
+          "route_junction": 1
+        }
+      },
+      "bytes_per_timestamp": 637003.875,
+      "estimated_rgb_shards_gb": {
+        "20000": 12.7400775,
+        "100000": 63.7003875
+      },
+      "scope": "Every committed RGB frame decoded and member hashed; partial archives ignored. Eligible imitation episodes require durable safe outcomes; no policy learning claim."
+    },
+    "profile": {
+      "samples": 96,
+      "shards": 3,
+      "control_differences": 0,
+      "unacknowledged_samples": 0,
+      "noise_ticks": 18,
+      "safety_stop_ticks": 0
+    }
+  },
+  "driver_state": {
+    "loaded_kernel": "615.71.09",
+    "installed_nvidia_utils": "615.78.08-2",
+    "update_time": "2026-10-15 14:05 IST",
+    "gpu_query": "NVML driver/library version mismatch",
+    "required_action": "Reboot host, verify nvidia-smi, then resume"
+  },
+  "remaining": [
+    "20k raw timestamps",
+    "expert reference on new held-out development suite",
+    "student rollouts after M2",
+    "100k budget and storage audit before expansion"
+  ]
+}

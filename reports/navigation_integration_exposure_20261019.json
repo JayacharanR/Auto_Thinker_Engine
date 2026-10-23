@@ -1,0 +1,22 @@
+{
+  "actual_junction_timestamps": {
+    "1135": 142,
+    "498": 88,
+    "576": 204,
+    "655": 88,
+    "1221": 71,
+    "1682": 40,
+    "1469": 154,
+    "1654": 52,
+    "1736": 38,
+    "103": 105,
+    "1038": 98,
+    "1427": 85
+  },
+  "heldout_overlap": {
+    "1135": 142,
+    "103": 105
+  },
+  "policy": "No locations removed; disclose engineering exposure, keep frozen300 cases and full denominators",
+  "scope": "Offline nearest-driving-waypoint mapping of stored ego centers; not image visibility"
+}

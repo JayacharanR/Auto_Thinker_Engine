@@ -1,0 +1,24 @@
+{
+  "user_approved": true,
+  "approved_at": 1792482081.4658284,
+  "user_reply": "Approve ego-only actuator feedback (recommended)",
+  "proposal_sha256": "36bcc1a95cda9abb8c7473b2d8a2d47210986d7a9051b84a23bb7ad0fb378eb1",
+  "staged_codec_sha256": "000a0c0477b81462936956dc526086de1a356478e20b134cbba65e10a8fa09ad",
+  "staged_tests_sha256": "c8616f2f878be05c03054b9953f13af0698449a126f6f7de97f8e60342dd9e87",
+  "allowed_feedback_fields": [
+    "observation_frame",
+    "action_frame",
+    "steer",
+    "throttle",
+    "brake"
+  ],
+  "same_input_for": [
+    "constant_velocity",
+    "rssm",
+    "jepa"
+  ],
+  "no_other_actor_teacher_world_fields": true,
+  "legacy_v1_unchanged": true,
+  "apply_after_source_pinned_stages_terminate": true,
+  "current_evaluations_unchanged": true
+}

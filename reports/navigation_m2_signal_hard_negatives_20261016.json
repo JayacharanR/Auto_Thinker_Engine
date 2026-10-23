@@ -1,0 +1,614 @@
+{
+  "status": "All trained candidates rejected; original detector and driving policy retained; M2 open",
+  "mining": {
+    "data_gate_passed": true,
+    "canonical_candidates": 118,
+    "canonical_images": 71,
+    "junctions": [
+      [
+        "Town01_Opt",
+        26
+      ],
+      [
+        "Town01_Opt",
+        171
+      ],
+      [
+        "Town01_Opt",
+        306
+      ],
+      [
+        "Town02_Opt",
+        76
+      ],
+      [
+        "Town02_Opt",
+        132
+      ],
+      [
+        "Town02_Opt",
+        242
+      ],
+      [
+        "Town02_Opt",
+        298
+      ],
+      [
+        "Town03_Opt",
+        238
+      ],
+      [
+        "Town03_Opt",
+        356
+      ],
+      [
+        "Town03_Opt",
+        1221
+      ],
+      [
+        "Town04_Opt",
+        916
+      ],
+      [
+        "Town04_Opt",
+        1103
+      ],
+      [
+        "Town04_Opt",
+        1249
+      ]
+    ],
+    "towns": {
+      "Town01_Opt": 11,
+      "Town02_Opt": 18,
+      "Town03_Opt": 22,
+      "Town04_Opt": 20
+    },
+    "examined": 685,
+    "wall_seconds": 12.629990273999965,
+    "parent_sha256": "8df27ee218056e392cc5ddb0f50fef9263a1e8b81517b1d5ecbeba8038a6e49b",
+    "corpus_audit_sha256": "ec1632bab904092d595371b0b3d1cdb2c49c5e0caa2b65cbce58af4005844a48",
+    "scope": "Conservative approximate TRAIN backgrounds; no exhaustive ground truth"
+  },
+  "release": {
+    "approved": true,
+    "manifest_sha256": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e",
+    "canonical_approved": 110,
+    "canonical_rejected": 8,
+    "junctions": [
+      [
+        "Town01_Opt",
+        26
+      ],
+      [
+        "Town01_Opt",
+        171
+      ],
+      [
+        "Town01_Opt",
+        306
+      ],
+      [
+        "Town02_Opt",
+        76
+      ],
+      [
+        "Town02_Opt",
+        132
+      ],
+      [
+        "Town02_Opt",
+        242
+      ],
+      [
+        "Town02_Opt",
+        298
+      ],
+      [
+        "Town03_Opt",
+        238
+      ],
+      [
+        "Town03_Opt",
+        356
+      ],
+      [
+        "Town03_Opt",
+        1221
+      ],
+      [
+        "Town04_Opt",
+        916
+      ],
+      [
+        "Town04_Opt",
+        1103
+      ],
+      [
+        "Town04_Opt",
+        1249
+      ]
+    ],
+    "towns": {
+      "Town01_Opt": 8,
+      "Town02_Opt": 28,
+      "Town03_Opt": 37,
+      "Town04_Opt": 37
+    },
+    "scope": "TRAIN-only semantic verification; additional labels, not driving evidence"
+  },
+  "negative_phase_copies": 440,
+  "negative_training_images": 264,
+  "rejected_source_indices": [
+    1,
+    2,
+    4,
+    6,
+    7,
+    9,
+    10,
+    11
+  ],
+  "semantic_capture_metadata": {
+    "town01": {
+      "town": "Town01_Opt",
+      "cases": [
+        2,
+        5,
+        6,
+        7,
+        8
+      ],
+      "mining_manifest_sha256": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e"
+    },
+    "town02": {
+      "town": "Town02_Opt",
+      "cases": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        21,
+        22,
+        23
+      ],
+      "mining_manifest_sha256": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e"
+    },
+    "town03": {
+      "town": "Town03_Opt",
+      "cases": [
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "mining_manifest_sha256": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e"
+    },
+    "town04": {
+      "town": "Town04_Opt",
+      "cases": [
+        36,
+        37,
+        38,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "mining_manifest_sha256": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e"
+    }
+  },
+  "provenance": {
+    "manifest_sha256": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e",
+    "release_sha256": "9a842d1179fadcea11cfdf2b4c6c3ae51d0ed2b662a3c49a0b97127f66df7077"
+  },
+  "refinement": {
+    "status": "complete",
+    "selected_step": 0,
+    "validation": {
+      "selection_score": 0.11866046911220313,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 30,
+        "detected_iou5": 22,
+        "detected_iou3_state_correct": 24,
+        "images": 144,
+        "predictions": 1452,
+        "approximate_background_candidates": 681
+      },
+      "mean_three_view_seconds": 0.18496651225534655,
+      "p95_three_view_seconds": 0.18975120589989275,
+      "by_native_height": {
+        "8to15px": [
+          13,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          13,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 30,
+        "iou5": 22,
+        "iou3_state_correct": 24,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            8,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    },
+    "wall_seconds": 97.51070319900009,
+    "frozen_parameters_and_buffers_unchanged": true,
+    "frozen_sha256": "1023102970f86ea4cb35bacd235ba37b873a8e2f033119bb32ad1ef854980be6",
+    "component_sha256": "d16127d0703b7d1bc2798834e50c71f2f62ac9ccb28188b6a0fa586190ff05ee",
+    "trainable_parameters": 2050,
+    "total_parameters": 43256153,
+    "peak_allocated_gb": 1.678797824,
+    "scope": "TRAIN static RGB detector diagnostic; no driving/policy promotion"
+  },
+  "history": [
+    {
+      "step": 0,
+      "selection_score": 0.11866046911220313,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 30,
+        "detected_iou5": 22,
+        "detected_iou3_state_correct": 24,
+        "images": 144,
+        "predictions": 1452,
+        "approximate_background_candidates": 681
+      },
+      "mean_three_view_seconds": 0.18496651225534655,
+      "p95_three_view_seconds": 0.18975120589989275,
+      "by_native_height": {
+        "8to15px": [
+          13,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          13,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 30,
+        "iou5": 22,
+        "iou3_state_correct": 24,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            8,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    },
+    {
+      "step": 50,
+      "selection_score": 0.11279357065566525,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 22,
+        "detected_iou5": 13,
+        "detected_iou3_state_correct": 18,
+        "images": 144,
+        "predictions": 679,
+        "approximate_background_candidates": 208
+      },
+      "mean_three_view_seconds": 0.1863375486170221,
+      "p95_three_view_seconds": 0.1906816835999507,
+      "by_native_height": {
+        "8to15px": [
+          13,
+          28
+        ],
+        "16pxplus": [
+          3,
+          4
+        ],
+        "under8px": [
+          6,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 22,
+        "iou5": 13,
+        "iou3_state_correct": 18,
+        "by_town": {
+          "Town01_Opt": [
+            3,
+            8
+          ],
+          "Town03_Opt": [
+            0,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            7,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": false
+    },
+    {
+      "step": 100,
+      "selection_score": 0.10830853387228166,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 25,
+        "detected_iou5": 16,
+        "detected_iou3_state_correct": 22,
+        "images": 144,
+        "predictions": 684,
+        "approximate_background_candidates": 196
+      },
+      "mean_three_view_seconds": 0.18714559572341155,
+      "p95_three_view_seconds": 0.1915178329999435,
+      "by_native_height": {
+        "8to15px": [
+          14,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          7,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 25,
+        "iou5": 16,
+        "iou3_state_correct": 22,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            0,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            9,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": false
+    },
+    {
+      "step": 200,
+      "selection_score": 0.0973971202241349,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 27,
+        "detected_iou5": 18,
+        "detected_iou3_state_correct": 25,
+        "images": 144,
+        "predictions": 665,
+        "approximate_background_candidates": 171
+      },
+      "mean_three_view_seconds": 0.18589223876593447,
+      "p95_three_view_seconds": 0.19119427440004982,
+      "by_native_height": {
+        "8to15px": [
+          14,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          9,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 27,
+        "iou5": 18,
+        "iou3_state_correct": 25,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            1,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            10,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": false
+    }
+  ],
+  "paired_known_light_diagnostic": {
+    "retained_parent_positives": 25,
+    "lost_parent_positives": 5,
+    "gained_positives": 2
+  },
+  "train_only_calibration": {
+    "parent_train_positive_accepted": 117,
+    "candidate_train_positive_accepted": 120,
+    "calibrated_train_positive_accepted": 120,
+    "parent_train_negative_accepted": 360,
+    "candidate_train_negative_accepted": 91,
+    "calibrated_train_negative_accepted": 91,
+    "train_positive_total": 179,
+    "train_negative_total": 440,
+    "foreground_bias_addition": 0.0,
+    "identical_candidate_evaluation_reused": true,
+    "validation": {
+      "selection_score": 0.0973971202241349,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 27,
+        "detected_iou5": 18,
+        "detected_iou3_state_correct": 25,
+        "images": 144,
+        "predictions": 665,
+        "approximate_background_candidates": 171
+      },
+      "mean_three_view_seconds": 0.18589223876593447,
+      "p95_three_view_seconds": 0.19119427440004982,
+      "by_native_height": {
+        "8to15px": [
+          14,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          9,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 27,
+        "iou5": 18,
+        "iou3_state_correct": 25,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            1,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            10,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": false
+    },
+    "eligible_vs_parent": false,
+    "wall_seconds": 16.44706530400026
+  },
+  "selected_weights_bit_identical_to_original_parent": true,
+  "latest_non_classifier_tensors_bit_identical_to_parent": true,
+  "verified_corpus_images": 612,
+  "preserved_artifacts": {
+    "outputs/navigation_m2_stop_go_20261016/best_policy.pt": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+    "outputs/navigation_m2_cache_20k_20261015/manifest.json": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae",
+    "outputs/navigation_m2_signal_crop_alignment_20261016/robust_rgb_linear.npz": "ca08ac5a7c301c76489a9fc8cde692a9da213c0fa679fd7307e7dc0d2a6b5de2"
+  },
+  "evidence_sha256": {
+    "outputs/navigation_m2_signal_detector_20261016/request.json": "db54c404048d26890ae93c2cad915b05f5d385216c51f82ef2b6f8225e38960b",
+    "outputs/navigation_m2_signal_hard_negatives_20261016/request.json": "79050f067ff482cd43a6c395a236883f47c2a266884a01c0821b78598ebc5243",
+    "outputs/navigation_m2_signal_hard_negative_fit_retry_20261016/request.json": "42e71575c07c35ff66754030724c5937e6bf9f8f08c7aaabbd28d5e65d9c4db5",
+    "outputs/navigation_m2_signal_train_calibration_20261016/request.json": "11acfea7694237a75489bdde9e795e96e358ca1c6f890fdad87efc4354750c01",
+    "outputs/navigation_m2_signal_hard_negatives_20261016/manifest.json": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e",
+    "outputs/navigation_m2_signal_hard_negatives_20261016/training_release.json": "21bb52211242370e4fef3f2a263460465c940a010f9e15e25868a54ac90b1b90",
+    "outputs/navigation_m2_signal_negative_release_20261016/release.json": "9a842d1179fadcea11cfdf2b4c6c3ae51d0ed2b662a3c49a0b97127f66df7077",
+    "outputs/navigation_m2_signal_negative_release_20261016/candidate_checks.json": "b109e1fb3a098b10dd3226a6fefaf30f3e0b1f439a5ee75816245cb2ed876ad0",
+    "outputs/navigation_m2_signal_hard_negative_fit_retry_20261016/review.json": "c7e39e27a1913f4f198da4721304a8534c0e6a3320f222ba2fccfd86f0f8361c",
+    "outputs/navigation_m2_signal_train_calibration_20261016/assessment.json": "a8f7b9e7502aa3e3abf93f75ad7cc1b753761f4ddfb5880b47f478c98290be8f",
+    "outputs/navigation_m2_signal_corpus_v2_20261016/data_audit.json": "ec1632bab904092d595371b0b3d1cdb2c49c5e0caa2b65cbce58af4005844a48",
+    "outputs/navigation_m2_negative_semantics_town01_20261016/request.json": "ccf27808f54d60e6d92cebe574f46dc59faaa36a6a0e46d75c0549ccda7199b0",
+    "outputs/navigation_m2_negative_semantics_town01_20261016/pixel_batch.json": "9012632de36ca20059c1a39f10b4e0a347cddcea951f0d153743f628e14d3c90",
+    "outputs/navigation_m2_negative_semantics_town02_20261016/request.json": "5038bda50eceb7ad1c71630d846ba42a249c0dff5bb3d33cc867714af4ce586c",
+    "outputs/navigation_m2_negative_semantics_town02_20261016/pixel_batch.json": "fcef935fd6574b75d731696e7ba1d6fe7dc1ab014d37775147dc52375be76aab",
+    "outputs/navigation_m2_negative_semantics_town03_20261016/request.json": "23d44ee8d22b1f16326d94cae73059e5eef34fd078dc962aadd398a67c0ca1b3",
+    "outputs/navigation_m2_negative_semantics_town03_20261016/pixel_batch.json": "39931dec14f1217eb46ae3d50a67660109938484e466e820d38bf63173ec25ad",
+    "outputs/navigation_m2_negative_semantics_town04_20261016/request.json": "b769b394eca0b4a0a74429b4a56443906ca38ad646e63cdab586ab30c542e3a0",
+    "outputs/navigation_m2_negative_semantics_town04_20261016/pixel_batch.json": "4e24cfecb13da8ea8ffe19eb52e2ff97d8a9076b3d5dfed792ab1eb48ce32ad7",
+    "outputs/navigation_m2_signal_hard_negative_fit_retry_20261016/validation.jsonl": "4608d6fb719739a7eee872631bafc0cce267ebd9749c5df261e92550661a0930",
+    "outputs/navigation_m2_signal_hard_negative_fit_retry_20261016/predictions_step0.json": "fc9bff0065f9db3b7f667ce3399d6ac23b6e11a20b848ad59a2ae31856007c79",
+    "outputs/navigation_m2_signal_hard_negative_fit_retry_20261016/predictions_step50.json": "661eb1e55a4720c20f4870e57c5e29f3c2ba94b237a8db24886bfd811ccdd653",
+    "outputs/navigation_m2_signal_hard_negative_fit_retry_20261016/predictions_step100.json": "f11f080eb29d16471bc282ff2819feb9c72cae947544b65952cca63ebfb7dca9",
+    "outputs/navigation_m2_signal_hard_negative_fit_retry_20261016/predictions_step200.json": "295b9e2f084009fffdbc282ed7b4c9e160703dafa69adf044d9282116aaf2f06",
+    "outputs/navigation_m2_semantic_probe_town01_20261016/optics_validity.json": "74c758cf7ebc11abe9daf68eaaacdee77365eb331535e9a506ea464abf4c0d57",
+    "outputs/navigation_m2_signal_hard_negative_fit_20261016/progress.json": "a88d5df31e8cba7e0f27ac056508b7ea927b107d4a3cbe903f813f7b45bea72f"
+  },
+  "summary_source_sha256": "bc608b0e1761eae49805018767bbedf990039e2ef10c1cdd659f16a59fa1929b",
+  "limitations": [
+    "Four previously inspected component-development junctions;72 correlated labels",
+    "Sparse projected regions: background candidate counts are approximate, not full AP",
+    "Semantic labels are privileged additional TRAIN supervision, not runtime inputs",
+    "Zero TRAIN-derived bias rejects one remedy, not every calibration or model change",
+    "No driving integration, policy promotion, heldout_dev or Town05 result"
+  ]
+}

@@ -28,6 +28,24 @@ def harness(monkeypatch):
     return carla, provider, criteria
 
 
+def test_declared_empty_training_background_does_not_spawn_and_canonical_factory_is_restored(
+    harness,
+    monkeypatch,
+):
+    import py_trees
+
+    import src.navigation.harness as adapter
+
+    sentinel = object()
+    monkeypatch.setattr(adapter, "_pinned_background", lambda *a, **k: sentinel)
+    monkeypatch.setitem(adapter.SCENARIO_LOG, "empty_training_background", False)
+    assert adapter._background_for_scope(None, None) is sentinel
+    monkeypatch.setitem(adapter.SCENARIO_LOG, "empty_training_background", True)
+    node = adapter._background_for_scope(None, None)
+    assert isinstance(node, adapter.EmptyTrainingBackground)
+    assert node.update() == py_trees.common.Status.RUNNING
+
+
 def test_exported_development_route_replays_same_length(harness, tmp_path):
     import xml.etree.ElementTree as ET
 
@@ -106,6 +124,22 @@ def test_stop_requires_actual_stopping_not_time_near_sign(harness, monkeypatch, 
     assert criterion.actual_value == violations
 
 
+def test_pinned_native_collision_metric_filters_stationary_ego_and_needs_recorder_audit(
+    harness, monkeypatch
+):
+    carla, provider, criteria = harness
+    speed = [0.0]
+    monkeypatch.setattr(provider, "get_location", lambda actor: carla.Location())
+    monkeypatch.setattr(provider, "get_velocity", lambda actor: speed[0])
+    criterion = criteria.CollisionTest(SimpleNamespace())
+    event = SimpleNamespace(other_actor=SimpleNamespace(id=55, type_id="vehicle.audi.tt"))
+    criterion._count_collisions(event)
+    assert criterion.actual_value == 0 and not criterion.events
+    speed[0] = 0.5
+    criterion._count_collisions(event)
+    assert criterion.actual_value == 1 and len(criterion.events) == 1
+
+
 def test_stationary_agent_cannot_finish_and_shortcut_leaves_route(harness, monkeypatch):
     carla, provider, criteria = harness
     location = [carla.Location(x=0)]
@@ -166,3 +200,48 @@ def test_manager_adapter_matches_actual_tick_signature_and_stop(harness, monkeyp
     monkeypatch.setattr(ScenarioManager, "stop_scenario", lambda self: None)
     manager.stop_scenario()
     assert not manager._running  # Also exits the upstream scenario-builder thread.
+
+
+def test_camera_track_matches_pinned_validator_enum(harness):
+    import yaml
+    from leaderboard.autoagents.agent_wrapper_local import validate_sensor_configuration
+
+    from src.navigation.camera_agent import Track
+    from src.navigation.sensors import camera_specs
+
+    config = yaml.safe_load(Path("configs/navigation.yaml").read_text())
+    # The vendor has two distinct Track enum classes with identical printed names.
+    # Only the canonical enum is accepted, even for its local agent wrapper.
+    validate_sensor_configuration(camera_specs(config), Track.MAP, "MAP")
+
+
+def test_each_route_records_separately_without_overwriting_console(harness, monkeypatch, tmp_path):
+    from leaderboard.leaderboard_evaluator_local import LeaderboardEvaluator
+
+    from src.navigation.harness import NavigationEvaluator
+
+    evaluator = NavigationEvaluator.__new__(NavigationEvaluator)
+    evaluator.manager = SimpleNamespace(navigation_stop_reason=None, start_route=lambda: None)
+    args = SimpleNamespace(
+        navigation_out=str(tmp_path),
+        traffic_manager_seed=42,
+        seed_per_route=True,
+        record=str(tmp_path),
+    )
+    console = tmp_path.with_suffix(".log")
+    console.write_text("console evidence\n")
+
+    def upstream(self, args, config):
+        # Execute the exact filename convention in the pinned local harness.
+        Path(f"{args.record}.log").write_bytes(b"CARLA_RECORDER")
+        return config.name
+
+    monkeypatch.setattr(LeaderboardEvaluator, "_load_and_run_scenario", upstream)
+    for route in (86, 101):
+        config = SimpleNamespace(name=f"RouteScenario_{route}", repetition_index=0)
+        evaluator._load_and_run_scenario(args, config)
+        assert args.record == str(tmp_path)
+    assert console.read_text() == "console evidence\n"
+    assert len(list((tmp_path / "recordings").glob("*.log"))) == 2
+    with pytest.raises(FileExistsError, match="overwrite recorder"):
+        evaluator._load_and_run_scenario(args, config)

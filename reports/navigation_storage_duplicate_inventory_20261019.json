@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "bytes": 346743563,
+      "sha256": "9c44bcceb726b8093036a6542ae3df01d40d1ef15db4dd1d3aea5bc86d5a05d9",
+      "paths": [
+        "outputs/comparison/traffic_curriculum_v1/medium/cnn_seed42/latest.pt",
+        "outputs/comparison/traffic_curriculum_v1/medium/cnn_seed42/best.pt"
+      ]
+    },
+    {
+      "bytes": 386461853,
+      "sha256": "83cab2f02c7bd741bb9dc73ce7471bcb1e41ca602d41dfa2b39998ab599e3c4a",
+      "paths": [
+        "outputs/checkpoints/phase2_ema/final.pt",
+        "outputs/checkpoints/phase2/best.pt"
+      ]
+    }
+  ],
+  "raw_candidates": 31,
+  "potential_bytes": 733205416,
+  "read_only": true
+}

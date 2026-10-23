@@ -1,0 +1,2872 @@
+{
+  "assessment_version": 3,
+  "run": "outputs/navigation_expert_ceiling_v2_20261009",
+  "catalog_sha256": "716c36005d6c00af8d5905491a9acc8c4363e541a5fd4acf309a5463e2aa535c",
+  "policy_kind": "privileged_pdm_lite_modified",
+  "settled": 300,
+  "total": 300,
+  "families": {
+    "signal_stop": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 50,
+      "strict_safe": 0,
+      "completed": 50,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 50,
+      "locations": 35,
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ]
+    },
+    "signal_release_memory": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 47,
+      "strict_safe": 0,
+      "completed": 48,
+      "collision_events": 1,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 49,
+      "locations": 35,
+      "rule_safe_cluster_bootstrap95": [
+        0.8703703703703703,
+        1.0
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.8378290831116182,
+        0.979385029651026
+      ]
+    },
+    "crossing_yield": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 45,
+      "strict_safe": 39,
+      "completed": 50,
+      "collision_events": 5,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 6,
+      "locations": 36,
+      "rule_safe_cluster_bootstrap95": [
+        0.75,
+        1.0
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.7863976856252035,
+        0.9565242350681096
+      ]
+    },
+    "following_stopped_vehicle": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 49,
+      "strict_safe": 13,
+      "completed": 50,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 36,
+      "locations": 47,
+      "rule_safe_cluster_bootstrap95": [
+        0.9375,
+        1.0
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.8950455641036219,
+        0.9964607407283539
+      ]
+    },
+    "route_junction": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 50,
+      "strict_safe": 11,
+      "completed": 50,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 39,
+      "locations": 46,
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ]
+    },
+    "stop_sign": {
+      "planned_encounters": 50,
+      "encounters": 50,
+      "setup_failed": [],
+      "unsettled": [],
+      "settled": 50,
+      "rule_safe": 50,
+      "strict_safe": 0,
+      "completed": 50,
+      "collision_events": 0,
+      "red_violations": 0,
+      "stop_violations": 0,
+      "min_speed_episodes": 50,
+      "locations": 7,
+      "rule_safe_cluster_bootstrap95": [
+        null,
+        null
+      ],
+      "rule_safe_wilson95_unclustered": [
+        0.9286524008666414,
+        1.0
+      ]
+    }
+  },
+  "all_collision_events": 6,
+  "collision_event_audit": [
+    {
+      "attempt": "Town03_Opt/chunk_096_105_a0",
+      "route_id": 103,
+      "type": "collisions_layout",
+      "detail": "Agent collided against object with type=static.road and id=0 at (x=82.742, y=-179.733, z=0.029)"
+    },
+    {
+      "attempt": "Town03_Opt/chunk_136_145_a0",
+      "route_id": 140,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.lincoln.mkz_2020 and id=209 at (x=152.035, y=-70.562, z=7.95)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_268_277_a0",
+      "route_id": 270,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.mini.cooper_s_2021 and id=166 at (x=-41.083, y=57.39, z=0.001)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_268_277_a0",
+      "route_id": 272,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.mercedes.coupe_2020 and id=227 at (x=-41.664, y=46.709, z=-0.003)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_268_277_a0",
+      "route_id": 276,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.ford.mustang and id=339 at (x=-41.665, y=46.828, z=-0.003)"
+    },
+    {
+      "attempt": "Town10HD_Opt/chunk_278_287_a0",
+      "route_id": 278,
+      "type": "collisions_vehicle",
+      "detail": "Agent collided against object with type=vehicle.mercedes.coupe_2020 and id=128 at (x=-39.948, y=59.848, z=0.0)"
+    }
+  ],
+  "valid_final_collision_events": 6,
+  "setup_status_counts": {
+    "setup_started": 200,
+    "no_setup_declared": 100
+  },
+  "light_identity_audit": {
+    "0": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 115,
+      "entry_lane": [
+        19,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        115
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        341.2500305175781,
+        209.09996032714844,
+        0.10420653969049454
+      ],
+      "inventory_xyz": [
+        341.25,
+        209.1,
+        0.104
+      ],
+      "position_difference_m": 0.00021251800270764325,
+      "tolerance_m": 0.01
+    },
+    "1": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 90,
+      "entry_lane": [
+        23,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        90
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        94.9899673461914,
+        144.38002014160156,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        94.99,
+        144.38,
+        0.103
+      ],
+      "position_difference_m": 0.000245208723145607,
+      "tolerance_m": 0.01
+    },
+    "2": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 104,
+      "entry_lane": [
+        9,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        104
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        144.2400360107422,
+        62.28999710083008,
+        0.10420653969049454
+      ],
+      "inventory_xyz": [
+        144.24,
+        62.29,
+        0.104
+      ],
+      "position_difference_m": 0.00020967551714029891,
+      "tolerance_m": 0.01
+    },
+    "3": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 93,
+      "entry_lane": [
+        24,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        93
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        94.9899673461914,
+        209.9199981689453,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        94.99,
+        209.92,
+        0.103
+      ],
+      "position_difference_m": 0.00024438696068783226,
+      "tolerance_m": 0.01
+    },
+    "4": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 89,
+      "entry_lane": [
+        21,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        89
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        85.72999572753906,
+        45.779998779296875,
+        0.10420653969049454
+      ],
+      "inventory_xyz": [
+        85.73,
+        45.78,
+        0.104
+      ],
+      "position_difference_m": 0.00020658748216724043,
+      "tolerance_m": 0.01
+    },
+    "5": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 105,
+      "entry_lane": [
+        16,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        105
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        331.9900207519531,
+        44.88003921508789,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        331.99,
+        44.88,
+        0.103
+      ],
+      "position_difference_m": 0.00024621906760822495,
+      "tolerance_m": 0.01
+    },
+    "6": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 97,
+      "entry_lane": [
+        24,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        97
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        85.62993621826172,
+        316.3500671386719,
+        0.10326171666383743
+      ],
+      "inventory_xyz": [
+        85.63,
+        316.35,
+        0.103
+      ],
+      "position_difference_m": 0.00027761722483643264,
+      "tolerance_m": 0.01
+    },
+    "7": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 108,
+      "entry_lane": [
+        0,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        108
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        348.42999267578125,
+        -4.479960918426514,
+        0.10420653969049454
+      ],
+      "inventory_xyz": [
+        348.43,
+        -4.48,
+        0.104
+      ],
+      "position_difference_m": 0.00021033225457874885,
+      "tolerance_m": 0.01
+    },
+    "8": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 94,
+      "entry_lane": [
+        12,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        94
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        102.71998596191406,
+        192.5500030517578,
+        0.10326171666383743
+      ],
+      "inventory_xyz": [
+        102.72,
+        192.55,
+        0.103
+      ],
+      "position_difference_m": 0.0002621106507043014,
+      "tolerance_m": 0.01
+    },
+    "9": {
+      "attempt": "chunk_000_009_a0",
+      "runtime_id": 109,
+      "entry_lane": [
+        17,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        109
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        341.2500305175781,
+        69.50995635986328,
+        0.10420653969049454
+      ],
+      "inventory_xyz": [
+        341.25,
+        69.51,
+        0.104
+      ],
+      "position_difference_m": 0.00021329422837356487,
+      "tolerance_m": 0.01
+    },
+    "10": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 102,
+      "entry_lane": [
+        10,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        102
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        168.8699951171875,
+        53.03003692626953,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        168.87,
+        53.03,
+        0.103
+      ],
+      "position_difference_m": 0.00024503622960092087,
+      "tolerance_m": 0.01
+    },
+    "11": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 99,
+      "entry_lane": [
+        7,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        99
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        349.6000061035156,
+        324.080078125,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        349.6,
+        324.08,
+        0.103
+      ],
+      "position_difference_m": 0.00025455084189187835,
+      "tolerance_m": 0.01
+    },
+    "12": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 115,
+      "entry_lane": [
+        19,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        115
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        341.2500305175781,
+        209.09996032714844,
+        0.10420653969049454
+      ],
+      "inventory_xyz": [
+        341.25,
+        209.1,
+        0.104
+      ],
+      "position_difference_m": 0.00021251800270764325,
+      "tolerance_m": 0.01
+    },
+    "13": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 87,
+      "entry_lane": [
+        22,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        87
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        94.98997497558594,
+        70.40999603271484,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        94.99,
+        70.41,
+        0.103
+      ],
+      "position_difference_m": 0.0002435104170832727,
+      "tolerance_m": 0.01
+    },
+    "14": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 120,
+      "entry_lane": [
+        21,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        120
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        95.04000091552734,
+        12.560009956359863,
+        0.10326171666383743
+      ],
+      "inventory_xyz": [
+        95.04,
+        12.56,
+        0.103
+      ],
+      "position_difference_m": 0.00026190757801602797,
+      "tolerance_m": 0.01
+    },
+    "15": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 96,
+      "entry_lane": [
+        6,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        96
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        106.11997985839844,
+        324.08001708984375,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        106.12,
+        324.08,
+        0.103
+      ],
+      "position_difference_m": 0.000243624936021129,
+      "tolerance_m": 0.01
+    },
+    "16": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 110,
+      "entry_lane": [
+        17,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        110
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        331.9900207519531,
+        118.93003845214844,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        331.99,
+        118.93,
+        0.103
+      ],
+      "position_difference_m": 0.00024609870754380196,
+      "tolerance_m": 0.01
+    },
+    "17": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 114,
+      "entry_lane": [
+        12,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        114
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        323.41009521484375,
+        202.0300750732422,
+        0.10326171666383743
+      ],
+      "inventory_xyz": [
+        323.41,
+        202.03,
+        0.103
+      ],
+      "position_difference_m": 0.0002884397169048416,
+      "tolerance_m": 0.01
+    },
+    "18": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 89,
+      "entry_lane": [
+        21,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        89
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        85.72999572753906,
+        45.779998779296875,
+        0.10420653969049454
+      ],
+      "inventory_xyz": [
+        85.73,
+        45.78,
+        0.104
+      ],
+      "position_difference_m": 0.00020658748216724043,
+      "tolerance_m": 0.01
+    },
+    "19": {
+      "attempt": "chunk_010_019_a0",
+      "runtime_id": 90,
+      "entry_lane": [
+        23,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        90
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        94.9899673461914,
+        144.38002014160156,
+        0.1032421886920929
+      ],
+      "inventory_xyz": [
+        94.99,
+        144.38,
+        0.103
+      ],
+      "position_difference_m": 0.000245208723145607,
+      "tolerance_m": 0.01
+    },
+    "43": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 95,
+      "entry_lane": [
+        5,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        95
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        58.05000686645508,
+        185.0299835205078,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        58.05,
+        185.03,
+        0.22
+      ],
+      "position_difference_m": 1.7852783245067668e-05,
+      "tolerance_m": 0.01
+    },
+    "44": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 103,
+      "entry_lane": [
+        1,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        103
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -10.079999923706055,
+        177.88999938964844,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        -10.08,
+        177.89,
+        0.22
+      ],
+      "position_difference_m": 6.151025933781365e-07,
+      "tolerance_m": 0.01
+    },
+    "45": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 108,
+      "entry_lane": [
+        7,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        108
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        39.1299934387207,
+        289.5299987792969,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        39.13,
+        289.53,
+        0.22
+      ],
+      "position_difference_m": 6.673867208674762e-06,
+      "tolerance_m": 0.01
+    },
+    "46": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 101,
+      "entry_lane": [
+        13,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        101
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        196.21002197265625,
+        250.81002807617188,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        196.21,
+        250.81,
+        0.22
+      ],
+      "position_difference_m": 3.5652055351394465e-05,
+      "tolerance_m": 0.01
+    },
+    "47": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 107,
+      "entry_lane": [
+        19,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        107
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        56.69001388549805,
+        299.98931884765625,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        56.69,
+        299.989,
+        0.22
+      ],
+      "position_difference_m": 0.0003191498628684989,
+      "tolerance_m": 0.01
+    },
+    "48": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 93,
+      "entry_lane": [
+        4,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        93
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        30.959989547729492,
+        194.2899627685547,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        30.96,
+        194.29,
+        0.22
+      ],
+      "position_difference_m": 3.8670796212031806e-05,
+      "tolerance_m": 0.01
+    },
+    "49": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 99,
+      "entry_lane": [
+        14,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        99
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        186.95005798339844,
+        226.1799774169922,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        186.95,
+        226.18,
+        0.22
+      ],
+      "position_difference_m": 6.222593301244165e-05,
+      "tolerance_m": 0.01
+    },
+    "50": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 104,
+      "entry_lane": [
+        7,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        104
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        48.529998779296875,
+        251.75999450683594,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        48.53,
+        251.76,
+        0.22
+      ],
+      "position_difference_m": 5.627163482685325e-06,
+      "tolerance_m": 0.01
+    },
+    "51": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 96,
+      "entry_lane": [
+        15,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        96
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        186.95005798339844,
+        176.7699737548828,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        186.95,
+        176.77,
+        0.22
+      ],
+      "position_difference_m": 6.36465291577163e-05,
+      "tolerance_m": 0.01
+    },
+    "52": {
+      "attempt": "chunk_043_052_a0",
+      "runtime_id": 110,
+      "entry_lane": [
+        0,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        110
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -0.8199999928474426,
+        202.51998901367188,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        -0.82,
+        202.52,
+        0.22
+      ],
+      "position_difference_m": 1.0986330528213136e-05,
+      "tolerance_m": 0.01
+    },
+    "53": {
+      "attempt": "chunk_053_062_a0",
+      "runtime_id": 100,
+      "entry_lane": [
+        10,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        100
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        179.2200164794922,
+        243.7399139404297,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        179.22,
+        243.74,
+        0.22
+      ],
+      "position_difference_m": 8.762318932881852e-05,
+      "tolerance_m": 0.01
+    },
+    "54": {
+      "attempt": "chunk_053_062_a1",
+      "runtime_id": 102,
+      "entry_lane": [
+        4,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        102
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        6.909999847412109,
+        184.95999145507812,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        6.91,
+        184.96,
+        0.22
+      ],
+      "position_difference_m": 8.54628424938874e-06,
+      "tolerance_m": 0.01
+    },
+    "55": {
+      "attempt": "chunk_053_062_a1",
+      "runtime_id": 103,
+      "entry_lane": [
+        1,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        103
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -10.079999923706055,
+        177.88999938964844,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        -10.08,
+        177.89,
+        0.22
+      ],
+      "position_difference_m": 6.151025933781365e-07,
+      "tolerance_m": 0.01
+    },
+    "56": {
+      "attempt": "chunk_053_062_a1",
+      "runtime_id": 87,
+      "entry_lane": [
+        10,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        87
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        147.11001586914062,
+        234.22210693359375,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        147.11,
+        234.222,
+        0.22
+      ],
+      "position_difference_m": 0.00010810468581728979,
+      "tolerance_m": 0.01
+    },
+    "57": {
+      "attempt": "chunk_053_062_a2",
+      "runtime_id": 110,
+      "entry_lane": [
+        0,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        110
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -0.8199999928474426,
+        202.51998901367188,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        -0.82,
+        202.52,
+        0.22
+      ],
+      "position_difference_m": 1.0986330528213136e-05,
+      "tolerance_m": 0.01
+    },
+    "58": {
+      "attempt": "chunk_053_062_a2",
+      "runtime_id": 89,
+      "entry_lane": [
+        11,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        89
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        122.4800033569336,
+        243.81698608398438,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        122.48,
+        243.817,
+        0.22
+      ],
+      "position_difference_m": 1.431518409329642e-05,
+      "tolerance_m": 0.01
+    },
+    "59": {
+      "attempt": "chunk_053_062_a2",
+      "runtime_id": 90,
+      "entry_lane": [
+        5,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        90
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        121.36998748779297,
+        194.08995056152344,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        121.37,
+        194.09,
+        0.22
+      ],
+      "position_difference_m": 5.099723807703548e-05,
+      "tolerance_m": 0.01
+    },
+    "60": {
+      "attempt": "chunk_053_062_a2",
+      "runtime_id": 95,
+      "entry_lane": [
+        5,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        95
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        58.05000686645508,
+        185.0299835205078,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        58.05,
+        185.03,
+        0.22
+      ],
+      "position_difference_m": 1.7852783245067668e-05,
+      "tolerance_m": 0.01
+    },
+    "61": {
+      "attempt": "chunk_053_062_a2",
+      "runtime_id": 104,
+      "entry_lane": [
+        7,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        104
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        48.529998779296875,
+        251.75999450683594,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        48.53,
+        251.76,
+        0.22
+      ],
+      "position_difference_m": 5.627163482685325e-06,
+      "tolerance_m": 0.01
+    },
+    "62": {
+      "attempt": "chunk_053_062_a2",
+      "runtime_id": 97,
+      "entry_lane": [
+        6,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        97
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        179.2200164794922,
+        194.3299102783203,
+        0.2199999988079071
+      ],
+      "inventory_xyz": [
+        179.22,
+        194.33,
+        0.22
+      ],
+      "position_difference_m": 9.122254914442381e-05,
+      "tolerance_m": 0.01
+    },
+    "86": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 59,
+      "entry_lane": [
+        74,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        59
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        162.859375,
+        -145.38931274414062,
+        7.89434814453125
+      ],
+      "inventory_xyz": [
+        162.859,
+        -145.389,
+        7.894
+      ],
+      "position_difference_m": 0.0005996986844420743,
+      "tolerance_m": 0.01
+    },
+    "87": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 57,
+      "entry_lane": [
+        3,
+        0,
+        -2
+      ],
+      "inventory_ids": [
+        57
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -94.0577163696289,
+        28.359628677368164,
+        0.10909179598093033
+      ],
+      "inventory_xyz": [
+        -94.058,
+        28.36,
+        0.109
+      ],
+      "position_difference_m": 0.00047618608383574013,
+      "tolerance_m": 0.01
+    },
+    "88": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 66,
+      "entry_lane": [
+        65,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        66
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        140.5639190673828,
+        -212.00572204589844,
+        0.15239989757537842
+      ],
+      "inventory_xyz": [
+        140.564,
+        -212.006,
+        0.152
+      ],
+      "position_difference_m": 0.000493686785211799,
+      "tolerance_m": 0.01
+    },
+    "89": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 78,
+      "entry_lane": [
+        20,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        78
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -158.03012084960938,
+        7.034164905548096,
+        -6.099999723119254e-07
+      ],
+      "inventory_xyz": [
+        -158.03,
+        7.034,
+        -0.0
+      ],
+      "position_difference_m": 0.00020444764605783325,
+      "tolerance_m": 0.01
+    },
+    "90": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 61,
+      "entry_lane": [
+        42,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        61
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        94.09062194824219,
+        -146.49794006347656,
+        8.151226997375488
+      ],
+      "inventory_xyz": [
+        94.091,
+        -146.498,
+        8.151
+      ],
+      "position_difference_m": 0.0004450205915458886,
+      "tolerance_m": 0.01
+    },
+    "91": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 49,
+      "entry_lane": [
+        23,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        49
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -66.78717803955078,
+        142.75335693359375,
+        0.14790527522563934
+      ],
+      "inventory_xyz": [
+        -66.787,
+        142.753,
+        0.148
+      ],
+      "position_difference_m": 0.000409966407008224,
+      "tolerance_m": 0.01
+    },
+    "92": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 54,
+      "entry_lane": [
+        30,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        54
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -15.199999809265137,
+        143.45999145507812,
+        0.19999998807907104
+      ],
+      "inventory_xyz": [
+        -15.2,
+        143.46,
+        0.2
+      ],
+      "position_difference_m": 8.547058668466195e-06,
+      "tolerance_m": 0.01
+    },
+    "93": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 74,
+      "entry_lane": [
+        28,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        74
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        16.628286361694336,
+        -146.75592041015625,
+        0.0
+      ],
+      "inventory_xyz": [
+        16.628,
+        -146.756,
+        0.0
+      ],
+      "position_difference_m": 0.0002972163575765462,
+      "tolerance_m": 0.01
+    },
+    "94": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 63,
+      "entry_lane": [
+        17,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        63
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        71.4759750366211,
+        -145.1976318359375,
+        8.151232719421387
+      ],
+      "inventory_xyz": [
+        71.476,
+        -145.198,
+        8.151
+      ],
+      "position_difference_m": 0.0004362639983989765,
+      "tolerance_m": 0.01
+    },
+    "95": {
+      "attempt": "chunk_086_095_a0",
+      "runtime_id": 48,
+      "entry_lane": [
+        69,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        48
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -67.82001495361328,
+        121.06434631347656,
+        0.003034059889614582
+      ],
+      "inventory_xyz": [
+        -67.82,
+        121.064,
+        0.003
+      ],
+      "position_difference_m": 0.0003483054847179613,
+      "tolerance_m": 0.01
+    },
+    "96": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 72,
+      "entry_lane": [
+        29,
+        0,
+        -2
+      ],
+      "inventory_ids": [
+        72
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        18.702125549316406,
+        -213.84747314453125,
+        3.049999804716208e-06
+      ],
+      "inventory_xyz": [
+        18.702,
+        -213.847,
+        0.0
+      ],
+      "position_difference_m": 0.0004895280183935046,
+      "tolerance_m": 0.01
+    },
+    "97": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 67,
+      "entry_lane": [
+        73,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        67
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        163.67678833007812,
+        -216.69390869140625,
+        0.1390661597251892
+      ],
+      "inventory_xyz": [
+        163.677,
+        -216.694,
+        0.139
+      ],
+      "position_difference_m": 0.00023983019899709684,
+      "tolerance_m": 0.01
+    },
+    "98": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 70,
+      "entry_lane": [
+        0,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        70
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        71.63497161865234,
+        -213.64955139160156,
+        0.15104858577251434
+      ],
+      "inventory_xyz": [
+        71.635,
+        -213.65,
+        0.151
+      ],
+      "position_difference_m": 0.00045212340498988784,
+      "tolerance_m": 0.01
+    },
+    "99": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 62,
+      "entry_lane": [
+        18,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        62
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        95.87964630126953,
+        -124.72196197509766,
+        8.142908096313477
+      ],
+      "inventory_xyz": [
+        95.88,
+        -124.722,
+        8.143
+      ],
+      "position_difference_m": 0.00036741662010110953,
+      "tolerance_m": 0.01
+    },
+    "100": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 50,
+      "entry_lane": [
+        24,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        50
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -96.88732147216797,
+        124.37127685546875,
+        0.15057799220085144
+      ],
+      "inventory_xyz": [
+        -96.887,
+        124.371,
+        0.151
+      ],
+      "position_difference_m": 0.0005984011095410268,
+      "tolerance_m": 0.01
+    },
+    "101": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 59,
+      "entry_lane": [
+        74,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        59
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        162.859375,
+        -145.38931274414062,
+        7.89434814453125
+      ],
+      "inventory_xyz": [
+        162.859,
+        -145.389,
+        7.894
+      ],
+      "position_difference_m": 0.0005996986844420743,
+      "tolerance_m": 0.01
+    },
+    "102": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 45,
+      "entry_lane": [
+        21,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        45
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -136.09915161132812,
+        -9.794123649597168,
+        0.15132293105125427
+      ],
+      "inventory_xyz": [
+        -136.099,
+        -9.794,
+        0.151
+      ],
+      "position_difference_m": 0.00037757076364950705,
+      "tolerance_m": 0.01
+    },
+    "103": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 68,
+      "entry_lane": [
+        1,
+        0,
+        3
+      ],
+      "inventory_ids": [
+        68
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        94.99732971191406,
+        -184.36175537109375,
+        0.03817382827401161
+      ],
+      "inventory_xyz": [
+        94.997,
+        -184.362,
+        0.038
+      ],
+      "position_difference_m": 0.00044583575102407545,
+      "tolerance_m": 0.01
+    },
+    "104": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 76,
+      "entry_lane": [
+        19,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        76
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        19.5122013092041,
+        -126.72116088867188,
+        0.14697402715682983
+      ],
+      "inventory_xyz": [
+        19.512,
+        -126.721,
+        0.147
+      ],
+      "position_difference_m": 0.000259008009479811,
+      "tolerance_m": 0.01
+    },
+    "105": {
+      "attempt": "chunk_096_105_a0",
+      "runtime_id": 53,
+      "entry_lane": [
+        24,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        53
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        14.920000076293945,
+        142.09999084472656,
+        0.09999999403953552
+      ],
+      "inventory_xyz": [
+        14.92,
+        142.1,
+        0.1
+      ],
+      "position_difference_m": 9.155593257924289e-06,
+      "tolerance_m": 0.01
+    },
+    "172": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 198,
+      "entry_lane": [
+        0,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        198
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        263.9999694824219,
+        -302.5500183105469,
+        0.04999999701976776
+      ],
+      "inventory_xyz": [
+        264.0,
+        -302.55,
+        0.05
+      ],
+      "position_difference_m": 3.558930611774415e-05,
+      "tolerance_m": 0.01
+    },
+    "173": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 168,
+      "entry_lane": [
+        20,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        168
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        305.3500061035156,
+        -127.5999984741211,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        305.35,
+        -127.6,
+        0.3
+      ],
+      "position_difference_m": 6.291385290258859e-06,
+      "tolerance_m": 0.01
+    },
+    "174": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 192,
+      "entry_lane": [
+        8,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        192
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        135.64999389648438,
+        -166.6999969482422,
+        -0.29999998211860657
+      ],
+      "inventory_xyz": [
+        135.65,
+        -166.7,
+        -0.3
+      ],
+      "position_difference_m": 6.823961347707402e-06,
+      "tolerance_m": 0.01
+    },
+    "175": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 173,
+      "entry_lane": [
+        1,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        173
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        306.1999816894531,
+        -240.84999084472656,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        306.2,
+        -240.85,
+        0.3
+      ],
+      "position_difference_m": 2.04718215555133e-05,
+      "tolerance_m": 0.01
+    },
+    "176": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 190,
+      "entry_lane": [
+        15,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        190
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        197.0,
+        -298.0,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        197.0,
+        -298.0,
+        0.3
+      ],
+      "position_difference_m": 1.7881393421514957e-08,
+      "tolerance_m": 0.01
+    },
+    "177": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 188,
+      "entry_lane": [
+        11,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        188
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        250.1999969482422,
+        -178.1999969482422,
+        0.17714126408100128
+      ],
+      "inventory_xyz": [
+        250.2,
+        -178.2,
+        0.177
+      ],
+      "position_difference_m": 0.00014132999339309705,
+      "tolerance_m": 0.01
+    },
+    "178": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 207,
+      "entry_lane": [
+        40,
+        0,
+        -4
+      ],
+      "inventory_ids": [
+        207
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -393.0,
+        0.3999999761581421,
+        0.0
+      ],
+      "inventory_xyz": [
+        -393.0,
+        0.4,
+        0.0
+      ],
+      "position_difference_m": 2.384185793236071e-08,
+      "tolerance_m": 0.01
+    },
+    "179": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 179,
+      "entry_lane": [
+        52,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        179
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        209.39999389648438,
+        -240.09999084472656,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        209.4,
+        -240.1,
+        0.3
+      ],
+      "position_difference_m": 1.1003283801190827e-05,
+      "tolerance_m": 0.01
+    },
+    "180": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 187,
+      "entry_lane": [
+        16,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        187
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        211.29998779296875,
+        -315.5,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        211.3,
+        -315.5,
+        0.3
+      ],
+      "position_difference_m": 1.2207044358085336e-05,
+      "tolerance_m": 0.01
+    },
+    "181": {
+      "attempt": "chunk_172_181_a0",
+      "runtime_id": 206,
+      "entry_lane": [
+        19,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        206
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        319.6999816894531,
+        -112.89999389648438,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        319.7,
+        -112.9,
+        0.3
+      ],
+      "position_difference_m": 1.9301019383531988e-05,
+      "tolerance_m": 0.01
+    },
+    "182": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 179,
+      "entry_lane": [
+        52,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        179
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        209.39999389648438,
+        -240.09999084472656,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        209.4,
+        -240.1,
+        0.3
+      ],
+      "position_difference_m": 1.1003283801190827e-05,
+      "tolerance_m": 0.01
+    },
+    "183": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 194,
+      "entry_lane": [
+        52,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        194
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        120.54999542236328,
+        -166.39999389648438,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        120.55,
+        -166.4,
+        0.3
+      ],
+      "position_difference_m": 7.62941548882129e-06,
+      "tolerance_m": 0.01
+    },
+    "184": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 181,
+      "entry_lane": [
+        27,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        181
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        191.59999084472656,
+        -253.09999084472656,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        191.6,
+        -253.1,
+        0.3
+      ],
+      "position_difference_m": 1.2947524202211403e-05,
+      "tolerance_m": 0.01
+    },
+    "185": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 186,
+      "entry_lane": [
+        51,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        186
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        210.6999969482422,
+        -302.5,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        210.7,
+        -302.5,
+        0.3
+      ],
+      "position_difference_m": 3.051810187576636e-06,
+      "tolerance_m": 0.01
+    },
+    "186": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 170,
+      "entry_lane": [
+        26,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        170
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        320.1499938964844,
+        -241.9499969482422,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        320.15,
+        -241.95,
+        0.3
+      ],
+      "position_difference_m": 6.823961322286339e-06,
+      "tolerance_m": 0.01
+    },
+    "187": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 190,
+      "entry_lane": [
+        15,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        190
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        197.0,
+        -298.0,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        197.0,
+        -298.0,
+        0.3
+      ],
+      "position_difference_m": 1.7881393421514957e-08,
+      "tolerance_m": 0.01
+    },
+    "188": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 172,
+      "entry_lane": [
+        25,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        172
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        306.3999938964844,
+        -255.29998779296875,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        306.4,
+        -255.3,
+        0.3
+      ],
+      "position_difference_m": 1.3647887553292868e-05,
+      "tolerance_m": 0.01
+    },
+    "189": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 180,
+      "entry_lane": [
+        17,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        180
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        209.89999389648438,
+        -255.0,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        209.9,
+        -255.0,
+        0.3
+      ],
+      "position_difference_m": 6.103541824075491e-06,
+      "tolerance_m": 0.01
+    },
+    "190": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 188,
+      "entry_lane": [
+        11,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        188
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        250.1999969482422,
+        -178.1999969482422,
+        0.17714126408100128
+      ],
+      "inventory_xyz": [
+        250.2,
+        -178.2,
+        0.177
+      ],
+      "position_difference_m": 0.00014132999339309705,
+      "tolerance_m": 0.01
+    },
+    "191": {
+      "attempt": "chunk_182_191_a0",
+      "runtime_id": 168,
+      "entry_lane": [
+        20,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        168
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        305.3500061035156,
+        -127.5999984741211,
+        0.29999998211860657
+      ],
+      "inventory_xyz": [
+        305.35,
+        -127.6,
+        0.3
+      ],
+      "position_difference_m": 6.291385290258859e-06,
+      "tolerance_m": 0.01
+    },
+    "248": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 99,
+      "entry_lane": [
+        20,
+        0,
+        5
+      ],
+      "inventory_ids": [
+        101
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -64.26419067382812,
+        7.063309192657471,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -64.264,
+        7.063,
+        0.254
+      ],
+      "position_difference_m": 0.00044315748267878725,
+      "tolerance_m": 0.01
+    },
+    "249": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 100,
+      "entry_lane": [
+        15,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        102
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -62.35206985473633,
+        20.196908950805664,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -62.352,
+        20.197,
+        0.254
+      ],
+      "position_difference_m": 0.0002785706127066966,
+      "tolerance_m": 0.01
+    },
+    "250": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 95,
+      "entry_lane": [
+        22,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        97
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -34.449153900146484,
+        -51.02048873901367,
+        0.2542550563812256
+      ],
+      "inventory_xyz": [
+        -34.449,
+        -51.02,
+        0.254
+      ],
+      "position_difference_m": 0.0005723677455747291,
+      "tolerance_m": 0.01
+    },
+    "251": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 94,
+      "entry_lane": [
+        7,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        96
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -46.17157745361328,
+        -73.5566177368164,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -46.172,
+        -73.557,
+        0.254
+      ],
+      "position_difference_m": 0.0006237808403167257,
+      "tolerance_m": 0.01
+    },
+    "252": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 105,
+      "entry_lane": [
+        4,
+        0,
+        -2
+      ],
+      "inventory_ids": [
+        107
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -62.09930419921875,
+        123.75550842285156,
+        0.28308558464050293
+      ],
+      "inventory_xyz": [
+        -62.099,
+        123.756,
+        0.283
+      ],
+      "position_difference_m": 0.0005843885593047989,
+      "tolerance_m": 0.01
+    },
+    "253": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 103,
+      "entry_lane": [
+        6,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        105
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -119.2381820678711,
+        19.00446891784668,
+        0.2542526125907898
+      ],
+      "inventory_xyz": [
+        -119.238,
+        19.004,
+        0.254
+      ],
+      "position_difference_m": 0.000562890555653378,
+      "tolerance_m": 0.01
+    },
+    "254": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 101,
+      "entry_lane": [
+        5,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        103
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -94.92822265625,
+        20.334821701049805,
+        0.2542559802532196
+      ],
+      "inventory_xyz": [
+        -94.928,
+        20.335,
+        0.254
+      ],
+      "position_difference_m": 0.0003832651971477493,
+      "tolerance_m": 0.01
+    },
+    "255": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 97,
+      "entry_lane": [
+        3,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        99
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        89.79188537597656,
+        20.92214584350586,
+        0.25420013070106506
+      ],
+      "inventory_xyz": [
+        89.792,
+        20.922,
+        0.254
+      ],
+      "position_difference_m": 0.0002728759653383516,
+      "tolerance_m": 0.01
+    },
+    "256": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 104,
+      "entry_lane": [
+        13,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        106
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -58.71535873413086,
+        145.82456970214844,
+        0.2541879117488861
+      ],
+      "inventory_xyz": [
+        -58.715,
+        145.825,
+        0.254
+      ],
+      "position_difference_m": 0.0005908952894210091,
+      "tolerance_m": 0.01
+    },
+    "257": {
+      "attempt": "chunk_248_257_a0",
+      "runtime_id": 102,
+      "entry_lane": [
+        6,
+        0,
+        -1
+      ],
+      "inventory_ids": [
+        104
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -59.24224853515625,
+        -51.49837112426758,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -59.242,
+        -51.498,
+        0.254
+      ],
+      "position_difference_m": 0.0005137459412662454,
+      "tolerance_m": 0.01
+    },
+    "258": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 106,
+      "entry_lane": [
+        13,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        106
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -58.71535873413086,
+        145.82456970214844,
+        0.2541879117488861
+      ],
+      "inventory_xyz": [
+        -58.715,
+        145.825,
+        0.254
+      ],
+      "position_difference_m": 0.0005908952894210091,
+      "tolerance_m": 0.01
+    },
+    "259": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 107,
+      "entry_lane": [
+        4,
+        0,
+        -2
+      ],
+      "inventory_ids": [
+        107
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -62.09930419921875,
+        123.75550842285156,
+        0.28308558464050293
+      ],
+      "inventory_xyz": [
+        -62.099,
+        123.756,
+        0.283
+      ],
+      "position_difference_m": 0.0005843885593047989,
+      "tolerance_m": 0.01
+    },
+    "260": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 103,
+      "entry_lane": [
+        5,
+        0,
+        -2
+      ],
+      "inventory_ids": [
+        103
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -94.92822265625,
+        20.334821701049805,
+        0.2542559802532196
+      ],
+      "inventory_xyz": [
+        -94.928,
+        20.335,
+        0.254
+      ],
+      "position_difference_m": 0.0003832651971477493,
+      "tolerance_m": 0.01
+    },
+    "261": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 97,
+      "entry_lane": [
+        22,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        97
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -34.449153900146484,
+        -51.02048873901367,
+        0.2542550563812256
+      ],
+      "inventory_xyz": [
+        -34.449,
+        -51.02,
+        0.254
+      ],
+      "position_difference_m": 0.0005723677455747291,
+      "tolerance_m": 0.01
+    },
+    "262": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 96,
+      "entry_lane": [
+        7,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        96
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -46.17157745361328,
+        -73.5566177368164,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -46.172,
+        -73.557,
+        0.254
+      ],
+      "position_difference_m": 0.0006237808403167257,
+      "tolerance_m": 0.01
+    },
+    "263": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 102,
+      "entry_lane": [
+        15,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        102
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -62.35206985473633,
+        20.196908950805664,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -62.352,
+        20.197,
+        0.254
+      ],
+      "position_difference_m": 0.0002785706127066966,
+      "tolerance_m": 0.01
+    },
+    "264": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 105,
+      "entry_lane": [
+        6,
+        0,
+        1
+      ],
+      "inventory_ids": [
+        105
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -119.2381820678711,
+        19.00446891784668,
+        0.2542526125907898
+      ],
+      "inventory_xyz": [
+        -119.238,
+        19.004,
+        0.254
+      ],
+      "position_difference_m": 0.000562890555653378,
+      "tolerance_m": 0.01
+    },
+    "265": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 99,
+      "entry_lane": [
+        3,
+        0,
+        2
+      ],
+      "inventory_ids": [
+        99
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        89.79188537597656,
+        20.92214584350586,
+        0.25420013070106506
+      ],
+      "inventory_xyz": [
+        89.792,
+        20.922,
+        0.254
+      ],
+      "position_difference_m": 0.0002728759653383516,
+      "tolerance_m": 0.01
+    },
+    "266": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 101,
+      "entry_lane": [
+        20,
+        0,
+        5
+      ],
+      "inventory_ids": [
+        101
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -64.26419067382812,
+        7.063309192657471,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -64.264,
+        7.063,
+        0.254
+      ],
+      "position_difference_m": 0.00044315748267878725,
+      "tolerance_m": 0.01
+    },
+    "267": {
+      "attempt": "chunk_258_267_a0",
+      "runtime_id": 104,
+      "entry_lane": [
+        6,
+        0,
+        -2
+      ],
+      "inventory_ids": [
+        104
+      ],
+      "status": "setup_started",
+      "runtime_xyz": [
+        -59.24224853515625,
+        -51.49837112426758,
+        0.2542538344860077
+      ],
+      "inventory_xyz": [
+        -59.242,
+        -51.498,
+        0.254
+      ],
+      "position_difference_m": 0.0005137459412662454,
+      "tolerance_m": 0.01
+    }
+  },
+  "not_rule_safe": [
+    {
+      "route_id": 54,
+      "family": "signal_release_memory",
+      "town": "Town02_Opt",
+      "junction_id": 400,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Failed - Agent got blocked",
+      "setup": "setup_started",
+      "completion_percent": 32.36,
+      "infractions": {
+        "min_speed_infractions": 1,
+        "vehicle_blocked": 1
+      }
+    },
+    {
+      "route_id": 72,
+      "family": "following_stopped_vehicle",
+      "town": "Town02_Opt",
+      "junction_id": 242,
+      "turn": "RIGHT",
+      "scenario": "HardBreakRoute",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "outside_route_lanes": 1
+      }
+    },
+    {
+      "route_id": 103,
+      "family": "signal_release_memory",
+      "town": "Town03_Opt",
+      "junction_id": 576,
+      "turn": "RIGHT",
+      "scenario": "NavigationSignalHold",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_layout": 1,
+        "min_speed_infractions": 1
+      }
+    },
+    {
+      "route_id": 140,
+      "family": "crossing_yield",
+      "town": "Town03_Opt",
+      "junction_id": 1441,
+      "turn": "LEFT",
+      "scenario": "NonSignalizedJunctionLeftTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 190,
+      "family": "signal_release_memory",
+      "town": "Town04_Opt",
+      "junction_id": 785,
+      "turn": "LEFT",
+      "scenario": "NavigationSignalHold",
+      "status": "Failed - Agent got blocked",
+      "setup": "setup_started",
+      "completion_percent": 16.28,
+      "infractions": {
+        "vehicle_blocked": 1
+      }
+    },
+    {
+      "route_id": 270,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 272,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 276,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    },
+    {
+      "route_id": 278,
+      "family": "crossing_yield",
+      "town": "Town10HD_Opt",
+      "junction_id": 895,
+      "turn": "RIGHT",
+      "scenario": "NonSignalizedJunctionRightTurn",
+      "status": "Completed",
+      "setup": "setup_started",
+      "completion_percent": 100,
+      "infractions": {
+        "collisions_vehicle": 1
+      }
+    }
+  ],
+  "non_final_attempt_statuses": {
+    "interrupted": 30,
+    "no evaluator record": 1,
+    "not reached": 1
+  },
+  "routes_with_several_attempts": [
+    37,
+    38,
+    39,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    298,
+    299
+  ],
+  "routes_charged_a_crash": [
+    298
+  ],
+  "evaluator_failures": [
+    {
+      "attempt": "Town10HD_Opt/chunk_298_299_a0",
+      "error": "Evaluator child exited -6; preserved console/attempt",
+      "running_route": "298"
+    }
+  ],
+  "interrupted_attempts": [
+    "Town01_Opt/chunk_030_039_a0",
+    "Town02_Opt/chunk_053_062_a0",
+    "Town02_Opt/chunk_053_062_a1",
+    "Town02_Opt/chunk_063_072_a0",
+    "Town02_Opt/chunk_063_072_a1"
+  ],
+  "note": "Privileged modified PDM-Lite expert; development towns only; not a camera result. Family rates use valid settled encounters; pending and invalid setups remain explicit. All collision events include every raw attempt. Cluster bootstrap resamples junctions; null bounds mean empty/degenerate data, not zero risk. Wilson assumes independent encounters and can be optimistic for reused locations."
+}

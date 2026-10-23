@@ -1,0 +1,24 @@
+[
+  {
+    "path": "third_party/CarDreamer",
+    "base_commit": "160132436aeda1de54956f9910e56f3970a565aa",
+    "patch": "patches/cardreamer_compat.patch",
+    "exact_file_parity": {
+      "car_dreamer/carla_wpt_env.py": true,
+      "car_dreamer/configs/common.yaml": true,
+      "car_dreamer/configs/tasks.yaml": true,
+      "car_dreamer/toolkit/carla_manager/world_manager.py": true,
+      "car_dreamer/toolkit/monitor/monitor.py": true
+    }
+  },
+  {
+    "path": "third_party/dreamerv3_torch",
+    "base_commit": "6ef8646d807cd10ce0c88e10a7e943211e7fc44c",
+    "patch": "patches/dreamerv3_torch_compat.patch",
+    "exact_file_parity": {
+      "dreamer.py": true,
+      "models.py": true,
+      "tools.py": true
+    }
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "source_shard": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m1_20k_v2_20261015/episode_00000/episodes/Town01_Opt_route0_10_15_14_57_49/data/shard_000000.zip",
+  "source_sha256": "07de3ac4d6bf449d41daef208c26fb638b8a09ae182c5564c19289373fa6af5b",
+  "registry_sha256": "9054454e17ae220c3fb3dbcb1f74c62ad0a21031c61d666292453147d0b5f5ae",
+  "source_module_sha256": "944aa8741970640be132e44b7775376607fbbc5cb55c52c8b02e4f118646edbe",
+  "rows": [
+    {
+      "frame": 475,
+      "seconds": 0.10043098000096506,
+      "detected": 0,
+      "tracks": 0,
+      "diagnostic": {
+        "unknown_ground_contacts": 0,
+        "raw_detections": 0,
+        "flat_local_ground_approximation": true,
+        "local_carla_detector_labels": 0
+      }
+    },
+    {
+      "frame": 477,
+      "seconds": 0.08395964900046238,
+      "detected": 0,
+      "tracks": 0,
+      "diagnostic": {
+        "unknown_ground_contacts": 0,
+        "raw_detections": 0,
+        "flat_local_ground_approximation": true,
+        "local_carla_detector_labels": 0
+      }
+    },
+    {
+      "frame": 479,
+      "seconds": 0.08069599100053892,
+      "detected": 0,
+      "tracks": 0,
+      "diagnostic": {
+        "unknown_ground_contacts": 0,
+        "raw_detections": 0,
+        "flat_local_ground_approximation": true,
+        "local_carla_detector_labels": 0
+      }
+    },
+    {
+      "frame": 481,
+      "seconds": 0.0796414590004133,
+      "detected": 0,
+      "tracks": 0,
+      "diagnostic": {
+        "unknown_ground_contacts": 0,
+        "raw_detections": 0,
+        "flat_local_ground_approximation": true,
+        "local_carla_detector_labels": 0
+      }
+    }
+  ],
+  "scope": "First4 timestamps of first strict TRAIN source; no fit/tuning; perception not validated against ground truth"
+}

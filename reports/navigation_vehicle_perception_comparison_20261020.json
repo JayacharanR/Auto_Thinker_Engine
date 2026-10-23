@@ -1,0 +1,39 @@
+{
+  "rows": [
+    {
+      "name": "SSDLite320 COCO",
+      "path": "outputs/navigation_cv_perception_20261019/assessment.json",
+      "source_sha256": "09fd55b15a8f8245bf48aeb6dc8c2bfd0b92f509d6619f4fb0d2addf0a9c54e2",
+      "geometric_matches": 15,
+      "nearby_instances": 58,
+      "matched_origin_error_median_m": 1.6059873874377246,
+      "cpu_p95_ms": 82.00809580157511,
+      "unmatched_predictions": 10,
+      "unmatched_coco_classes": {
+        "3": 8,
+        "1": 2
+      }
+    },
+    {
+      "name": "FasterRCNN FPNv2 COCO",
+      "path": "outputs/navigation_cv_fpn_perception_retry_20261019/assessment.json",
+      "source_sha256": "065073a0b38583bbd5bbcb96c4710b168fea19667fbe081df934c13f5629bc98",
+      "geometric_matches": 54,
+      "nearby_instances": 58,
+      "matched_origin_error_median_m": 1.4136619437344082,
+      "cpu_p95_ms": 10782.877536199792,
+      "unmatched_predictions": 382,
+      "unmatched_coco_classes": {
+        "8": 87,
+        "1": 209,
+        "3": 43,
+        "6": 40,
+        "2": 3
+      }
+    }
+  ],
+  "identical_all_165_source_frame_hashes": true,
+  "visibility_certified_recall_or_AP": false,
+  "gpu_latency_measured": false,
+  "planner_qualified": false
+}

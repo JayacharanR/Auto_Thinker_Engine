@@ -1,0 +1,751 @@
+{
+  "status": "Parent retained by frozen loss; joint200 component metrics improve; M2 open",
+  "data": {
+    "audit_complete": true,
+    "all_cases_complete": true,
+    "static_label_data_gate_passed": true,
+    "cases": 99,
+    "native_rgb_images": 1188,
+    "responsive_junctions": [
+      [
+        "Town01_Opt",
+        26
+      ],
+      [
+        "Town01_Opt",
+        171
+      ],
+      [
+        "Town01_Opt",
+        306
+      ],
+      [
+        "Town02_Opt",
+        76
+      ],
+      [
+        "Town02_Opt",
+        132
+      ],
+      [
+        "Town02_Opt",
+        242
+      ],
+      [
+        "Town02_Opt",
+        298
+      ],
+      [
+        "Town03_Opt",
+        238
+      ],
+      [
+        "Town03_Opt",
+        356
+      ],
+      [
+        "Town03_Opt",
+        1221
+      ],
+      [
+        "Town04_Opt",
+        916
+      ],
+      [
+        "Town04_Opt",
+        1103
+      ],
+      [
+        "Town04_Opt",
+        1249
+      ]
+    ],
+    "supported_head_view_pairs": 116,
+    "yellow_supported_pairs": 115,
+    "plan_sha256": "cdde875dd38c8e803f82d46c96c8fb7e4783f828ca4f1f01613b3efd9ab25ef5",
+    "scope": "Static TRAIN perception pairs; no driving, action target, policy performance or original-traffic visibility claim",
+    "expansion_coverage": {
+      "responsive_approach_lanes": 36,
+      "multilane_junctions": 12
+    }
+  },
+  "attachment": {
+    "corpus": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_signal_expansion_20261016",
+    "audit_sha256": "d920a64f2ed563e380f85c3621d36f756494b6486f637cf51d3af5015f903562",
+    "plan_sha256": "cdde875dd38c8e803f82d46c96c8fb7e4783f828ca4f1f01613b3efd9ab25ef5",
+    "added_train_images": 1188,
+    "added_positive_labels": 463,
+    "validation_images_unchanged": 144,
+    "validation_labels_unchanged": 72,
+    "sampling": "50/50 original/supplement independently for positive/uniform slots",
+    "original_negative_provenance": {
+      "manifest_sha256": "c6fdd87dfa9adc0d8616cc05a8c286c481d1d5de792a04c24ecf8a613c7c6b5e",
+      "release_sha256": "9a842d1179fadcea11cfdf2b4c6c3ae51d0ed2b662a3c49a0b97127f66df7077"
+    },
+    "validation_payload_sha256": "9ab66584c129e8a84a676512bad8b693dd9f82d2df5de2f1a8c74a3edcb0bd2f",
+    "validation_indices": [
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478,
+      479,
+      480,
+      481,
+      482,
+      483,
+      484,
+      485,
+      486,
+      487,
+      488,
+      489,
+      490,
+      491,
+      492,
+      493,
+      494,
+      495,
+      496,
+      497,
+      498,
+      499,
+      500,
+      501,
+      502,
+      503,
+      576,
+      577,
+      578,
+      579,
+      580,
+      581,
+      582,
+      583,
+      584,
+      585,
+      586,
+      587,
+      588,
+      589,
+      590,
+      591,
+      592,
+      593,
+      594,
+      595,
+      596,
+      597,
+      598,
+      599,
+      600,
+      601,
+      602,
+      603,
+      604,
+      605,
+      606,
+      607,
+      608,
+      609,
+      610,
+      611
+    ],
+    "all_642_train_positive_labels": true,
+    "verified_negative_phase_copies": 440,
+    "standalone_resplit_refused": true,
+    "source_sha256": "1b9c21d47aa4742fcee4db1e311d213ffb4a32b207894f9b302a06d01b26b0ab"
+  },
+  "refinement": {
+    "status": "complete",
+    "selected_step": 0,
+    "validation": {
+      "selection_score": 0.11866046911220313,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 30,
+        "detected_iou5": 22,
+        "detected_iou3_state_correct": 24,
+        "images": 144,
+        "predictions": 1452,
+        "approximate_background_candidates": 681
+      },
+      "mean_three_view_seconds": 0.1823357379574558,
+      "p95_three_view_seconds": 0.1959420966996731,
+      "by_native_height": {
+        "8to15px": [
+          13,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          13,
+          40
+        ]
+      },
+      "rpn_proposals": {
+        "denominator": 72,
+        "iou3": 58,
+        "iou5": 38,
+        "total_proposals": 144000
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 30,
+        "iou5": 22,
+        "iou3_state_correct": 24,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            8,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    },
+    "wall_seconds": 109.48002266599997,
+    "frozen_parameters_and_buffers_unchanged": true,
+    "frozen_sha256": "bae259010c826f802a55a17b3e16aca329769f1552a69dca6e065f20d82a4f2a",
+    "component_sha256": "4fa2dc201296214abb7c750a335845fc5de7621e9ad0ef22596f8f685735c689",
+    "trainable_parameters": 1194265,
+    "total_parameters": 43256153,
+    "peak_allocated_gb": 1.69315584,
+    "scope": "TRAIN static RGB detector diagnostic; no driving/policy promotion"
+  },
+  "history": [
+    {
+      "step": 0,
+      "selection_score": 0.11866046911220313,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 30,
+        "detected_iou5": 22,
+        "detected_iou3_state_correct": 24,
+        "images": 144,
+        "predictions": 1452,
+        "approximate_background_candidates": 681
+      },
+      "mean_three_view_seconds": 0.1823357379574558,
+      "p95_three_view_seconds": 0.1959420966996731,
+      "by_native_height": {
+        "8to15px": [
+          13,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          13,
+          40
+        ]
+      },
+      "rpn_proposals": {
+        "denominator": 72,
+        "iou3": 58,
+        "iou5": 38,
+        "total_proposals": 144000
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 30,
+        "iou5": 22,
+        "iou3_state_correct": 24,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            8,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    },
+    {
+      "step": 50,
+      "selection_score": 0.19566041527186762,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 27,
+        "detected_iou5": 21,
+        "detected_iou3_state_correct": 23,
+        "images": 144,
+        "predictions": 839,
+        "approximate_background_candidates": 291
+      },
+      "mean_three_view_seconds": 0.18174668580841752,
+      "p95_three_view_seconds": 0.1972580608994576,
+      "by_native_height": {
+        "8to15px": [
+          14,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          9,
+          40
+        ]
+      },
+      "rpn_proposals": {
+        "denominator": 72,
+        "iou3": 68,
+        "iou5": 61,
+        "total_proposals": 144000
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 27,
+        "iou5": 21,
+        "iou3_state_correct": 23,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            2,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            9,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": false
+    },
+    {
+      "step": 100,
+      "selection_score": 0.1782617163628149,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 30,
+        "detected_iou5": 23,
+        "detected_iou3_state_correct": 28,
+        "images": 144,
+        "predictions": 774,
+        "approximate_background_candidates": 256
+      },
+      "mean_three_view_seconds": 0.18452780746810413,
+      "p95_three_view_seconds": 0.19831726310021622,
+      "by_native_height": {
+        "8to15px": [
+          15,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          11,
+          40
+        ]
+      },
+      "rpn_proposals": {
+        "denominator": 72,
+        "iou3": 69,
+        "iou5": 59,
+        "total_proposals": 144000
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 30,
+        "iou5": 23,
+        "iou3_state_correct": 28,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            4,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            10,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    },
+    {
+      "step": 200,
+      "selection_score": 0.12609423873042638,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 36,
+        "detected_iou5": 25,
+        "detected_iou3_state_correct": 26,
+        "images": 144,
+        "predictions": 728,
+        "approximate_background_candidates": 209
+      },
+      "mean_three_view_seconds": 0.1813760058298322,
+      "p95_three_view_seconds": 0.19994559610004214,
+      "by_native_height": {
+        "8to15px": [
+          17,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          15,
+          40
+        ]
+      },
+      "rpn_proposals": {
+        "denominator": 72,
+        "iou3": 69,
+        "iou5": 51,
+        "total_proposals": 144000
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 36,
+        "iou5": 25,
+        "iou3_state_correct": 26,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            14,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    }
+  ],
+  "fixed_loss_audit": {
+    "results": {
+      "parent": {
+        "total": 0.11866046911220313,
+        "components": {
+          "loss_classifier": 0.06603434754963979,
+          "loss_box_reg": 0.04338759396018253,
+          "loss_objectness": 0.008110354587390449,
+          "loss_rpn_box_reg": 0.0011281717209688698
+        },
+        "saved_total_reproduced": true,
+        "frozen_sha256": "bae259010c826f802a55a17b3e16aca329769f1552a69dca6e065f20d82a4f2a",
+        "privileged_gt_roi": {
+          "accepted_at_half": 23,
+          "total": 72,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              3,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              4,
+              32
+            ]
+          }
+        }
+      },
+      "candidate": {
+        "total": 0.12609423873042638,
+        "components": {
+          "loss_classifier": 0.06320396008282438,
+          "loss_box_reg": 0.05493001414773365,
+          "loss_objectness": 0.006781720704083227,
+          "loss_rpn_box_reg": 0.00117854324182392
+        },
+        "saved_total_reproduced": true,
+        "frozen_sha256": "bae259010c826f802a55a17b3e16aca329769f1552a69dca6e065f20d82a4f2a",
+        "privileged_gt_roi": {
+          "accepted_at_half": 29,
+          "total": 72,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              3,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              10,
+              32
+            ]
+          }
+        }
+      }
+    },
+    "wall_seconds": 21.487847624000096,
+    "scope": "Fixed descriptive loss/GT-ROI audit; no fitting or selection change"
+  },
+  "sampling_audit": {
+    "results": {
+      "parent": {
+        "total": 0.11866046911220313,
+        "components": {
+          "loss_classifier": 0.06603434754963979,
+          "loss_box_reg": 0.04338759396018253,
+          "loss_objectness": 0.008110354587390449,
+          "loss_rpn_box_reg": 0.0011281717209688698
+        },
+        "saved_total_reproduced": true,
+        "frozen_sha256": "bae259010c826f802a55a17b3e16aca329769f1552a69dca6e065f20d82a4f2a",
+        "roi_sampling": {
+          "all_samples": 9216,
+          "positive_samples": 171,
+          "box_smooth_l1_sum": 399.86006593704224,
+          "mean_box_smooth_l1_per_positive": 2.3383629586961536
+        },
+        "privileged_gt_roi": {
+          "accepted_at_half": 23,
+          "total": 72,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              3,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              4,
+              32
+            ]
+          }
+        }
+      },
+      "candidate": {
+        "total": 0.12609423873042638,
+        "components": {
+          "loss_classifier": 0.06320396008282438,
+          "loss_box_reg": 0.05493001414773365,
+          "loss_objectness": 0.006781720704083227,
+          "loss_rpn_box_reg": 0.00117854324182392
+        },
+        "saved_total_reproduced": true,
+        "frozen_sha256": "bae259010c826f802a55a17b3e16aca329769f1552a69dca6e065f20d82a4f2a",
+        "roi_sampling": {
+          "all_samples": 9216,
+          "positive_samples": 222,
+          "box_smooth_l1_sum": 506.2350103855133,
+          "mean_box_smooth_l1_per_positive": 2.280337884619429
+        },
+        "privileged_gt_roi": {
+          "accepted_at_half": 29,
+          "total": 72,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              3,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              10,
+              32
+            ]
+          }
+        }
+      }
+    },
+    "wall_seconds": 19.763578381000116,
+    "reused_gt_roi_audit_sha256": "3ea909cbc2d387fe415b36b98f4a0a28294a0a182ce25125152b3b858240bb75",
+    "scope": "Fixed sampler-normalization audit; no fitting or selection change"
+  },
+  "paired_final_label_diagnostic": {
+    "retained": 26,
+    "lost": 4,
+    "gained": 10
+  },
+  "selected_tensors_equal_original_parent": true,
+  "latest_frozen_features_and_buffers_equal_parent": true,
+  "verified_images": 1800,
+  "preserved_artifacts": {
+    "outputs/navigation_m2_stop_go_20261016/best_policy.pt": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+    "outputs/navigation_m2_cache_20k_20261015/manifest.json": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae",
+    "outputs/navigation_m2_signal_crop_alignment_20261016/robust_rgb_linear.npz": "ca08ac5a7c301c76489a9fc8cde692a9da213c0fa679fd7307e7dc0d2a6b5de2"
+  },
+  "model_sha256": {
+    "parent": "8df27ee218056e392cc5ddb0f50fef9263a1e8b81517b1d5ecbeba8038a6e49b",
+    "candidate": "a44f65acd4e3d2941c7f36e6dcc7e0f5d6a3853e3be6a7d1fbd691ed0370f1f9"
+  },
+  "evidence_sha256": {
+    "outputs/navigation_m2_signal_corpus_v2_20261016/request.json": "10f3019baac2c36ee61b2039bbe25c77c152997e15d9ad0c6df66bcb4be3a01e",
+    "outputs/navigation_m2_signal_detector_20261016/request.json": "db54c404048d26890ae93c2cad915b05f5d385216c51f82ef2b6f8225e38960b",
+    "outputs/navigation_m2_signal_expansion_20261016/request.json": "43ef930edf9e8368c50ec09acfd546da78a05c6c1a005ce09a12821576bb5dd6",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/request.json": "22f69c963db0827e30cbf79a644e820221663a97a284d8a12f1ccf2bfbd0450a",
+    "outputs/navigation_m2_signal_joint_loss_audit_20261016/request.json": "c1f3824e1b504fc1e44782a606ccd3bb1de48045f646ee054e6e23a58b734b6b",
+    "outputs/navigation_m2_signal_joint_sampling_audit_20261016/request.json": "28de1355c1b9c69dec80dff118df7f11696a14285b035df109276eb2110a1e01",
+    "outputs/navigation_m2_signal_expansion_20261016/data_audit.json": "d920a64f2ed563e380f85c3621d36f756494b6486f637cf51d3af5015f903562",
+    "outputs/navigation_m2_signal_expansion_20261016/attachment_audit.json": "18b291c121db0c1f98f3639a68c252d181ac7ee62726cc545052c591b8f0b4c5",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/review.json": "3aaad3233aeb0df21d04963127232c57bce01253eedc2756cdb51293d1021346",
+    "outputs/navigation_m2_signal_joint_loss_audit_20261016/assessment.json": "3ea909cbc2d387fe415b36b98f4a0a28294a0a182ce25125152b3b858240bb75",
+    "outputs/navigation_m2_signal_joint_sampling_audit_20261016/assessment.json": "6ba770b2ba7850888599009fc2614af1c7bdd8abda3096eb5e87639d50cde81b",
+    "outputs/navigation_m2_signal_joint_loss_audit_20261016/gt_roi_rows.json": "09e1adfbfaf4ed3c90bea91077d64f2f3025b89bc29baa7b5dec276b9325f2fa",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/validation.jsonl": "3b96b7ef7af6108b27ce05e1c39e4fe3ea6734953299ef0a8f611bb3c4d8c2a1",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/predictions_step0.json": "fc9bff0065f9db3b7f667ce3399d6ac23b6e11a20b848ad59a2ae31856007c79",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/predictions_step50.json": "064335b1b1592cc85ca50e355d88354dbe9e0251870a2560509f2a59254b888d",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/predictions_step100.json": "a396e53cedd3e2d1cff7bfee316fcf3370193c845a2add6cc4d9943650d45ade",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/predictions_step200.json": "3304d4b2b5e38744146f3c4bcc9f3db92f5dbc92f4fee3584384a02dbc628a9b"
+  },
+  "summary_source_sha256": "dfcc3b23ce55b5e473bf4c5a4bae828200a3ed60add4772337aa842e7f955bd6",
+  "limitations": [
+    "72 correlated labels at four previously inspected component-development junctions",
+    "Combined new data and joint RPN/head intervention, not isolated data ablation",
+    "Approximate background candidates are not full detection AP/false-positive truth",
+    "GT ROI scores and sampled residuals are privileged diagnostics, not runtime scores",
+    "Loss selection preserved; no candidate promotion or driving/JEPA/held-out result"
+  ]
+}

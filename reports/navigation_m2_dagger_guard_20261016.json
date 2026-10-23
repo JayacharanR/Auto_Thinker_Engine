@@ -1,0 +1,1093 @@
+{
+  "purpose": "TRAIN-only DAgger correction pilot, never benchmark evaluation",
+  "catalog_sha256": "9be92e0219bfc7f0b04ebf36b9eaade22d8e5acde81ae3b0fa4a603993fff2de",
+  "internal_manifest": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_cache_20k_20261015/manifest.json",
+  "internal_manifest_sha256": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae",
+  "reserved_internal_junctions": {
+    "Town01_Opt": [
+      222
+    ],
+    "Town02_Opt": [
+      349
+    ],
+    "Town03_Opt": [
+      475,
+      1038
+    ],
+    "Town04_Opt": [
+      255,
+      621
+    ],
+    "Town10HD_Opt": [
+      189,
+      719
+    ]
+  },
+  "allowed_junctions": {
+    "Town01_Opt": [
+      26,
+      87,
+      143,
+      171,
+      194,
+      255,
+      306,
+      332
+    ],
+    "Town02_Opt": [
+      76,
+      132,
+      188,
+      242,
+      298
+    ],
+    "Town03_Opt": [
+      82,
+      238,
+      356,
+      498,
+      576,
+      655,
+      730,
+      1168,
+      1221,
+      1352,
+      1427,
+      1441,
+      1669,
+      1682,
+      1696,
+      1736,
+      1901,
+      1932
+    ],
+    "Town04_Opt": [
+      134,
+      278,
+      335,
+      483,
+      745,
+      764,
+      785,
+      850,
+      890,
+      916,
+      1008,
+      1061,
+      1103,
+      1176,
+      1197,
+      1249,
+      1452,
+      1593
+    ],
+    "Town10HD_Opt": [
+      134,
+      468,
+      664,
+      841,
+      895
+    ]
+  },
+  "geometry_eligibility": {
+    "rule": "Training only: at least 1m centreline clearance from held-out junction geometry",
+    "route_sampling_m": 1.0,
+    "junction_sampling_m": 0.5,
+    "minimum_clearance_m": 1.0,
+    "map_sha256": {
+      "Town01_Opt": "97a7f6ac67812567e5c8ee0599cd823b23f80f30f3f97c502212e38b72e2b709",
+      "Town02_Opt": "953c05f17def231239ffcadba3307628a82d0d335b67b4e29c3098f7aed1dd7d",
+      "Town03_Opt": "abf177bcd9b66cfefb7ac4919f6456815f1384f4229f1343c8a6a90bbb7713c9",
+      "Town04_Opt": "4dddd1560ab7812b0e89cd4a523d8b6f2b93947eafb496d9eeb83cc772116c85",
+      "Town10HD_Opt": "5d883b799f634030af92be1e9d79d107845540ba04338e8c60e095be1aef7be7"
+    },
+    "kept_route_ids": [
+      0,
+      1,
+      2,
+      3,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      21,
+      22,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      48,
+      50,
+      51,
+      52,
+      53,
+      56,
+      57,
+      58,
+      60,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      72,
+      73,
+      74,
+      75,
+      77,
+      78,
+      79,
+      80,
+      82,
+      84,
+      86,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      95,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      148,
+      149,
+      150,
+      152,
+      153,
+      154,
+      155,
+      157,
+      158,
+      159,
+      161,
+      162,
+      163,
+      164,
+      166,
+      167,
+      168,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      189,
+      190,
+      192,
+      194,
+      195,
+      196,
+      197,
+      198,
+      200,
+      202,
+      203,
+      204,
+      205,
+      207,
+      208,
+      209,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      220,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      231,
+      232,
+      233,
+      234,
+      235,
+      236,
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      248,
+      250,
+      252,
+      254,
+      256,
+      258,
+      259,
+      260,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      270,
+      271,
+      272,
+      273,
+      275,
+      276,
+      278,
+      280,
+      284,
+      288,
+      289,
+      294,
+      297,
+      298,
+      299
+    ],
+    "excluded": [
+      {
+        "route_id": 4,
+        "town": "Town01_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 222
+      },
+      {
+        "route_id": 5,
+        "town": "Town01_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 222
+      },
+      {
+        "route_id": 19,
+        "town": "Town01_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 54
+      },
+      {
+        "route_id": 20,
+        "town": "Town01_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 222
+      },
+      {
+        "route_id": 23,
+        "town": "Town01_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 222
+      },
+      {
+        "route_id": 32,
+        "town": "Town01_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 222
+      },
+      {
+        "route_id": 46,
+        "town": "Town02_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 20
+      },
+      {
+        "route_id": 47,
+        "town": "Town02_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 49,
+        "town": "Town02_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 54,
+        "town": "Town02_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 55,
+        "town": "Town02_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 59,
+        "town": "Town02_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 400
+      },
+      {
+        "route_id": 61,
+        "town": "Town02_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 70,
+        "town": "Town02_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 71,
+        "town": "Town02_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 76,
+        "town": "Town02_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 81,
+        "town": "Town02_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 83,
+        "town": "Town02_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 20
+      },
+      {
+        "route_id": 85,
+        "town": "Town02_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 349
+      },
+      {
+        "route_id": 87,
+        "town": "Town03_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 475
+      },
+      {
+        "route_id": 94,
+        "town": "Town03_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 1.52587890625e-05,
+        "junction_id": 103
+      },
+      {
+        "route_id": 96,
+        "town": "Town03_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 475
+      },
+      {
+        "route_id": 118,
+        "town": "Town03_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 475
+      },
+      {
+        "route_id": 147,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "clearance_m": 1.52587890625e-05,
+        "junction_id": 1038
+      },
+      {
+        "route_id": 151,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "clearance_m": 0.0,
+        "junction_id": 1038
+      },
+      {
+        "route_id": 156,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "clearance_m": 0.0,
+        "junction_id": 1038
+      },
+      {
+        "route_id": 160,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "clearance_m": 0.0,
+        "junction_id": 1038
+      },
+      {
+        "route_id": 165,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "clearance_m": 1.52587890625e-05,
+        "junction_id": 1038
+      },
+      {
+        "route_id": 169,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "clearance_m": 0.0,
+        "junction_id": 1038
+      },
+      {
+        "route_id": 187,
+        "town": "Town04_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 3.411968959808029e-05,
+        "junction_id": 255
+      },
+      {
+        "route_id": 188,
+        "town": "Town04_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 148
+      },
+      {
+        "route_id": 191,
+        "town": "Town04_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 255
+      },
+      {
+        "route_id": 193,
+        "town": "Town04_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 621
+      },
+      {
+        "route_id": 199,
+        "town": "Town04_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 621
+      },
+      {
+        "route_id": 201,
+        "town": "Town04_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 255
+      },
+      {
+        "route_id": 206,
+        "town": "Town04_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 53
+      },
+      {
+        "route_id": 210,
+        "town": "Town04_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 53
+      },
+      {
+        "route_id": 219,
+        "town": "Town04_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 621
+      },
+      {
+        "route_id": 221,
+        "town": "Town04_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 53
+      },
+      {
+        "route_id": 222,
+        "town": "Town04_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 621
+      },
+      {
+        "route_id": 229,
+        "town": "Town04_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 148
+      },
+      {
+        "route_id": 230,
+        "town": "Town04_Opt",
+        "family": "signal_stop",
+        "clearance_m": 1.52587890625e-05,
+        "junction_id": 621
+      },
+      {
+        "route_id": 247,
+        "town": "Town10HD_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 249,
+        "town": "Town10HD_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 251,
+        "town": "Town10HD_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 3.814697265625e-06,
+        "junction_id": 189
+      },
+      {
+        "route_id": 253,
+        "town": "Town10HD_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 255,
+        "town": "Town10HD_Opt",
+        "family": "crossing_yield",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 257,
+        "town": "Town10HD_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 261,
+        "town": "Town10HD_Opt",
+        "family": "following_stopped_vehicle",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 269,
+        "town": "Town10HD_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 274,
+        "town": "Town10HD_Opt",
+        "family": "route_junction",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 277,
+        "town": "Town10HD_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 279,
+        "town": "Town10HD_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 3.860982594657337e-06,
+        "junction_id": 189
+      },
+      {
+        "route_id": 281,
+        "town": "Town10HD_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 3.814697265625e-06,
+        "junction_id": 189
+      },
+      {
+        "route_id": 282,
+        "town": "Town10HD_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 283,
+        "town": "Town10HD_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 3.814697265625e-06,
+        "junction_id": 189
+      },
+      {
+        "route_id": 285,
+        "town": "Town10HD_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 8.529922399520072e-06,
+        "junction_id": 719
+      },
+      {
+        "route_id": 286,
+        "town": "Town10HD_Opt",
+        "family": "signal_release_memory",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 287,
+        "town": "Town10HD_Opt",
+        "family": "signal_stop",
+        "clearance_m": 3.814697265625e-06,
+        "junction_id": 189
+      },
+      {
+        "route_id": 290,
+        "town": "Town10HD_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 291,
+        "town": "Town10HD_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 292,
+        "town": "Town10HD_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 719
+      },
+      {
+        "route_id": 293,
+        "town": "Town10HD_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 295,
+        "town": "Town10HD_Opt",
+        "family": "signal_stop",
+        "clearance_m": 0.0,
+        "junction_id": 189
+      },
+      {
+        "route_id": 296,
+        "town": "Town10HD_Opt",
+        "family": "signal_stop",
+        "clearance_m": 7.62939453125e-06,
+        "junction_id": 719
+      }
+    ],
+    "additional_reserved_junctions": {
+      "Town01_Opt": [
+        222
+      ],
+      "Town02_Opt": [
+        349
+      ],
+      "Town03_Opt": [
+        475,
+        1038
+      ],
+      "Town04_Opt": [
+        255,
+        621
+      ],
+      "Town10HD_Opt": [
+        189,
+        719
+      ]
+    },
+    "scope": "Geometry only; no driving outcomes. Runtime partition guard remains active. No frozen catalog, held-out route, location assignment or evaluation metric changed."
+  },
+  "selection": "First geometry-eligible/internal-TRAIN Town03 route per family; fresh observations only",
+  "pilot_entries": [
+    {
+      "route_id": 86,
+      "town": "Town03_Opt",
+      "family": "crossing_yield",
+      "scenario": "NonSignalizedJunctionLeftTurn",
+      "parameters": {
+        "flow_speed": 8.3,
+        "source_dist_interval": [
+          15.0,
+          30.0
+        ]
+      },
+      "occurrence": 0,
+      "movement_key": [
+        "Town03_Opt",
+        "1932",
+        "(69, 0, 3)",
+        "(68, 0, 3)"
+      ],
+      "junction_id": 1932,
+      "crossed_junction_ids": [
+        1932
+      ],
+      "turn": "LEFT",
+      "control": [
+        "none"
+      ],
+      "signal_ids_at_inventory": [],
+      "stop_ids_at_inventory": [],
+      "start_xyz": [
+        -88.635,
+        146.972,
+        0.0
+      ],
+      "end_xyz": [
+        -21.224,
+        207.584,
+        0.0
+      ],
+      "trigger_xyz": [
+        -88.635,
+        146.972,
+        0.0
+      ],
+      "trigger_yaw": 89.78770446777344,
+      "planned_length_m": 105.396
+    },
+    {
+      "route_id": 101,
+      "town": "Town03_Opt",
+      "family": "following_stopped_vehicle",
+      "scenario": "HardBreakRoute",
+      "parameters": {},
+      "occurrence": 0,
+      "movement_key": [
+        "Town03_Opt",
+        "82",
+        "(67, 0, -1)",
+        "(33, 0, 4)"
+      ],
+      "junction_id": 82,
+      "crossed_junction_ids": [
+        82
+      ],
+      "turn": "RIGHT",
+      "control": [
+        "none"
+      ],
+      "signal_ids_at_inventory": [],
+      "stop_ids_at_inventory": [],
+      "start_xyz": [
+        68.274,
+        196.861,
+        0.597
+      ],
+      "end_xyz": [
+        2.297,
+        180.138,
+        0.0
+      ],
+      "trigger_xyz": [
+        48.274,
+        196.911,
+        0.177
+      ],
+      "trigger_yaw": 179.85702514648438,
+      "planned_length_m": 80.142
+    },
+    {
+      "route_id": 111,
+      "town": "Town03_Opt",
+      "family": "route_junction",
+      "scenario": null,
+      "parameters": {},
+      "occurrence": 0,
+      "movement_key": [
+        "Town03_Opt",
+        "655",
+        "(29, 0, -1)",
+        "(2, 0, -1)"
+      ],
+      "junction_id": 655,
+      "crossed_junction_ids": [
+        655
+      ],
+      "turn": "LEFT",
+      "control": [
+        "signal"
+      ],
+      "signal_ids_at_inventory": [
+        72
+      ],
+      "stop_ids_at_inventory": [],
+      "start_xyz": [
+        6.701,
+        -149.154,
+        0.0
+      ],
+      "end_xyz": [
+        -37.632,
+        -205.452,
+        0.0
+      ],
+      "trigger_xyz": [
+        6.701,
+        -149.154,
+        0.0
+      ],
+      "trigger_yaw": -88.58645629882812,
+      "planned_length_m": 91.308
+    },
+    {
+      "route_id": 123,
+      "town": "Town03_Opt",
+      "family": "signal_release_memory",
+      "scenario": "NavigationSignalHold",
+      "parameters": {
+        "stationary_s": 10.0,
+        "max_hold_s": 30.0,
+        "near_m": 20.0,
+        "clearance_s": 3.0
+      },
+      "occurrence": 0,
+      "movement_key": [
+        "Town03_Opt",
+        "238",
+        "(69, 0, -1)",
+        "(23, 0, 1)"
+      ],
+      "junction_id": 238,
+      "crossed_junction_ids": [
+        238
+      ],
+      "turn": "LEFT",
+      "control": [
+        "signal"
+      ],
+      "signal_ids_at_inventory": [
+        48
+      ],
+      "stop_ids_at_inventory": [],
+      "start_xyz": [
+        -78.03,
+        159.589,
+        0.0
+      ],
+      "end_xyz": [
+        -123.132,
+        133.229,
+        0.0
+      ],
+      "trigger_xyz": [
+        -78.03,
+        159.589,
+        0.0
+      ],
+      "trigger_yaw": 266.8109130859375,
+      "planned_length_m": 64.542
+    },
+    {
+      "route_id": 133,
+      "town": "Town03_Opt",
+      "family": "signal_stop",
+      "scenario": "NavigationSignalHold",
+      "parameters": {
+        "stationary_s": 3.0,
+        "max_hold_s": 45.0,
+        "near_m": 40.0,
+        "clearance_s": 3.0
+      },
+      "occurrence": 0,
+      "movement_key": [
+        "Town03_Opt",
+        "655",
+        "(1, 0, -1)",
+        "(2, 0, -1)"
+      ],
+      "junction_id": 655,
+      "crossed_junction_ids": [
+        655
+      ],
+      "turn": "STRAIGHT",
+      "control": [
+        "signal"
+      ],
+      "signal_ids_at_inventory": [
+        71
+      ],
+      "stop_ids_at_inventory": [],
+      "start_xyz": [
+        70.799,
+        -202.727,
+        0.0
+      ],
+      "end_xyz": [
+        -37.167,
+        -205.44,
+        0.0
+      ],
+      "trigger_xyz": [
+        70.799,
+        -202.727,
+        0.0
+      ],
+      "trigger_yaw": -178.56044006347656,
+      "planned_length_m": 106.71
+    },
+    {
+      "route_id": 143,
+      "town": "Town03_Opt",
+      "family": "stop_sign",
+      "scenario": null,
+      "parameters": {},
+      "occurrence": 0,
+      "movement_key": [
+        "Town03_Opt",
+        "730",
+        "(19, 0, -1)",
+        "(20, 0, -1)"
+      ],
+      "junction_id": 730,
+      "crossed_junction_ids": [
+        730
+      ],
+      "turn": "STRAIGHT",
+      "control": [
+        "stop"
+      ],
+      "signal_ids_at_inventory": [],
+      "stop_ids_at_inventory": [
+        35
+      ],
+      "start_xyz": [
+        -14.091,
+        -138.574,
+        0.0
+      ],
+      "end_xyz": [
+        -124.982,
+        -134.406,
+        0.748
+      ],
+      "trigger_xyz": [
+        -14.091,
+        -138.574,
+        0.0
+      ],
+      "trigger_yaw": -178.77273559570312,
+      "planned_length_m": 110.11
+    }
+  ]
+}

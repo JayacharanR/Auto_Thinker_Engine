@@ -1,0 +1,78 @@
+{
+  "run": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_student_smoke_20261015",
+  "best_step": 300,
+  "checkpoint_sha256": "9cc1c2f7f8d260883f427251027f969f4337cbf95267056a67aece895bd15681",
+  "internal_validation": {
+    "speed_mae_mps": 2.5957429747609697,
+    "go_speed_mae_mps": 2.139061791379058,
+    "stopped_speed_mae_mps": 3.299675272951881,
+    "go_predicted_stop_fraction": 0.0013003901170351106,
+    "path_correction_mae_m": 0.03793597402330901,
+    "brake_accuracy": 0.6146449704142012,
+    "light_accuracy": 0.4977810650887574,
+    "red_recall": 0.7734375,
+    "counts": {
+      "speed": 1352,
+      "go": 769,
+      "stopped": 556,
+      "path": 6983.0,
+      "red": 768
+    },
+    "selection_score": 3.490078591337067
+  },
+  "all_images_blanked": {
+    "speed_mae_mps": 3.7142579132283227,
+    "go_speed_mae_mps": 6.125129559570233,
+    "stopped_speed_mae_mps": 0.5474072510389973,
+    "go_predicted_stop_fraction": 0.0,
+    "path_correction_mae_m": 0.05693520438478206,
+    "brake_accuracy": 0.5118343195266272,
+    "light_accuracy": 0.5828402366863905,
+    "red_recall": 0.8515625,
+    "counts": {
+      "speed": 1352,
+      "go": 769,
+      "stopped": 556,
+      "path": 6983.0,
+      "red": 768
+    },
+    "selection_score": 4.312599766251361
+  },
+  "baselines": {
+    "always_stop_speed_mae_mps": 4.002256393432617,
+    "train_mean_speed_mae_mps": 3.73569393157959,
+    "route_without_correction_mae_m": 0.0036534660030156374,
+    "train_majority_brake": true,
+    "train_majority_brake_accuracy": 0.5014792899408284,
+    "train_majority_light": 1,
+    "train_majority_light_accuracy": 0.5680473372781065,
+    "evaluated_frames": 1352,
+    "scope": "Exactly the same held-out-internal clip positions and burn-in as model metrics"
+  },
+  "controller_diagnostics": {
+    "counts": {
+      "frames": 1352,
+      "positive_speed_and_brake": 349,
+      "teacher_go": 645,
+      "held_on_teacher_go": 70,
+      "teacher_start_go": 17,
+      "held_on_teacher_start_go": 0,
+      "teacher_stopped": 556,
+      "held_on_teacher_stopped": 242
+    },
+    "held_on_teacher_go_fraction": 0.10852713178294573,
+    "held_on_teacher_start_go_fraction": 0.0,
+    "held_on_teacher_stopped_fraction": 0.4352517985611511,
+    "scope": "Same internal validation windows; deployed hold = speed<0.15 or brake>=0.5. Teacher-go excludes teacher braking; not a closed-loop success metric."
+  },
+  "label_observability": {
+    "all_clean_samples": 17567,
+    "known_light_state_samples": 13703,
+    "known_light_outside_80m_or_missing_distance": 523,
+    "known_light_distance_over_40m": 2738,
+    "visible_light_validity_labels_stored": false,
+    "note": "Route applicability does not establish image visibility; around-corner and subpixel lamps require separate observability labels."
+  },
+  "frozen_training_source_changes": [],
+  "scope": "Internal location validation only. Blanking is an input-sensitivity diagnostic, not a trained navigation-only baseline or evidence of driving performance. No heldout_dev or Town05 samples used."
+}

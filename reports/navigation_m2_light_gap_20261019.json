@@ -1,0 +1,21 @@
+{
+  "status": "diagnostic_only_do_not_train",
+  "imitation_release": false,
+  "unlabeled_release": true,
+  "reason": "Earlier stop changed pose but added no measured housing-frustum coverage; no optical benefit established",
+  "measured_default_gap_m": 6,
+  "measured_trial_gap_m": 12,
+  "default_stationary_reference_m": 5.7,
+  "trial_stationary_reference_m": 11.1,
+  "default_front_housing_height_px": 7.6159,
+  "trial_front_housing_height_px": 6.2398,
+  "visibility_certified": false,
+  "source_data_preserved": true,
+  "legacy_manifest_tag_note": "First pilot root policy_kind used the generic privileged label; episode metadata and trace identify the explicit gap trial. Future header fixed.",
+  "run": "outputs/navigation_m2_light_gap_pilot_20261019",
+  "frames": 214,
+  "actual_wait_s": 11.0,
+  "post_release_s": 5.1,
+  "continuous_coverage_pass": true,
+  "driver_result": "Privileged TRAIN data, not camera driving"
+}

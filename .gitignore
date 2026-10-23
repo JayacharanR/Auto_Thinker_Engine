@@ -53,9 +53,11 @@ data/raw/
 wandb/
 runs/
 
-# Reports (keep .md, ignore generated plots if large)
-reports/*.png
+# Scientific report figures are versioned; raw artifacts remain in outputs/.
 reports/*.pdf
+# Re-renderable per-page QA screenshots stay local; retain final PDF and QA JSON.
+reports/conference_*/qa/page_*.png
+reports/conference_*/qa/contact_sheet.png
 
 # Misc
 *.log

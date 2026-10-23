@@ -1,0 +1,215 @@
+{
+  "assessment": "outputs/navigation_rule_followthrough_v3_20261020/student/assessment_1792482786065488459/assessment.json",
+  "assessment_sha256": "ddbde9873607b063e84251e3a9d7b40e88f8cae7b4043cc32bbe20c83c6d8477",
+  "reporting_source_sha256": "d351fac17c95667b146cb238a88f29ad3f01e58a7271612d6c1bbea2d72a6ac2",
+  "planned_trials": 72,
+  "evidence_complete": 72,
+  "passed": 15,
+  "failed": 57,
+  "gate_passed": false,
+  "unfiltered_contact_starts": 22,
+  "contact_trials": 9,
+  "native_red_violations": 15,
+  "native_stop_violations": 5,
+  "both_arms_passed": 0,
+  "physical_pairs_times_seeds": 36,
+  "family_counts": {
+    "empty_light": {
+      "planned": 12,
+      "passed": 2
+    },
+    "green_clearing_cross": {
+      "planned": 12,
+      "passed": 3
+    },
+    "green_stopped_lead": {
+      "planned": 12,
+      "passed": 1
+    },
+    "out_of_view_memory": {
+      "planned": 12,
+      "passed": 6
+    },
+    "stop_and_release": {
+      "planned": 12,
+      "passed": 0
+    },
+    "yellow_distance": {
+      "planned": 12,
+      "passed": 3
+    }
+  },
+  "groups": [
+    {
+      "family": "empty_light",
+      "location": "signal0",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "empty_light",
+      "location": "signal0",
+      "arm": 1,
+      "passed": 1,
+      "planned": 3
+    },
+    {
+      "family": "empty_light",
+      "location": "signal1",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "empty_light",
+      "location": "signal1",
+      "arm": 1,
+      "passed": 1,
+      "planned": 3
+    },
+    {
+      "family": "green_clearing_cross",
+      "location": "signal0",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "green_clearing_cross",
+      "location": "signal0",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "green_clearing_cross",
+      "location": "signal1",
+      "arm": 0,
+      "passed": 3,
+      "planned": 3
+    },
+    {
+      "family": "green_clearing_cross",
+      "location": "signal1",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "green_stopped_lead",
+      "location": "signal0",
+      "arm": 0,
+      "passed": 1,
+      "planned": 3
+    },
+    {
+      "family": "green_stopped_lead",
+      "location": "signal0",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "green_stopped_lead",
+      "location": "signal1",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "green_stopped_lead",
+      "location": "signal1",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "out_of_view_memory",
+      "location": "memory0",
+      "arm": 0,
+      "passed": 3,
+      "planned": 3
+    },
+    {
+      "family": "out_of_view_memory",
+      "location": "memory0",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "out_of_view_memory",
+      "location": "memory1",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "out_of_view_memory",
+      "location": "memory1",
+      "arm": 1,
+      "passed": 3,
+      "planned": 3
+    },
+    {
+      "family": "stop_and_release",
+      "location": "stop0",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "stop_and_release",
+      "location": "stop0",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "stop_and_release",
+      "location": "stop1",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "stop_and_release",
+      "location": "stop1",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "yellow_distance",
+      "location": "signal0",
+      "arm": 0,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "yellow_distance",
+      "location": "signal0",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    },
+    {
+      "family": "yellow_distance",
+      "location": "signal1",
+      "arm": 0,
+      "passed": 3,
+      "planned": 3
+    },
+    {
+      "family": "yellow_distance",
+      "location": "signal1",
+      "arm": 1,
+      "passed": 0,
+      "planned": 3
+    }
+  ],
+  "rule_overrides": false,
+  "source_checkpoint_sha256": "e3a688576d007158ee9d61527de83c4eed839b2bd6ddb0d1bc34e5f88181ea48",
+  "note": "Scripted setup component tests, not autonomous route success. Repeated locations and seeds are correlated; no independent-binomial confidence claim. No checkpoint promotion."
+}

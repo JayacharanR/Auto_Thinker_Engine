@@ -1,0 +1,11 @@
+{
+  "verified_manifest_sha256": "ef35b75311dd6d683c8f98713eb3cf919e0606d00865dafd79625fe93b1680fc",
+  "original_planned": 10,
+  "verified": 8,
+  "unknown": 2,
+  "observed_contacts": 3,
+  "unique_positive_contexts": 2,
+  "calibration_episodes": 0,
+  "generating_source_sha256": "3cbd0df811e003d06db2693bda35ed360b992bcc922dc9d8f6b49efeb93f49ac",
+  "no_model_or_driving_qualification": true
+}

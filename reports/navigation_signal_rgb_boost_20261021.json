@@ -1,0 +1,121 @@
+{
+  "independent_oof_recount": true,
+  "independent_component_recount": true,
+  "original_order_diagnostic_unchanged": true,
+  "lost_parent_correct": [
+    {
+      "sample": 362,
+      "town": "Town10HD_Opt",
+      "box": [
+        284,
+        135,
+        289,
+        142,
+        2
+      ],
+      "parent": {
+        "x": 288,
+        "y": 136,
+        "cls": 2,
+        "score": 0.8947330117225647
+      },
+      "current": null,
+      "inside": [
+        {
+          "x": 288,
+          "y": 136,
+          "cls": 2,
+          "score": 0.8947330117225647,
+          "foreground_probability": 0.3009160034242048
+        }
+      ]
+    },
+    {
+      "sample": 374,
+      "town": "Town10HD_Opt",
+      "box": [
+        240,
+        125,
+        243,
+        133,
+        2
+      ],
+      "parent": {
+        "x": 242,
+        "y": 126,
+        "cls": 2,
+        "score": 0.5266134142875671
+      },
+      "current": null,
+      "inside": [
+        {
+          "x": 242,
+          "y": 126,
+          "cls": 2,
+          "score": 0.5266134142875671,
+          "foreground_probability": 0.1086763559747791
+        }
+      ]
+    },
+    {
+      "sample": 382,
+      "town": "Town10HD_Opt",
+      "box": [
+        2,
+        125,
+        17,
+        139,
+        2
+      ],
+      "parent": {
+        "x": 12,
+        "y": 125,
+        "cls": 2,
+        "score": 0.6432291865348816
+      },
+      "current": null,
+      "inside": [
+        {
+          "x": 12,
+          "y": 125,
+          "cls": 2,
+          "score": 0.6432291865348816,
+          "foreground_probability": 0.13706483915822681
+        }
+      ]
+    }
+  ],
+  "train_oof_phase_diagnosis": {
+    "plain": {
+      "red": {
+        "points": 1697,
+        "recall": 0.5197407189157337
+      },
+      "green": {
+        "points": 850,
+        "recall": 0.4929411764705882
+      },
+      "yellow": {
+        "points": 824,
+        "recall": 0.47815533980582525
+      }
+    },
+    "gamma": {
+      "red": {
+        "points": 1697,
+        "recall": 0.5816146140247496
+      },
+      "green": {
+        "points": 850,
+        "recall": 0.5517647058823529
+      },
+      "yellow": {
+        "points": 824,
+        "recall": 0.5400485436893204
+      }
+    }
+  },
+  "no_reselection": true,
+  "assessment_sha256": "5286005fcf0e91e9410a878d21ac8fe4128abce0c57fd10cb1ceb29a6a75dfb3",
+  "selection_sha256": "3d007c6f473cc0cc2081e8d6fb7f889348b60f56ed42f16e053a5d19d9470581"
+}

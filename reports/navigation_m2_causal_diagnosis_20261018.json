@@ -1,0 +1,104 @@
+{
+  "kind": "Post-hoc diagnostics; no fit or new selection",
+  "family": {
+    "parent": {
+      "crossing_yield": {
+        "labels": 112,
+        "stop": 0,
+        "stop_hit": 0,
+        "go": 92,
+        "false_hold": 0
+      },
+      "route_junction": {
+        "labels": 128,
+        "stop": 18,
+        "stop_hit": 18,
+        "go": 83,
+        "false_hold": 6
+      },
+      "signal_release_memory": {
+        "labels": 432,
+        "stop": 278,
+        "stop_hit": 33,
+        "go": 130,
+        "false_hold": 4
+      },
+      "signal_stop": {
+        "labels": 448,
+        "stop": 201,
+        "stop_hit": 146,
+        "go": 173,
+        "false_hold": 16
+      },
+      "stop_sign": {
+        "labels": 144,
+        "stop": 63,
+        "stop_hit": 41,
+        "go": 60,
+        "false_hold": 2
+      },
+      "following_stopped_vehicle": {
+        "labels": 48,
+        "stop": 0,
+        "stop_hit": 0,
+        "go": 44,
+        "false_hold": 0
+      }
+    },
+    "rejected_latest1000": {
+      "crossing_yield": {
+        "labels": 112,
+        "stop": 0,
+        "stop_hit": 0,
+        "go": 92,
+        "false_hold": 0
+      },
+      "route_junction": {
+        "labels": 128,
+        "stop": 18,
+        "stop_hit": 18,
+        "go": 83,
+        "false_hold": 1
+      },
+      "signal_release_memory": {
+        "labels": 432,
+        "stop": 278,
+        "stop_hit": 0,
+        "go": 130,
+        "false_hold": 0
+      },
+      "signal_stop": {
+        "labels": 448,
+        "stop": 201,
+        "stop_hit": 88,
+        "go": 173,
+        "false_hold": 0
+      },
+      "stop_sign": {
+        "labels": 144,
+        "stop": 63,
+        "stop_hit": 25,
+        "go": 60,
+        "false_hold": 0
+      },
+      "following_stopped_vehicle": {
+        "labels": 48,
+        "stop": 0,
+        "stop_hit": 0,
+        "go": 44,
+        "false_hold": 0
+      }
+    }
+  },
+  "exact_sampler_updates_replayed": 1000,
+  "stop_label_fraction_equal_update_weight": {
+    "original": 0.42246188675311885,
+    "approach": 0.5245128455671277
+  },
+  "combined_stop_label_fraction": 0.4734873661601233,
+  "source_sha256": "d80913e921716fd129b6f50e0c5a8bb200ef2dde60a3cfeaa0e28dcbebc04234",
+  "parent_sha256": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+  "latest_sha256": "4562819a618a2a7a08d4193c5f3a29e73ae54d79bb17289bd711d02eb6e10332",
+  "request_sha256": "979546ccf95cf4d2e61d3c8c2b00fa2314fa2d0336eb4a5c84e034d27b0341d9",
+  "visibility_labels_approved": false
+}

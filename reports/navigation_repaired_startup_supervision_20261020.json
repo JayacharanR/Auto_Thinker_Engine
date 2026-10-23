@@ -1,0 +1,10 @@
+{
+  "counts": {
+    "stationary_go": 272,
+    "stationary_go_first8": 186,
+    "stationary_stop": 8417,
+    "all_go": 6778
+  },
+  "source": "outputs/navigation_spatial_data_repaired_20261019",
+  "semantics": "Training-only label/ego distribution, not a counterfactual causal proof; proposal burn-in0 keeps validation unchanged"
+}

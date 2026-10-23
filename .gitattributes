@@ -1,0 +1,4 @@
+# Unified-diff context lines require their leading space, even on empty lines.
+patches/*.patch -whitespace
+# Preserve Matplotlib's generated SVG serialization and recorded asset hashes.
+reports/conference_*/figures/*.svg -whitespace

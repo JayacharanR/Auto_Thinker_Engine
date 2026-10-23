@@ -1,0 +1,350 @@
+{
+  "audit_passed": true,
+  "all_actual_20hz_positions_train": true,
+  "total_control_ticks": 8364,
+  "episodes": [
+    {
+      "route_id": 33,
+      "town": "Town01_Opt",
+      "trace_sha256": "60b019af19f36981063c459345869d6d345b7c7e9189f2abb6b7f8ef5bc7e76e",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00000/episodes/Town01_Opt_route0_10_18_14_28_23/trace.jsonl",
+      "control_ticks": 334,
+      "actual_junction_ids": [
+        171
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.300000049173832,
+      "semantic_zero_speed_intent_onset_index": 47
+    },
+    {
+      "route_id": 33,
+      "town": "Town01_Opt",
+      "trace_sha256": "e3a8aa83e753a3b502ccd962ee06fd9a389feda74c4c97741f86eaab6f87cbc6",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00001/episodes/Town01_Opt_route0_10_18_14_28_43/trace.jsonl",
+      "control_ticks": 334,
+      "actual_junction_ids": [
+        171
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.300000049173832,
+      "semantic_zero_speed_intent_onset_index": 47
+    },
+    {
+      "route_id": 33,
+      "town": "Town01_Opt",
+      "trace_sha256": "6ff7615d6546b4ac73d650c0100a77110dc8b9831e7c99a028abb93f8c384977",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00002/episodes/Town01_Opt_route0_10_18_14_29_03/trace.jsonl",
+      "control_ticks": 334,
+      "actual_junction_ids": [
+        171
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.300000049173832,
+      "semantic_zero_speed_intent_onset_index": 47
+    },
+    {
+      "route_id": 34,
+      "town": "Town01_Opt",
+      "trace_sha256": "8ce0c20f5773466552100aaf21e7abd4a8b1c6ca34ab2996df681430274bac70",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00003/episodes/Town01_Opt_route0_10_18_14_29_23/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        26
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 56
+    },
+    {
+      "route_id": 34,
+      "town": "Town01_Opt",
+      "trace_sha256": "e60e4728fabffa53ed35ebc97b30b54658e408b4842dfef2c49dcbcc5cc13fd0",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00004/episodes/Town01_Opt_route0_10_18_14_29_42/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        26
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 56
+    },
+    {
+      "route_id": 34,
+      "town": "Town01_Opt",
+      "trace_sha256": "f7fd184237175e00e77746b4360ee907d37bf3e78ac92d88f20ed90fc04e8f69",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00005/episodes/Town01_Opt_route0_10_18_14_30_00/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        26
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 56
+    },
+    {
+      "route_id": 77,
+      "town": "Town02_Opt",
+      "trace_sha256": "4266161059eac9601d95b27b6545dbc3fdeacd4801a933baed0755fbca3c52aa",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00006/episodes/Town02_Opt_route0_10_18_14_30_18/trace.jsonl",
+      "control_ticks": 381,
+      "actual_junction_ids": [
+        76
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7500000558793545,
+      "semantic_zero_speed_intent_onset_index": 60
+    },
+    {
+      "route_id": 77,
+      "town": "Town02_Opt",
+      "trace_sha256": "3aa5e774b5088fcc6d194a9fe0f3e0977665e153b5926945b969505eb126efc7",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00007/episodes/Town02_Opt_route0_10_18_14_30_38/trace.jsonl",
+      "control_ticks": 381,
+      "actual_junction_ids": [
+        76
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7500000558793545,
+      "semantic_zero_speed_intent_onset_index": 60
+    },
+    {
+      "route_id": 77,
+      "town": "Town02_Opt",
+      "trace_sha256": "2df0805fa3e628f1e72b5fdff1bc142ad7634c01d2d2b538180b2105f002333c",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00008/episodes/Town02_Opt_route0_10_18_14_30_58/trace.jsonl",
+      "control_ticks": 381,
+      "actual_junction_ids": [
+        76
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7500000558793545,
+      "semantic_zero_speed_intent_onset_index": 60
+    },
+    {
+      "route_id": 78,
+      "town": "Town02_Opt",
+      "trace_sha256": "37b93608d821d1cb056827636f205aeea34670382d5705f5e4796d0240c4dce3",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00009/episodes/Town02_Opt_route0_10_18_14_31_18/trace.jsonl",
+      "control_ticks": 349,
+      "actual_junction_ids": [
+        242,
+        298
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.1500000469386578,
+      "semantic_zero_speed_intent_onset_index": 49
+    },
+    {
+      "route_id": 78,
+      "town": "Town02_Opt",
+      "trace_sha256": "30929b03df5e5b2850b8a3b7912bc72f0bfb61d36c2533415ffbd9dcc79918ab",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00010/episodes/Town02_Opt_route0_10_18_14_31_37/trace.jsonl",
+      "control_ticks": 349,
+      "actual_junction_ids": [
+        242,
+        298
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.1500000469386578,
+      "semantic_zero_speed_intent_onset_index": 49
+    },
+    {
+      "route_id": 78,
+      "town": "Town02_Opt",
+      "trace_sha256": "05f17312f1626874f73a23f81570ccc8ca01cc11b1fbf8baed166f8bb1ff1cbb",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00011/episodes/Town02_Opt_route0_10_18_14_31_55/trace.jsonl",
+      "control_ticks": 349,
+      "actual_junction_ids": [
+        242,
+        298
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.1500000469386578,
+      "semantic_zero_speed_intent_onset_index": 49
+    },
+    {
+      "route_id": 134,
+      "town": "Town03_Opt",
+      "trace_sha256": "fc8f0393b1f76ce9fb275fe55bce1deb97cccf2d2682373356ba1d2fc839d809",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00012/episodes/Town03_Opt_route0_10_18_14_32_12/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        238
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7000000551342964,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 134,
+      "town": "Town03_Opt",
+      "trace_sha256": "14432ad00ef623d08be159a3deaaf34ffc5a50677090b3f34d68859cb762a920",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00013/episodes/Town03_Opt_route0_10_18_14_32_30/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        238
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7000000551342964,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 134,
+      "town": "Town03_Opt",
+      "trace_sha256": "99155447fce285f3b1fd69913c92d4e01e9e99550c8aa0295f9c77050e89cbc0",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00014/episodes/Town03_Opt_route0_10_18_14_32_49/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        238
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7000000551342964,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 135,
+      "town": "Town03_Opt",
+      "trace_sha256": "30d4b29186c4c9296218c8cc74c41f0eb619f89bcffc9eddca1779bd55c70cda",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00015/episodes/Town03_Opt_route0_10_18_14_33_07/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        356
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 50
+    },
+    {
+      "route_id": 135,
+      "town": "Town03_Opt",
+      "trace_sha256": "756bd126ff315e11eaadbdd94e4f7d7701e661e123faff28aedf32809beb4ecb",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00016/episodes/Town03_Opt_route0_10_18_14_33_29/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        356
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 50
+    },
+    {
+      "route_id": 135,
+      "town": "Town03_Opt",
+      "trace_sha256": "7317b1a8c909a45cc7c0f09d8b8ebb40959662e444a21cff61d631adcd765ed2",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00017/episodes/Town03_Opt_route0_10_18_14_33_52/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        356
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 50
+    },
+    {
+      "route_id": 223,
+      "town": "Town04_Opt",
+      "trace_sha256": "ffd23bd6ebaccd658d62e6e8f2cb388d914046dfc44fbdd2a3e29bfcbf5d7f19",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00018/episodes/Town04_Opt_route0_10_18_14_34_16/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        1103
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6000000536441803,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 223,
+      "town": "Town04_Opt",
+      "trace_sha256": "a3d62bf722c7a031f6994af613ee3b5dd4cd1fe1f4bf330a6a8723f746f71f7a",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00019/episodes/Town04_Opt_route0_10_18_14_34_36/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        1103
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6000000536441803,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 223,
+      "town": "Town04_Opt",
+      "trace_sha256": "6950c7760668b415f118b7af6782ad3b4290cb25d07592256a7eaadbec0c72c1",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00020/episodes/Town04_Opt_route0_10_18_14_34_56/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        1103
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6000000536441803,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 225,
+      "town": "Town04_Opt",
+      "trace_sha256": "de9c1d29191cb807d1b21960aa1fe8a65e44186dadc91c6a310e158926d125af",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00021/episodes/Town04_Opt_route0_10_18_14_35_17/trace.jsonl",
+      "control_ticks": 340,
+      "actual_junction_ids": [
+        1249
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 2.2500000335276127,
+      "semantic_zero_speed_intent_onset_index": 68
+    },
+    {
+      "route_id": 225,
+      "town": "Town04_Opt",
+      "trace_sha256": "71b625de55de013e85d8f2b31b3fc7fc99ea9bd2b8420e9d36aeb3cd7f041de5",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00022/episodes/Town04_Opt_route0_10_18_14_35_39/trace.jsonl",
+      "control_ticks": 340,
+      "actual_junction_ids": [
+        1249
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 2.2500000335276127,
+      "semantic_zero_speed_intent_onset_index": 68
+    },
+    {
+      "route_id": 225,
+      "town": "Town04_Opt",
+      "trace_sha256": "7ee1d969fce309001a8f11f65a21e07fa6e8f086d69e3eceedd29ff9d97aa9a5",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_empty_approaches_20261018/episode_00023/episodes/Town04_Opt_route0_10_18_14_36_01/trace.jsonl",
+      "control_ticks": 340,
+      "actual_junction_ids": [
+        1249
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 2.2500000335276127,
+      "semantic_zero_speed_intent_onset_index": 68
+    }
+  ],
+  "source_sha256": "1f590b212722447d2e8dcb9ffd754b840a8231bf0b8b8389d2b066f408f78c51",
+  "collection_audit_sha256": "d82501657b0ac741a0be5fa626d9e97fec00db44ed39d3f309bc54cce77936b2",
+  "guard_sha256": "ebcb667da612212db1b1702ef661545c44c915f8e3f01d7867ca928631b05dab",
+  "scope": "TRAIN diagnostic only, not camera behavior"
+}

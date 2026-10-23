@@ -1,0 +1,19 @@
+{
+  "independent_oof_recount": true,
+  "independent_component_recount": true,
+  "all_seven_fits_400_trees": true,
+  "selected_before_final_fit": true,
+  "fold_fit_seconds": {
+    "binary400": [
+      4.716296031001548,
+      5.184596901002806,
+      4.973355918999005
+    ],
+    "joint100": [
+      5.045167486001446,
+      5.235873599995102,
+      5.297800590997213
+    ]
+  },
+  "assessment_sha256": "f040ffa91c3267739863989a5f297cd764b55ffd71702cbef134add2c8fd54fd"
+}

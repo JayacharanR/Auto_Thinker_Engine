@@ -1,0 +1,725 @@
+{
+  "records": [
+    {
+      "case": "signal0_empty_light_a0",
+      "case_sha256": "8eaff5ced4dbcd01502c0d75c2dc614d6da36b622a6010ef4f77ed0e47b9bffd",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "empty_light",
+        "arm": 0,
+        "conditions": {
+          "arrived_after_rule_response": true,
+          "observed_red_stop_near_line": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 24.900000371038914,
+        "maximum_displacement_m": 67.18509545438587,
+        "actual_handoff_speed_mps": 0.20567533373832703,
+        "actual_handoff_distance_m": 42.514685731390756,
+        "first_registered_line_crossing_s": 21.750000324100256,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_empty_light_a1",
+      "case_sha256": "c1c43d2cc50a070f4d3afb0a538cae38d1b33c1db4393ca6434cdbb3cda093a8",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "empty_light",
+        "arm": 1,
+        "conditions": {
+          "arrived_after_rule_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 7.200000107288361,
+        "maximum_displacement_m": 67.0940735696226,
+        "actual_handoff_speed_mps": 0.20567533373832703,
+        "actual_handoff_distance_m": 42.514685731390756,
+        "first_registered_line_crossing_s": 4.350000064820051,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_green_stopped_lead_a0",
+      "case_sha256": "09d400c53955f56b189b06570a6eeb4dcd261e859dce080947626a2d9118abef",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_stopped_lead",
+        "arm": 0,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 7.200000107288361,
+        "maximum_displacement_m": 67.0940735696226,
+        "actual_handoff_speed_mps": 0.20567533373832703,
+        "actual_handoff_distance_m": 42.514685731390756,
+        "first_registered_line_crossing_s": 4.350000064820051,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_green_stopped_lead_a1",
+      "case_sha256": "5b5f1552c8abd0d7679f9e50e43ac4d86e37ab21184f4c649c2b2e0744803a80",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_stopped_lead",
+        "arm": 1,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 38.40000057220459,
+        "maximum_displacement_m": 66.71934166913866,
+        "actual_handoff_speed_mps": 0.20567533373832703,
+        "actual_handoff_distance_m": 42.514685731390756,
+        "first_registered_line_crossing_s": 24.45000036433339,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_out_of_view_memory_a0",
+      "case_sha256": "32aca71402d7863cf204074758a51a7c59a424f6c010ccba5bf416ea75169a9e",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "out_of_view_memory",
+        "arm": 0,
+        "conditions": {
+          "full_eight_seconds": true,
+          "red_hold_displacement_at_most_half_m": true,
+          "speed_below_point_two": true,
+          "all_measured_phases_red": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": false,
+        "scored_seconds": 8.00000011920929,
+        "maximum_displacement_m": 8.392333984375e-05,
+        "actual_handoff_speed_mps": 0.00014024897245690227,
+        "actual_handoff_distance_m": 2.9999755672573865,
+        "first_registered_line_crossing_s": null,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_out_of_view_memory_a1",
+      "case_sha256": "4875de7cc59a11b814af00b8b9838d8322156df6e514e2d1cb27858c65863e71",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "out_of_view_memory",
+        "arm": 1,
+        "conditions": {
+          "green_history_departure_at_least_eight_m": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 4.700000070035458,
+        "maximum_displacement_m": 40.92536288612906,
+        "actual_handoff_speed_mps": 0.00014024897245690227,
+        "actual_handoff_distance_m": 2.9999755672573865,
+        "first_registered_line_crossing_s": 1.3500000201165676,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_yellow_distance_a0",
+      "case_sha256": "1fd52d0c51646527f8e3742ea35c22ff85bcf1f11266b410aae4866b4f2bec4a",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "yellow_distance",
+        "arm": 0,
+        "conditions": {
+          "cleared_during_observed_amber": false
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": false,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": false,
+        "scored_seconds": 12.000000178813934,
+        "maximum_displacement_m": 1.657234440585582,
+        "actual_handoff_speed_mps": 4.9776740074157715,
+        "actual_handoff_distance_m": 5.897879159475751,
+        "first_registered_line_crossing_s": null,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_yellow_distance_a1",
+      "case_sha256": "3979666b3ee9f6a999c2c66a48817b884ea70528f2511560155b67217e6976a5",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "yellow_distance",
+        "arm": 1,
+        "conditions": {
+          "full_twelve_seconds": true,
+          "no_registered_line_crossing": true,
+          "stopped_before_line": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": false,
+        "scored_seconds": 12.000000178813934,
+        "maximum_displacement_m": 29.513557667478498,
+        "actual_handoff_speed_mps": 5.014612197875977,
+        "actual_handoff_distance_m": 34.89675042788015,
+        "first_registered_line_crossing_s": null,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_green_clearing_cross_a0",
+      "case_sha256": "597dc3f08ed7ef83e1957d9177d5058fa5c86b2404372d6697da5c6aab6c29af",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_clearing_cross",
+        "arm": 0,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 4.300000064074993,
+        "maximum_displacement_m": 43.18790189006062,
+        "actual_handoff_speed_mps": 3.1766107082366943,
+        "actual_handoff_distance_m": 7.943075702450761,
+        "first_registered_line_crossing_s": 1.3000000193715096,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal0_green_clearing_cross_a1",
+      "case_sha256": "8bd6e0fa3b44ca603e2143750d439bab9ed490f30b19b61cf60cfd4c38513d38",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_clearing_cross",
+        "arm": 1,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 6.3000000938773155,
+        "maximum_displacement_m": 43.1659842947307,
+        "actual_handoff_speed_mps": 3.1766107082366943,
+        "actual_handoff_distance_m": 7.943075702450761,
+        "first_registered_line_crossing_s": 3.250000048428774,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_empty_light_a0",
+      "case_sha256": "c5c39e4de5a0aaee832b3a443067eb1e7fad48bd301e5405a34ec73bf9f7a92c",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "empty_light",
+        "arm": 0,
+        "conditions": {
+          "arrived_after_rule_response": true,
+          "observed_red_stop_near_line": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 24.75000036880374,
+        "maximum_displacement_m": 82.36180861359773,
+        "actual_handoff_speed_mps": 0.14554956555366516,
+        "actual_handoff_distance_m": 38.32023196072242,
+        "first_registered_line_crossing_s": 21.65000032261014,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_empty_light_a1",
+      "case_sha256": "bbecdd3b9123c7838baf73838e0136be86612ef342c962ae3c5f100833f711f4",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "empty_light",
+        "arm": 1,
+        "conditions": {
+          "arrived_after_rule_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 6.95000010356307,
+        "maximum_displacement_m": 82.72957567881619,
+        "actual_handoff_speed_mps": 0.14554956555366516,
+        "actual_handoff_distance_m": 38.32023196072242,
+        "first_registered_line_crossing_s": 4.200000062584877,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_green_stopped_lead_a0",
+      "case_sha256": "06051efb27ea44eea432dd1ead865ca2df31e785bc2b949985daa59a80cbcfdb",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_stopped_lead",
+        "arm": 0,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 6.95000010356307,
+        "maximum_displacement_m": 82.72957567881619,
+        "actual_handoff_speed_mps": 0.14554956555366516,
+        "actual_handoff_distance_m": 38.32023196072242,
+        "first_registered_line_crossing_s": 4.200000062584877,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_green_stopped_lead_a1",
+      "case_sha256": "67f932335fef7ece5174cb6309c5d8d6ee21d18739035596b8a292f79c625f41",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_stopped_lead",
+        "arm": 1,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 37.000000551342964,
+        "maximum_displacement_m": 81.70635232238114,
+        "actual_handoff_speed_mps": 0.14554956555366516,
+        "actual_handoff_distance_m": 38.32023196072242,
+        "first_registered_line_crossing_s": 23.350000347942114,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_out_of_view_memory_a0",
+      "case_sha256": "f558ba6642dfc069bd4f04fd267ad7bc10116dbfc022d9f9daabccf48fdca097",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "out_of_view_memory",
+        "arm": 0,
+        "conditions": {
+          "full_eight_seconds": true,
+          "red_hold_displacement_at_most_half_m": true,
+          "speed_below_point_two": true,
+          "all_measured_phases_red": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": false,
+        "scored_seconds": 8.00000011920929,
+        "maximum_displacement_m": 4.57763671875e-05,
+        "actual_handoff_speed_mps": 5.742150460719131e-05,
+        "actual_handoff_distance_m": 2.9987067544016948,
+        "first_registered_line_crossing_s": null,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_out_of_view_memory_a1",
+      "case_sha256": "1cf6c16a4ba607c0532a450b7a84b4a35618ee449dbd6813cadac9c053010344",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "out_of_view_memory",
+        "arm": 1,
+        "conditions": {
+          "green_history_departure_at_least_eight_m": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 4.6500000692903996,
+        "maximum_displacement_m": 47.80332989619642,
+        "actual_handoff_speed_mps": 5.742150460719131e-05,
+        "actual_handoff_distance_m": 2.9987067544016948,
+        "first_registered_line_crossing_s": 1.3500000201165676,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_yellow_distance_a0",
+      "case_sha256": "138a2a9f523d5dda94adaf60d58de82ffc7dadfcf68a1c3c21e789cc5ead0520",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "yellow_distance",
+        "arm": 0,
+        "conditions": {
+          "cleared_during_observed_amber": false
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": false,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": false,
+        "scored_seconds": 12.000000178813934,
+        "maximum_displacement_m": 2.7675173796288113,
+        "actual_handoff_speed_mps": 5.041833877563477,
+        "actual_handoff_distance_m": 5.954228310909141,
+        "first_registered_line_crossing_s": null,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_yellow_distance_a1",
+      "case_sha256": "098bb0ae4ed0f4f9a52b7f4c998e790ee6ff74f5acefa3db7e19a0c4af381790",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "yellow_distance",
+        "arm": 1,
+        "conditions": {
+          "full_twelve_seconds": true,
+          "no_registered_line_crossing": true,
+          "stopped_before_line": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": false,
+        "scored_seconds": 12.000000178813934,
+        "maximum_displacement_m": 30.404150042280712,
+        "actual_handoff_speed_mps": 5.084855079650879,
+        "actual_handoff_distance_m": 34.96984371682801,
+        "first_registered_line_crossing_s": null,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_green_clearing_cross_a0",
+      "case_sha256": "e3c56434988da5b585ca72558f14bd0efc029e2b3509b329534294f4ed4ed390",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_clearing_cross",
+        "arm": 0,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 4.200000062584877,
+        "maximum_displacement_m": 51.91736000031768,
+        "actual_handoff_speed_mps": 3.1745877265930176,
+        "actual_handoff_distance_m": 7.880955937886488,
+        "first_registered_line_crossing_s": 1.3000000193715096,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "signal1_green_clearing_cross_a1",
+      "case_sha256": "98ce482ef0d23132494334eb7e64d7700282f2e29467472b661e09be0a9472d7",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "green_clearing_cross",
+        "arm": 1,
+        "conditions": {
+          "arrived_after_obstacle_response": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 5.850000087171793,
+        "maximum_displacement_m": 51.93156583966537,
+        "actual_handoff_speed_mps": 3.1745877265930176,
+        "actual_handoff_distance_m": 7.880955937886488,
+        "first_registered_line_crossing_s": 2.9000000432133675,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "stop0_stop_and_release_a0",
+      "case_sha256": "ef864ac654507c605a2538dadcaf764663d45410aceae7b7f2815c20f7779b86",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "stop_and_release",
+        "arm": 0,
+        "conditions": {
+          "native_stop_compliant": true,
+          "physical_stop_near_approach": true,
+          "departed": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 7.850000116974115,
+        "maximum_displacement_m": 61.90987201230126,
+        "actual_handoff_speed_mps": 7.220550469355658e-05,
+        "actual_handoff_distance_m": 3.000081077039026,
+        "first_registered_line_crossing_s": 3.450000051409006,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "stop0_stop_and_release_a1",
+      "case_sha256": "009cf12046ae83b40acc23f27aafdfe8f1e0edc7a70e691c33b05c3c662bc7a3",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "stop_and_release",
+        "arm": 1,
+        "conditions": {
+          "native_stop_compliant": true,
+          "physical_stop_near_approach": true,
+          "departed": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 7.250000108033419,
+        "maximum_displacement_m": 61.796445104574914,
+        "actual_handoff_speed_mps": 2.1729204654693604,
+        "actual_handoff_distance_m": 2.895160446736979,
+        "first_registered_line_crossing_s": 2.8500000424683094,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "stop1_stop_and_release_a0",
+      "case_sha256": "f58ea5fab95bd4ccfef158e4ab884c4fe4fb4320de9bd9b89d14ac4422fc3d86",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "stop_and_release",
+        "arm": 0,
+        "conditions": {
+          "native_stop_compliant": true,
+          "physical_stop_near_approach": true,
+          "departed": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 7.700000114738941,
+        "maximum_displacement_m": 40.060607630412136,
+        "actual_handoff_speed_mps": 0.0002330520801478997,
+        "actual_handoff_distance_m": 2.9802183929009964,
+        "first_registered_line_crossing_s": 2.1000000312924385,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    },
+    {
+      "case": "stop1_stop_and_release_a1",
+      "case_sha256": "9cb3f4b6aa827123d1c77ed74cba194d9a6a2b1b69f49d5b77e67e7219b50eeb",
+      "policy_kind": "CONTROLLED_COMPONENT_privileged_pdm_lite_modified",
+      "behavior": {
+        "family": "stop_and_release",
+        "arm": 1,
+        "conditions": {
+          "native_stop_compliant": true,
+          "physical_stop_near_approach": true,
+          "departed": true
+        },
+        "common_safety_condition": true,
+        "behavior_condition_satisfied": true,
+        "setup_validated": false,
+        "passed": false,
+        "all_attempt_contact_starts": 0,
+        "recorder_complete": true,
+        "native_red": 0,
+        "native_stop": 0,
+        "observed_registered_line_red_crossing": false,
+        "arrived": true,
+        "scored_seconds": 7.050000105053186,
+        "maximum_displacement_m": 40.00284302644594,
+        "actual_handoff_speed_mps": 2.342102289199829,
+        "actual_handoff_distance_m": 2.948717754300548,
+        "first_registered_line_crossing_s": 1.4000000208616257,
+        "autonomous_route_success_claim": false,
+        "interpretation": "Setup certification and behavior are distinct; no learned-rule claim from an expert."
+      }
+    }
+  ],
+  "source_sha256": "6040581d53458808fec576e3e4b25ecf7caab145454e59896757854604c7b580",
+  "certified_student_passes": 0,
+  "note": "All reference conditions preliminary; certificate not issued. Original invalid Town01memory retained.",
+  "archived_source": "reports/navigation_reference_rule_behavior_20261020_source.py",
+  "reference_records_sha256": "89d487a5a548d9fa27eff9d9a6b6290225777e160a3ddf1379c56698cb0e0646"
+}

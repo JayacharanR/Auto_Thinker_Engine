@@ -1,5 +1,11 @@
 # Phase 4: Future Work — Joint JEPA+RSSM Co-training
 
+> **Historical design note.** The project is paused by the user as of
+> 23 October 2026. This proposed joint-training phase was not implemented or
+> validated. Current priorities, completed experiments and restart prerequisites
+> are in [the detailed project report](journey/summary.md#11-future-work-in-a-sensible-order).
+> No training is authorized while paused.
+
 **Status:** Designed but explicitly out of scope for the current implementation.
 This document records the design rationale for future execution.
 

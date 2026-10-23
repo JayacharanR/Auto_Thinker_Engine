@@ -85,7 +85,11 @@ def settle_group(args, xml, group, base, slot=0, gate=None, launch=True):
             todo = [r for r in group if r not in finals and failures[r] < 2]
             if not todo or not launch or (args.out / "STOP").exists() or not_started >= 3:
                 return attempts, finals
-            subset = f"{todo[0]}-{todo[-1]}" if todo == group else ",".join(map(str, todo))
+            subset = (
+                f"{todo[0]}-{todo[-1]}"
+                if todo == group and not getattr(args, "final_registration", None)
+                else ",".join(map(str, todo))
+            )
             atomic_json(routes_file, todo)  # run_navigation requires an empty attempt dir
             run_chunk(args, xml, subset, chunk, slot, gate)
         asked = json.loads(routes_file.read_text())
@@ -177,12 +181,27 @@ def memory_watchdog(gate, critical_gb, events, state, done):
 
 
 def run_chunk(args, xml, subset, chunk, slot=0, gate=None):
+    checkpoint = getattr(args, "checkpoint", None)
+    if (
+        checkpoint
+        and hashlib.sha256(Path(checkpoint).read_bytes()).hexdigest() != args.checkpoint_sha256
+    ):
+        raise ValueError("Camera checkpoint changed during the registered encounter run")
     command = [
-        sys.executable, "-u", str(ROOT / "scripts/run_navigation.py"), "expert",
+        sys.executable, "-u", str(ROOT / "scripts/run_navigation.py"),
+        "student" if checkpoint else "expert",
         "--route", str(xml), "--routes-subset", subset, "--seed", str(args.seed),
-        "--seed-per-route", "--out", str(chunk), "--max-wall", str(args.chunk_wall),
+        "--out", str(chunk), "--max-wall", str(args.chunk_wall),
         "--slot", str(slot),
     ]  # fmt: skip
+    if getattr(args, "final_registration", None):
+        command.extend(["--final-registration", str(args.final_registration)])
+    else:
+        command.append("--seed-per-route")
+    if checkpoint:
+        command.extend(["--checkpoint", str(checkpoint)])
+        if getattr(args, "rule_overrides", False):
+            command.append("--rule-overrides")
     with (chunk.parent / f"{chunk.name}_console.log").open("a") as log:
         if gate is None:
             child = subprocess.Popen(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
@@ -250,6 +269,8 @@ def main():
     parser.add_argument("--towns", nargs="*")
     parser.add_argument("--workers", type=int, default=1, help="Parallel server slots")
     parser.add_argument("--config", default="configs/navigation.yaml")
+    parser.add_argument("--checkpoint", type=Path, help="Camera candidate; omitted runs the expert")
+    parser.add_argument("--rule-overrides", action="store_true")
     parser.add_argument(
         "--min-ram-gb", type=float, default=12.0, help="Available RAM needed to start a server"
     )
@@ -260,6 +281,14 @@ def main():
         "--critical-ram-gb", type=float, default=6.0, help="Pause the newest chunk below this"
     )
     args = parser.parse_args()
+    if args.rule_overrides and not args.checkpoint:
+        parser.error("Rule overrides apply only to a camera candidate")
+    if args.checkpoint:
+        from scripts.run_navigation import checkpoint_metadata
+
+        args.checkpoint = args.checkpoint.resolve()
+        metadata = checkpoint_metadata(args.checkpoint)
+        args.checkpoint_sha256 = hashlib.sha256(args.checkpoint.read_bytes()).hexdigest()
     runtime = yaml.safe_load((ROOT / args.config).read_text())["runtime"]
     if not 1 <= args.workers <= runtime["max_servers"]:
         raise ValueError(f"--workers must be within 1..{runtime['max_servers']}")
@@ -275,6 +304,13 @@ def main():
     # Worker count changes wall time, never chunk composition, seeds or results.
     request = {"catalog": str(catalog_dir), "catalog_sha256": digest, "seed": args.seed,
                "chunk": args.chunk, "policy_kind": "privileged_pdm_lite_modified"}  # fmt: skip
+    if args.checkpoint:
+        request.update(
+            policy_kind=metadata["architecture"] + "_map_ego",
+            checkpoint=str(args.checkpoint),
+            checkpoint_sha256=args.checkpoint_sha256,
+            rule_overrides=args.rule_overrides,
+        )
     previous = args.out / "request.json"
     if previous.exists() and json.loads(previous.read_text()) != request:
         raise ValueError("Output directory belongs to a different catalog/seed/chunk request")
@@ -292,9 +328,10 @@ def main():
 
     def progress(status="running"):
         done = len(finals)
+        stage = "encounter camera candidate" if args.checkpoint else "encounter expert ceiling"
         atomic_json(
             args.out / "progress.json",
-            {"status": status, "stage": "encounter expert ceiling", "route_progress_percent":
+            {"status": status, "stage": stage, "route_progress_percent":
              100 * done / total, "frames": done, "target_frames": 0, "encounters_done": done,
              "encounters_total": total, "current_chunk": ", ".join(sorted(current.values()))
              or None, "workers": args.workers, "errors": errors, "memory_pauses":

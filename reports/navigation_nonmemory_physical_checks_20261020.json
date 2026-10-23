@@ -1,0 +1,107 @@
+{
+  "passed": [
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_empty_light_a0/case.json",
+      "frames": 499,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_empty_light_a1/case.json",
+      "frames": 145,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_green_stopped_lead_a0/case.json",
+      "frames": 145,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_green_stopped_lead_a1/case.json",
+      "frames": 769,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_yellow_distance_a0/case.json",
+      "frames": 409,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_yellow_distance_a1/case.json",
+      "frames": 294,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_green_clearing_cross_a0/case.json",
+      "frames": 323,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal0_green_clearing_cross_a1/case.json",
+      "frames": 363,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_empty_light_a0/case.json",
+      "frames": 496,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_empty_light_a1/case.json",
+      "frames": 140,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_green_stopped_lead_a0/case.json",
+      "frames": 140,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_green_stopped_lead_a1/case.json",
+      "frames": 741,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_yellow_distance_a0/case.json",
+      "frames": 392,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_yellow_distance_a1/case.json",
+      "frames": 277,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_green_clearing_cross_a0/case.json",
+      "frames": 295,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/signal1_green_clearing_cross_a1/case.json",
+      "frames": 328,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/stop0_stop_and_release_a0/case.json",
+      "frames": 644,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/stop0_stop_and_release_a1/case.json",
+      "frames": 600,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/stop1_stop_and_release_a0/case.json",
+      "frames": 541,
+      "source_equivalence": true
+    },
+    {
+      "case": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_rule_cases_v3_20261019/stop1_stop_and_release_a1/case.json",
+      "frames": 496,
+      "source_equivalence": true
+    }
+  ],
+  "errors": [],
+  "certified": false,
+  "student_results": 0
+}

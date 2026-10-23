@@ -1,0 +1,597 @@
+{
+  "status": "Selected ROI500 and expanded state component; M2 open, no driver promotion",
+  "roi_adapter": {
+    "status": "complete",
+    "selected_step": 500,
+    "candidate_improved": true,
+    "selected_validation": {
+      "selection_score": 0.10571434711427072,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 44,
+        "detected_iou5": 36,
+        "detected_iou3_state_correct": 29,
+        "images": 144,
+        "predictions": 578,
+        "approximate_background_candidates": 160
+      },
+      "mean_three_view_seconds": 0.18642408153201803,
+      "p95_three_view_seconds": 0.1916735236001841,
+      "by_native_height": {
+        "8to15px": [
+          20,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          20,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 44,
+        "iou5": 36,
+        "iou3_state_correct": 29,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            22,
+            32
+          ]
+        }
+      },
+      "prospective_operational_guard_passed": true
+    },
+    "latest_validation": {
+      "selection_score": 0.1084279330785244,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 40,
+        "detected_iou5": 34,
+        "detected_iou3_state_correct": 26,
+        "images": 144,
+        "predictions": 588,
+        "approximate_background_candidates": 156
+      },
+      "mean_three_view_seconds": 0.18555221731924362,
+      "p95_three_view_seconds": 0.19133653369935927,
+      "by_native_height": {
+        "8to15px": [
+          17,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          19,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 40,
+        "iou5": 34,
+        "iou3_state_correct": 26,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            5,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            19,
+            32
+          ]
+        }
+      },
+      "prospective_operational_guard_passed": false
+    },
+    "initialization_validation": {
+      "selection_score": 0.12609423873042638,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 36,
+        "detected_iou5": 25,
+        "detected_iou3_state_correct": 26,
+        "images": 144,
+        "predictions": 728,
+        "approximate_background_candidates": 209
+      },
+      "mean_three_view_seconds": 0.1813760058298322,
+      "p95_three_view_seconds": 0.19994559610004214,
+      "by_native_height": {
+        "8to15px": [
+          17,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          15,
+          40
+        ]
+      },
+      "rpn_proposals": {
+        "denominator": 72,
+        "iou3": 69,
+        "iou5": 51,
+        "total_proposals": 144000
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 36,
+        "iou5": 25,
+        "iou3_state_correct": 26,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            14,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    },
+    "frozen_parameters_and_buffers_unchanged": true,
+    "frozen_sha256": "81686eee5ba8bee928075d70f1ac919933a5161a5700b4a778c9cb933ccd8114",
+    "cache_sha256": "671846b832c0e1b07557a4b3a9967aae0e26ce8e5536a8e09fb3617c23ed3fbe",
+    "best_candidate_sha256": "2dbd3e56c7de29c5f1b79c284f7fe0f704ec659e43b0a4885583ca2f108ee507",
+    "wall_seconds": 147.60595066600035,
+    "trainable_parameters": 65665,
+    "peak_allocated_gb": 1.938381312,
+    "scope": "Prospectively selected perception candidate only; original driver unchanged"
+  },
+  "roi_history": [
+    {
+      "step": 0,
+      "reused_exact_joint200": true,
+      "selection_score": 0.12609423873042638,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 36,
+        "detected_iou5": 25,
+        "detected_iou3_state_correct": 26,
+        "images": 144,
+        "predictions": 728,
+        "approximate_background_candidates": 209
+      },
+      "mean_three_view_seconds": 0.1813760058298322,
+      "p95_three_view_seconds": 0.19994559610004214,
+      "by_native_height": {
+        "8to15px": [
+          17,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          15,
+          40
+        ]
+      },
+      "rpn_proposals": {
+        "denominator": 72,
+        "iou3": 69,
+        "iou5": 51,
+        "total_proposals": 144000
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 36,
+        "iou5": 25,
+        "iou3_state_correct": 26,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            14,
+            32
+          ]
+        }
+      },
+      "parent_guard_passed": true
+    },
+    {
+      "step": 250,
+      "selection_score": 0.1061578669198045,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 44,
+        "detected_iou5": 35,
+        "detected_iou3_state_correct": 29,
+        "images": 144,
+        "predictions": 613,
+        "approximate_background_candidates": 176
+      },
+      "mean_three_view_seconds": 0.1863347845105733,
+      "p95_three_view_seconds": 0.1915290522008945,
+      "by_native_height": {
+        "8to15px": [
+          20,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          20,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 44,
+        "iou5": 35,
+        "iou3_state_correct": 29,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            22,
+            32
+          ]
+        }
+      },
+      "prospective_operational_guard_passed": true
+    },
+    {
+      "step": 500,
+      "selection_score": 0.10571434711427072,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 44,
+        "detected_iou5": 36,
+        "detected_iou3_state_correct": 29,
+        "images": 144,
+        "predictions": 578,
+        "approximate_background_candidates": 160
+      },
+      "mean_three_view_seconds": 0.18642408153201803,
+      "p95_three_view_seconds": 0.1916735236001841,
+      "by_native_height": {
+        "8to15px": [
+          20,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          20,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 44,
+        "iou5": 36,
+        "iou3_state_correct": 29,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            22,
+            32
+          ]
+        }
+      },
+      "prospective_operational_guard_passed": true
+    },
+    {
+      "step": 1000,
+      "selection_score": 0.1084279330785244,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 40,
+        "detected_iou5": 34,
+        "detected_iou3_state_correct": 26,
+        "images": 144,
+        "predictions": 588,
+        "approximate_background_candidates": 156
+      },
+      "mean_three_view_seconds": 0.18555221731924362,
+      "p95_three_view_seconds": 0.19133653369935927,
+      "by_native_height": {
+        "8to15px": [
+          17,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          19,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 40,
+        "iou5": 34,
+        "iou3_state_correct": 26,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            5,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            19,
+            32
+          ]
+        }
+      },
+      "prospective_operational_guard_passed": false
+    }
+  ],
+  "state_expansion": {
+    "complete": true,
+    "candidate_accepted": true,
+    "fixed_detections": 44,
+    "denominator": 72,
+    "old_joint_state": 29,
+    "new_joint_state": 31,
+    "old_original_detector_roi_correct": 24,
+    "new_original_detector_roi_correct": 27,
+    "old_privileged_oracle_correct": 68,
+    "new_privileged_oracle_correct": 66,
+    "one_to_one": {
+      "denominator": 72,
+      "iou3": 44,
+      "iou5": 36,
+      "iou3_state_correct": 31,
+      "by_town": {
+        "Town01_Opt": [
+          4,
+          8
+        ],
+        "Town03_Opt": [
+          6,
+          20
+        ],
+        "Town04_Opt": [
+          12,
+          12
+        ],
+        "Town10HD_Opt": [
+          22,
+          32
+        ]
+      }
+    },
+    "exported_prediction_parity": true,
+    "box_score_identity_preserved": true,
+    "source_labels": 642,
+    "augmented_crops": 10272,
+    "source_weight": 641.9999999999999,
+    "fit_seconds": 0.8801538049992814,
+    "wall_seconds": 10.152317578000293,
+    "optimizer_iterations": [
+      50
+    ],
+    "artifact_sha256": "f4171de1e652e1f53b64089145e38dacd4a353199a4a097c3712d6c2259c17c4",
+    "scope": "Fixed predicted-ROI state component; oracle separate; no driving promotion"
+  },
+  "bundle": {
+    "kind": "Selected development perception components only, not a driving policy",
+    "detector_architecture": "signal-detector-roi-residual-v1",
+    "detector_checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_signal_roi_adapter_20261016/best_candidate.pt",
+    "detector_sha256": "2dbd3e56c7de29c5f1b79c284f7fe0f704ec659e43b0a4885583ca2f108ee507",
+    "state_classifier": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_signal_state_expansion_20261016/expanded_rgb_linear.npz",
+    "state_sha256": "f4171de1e652e1f53b64089145e38dacd4a353199a4a097c3712d6c2259c17c4",
+    "expanded_state_accepted": true,
+    "selected_joint_state": 31,
+    "fixed_detection_count": 44,
+    "driving_policy_changed": false,
+    "evaluation_sha256": "50a362832a94139694a42920a01c9041b9c68116d51d34a223576368439d07c5"
+  },
+  "validation_payload_sha256": "9ab66584c129e8a84a676512bad8b693dd9f82d2df5de2f1a8c74a3edcb0bd2f",
+  "cache_rows_verified": 30824,
+  "verified_native_images": 1800,
+  "paired_detection_diagnostic": {
+    "retained": 36,
+    "lost": 0,
+    "gained": 8
+  },
+  "matched_state_confusions": {
+    "old_state_on_selected44": {
+      "matrix": [
+        [
+          15,
+          9,
+          0
+        ],
+        [
+          1,
+          8,
+          1
+        ],
+        [
+          0,
+          4,
+          6
+        ]
+      ],
+      "matched_red_classified_green": 0,
+      "class_order": [
+        "Red",
+        "Yellow",
+        "Green"
+      ],
+      "matched_only": true
+    },
+    "expanded_state_on_selected44": {
+      "matrix": [
+        [
+          15,
+          9,
+          0
+        ],
+        [
+          1,
+          9,
+          0
+        ],
+        [
+          0,
+          3,
+          7
+        ]
+      ],
+      "matched_red_classified_green": 0,
+      "class_order": [
+        "Red",
+        "Yellow",
+        "Green"
+      ],
+      "matched_only": true
+    }
+  },
+  "cached_train_diagnostic": {
+    "initial": {
+      "balanced_train_ce": 0.7245162352919579,
+      "unlabelled_teacher_kl": -3.259363057228626e-10,
+      "objective": 0.7245162349660216,
+      "positive_gt_accepted": 545,
+      "positive_gt_total": 642,
+      "certified_negative_accepted": 124,
+      "certified_negative_total": 440,
+      "scope": "CPU cached TRAIN ROI diagnostic, not validation/driving accuracy"
+    },
+    "selected": {
+      "balanced_train_ce": 0.30090585723519325,
+      "unlabelled_teacher_kl": 0.010479609481990337,
+      "objective": 0.3113854667171836,
+      "positive_gt_accepted": 592,
+      "positive_gt_total": 642,
+      "certified_negative_accepted": 27,
+      "certified_negative_total": 440,
+      "scope": "CPU cached TRAIN ROI diagnostic, not validation/driving accuracy"
+    },
+    "latest_rejected": {
+      "balanced_train_ce": 0.29998043179512024,
+      "unlabelled_teacher_kl": 0.006994194816797972,
+      "objective": 0.3069746266119182,
+      "positive_gt_accepted": 593,
+      "positive_gt_total": 642,
+      "certified_negative_accepted": 27,
+      "certified_negative_total": 440,
+      "scope": "CPU cached TRAIN ROI diagnostic, not validation/driving accuracy"
+    }
+  },
+  "frozen_base_parameters_and_buffers_equal_joint200": true,
+  "preserved_artifacts": {
+    "outputs/navigation_m2_stop_go_20261016/best_policy.pt": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+    "outputs/navigation_m2_cache_20k_20261015/manifest.json": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae",
+    "outputs/navigation_m2_signal_crop_alignment_20261016/robust_rgb_linear.npz": "ca08ac5a7c301c76489a9fc8cde692a9da213c0fa679fd7307e7dc0d2a6b5de2",
+    "outputs/navigation_m2_signal_detector_20261016/best_component.pt": "8df27ee218056e392cc5ddb0f50fef9263a1e8b81517b1d5ecbeba8038a6e49b"
+  },
+  "evidence_sha256": {
+    "outputs/navigation_m2_signal_roi_adapter_20261016/request.json": "c4449d48992bf607139aa4608726628b98c25a20c15fcd3bdefbcabaa96855b2",
+    "outputs/navigation_m2_signal_state_expansion_20261016/request.json": "3c7eb8a57b8791d406e5e3c539b17b98be2c9224529bed08bbe74088fd783382",
+    "outputs/navigation_m2_signal_corpus_v2_20261016/request.json": "10f3019baac2c36ee61b2039bbe25c77c152997e15d9ad0c6df66bcb4be3a01e",
+    "outputs/navigation_m2_signal_expansion_20261016/request.json": "43ef930edf9e8368c50ec09acfd546da78a05c6c1a005ce09a12821576bb5dd6",
+    "outputs/navigation_m2_signal_detector_20261016/request.json": "db54c404048d26890ae93c2cad915b05f5d385216c51f82ef2b6f8225e38960b",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/request.json": "22f69c963db0827e30cbf79a644e820221663a97a284d8a12f1ccf2bfbd0450a",
+    "outputs/navigation_m2_signal_roi_adapter_20261016/review.json": "ea142969493334f6d9b499a1f13d56226d2bc1c3fe5974a5aed8904de31b4b87",
+    "outputs/navigation_m2_signal_state_expansion_20261016/assessment.json": "50a362832a94139694a42920a01c9041b9c68116d51d34a223576368439d07c5",
+    "outputs/navigation_m2_signal_state_expansion_20261016/perception_bundle.json": "ad5d2916ac33cf6d3e34ce3938bc596417d94bfefcc00a86db33474f39d46f5b",
+    "outputs/navigation_m2_signal_roi_adapter_20261016/cache_manifest.json": "99d29b5c991d8705a625a06427674b7c524ba09d3711758789f161c82dc7147a",
+    "outputs/navigation_m2_signal_roi_adapter_20261016/validation.jsonl": "6a19fb767190749b4a46f747c38c0ddbcc63e94438ea65388336fba2d9c4c34e",
+    "outputs/navigation_m2_signal_roi_adapter_20261016/predictions_step0.json": "3304d4b2b5e38744146f3c4bcc9f3db92f5dbc92f4fee3584384a02dbc628a9b",
+    "outputs/navigation_m2_signal_roi_adapter_20261016/predictions_step250.json": "d31cc82ecbbf3b0d47b3ef2ff5b8d5b8aea32d31aa0f09a20b2c9c520c232cb5",
+    "outputs/navigation_m2_signal_roi_adapter_20261016/predictions_step500.json": "24ec5bc1cbc33e4fd14fe81cf4e4a6136725eefbb201315bc9ee17c6a36f1ee7",
+    "outputs/navigation_m2_signal_roi_adapter_20261016/predictions_step1000.json": "397f4436865ddd80a2391b236fe7b6bc4ac20a4d2f69b2bc557811ae28737707",
+    "outputs/navigation_m2_signal_joint_expansion_20261016/predictions_step200.json": "3304d4b2b5e38744146f3c4bcc9f3db92f5dbc92f4fee3584384a02dbc628a9b",
+    "outputs/navigation_m2_signal_state_expansion_20261016/predictions_expanded_state.json": "37d2a05f57cfe4752c543f92efa571928ec380ed456654926631c68fa43858d0"
+  },
+  "summary_source_sha256": "e51d774fcc6ad28834a713b4abcb5d7d8519655e681416b2abc9106233f570da",
+  "limitations": [
+    "72 correlated labels at four previously inspected development junctions",
+    "COCO supervised features, geometry/semantic labels and unequal stage budgets; not JEPA ablation",
+    "Negative candidates approximate; not exhaustive precision or detection AP",
+    "Only top16 TRAIN proposals/image distilled; not a complete proposal-distribution guarantee",
+    "28 known lights missed and13 matched states wrong; no ego-lane/temporal/driving claim",
+    "Oracle exact-crop state68->66/72 is privileged and separate from31/72 pipeline",
+    "No heldout_dev/Town05 use or changed historical selection"
+  ]
+}

@@ -1,0 +1,281 @@
+Evaluating Self-Supervised Video Encoders for World-Model Driving in CARLA
+
+[Author name(s)]
+
+[Department / programme]
+
+[Institution / organization]
+
+[City, country]
+
+[Email address(es) / ORCID]
+
+
+
+Abstract—This paper studies whether self-supervised video representations improve simulated driving under a single laptop GPU budget. Auto Thinker Engine combines DreamerV3 with CARLA through CarDreamer and compares a trainable convolutional encoder with custom dash-camera JEPA and frozen V-JEPA 2 features. Across two right-turn training seeds, the video encoders reach full evaluated success while the convolutional baseline averages fifty percent; weather robustness improves, but traffic performance remains weak. We extend the investigation to synchronized three-camera navigation, five-encoder label-efficiency comparisons, rule counterfactuals and action-conditioned hazard prediction. The corrected study completes sixty-seven fits, yet better offline scores do not predict safer closed-loop behavior. A camera policy completes a familiar 1.376 km route without recorded contacts, while separate traffic-rule tests and learned hazard models fail their qualification gates. Full-distribution signal audits expose a recall versus false-detection tradeoff. Exact preprocessing acceleration reduces a measured feature-and-classifier path to about twenty-three milliseconds per image. The results support representation benefits on constrained tasks while identifying perception, calibration and evaluation gaps that prevent a claim of reliable urban autonomy.
+
+Keywords—autonomous driving, self-supervised learning, joint-embedding predictive architecture, world models, model-based reinforcement learning, CARLA
+
+I. Introduction
+
+Learning to drive from camera observations requires scene understanding, temporal memory and decisions about when to stop, yield or proceed. Model-based reinforcement learning offers a way to practice decisions in a learned latent model rather than relying only on expensive simulator interaction. DreamerV3 provides this foundation [1], and CARLA and CarDreamer provide controllable driving environments [2], [3].
+
+The central question is whether real-video pretraining improves learning efficiency and robustness compared with a visual encoder trained from scratch. A second question is whether these gains survive the transition from one maneuver to destination-directed driving with traffic rules. Project measurements come from versioned contracts and audited artifacts [11]. We report both positive and negative results. The contribution is a laptop-scale experimental pipeline with explicit input boundaries, corrected data splits, full-denominator evaluation and reproducible failure analysis, rather than a claim of solved self-driving.
+
+
+
+II. Related Work and Research Gap
+
+Table I positions the project against representative primary work. Dreamer learns control through latent imagination [1]. V-JEPA learns predictive video representations without pixel reconstruction [4], while V-JEPA 2 adds action-conditioned planning demonstrations in robotics [5]. These findings motivate, but do not establish, an autonomous-driving benefit. DINOv2 and supervised ResNet provide distinct visual baselines [6], [7].
+
+TABLE I. Literature review and relevance
+
+The unresolved research gap is the connection between representation quality, decision-critical perception and closed-loop reliability. A pretrained encoder can reduce an offline loss while missing a distant traffic light or producing an unsafe action. This project therefore evaluates representation learning, perception, hazard prediction and driving as separate evidence requirements.
+
+
+
+III. Proposed Design and Methodology
+
+
+
+Fig. 1. Project architecture. Dashed boxes mark staged signal perception and the predictive-planning branch, whose learned models remain rejected. Solid paths summarize implemented experimental branches. Privileged labels never become camera-policy inputs.
+
+
+
+A. Historical Dreamer encoder experiment
+
+The first branch in Fig. 1 uses DreamerV3 in PyTorch, with CarDreamer supplying observations, rewards and terminal events. A 64 × 64 RGB decoder target and an identical 23-dimensional route/ego vector are retained across encoder arms. The scratch CNN learns jointly with the recurrent state-space model (RSSM). Frozen video encoders supply features through a trainable adapter with a 1,024-dimensional target. An actor and critic learn from imagined latent rollouts; actions use the same discrete actuator table.
+
+The custom encoder is a ViT-S/16 JEPA pretrained on real dash-camera video, initially using 128-pixel, eight-frame clips. The transferred checkpoint is frozen during Dreamer learning. The V-JEPA 2 arm uses the frozen facebook/vjepa2-vitl-fpc64-256 checkpoint. The historical experiment is a feature-transfer test; it does not deploy the original V-JEPA 2 action-conditioned robot planner. The shared reward includes the previously established time penalty of 0.1, and the comparison does not retrospectively change that reward.
+
+B. Multi-camera destination navigation
+
+The second branch extends the task to three calibrated RGB cameras at yaw angles of 0 and ±60 degrees. Each image is 512 × 288 pixels with a 100-degree field of view. A frame-ID barrier aligns all views with the observation timestamp. Camera calibration, navigation waypoints, ego motion and timestamps form the declared policy inputs. An approved versioned extension adds only the ego vehicle’s previously applied steering, throttle and brake, with frame identifiers; it is identical for CV, RSSM and JEPA comparisons.
+
+
+
+C. Path, speed and temporal decisions
+
+Navigation geometry supplies an ego-frame route centerline. A recurrent visual policy predicts a path correction separately from the speed/stop profile, reducing the burden of learning route geometry from scratch. The physical controller converts the resulting plan to steering, throttle and brake. This separation focuses learning on stopping, yielding and release decisions. It is an engineering design choice, not evidence that the policy has learned traffic rules.
+
+The nominal runtime uses a 20 Hz physics and sensor cycle, 10 Hz history sampling and 5 Hz planning. These are configured cadences; measured full-system throughput is reported separately. A four-second planning horizon contains eight path/speed waypoints. Predictive-planning experiments compare a grid of three paths and five speed profiles, producing fifteen candidate plans.
+
+D. Predictive models and privilege separation
+
+Constant-velocity forecasts form the explicit planning baseline. Three-member JEPA and RSSM ensembles predict first-contact hazards from past RGB-derived observations, spatial features, ego/navigation inputs, own-action history and prospective commands. Future video is a training target only. Privileged actor states, simulator traffic-light states and expert controls are restricted to collection, supervision and scoring. An unexecuted alternative action has an unknown outcome unless it is physically branched and observed.
+
+Expert demonstrations, student behavior and bounded action perturbations address covariate shift. Safety interventions censor subsequent outcomes rather than converting an unsafe action into a successful training example. Exact prefix comparisons test replay agreement, while native recorder and command audits check that intended actions were actually applied. Emergency and engineered rule overrides are disabled in the rule-understanding tests.
+
+
+
+IV. Datasets and Experimental Setup
+
+A. Real video and simulator data
+
+comma2k19 contains over 33 hours of California highway driving [10]. This project uses a limited chunk for custom JEPA pretraining, not the entire public dataset. Highway appearance, traffic-light visibility and junction topology differ from urban CARLA scenes; no real-world driving transfer is claimed. V-JEPA 2, DINOv2 and ImageNet ResNet inherit different external data and supervision histories, which are reported rather than treated as equal pretraining compute.
+
+CARLA 0.9.15 provides generated RGB video, vehicle dynamics, configurable traffic and privileged labels for supervision/evaluation. Town01–04 and Town10HD form the training pool, while Town05 is reserved for final driving. Actual traversed junction geometry, rather than only a route’s nominal town or start ID, determines eligibility. Historical split-contaminated results remain archived and are excluded from the corrected label-efficiency claim.
+
+TABLE II. Main datasets and retained evaluation sets
+
+B. Fair comparisons and hardware
+
+The corrected visual study completes 67 registered fits: five encoders, four nested label fractions and three seeds, plus controls. Nominal budgets of 5%, 10%, 25% and 100% correspond to actual timestamp fractions of 3.49%, 9.65%, 24.55% and 100% after episode-level grouping. Frozen encoders are cached; the trainable CNN continues to receive images. Downstream update budgets match, while pretraining histories, parameter counts and measured wall time can differ.
+
+Execution uses one NVIDIA RTX 5070 Ti laptop GPU, Python 3.10 and PyTorch 2.11 with CUDA 12.8. CARLA workloads, data collection, model fitting and profiling are resource-bounded. The approved local plan preserves recordings and scientific artifacts, with a cumulative storage limit and a 10 GB minimum-free-space guard.
+
+C. Statistical scope
+
+Two training seeds and six-case pilots support descriptive comparisons, not population-safety claims. Three-seed ranges are not confidence intervals. Even a perfect 36-mission run permits about an 8% one-sided upper failure bound by the rule of three, before accounting for dependence. Location-clustered intervals and paired tests require sufficient predeclared coverage.
+
+
+
+V. Evaluation Metrics and Integrity
+
+A. Closed-loop driving and rule coverage
+
+The original task reports destination-reached success, route completion, episode return, collisions, lane departures, training steps to a success threshold, wall time and GPU memory. Historical success and collision flags can overlap in traffic; both flags are retained. Later navigation reports distinguish arrival from rule-safe and strict outcomes, using the registered assessor’s complete criteria rather than reinterpreting earlier scores.
+
+All recorder contact starts remain in headline contact counts. Fault attribution is diagnostic only. Red-light and stop-sign violations are normalized by actual opportunities; zero violations on a route containing zero opportunities provide no rule-handling evidence. Other measurements include blocked time, interventions, infractions per kilometre, route deviation, comfort and latency. Driving Score is supplementary, not a replacement for physical outcomes.
+
+B. Offline policy and hazard metrics
+
+The corrected policy selector combines controller stop recall R, false-hold fraction F and go-speed mean absolute error E in m/s:
+
+S = 0.5(1 − R + F) + 0.02E.                    (1)
+
+A lower S is preferred. Path-correction error and speed error are also reported. The score is a development selector, not a probability of safe driving. Stop recall alone is insufficient because an agent that always waits can obtain high recall while blocking every route.
+
+For a predicted event probability p and observed contact label y, the endpoint Brier score is:
+
+BS = (1/N) Σᵢ (pᵢ − yᵢ)².                         (2)
+
+First-event sequence negative log likelihood, missed contacts and false alarms complement Brier score. Unknown infrastructure failures and unexecuted action outcomes are not relabeled safe. Ensemble disagreement is not automatically calibrated uncertainty.
+
+C. Signal perception and inference cost
+
+Signal evaluation uses score-ordered one-to-one housing matching, summed foreground probability at least 0.5 and phase argmax. A correct result requires both a point inside the audited housing and the correct red/yellow/green phase. Known-background and unknown-region detections are counted separately. The full TRAIN comparison scores 12,362,313 frozen coordinates rather than only a convenient sampled subset. The fixed gate requires at least 1,234/1,248 correct, every original town and phase protected, and at most 3,075.8 known-background detections.
+
+Latency reports identify exactly what is timed. Feature extraction plus classifier time excludes camera decode, proposal generation, policy control and simulator work unless stated. Profiling speed is therefore not a substitute for a full closed-loop cadence test.
+
+
+
+VI. Results and Analysis
+
+A. Right-turn learning and weather robustness
+
+The historical three-arm right-turn comparison uses seeds 42 and 123. Both frozen-video arms reach 100% evaluated success, whereas the CNN mean is 50% because its seed outcomes are 100% and 0%. Mean route completion is 100% for both JEPA arms versus 78.8% for CNN. Returns are 337.2, 327.8 and 202.0 for custom JEPA, V-JEPA 2 and CNN respectively. These are selected-checkpoint outcomes on a constrained maneuver.
+
+
+
+Fig. 2. Zero-shot success under weather and traffic changes, averaged over two training seeds. Traffic remains difficult for every encoder; weather robustness does not imply interaction safety.
+
+TABLE III. Historical right-turn comparison
+
+Threshold statistics are descriptive across two seeds; the missing CNN threshold is not imputed. One V-JEPA 2 run is partial at about 66.7k environment steps, so this is not a fully matched-budget convergence comparison. The deferred third seed limits robustness conclusions.
+
+Zero-shot traffic success is only 20%, 35% and 20% for CNN, custom JEPA and V-JEPA 2. Corresponding collision rates are 55%, 65% and 80%. Pretraining improves appearance robustness in these tests, but does not establish correct gap acceptance or safe yielding.
+
+
+
+B. Traffic adaptation and privileged BEV results
+
+A 30k-step medium-first curriculum yields selected medium-task success of 11/30 for CNN and 4/30 for each video arm; all fail the traffic promotion gate. A separate privileged bird’s-eye-view (BEV) CNN line later reaches 58/60 safe medium arrivals and 27/30 zero-shot hard arrivals, with 10/10 simple-turn retention. Its medium baseline is already 56/60, so the gain is two episodes, from one training seed. BEV supplies privileged scene structure and is not a camera encoder-pretraining result.
+
+The retained best checkpoint has run counter 90k along a continued model lineage. Latest 150k collapses to 1/90 safe medium arrivals and 0/10 simple turns. The late policy mostly stalls. This failure shows why fewer collisions or more training steps alone cannot certify progress.
+
+C. Corrected label-efficiency comparison
+
+
+
+Fig. 3. Corrected five-encoder validation score across actual label counts; mean over three seeds. Lower is better. Curves are offline development evidence, not route-success probabilities.
+
+TABLE IV. Full-label policy metrics, three-seed means
+
+Comma JEPA has the lowest full-label mean selector score, but its 5% nominal-budget false-hold rate is 51.1%. CARLA continuation does not improve the headline score here. The curves therefore support a qualified representation benefit, not a universal claim that in-domain JEPA is best or that high stop recall establishes competence.
+
+
+
+D. Closed-loop pilots and a sustained camera drive
+
+
+
+Fig. 4. Full-label seed-42 camera pilots: arrivals versus strict successes out of six planned missions per encoder. Unknown cases remain in the denominator.
+
+TABLE V. Native pilot outcomes; unfiltered contacts
+
+All 30 main attempts are retained: 27 observed outcomes and three unknown failures. ResNet completes all six routes without observed contacts but violates one red light and one stop sign. Comma JEPA’s superior mean offline score does not produce the strongest native outcome. The original primary remains fixed rather than being reselected from this pilot.
+
+Separately, a frozen ResNet camera policy completes a predetermined familiar Town04 TRAIN route of 1,375.64 m in 199.5 simulated seconds, with zero recorded contact starts and intervention ticks. Five minimum-speed infractions remain. Crucially, the route contains zero red-light and zero stop-sign opportunities; it demonstrates sustained camera navigation, not rule mastery. The paired expert crashes before its first trace, so an expert-relative comparison is unavailable.
+
+The dedicated CNN-facts rule study records 15/72 passes, 22 contact starts, 15 red and five stop violations. None of 36 scenario pairs passes both arms with overrides disabled. These outcomes prevent a reliable-rule-understanding claim despite the successful familiar long drive.
+
+
+
+E. Action-conditioned world-model findings
+
+The first-event study uses 68 independently verified recordings from 73 original attempts: 50 TRAIN episodes at eight locations and 18 calibration episodes at two locations. There are 12 TRAIN and four calibration contacts. Five failed attempts remain unknown. Future labels are censored at contact or intervention; scripted actors are nonreactive and all lights are green, limiting causal and rule coverage.
+
+
+
+Fig. 5. Calibration endpoint Brier score on the same 18 cases. The action-only baseline is strongest; learned JEPA and RSSM ensembles are not qualified for planning.
+
+TABLE VI. Hazard prediction at the fixed 0.5 threshold
+
+Six independent fits use 400 updates each. JEPA and RSSM ensemble members have about 454k and 623k parameters respectively, so matched updates do not imply equal compute. Both improve sequence likelihood relative to some simple controls but lose on endpoint Brier and miss every calibration contact. Lower likelihood alone does not justify planner deployment.
+
+The raw CV proximity score flags all 18 cases: no missed contact, but 14 false alarms. Its calibrated version loses that sensitivity. Predictions for all fifteen candidate plans are retained, but outcomes for unexecuted options remain unknown. No counterfactual-ranking success is inferred from those missing labels, and no learned predictive planner is promoted.
+
+
+
+F. Full-distribution signal-perception audit
+
+At low resolution, a distant bulb can occupy only a few pixels. The current signal pipeline therefore evaluates high-resolution point candidates with phase classification. A broader RGB proposal generator raises TRAIN candidate housing coverage to 1,246/1,248, but high proposal coverage alone does not solve foreground classification. Fig. 6 reports every fixed candidate, not only sampled training points.
+
+
+
+Fig. 6. Full TRAIN signal tradeoff on the same 12.36 million candidates. Dashed lines mark minimum correct detections and maximum background detections. All three heads fail at least one required criterion.
+
+The original plateau head yields 1,234 correct and 8,197 background detections. Adding 182,016 model-independent known-background examples reduces false detections to 4,848 but loses two red lights. Spatial context appends 4 × 4 RGB mean/standard-deviation grids at 16-, 32- and 96-pixel scales, increasing the descriptor from 87 to 375 features. This reduces false detections to 3,221, while correct detections fall to 1,228. The gate remains 1,234 and 3,075.8; neither regression is excused.
+
+Independent recounts reproduce all town and phase metrics. Original 48,865 sampled feature/prediction rows and 182,016 added background rows match cached values exactly. The component validation has been repeatedly inspected during development and is not an untouched test set. Its separate best aggregate refinement of 55/72 remains rejected because yellow recall falls below the original protected value.
+
+A subsequent TRAIN-only coverage audit identifies 1,596 frozen candidate coordinates that are exact audited active bulb pixels but absent from the old sampled supervision. All 4,788 original/gamma feature vectors pass the independent cache checks. This is released training data for a prospective comparison; no fit or improved model result is claimed in this paper snapshot.
+
+
+
+G. Exact preprocessing acceleration
+
+Thousands of overlapping crop operations dominate the original RGB verifier. Precomputing aligned 3 × 3 integer averages reuses image work; preserving the original interleaved memory layout and sequential floating-point reduction order retains feature semantics. CPU compilation avoids materializing all patches. A CUDA implementation preserves sequential FP32 means and variances, with fused arithmetic disabled, then applies an exported numeric-tree head.
+
+
+
+Fig. 7. Three staged implementation profiles on the same 63 TRAIN images and 236,284 points. Includes image preparation and classifier work; CUDA includes transfers and returned probabilities. Excludes proposal generation and driving control.
+
+All patch bytes and FP32/FP16 feature vectors match the original across the fixed 236,284-point audit. CPU probabilities are exact; maximum CUDA probability difference is 6.66 × 10⁻¹⁶, with no acceptance or phase changes. Median feature-plus-head time is 343.35 ms with shared averaging, 49.09 ms with compiled CPU reductions and 22.87 ms with CUDA plus GPU trees. CUDA p95 is 30.63 ms and peak allocated tensors are 11.09 MB.
+
+The compiled CPU profile’s original control measures 972.83 ms median; the CUDA profile’s separate original control measures 1,638.27 ms. Different host conditions prevent a precise cross-run speedup claim. CUDA warm-up is 0.37 s. The retained concurrency annotation was corrected: its main audit had already finished before the CUDA profile, with only brief report/cache overlap.
+
+These are staged kernel-path measurements. The newer 375-feature spatial head, three-camera scheduling, neural proposer, decoding, IPC, tracking and the policy require a separate end-to-end profile. Therefore, a 22.87 ms image path is not presented as a 10 Hz autonomous-driving system. Numerical equivalence and control reliability remain separate qualification questions.
+
+H. Outcome of the combined evidence
+
+The project has a working simulator-control loop, useful frozen-encoder transfer, a sustained camera navigation demonstration and reproducible perception/planning audits. It does not yet have a qualified collision-free urban camera driver. Neither the 300-encounter camera gate nor the override-disabled rule suite has passed. The 36-mission Town05 final suite is registered but has not been run by a qualified final candidate.
+
+
+
+VII. Research Gaps and Future Improvements
+
+A. Observability and decision-critical perception
+
+Real highway pretraining does not cover every urban signal, stop sign, intersection layout or crossing interaction. Three RGB views expand observability, but they are not direct depth measurements or privileged 3D scene state. A detected bulb point supplies a calibrated ray, not a housing size, stop-line distance or route applicability. Future work must learn and verify lane-applicable signal association and temporal memory as the light leaves the camera view.
+
+The immediate controlled data comparison is to add the 1,596 newly verified exact TRAIN positives while keeping negative examples, folds, class weights, model settings and gates fixed. If it succeeds on full TRAIN proposal distributions, the next steps are a registered component check, continuous approach–stop–release evaluation and only then policy retraining. A failed subgroup or background gate remains a failed result.
+
+B. Causal dynamics and calibrated planning
+
+The action-conditioned models need more diverse observed consequences of alternative actions, including reactive crossing traffic, rear hazards and red-light outcomes. Prefix agreement must be measured before branch comparisons. Candidate rankings should be checked against executed alternative plans, with contact/intervention censoring preserved. JEPA should become a planning component only after it beats the declared constant-velocity and action-only baselines, including missed hazards rather than likelihood alone.
+
+C. Long-route reliability and benchmark discipline
+
+Success compounds over encounters: if independent per-encounter safety is p, a route containing N such encounters succeeds with probability pᴺ. At p = 0.967 and N = 12, the illustrative route probability is about 0.67. Real encounters are not independent, so this is motivation for measuring encounter reliability, not a calibrated forecast of the camera driver. Short, well-covered tests and uninterrupted long drives are complementary.
+
+The held-out Town05 suite contains twelve routes with three fixed seeds, spanning one to three kilometres. Planned signal/stop coverage and runtime opportunity checks must be retained. Late final-suite registration and prior Town03 engineering exposure are disclosed in project records; historical split-contaminated studies do not become clean tests by being renamed. Every collision remains in the headline result, and failed infrastructure cases are not replaced.
+
+D. Compute, stability and broader evidence
+
+Next engineering priorities are full three-camera timing, compact atomic recordings, complete optimizer/scaler/RNG recovery state and diagnosis of the late Dreamer stopping collapse. Additional predeclared seeds and traffic streams are required before claiming a robust improvement. The privileged Dreamer BEV arm can remain a teacher/reference research line, but its performance must never be relabeled camera-only autonomy. Real-video open-loop checks could assess representation transfer without making a real-world driving claim.
+
+
+
+VIII. Conclusion
+
+Self-supervised video pretraining improves learning outcomes and weather robustness on the original constrained right-turn task, but those benefits do not automatically produce safe interactive driving. Corrected multi-camera studies reveal a gap between offline selection and native behavior, and learned hazard ensembles fail to beat simple baselines. Broader signal supervision and spatial context reduce false detections while exposing protected-recall regressions. Exact preprocessing makes substantially faster inference feasible without changing tested features or decisions. The central outcome is an auditable path from successful demonstrations to explicit unresolved requirements: reliable signal applicability, calibrated action consequences, rule-consistent control and held-out long-route evaluation. Final Town05 driving remains pending qualification.
+
+Acknowledgment
+
+[Funding, supervisor and institutional acknowledgment details; remove this paragraph if none.]
+
+References
+
+[1] D. Hafner, J. Pasukonis, J. Ba, and T. Lillicrap, “Mastering diverse control tasks through world models,” Nature, vol. 640, pp. 647–653, 2025. doi: 10.1038/s41586-025-08744-2.
+
+[2] A. Dosovitskiy, G. Ros, F. Codevilla, A. Lopez, and V. Koltun, “CARLA: An open urban driving simulator,” in Proc. Conf. Robot Learning, 2017, pp. 1–16. arXiv:1711.03938.
+
+[3] D. Gao, S. Cai, H. Zhou, H. Wang, I. Soltani, and J. Zhang, “CarDreamer: Open-source learning platform for world model based autonomous driving,” arXiv:2405.09111, 2024.
+
+[4] A. Bardes et al., “Revisiting feature prediction for learning visual representations from video,” Trans. Mach. Learn. Res., 2024. arXiv:2404.08471.
+
+[5] M. Assran et al., “V-JEPA 2: Self-supervised video models enable understanding, prediction and planning,” arXiv:2506.09985, 2025.
+
+[6] M. Oquab et al., “DINOv2: Learning robust visual features without supervision,” arXiv:2304.07193, 2023.
+
+[7] K. He, X. Zhang, S. Ren, and J. Sun, “Deep residual learning for image recognition,” in Proc. IEEE Conf. Comput. Vis. Pattern Recognit., 2016, pp. 770–778. doi: 10.1109/CVPR.2016.90.
+
+[8] Q. Li, X. Jia, S. Wang, and J. Yan, “Think2Drive: Efficient reinforcement learning by thinking in latent world model for quasi-realistic autonomous driving (in CARLA-v2),” in Proc. Eur. Conf. Comput. Vis., 2024. arXiv:2402.16720.
+
+[9] X. Jia, Z. Yang, Q. Li, Z. Zhang, and J. Yan, “Bench2Drive: Towards multi-ability benchmarking of closed-loop end-to-end autonomous driving,” Adv. Neural Inf. Process. Syst., Datasets and Benchmarks Track, 2024. arXiv:2406.03877.
+
+[10] comma.ai, “comma2k19,” dataset and documentation, 2018. [Online]. Available: https://github.com/commaai/comma2k19. Accessed: Oct. 23, 2026.
+
+[11] Auto Thinker Engine project, “Versioned experimental contracts, corrected encoder study, native audits and journey log,” unpublished project artifacts, Oct. 2026. Evidence snapshot: Oct. 23, 2026. Local index: reports/navigation_results_index_20261020.md.

@@ -1,0 +1,29 @@
+{
+  "source_video": "outputs/navigation_visual_resnet_long_20261019/episodes/navigation_m0_town03_opt_v2_route0_10_19_18_50_06/three_cameras.mp4",
+  "source_sha256": "c1c57aeec47e21808343d592294c9f4a541112f4b27b2ce8c08725c980ad7a06",
+  "script_sha256": "7aaf7f6079fad0a3044e33df831118ebb5d07a5ad800b924939a476eee437c39",
+  "results": [
+    {
+      "preset": "ultrafast",
+      "frames": 320,
+      "bytes": 9454467,
+      "total_s": 0.565068230000179,
+      "frames_per_second": 566.3032940285789,
+      "encode_call_p95_ms": 2.1724496513343183,
+      "source_pixel_mae_8bit": 1.6393091678619385,
+      "all_frames_decoded": true
+    },
+    {
+      "preset": "veryfast",
+      "frames": 320,
+      "bytes": 6420508,
+      "total_s": 0.9747579869981564,
+      "frames_per_second": 328.286615004269,
+      "encode_call_p95_ms": 3.8581238017286523,
+      "source_pixel_mae_8bit": 2.1575825214385986,
+      "all_frames_decoded": true
+    }
+  ],
+  "original_videos_modified": false,
+  "note": "Codec/storage measurement only; no policy/reward/scoring result. Decode source is already compressed; pixel MAE is not semantic visibility certification."
+}

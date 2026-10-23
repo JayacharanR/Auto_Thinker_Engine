@@ -1,0 +1,350 @@
+{
+  "audit_passed": true,
+  "all_actual_20hz_positions_train": true,
+  "total_control_ticks": 10296,
+  "episodes": [
+    {
+      "route_id": 33,
+      "town": "Town01_Opt",
+      "trace_sha256": "de4b12e7b91787d6101620af4f7ca59104d6b67b02a1e47b58f753041637bf2d",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00000/episodes/Town01_Opt_route0_10_18_14_48_27/trace.jsonl",
+      "control_ticks": 334,
+      "actual_junction_ids": [
+        171
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.300000049173832,
+      "semantic_zero_speed_intent_onset_index": 47
+    },
+    {
+      "route_id": 33,
+      "town": "Town01_Opt",
+      "trace_sha256": "f988221e678b0dc0f68bd9554b9c8afaa7ce8ce37d819d63a82766c52bfb8ecb",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00001/episodes/Town01_Opt_route0_10_18_14_48_47/trace.jsonl",
+      "control_ticks": 414,
+      "actual_junction_ids": [
+        171
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.300000049173832,
+      "semantic_zero_speed_intent_onset_index": 47
+    },
+    {
+      "route_id": 33,
+      "town": "Town01_Opt",
+      "trace_sha256": "aecdbdbb1493da4469755370b0c5c6a59d449966dbbb13f91e8c8e70907702eb",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00002/episodes/Town01_Opt_route0_10_18_14_49_09/trace.jsonl",
+      "control_ticks": 494,
+      "actual_junction_ids": [
+        171
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.300000049173832,
+      "semantic_zero_speed_intent_onset_index": 47
+    },
+    {
+      "route_id": 34,
+      "town": "Town01_Opt",
+      "trace_sha256": "d805e832cb242739c7ea37a5cdeece6f55b30b6cf4416a473dc0db45171de24f",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00003/episodes/Town01_Opt_route0_10_18_14_49_33/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        26
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 56
+    },
+    {
+      "route_id": 34,
+      "town": "Town01_Opt",
+      "trace_sha256": "869f6698a87adb830b038d7f939e9436b305d6e3b146d7f0a170f51af8633abf",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00004/episodes/Town01_Opt_route0_10_18_14_49_53/trace.jsonl",
+      "control_ticks": 428,
+      "actual_junction_ids": [
+        26
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 56
+    },
+    {
+      "route_id": 34,
+      "town": "Town01_Opt",
+      "trace_sha256": "2d7772147533ad7819c0182ab0c8e3112440db598c0d5ee08ea125d29ac1fcf0",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00005/episodes/Town01_Opt_route0_10_18_14_50_14/trace.jsonl",
+      "control_ticks": 508,
+      "actual_junction_ids": [
+        26
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 56
+    },
+    {
+      "route_id": 77,
+      "town": "Town02_Opt",
+      "trace_sha256": "03ec4959140e9b8ab8c3e40c53e71a2efb76078c8edf9a966f66b05358c7f482",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00006/episodes/Town02_Opt_route0_10_18_14_50_36/trace.jsonl",
+      "control_ticks": 381,
+      "actual_junction_ids": [
+        76
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7500000558793545,
+      "semantic_zero_speed_intent_onset_index": 60
+    },
+    {
+      "route_id": 77,
+      "town": "Town02_Opt",
+      "trace_sha256": "8e08d871258e6b487497ce412b4f226cf5f81734d22a1231ca6f77331c3a525c",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00007/episodes/Town02_Opt_route0_10_18_14_50_56/trace.jsonl",
+      "control_ticks": 461,
+      "actual_junction_ids": [
+        76
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7500000558793545,
+      "semantic_zero_speed_intent_onset_index": 60
+    },
+    {
+      "route_id": 77,
+      "town": "Town02_Opt",
+      "trace_sha256": "5d5d33a957eb7c46803fc6cb8335e3bcdc31d6d93fe0c4417cf2011aa058c5ec",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00008/episodes/Town02_Opt_route0_10_18_14_51_18/trace.jsonl",
+      "control_ticks": 553,
+      "actual_junction_ids": [
+        76
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7500000558793545,
+      "semantic_zero_speed_intent_onset_index": 60
+    },
+    {
+      "route_id": 78,
+      "town": "Town02_Opt",
+      "trace_sha256": "edf91e3483af2c03a527063377b4fedb4c24142e83f36485072cffd43e0c0ed1",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00009/episodes/Town02_Opt_route0_10_18_14_51_43/trace.jsonl",
+      "control_ticks": 349,
+      "actual_junction_ids": [
+        242,
+        298
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.1500000469386578,
+      "semantic_zero_speed_intent_onset_index": 49
+    },
+    {
+      "route_id": 78,
+      "town": "Town02_Opt",
+      "trace_sha256": "a591bbcff2f426ae483476b4092b24d9e9d349ac29093c0405b730dab9cc54ab",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00010/episodes/Town02_Opt_route0_10_18_14_52_03/trace.jsonl",
+      "control_ticks": 429,
+      "actual_junction_ids": [
+        242,
+        298
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.1500000469386578,
+      "semantic_zero_speed_intent_onset_index": 49
+    },
+    {
+      "route_id": 78,
+      "town": "Town02_Opt",
+      "trace_sha256": "019602de22d39aa3c62a50d9b4f0783286c408ac2262812d2f72d9eaa9a50bdb",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00011/episodes/Town02_Opt_route0_10_18_14_52_25/trace.jsonl",
+      "control_ticks": 509,
+      "actual_junction_ids": [
+        242,
+        298
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.1500000469386578,
+      "semantic_zero_speed_intent_onset_index": 49
+    },
+    {
+      "route_id": 134,
+      "town": "Town03_Opt",
+      "trace_sha256": "b8c532e68a21a5c7308626f2474e3ed12c82e3a8c6dc909b8d554cafebab4c4a",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00012/episodes/Town03_Opt_route0_10_18_14_52_48/trace.jsonl",
+      "control_ticks": 348,
+      "actual_junction_ids": [
+        238
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7000000551342964,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 134,
+      "town": "Town03_Opt",
+      "trace_sha256": "e15d47fadc4b3b9824c6ded7b9d156f54fe18d4559fb7be93b372a2673556a2c",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00013/episodes/Town03_Opt_route0_10_18_14_53_07/trace.jsonl",
+      "control_ticks": 428,
+      "actual_junction_ids": [
+        238
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7000000551342964,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 134,
+      "town": "Town03_Opt",
+      "trace_sha256": "db25a57fc061420e12f50740f536270e4877722d90dbc16c84671d91364e7123",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00014/episodes/Town03_Opt_route0_10_18_14_53_27/trace.jsonl",
+      "control_ticks": 508,
+      "actual_junction_ids": [
+        238
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.7000000551342964,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 135,
+      "town": "Town03_Opt",
+      "trace_sha256": "3e5195a2ed6eb023681f92e1d6eb48a40b564d4d17a03adb70a33fc0a137cd86",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00015/episodes/Town03_Opt_route0_10_18_14_53_49/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        356
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 50
+    },
+    {
+      "route_id": 135,
+      "town": "Town03_Opt",
+      "trace_sha256": "8264df30b67e29b93340f0594cb3931597d3a833cebdf32bb084bdc6eee834c5",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00016/episodes/Town03_Opt_route0_10_18_14_54_12/trace.jsonl",
+      "control_ticks": 424,
+      "actual_junction_ids": [
+        356
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 50
+    },
+    {
+      "route_id": 135,
+      "town": "Town03_Opt",
+      "trace_sha256": "4d3d95f9ae165545a59155b6fda5357b1f34cae4ed4f23eea40c4a75040843d6",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00017/episodes/Town03_Opt_route0_10_18_14_54_36/trace.jsonl",
+      "control_ticks": 504,
+      "actual_junction_ids": [
+        356
+      ],
+      "approach_imitation_eligible": false,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6500000543892384,
+      "semantic_zero_speed_intent_onset_index": 50
+    },
+    {
+      "route_id": 223,
+      "town": "Town04_Opt",
+      "trace_sha256": "004f1e3344199319325f04763b5d06364961ab4cbfaa68f95bb3b4694020e541",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00018/episodes/Town04_Opt_route0_10_18_14_55_06/trace.jsonl",
+      "control_ticks": 344,
+      "actual_junction_ids": [
+        1103
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6000000536441803,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 223,
+      "town": "Town04_Opt",
+      "trace_sha256": "d8938868515edd66f9bbf40af2785a7b03ee4761fcc70570d8f26bf463ca8a7e",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00019/episodes/Town04_Opt_route0_10_18_14_55_27/trace.jsonl",
+      "control_ticks": 424,
+      "actual_junction_ids": [
+        1103
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6000000536441803,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 223,
+      "town": "Town04_Opt",
+      "trace_sha256": "75ae151d5391c7688d8bb4c8bb9afa0540b16992d9bd17adb33ccdce19de0e9c",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00020/episodes/Town04_Opt_route0_10_18_14_55_49/trace.jsonl",
+      "control_ticks": 504,
+      "actual_junction_ids": [
+        1103
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 3.6000000536441803,
+      "semantic_zero_speed_intent_onset_index": 55
+    },
+    {
+      "route_id": 225,
+      "town": "Town04_Opt",
+      "trace_sha256": "b8e75618933f3987ee6ed71ab2fe4eab3ce2d7d85d7beabf6b49038149e2f9c5",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00021/episodes/Town04_Opt_route0_10_18_14_56_14/trace.jsonl",
+      "control_ticks": 340,
+      "actual_junction_ids": [
+        1249
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 2.2500000335276127,
+      "semantic_zero_speed_intent_onset_index": 68
+    },
+    {
+      "route_id": 225,
+      "town": "Town04_Opt",
+      "trace_sha256": "b3a55f4bfec7df043fcf91e93a32aab496bcee9ce89d67ddd210e21d5d42d362",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00022/episodes/Town04_Opt_route0_10_18_14_56_40/trace.jsonl",
+      "control_ticks": 420,
+      "actual_junction_ids": [
+        1249
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 2.2500000335276127,
+      "semantic_zero_speed_intent_onset_index": 68
+    },
+    {
+      "route_id": 225,
+      "town": "Town04_Opt",
+      "trace_sha256": "6631a12e66f96a329b5b746d1da95078ae829dd85dcb9b4f0ae28aa31026dd61",
+      "trace_path": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_m2_varied_waits_20261018/episode_00023/episodes/Town04_Opt_route0_10_18_14_57_03/trace.jsonl",
+      "control_ticks": 500,
+      "actual_junction_ids": [
+        1249
+      ],
+      "approach_imitation_eligible": true,
+      "first_actual_motion_s": 0.7000000104308128,
+      "first_moving_actual_brake_s": 2.2500000335276127,
+      "semantic_zero_speed_intent_onset_index": 68
+    }
+  ],
+  "source_sha256": "1f590b212722447d2e8dcb9ffd754b840a8231bf0b8b8389d2b066f408f78c51",
+  "collection_audit_sha256": "9178f2654700b7c052d7604f40d19d73fe6dd4b32aa085667edc813c56c7f291",
+  "guard_sha256": "ebcb667da612212db1b1702ef661545c44c915f8e3f01d7867ca928631b05dab",
+  "scope": "TRAIN diagnostic only, not camera behavior"
+}

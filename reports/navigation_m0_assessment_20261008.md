@@ -1,5 +1,10 @@
 # Navigation M0 assessment — 2026-10-08
 
+**Superseded status:** M0 calibration completed on 2026-10-11. Read the
+[closeout](navigation_m0_closeout_20261011.md) for the 300-encounter results and
+corrected physical traffic-light identity audit. The dated material below is
+retained as the implementation history.
+
 The long-route infrastructure works on branch
 `experiment/camera-world-model-navigation`. **The driver is a privileged modified
 PDM-Lite expert; no camera student has been trained.** The approved research plan
@@ -150,3 +155,40 @@ A runner smoke test (22 Town10HD encounters, stopped deliberately) exposed one
 CARLA segfault, handled by the declared one-time retry, and two runner bugs,
 both fixed before the expert-ceiling run. No student exists yet; these runs are
 privileged expert infrastructure checks.
+
+## Addendum 2026-10-09 23:50 — calibration resumed, reporting corrected
+
+The v2 run stopped abruptly around 09:35; no process remained at inspection,
+but 52 completed raw records survived. Its cause is unknown. Resumed the same
+catalog and seeds with two workers and the existing memory/retry safeguards.
+Output: `outputs/navigation_expert_ceiling_v2_20261009`. Calibration is pending;
+no camera student is trained. Final automatic assessment will be written to
+`reports/navigation_expert_ceiling_v2_20261009.json` after the runner exits.
+
+The read-only assessor now distinguishes pending trials from invalid setups and
+selects setup evidence from the exact final attempt. Every raw-attempt collision
+counts, including invalid setups and retries. This corrects the older v1 total
+from 5 to **7 events**: route 103 hit the layout during an invalid setup, and
+route 278 has a collision in both an interrupted attempt and its final attempt.
+The 5 valid-final events remain separately reported. Original v1 report retained;
+see `reports/navigation_expert_ceiling_v1_audited_20261009.json`.
+
+Empty or unanimous cluster-bootstrap samples now return null bounds instead of
+misleading zero-width intervals. Wilson intervals remain explicitly unclustered.
+These changes affect reporting only; evaluator criteria, live driving code and
+the frozen catalog have not changed. Targeted checks: 37 passed, one optional
+import-dependent test skipped; changed-code lint and format checks passed.
+
+## Addendum 2026-10-11 — host-shutdown recovery
+
+The system journal confirms both Oct9 interruptions coincided with host shutdown.
+The resumed evening run preserved 64 completed encounters before power-off,
+including one blocked-agent failure and zero recorded collision events. Five
+unfinished attempts now carry interruption annotations with saved journal
+evidence, following the existing external-interruption rule. Raw results remain.
+
+The same v2 catalog/seed evaluation resumed with two workers on Oct11. The final
+audit service was restored. This is a continuation of M0 calibration, not a new
+benchmark or camera-training run. The live assessor now distinguishes an active
+worker's missing result from a post-exit failure; host process visibility is
+required for that distinction. Five reporting regression tests pass.

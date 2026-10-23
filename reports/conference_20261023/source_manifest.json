@@ -1,0 +1,41 @@
+{
+  "snapshot": "2026-10-23",
+  "template": "/home/deepakbalaji/Downloads/conference-template-a4.docx",
+  "template_sha256": "57e2125b0a04860e103fd634c2b5fd19a7ea571fa59ac577bd97afc73ad99482",
+  "sources": {
+    "configs/experiment_contract.yaml": "735e97a818b180deab82b3462aeb6a8a598b98200d5ce24d27c8b410aca4f0e1",
+    "configs/navigation.yaml": "0cd9a673d701acc595b442ec8aeb177e1bfb1e35a0f9edf4a7e7e3a69d81f38f",
+    "outputs/comparison/carla_right_turn_simple_camera_route/comparison.json": "5c5e122f15a40ca6986fc26930a6686e9f331739b6340e647bae56af020940e9",
+    "outputs/robustness/robustness.md": "5e84ba33f50079e1d0223bfdab93bd5351857f4a89c1b1a26fc2a42984506f2f",
+    "reports/traffic_curriculum_assessment_20261005.md": "1deecc272e6874745722a465952a083e93364f268a2ab7ac725d30ec91590a70",
+    "reports/overnight_bev_assessment_20261008.md": "ee9ca09f90def29e1bcf6ade6d3b6006246069c2521992cebb4e20d2810ef029",
+    "reports/navigation_m4_repaired_20261020.json": "575b92377bbc9648b6e8bc650e0e0864fef1151cd96ad5a35e705fcfe8da1b33",
+    "reports/navigation_m4_matched_native_20261020.md": "303dd6b04e39f6fdfa6ff476bd444b889dea5a98d5962b8fdbcaf8ae91e015e5",
+    "reports/navigation_train_long_drive_20261020.md": "8d5e383d33528eaceed53899b998f9ab81e1c0839fc93e10e47277e4cca2d6ba",
+    "reports/navigation_m3_camera_rules_20261020.md": "1b74aa5d4b048f5cc0d8edd26775069afc41e5797b070d61147c0a1d43ec8422",
+    "reports/navigation_first_event_study_20261021.md": "a73e8c619327bbbdf5cb3eb8278e33e640966d74e7e2cff0207ffc187bfc9841",
+    "outputs/navigation_signal_plateau_train_20261022/assessment.json": "10bb4bfab3e041781faeda5cfafc6f62b096392f73d31994b88e55b639eecf03",
+    "outputs/navigation_signal_background_full_20261022/assessment.json": "afb1ad7765a0a1f78ca110224829e9ff0e7348abea918098d146fe9e7a3e5c67",
+    "outputs/navigation_signal_spatial_full_20261022/assessment.json": "e2bb1ff062818451745c8169815202183f5c3922880f3245248e6e842b23c56b",
+    "outputs/navigation_signal_context_profile_20261022/assessment.json": "e41895da62acc84c2c3fd6a4887a59a76be7f538397ceeede8c05791e92a1f09",
+    "outputs/navigation_signal_context_fused_profile_20261022/assessment.json": "85cd8e9ee0c6e7b6ec6b4e65461e70eb980e7e21b71f1d43ff4a27f6e432c559",
+    "outputs/navigation_signal_context_cuda_profile_20261022/assessment.json": "6ca573bd11ff106c1c4a5823be249bcac0d3406be601f14ed1fcc8e4d91dd97e",
+    "outputs/navigation_signal_positive_cache_20261022/assessment.json": "9ee98291a8905afdf0be2146bc680dfdbfd5f30f1c747ec13797a829149c183a",
+    "scripts/train_navigation_student.py": "8d1bca7ca87c785775da9a16a89dfabaa3c4c7fb2a3295730f1f6e81bbf88761"
+  },
+  "only_unfilled_fields_bold": true,
+  "new_training_started": false,
+  "references": [
+    "https://www.nature.com/articles/s41586-025-08744-2",
+    "https://arxiv.org/abs/1711.03938",
+    "https://arxiv.org/abs/2405.09111",
+    "https://arxiv.org/abs/2404.08471",
+    "https://arxiv.org/abs/2506.09985",
+    "https://arxiv.org/abs/2304.07193",
+    "https://arxiv.org/abs/1512.03385",
+    "https://arxiv.org/abs/2402.16720",
+    "https://arxiv.org/abs/2406.03877",
+    "https://github.com/commaai/comma2k19"
+  ],
+  "final_docx": "reports/conference_20261023/Auto_Thinker_Engine_Conference_Paper.docx"
+}

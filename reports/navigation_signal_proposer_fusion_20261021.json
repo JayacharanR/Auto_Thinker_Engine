@@ -1,0 +1,22 @@
+{
+  "independent_oof_recount": true,
+  "independent_component_recount": true,
+  "raw_control_fold_predictions_exact": true,
+  "selected_before_final_fit": true,
+  "selected_arm": "joint100",
+  "component_pass": false,
+  "fold_fit_seconds": {
+    "joint100": [
+      5.083390760999464,
+      5.494179656998313,
+      5.2743594809944625
+    ],
+    "fused100": [
+      7.128874656002154,
+      7.696340346999932,
+      7.487316995997389
+    ]
+  },
+  "assessment_sha256": "a0dd02358dc34b3a6f5170c3a19ea596acc07c53f44702fd7c9927d4cbc53a6d",
+  "no_driving_claim": true
+}

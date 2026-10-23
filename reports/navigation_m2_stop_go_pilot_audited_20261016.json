@@ -1,0 +1,1900 @@
+{
+  "scope": "Six fixed TRAIN-location engineering diagnostics; not a held-out benchmark, generalization estimate or training dataset. Every raw-attempt collision reported.",
+  "protocol": {
+    "created_at": "2026-10-16 09:58",
+    "scope": "Engineering sanity pilot on approved TRAIN geography only; not a heldout_dev/final benchmark and not training data.",
+    "selection_rule": "First geometry-eligible Town03 route id per family, independent of student outcomes",
+    "catalog_sha256": "9be92e0219bfc7f0b04ebf36b9eaade22d8e5acde81ae3b0fa4a603993fff2de",
+    "route": "configs/encounters/location_split_v1/train/Town03_Opt.xml",
+    "route_sha256": "f71eddccd879ba54ba90ccf9924be3b006e1e43497fdd1d53d46b4f97bfb74c3",
+    "seed": 4242,
+    "seed_per_route": true,
+    "overrides": false,
+    "max_wall_per_candidate": 900,
+    "selection": "All six outcomes retained, no route replacements",
+    "candidates": [
+      "privileged_pdm_lite_modified",
+      "frozen_v0_best_step300",
+      "stop_go_v2_best_internal_selection"
+    ],
+    "encounters": [
+      {
+        "route_id": 86,
+        "town": "Town03_Opt",
+        "family": "crossing_yield",
+        "scenario": "NonSignalizedJunctionLeftTurn",
+        "parameters": {
+          "flow_speed": 8.3,
+          "source_dist_interval": [
+            15.0,
+            30.0
+          ]
+        },
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "1932",
+          "(69, 0, 3)",
+          "(68, 0, 3)"
+        ],
+        "junction_id": 1932,
+        "crossed_junction_ids": [
+          1932
+        ],
+        "turn": "LEFT",
+        "control": [
+          "none"
+        ],
+        "signal_ids_at_inventory": [],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          -88.635,
+          146.972,
+          0.0
+        ],
+        "end_xyz": [
+          -21.224,
+          207.584,
+          0.0
+        ],
+        "trigger_xyz": [
+          -88.635,
+          146.972,
+          0.0
+        ],
+        "trigger_yaw": 89.78770446777344,
+        "planned_length_m": 105.396
+      },
+      {
+        "route_id": 101,
+        "town": "Town03_Opt",
+        "family": "following_stopped_vehicle",
+        "scenario": "HardBreakRoute",
+        "parameters": {},
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "82",
+          "(67, 0, -1)",
+          "(33, 0, 4)"
+        ],
+        "junction_id": 82,
+        "crossed_junction_ids": [
+          82
+        ],
+        "turn": "RIGHT",
+        "control": [
+          "none"
+        ],
+        "signal_ids_at_inventory": [],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          68.274,
+          196.861,
+          0.597
+        ],
+        "end_xyz": [
+          2.297,
+          180.138,
+          0.0
+        ],
+        "trigger_xyz": [
+          48.274,
+          196.911,
+          0.177
+        ],
+        "trigger_yaw": 179.85702514648438,
+        "planned_length_m": 80.142
+      },
+      {
+        "route_id": 111,
+        "town": "Town03_Opt",
+        "family": "route_junction",
+        "scenario": null,
+        "parameters": {},
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "655",
+          "(29, 0, -1)",
+          "(2, 0, -1)"
+        ],
+        "junction_id": 655,
+        "crossed_junction_ids": [
+          655
+        ],
+        "turn": "LEFT",
+        "control": [
+          "signal"
+        ],
+        "signal_ids_at_inventory": [
+          72
+        ],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          6.701,
+          -149.154,
+          0.0
+        ],
+        "end_xyz": [
+          -37.632,
+          -205.452,
+          0.0
+        ],
+        "trigger_xyz": [
+          6.701,
+          -149.154,
+          0.0
+        ],
+        "trigger_yaw": -88.58645629882812,
+        "planned_length_m": 91.308
+      },
+      {
+        "route_id": 123,
+        "town": "Town03_Opt",
+        "family": "signal_release_memory",
+        "scenario": "NavigationSignalHold",
+        "parameters": {
+          "stationary_s": 10.0,
+          "max_hold_s": 30.0,
+          "near_m": 20.0,
+          "clearance_s": 3.0
+        },
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "238",
+          "(69, 0, -1)",
+          "(23, 0, 1)"
+        ],
+        "junction_id": 238,
+        "crossed_junction_ids": [
+          238
+        ],
+        "turn": "LEFT",
+        "control": [
+          "signal"
+        ],
+        "signal_ids_at_inventory": [
+          48
+        ],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          -78.03,
+          159.589,
+          0.0
+        ],
+        "end_xyz": [
+          -123.132,
+          133.229,
+          0.0
+        ],
+        "trigger_xyz": [
+          -78.03,
+          159.589,
+          0.0
+        ],
+        "trigger_yaw": 266.8109130859375,
+        "planned_length_m": 64.542
+      },
+      {
+        "route_id": 133,
+        "town": "Town03_Opt",
+        "family": "signal_stop",
+        "scenario": "NavigationSignalHold",
+        "parameters": {
+          "stationary_s": 3.0,
+          "max_hold_s": 45.0,
+          "near_m": 40.0,
+          "clearance_s": 3.0
+        },
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "655",
+          "(1, 0, -1)",
+          "(2, 0, -1)"
+        ],
+        "junction_id": 655,
+        "crossed_junction_ids": [
+          655
+        ],
+        "turn": "STRAIGHT",
+        "control": [
+          "signal"
+        ],
+        "signal_ids_at_inventory": [
+          71
+        ],
+        "stop_ids_at_inventory": [],
+        "start_xyz": [
+          70.799,
+          -202.727,
+          0.0
+        ],
+        "end_xyz": [
+          -37.167,
+          -205.44,
+          0.0
+        ],
+        "trigger_xyz": [
+          70.799,
+          -202.727,
+          0.0
+        ],
+        "trigger_yaw": -178.56044006347656,
+        "planned_length_m": 106.71
+      },
+      {
+        "route_id": 143,
+        "town": "Town03_Opt",
+        "family": "stop_sign",
+        "scenario": null,
+        "parameters": {},
+        "occurrence": 0,
+        "movement_key": [
+          "Town03_Opt",
+          "730",
+          "(19, 0, -1)",
+          "(20, 0, -1)"
+        ],
+        "junction_id": 730,
+        "crossed_junction_ids": [
+          730
+        ],
+        "turn": "STRAIGHT",
+        "control": [
+          "stop"
+        ],
+        "signal_ids_at_inventory": [],
+        "stop_ids_at_inventory": [
+          35
+        ],
+        "start_xyz": [
+          -14.091,
+          -138.574,
+          0.0
+        ],
+        "end_xyz": [
+          -124.982,
+          -134.406,
+          0.748
+        ],
+        "trigger_xyz": [
+          -14.091,
+          -138.574,
+          0.0
+        ],
+        "trigger_yaw": -178.77273559570312,
+        "planned_length_m": 110.11
+      }
+    ]
+  },
+  "candidates": {
+    "expert": {
+      "episodes": [
+        {
+          "route_id": "RouteScenario_86_rep0",
+          "status": "Perfect",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": true,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 105.514,
+            "duration_game": 8.25,
+            "duration_system": 4.348
+          }
+        },
+        {
+          "route_id": "RouteScenario_101_rep0",
+          "status": "Perfect",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": true,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 80.27,
+            "duration_game": 11.65,
+            "duration_system": 9.005
+          }
+        },
+        {
+          "route_id": "RouteScenario_111_rep0",
+          "status": "Perfect",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": true,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 91.426,
+            "duration_game": 15.0,
+            "duration_system": 8.704
+          }
+        },
+        {
+          "route_id": "RouteScenario_123_rep0",
+          "status": "Completed",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": false,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 1,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 35.4% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 64.673,
+            "duration_game": 20.85,
+            "duration_system": 17.094
+          }
+        },
+        {
+          "route_id": "RouteScenario_133_rep0",
+          "status": "Completed",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": false,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 1,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 74.95% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 106.828,
+            "duration_game": 26.0,
+            "duration_system": 25.804
+          }
+        },
+        {
+          "route_id": "RouteScenario_143_rep0",
+          "status": "Completed",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": false,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 1,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 88.12% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 110.227,
+            "duration_game": 45.85,
+            "duration_system": 31.38
+          }
+        }
+      ],
+      "count": 6,
+      "safe_completed": 3,
+      "rule_safe_completed": 6,
+      "all_collisions": 0,
+      "safe_completion_wilson95": [
+        0.1876163064826506,
+        0.8123836935173494
+      ],
+      "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+      "execution_status": "evaluation_complete",
+      "setup_audit": {
+        "86": {
+          "status": "setup_started"
+        },
+        "101": {
+          "status": "setup_started"
+        },
+        "111": {
+          "status": "no_setup_declared"
+        },
+        "123": {
+          "runtime_id": 48,
+          "entry_lane": [
+            69,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            48
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -67.82001495361328,
+            121.06434631347656,
+            0.003034059889614582
+          ],
+          "inventory_xyz": [
+            -67.82,
+            121.064,
+            0.003
+          ],
+          "position_difference_m": 0.0003483054847179613,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 311,
+            "Green": 106
+          }
+        },
+        "133": {
+          "runtime_id": 71,
+          "entry_lane": [
+            1,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            71
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -9.5888032913208,
+            -214.24734497070312,
+            0.1399131566286087
+          ],
+          "inventory_xyz": [
+            -9.589,
+            -214.247,
+            0.14
+          ],
+          "position_difference_m": 0.0004064982922865764,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 299,
+            "Green": 202,
+            "Yellow": 19
+          }
+        },
+        "143": {
+          "status": "no_setup_declared"
+        }
+      },
+      "profiles": [
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/expert/episodes/Town03_Opt_route0_10_16_10_04_22",
+          "profile": {
+            "frames": 165,
+            "wall_seconds": 4.854335254000034,
+            "simulation_seconds": 8.2,
+            "frames_per_second": 33.990235813243,
+            "expert_and_camera_p95_ms": 8.832198600043737,
+            "all_camera_frames_aligned": true,
+            "last_frame": 598,
+            "note": "Expert latency excludes video encoding and simulator/render time"
+          },
+          "trace_summary": {
+            "frames": 165,
+            "brake_ticks": 7,
+            "zero_speed_ticks": 7,
+            "expert_hazard_ticks": {
+              "light": 0,
+              "stop": 0,
+              "vehicle": 0
+            },
+            "last_state": {
+              "speed_mps": 16.001466751098633,
+              "control": [
+                0.0,
+                0.4233261048793793,
+                0.0
+              ]
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "83"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/expert/episodes/Town03_Opt_route1_10_16_10_04_27",
+          "profile": {
+            "frames": 233,
+            "wall_seconds": 9.484193375000018,
+            "simulation_seconds": 11.6,
+            "frames_per_second": 24.567192041252486,
+            "expert_and_camera_p95_ms": 11.695189800025219,
+            "all_camera_frames_aligned": true,
+            "last_frame": 847,
+            "note": "Expert latency excludes video encoding and simulator/render time"
+          },
+          "trace_summary": {
+            "frames": 233,
+            "brake_ticks": 28,
+            "zero_speed_ticks": 7,
+            "expert_hazard_ticks": {
+              "light": 1,
+              "stop": 0,
+              "vehicle": 6
+            },
+            "last_state": {
+              "speed_mps": 8.364943504333496,
+              "control": [
+                0.0010000000474974513,
+                1.0,
+                0.0
+              ]
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "117"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/expert/episodes/Town03_Opt_route2_10_16_10_04_37",
+          "profile": {
+            "frames": 300,
+            "wall_seconds": 9.111676400000079,
+            "simulation_seconds": 14.95,
+            "frames_per_second": 32.924786486051836,
+            "expert_and_camera_p95_ms": 12.84789844999068,
+            "all_camera_frames_aligned": true,
+            "last_frame": 1162,
+            "note": "Expert latency excludes video encoding and simulator/render time"
+          },
+          "trace_summary": {
+            "frames": 300,
+            "brake_ticks": 30,
+            "zero_speed_ticks": 8,
+            "expert_hazard_ticks": {
+              "light": 0,
+              "stop": 0,
+              "vehicle": 0
+            },
+            "last_state": {
+              "speed_mps": 8.054044723510742,
+              "control": [
+                0.0,
+                0.4102655351161957,
+                0.0
+              ]
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "150"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/expert/episodes/Town03_Opt_route3_10_16_10_04_46",
+          "profile": {
+            "frames": 417,
+            "wall_seconds": 17.61956778199999,
+            "simulation_seconds": 20.8,
+            "frames_per_second": 23.666868856227214,
+            "expert_and_camera_p95_ms": 14.920372399933512,
+            "all_camera_frames_aligned": true,
+            "last_frame": 1595,
+            "note": "Expert latency excludes video encoding and simulator/render time"
+          },
+          "trace_summary": {
+            "frames": 417,
+            "brake_ticks": 299,
+            "zero_speed_ticks": 288,
+            "expert_hazard_ticks": {
+              "light": 281,
+              "stop": 0,
+              "vehicle": 9
+            },
+            "last_state": {
+              "speed_mps": 13.56762409210205,
+              "control": [
+                0.09399999678134918,
+                0.39342084527015686,
+                0.0
+              ]
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "209"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/expert/episodes/Town03_Opt_route4_10_16_10_05_04",
+          "profile": {
+            "frames": 520,
+            "wall_seconds": 26.392503981999994,
+            "simulation_seconds": 25.95,
+            "frames_per_second": 19.702564044497116,
+            "expert_and_camera_p95_ms": 28.353928549950066,
+            "all_camera_frames_aligned": true,
+            "last_frame": 2131,
+            "note": "Expert latency excludes video encoding and simulator/render time"
+          },
+          "trace_summary": {
+            "frames": 520,
+            "brake_ticks": 207,
+            "zero_speed_ticks": 183,
+            "expert_hazard_ticks": {
+              "light": 1,
+              "stop": 0,
+              "vehicle": 0
+            },
+            "last_state": {
+              "speed_mps": 8.846967697143555,
+              "control": [
+                0.0,
+                0.30014798045158386,
+                0.0
+              ]
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "260"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/expert/episodes/Town03_Opt_route5_10_16_10_05_31",
+          "profile": {
+            "frames": 917,
+            "wall_seconds": 31.855296142000043,
+            "simulation_seconds": 45.8,
+            "frames_per_second": 28.786422072873748,
+            "expert_and_camera_p95_ms": 15.042832800031647,
+            "all_camera_frames_aligned": true,
+            "last_frame": 3063,
+            "note": "Expert latency excludes video encoding and simulator/render time"
+          },
+          "trace_summary": {
+            "frames": 917,
+            "brake_ticks": 581,
+            "zero_speed_ticks": 534,
+            "expert_hazard_ticks": {
+              "light": 0,
+              "stop": 42,
+              "vehicle": 0
+            },
+            "last_state": {
+              "speed_mps": 8.693187713623047,
+              "control": [
+                -0.06199999898672104,
+                0.29632675647735596,
+                0.0
+              ]
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "459"
+          },
+          "full_video_decode_passed": true
+        }
+      ],
+      "source_archive_verified": true,
+      "checkpoint_sha256": null,
+      "distinct_recorders_verified": true
+    },
+    "v0": {
+      "episodes": [
+        {
+          "route_id": "RouteScenario_86_rep0",
+          "status": "Perfect",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": true,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 105.514,
+            "duration_game": 16.25,
+            "duration_system": 8.07
+          }
+        },
+        {
+          "route_id": "RouteScenario_101_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 48.75,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 1,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 70.74% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=28.731, y=196.97, z=-0.002)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 80.27,
+            "duration_game": 192.3,
+            "duration_system": 131.923
+          }
+        },
+        {
+          "route_id": "RouteScenario_111_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 63.83,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=-3.85, y=-202.695, z=-0.005)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 91.426,
+            "duration_game": 193.55,
+            "duration_system": 104.92
+          }
+        },
+        {
+          "route_id": "RouteScenario_123_rep0",
+          "status": "Completed",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 3,
+          "collisions": 0,
+          "red_violations": 1,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [
+              "Agent ran a red light 48 at (x=-67.82, y=121.064, z=0.003)"
+            ],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 70.23% of the surrounding traffic's one",
+              "Average speed is 90.6% of the surrounding traffic's one",
+              "Average speed is 90.6% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 64.673,
+            "duration_game": 17.7,
+            "duration_system": 12.106
+          }
+        },
+        {
+          "route_id": "RouteScenario_133_rep0",
+          "status": "Completed",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": false,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 1,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 64.66% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 106.828,
+            "duration_game": 32.85,
+            "duration_system": 20.184
+          }
+        },
+        {
+          "route_id": "RouteScenario_143_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 17.34,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=-33.425, y=-138.971, z=-0.005)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 110.227,
+            "duration_game": 194.75,
+            "duration_system": 118.587
+          }
+        }
+      ],
+      "count": 6,
+      "safe_completed": 1,
+      "rule_safe_completed": 2,
+      "all_collisions": 0,
+      "safe_completion_wilson95": [
+        0.030053369748306635,
+        0.5635028221864702
+      ],
+      "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+      "execution_status": "evaluation_complete",
+      "setup_audit": {
+        "86": {
+          "status": "setup_started"
+        },
+        "101": {
+          "status": "setup_started"
+        },
+        "111": {
+          "status": "no_setup_declared"
+        },
+        "123": {
+          "runtime_id": 48,
+          "entry_lane": [
+            69,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            48
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -67.82001495361328,
+            121.06434631347656,
+            0.003034059889614582
+          ],
+          "inventory_xyz": [
+            -67.82,
+            121.064,
+            0.003
+          ],
+          "position_difference_m": 0.0003483054847179613,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 354
+          }
+        },
+        "133": {
+          "runtime_id": 71,
+          "entry_lane": [
+            1,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            71
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -9.5888032913208,
+            -214.24734497070312,
+            0.1399131566286087
+          ],
+          "inventory_xyz": [
+            -9.589,
+            -214.247,
+            0.14
+          ],
+          "position_difference_m": 0.0004064982922865764,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 369,
+            "Green": 268,
+            "Yellow": 20
+          }
+        },
+        "143": {
+          "status": "no_setup_declared"
+        }
+      },
+      "profiles": [
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0/episodes/Town03_Opt_route0_10_16_10_06_10",
+          "profile": {
+            "frames": 325,
+            "wall_seconds": 8.654369925000083,
+            "frames_per_second": 37.553282655640224,
+            "camera_policy_ipc_p95_ms": 10.27979499999674,
+            "all_camera_frames_aligned": true,
+            "last_frame": 748,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 325,
+            "brake_ticks": 0,
+            "zero_speed_ticks": 8,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 7.050601482391357,
+              "control": [
+                0.0007014441089446939,
+                0.08284511566162109,
+                0
+              ],
+              "target_speed_mps": 7.13271427154541,
+              "brake_probability": 0.23473972082138062
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "163"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0/episodes/Town03_Opt_route1_10_16_10_06_20",
+          "profile": {
+            "frames": 3846,
+            "wall_seconds": 132.53505530300004,
+            "frames_per_second": 29.018737655538164,
+            "camera_policy_ipc_p95_ms": 10.8348494999575,
+            "all_camera_frames_aligned": true,
+            "last_frame": 4610,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3846,
+            "brake_ticks": 3621,
+            "zero_speed_ticks": 3617,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 2.7362793844076805e-06,
+              "control": [
+                -0.00030942207821827377,
+                0,
+                1
+              ],
+              "target_speed_mps": 1.604813814163208,
+              "brake_probability": 0.5823643803596497
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1923"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0/episodes/Town03_Opt_route2_10_16_10_08_34",
+          "profile": {
+            "frames": 3871,
+            "wall_seconds": 105.42759205800007,
+            "frames_per_second": 36.71714324908799,
+            "camera_policy_ipc_p95_ms": 10.711696000043958,
+            "all_camera_frames_aligned": true,
+            "last_frame": 8496,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3871,
+            "brake_ticks": 3621,
+            "zero_speed_ticks": 3607,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 2.288989406906694e-07,
+              "control": [
+                -0.16256520882508868,
+                0,
+                1
+              ],
+              "target_speed_mps": 1.0980561971664429,
+              "brake_probability": 0.6743977069854736
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1936"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0/episodes/Town03_Opt_route3_10_16_10_10_20",
+          "profile": {
+            "frames": 354,
+            "wall_seconds": 12.716082121,
+            "frames_per_second": 27.83876327877641,
+            "camera_policy_ipc_p95_ms": 11.110467399998923,
+            "all_camera_frames_aligned": true,
+            "last_frame": 8866,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 354,
+            "brake_ticks": 44,
+            "zero_speed_ticks": 52,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 3.5879664421081543,
+              "control": [
+                4.7112680459777336e-05,
+                0.3661228179931641,
+                0
+              ],
+              "target_speed_mps": 4.3782734870910645,
+              "brake_probability": 0.2750939726829529
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "177"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0/episodes/Town03_Opt_route4_10_16_10_10_34",
+          "profile": {
+            "frames": 657,
+            "wall_seconds": 20.823258471000145,
+            "frames_per_second": 31.551257979868133,
+            "camera_policy_ipc_p95_ms": 10.5729118000454,
+            "all_camera_frames_aligned": true,
+            "last_frame": 9539,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 657,
+            "brake_ticks": 207,
+            "zero_speed_ticks": 208,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 6.120367527008057,
+              "control": [
+                0.00033477640796433924,
+                0.6255353927612305,
+                0
+              ],
+              "target_speed_mps": 7.559206008911133,
+              "brake_probability": 0.1902538537979126
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "329"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0/episodes/Town03_Opt_route5_10_16_10_10_56",
+          "profile": {
+            "frames": 3895,
+            "wall_seconds": 119.14037090900001,
+            "frames_per_second": 32.6925287396916,
+            "camera_policy_ipc_p95_ms": 10.943330999998574,
+            "all_camera_frames_aligned": true,
+            "last_frame": 13449,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3895,
+            "brake_ticks": 3758,
+            "zero_speed_ticks": 3758,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 3.9687932940069004e-08,
+              "control": [
+                0.030447782596366272,
+                0,
+                1
+              ],
+              "target_speed_mps": 1.197509527206421,
+              "brake_probability": 0.6723132729530334
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1948"
+          },
+          "full_video_decode_passed": true
+        }
+      ],
+      "source_archive_verified": true,
+      "checkpoint_sha256": "9cc1c2f7f8d260883f427251027f969f4337cbf95267056a67aece895bd15681",
+      "distinct_recorders_verified": true
+    },
+    "stop_go": {
+      "episodes": [
+        {
+          "route_id": "RouteScenario_86_rep0",
+          "status": "Perfect",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": true,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 105.514,
+            "duration_game": 16.25,
+            "duration_system": 8.38
+          }
+        },
+        {
+          "route_id": "RouteScenario_101_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 62.46,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 2,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 88.3% of the surrounding traffic's one",
+              "Average speed is 74.61% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=18.457, y=196.987, z=-0.005)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 80.27,
+            "duration_game": 196.7,
+            "duration_system": 128.824
+          }
+        },
+        {
+          "route_id": "RouteScenario_111_rep0",
+          "status": "Perfect",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": true,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 0,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 91.426,
+            "duration_game": 17.15,
+            "duration_system": 9.623
+          }
+        },
+        {
+          "route_id": "RouteScenario_123_rep0",
+          "status": "Completed",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 2,
+          "collisions": 0,
+          "red_violations": 1,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [
+              "Agent ran a red light 48 at (x=-67.82, y=121.064, z=0.003)"
+            ],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 83.82% of the surrounding traffic's one",
+              "Average speed is 83.82% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 64.673,
+            "duration_game": 12.05,
+            "duration_system": 8.069
+          }
+        },
+        {
+          "route_id": "RouteScenario_133_rep0",
+          "status": "Completed",
+          "completion_percent": 100,
+          "completed": true,
+          "safe_completed": false,
+          "rule_safe_completed": true,
+          "min_speed_infractions": 1,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 0,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 69.71% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 106.828,
+            "duration_game": 29.4,
+            "duration_system": 18.625
+          }
+        },
+        {
+          "route_id": "RouteScenario_143_rep0",
+          "status": "Failed - Agent got blocked",
+          "completion_percent": 98.11,
+          "completed": false,
+          "safe_completed": false,
+          "rule_safe_completed": false,
+          "min_speed_infractions": 3,
+          "collisions": 0,
+          "red_violations": 0,
+          "stop_violations": 1,
+          "infractions": {
+            "collisions_layout": [],
+            "collisions_pedestrian": [],
+            "collisions_vehicle": [],
+            "red_light": [],
+            "stop_infraction": [
+              "Agent ran a stop with id=35 at (x=-65.597, y=-139.815, z=0.0)"
+            ],
+            "outside_route_lanes": [],
+            "min_speed_infractions": [
+              "Average speed is 29.41% of the surrounding traffic's one",
+              "Average speed is 26.65% of the surrounding traffic's one",
+              "Average speed is 26.65% of the surrounding traffic's one"
+            ],
+            "yield_emergency_vehicle_infractions": [],
+            "scenario_timeouts": [],
+            "route_dev": [],
+            "vehicle_blocked": [
+              "Agent got blocked at (x=-122.489, y=-135.598, z=0.69)"
+            ],
+            "route_timeout": []
+          },
+          "meta": {
+            "route_length": 110.227,
+            "duration_game": 284.6,
+            "duration_system": 144.636
+          }
+        }
+      ],
+      "count": 6,
+      "safe_completed": 2,
+      "rule_safe_completed": 3,
+      "all_collisions": 0,
+      "safe_completion_wilson95": [
+        0.09677141110578041,
+        0.700006684861608
+      ],
+      "statistical_note": "Wilson interval assumes independent trials; repeated routes need clustered analysis before generalization claims",
+      "execution_status": "evaluation_complete",
+      "setup_audit": {
+        "86": {
+          "status": "setup_started"
+        },
+        "101": {
+          "status": "setup_started"
+        },
+        "111": {
+          "status": "no_setup_declared"
+        },
+        "123": {
+          "runtime_id": 48,
+          "entry_lane": [
+            69,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            48
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -67.82001495361328,
+            121.06434631347656,
+            0.003034059889614582
+          ],
+          "inventory_xyz": [
+            -67.82,
+            121.064,
+            0.003
+          ],
+          "position_difference_m": 0.0003483054847179613,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 241
+          }
+        },
+        "133": {
+          "runtime_id": 71,
+          "entry_lane": [
+            1,
+            0,
+            -1
+          ],
+          "inventory_ids": [
+            71
+          ],
+          "status": "setup_started",
+          "runtime_xyz": [
+            -9.5888032913208,
+            -214.24734497070312,
+            0.1399131566286087
+          ],
+          "inventory_xyz": [
+            -9.589,
+            -214.247,
+            0.14
+          ],
+          "position_difference_m": 0.0004064982922865764,
+          "tolerance_m": 0.01,
+          "observed_signal_frames": {
+            "Red": 316,
+            "Green": 252,
+            "Yellow": 20
+          }
+        },
+        "143": {
+          "status": "no_setup_declared"
+        }
+      },
+      "profiles": [
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go/episodes/Town03_Opt_route0_10_16_10_13_03",
+          "profile": {
+            "frames": 325,
+            "wall_seconds": 8.968179720999842,
+            "frames_per_second": 36.23923807402986,
+            "camera_policy_ipc_p95_ms": 11.194816799888942,
+            "all_camera_frames_aligned": true,
+            "last_frame": 789,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 325,
+            "brake_ticks": 0,
+            "zero_speed_ticks": 8,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 7.050642967224121,
+              "control": [
+                0.0011814310781647162,
+                0.42974281311035156,
+                0
+              ],
+              "target_speed_mps": 8.358566284179688,
+              "brake_probability": 0.06931708008050919
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "163"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go/episodes/Town03_Opt_route1_10_16_10_13_13",
+          "profile": {
+            "frames": 3934,
+            "wall_seconds": 129.44957647799993,
+            "frames_per_second": 30.390211440116893,
+            "camera_policy_ipc_p95_ms": 10.86146754996662,
+            "all_camera_frames_aligned": true,
+            "last_frame": 4739,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 3934,
+            "brake_ticks": 3614,
+            "zero_speed_ticks": 3616,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 2.0995311444949039e-07,
+              "control": [
+                0.04937400672810101,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.9331691265106201
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "1967"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go/episodes/Town03_Opt_route2_10_16_10_15_24",
+          "profile": {
+            "frames": 343,
+            "wall_seconds": 10.119031535999966,
+            "frames_per_second": 33.8965244628131,
+            "camera_policy_ipc_p95_ms": 11.502969500065772,
+            "all_camera_frames_aligned": true,
+            "last_frame": 5097,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 343,
+            "brake_ticks": 8,
+            "zero_speed_ticks": 7,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 6.879990100860596,
+              "control": [
+                -0.00016751717990317564,
+                0.4980039596557617,
+                0
+              ],
+              "target_speed_mps": 8.545560836791992,
+              "brake_probability": 0.021678240969777107
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "172"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go/episodes/Town03_Opt_route3_10_16_10_15_35",
+          "profile": {
+            "frames": 241,
+            "wall_seconds": 8.685128914000188,
+            "frames_per_second": 27.748580635517644,
+            "camera_policy_ipc_p95_ms": 11.503783999842199,
+            "all_camera_frames_aligned": true,
+            "last_frame": 5354,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 241,
+            "brake_ticks": 3,
+            "zero_speed_ticks": 8,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 4.18164587020874,
+              "control": [
+                0.0003024438292702036,
+                0.6175539016723633,
+                0
+              ],
+              "target_speed_mps": 5.600530624389648,
+              "brake_probability": 0.07315943390130997
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "121"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go/episodes/Town03_Opt_route4_10_16_10_15_45",
+          "profile": {
+            "frames": 588,
+            "wall_seconds": 19.2053975419999,
+            "frames_per_second": 30.61639305898847,
+            "camera_policy_ipc_p95_ms": 11.001826299934692,
+            "all_camera_frames_aligned": true,
+            "last_frame": 5958,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 588,
+            "brake_ticks": 167,
+            "zero_speed_ticks": 175,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 7.035961627960205,
+              "control": [
+                0.001174826725033879,
+                0.43561534881591796,
+                0
+              ],
+              "target_speed_mps": 8.518436431884766,
+              "brake_probability": 0.022523069754242897
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "294"
+          },
+          "full_video_decode_passed": true
+        },
+        {
+          "episode": "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go/episodes/Town03_Opt_route5_10_16_10_16_05",
+          "profile": {
+            "frames": 5692,
+            "wall_seconds": 145.22233621099986,
+            "frames_per_second": 39.195072524724054,
+            "camera_policy_ipc_p95_ms": 10.824926700058766,
+            "all_camera_frames_aligned": true,
+            "last_frame": 11665,
+            "rule_overrides_enabled": false,
+            "intervention_ticks": 0,
+            "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+            "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+          },
+          "trace_summary": {
+            "frames": 5692,
+            "brake_ticks": 5231,
+            "zero_speed_ticks": 5244,
+            "expert_hazard_ticks": null,
+            "last_state": {
+              "speed_mps": 3.866823317366652e-05,
+              "control": [
+                -0.004069602623241846,
+                0,
+                1
+              ],
+              "target_speed_mps": 0.0,
+              "brake_probability": 0.7180389761924744
+            }
+          },
+          "video": {
+            "codec_name": "h264",
+            "width": 1536,
+            "height": 288,
+            "pix_fmt": "yuv420p",
+            "nb_frames": "2846"
+          },
+          "full_video_decode_passed": true
+        }
+      ],
+      "source_archive_verified": true,
+      "checkpoint_sha256": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+      "distinct_recorders_verified": true
+    }
+  },
+  "raw_attempts": [
+    {
+      "attempt": "outputs/navigation_m2_stop_go_pilot_20261016/expert",
+      "count": 6,
+      "all_collisions": 0
+    },
+    {
+      "attempt": "outputs/navigation_m2_stop_go_pilot_retry_20261016/expert",
+      "count": 6,
+      "all_collisions": 0
+    },
+    {
+      "attempt": "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go",
+      "count": 6,
+      "all_collisions": 0
+    },
+    {
+      "attempt": "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0",
+      "count": 6,
+      "all_collisions": 0
+    }
+  ],
+  "all_attempt_collisions": 0,
+  "spatial_audit": {
+    "timestamps": {
+      "expert": 2552,
+      "stop_go": 11123,
+      "v0": 12948
+    },
+    "violations": [],
+    "assignments_sha256": "6f0f6b8d435fbed3bff236f08a976abeac8f21c50a285199481566910f078cf9",
+    "map_sha256": "abf177bcd9b66cfefb7ac4919f6456815f1384f4229f1343c8a6a90bbb7713c9",
+    "scope": "Stored ego centre mapped to nearest driving waypoint; not proof of visual/geographic independence."
+  },
+  "audit_passed": true
+}

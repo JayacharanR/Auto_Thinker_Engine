@@ -1,0 +1,584 @@
+{
+  "parent": {
+    "speed_mae_mps": 3.9759640984418914,
+    "go_speed_mae_mps": 4.593713096492198,
+    "controller_stop_recall": 0.55,
+    "controller_false_hold_fraction": 0.13917525773195877,
+    "counts": {
+      "speed": 1312,
+      "go": 724,
+      "stopped": 560,
+      "controller_go": 582
+    },
+    "selection_score": 0.38646189079582327,
+    "families": {
+      "crossing_yield": {
+        "stopped": 0,
+        "stop_hits": 0
+      },
+      "route_junction": {
+        "stopped": 18,
+        "stop_hits": 18
+      },
+      "signal_release_memory": {
+        "stopped": 278,
+        "stop_hits": 149
+      },
+      "signal_stop": {
+        "stopped": 201,
+        "stop_hits": 117
+      },
+      "stop_sign": {
+        "stopped": 63,
+        "stop_hits": 24
+      },
+      "following_stopped_vehicle": {
+        "stopped": 0,
+        "stop_hits": 0
+      }
+    }
+  },
+  "results": {
+    "constant": {
+      "selected_step": 0,
+      "metrics": {
+        "speed_mae_mps": 3.9759640984418914,
+        "go_speed_mae_mps": 4.593713096492198,
+        "controller_stop_recall": 0.55,
+        "controller_false_hold_fraction": 0.13917525773195877,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.38646189079582327,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 18
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 149
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 117
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 24
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0
+          }
+        }
+      },
+      "checkpoint_sha256": "0efc08cb5283afb1430e944a40e46a4146de86defe2c1d15441d6f9ec1e3e6d0"
+    },
+    "facts": {
+      "selected_step": 0,
+      "metrics": {
+        "speed_mae_mps": 3.9759640984418914,
+        "go_speed_mae_mps": 4.593713096492198,
+        "controller_stop_recall": 0.55,
+        "controller_false_hold_fraction": 0.13917525773195877,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.38646189079582327,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 18
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 149
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 117
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 24
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0
+          }
+        }
+      },
+      "checkpoint_sha256": "7364a989c067101dc903e23e1fb94548965411ce5a67f74b1e8dd28d6a6d3389"
+    }
+  },
+  "scheduled_validations": {
+    "constant": [
+      {
+        "step": 0,
+        "metrics": {
+          "speed_mae_mps": 3.9759640984418914,
+          "go_speed_mae_mps": 4.593713096492198,
+          "controller_stop_recall": 0.55,
+          "controller_false_hold_fraction": 0.13917525773195877,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.38646189079582327,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 18
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 149
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 24
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 250,
+        "metrics": {
+          "speed_mae_mps": 4.164566214491681,
+          "go_speed_mae_mps": 4.491943475291215,
+          "controller_stop_recall": 0.5,
+          "controller_false_hold_fraction": 0.09106529209621993,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.3853715155539343,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 18
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 138
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 7
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 500,
+        "metrics": {
+          "speed_mae_mps": 4.133603450728626,
+          "go_speed_mae_mps": 4.489437503709319,
+          "controller_stop_recall": 0.5053571428571428,
+          "controller_false_hold_fraction": 0.0979381443298969,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.38607925081056343,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 18
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 138
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 10
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 750,
+        "metrics": {
+          "speed_mae_mps": 3.913744315868471,
+          "go_speed_mae_mps": 4.6097288289781435,
+          "controller_stop_recall": 0.5732142857142857,
+          "controller_false_hold_fraction": 0.1563573883161512,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.38376612788049563,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 18
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 158
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 28
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 1000,
+        "metrics": {
+          "speed_mae_mps": 4.076513249699662,
+          "go_speed_mae_mps": 4.6222794675036685,
+          "controller_stop_recall": 0.5357142857142857,
+          "controller_false_hold_fraction": 0.13917525773195877,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.3941760753589099,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 18
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 149
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 16
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      }
+    ],
+    "facts": [
+      {
+        "step": 0,
+        "metrics": {
+          "speed_mae_mps": 3.9759640984418914,
+          "go_speed_mae_mps": 4.593713096492198,
+          "controller_stop_recall": 0.55,
+          "controller_false_hold_fraction": 0.13917525773195877,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.38646189079582327,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 18
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 149
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 24
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 250,
+        "metrics": {
+          "speed_mae_mps": 4.12034726724392,
+          "go_speed_mae_mps": 4.46541526963039,
+          "controller_stop_recall": 0.5053571428571428,
+          "controller_false_hold_fraction": 0.09450171821305842,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.3838805930705656,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 18
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 138
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 10
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 500,
+        "metrics": {
+          "speed_mae_mps": 4.132288502483833,
+          "go_speed_mae_mps": 4.473306740186491,
+          "controller_stop_recall": 0.5035714285714286,
+          "controller_false_hold_fraction": 0.09621993127147767,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.3857903861537544,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 17
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 138
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 10
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 750,
+        "metrics": {
+          "speed_mae_mps": 3.850342878481237,
+          "go_speed_mae_mps": 4.596372035326879,
+          "controller_stop_recall": 0.5946428571428571,
+          "controller_false_hold_fraction": 0.16323024054982818,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.3762211324100231,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 17
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 167
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 32
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      },
+      {
+        "step": 1000,
+        "metrics": {
+          "speed_mae_mps": 3.990468211290313,
+          "go_speed_mae_mps": 4.625770263250361,
+          "controller_stop_recall": 0.5517857142857143,
+          "controller_false_hold_fraction": 0.14261168384879724,
+          "counts": {
+            "speed": 1312,
+            "go": 724,
+            "stopped": 560,
+            "controller_go": 582
+          },
+          "selection_score": 0.38792839004654867,
+          "families": {
+            "crossing_yield": {
+              "stopped": 0,
+              "stop_hits": 0
+            },
+            "route_junction": {
+              "stopped": 18,
+              "stop_hits": 15
+            },
+            "signal_release_memory": {
+              "stopped": 278,
+              "stop_hits": 150
+            },
+            "signal_stop": {
+              "stopped": 201,
+              "stop_hits": 117
+            },
+            "stop_sign": {
+              "stopped": 63,
+              "stop_hits": 27
+            },
+            "following_stopped_vehicle": {
+              "stopped": 0,
+              "stop_hits": 0
+            }
+          }
+        },
+        "admitted": false,
+        "selected_step": 0
+      }
+    ]
+  },
+  "paired_episode_draws_identical": true,
+  "native_candidate_eligible": false,
+  "assessment_sha256": "d60dabd71261029330b980bf6f367755ad8c59a0de489eed9b31aa576a24fd0e",
+  "request_sha256": "e10d0b9bc48e3e588dad3085de0e9a769630cebe193e0e7d952540f99614841d",
+  "validation_sha256": {
+    "constant": "1693a8b78fc1f476de427f8e2dfeb14ffc6224abb588b300d83ff9658aa1e32a",
+    "facts": "4bd2f79354692413ec73e96b774d44ba1f4c4656d359a268829516f83459c380"
+  },
+  "note": "Both selected0; no deployment or native retry. Original M3outcomes excluded from fitting."
+}

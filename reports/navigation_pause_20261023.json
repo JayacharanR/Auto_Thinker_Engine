@@ -1,0 +1,13 @@
+{
+  "status": "paused_by_user",
+  "paused_at": "2026-10-23T17:17:13.749670+05:30",
+  "goal_status": "paused",
+  "live_project_owners_at_pause": [],
+  "stop_files_required": false,
+  "reason": "User requested stopping at the current completed state; no project process was live.",
+  "last_completed_audit": "outputs/navigation_signal_spatial_full_20261022",
+  "last_audit_qualified": false,
+  "prepared_unstarted_fit": "outputs/navigation_signal_positive_fit_20261022",
+  "M6_final_driving_run": false,
+  "resume_requires_user_request": true
+}

@@ -1,5 +1,10 @@
 # Camera world-model navigation: full reviewed plan (user-supplied text)
 
+> **Execution paused by the user on 23 October 2026.** Preserve this approved
+> design as historical intent. The [project report](journey/summary.md) states
+> what was actually completed, rejected and left open. Final Town05 driving
+> has not run. No project experiment may resume without a new user request.
+
 Verbatim plan the user approved on 2026-10-08 after the external review, and
 asked to be kept in mind for all navigation work. The condensed working version
 is [navigation_plan.md](navigation_plan.md); where they differ in detail, this

@@ -90,6 +90,8 @@ class CameraRig:
     def __init__(self, world, ego, config):
         import carla
 
+        if config["runtime"]["camera_hz"] != config["runtime"]["physics_hz"]:
+            raise ValueError("This navigation rig requires one camera sample per physics frame")
         self.barrier = FrameBarrier()
         self.sensors = []
         self.calibration = calibrations(config)
@@ -100,7 +102,9 @@ class CameraRig:
                     "image_size_x": spec["width"],
                     "image_size_y": spec["height"],
                     "fov": spec["fov"],
-                    "sensor_tick": 1 / config["runtime"]["camera_hz"],
+                    # Match the native Leaderboard camera cadence. An explicit
+                    # .05 interval can skip ticks after float-clock rounding.
+                    "sensor_tick": 0.0,
                 }.items():
                     bp.set_attribute(key, str(value))
                 transform = carla.Transform(

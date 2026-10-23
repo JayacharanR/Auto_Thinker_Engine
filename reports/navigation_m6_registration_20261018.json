@@ -1,0 +1,100 @@
+{
+  "registration_audit_passed": true,
+  "geometry_only": true,
+  "policy_loaded": false,
+  "suite_sha256": "b1194ae3d2ce4a2d229e435e1a5cad17ce34d672bcf12393313f52bc8c282cef",
+  "route_sha256": "f857bb8902f7f359413f749fb8fd75d868ab1300d994f94b4039a3a01f7a78cc",
+  "source_sha256": "58ec5dcb1a247ed9917d928825d01f0bdac17286ca536a7735deb782a7f2d83d",
+  "routes": [
+    {
+      "route_id": 0,
+      "native_harness_length_m": 1662.790363828214,
+      "required_stop": 87,
+      "signal_actor_in_inventory": 194,
+      "planned_stop_count": 3
+    },
+    {
+      "route_id": 1,
+      "native_harness_length_m": 1516.3138454955883,
+      "required_stop": 87,
+      "signal_actor_in_inventory": 189,
+      "planned_stop_count": 2
+    },
+    {
+      "route_id": 2,
+      "native_harness_length_m": 2342.042119074643,
+      "required_stop": 88,
+      "signal_actor_in_inventory": 194,
+      "planned_stop_count": 3
+    },
+    {
+      "route_id": 3,
+      "native_harness_length_m": 1283.5434983299028,
+      "required_stop": 88,
+      "signal_actor_in_inventory": 185,
+      "planned_stop_count": 3
+    },
+    {
+      "route_id": 4,
+      "native_harness_length_m": 2453.8701708737044,
+      "required_stop": 89,
+      "signal_actor_in_inventory": 194,
+      "planned_stop_count": 2
+    },
+    {
+      "route_id": 5,
+      "native_harness_length_m": 1930.9808162799388,
+      "required_stop": 89,
+      "signal_actor_in_inventory": 192,
+      "planned_stop_count": 2
+    },
+    {
+      "route_id": 6,
+      "native_harness_length_m": 1794.0492205385046,
+      "required_stop": 90,
+      "signal_actor_in_inventory": 170,
+      "planned_stop_count": 4
+    },
+    {
+      "route_id": 7,
+      "native_harness_length_m": 1353.514903945248,
+      "required_stop": 90,
+      "signal_actor_in_inventory": 190,
+      "planned_stop_count": 4
+    },
+    {
+      "route_id": 8,
+      "native_harness_length_m": 1898.3183536837423,
+      "required_stop": 91,
+      "signal_actor_in_inventory": 194,
+      "planned_stop_count": 2
+    },
+    {
+      "route_id": 9,
+      "native_harness_length_m": 1888.1670091054305,
+      "required_stop": 91,
+      "signal_actor_in_inventory": 189,
+      "planned_stop_count": 2
+    },
+    {
+      "route_id": 10,
+      "native_harness_length_m": 1437.2517365707008,
+      "required_stop": null,
+      "signal_actor_in_inventory": 189,
+      "planned_stop_count": 1
+    },
+    {
+      "route_id": 11,
+      "native_harness_length_m": 1005.5424994448049,
+      "required_stop": null,
+      "signal_actor_in_inventory": 192,
+      "planned_stop_count": 0
+    }
+  ],
+  "planned_stop_opportunities": 84,
+  "planned_red_opportunities": 36,
+  "actual_encounters_verified": false,
+  "runtime_stop_actors": 33,
+  "explicit_mapped_stop_locations": 5,
+  "limitation": "No driving test; planned opportunities and setup binding require runtime audit"
+}

@@ -1,0 +1,72 @@
+{
+  "rows": [
+    {
+      "name": "comma_f100_seed42",
+      "arrivals": 2,
+      "native_rule_safe": 0,
+      "unfiltered_contact_starts": 130,
+      "incomplete_recorders": [],
+      "resource_censored": [],
+      "candidate": {
+        "name": "comma_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_visual_study_20261019/fits/comma_f100_seed42/best_policy.pt",
+        "sha256": "7015fef0776c5cbe03a96ed2e2f0043abb4eecfd2aa2f5ada8534ccfd3ef2b6b",
+        "selected_step": 1000
+      }
+    },
+    {
+      "name": "carla_f100_seed42",
+      "arrivals": 1,
+      "native_rule_safe": 0,
+      "unfiltered_contact_starts": 8,
+      "incomplete_recorders": [
+        "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_encoder_pilots_20261019/carla_f100_seed42/recordings/route_101_rep0.log"
+      ],
+      "resource_censored": [],
+      "candidate": {
+        "name": "carla_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_visual_study_20261019/fits/carla_f100_seed42/best_policy.pt",
+        "sha256": "82c3ab2833eb9b535d3c46c3f767b90cc452f394d3e97c15030700c7e5c54588",
+        "selected_step": 1000
+      }
+    },
+    {
+      "name": "dino_f100_seed42",
+      "arrivals": 5,
+      "native_rule_safe": 2,
+      "unfiltered_contact_starts": 1,
+      "incomplete_recorders": [],
+      "resource_censored": [],
+      "candidate": {
+        "name": "dino_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_visual_study_20261019/fits/dino_f100_seed42/best_policy.pt",
+        "sha256": "07d615b8dc8103e2fecf9c0374c95c9fe5e32a811c483dfbb7b9115f19fce0b0",
+        "selected_step": 1000
+      }
+    },
+    {
+      "name": "cnn_f100_seed42",
+      "arrivals": 1,
+      "native_rule_safe": 1,
+      "unfiltered_contact_starts": 6,
+      "incomplete_recorders": [],
+      "resource_censored": [
+        {
+          "attempt": "cnn_f100_seed42_resume_a0",
+          "route_id": "143",
+          "reason": "wall_budget"
+        }
+      ],
+      "candidate": {
+        "name": "cnn_f100_seed42",
+        "checkpoint": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_visual_study_20261019/fits/cnn_f100_seed42/best_policy.pt",
+        "sha256": "60801103b3eb5ee5425b9054aefe8eaa0b7091c411e1bfec6d3408a8b7deb3ad",
+        "selected_step": 2000
+      }
+    }
+  ],
+  "original_results_sha256": "89708c9c33db7d061e6aa7d206e3262fa65b2d75686c61feec6d253ca0a87b61",
+  "data_split_defect_disclosed": true,
+  "promotion": false,
+  "note": "Completed histories preserved. Resource-censored cases remain failed/unknown in6planned denominator, not settled behavioral failures; partial recorder counts are lower bounds."
+}

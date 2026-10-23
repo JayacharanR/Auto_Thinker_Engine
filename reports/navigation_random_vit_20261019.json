@@ -1,0 +1,209 @@
+{
+  "status": "complete",
+  "random": {
+    "encoder": "jepa_random",
+    "fraction": 1.0,
+    "seed": 42,
+    "color_enabled": true,
+    "fit": "outputs/navigation_random_vit_f100_seed42_20261019",
+    "selected_step": 2000,
+    "metrics": {
+      "speed_mae_mps": 3.8686259955894657,
+      "go_speed_mae_mps": 4.317950475281774,
+      "controller_stop_recall": 0.6232142857142857,
+      "controller_false_hold_fraction": 0.27491408934707906,
+      "counts": {
+        "speed": 1312,
+        "go": 724,
+        "stopped": 560,
+        "controller_go": 582
+      },
+      "selection_score": 0.41220891132203213,
+      "path_correction_mae_m": 0.11020215522675288,
+      "families": {
+        "crossing_yield": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 92,
+          "false_holds": 0
+        },
+        "route_junction": {
+          "stopped": 18,
+          "stop_hits": 7,
+          "controller_go": 83,
+          "false_holds": 6
+        },
+        "signal_release_memory": {
+          "stopped": 278,
+          "stop_hits": 180,
+          "controller_go": 130,
+          "false_holds": 55
+        },
+        "signal_stop": {
+          "stopped": 201,
+          "stop_hits": 148,
+          "controller_go": 173,
+          "false_holds": 80
+        },
+        "stop_sign": {
+          "stopped": 63,
+          "stop_hits": 14,
+          "controller_go": 60,
+          "false_holds": 11
+        },
+        "following_stopped_vehicle": {
+          "stopped": 0,
+          "stop_hits": 0,
+          "controller_go": 44,
+          "false_holds": 8
+        }
+      }
+    },
+    "policy_sha256": "4b315c01e84fb4c5a3d3b914eec0cc82a821d1f1150003241de617f8e65d9814",
+    "labels": 16639,
+    "elapsed_s": 33.168502050000825,
+    "request_sha256": "4f73d0c2c95761d5637bad3189f33424a74f7b61edfb7bbf824cc32601c6800f",
+    "sampler_draws_sha256": "76d10e4953f9722efb05ba6709166ae0b0a3707d4e41aac39acd37aea29bb11b"
+  },
+  "comparisons": [
+    {
+      "encoder": "jepa_comma2k19",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": true,
+      "fit": "outputs/navigation_visual_study_20261019/fits/comma_f100_seed42",
+      "selected_step": 1000,
+      "metrics": {
+        "speed_mae_mps": 3.372536961625262,
+        "go_speed_mae_mps": 4.175571852626063,
+        "controller_stop_recall": 0.5375,
+        "controller_false_hold_fraction": 0.1323024054982818,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.3809126398016621,
+        "path_correction_mae_m": 0.09662280111085801,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 18,
+            "controller_go": 83,
+            "false_holds": 24
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 150,
+            "controller_go": 130,
+            "false_holds": 28
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 133,
+            "controller_go": 173,
+            "false_holds": 25
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 0,
+            "controller_go": 60,
+            "false_holds": 0
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 0
+          }
+        }
+      },
+      "policy_sha256": "7015fef0776c5cbe03a96ed2e2f0043abb4eecfd2aa2f5ada8534ccfd3ef2b6b",
+      "labels": 16639,
+      "elapsed_s": 33.97499373100072,
+      "request_sha256": "7b185735783713be71b649bdf0d3ba59e6a6abc0250043dfe4da4ac79f4f38c8",
+      "sampler_draws_sha256": "76d10e4953f9722efb05ba6709166ae0b0a3707d4e41aac39acd37aea29bb11b"
+    },
+    {
+      "encoder": "jepa_carla",
+      "fraction": 1.0,
+      "seed": 42,
+      "color_enabled": true,
+      "fit": "outputs/navigation_visual_study_20261019/fits/carla_f100_seed42",
+      "selected_step": 1000,
+      "metrics": {
+        "speed_mae_mps": 3.6644552917015263,
+        "go_speed_mae_mps": 3.7137089197148274,
+        "controller_stop_recall": 0.5607142857142857,
+        "controller_false_hold_fraction": 0.17697594501718214,
+        "counts": {
+          "speed": 1312,
+          "go": 724,
+          "stopped": 560,
+          "controller_go": 582
+        },
+        "selection_score": 0.3824050080457448,
+        "path_correction_mae_m": 0.09517861860139029,
+        "families": {
+          "crossing_yield": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 92,
+            "false_holds": 0
+          },
+          "route_junction": {
+            "stopped": 18,
+            "stop_hits": 18,
+            "controller_go": 83,
+            "false_holds": 20
+          },
+          "signal_release_memory": {
+            "stopped": 278,
+            "stop_hits": 138,
+            "controller_go": 130,
+            "false_holds": 20
+          },
+          "signal_stop": {
+            "stopped": 201,
+            "stop_hits": 107,
+            "controller_go": 173,
+            "false_holds": 33
+          },
+          "stop_sign": {
+            "stopped": 63,
+            "stop_hits": 51,
+            "controller_go": 60,
+            "false_holds": 22
+          },
+          "following_stopped_vehicle": {
+            "stopped": 0,
+            "stop_hits": 0,
+            "controller_go": 44,
+            "false_holds": 8
+          }
+        }
+      },
+      "policy_sha256": "82c3ab2833eb9b535d3c46c3f767b90cc452f394d3e97c15030700c7e5c54588",
+      "labels": 16639,
+      "elapsed_s": 26.72411034400284,
+      "request_sha256": "c9462878a600bf80af7105711a5e4f96a5c1993b059eb4900b6be4d07ede32ae",
+      "sampler_draws_sha256": "76d10e4953f9722efb05ba6709166ae0b0a3707d4e41aac39acd37aea29bb11b"
+    }
+  ],
+  "matching_sampler_draws": true,
+  "identical_initialized_entire_driving_heads": {
+    "jepa_random": "ffb586574fc1fb6c9307292df372625362fce176c0af7d2e288aa2a5701698d8",
+    "jepa_comma2k19": "ffb586574fc1fb6c9307292df372625362fce176c0af7d2e288aa2a5701698d8",
+    "jepa_carla": "ffb586574fc1fb6c9307292df372625362fce176c0af7d2e288aa2a5701698d8"
+  },
+  "seed_count": 1,
+  "driving_claim": false,
+  "additional_to_main66": true
+}

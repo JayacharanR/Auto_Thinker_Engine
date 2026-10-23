@@ -1,0 +1,490 @@
+{
+  "status": "M2 open; component improvement, no policy promotion or driving result",
+  "detector": {
+    "status": "complete",
+    "selected_step": 50,
+    "validation": {
+      "selection_score": 0.11866046911220313,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 30,
+        "detected_iou5": 22,
+        "detected_iou3_state_correct": 21,
+        "images": 144,
+        "predictions": 1452,
+        "approximate_background_candidates": 681
+      },
+      "mean_three_view_seconds": 0.1862159909998925,
+      "p95_three_view_seconds": 0.19062771770040854,
+      "by_native_height": {
+        "8to15px": [
+          13,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          13,
+          40
+        ]
+      }
+    },
+    "wall_seconds": 111.53624913699969,
+    "frozen_parameters_and_buffers_unchanged": true,
+    "frozen_sha256": "bae259010c826f802a55a17b3e16aca329769f1552a69dca6e065f20d82a4f2a",
+    "component_sha256": "8df27ee218056e392cc5ddb0f50fef9263a1e8b81517b1d5ecbeba8038a6e49b",
+    "trainable_parameters": 1194265,
+    "total_parameters": 43256153,
+    "peak_allocated_gb": 1.693108736,
+    "scope": "TRAIN static RGB detector diagnostic; no driving/policy promotion"
+  },
+  "detector_history": [
+    {
+      "step": 0,
+      "selection_score": 0.24791952863031635,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 2,
+        "detected_iou5": 2,
+        "detected_iou3_state_correct": 2,
+        "images": 144,
+        "predictions": 7059,
+        "approximate_background_candidates": 5049
+      },
+      "mean_three_view_seconds": 0.1836182340849383,
+      "p95_three_view_seconds": 0.19966903209751763,
+      "by_native_height": {
+        "8to15px": [
+          2,
+          28
+        ],
+        "16pxplus": [
+          0,
+          4
+        ],
+        "under8px": [
+          0,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 2,
+        "iou5": 2,
+        "iou3_state_correct": 2,
+        "by_town": {
+          "Town01_Opt": [
+            0,
+            8
+          ],
+          "Town03_Opt": [
+            0,
+            20
+          ],
+          "Town04_Opt": [
+            2,
+            12
+          ],
+          "Town10HD_Opt": [
+            0,
+            32
+          ]
+        }
+      }
+    },
+    {
+      "step": 50,
+      "selection_score": 0.11866046911220313,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 30,
+        "detected_iou5": 22,
+        "detected_iou3_state_correct": 21,
+        "images": 144,
+        "predictions": 1452,
+        "approximate_background_candidates": 681
+      },
+      "mean_three_view_seconds": 0.1862159909998925,
+      "p95_three_view_seconds": 0.19062771770040854,
+      "by_native_height": {
+        "8to15px": [
+          13,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          13,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 30,
+        "iou5": 22,
+        "iou3_state_correct": 21,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            6,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            8,
+            32
+          ]
+        }
+      }
+    },
+    {
+      "step": 100,
+      "selection_score": 0.14343486810755873,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 35,
+        "detected_iou5": 24,
+        "detected_iou3_state_correct": 29,
+        "images": 144,
+        "predictions": 1527,
+        "approximate_background_candidates": 632
+      },
+      "mean_three_view_seconds": 0.18573565425538888,
+      "p95_three_view_seconds": 0.1906954528985807,
+      "by_native_height": {
+        "8to15px": [
+          15,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          16,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 35,
+        "iou5": 24,
+        "iou3_state_correct": 29,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            8,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            11,
+            32
+          ]
+        }
+      }
+    },
+    {
+      "step": 200,
+      "selection_score": 0.12498392332913176,
+      "counts": {
+        "centers": 72,
+        "detected_iou3": 45,
+        "detected_iou5": 31,
+        "detected_iou3_state_correct": 35,
+        "images": 144,
+        "predictions": 2009,
+        "approximate_background_candidates": 972
+      },
+      "mean_three_view_seconds": 0.18545120972347387,
+      "p95_three_view_seconds": 0.18920672959866353,
+      "by_native_height": {
+        "8to15px": [
+          18,
+          28
+        ],
+        "16pxplus": [
+          4,
+          4
+        ],
+        "under8px": [
+          23,
+          40
+        ]
+      },
+      "one_to_one": {
+        "denominator": 72,
+        "iou3": 45,
+        "iou5": 31,
+        "iou3_state_correct": 35,
+        "by_town": {
+          "Town01_Opt": [
+            4,
+            8
+          ],
+          "Town03_Opt": [
+            8,
+            20
+          ],
+          "Town04_Opt": [
+            12,
+            12
+          ],
+          "Town10HD_Opt": [
+            21,
+            32
+          ]
+        }
+      }
+    }
+  ],
+  "crop_alignment": {
+    "diagnostic_complete": true,
+    "matched_detector_boxes": 30,
+    "denominator": 72,
+    "original_detected_state_correct": 21,
+    "augmented_detected_state_correct": 24,
+    "original_oracle_gt_correct": 61,
+    "augmented_oracle_gt_correct": 68,
+    "predicted_roi_confusion_matrix": [
+      [
+        14,
+        3,
+        0
+      ],
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        1,
+        4
+      ]
+    ],
+    "class_order": [
+      "Red",
+      "Yellow",
+      "Green"
+    ],
+    "optimizer_iterations": [
+      44
+    ],
+    "fit_seconds": 0.18362667199835414,
+    "wall_seconds": 3.107297266000387,
+    "artifact_sha256": "ca08ac5a7c301c76489a9fc8cde692a9da213c0fa679fd7307e7dc0d2a6b5de2",
+    "saved_prediction_parity": true,
+    "scope": "Fixed predicted-box RGB classification; predicted ROIs, no driving claim"
+  },
+  "precision": {
+    "diagnostic_complete": true,
+    "results": {
+      "fp32": {
+        "rpn_post_nms_proposals": 1000,
+        "one_to_one": {
+          "denominator": 72,
+          "iou3": 30,
+          "iou5": 22,
+          "iou3_state_correct": 24,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              6,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              8,
+              32
+            ]
+          }
+        },
+        "predictions": 1452,
+        "mean_three_view_seconds": 0.183113068791954,
+        "p95_three_view_seconds": 0.18790624585126353,
+        "peak_allocated_gb": 1.671878656
+      },
+      "fp16": {
+        "rpn_post_nms_proposals": 1000,
+        "one_to_one": {
+          "denominator": 72,
+          "iou3": 31,
+          "iou5": 22,
+          "iou3_state_correct": 25,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              7,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              8,
+              32
+            ]
+          }
+        },
+        "predictions": 1469,
+        "mean_three_view_seconds": 0.10751474418740752,
+        "p95_three_view_seconds": 0.11215588155009755,
+        "peak_allocated_gb": 1.35181824
+      },
+      "fp16_cap200": {
+        "rpn_post_nms_proposals": 200,
+        "one_to_one": {
+          "denominator": 72,
+          "iou3": 24,
+          "iou5": 14,
+          "iou3_state_correct": 19,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              3,
+              20
+            ],
+            "Town04_Opt": [
+              10,
+              12
+            ],
+            "Town10HD_Opt": [
+              7,
+              32
+            ]
+          }
+        },
+        "predictions": 596,
+        "mean_three_view_seconds": 0.08559767997909755,
+        "p95_three_view_seconds": 0.0892545209004311,
+        "peak_allocated_gb": 1.351819264
+      }
+    },
+    "parameters_and_buffers_unchanged": true,
+    "wall_seconds": 26.037388613000076,
+    "scope": "Controlled TRAIN RGB precision diagnostic; no driving or full pipeline latency"
+  },
+  "earlier_precision": {
+    "diagnostic_complete": true,
+    "results": {
+      "fp32": {
+        "one_to_one": {
+          "denominator": 72,
+          "iou3": 30,
+          "iou5": 22,
+          "iou3_state_correct": 24,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              6,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              8,
+              32
+            ]
+          }
+        },
+        "predictions": 1452,
+        "mean_three_view_seconds": 0.18407491958358455,
+        "p95_three_view_seconds": 0.19549617369993938,
+        "peak_allocated_gb": 1.671880192
+      },
+      "fp16": {
+        "one_to_one": {
+          "denominator": 72,
+          "iou3": 31,
+          "iou5": 22,
+          "iou3_state_correct": 25,
+          "by_town": {
+            "Town01_Opt": [
+              4,
+              8
+            ],
+            "Town03_Opt": [
+              7,
+              20
+            ],
+            "Town04_Opt": [
+              12,
+              12
+            ],
+            "Town10HD_Opt": [
+              8,
+              32
+            ]
+          }
+        },
+        "predictions": 1469,
+        "mean_three_view_seconds": 0.1064792769795228,
+        "p95_three_view_seconds": 0.11245134330001746,
+        "peak_allocated_gb": 1.35181824
+      }
+    },
+    "parameters_and_buffers_unchanged": true,
+    "wall_seconds": 28.961096905000886,
+    "scope": "Controlled TRAIN RGB precision diagnostic; no driving or full pipeline latency"
+  },
+  "unchanged_camera_parent_and_cache": {
+    "outputs/navigation_m2_stop_go_20261016/best_policy.pt": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+    "outputs/navigation_m2_cache_20k_20261015/manifest.json": "b9e09499fa0c0158a62849369f44a2c942d90aa9c2dcdff1b7dffdd73e6710ae"
+  },
+  "evidence_sha256": {
+    "outputs/navigation_m2_signal_detector_20261016/review.json": "e4b450f6ae1d5ecaa59382ecd1a5f1c251a1260b444c32dd205993486b71fa33",
+    "outputs/navigation_m2_signal_detector_20261016/one_to_one_audit.json": "fce8145677d8bc946bab967377595c29a0290f3527c4e671e67dc76eec21ecd6",
+    "outputs/navigation_m2_signal_crop_alignment_20261016/assessment.json": "e65cd362617faabc4fe4836003d8087318e13fa89fd7b83116722e9831170998",
+    "outputs/navigation_m2_signal_proposal_budget_20261016/assessment.json": "b387cd9b6c88c71623145cbcd413f538be9b2cc0484518adb584af4902782133",
+    "outputs/navigation_m2_signal_precision_20261016/assessment.json": "fb038094ad1d7e50053a3d404645efb7e4e2494b5328eb13024f202543b5a426",
+    "outputs/navigation_m2_signal_corpus_v2_20261016/data_audit.json": "ec1632bab904092d595371b0b3d1cdb2c49c5e0caa2b65cbce58af4005844a48",
+    "outputs/navigation_m2_signal_detector_20261016/request.json": "db54c404048d26890ae93c2cad915b05f5d385216c51f82ef2b6f8225e38960b",
+    "outputs/navigation_m2_signal_crop_alignment_20261016/request.json": "b089829ecb9ea7ee0cdf3bba8629cb899a37bcf81e71df0f308ec27d2de48b5b",
+    "outputs/navigation_m2_signal_proposal_budget_20261016/request.json": "1f4ab632e1d921e7e49874a510e05c6227d62839b925e733f768df2f50edce68",
+    "outputs/navigation_m2_signal_precision_20261016/request.json": "833bc7c152053fc6bd74e69d58eab0c9a9ef0d1ece8b2874f51e1beaa866d162"
+  },
+  "summary_source_sha256": "60b47270b73bdf4b257cf32d12498b0336d8c5e2ca23f2ed2bda735786b90d34",
+  "limitations": [
+    "Four already inspected TRAIN development junctions;72 correlated labels",
+    "COCO supervised pretraining; not a fair JEPA/encoder ablation",
+    "Sparse geometry is not full detection AP or exhaustive background truth",
+    "Runtime crop/state never receives oracle geometry; labels/scoring do",
+    "No lane applicability, temporal-tracking or closed-loop claim",
+    "No heldout_dev/Town05 testing; final-registration timing issue remains"
+  ]
+}

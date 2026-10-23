@@ -1,0 +1,57 @@
+{
+  "schema": "navigation-local-storage-plan-v1",
+  "status": "approved_registered_generation_retains25GB",
+  "user_constraint": "Fit remaining work within available24GB; no external mount required",
+  "root": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_compact_execution_20261020",
+  "requested_additional_artifact_cap_bytes": 14000000000,
+  "minimum_free_bytes_proposed": 10000000000,
+  "minimum_free_bytes_current": 25000000000,
+  "reserve_change_applied": false,
+  "source_evidence": {
+    "outputs/navigation_compact_storage_profile_v2_20261020/profile.json": "7ab42a7de42cdb3e4de4a3ca0cebcf2ac4aa724d0e9b36807f09ad35a6e72a4d",
+    "outputs/navigation_physical_storage_profile_20261020/profile.json": "e198d0ccd21fcf7c67cb860342def92f052dcbf9af7389afd9ed25a60ca54e2e",
+    "configs/routes/town05_final_v2/suite.json": "b1194ae3d2ce4a2d229e435e1a5cad17ce34d672bcf12393313f52bc8c282cef"
+  },
+  "measured_preview_reduction_fraction": 0.5841445821297324,
+  "physical_world_trace_ratio": 0.12571873338309766,
+  "m6_estimate": {
+    "all72missions_km": 123.39830722302254,
+    "all_native_recorders_and_traces_retained": true,
+    "full_preview_routes": [
+      0,
+      4,
+      8
+    ],
+    "full_preview_seed": 3031,
+    "full_preview_both_arms": true,
+    "unmodified_current_10fps_preview_codec": true,
+    "nonvideo_bytes_at_observed_pace": 1904098022.1112578,
+    "preview_bytes_at_observed_pace": 1552438066.9495296,
+    "total_bytes_at_observed_pace": 3456536089.060787,
+    "qualification": "Estimate from one unsafe engineering drive, not a Town05 outcome or performance claim; traffic waits vary"
+  },
+  "allocation_bytes": {
+    "remaining_training_artifacts": 1500000000,
+    "M2_development_and_pilots": 2000000000,
+    "M3_rule_trials": 1000000000,
+    "M5_calibration_and_corrective_data": 2000000000,
+    "M6_native_evidence_and_selected_videos": 5000000000,
+    "contingency": 2500000000
+  },
+  "temporary_features": "One regenerable cache in RAM/tmpfs at a time; retain recipes and SHA receipts",
+  "safeguards": [
+    "No old scientific artifact deletion or transcoding",
+    "Every native recorder, trace, event and failure retained",
+    "All policy inputs, action cadence, routes, seeds and metrics unchanged",
+    "Every M3 rule trial keeps full video for its physical audit",
+    "Predeclare recording-only M6 video subset identically for expert/student before driving",
+    "Enforce cumulative new-artifact cap and actual filesystem reserve; STOP owned jobs cleanly on shortfall; do not shrink benchmark"
+  ],
+  "not_a_guarantee_of_scientific_gate_success": true,
+  "created_at": 1792441260.2854574,
+  "free_now_bytes": 27820740608,
+  "effective_additional_limit_bytes_at_current_free": 14000000000,
+  "user_approved": true,
+  "approval_text": "i agree with the new storage plan, so continue to your goal",
+  "approved_at": 1792441499.5115955
+}

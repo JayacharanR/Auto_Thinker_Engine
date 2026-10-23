@@ -1,0 +1,39 @@
+{
+  "official_rpc_verification": "outputs/navigation_recorder_rpc_20261019/verification.json",
+  "complete_records_matched": 313,
+  "partial_records": 1,
+  "native_fault_filter": "CollisionTest._count_collisions ignores ego speed <0.1m/s; native spatial/temporal duplicate filters also apply",
+  "expert": {
+    "native_audited_rule_safe": 294,
+    "all_contact_rule_safe": 293,
+    "planned": 300,
+    "native_strict_safe": 57,
+    "all_contact_strict_safe": 56,
+    "native_collision_events": 2,
+    "recorder_ego_contact_starts": 6,
+    "contact_missions": [
+      102,
+      170,
+      177
+    ],
+    "newly_rejected_mission": 170
+  },
+  "camera_long": {
+    "native_collision_events": 5,
+    "recorder_contact_starts": 13,
+    "red": 2,
+    "stop": 1,
+    "arrival": true,
+    "safe": false
+  },
+  "short_pilots": {
+    "spatial_contacts": 0,
+    "visual_contacts": 0,
+    "official_recorder_verified": true
+  },
+  "limitations": [
+    "One partial expert crash recorder cannot certify zero contacts beyond recorded prefix",
+    "Contact starts group continuous adjacent-frame unordered actor pairs; raw samples and official ordered query rows retained",
+    "Keep native Leaderboard metrics separately; unfiltered contact-free success is the approved project headline"
+  ]
+}

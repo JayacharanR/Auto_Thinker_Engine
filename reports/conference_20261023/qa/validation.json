@@ -1,0 +1,28 @@
+{
+  "pages": 7,
+  "images": 7,
+  "tables": 6,
+  "references": 11,
+  "bold_placeholders": [
+    "[Author name(s)]",
+    "[Department / programme]",
+    "[Institution / organization]",
+    "[City, country]",
+    "[Email address(es) / ORCID]",
+    "[Funding, supervisor and institutional acknowledgment details; remove this paragraph if none.]"
+  ],
+  "page_word_counts": [
+    583,
+    532,
+    784,
+    461,
+    479,
+    609,
+    808
+  ],
+  "out_of_margin_text_spans": [],
+  "template_guidance_removed": true,
+  "rendered_with": "LibreOffice 24.8.7.2",
+  "docx_sha256": "d641f572e375a5d782295dd4e92c523bb480ad7e414fa197c85dab82b3999e92",
+  "qa_passed": true
+}

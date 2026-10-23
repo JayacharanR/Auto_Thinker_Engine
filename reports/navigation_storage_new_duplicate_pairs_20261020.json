@@ -1,0 +1,113 @@
+{
+  "groups": [
+    {
+      "bytes": 220047243,
+      "sha256": "0806bdc4e6f10ff8a217997e0c36a0f581fc19f8e801727de0d56dae0f1b8dcd",
+      "paths": [
+        "outputs/diagnostics/bev_traffic_medium_seed42/latest.pt",
+        "outputs/diagnostics/bev_traffic_medium_seed42/best.pt",
+        "outputs/collision_cost_ablation_queue/source_60k.pt"
+      ]
+    },
+    {
+      "bytes": 220047307,
+      "sha256": "130a69e6b3f6ebadfa86b3099a968b7a7ed5686cd1d55e52359a7bfa775bccc0",
+      "paths": [
+        "outputs/diagnostics/collision_cost_ablation_v1/control/latest.pt",
+        "outputs/overnight_bev_20261006/baseline.pt"
+      ]
+    },
+    {
+      "bytes": 220047307,
+      "sha256": "be5ee3ae77a4f2156a212408a2b178aa3b8f781fec1b24e241d62867a99fe0d7",
+      "paths": [
+        "outputs/diagnostics/overnight_bev_20261006/latest.pt",
+        "outputs/overnight_bev_20261006/checkpoints/step150000.pt"
+      ]
+    },
+    {
+      "bytes": 220047307,
+      "sha256": "5fe91136ac62dc0fc3ee9753627d221e95463cce7dbdd47fdeb1d850d25c759e",
+      "paths": [
+        "outputs/overnight_bev_20261006/best.pt",
+        "outputs/overnight_bev_20261006/checkpoints/step90000.pt"
+      ]
+    },
+    {
+      "bytes": 1873418,
+      "sha256": "9cc1c2f7f8d260883f427251027f969f4337cbf95267056a67aece895bd15681",
+      "paths": [
+        "outputs/navigation_m2_student_smoke_20261015/best_policy.pt",
+        "outputs/navigation_m2_camera_profile_20261015/policy.pt",
+        "outputs/navigation_m2_camera_profile_retry_20261015/policy.pt",
+        "outputs/navigation_m2_camera_route_20261015/policy.pt",
+        "outputs/navigation_m2_stop_go_pilot_retry_20261016/v0/policy.pt"
+      ]
+    },
+    {
+      "bytes": 1881092,
+      "sha256": "80bee4e338eec8f55f57d96ad4cf0bf27c736e47bc641e2b1dd4e8bb0cfdc3e4",
+      "paths": [
+        "outputs/navigation_m2_stop_go_20261016/best_policy.pt",
+        "outputs/navigation_m2_stop_go_pilot_retry_20261016/stop_go/policy.pt",
+        "outputs/navigation_m2_dagger_pilot_20261016/Town03_Opt/policy.pt",
+        "outputs/navigation_m2_causal_history_20261018/best_policy.pt",
+        "outputs/navigation_m2_signal_residual_rgb_20261018/best_policy.pt",
+        "outputs/navigation_m2_signal_residual_null_20261018/best_policy.pt"
+      ]
+    },
+    {
+      "bytes": 1599241,
+      "sha256": "a2c479c06c27275fe48e7a2e33b49ea072a90a30c89d5aff433b2c572c1d14f0",
+      "paths": [
+        "outputs/navigation_spatial_resnet_f100_seed42_20261019/best_policy.pt",
+        "outputs/navigation_spatial_resnet_pilot_v2_20261019/navigation_spatial_resnet_f100_seed42_20261019/policy.pt"
+      ]
+    },
+    {
+      "bytes": 1599241,
+      "sha256": "c07ea17838fc66046844df1512e1eea3359e5206f791ad6b03229bf57ed1a54d",
+      "paths": [
+        "outputs/navigation_visual_resnet_f100_seed42_20261019/best_policy.pt",
+        "outputs/navigation_visual_resnet_pilot_20261019/navigation_visual_resnet_f100_seed42_20261019/policy.pt",
+        "outputs/navigation_visual_resnet_long_20261019/policy.pt"
+      ]
+    },
+    {
+      "bytes": 1565449,
+      "sha256": "07d615b8dc8103e2fecf9c0374c95c9fe5e32a811c483dfbb7b9115f19fce0b0",
+      "paths": [
+        "outputs/navigation_visual_study_20261019/fits/dino_f100_seed42/best_policy.pt",
+        "outputs/navigation_encoder_pilots_20261019/dino_f100_seed42_resume_a0/policy.pt"
+      ]
+    },
+    {
+      "bytes": 1565449,
+      "sha256": "82c3ab2833eb9b535d3c46c3f767b90cc452f394d3e97c15030700c7e5c54588",
+      "paths": [
+        "outputs/navigation_visual_study_20261019/fits/carla_f100_seed42/best_policy.pt",
+        "outputs/navigation_encoder_pilots_20261019/carla_f100_seed42/policy.pt",
+        "outputs/navigation_encoder_pilots_20261019/carla_f100_seed42_resume_a0/policy.pt"
+      ]
+    },
+    {
+      "bytes": 1565385,
+      "sha256": "7015fef0776c5cbe03a96ed2e2f0043abb4eecfd2aa2f5ada8534ccfd3ef2b6b",
+      "paths": [
+        "outputs/navigation_visual_study_20261019/fits/comma_f100_seed42/best_policy.pt",
+        "outputs/navigation_encoder_pilots_20261019/comma_f100_seed42/policy.pt"
+      ]
+    },
+    {
+      "bytes": 2164051,
+      "sha256": "60801103b3eb5ee5425b9054aefe8eaa0b7091c411e1bfec6d3408a8b7deb3ad",
+      "paths": [
+        "outputs/navigation_visual_study_20261019/fits/cnn_f100_seed42/best_policy.pt",
+        "outputs/navigation_encoder_pilots_20261019/cnn_f100_seed42_resume_a0/policy.pt"
+      ]
+    }
+  ],
+  "read_only": true,
+  "logical_potential_bytes": 1863564461,
+  "note": "Earlier two completed COW groups excluded; all checkpoint paths/bytes retained."
+}

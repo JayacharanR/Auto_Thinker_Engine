@@ -1,0 +1,6 @@
+{
+  "source_manifest": "outputs/navigation_dynamics_sources_repaired_20261019/manifest.json",
+  "episodes": 69,
+  "unsupported_episodes": [],
+  "semantics": "3-action dynamics omit handbrake/reverse; such windows need censorship before fitting"
+}

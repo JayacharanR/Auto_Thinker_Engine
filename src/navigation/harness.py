@@ -1,5 +1,6 @@
 """Lifecycle adapter; scoring and scenario behavior remain in the pinned harness."""
 
+import importlib
 import json
 import random
 import time
@@ -7,18 +8,63 @@ from pathlib import Path
 
 import carla
 import numpy as np
+import py_trees
 import torch
 from leaderboard.leaderboard_evaluator_local import LeaderboardEvaluator
 from leaderboard.scenarios.route_scenario import RouteScenario
 from leaderboard.scenarios.scenario_manager_local import ScenarioManager
 from srunner.scenariomanager.carla_data_provider import CarlaDataProvider
+from srunner.scenariomanager.scenarioatomics.atomic_criteria import (
+    RunningRedLightTest,
+    RunningStopTest,
+)
+from srunner.scenariomanager.timer import GameTime
 
+from src.navigation.collection import empty_training_background, training_signal_wait
+from src.navigation.native_opportunities import (
+    CONTEXT as OPPORTUNITY_CONTEXT,
+)
+from src.navigation.native_opportunities import (
+    NativeOpportunityMeter,
+    install_native_opportunity_hooks,
+)
 from src.navigation.runtime import atomic_json
 from src.navigation.scenarios import NAVIGATION_SCENARIOS
 
 _pinned_scenario_classes = RouteScenario.get_all_scenario_classes
 _pinned_build_scenarios = RouteScenario.build_scenarios
-SCENARIO_LOG = {"path": None}
+SCENARIO_LOG = {"path": None, "empty_training_background": False}
+SCENARIO_LOG["rule_test"] = None
+install_native_opportunity_hooks(RunningRedLightTest, RunningStopTest, GameTime.get_frame)
+_route_module = importlib.import_module(RouteScenario.__module__)
+_pinned_background = _route_module.BackgroundBehavior
+
+
+class EmptyTrainingBackground(py_trees.behaviour.Behaviour):
+    """No background spawning in a declared curriculum scene; never evaluation."""
+
+    def update(self):
+        return py_trees.common.Status.RUNNING
+
+
+class ControlledRuleBackground(py_trees.behaviour.Behaviour):
+    def update(self):
+        from src.navigation.rule_case_runtime import ACTIVE
+
+        if ACTIVE["runtime"] is not None:
+            ACTIVE["runtime"].background_tick()
+        return py_trees.common.Status.RUNNING
+
+
+def _background_for_scope(*args, **kwargs):
+    if SCENARIO_LOG["rule_test"] is not None:
+        return ControlledRuleBackground("CONTROLLED M3 COMPONENT: empty background")
+    if SCENARIO_LOG["empty_training_background"]:
+        return EmptyTrainingBackground("EMPTY BACKGROUND: guarded TRAIN curriculum only")
+    return _pinned_background(*args, **kwargs)
+
+
+_route_module.BackgroundBehavior = _background_for_scope
 
 
 def _scenario_classes(self):
@@ -79,6 +125,17 @@ class StopAwareManager(ScenarioManager):
             reason = "wall_budget"
         elif self.navigation_max_steps and self.navigation_ticks >= self.navigation_max_steps:
             reason = "profile_step_budget"
+        if reason is None and SCENARIO_LOG["rule_test"] is not None:
+            from src.navigation.rule_case_runtime import ACTIVE
+
+            runtime = ACTIVE["runtime"]
+            if (
+                runtime is not None
+                and runtime.prefix.handoff_time is not None
+                and runtime.last_timestamp - runtime.prefix.handoff_time
+                >= runtime.treatment["evaluated_seconds"]
+            ):
+                reason = "controlled_component_window_complete"
         if reason:
             self.navigation_stop_reason = reason
             atomic_json(self.navigation_output / "stopped.json", {"reason": reason})
@@ -114,7 +171,11 @@ class NavigationEvaluator(LeaderboardEvaluator):
     def _load_and_run_scenario(self, args, config):
         # config.index is the position within a routes subset; the XML route id is
         # the stable encounter identity, so seeds and records key on it.
-        if self.manager.navigation_stop_reason in ("user_stop", "wall_budget"):
+        if self.manager.navigation_stop_reason in (
+            "user_stop",
+            "wall_budget",
+            "controlled_component_window_complete",
+        ):
             # Starting further routes would record each one as an instant failure.
             self.navigation_halted = True
             return True
@@ -128,7 +189,49 @@ class NavigationEvaluator(LeaderboardEvaluator):
             out / "current_route.json", {"route_id": route_id, "seed": self.navigation_seed}
         )
         self.manager.start_route()
-        return super()._load_and_run_scenario(args, config)
+        # The pinned local harness appends ".log" to args.record (it does not
+        # treat it as a directory), and otherwise overwrites it on every route.
+        # Give every episode its own binary recorder, away from console logs.
+        original_record = args.record
+        if original_record:
+            recordings = out / "recordings"
+            recordings.mkdir(parents=True, exist_ok=True)
+            prefix = recordings / f"route_{route_id}_rep{config.repetition_index}"
+            if prefix.with_suffix(".log").exists():
+                raise FileExistsError(f"Refusing to overwrite recorder {prefix}.log")
+            args.record = str(prefix)
+        try:
+            opportunity_meter = NativeOpportunityMeter(
+                out / "rule_opportunities" / f"{route_id}.json"
+            )
+            OPPORTUNITY_CONTEXT["meter"] = opportunity_meter
+            spec_path = getattr(args, "agent_config", "")
+            spec = json.loads(Path(spec_path).read_text()) if spec_path else {}
+            SCENARIO_LOG["rule_test"] = spec.get("rule_test")
+            SCENARIO_LOG["empty_training_background"] = empty_training_background(spec)
+            wait = training_signal_wait(spec)
+            if wait is not None:
+                holds = [c for c in config.scenario_configs if c.type == "NavigationSignalHold"]
+                if len(holds) != 1:
+                    raise ValueError("Training wait requires exactly one declared signal hold")
+                holds[0].other_parameters = dict(
+                    holds[0].other_parameters, stationary_s={"value": str(wait)}
+                )
+            atomic_json(
+                out / f"background_scope_{route_id}.json",
+                {
+                    "empty_training_only": SCENARIO_LOG["empty_training_background"],
+                    "actors_removed": False,
+                    "training_signal_wait_seconds": wait,
+                },
+            )
+            return super()._load_and_run_scenario(args, config)
+        finally:
+            opportunity_meter.dump()
+            OPPORTUNITY_CONTEXT["meter"] = None
+            args.record = original_record
+            SCENARIO_LOG["empty_training_background"] = False
+            SCENARIO_LOG["rule_test"] = None
 
     def _setup_simulation(self, args):
         # An owned server is already running. No external scripts, broad process matching,

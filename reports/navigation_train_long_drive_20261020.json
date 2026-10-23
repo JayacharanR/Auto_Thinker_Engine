@@ -1,0 +1,74 @@
+{
+  "source_assessment_sha256": "4bd97f04edb0d6f8a1ba74c417f2e9c4a37ccf77e2e0df4c30b0edec93c04720",
+  "episode": {
+    "route_id": "RouteScenario_0_rep0",
+    "status": "Completed",
+    "completion_percent": 100,
+    "completed": true,
+    "safe_completed": false,
+    "rule_safe_completed": true,
+    "min_speed_infractions": 5,
+    "collisions": 0,
+    "red_violations": 0,
+    "stop_violations": 0,
+    "infractions": {
+      "collisions_layout": [],
+      "collisions_pedestrian": [],
+      "collisions_vehicle": [],
+      "red_light": [],
+      "stop_infraction": [],
+      "outside_route_lanes": [],
+      "min_speed_infractions": [
+        "Average speed is 73.68% of the surrounding traffic's one",
+        "Average speed is 83.67% of the surrounding traffic's one",
+        "Average speed is 87.57% of the surrounding traffic's one",
+        "Average speed is 78.12% of the surrounding traffic's one",
+        "Average speed is 78.12% of the surrounding traffic's one"
+      ],
+      "yield_emergency_vehicle_infractions": [],
+      "scenario_timeouts": [],
+      "route_dev": [],
+      "vehicle_blocked": [],
+      "route_timeout": []
+    },
+    "meta": {
+      "route_length": 1375.639,
+      "duration_game": 199.5,
+      "duration_system": 255.125
+    }
+  },
+  "profile": {
+    "frames": 3990,
+    "wall_seconds": 256.2382186369996,
+    "frames_per_second": 15.571447620982886,
+    "camera_policy_ipc_p95_ms": 25.100610050139945,
+    "all_camera_frames_aligned": true,
+    "last_frame": 4331,
+    "rule_overrides_enabled": false,
+    "intervention_ticks": 0,
+    "policy_input_schema": "navigation-sensor-packet-v1",
+    "policy_inputs": "Three RGB views, fixed route geometry, ego odometry, timestamp",
+    "note": "Inference/IPC/packet latency excludes simulator, video and audit recording"
+  },
+  "unfiltered_contact_starts": 0,
+  "contact_lower_bound": false,
+  "geography": {
+    "observed_frames": 3990,
+    "unexpected_reserved_junction_frames": [],
+    "actual_junction_ids_within_train": true,
+    "centerline_clearance_only_prevalidated": true,
+    "all_native_outcomes_retained_even_if_geography_invalid": true
+  },
+  "video": "/home/deepakbalaji/Project/Auto_Thinker_Engine/outputs/navigation_train_integration_continuation_20261020/student/episodes/route_route0_10_20_14_45_55/three_cameras.mp4",
+  "video_sha256": "79c99104a122d85f172f545b6939ef82bb27c077a1a3f2dd5da899c53664a27e",
+  "video_codec": "h264 yuv420p1536x288,10fps1995frames",
+  "original_failed_expert_retained": true,
+  "no_qualification_or_encoder_primary_reselection": true,
+  "native_rule_opportunities": {
+    "path": "outputs/navigation_train_integration_continuation_20261020/student/rule_opportunities/0.json",
+    "sha256": "5d85658f095af1f58cd2511541564489219ae711e0c4e13c3ae009cf7b7e04ab",
+    "red": 0,
+    "stop": 0,
+    "no_rule_handling_evidence_from_this_drive": true
+  }
+}

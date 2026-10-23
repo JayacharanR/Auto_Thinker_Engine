@@ -1,0 +1,20 @@
+{
+  "independent_oof_recount": true,
+  "original_raw_fold_predictions_exact": true,
+  "final_raw_train_and_validation_exact": true,
+  "unselected_arm_val_not_evaluated": true,
+  "selected_arm": "joint100",
+  "fold_seconds": {
+    "joint100": [
+      5.215679718006868,
+      5.252191001003666,
+      5.308451254997635
+    ],
+    "opponent100": [
+      19.16217534199677,
+      21.444078863998584,
+      20.940652738994686
+    ]
+  },
+  "component_pass": false
+}

@@ -1,0 +1,1006 @@
+{
+  "kind": "Post-hoc diagnosis only; no fit or validation threshold tuning",
+  "original_sampler": {
+    "updates": 2000,
+    "exact_rng_state_match": true,
+    "stop_fraction_all": 0.39759375,
+    "stop_fraction_through_selected1500": 0.40475,
+    "sampler_sha256": "233ff2c80b097074f09b4dca3a76d108b02fb15b9ea7ecd426fe0cbf32e59e9d"
+  },
+  "domains": {
+    "original": {
+      "train:crossing_yield": {
+        "episodes": 9,
+        "samples": 1189,
+        "stop": 421,
+        "go": 662,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 391,
+        "auc": {
+          "red": 0.8385982160156726,
+          "green": 0.6998586303650494,
+          "parent_logits": 0.9912702456387108
+        },
+        "episode_details": [
+          {
+            "route_id": 1,
+            "samples": 91,
+            "start_teacher_stopped": false,
+            "stop": 11,
+            "go": 66,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.9894883632659912,
+            "stopped_red_mean": 0.995356023311615,
+            "stopped_green_mean": 0.7441022992134094
+          },
+          {
+            "route_id": 43,
+            "samples": 296,
+            "start_teacher_stopped": false,
+            "stop": 191,
+            "go": 76,
+            "parent_stop_hits": 191,
+            "first8_red_score": 0.9921371936798096,
+            "stopped_red_mean": 0.9757441878318787,
+            "stopped_green_mean": 0.520373523235321
+          },
+          {
+            "route_id": 92,
+            "samples": 71,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 67,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.4452430307865143,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 174,
+            "samples": 81,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 77,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8428046703338623,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 0,
+            "samples": 92,
+            "start_teacher_stopped": false,
+            "stop": 15,
+            "go": 65,
+            "parent_stop_hits": 7,
+            "first8_red_score": 0.8227906227111816,
+            "stopped_red_mean": 0.9903765320777893,
+            "stopped_green_mean": 0.4203146994113922
+          },
+          {
+            "route_id": 177,
+            "samples": 89,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 87,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8552125692367554,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 250,
+            "samples": 299,
+            "start_teacher_stopped": false,
+            "stop": 190,
+            "go": 86,
+            "parent_stop_hits": 190,
+            "first8_red_score": 0.7303069233894348,
+            "stopped_red_mean": 0.9001465439796448,
+            "stopped_green_mean": 0.7837942242622375
+          },
+          {
+            "route_id": 3,
+            "samples": 95,
+            "start_teacher_stopped": false,
+            "stop": 14,
+            "go": 66,
+            "parent_stop_hits": 3,
+            "first8_red_score": 0.8303922414779663,
+            "stopped_red_mean": 0.9979438185691833,
+            "stopped_green_mean": 0.3542183041572571
+          },
+          {
+            "route_id": 86,
+            "samples": 75,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 72,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.04408886283636093,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          }
+        ]
+      },
+      "validation:crossing_yield": {
+        "episodes": 2,
+        "samples": 112,
+        "stop": 0,
+        "go": 92,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 0,
+        "auc": {
+          "red": null,
+          "green": null,
+          "parent_logits": null
+        },
+        "episode_details": [
+          {
+            "route_id": 253,
+            "samples": 64,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 55,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8576945066452026,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 47,
+            "samples": 48,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 37,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.6026721000671387,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          }
+        ]
+      },
+      "train:following_stopped_vehicle": {
+        "episodes": 12,
+        "samples": 5150,
+        "stop": 3511,
+        "go": 1257,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 3449,
+        "auc": {
+          "red": 0.5273017385750025,
+          "green": 0.4363470008000767,
+          "parent_logits": 0.978616359041603
+        },
+        "episode_details": [
+          {
+            "route_id": 6,
+            "samples": 472,
+            "start_teacher_stopped": false,
+            "stop": 266,
+            "go": 160,
+            "parent_stop_hits": 256,
+            "first8_red_score": 0.726782500743866,
+            "stopped_red_mean": 0.9596789479255676,
+            "stopped_green_mean": 0.7324484586715698
+          },
+          {
+            "route_id": 48,
+            "samples": 186,
+            "start_teacher_stopped": false,
+            "stop": 80,
+            "go": 75,
+            "parent_stop_hits": 80,
+            "first8_red_score": 0.728538453578949,
+            "stopped_red_mean": 0.9873021841049194,
+            "stopped_green_mean": 0.1029241532087326
+          },
+          {
+            "route_id": 107,
+            "samples": 541,
+            "start_teacher_stopped": false,
+            "stop": 421,
+            "go": 89,
+            "parent_stop_hits": 421,
+            "first8_red_score": 0.6211096048355103,
+            "stopped_red_mean": 0.9534626603126526,
+            "stopped_green_mean": 0.650586724281311
+          },
+          {
+            "route_id": 190,
+            "samples": 89,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 79,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.6458526253700256,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 263,
+            "samples": 903,
+            "start_teacher_stopped": false,
+            "stop": 710,
+            "go": 135,
+            "parent_stop_hits": 705,
+            "first8_red_score": 0.736532986164093,
+            "stopped_red_mean": 0.8588275909423828,
+            "stopped_green_mean": 0.7038928866386414
+          },
+          {
+            "route_id": 11,
+            "samples": 256,
+            "start_teacher_stopped": false,
+            "stop": 76,
+            "go": 123,
+            "parent_stop_hits": 76,
+            "first8_red_score": 0.9292640089988708,
+            "stopped_red_mean": 0.8601558208465576,
+            "stopped_green_mean": 0.7971205711364746
+          },
+          {
+            "route_id": 53,
+            "samples": 338,
+            "start_teacher_stopped": false,
+            "stop": 237,
+            "go": 74,
+            "parent_stop_hits": 237,
+            "first8_red_score": 0.495375394821167,
+            "stopped_red_mean": 0.9724640846252441,
+            "stopped_green_mean": 0.5376724004745483
+          },
+          {
+            "route_id": 110,
+            "samples": 1182,
+            "start_teacher_stopped": false,
+            "stop": 1019,
+            "go": 118,
+            "parent_stop_hits": 990,
+            "first8_red_score": 0.5869049429893494,
+            "stopped_red_mean": 0.05415703356266022,
+            "stopped_green_mean": 0.12857453525066376
+          },
+          {
+            "route_id": 194,
+            "samples": 137,
+            "start_teacher_stopped": false,
+            "stop": 13,
+            "go": 108,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.3352290391921997,
+            "stopped_red_mean": 0.6731189489364624,
+            "stopped_green_mean": 0.4691459536552429
+          },
+          {
+            "route_id": 10,
+            "samples": 486,
+            "start_teacher_stopped": false,
+            "stop": 351,
+            "go": 106,
+            "parent_stop_hits": 346,
+            "first8_red_score": 0.9601148366928101,
+            "stopped_red_mean": 0.6029812693595886,
+            "stopped_green_mean": 0.5037710666656494
+          },
+          {
+            "route_id": 51,
+            "samples": 70,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 69,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.48140546679496765,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 109,
+            "samples": 490,
+            "start_teacher_stopped": false,
+            "stop": 338,
+            "go": 121,
+            "parent_stop_hits": 338,
+            "first8_red_score": 0.570690393447876,
+            "stopped_red_mean": 0.9970155954360962,
+            "stopped_green_mean": 0.6689390540122986
+          }
+        ]
+      },
+      "train:route_junction": {
+        "episodes": 12,
+        "samples": 2913,
+        "stop": 1222,
+        "go": 1314,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 1145,
+        "auc": {
+          "red": 0.49297537285733145,
+          "green": 0.39606236003059087,
+          "parent_logits": 0.9720316520812001
+        },
+        "episode_details": [
+          {
+            "route_id": 16,
+            "samples": 398,
+            "start_teacher_stopped": false,
+            "stop": 240,
+            "go": 115,
+            "parent_stop_hits": 238,
+            "first8_red_score": 0.921681821346283,
+            "stopped_red_mean": 0.7860919237136841,
+            "stopped_green_mean": 0.31614211201667786
+          },
+          {
+            "route_id": 60,
+            "samples": 185,
+            "start_teacher_stopped": false,
+            "stop": 99,
+            "go": 70,
+            "parent_stop_hits": 99,
+            "first8_red_score": 0.9937994480133057,
+            "stopped_red_mean": 0.6847283840179443,
+            "stopped_green_mean": 0.5872936248779297
+          },
+          {
+            "route_id": 268,
+            "samples": 379,
+            "start_teacher_stopped": false,
+            "stop": 184,
+            "go": 146,
+            "parent_stop_hits": 177,
+            "first8_red_score": 0.7983149886131287,
+            "stopped_red_mean": 0.6467486023902893,
+            "stopped_green_mean": 0.538362443447113
+          },
+          {
+            "route_id": 63,
+            "samples": 70,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 69,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.4723609387874603,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 115,
+            "samples": 107,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 84,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.9078396558761597,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 208,
+            "samples": 129,
+            "start_teacher_stopped": false,
+            "stop": 17,
+            "go": 110,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.10016217827796936,
+            "stopped_red_mean": 0.6353882551193237,
+            "stopped_green_mean": 0.5969863533973694
+          },
+          {
+            "route_id": 270,
+            "samples": 228,
+            "start_teacher_stopped": false,
+            "stop": 37,
+            "go": 144,
+            "parent_stop_hits": 19,
+            "first8_red_score": 0.7306733131408691,
+            "stopped_red_mean": 0.7043735384941101,
+            "stopped_green_mean": 0.6435547471046448
+          },
+          {
+            "route_id": 21,
+            "samples": 450,
+            "start_teacher_stopped": false,
+            "stop": 231,
+            "go": 156,
+            "parent_stop_hits": 230,
+            "first8_red_score": 0.8943257331848145,
+            "stopped_red_mean": 0.9056714177131653,
+            "stopped_green_mean": 0.5505561828613281
+          },
+          {
+            "route_id": 65,
+            "samples": 338,
+            "start_teacher_stopped": false,
+            "stop": 242,
+            "go": 65,
+            "parent_stop_hits": 242,
+            "first8_red_score": 0.9398007988929749,
+            "stopped_red_mean": 0.7349866628646851,
+            "stopped_green_mean": 0.35843077301979065
+          },
+          {
+            "route_id": 114,
+            "samples": 231,
+            "start_teacher_stopped": false,
+            "stop": 78,
+            "go": 111,
+            "parent_stop_hits": 68,
+            "first8_red_score": 0.9994001388549805,
+            "stopped_red_mean": 0.9973811507225037,
+            "stopped_green_mean": 0.8758081197738647
+          },
+          {
+            "route_id": 202,
+            "samples": 130,
+            "start_teacher_stopped": false,
+            "stop": 17,
+            "go": 111,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.10818451642990112,
+            "stopped_red_mean": 0.6313362121582031,
+            "stopped_green_mean": 0.5724772810935974
+          },
+          {
+            "route_id": 275,
+            "samples": 268,
+            "start_teacher_stopped": false,
+            "stop": 77,
+            "go": 133,
+            "parent_stop_hits": 72,
+            "first8_red_score": 0.7303016781806946,
+            "stopped_red_mean": 0.5386451482772827,
+            "stopped_green_mean": 0.7412344217300415
+          }
+        ]
+      },
+      "validation:route_junction": {
+        "episodes": 2,
+        "samples": 128,
+        "stop": 18,
+        "go": 83,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 18,
+        "auc": {
+          "red": 0.7349397590361446,
+          "green": 0.6305220883534137,
+          "parent_logits": 0.9979919678714859
+        },
+        "episode_details": [
+          {
+            "route_id": 118,
+            "samples": 48,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 37,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.596040666103363,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          },
+          {
+            "route_id": 199,
+            "samples": 80,
+            "start_teacher_stopped": false,
+            "stop": 18,
+            "go": 46,
+            "parent_stop_hits": 18,
+            "first8_red_score": 0.3807973265647888,
+            "stopped_red_mean": 0.9837788343429565,
+            "stopped_green_mean": 0.7670026421546936
+          }
+        ]
+      },
+      "train:signal_release_memory": {
+        "episodes": 6,
+        "samples": 1367,
+        "stop": 855,
+        "go": 433,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 842,
+        "auc": {
+          "red": 0.6047850573315505,
+          "green": 0.4916129816458005,
+          "parent_logits": 0.9778480072390369
+        },
+        "episode_details": [
+          {
+            "route_id": 31,
+            "samples": 226,
+            "start_teacher_stopped": false,
+            "stop": 140,
+            "go": 77,
+            "parent_stop_hits": 133,
+            "first8_red_score": 0.9974920153617859,
+            "stopped_red_mean": 0.9890826344490051,
+            "stopped_green_mean": 0.11914532631635666
+          },
+          {
+            "route_id": 68,
+            "samples": 208,
+            "start_teacher_stopped": false,
+            "stop": 140,
+            "go": 60,
+            "parent_stop_hits": 140,
+            "first8_red_score": 0.9992578625679016,
+            "stopped_red_mean": 0.4273085296154022,
+            "stopped_green_mean": 0.2655254304409027
+          },
+          {
+            "route_id": 125,
+            "samples": 201,
+            "start_teacher_stopped": false,
+            "stop": 141,
+            "go": 40,
+            "parent_stop_hits": 141,
+            "first8_red_score": 0.9959227442741394,
+            "stopped_red_mean": 0.9809039831161499,
+            "stopped_green_mean": 0.8793018460273743
+          },
+          {
+            "route_id": 220,
+            "samples": 222,
+            "start_teacher_stopped": false,
+            "stop": 143,
+            "go": 71,
+            "parent_stop_hits": 142,
+            "first8_red_score": 0.9988913536071777,
+            "stopped_red_mean": 0.9979034662246704,
+            "stopped_green_mean": 0.861460268497467
+          },
+          {
+            "route_id": 128,
+            "samples": 222,
+            "start_teacher_stopped": false,
+            "stop": 141,
+            "go": 63,
+            "parent_stop_hits": 141,
+            "first8_red_score": 0.9964469075202942,
+            "stopped_red_mean": 0.9995190501213074,
+            "stopped_green_mean": 0.8856064677238464
+          },
+          {
+            "route_id": 213,
+            "samples": 288,
+            "start_teacher_stopped": false,
+            "stop": 150,
+            "go": 122,
+            "parent_stop_hits": 145,
+            "first8_red_score": 0.9977952837944031,
+            "stopped_red_mean": 0.9993047118186951,
+            "stopped_green_mean": 0.8970515727996826
+          }
+        ]
+      },
+      "validation:signal_release_memory": {
+        "episodes": 4,
+        "samples": 432,
+        "stop": 278,
+        "go": 130,
+        "starts_already_teacher_stopped": 1,
+        "parent_stop_hits": 33,
+        "auc": {
+          "red": 0.6954759269507471,
+          "green": 0.34555893746541233,
+          "parent_logits": 0.7228555617044826
+        },
+        "episode_details": [
+          {
+            "route_id": 281,
+            "samples": 112,
+            "start_teacher_stopped": true,
+            "stop": 67,
+            "go": 42,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8765299320220947,
+            "stopped_red_mean": 0.8626924753189087,
+            "stopped_green_mean": 0.56669020652771
+          },
+          {
+            "route_id": 70,
+            "samples": 96,
+            "start_teacher_stopped": false,
+            "stop": 67,
+            "go": 21,
+            "parent_stop_hits": 33,
+            "first8_red_score": 0.9975098371505737,
+            "stopped_red_mean": 0.5614097714424133,
+            "stopped_green_mean": 0.2678012549877167
+          },
+          {
+            "route_id": 279,
+            "samples": 112,
+            "start_teacher_stopped": false,
+            "stop": 71,
+            "go": 34,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.9835564494132996,
+            "stopped_red_mean": 0.9335202574729919,
+            "stopped_green_mean": 0.5508233308792114
+          },
+          {
+            "route_id": 23,
+            "samples": 112,
+            "start_teacher_stopped": false,
+            "stop": 73,
+            "go": 33,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.9995726346969604,
+            "stopped_red_mean": 0.9994687438011169,
+            "stopped_green_mean": 0.7440704703330994
+          }
+        ]
+      },
+      "validation:signal_stop": {
+        "episodes": 3,
+        "samples": 448,
+        "stop": 201,
+        "go": 173,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 146,
+        "auc": {
+          "red": 0.2707991832743796,
+          "green": 0.3888793029074282,
+          "parent_logits": 0.9167457510137176
+        },
+        "episode_details": [
+          {
+            "route_id": 76,
+            "samples": 80,
+            "start_teacher_stopped": false,
+            "stop": 32,
+            "go": 39,
+            "parent_stop_hits": 31,
+            "first8_red_score": 0.7061865329742432,
+            "stopped_red_mean": 0.7469863891601562,
+            "stopped_green_mean": 0.0563029907643795
+          },
+          {
+            "route_id": 293,
+            "samples": 240,
+            "start_teacher_stopped": false,
+            "stop": 134,
+            "go": 67,
+            "parent_stop_hits": 115,
+            "first8_red_score": 0.9469331502914429,
+            "stopped_red_mean": 0.8567575216293335,
+            "stopped_green_mean": 0.6506091356277466
+          },
+          {
+            "route_id": 230,
+            "samples": 128,
+            "start_teacher_stopped": false,
+            "stop": 35,
+            "go": 67,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.6159942150115967,
+            "stopped_red_mean": 0.957396924495697,
+            "stopped_green_mean": 0.9356541037559509
+          }
+        ]
+      },
+      "train:signal_stop": {
+        "episodes": 5,
+        "samples": 1925,
+        "stop": 1140,
+        "go": 621,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 1118,
+        "auc": {
+          "red": 0.6094322965223042,
+          "green": 0.43214184817922413,
+          "parent_logits": 0.9852134361669068
+        },
+        "episode_details": [
+          {
+            "route_id": 134,
+            "samples": 258,
+            "start_teacher_stopped": false,
+            "stop": 80,
+            "go": 147,
+            "parent_stop_hits": 80,
+            "first8_red_score": 0.8857893943786621,
+            "stopped_red_mean": 0.8172971606254578,
+            "stopped_green_mean": 0.6690526008605957
+          },
+          {
+            "route_id": 227,
+            "samples": 608,
+            "start_teacher_stopped": false,
+            "stop": 455,
+            "go": 117,
+            "parent_stop_hits": 455,
+            "first8_red_score": 0.9915223717689514,
+            "stopped_red_mean": 0.9932127594947815,
+            "stopped_green_mean": 0.8936222791671753
+          },
+          {
+            "route_id": 37,
+            "samples": 624,
+            "start_teacher_stopped": false,
+            "stop": 428,
+            "go": 154,
+            "parent_stop_hits": 425,
+            "first8_red_score": 0.6088036894798279,
+            "stopped_red_mean": 0.8928584456443787,
+            "stopped_green_mean": 0.8053611516952515
+          },
+          {
+            "route_id": 85,
+            "samples": 202,
+            "start_teacher_stopped": false,
+            "stop": 82,
+            "go": 98,
+            "parent_stop_hits": 71,
+            "first8_red_score": 0.5678596496582031,
+            "stopped_red_mean": 0.23220127820968628,
+            "stopped_green_mean": 0.0775081142783165
+          },
+          {
+            "route_id": 138,
+            "samples": 233,
+            "start_teacher_stopped": false,
+            "stop": 95,
+            "go": 105,
+            "parent_stop_hits": 87,
+            "first8_red_score": 0.9990324974060059,
+            "stopped_red_mean": 0.9483011960983276,
+            "stopped_green_mean": 0.5119025707244873
+          }
+        ]
+      },
+      "validation:stop_sign": {
+        "episodes": 1,
+        "samples": 144,
+        "stop": 63,
+        "go": 60,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 41,
+        "auc": {
+          "red": 0.6324074074074074,
+          "green": 0.35145502645502646,
+          "parent_logits": 0.8828042328042329
+        },
+        "episode_details": [
+          {
+            "route_id": 151,
+            "samples": 144,
+            "start_teacher_stopped": false,
+            "stop": 63,
+            "go": 60,
+            "parent_stop_hits": 41,
+            "first8_red_score": 0.0,
+            "stopped_red_mean": 0.4663442075252533,
+            "stopped_green_mean": 0.03302584961056709
+          }
+        ]
+      },
+      "train:stop_sign": {
+        "episodes": 3,
+        "samples": 1169,
+        "stop": 542,
+        "go": 459,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 491,
+        "auc": {
+          "red": 0.7817110033845437,
+          "green": 0.6128214713519684,
+          "parent_logits": 0.9887449854890705
+        },
+        "episode_details": [
+          {
+            "route_id": 297,
+            "samples": 252,
+            "start_teacher_stopped": false,
+            "stop": 41,
+            "go": 153,
+            "parent_stop_hits": 36,
+            "first8_red_score": 0.7302599549293518,
+            "stopped_red_mean": 0.789392352104187,
+            "stopped_green_mean": 0.5723447799682617
+          },
+          {
+            "route_id": 241,
+            "samples": 612,
+            "start_teacher_stopped": false,
+            "stop": 409,
+            "go": 150,
+            "parent_stop_hits": 369,
+            "first8_red_score": 0.8416541218757629,
+            "stopped_red_mean": 0.9445429444313049,
+            "stopped_green_mean": 0.6080977916717529
+          },
+          {
+            "route_id": 299,
+            "samples": 305,
+            "start_teacher_stopped": false,
+            "stop": 92,
+            "go": 156,
+            "parent_stop_hits": 86,
+            "first8_red_score": 0.7302935719490051,
+            "stopped_red_mean": 0.7630855441093445,
+            "stopped_green_mean": 0.6626689434051514
+          }
+        ]
+      },
+      "validation:following_stopped_vehicle": {
+        "episodes": 1,
+        "samples": 48,
+        "stop": 0,
+        "go": 44,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 0,
+        "auc": {
+          "red": null,
+          "green": null,
+          "parent_logits": null
+        },
+        "episode_details": [
+          {
+            "route_id": 191,
+            "samples": 48,
+            "start_teacher_stopped": false,
+            "stop": 0,
+            "go": 44,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8447174429893494,
+            "stopped_red_mean": null,
+            "stopped_green_mean": null
+          }
+        ]
+      }
+    },
+    "approach": {
+      "train:signal_stop": {
+        "episodes": 12,
+        "samples": 2454,
+        "stop": 1323,
+        "go": 938,
+        "starts_already_teacher_stopped": 0,
+        "parent_stop_hits": 12,
+        "auc": {
+          "red": 0.8453388225700136,
+          "green": 0.5985818397484556,
+          "parent_logits": 0.8511209743314526
+        },
+        "episode_details": [
+          {
+            "route_id": 34,
+            "samples": 166,
+            "start_teacher_stopped": false,
+            "stop": 70,
+            "go": 79,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.24820740520954132,
+            "stopped_red_mean": 0.9769901633262634,
+            "stopped_green_mean": 0.8807920217514038
+          },
+          {
+            "route_id": 34,
+            "samples": 206,
+            "start_teacher_stopped": false,
+            "stop": 110,
+            "go": 79,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.2477506548166275,
+            "stopped_red_mean": 0.9841182827949524,
+            "stopped_green_mean": 0.8987834453582764
+          },
+          {
+            "route_id": 34,
+            "samples": 246,
+            "start_teacher_stopped": false,
+            "stop": 150,
+            "go": 79,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.24826395511627197,
+            "stopped_red_mean": 0.9874399900436401,
+            "stopped_green_mean": 0.9069786667823792
+          },
+          {
+            "route_id": 134,
+            "samples": 166,
+            "start_teacher_stopped": false,
+            "stop": 70,
+            "go": 79,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8855265378952026,
+            "stopped_red_mean": 0.9996407628059387,
+            "stopped_green_mean": 0.7047584056854248
+          },
+          {
+            "route_id": 134,
+            "samples": 206,
+            "start_teacher_stopped": false,
+            "stop": 110,
+            "go": 79,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8857079148292542,
+            "stopped_red_mean": 0.9996790289878845,
+            "stopped_green_mean": 0.8152722716331482
+          },
+          {
+            "route_id": 134,
+            "samples": 246,
+            "start_teacher_stopped": false,
+            "stop": 150,
+            "go": 79,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.8860965371131897,
+            "stopped_red_mean": 0.9996967315673828,
+            "stopped_green_mean": 0.8500187397003174
+          },
+          {
+            "route_id": 223,
+            "samples": 164,
+            "start_teacher_stopped": false,
+            "stop": 70,
+            "go": 78,
+            "parent_stop_hits": 4,
+            "first8_red_score": 0.301121324300766,
+            "stopped_red_mean": 0.9996364116668701,
+            "stopped_green_mean": 0.7705504298210144
+          },
+          {
+            "route_id": 223,
+            "samples": 204,
+            "start_teacher_stopped": false,
+            "stop": 110,
+            "go": 78,
+            "parent_stop_hits": 4,
+            "first8_red_score": 0.3016855716705322,
+            "stopped_red_mean": 0.9996360540390015,
+            "stopped_green_mean": 0.8673568964004517
+          },
+          {
+            "route_id": 223,
+            "samples": 244,
+            "start_teacher_stopped": false,
+            "stop": 150,
+            "go": 78,
+            "parent_stop_hits": 4,
+            "first8_red_score": 0.0006918669096194208,
+            "stopped_red_mean": 0.9996360540390015,
+            "stopped_green_mean": 0.9004761576652527
+          },
+          {
+            "route_id": 225,
+            "samples": 162,
+            "start_teacher_stopped": false,
+            "stop": 71,
+            "go": 77,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.9854212999343872,
+            "stopped_red_mean": 0.9989582300186157,
+            "stopped_green_mean": 0.832293689250946
+          },
+          {
+            "route_id": 225,
+            "samples": 202,
+            "start_teacher_stopped": false,
+            "stop": 111,
+            "go": 77,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.9853769540786743,
+            "stopped_red_mean": 0.9988983273506165,
+            "stopped_green_mean": 0.8454442024230957
+          },
+          {
+            "route_id": 225,
+            "samples": 242,
+            "start_teacher_stopped": false,
+            "stop": 151,
+            "go": 76,
+            "parent_stop_hits": 0,
+            "first8_red_score": 0.9854165315628052,
+            "stopped_red_mean": 0.9988684058189392,
+            "stopped_green_mean": 0.851199209690094
+          }
+        ]
+      }
+    }
+  },
+  "cache_manifest_sha256": "c7043185ae70d2d7361af5f1d5da3bc820964865b6db0735898ec9939a149bbb",
+  "source_sha256": "b8856ce17da00fb209c7c08f51ca2c36db93658b3b2dc66964dfc2cd717f36ed",
+  "note": "Any-lamp RGB maxima are diagnostics, NOT ego-route applicability or verified visibility. AUC is not a deployed rule, threshold or driving metric."
+}

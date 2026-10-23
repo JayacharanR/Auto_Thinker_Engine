@@ -1,0 +1,620 @@
+{
+  "sampled": {
+    "complete": true,
+    "train_only": true,
+    "results": {
+      "control": {
+        "labels": 1248,
+        "localized": 1143,
+        "joint": 1141,
+        "sampled_background": 1990,
+        "towns": {
+          "Town01_Opt": {
+            "labels": 296,
+            "localized": 263,
+            "joint": 261
+          },
+          "Town02_Opt": {
+            "labels": 128,
+            "localized": 115,
+            "joint": 115
+          },
+          "Town03_Opt": {
+            "labels": 556,
+            "localized": 507,
+            "joint": 507
+          },
+          "Town04_Opt": {
+            "labels": 268,
+            "localized": 258,
+            "joint": 258
+          }
+        },
+        "classes": {
+          "1": {
+            "labels": 626,
+            "localized": 578,
+            "joint": 578
+          },
+          "3": {
+            "labels": 313,
+            "localized": 300,
+            "joint": 299
+          },
+          "2": {
+            "labels": 309,
+            "localized": 265,
+            "joint": 264
+          }
+        },
+        "macro_point_logloss": 0.3600935782517991
+      },
+      "supported": {
+        "labels": 1248,
+        "localized": 1144,
+        "joint": 1144,
+        "sampled_background": 201,
+        "towns": {
+          "Town01_Opt": {
+            "labels": 296,
+            "localized": 262,
+            "joint": 262
+          },
+          "Town02_Opt": {
+            "labels": 128,
+            "localized": 117,
+            "joint": 117
+          },
+          "Town03_Opt": {
+            "labels": 556,
+            "localized": 507,
+            "joint": 507
+          },
+          "Town04_Opt": {
+            "labels": 268,
+            "localized": 258,
+            "joint": 258
+          }
+        },
+        "classes": {
+          "1": {
+            "labels": 626,
+            "localized": 578,
+            "joint": 578
+          },
+          "3": {
+            "labels": 313,
+            "localized": 300,
+            "joint": 300
+          },
+          "2": {
+            "labels": 309,
+            "localized": 266,
+            "joint": 266
+          }
+        },
+        "macro_point_logloss": 1.2642192109609889
+      }
+    },
+    "criteria": {
+      "joint_preserved": true,
+      "each_town_preserved": true,
+      "each_phase_preserved": true,
+      "sampled_background_lower": true
+    },
+    "proceed_to_full_train_audit": true,
+    "no_component_val": true,
+    "no_deployment": true,
+    "elapsed_seconds": 30.753738016000057
+  },
+  "full_train": {
+    "complete": true,
+    "train_only": true,
+    "no_new_fits": true,
+    "no_component_val": true,
+    "results": {
+      "control": {
+        "towns": {
+          "Town01_Opt": {
+            "labels": 296,
+            "localized": 263,
+            "joint": 261,
+            "background_peaks": 6614,
+            "unknown_peaks": 771,
+            "classes": {
+              "1": {
+                "labels": 148,
+                "localized": 131,
+                "joint": 131
+              },
+              "3": {
+                "labels": 74,
+                "localized": 67,
+                "joint": 66
+              },
+              "2": {
+                "labels": 74,
+                "localized": 65,
+                "joint": 64
+              }
+            }
+          },
+          "Town02_Opt": {
+            "labels": 128,
+            "localized": 115,
+            "joint": 115,
+            "background_peaks": 4171,
+            "unknown_peaks": 273,
+            "classes": {
+              "1": {
+                "labels": 64,
+                "localized": 54,
+                "joint": 54
+              },
+              "3": {
+                "labels": 32,
+                "localized": 32,
+                "joint": 32
+              },
+              "2": {
+                "labels": 32,
+                "localized": 29,
+                "joint": 29
+              }
+            }
+          },
+          "Town03_Opt": {
+            "labels": 556,
+            "localized": 507,
+            "joint": 507,
+            "background_peaks": 11631,
+            "unknown_peaks": 2557,
+            "classes": {
+              "1": {
+                "labels": 280,
+                "localized": 261,
+                "joint": 261
+              },
+              "3": {
+                "labels": 140,
+                "localized": 136,
+                "joint": 136
+              },
+              "2": {
+                "labels": 136,
+                "localized": 110,
+                "joint": 110
+              }
+            }
+          },
+          "Town04_Opt": {
+            "labels": 268,
+            "localized": 258,
+            "joint": 258,
+            "background_peaks": 8342,
+            "unknown_peaks": 923,
+            "classes": {
+              "1": {
+                "labels": 134,
+                "localized": 132,
+                "joint": 132
+              },
+              "3": {
+                "labels": 67,
+                "localized": 65,
+                "joint": 65
+              },
+              "2": {
+                "labels": 67,
+                "localized": 61,
+                "joint": 61
+              }
+            }
+          }
+        },
+        "labels": 1248,
+        "localized": 1143,
+        "joint": 1141,
+        "background_peaks": 30758,
+        "unknown_peaks": 4524,
+        "classes": {
+          "1": {
+            "labels": 626,
+            "localized": 578,
+            "joint": 578
+          },
+          "3": {
+            "labels": 313,
+            "localized": 300,
+            "joint": 299
+          },
+          "2": {
+            "labels": 309,
+            "localized": 265,
+            "joint": 264
+          }
+        }
+      },
+      "supported": {
+        "towns": {
+          "Town01_Opt": {
+            "labels": 296,
+            "localized": 262,
+            "joint": 262,
+            "background_peaks": 114,
+            "unknown_peaks": 72,
+            "classes": {
+              "1": {
+                "labels": 148,
+                "localized": 131,
+                "joint": 131
+              },
+              "3": {
+                "labels": 74,
+                "localized": 67,
+                "joint": 67
+              },
+              "2": {
+                "labels": 74,
+                "localized": 64,
+                "joint": 64
+              }
+            }
+          },
+          "Town02_Opt": {
+            "labels": 128,
+            "localized": 117,
+            "joint": 117,
+            "background_peaks": 217,
+            "unknown_peaks": 43,
+            "classes": {
+              "1": {
+                "labels": 64,
+                "localized": 54,
+                "joint": 54
+              },
+              "3": {
+                "labels": 32,
+                "localized": 32,
+                "joint": 32
+              },
+              "2": {
+                "labels": 32,
+                "localized": 31,
+                "joint": 31
+              }
+            }
+          },
+          "Town03_Opt": {
+            "labels": 556,
+            "localized": 507,
+            "joint": 507,
+            "background_peaks": 163,
+            "unknown_peaks": 1694,
+            "classes": {
+              "1": {
+                "labels": 280,
+                "localized": 261,
+                "joint": 261
+              },
+              "3": {
+                "labels": 140,
+                "localized": 136,
+                "joint": 136
+              },
+              "2": {
+                "labels": 136,
+                "localized": 110,
+                "joint": 110
+              }
+            }
+          },
+          "Town04_Opt": {
+            "labels": 268,
+            "localized": 258,
+            "joint": 258,
+            "background_peaks": 230,
+            "unknown_peaks": 582,
+            "classes": {
+              "1": {
+                "labels": 134,
+                "localized": 132,
+                "joint": 132
+              },
+              "3": {
+                "labels": 67,
+                "localized": 65,
+                "joint": 65
+              },
+              "2": {
+                "labels": 67,
+                "localized": 61,
+                "joint": 61
+              }
+            }
+          }
+        },
+        "labels": 1248,
+        "localized": 1144,
+        "joint": 1144,
+        "background_peaks": 724,
+        "unknown_peaks": 2391,
+        "classes": {
+          "1": {
+            "labels": 626,
+            "localized": 578,
+            "joint": 578
+          },
+          "3": {
+            "labels": 313,
+            "localized": 300,
+            "joint": 300
+          },
+          "2": {
+            "labels": 309,
+            "localized": 266,
+            "joint": 266
+          }
+        }
+      }
+    },
+    "criteria": {
+      "joint_preserved": true,
+      "each_town_preserved": true,
+      "each_phase_preserved": true,
+      "background_lower": true
+    },
+    "train_audit_pass": true,
+    "exact_sampled_feature_and_probability_rows": 48865,
+    "independent_sampled_recount_exact": true,
+    "probability_sha256": {
+      "control": "7ab02f6abe6d291916c807154908c2f475c4839034ff46716350d5a483849792",
+      "supported": "86911b0862abd12d18db2e7aeeabd7765a04dadc8d58c48fb982b1922d369045"
+    },
+    "elapsed_seconds": 220.21650845299996
+  },
+  "component": {
+    "complete": true,
+    "metrics": {
+      "labels": 72,
+      "localized": 43,
+      "joint": 43,
+      "background_peaks": 40,
+      "unknown_peaks": 98,
+      "towns": {
+        "Town01_Opt": {
+          "labels": 8,
+          "localized": 7,
+          "joint": 7
+        },
+        "Town03_Opt": {
+          "labels": 20,
+          "localized": 16,
+          "joint": 16
+        },
+        "Town04_Opt": {
+          "labels": 12,
+          "localized": 12,
+          "joint": 12
+        },
+        "Town10HD_Opt": {
+          "labels": 32,
+          "localized": 8,
+          "joint": 8
+        }
+      },
+      "classes": {
+        "1": {
+          "labels": 36,
+          "localized": 22,
+          "joint": 22
+        },
+        "3": {
+          "labels": 18,
+          "localized": 11,
+          "joint": 11
+        },
+        "2": {
+          "labels": 18,
+          "localized": 10,
+          "joint": 10
+        }
+      }
+    },
+    "baseline": {
+      "labels": 72,
+      "localized": 56,
+      "joint": 44,
+      "background_peaks": 37241,
+      "unknown_peaks": 1246,
+      "towns": {
+        "Town01_Opt": {
+          "labels": 8,
+          "localized": 7,
+          "joint": 7
+        },
+        "Town03_Opt": {
+          "labels": 20,
+          "localized": 16,
+          "joint": 15
+        },
+        "Town04_Opt": {
+          "labels": 12,
+          "localized": 12,
+          "joint": 12
+        },
+        "Town10HD_Opt": {
+          "labels": 32,
+          "localized": 21,
+          "joint": 10
+        }
+      },
+      "classes": {
+        "1": {
+          "labels": 36,
+          "localized": 28,
+          "joint": 22
+        },
+        "3": {
+          "labels": 18,
+          "localized": 13,
+          "joint": 7
+        },
+        "2": {
+          "labels": 18,
+          "localized": 15,
+          "joint": 15
+        }
+      }
+    },
+    "criteria": {
+      "coverage_protected": false,
+      "background_reduced90": true
+    },
+    "component_pass": false,
+    "driving_qualified": false,
+    "repeatedly_inspected_development_set": true,
+    "no_validation_selection": true,
+    "model_sha256": "ed533241a872943c928d725ac06399c7bc2c78ce73e1f05cd4d359929e583191",
+    "elapsed_seconds": 13.081842254999856
+  },
+  "independent_component_recount_exact": true,
+  "independently_recounted": {
+    "towns": {
+      "Town01_Opt": {
+        "labels": 8,
+        "localized": 7,
+        "joint": 7,
+        "background_peaks": 15,
+        "unknown_peaks": 1,
+        "classes": {
+          "1": {
+            "labels": 4,
+            "localized": 4,
+            "joint": 4
+          },
+          "3": {
+            "labels": 2,
+            "localized": 2,
+            "joint": 2
+          },
+          "2": {
+            "labels": 2,
+            "localized": 1,
+            "joint": 1
+          }
+        }
+      },
+      "Town03_Opt": {
+        "labels": 20,
+        "localized": 16,
+        "joint": 16,
+        "background_peaks": 12,
+        "unknown_peaks": 59,
+        "classes": {
+          "1": {
+            "labels": 10,
+            "localized": 8,
+            "joint": 8
+          },
+          "3": {
+            "labels": 5,
+            "localized": 3,
+            "joint": 3
+          },
+          "2": {
+            "labels": 5,
+            "localized": 5,
+            "joint": 5
+          }
+        }
+      },
+      "Town04_Opt": {
+        "labels": 12,
+        "localized": 12,
+        "joint": 12,
+        "background_peaks": 4,
+        "unknown_peaks": 31,
+        "classes": {
+          "1": {
+            "labels": 6,
+            "localized": 6,
+            "joint": 6
+          },
+          "3": {
+            "labels": 3,
+            "localized": 3,
+            "joint": 3
+          },
+          "2": {
+            "labels": 3,
+            "localized": 3,
+            "joint": 3
+          }
+        }
+      },
+      "Town10HD_Opt": {
+        "labels": 32,
+        "localized": 8,
+        "joint": 8,
+        "background_peaks": 9,
+        "unknown_peaks": 7,
+        "classes": {
+          "1": {
+            "labels": 16,
+            "localized": 4,
+            "joint": 4
+          },
+          "3": {
+            "labels": 8,
+            "localized": 3,
+            "joint": 3
+          },
+          "2": {
+            "labels": 8,
+            "localized": 1,
+            "joint": 1
+          }
+        }
+      }
+    },
+    "labels": 72,
+    "localized": 43,
+    "joint": 43,
+    "background_peaks": 40,
+    "unknown_peaks": 98,
+    "classes": {
+      "1": {
+        "labels": 36,
+        "localized": 22,
+        "joint": 22
+      },
+      "3": {
+        "labels": 18,
+        "localized": 11,
+        "joint": 11
+      },
+      "2": {
+        "labels": 18,
+        "localized": 10,
+        "joint": 10
+      }
+    }
+  },
+  "requirements": {
+    "aggregate": false,
+    "towns": false,
+    "phases": false,
+    "background": true
+  },
+  "report_source_sha256": "8c0d0f0be33399ba637ff0cac0906a10aca83982d92c20eb406af3a89b1d1736",
+  "sources": {
+    "outputs/navigation_signal_supported_20261022/assessment.json": "b40ff2e09132e103f326b865e15269e75e546703a79688dbdf64b93e28a05f00",
+    "outputs/navigation_signal_supported_full_20261022/assessment.json": "2fc45387395b346fa12ce6bab688c8aa013bdfcb57ecf1e8345051d1cff5a732",
+    "outputs/navigation_signal_supported_final_20261022/assessment.json": "16fcb8f47d4da99fddade64eecafe61129765ed8410be38b55301caf2609890f",
+    "outputs/navigation_signal_supported_final_20261022/final/model.pkl": "ed533241a872943c928d725ac06399c7bc2c78ce73e1f05cd4d359929e583191",
+    "outputs/navigation_signal_supported_final_20261022/final/validation_class_probability.npy": "e65d7935341642673f14c4b548fea56c89a74907e93c893d76a8db2ad4b6d5b5",
+    "outputs/navigation_signal_pixel_study_20261021/bulb/predictions1000.json": "f9894fe924fe6e74101cb5eb136987c2325a009df7045ad91c424c665f466819",
+    "outputs/navigation_signal_pretrained_20261021/cache.json": "6284e5481c83f98044dbd26dce34ba31cc857a91ad15b547dced6f9ef4c3f880"
+  }
+}

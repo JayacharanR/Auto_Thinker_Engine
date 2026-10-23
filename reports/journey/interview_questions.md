@@ -1130,3 +1130,7 @@ runs not finished yet.
 - **Q:** What does the final software test pass prove?
   **A (short):** The 559 passing tests support software contracts and regression checks; three environment-dependent tests remain skipped. They do not establish native driving safety, rule understanding, calibration on new situations or a completed final benchmark.
   **Evidence:** Journal 2026-10-23 17:36, documentation verification; reports/interview_preparation_20261023.md, Q69.
+
+- **Q:** How do you distinguish a local checkpoint from a published repository state?
+  **A (short):** A commit and fast-forward merge can succeed locally while remote authentication fails. The handoff records the local checkpoint, failed push and unpublished state separately; credentials are never committed, and a later authenticated push must respect remote history.
+  **Evidence:** Journal 2026-10-23 17:39 IST, repository handoff; reports/repository_checkpoint_20261023.md.

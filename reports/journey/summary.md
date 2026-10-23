@@ -617,3 +617,11 @@ development safety gate, M6 final driving and real-world driving validation.
 
 The user requested a stop at this state. Future suggestions in this document
 are not automatic authorization to restart it.
+
+### Repository publication at handoff
+
+The research checkpoint was committed and fast-forward merged into local `main`.
+GitHub publication failed because this machine has no HTTPS credentials; the
+actual atomic push exited 128 before updating either remote branch. See the
+[checkpoint receipt](../repository_checkpoint_20261023.md) for the exact error and
+publication command. Local commit/merge success does not imply a successful push.

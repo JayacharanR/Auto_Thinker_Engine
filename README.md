@@ -24,6 +24,7 @@ robustness and driving decisions over a CNN trained from scratch.
   [runbook](reports/navigation_runbook.md),
   [execution ledger](reports/navigation_execution_20261018.json) and
   [agent handoff](reports/agent_handoff.md)
+- [Repository checkpoint and publication status](reports/repository_checkpoint_20261023.md)
 
 The journal preserves historical mistakes and superseded findings. Use the pause
 report and corrected assessments for current numbers rather than treating every

@@ -62,6 +62,9 @@ reports/conference_*/qa/contact_sheet.png
 # Misc
 *.log
 *.tmp
+# Office editor ownership/temporary files (documents themselves remain tracked).
+.~lock.*#
+~$*
 
 # Tool caches
 .ruff_cache/

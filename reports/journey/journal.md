@@ -3503,3 +3503,14 @@ Entries before 2026-10-01 22:55 (remote A4000 server period) are summarised in
 **Checkpoint preflight:** All 428 changed/new Python files under src, scripts, tests and patches pass Ruff. All new/updated overview links resolve; git diff --check passes. The 902 candidate-path size/credential-pattern scan found no matches; raw datasets/checkpoints/recordings remain ignored. The updated read-only watcher was exercised manually and accurately shows the pause.
 
 **Artifact whitespace:** Staged-file checking found required unified-diff context spaces and Matplotlib SVG path serialization. .gitattributes preserves those generated/patch bytes instead of stripping them or invalidating paper hashes; source/document whitespace checking remains enabled.
+
+## 2026-10-23 17:39 - Local checkpoint merged; GitHub publication blocked by missing authentication
+**Type:** milestone / blocker
+**Stage:** Repository handoff
+
+**Completed:** Scientific/source/documentation checkpoint 47e39bd created on experiment/camera-world-model-navigation; main fast-forward merged to it, preserving history. The conference paper, current README, detailed summary, interview guide, frozen suites, tests and corrected/negative evidence are included; raw outputs remain ignored.
+**Blocker:** Actual noninteractive atomic push of both branches exited128: `fatal: unable to get password from user`. No HTTPS credential is available; neither remote branch was updated. This was a Git authentication failure, not automatic approval-review rejection.
+**How we handled it:** Preserve the successful local merge, document the exact failed publication in reports/repository_checkpoint_20261023.md, and checkpoint this outcome. Both local branches are kept aligned. Office lock files created while the paper is open are ignored; the active document/lock was not deleted.
+**Verified by:** Local ancestry/ref checks and scoped full validation; failed push output retained in the task transcript. No credential changes, force push, training launch or vendor gitlink changes.
+**Lesson:** A local commit and merge do not imply remote publication; report the transport/authentication outcome separately.
+**Interview angle:** How do you distinguish a reproducible local checkpoint from a published repository state?

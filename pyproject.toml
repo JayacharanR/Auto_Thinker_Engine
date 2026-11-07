@@ -1,7 +1,7 @@
 [project]
 name = "driving-world-model"
-version = "0.1.0"
-description = "Vision World Model Driving Agent: JEPA pretraining + DreamerV3 RL for autonomous driving"
+version = "1.0.0"
+description = "Camera-based driving research in CARLA with JEPA encoders, DreamerV3 world models, and multi-camera navigation"
 readme = "README.md"
 requires-python = "==3.10.*"
 license = { text = "MIT" }

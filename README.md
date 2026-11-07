@@ -1,5 +1,10 @@
 # Auto Thinker Engine
 
+[![Release v1](https://img.shields.io/badge/release-v1-blue)](https://github.com/JayacharanR/Auto_Thinker_Engine/releases/tag/v1)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+## About
+
 Camera-based driving research in CARLA, combining self-supervised video encoders,
 DreamerV3 world-model reinforcement learning, and a later multi-camera navigation
 pipeline. The research question is whether visual pretraining improves learning,
@@ -10,6 +15,30 @@ robustness and driving decisions over a CNN trained from scratch.
 > or resume experiments until the user explicitly requests it. The M0–M6 goal is
 > **unfinished**: camera safety/rule/planning gates remain open and final Town05
 > driving has not run. See the [pause record](reports/navigation_pause_20261023.json).
+
+## Demo
+
+![CPU demo: runtime checks and real CNN/JEPA Dreamer integration tests](docs/assets/demo.gif)
+
+This is a recorded **CPU software demo using synthetic observations**. It runs
+the runtime doctor and real Dreamer integration tests: CNN training updates the
+encoder, adapter and RSSM; JEPA training keeps the encoder frozen while updating
+the adapter and RSSM. Checkpoint save/load is also exercised. Playback is condensed.
+
+The GIF demonstrates software execution, not CARLA driving or a trained policy's
+performance. Research remains paused. Driving recordings and checkpoints are not
+included in this checkout; measured driving results and their limits are listed below.
+
+After installing the development dependencies and applying the tracked Dreamer
+compatibility patch (the setup script does this), regenerate the GIF with:
+
+```bash
+uv run --extra dev python scripts/make_readme_demo.py
+```
+
+The [captured transcript](docs/assets/demo.txt) and
+[demo provenance](docs/assets/README.md) accompany the GIF. See the
+[v1 release notes](docs/releases/v1.md) for the release scope and verification limits.
 
 ## Start here
 

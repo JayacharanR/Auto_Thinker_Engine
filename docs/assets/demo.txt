@@ -1,0 +1,32 @@
+
+$ python run.py doctor
+[doctor] Project: .
+  OK      Python: 3.10.20
+  OK      dreamerv3-torch: ./third_party/dreamerv3_torch
+  OK      CarDreamer: ./third_party/CarDreamer
+  OK      dreamerv3_torch_compat.patch: applied
+  OK      cardreamer_compat.patch: applied
+  OK      Python module torch: importable
+  OK      Python module numpy: importable
+  OK      Python module yaml: importable
+  OK      Python module ruamel.yaml: importable
+  WARN    CUDA: unavailable
+  OK      NVIDIA Vulkan ICD: /usr/share/vulkan/icd.d/nvidia_icd.json
+  WARN    CARLA_ROOT: not set
+  OK      CARLA Python API: importable
+[doctor] Passed. Warnings above are only blockers for commands that require them.
+
+$ python -m pytest tests/test_synthetic_training.py -v --no-header --disable-warnings --color=no
+============================= test session starts ==============================
+collecting ... collected 8 items
+
+tests/test_synthetic_training.py::TestFakeDrivingEnv::test_reset_returns_valid_obs PASSED [ 12%]
+tests/test_synthetic_training.py::TestFakeDrivingEnv::test_step_returns_4_tuple PASSED [ 25%]
+tests/test_synthetic_training.py::TestFakeDrivingEnv::test_100_random_steps PASSED [ 37%]
+tests/test_synthetic_training.py::TestCNNOneStepTraining::test_cnn_constructs_with_custom_encoder PASSED [ 50%]
+tests/test_synthetic_training.py::TestCNNOneStepTraining::test_cnn_one_training_step PASSED [ 62%]
+tests/test_synthetic_training.py::TestCNNOneStepTraining::test_checkpoint_save_load PASSED [ 75%]
+tests/test_synthetic_training.py::TestJEPAOneStepTraining::test_jepa_constructs_and_trains PASSED [ 87%]
+tests/test_synthetic_training.py::TestRepeatedUpdates::test_second_update_trains_and_frozen_encoder_stays_fixed PASSED [100%]
+
+======================== 8 passed, 13 warnings in 5.79s ========================

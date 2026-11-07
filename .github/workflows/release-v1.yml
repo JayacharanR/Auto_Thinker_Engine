@@ -1,0 +1,37 @@
+name: Publish v1 research snapshot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/release-v1.yml
+      - docs/releases/v1.md
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-v1
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish the verified source snapshot and demo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release v1 already exists; leaving its tag and assets unchanged."
+            exit 0
+          fi
+          gh release create v1 docs/assets/demo.gif \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Auto Thinker Engine v1" \
+            --notes-file docs/releases/v1.md \
+            --latest
